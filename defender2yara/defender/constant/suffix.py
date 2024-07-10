@@ -1,0 +1,30 @@
+# ref: https://learn.microsoft.com/en-us/defender-xdr/malware-naming?view=o365-worldwide
+from collections import defaultdict
+
+SUFFIX = defaultdict(lambda: "an internal category used to refer to some threats")
+
+SUFFIX['dam'] = "damaged malware"
+SUFFIX['dll'] = "Dynamic Link Library component of a malware"
+SUFFIX['dr'] = "dropper component of a malware"
+SUFFIX['gen'] = "malware that is detected using a generic signature"
+SUFFIX['kit'] = "virus constructor"
+SUFFIX['ldr'] = "loader component of a malware"
+SUFFIX['pak'] = "compressed malware"
+SUFFIX['plugin'] = "plug-in component"
+SUFFIX['remnants'] = "remnants of a virus"
+SUFFIX['worm'] = "worm component of that malware"
+SUFFIX['bit'] = "an internal category used to refer to some threats"
+SUFFIX['cl'] = "an internal category used to refer to some threats"
+SUFFIX['dha'] = "an internal category used to refer to some threats"
+SUFFIX['pfn'] = "an internal category used to refer to some threats"
+SUFFIX['plock'] = "an internal category used to refer to some threats"
+SUFFIX['rfn'] = "an internal category used to refer to some threats"
+SUFFIX['rootkit'] = "rootkit component of that malware"
+SUFFIX['m'] = "worm mailers"
+SUFFIX['mm'] = "mass mailer worm"
+SUFFIX['MTB'] = "Microsoft Threat Behavior"
+SUFFIX['MTB1'] = "Microsoft Threat Behavior"
+SUFFIX['MTB6'] = "Microsoft Threat Behavior"
+SUFFIX['MTB7'] = "Microsoft Threat Behavior"
+SUFFIX['MTB8'] = "Microsoft Threat Behavior"
+SUFFIX['MSR'] = "Microsoft Security Response"
