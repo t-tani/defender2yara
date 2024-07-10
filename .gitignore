@@ -1,0 +1,42 @@
+# windows defender artifacts
+
+*.extracted
+*.exe
+*.dll
+*.vdm
+*.pickle
+threats.json
+
+# reverse engineering artifacts
+
+*.i64
+*.idb
+
+# yara rules
+*.yara
+
+# vscode
+
+.vscode
+
+# python/poetry
+
+*.pyc
+
+# Packages
+/dist/*
+
+# Unit test / coverage reports
+.coverage
+.pytest_cache
+
+.DS_Store
+.idea/*
+.python-version
+.vscode/*
+
+/docs/site/*
+.mypy_cache
+
+.venv
+/poetry.toml
