@@ -4252,3 +4252,24 @@ rule Trojan_Win32_Zusy_AMMI_2147915078_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Zusy_SHZC_2147916917_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zusy.SHZC!MTB"
+        threat_id = "2147916917"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {88 45 f9 8a 45 f9 0f b6 c8 0f b6 15 ?? ?? ?? ?? 31 d1 88 cc 88 25 ?? ?? ?? ?? c7 05 ?? ?? ?? ?? e8 15 00 00 c7 05 ?? ?? ?? ?? f1 18 00 00 0f b6 05 ?? ?? ?? ?? 83 c4 04 5e}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

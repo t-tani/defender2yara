@@ -249,3 +249,25 @@ rule Trojan_AndroidOS_SmsAgent_M_2147916235_0
         (3 of ($x*))
 }
 
+rule Trojan_AndroidOS_SmsAgent_AH_2147916912_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:AndroidOS/SmsAgent.AH"
+        threat_id = "2147916912"
+        type = "Trojan"
+        platform = "AndroidOS: Android operating system"
+        family = "SmsAgent"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "KEY_TEST_TOTAL_CONVERSATION" ascii //weight: 2
+        $x_2_2 = "/productinfo/already_send" ascii //weight: 2
+        $x_2_3 = "ACTION_MESSAGE_SEND_ALREADY" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

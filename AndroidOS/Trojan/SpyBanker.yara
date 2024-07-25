@@ -776,3 +776,24 @@ rule Trojan_AndroidOS_SpyBanker_W_2147913370_0
         (all of ($x*))
 }
 
+rule Trojan_AndroidOS_SpyBanker_AY_2147916913_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:AndroidOS/SpyBanker.AY"
+        threat_id = "2147916913"
+        type = "Trojan"
+        platform = "AndroidOS: Android operating system"
+        family = "SpyBanker"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "gateway/option_activity" ascii //weight: 2
+        $x_2_2 = "incomingsmsgateway/SmsMainActivity" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
