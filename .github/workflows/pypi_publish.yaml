@@ -12,6 +12,8 @@ jobs:
     environment:
       name: pypi
       url: https://pypi.org/project/defender2yara/
+    permissions:
+      id-token: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v4

@@ -1,6 +1,10 @@
 from typing import Tuple
 import pefile
 
+import logging
+
+logger = logging.getLogger(__package__)
+
 def format_version(version: int) -> str:
     """
     Format a PE version into a string.
@@ -60,5 +64,5 @@ def parse_pe_meta_info(pe_file_path: str) -> Tuple[str,str]:
                                 original_filename = st_data
         return original_filename, product_version
     except Exception as e:
-        print(f"An error occurred: {e}")
-        return "", ""
+        logger.warning(f"Failed to parse metadata from PE file. Error: {e}")
+        raise e
