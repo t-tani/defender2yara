@@ -1,12 +1,19 @@
 from typing import Tuple
+import platform
 import httpx
 import re
+import time
 from tqdm import tqdm
 import os
 import glob
 import shutil
-import libarchive
+
+from defender2yara.util.cabarchive import expand_mpam_fe
 from defender2yara.defender.vdm import Vdm
+
+import logging
+
+logger = logging.getLogger(__package__)
 
 DOWNLOAD_URL = "https://go.microsoft.com/fwlink/?LinkID=121721&arch=x86"
 URL_PATTERN = r'https://definitionupdates\.microsoft\.com/download/DefinitionUpdates/versionedsignatures/[aA][mM]/[0-9.]+/[0-9.]+/x86/mpam-fe\.exe'
@@ -78,7 +85,7 @@ def create_cache_dir(signature_version, engine_version, cache_path='cache')->Non
     return
 
 
-def move_files(signature_version,engine_version,cache_path) -> None:
+def move_files(signature_version,engine_version,source_dir,cache_path) -> None:
     major_version = ".".join(signature_version.split('.')[0:2])
     minor_version = ".".join(signature_version.split('.')[2:4])
     
@@ -87,15 +94,25 @@ def move_files(signature_version,engine_version,cache_path) -> None:
     engine_dir = os.path.join(cache_path,"engine",engine_version)
 
     # move base signature vmd
-    shutil.move("mpasbase.vdm",os.path.join(base_vdm_dir,"mpasbase.vdm"))
-    shutil.move("mpavbase.vdm",os.path.join(base_vdm_dir,"mpavbase.vdm"))
+    shutil.move(os.path.join(source_dir,"mpasbase.vdm"),os.path.join(base_vdm_dir,"mpasbase.vdm"))
+    shutil.move(os.path.join(source_dir,"mpavbase.vdm"),os.path.join(base_vdm_dir,"mpavbase.vdm"))
 
     # move delta signature vmd
-    shutil.move("mpasdlta.vdm",os.path.join(delta_vdm_dir,"mpasdlta.vdm"))
-    shutil.move("mpavdlta.vdm",os.path.join(delta_vdm_dir,"mpavdlta.vdm"))
+    shutil.move(os.path.join(source_dir,"mpasdlta.vdm"),os.path.join(delta_vdm_dir,"mpasdlta.vdm"))
+    shutil.move(os.path.join(source_dir,"mpavdlta.vdm"),os.path.join(delta_vdm_dir,"mpavdlta.vdm"))
 
     # move engine
-    shutil.move("mpengine.dll",os.path.join(engine_dir,"mpengine.dll"))
+    retry_count = 0
+    while retry_count < 5:
+        try:
+            shutil.move(os.path.join(source_dir,"mpengine.dll"),os.path.join(engine_dir,"mpengine.dll"))
+            break
+        except PermissionError:
+            time.sleep(1)
+            retry_count += 1
+    if retry_count == 5:
+        logger.warning(f"Failed to move {os.path.join(source_dir,'mpengine.dll')}: PermissionError. (maybe due to antivirus scanning?)")
+        #os.remove(os.path.join(source_dir,'mpengine.dll'))
     return
 
 
@@ -113,12 +130,18 @@ def get_latest_signature_vdm(proxy)->Tuple[str,str,str]:
 def parse_full_engine_exe(full_engine_path:str,cache_path:str,rm_full_engine:bool) -> Tuple[str,str]:
     if not os.path.exists(full_engine_path):
         raise FileNotFoundError(f"mpam-fe.exe file not found: {full_engine_path}")
-    # extract cabinet file
-    libarchive.extract_file(full_engine_path)
+    if platform.system() == 'Windows':
+        # extract cabarchive with windows expand command
+        expand_mpam_fe(full_engine_path)
+        source_dir = os.path.dirname(full_engine_path)
+    else:
+        # extract cabarchive with libarchive
+        import libarchive
+        libarchive.extract_file(full_engine_path)
+        source_dir = os.path.curdir
 
-    # get signature version (libarchive extract files to current directory)
-    vdm_path = os.path.join(os.path.curdir,"mpavdlta.vdm")
-    engine_path = os.path.join(os.path.curdir,"mpengine.dll")
+    vdm_path = os.path.join(source_dir,"mpavdlta.vdm")
+    engine_path = os.path.join(source_dir,"mpengine.dll")
 
     _, signature_version = Vdm.get_meta_info(vdm_path)
     _, engine_version = Vdm.get_meta_info(engine_path)
@@ -127,12 +150,12 @@ def parse_full_engine_exe(full_engine_path:str,cache_path:str,rm_full_engine:boo
     create_cache_dir(signature_version,engine_version,cache_path)
 
     # move files
-    move_files(signature_version,engine_version,cache_path)
+    move_files(signature_version,engine_version,source_dir,cache_path)
 
     # clean up
-    files_to_remove = glob.glob("M?SigStub.exe",root_dir=os.path.dirname(os.path.curdir))
+    files_to_remove = glob.glob("M?SigStub.exe",root_dir=source_dir)
     for file_path in files_to_remove:
-        os.remove(file_path)
+        os.remove(os.path.join(source_dir,file_path))
 
     if rm_full_engine:
         os.remove(full_engine_path)

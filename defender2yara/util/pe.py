@@ -1,4 +1,5 @@
 from typing import Tuple
+import os
 import pefile
 
 import logging
@@ -66,3 +67,48 @@ def parse_pe_meta_info(pe_file_path: str) -> Tuple[str,str]:
     except Exception as e:
         logger.warning(f"Failed to parse metadata from PE file. Error: {e}")
         raise e
+
+def parse_pe_resources(pe_file_path):
+    """
+    Parses the resources section of a PE file using the pefile library.
+
+    Args:
+        pe_file_path (str): The path to the PE file.
+
+    Returns:
+        dict: A dictionary containing the parsed resources.
+
+    Raises:
+        FileNotFoundError: If the PE file does not exist.
+        pefile.PEFormatError: If the file is not a valid PE file.
+    """
+    resources = {}
+    
+    if not os.path.isfile(pe_file_path):
+        raise FileNotFoundError(f"The PE file '{pe_file_path}' does not exist.")
+    
+    try:
+        pe = pefile.PE(pe_file_path)
+    except pefile.PEFormatError as e:
+        raise pefile.PEFormatError(f"Error parsing PE file: {e}")
+    
+    if hasattr(pe, 'DIRECTORY_ENTRY_RESOURCE'):
+        for resource_type in pe.DIRECTORY_ENTRY_RESOURCE.entries:
+            type_name = pefile.RESOURCE_TYPE.get(resource_type.struct.Id, str(resource_type.struct.Id))
+            resources[type_name] = []
+            
+            if hasattr(resource_type, 'directory'):
+                for resource_id in resource_type.directory.entries:
+                    if hasattr(resource_id, 'directory'):
+                        for resource_lang in resource_id.directory.entries:
+                            data_rva = resource_lang.data.struct.OffsetToData
+                            size = resource_lang.data.struct.Size
+                            data = pe.get_memory_mapped_image()[data_rva:data_rva+size]
+                            resources[type_name].append({
+                                'ResourceId': resource_id.struct.Id,
+                                'Language': resource_lang.struct.Id,
+                                'Data': data
+                            })
+    else:
+        raise ValueError("No resources found in the PE file.")
+    return resources
