@@ -1545,3 +1545,24 @@ rule Trojan_Win32_Fragtor_NK_2147916586_0
         )
 }
 
+rule Trojan_Win32_Fragtor_AMAU_2147916901_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Fragtor.AMAU!MTB"
+        threat_id = "2147916901"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Fragtor"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {8b 14 b8 8b 44 ?? 24 03 54 24 ?? 8b 4c b8 ?? 8b 44 24 ?? 8a 04 01 8d 4c 24 ?? 30 02 e8}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
