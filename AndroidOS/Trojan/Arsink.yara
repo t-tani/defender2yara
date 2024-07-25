@@ -1,0 +1,100 @@
+rule Trojan_AndroidOS_Arsink_A_2147899023_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:AndroidOS/Arsink.A!MTB"
+        threat_id = "2147899023"
+        type = "Trojan"
+        platform = "AndroidOS: Android operating system"
+        family = "Arsink"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "SendNumb" ascii //weight: 1
+        $x_1_2 = "getAllSms" ascii //weight: 1
+        $x_1_3 = "_getAllContacts" ascii //weight: 1
+        $x_1_4 = "_infodevice" ascii //weight: 1
+        $x_1_5 = "getAllCallsHistoty" ascii //weight: 1
+        $x_1_6 = "nikola/tesla/MainActivity" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_AndroidOS_Arsink_B_2147902250_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:AndroidOS/Arsink.B!MTB"
+        threat_id = "2147902250"
+        type = "Trojan"
+        platform = "AndroidOS: Android operating system"
+        family = "Arsink"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "getAllCallsHistoty" ascii //weight: 1
+        $x_1_2 = "_getAllContacts" ascii //weight: 1
+        $x_1_3 = "com/ai/format/SpydroidActivity" ascii //weight: 1
+        $x_1_4 = "_hack_sms_child_listener" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_AndroidOS_Arsink_C_2147902531_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:AndroidOS/Arsink.C!MTB"
+        threat_id = "2147902531"
+        type = "Trojan"
+        platform = "AndroidOS: Android operating system"
+        family = "Arsink"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "remove/clothes/com" ascii //weight: 1
+        $x_1_2 = "getAllCallsHistoty" ascii //weight: 1
+        $x_1_3 = "calldmpp" ascii //weight: 1
+        $x_1_4 = "haha_lol" ascii //weight: 1
+        $x_1_5 = "_infodevice" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_AndroidOS_Arsink_E_2147913287_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:AndroidOS/Arsink.E!MTB"
+        threat_id = "2147913287"
+        type = "Trojan"
+        platform = "AndroidOS: Android operating system"
+        family = "Arsink"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "DarkRAT" ascii //weight: 1
+        $x_1_2 = "_getAllContacts" ascii //weight: 1
+        $x_1_3 = "User_App.txt" ascii //weight: 1
+        $x_1_4 = "getAllCallsHistoty" ascii //weight: 1
+        $x_1_5 = "mostafa/mostafa1/BackServices" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

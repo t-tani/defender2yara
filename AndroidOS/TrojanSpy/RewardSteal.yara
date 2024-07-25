@@ -1,0 +1,237 @@
+rule TrojanSpy_AndroidOS_RewardSteal_A_2147837897_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanSpy:AndroidOS/RewardSteal.A!MTB"
+        threat_id = "2147837897"
+        type = "TrojanSpy"
+        platform = "AndroidOS: Android operating system"
+        family = "RewardSteal"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = "Cheakpermission" ascii //weight: 1
+        $x_1_2 = "cardNumber" ascii //weight: 1
+        $x_1_3 = {4c 63 6f 6d 2f 72 65 77 61 72 64 73 2f [0-4] 2f 53 6d 73 52 65 63 65 69 76 65 72}  //weight: 1, accuracy: Low
+        $x_1_4 = "finishAffinity" ascii //weight: 1
+        $x_1_5 = "loaddLastScreen" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule TrojanSpy_AndroidOS_RewardSteal_C_2147841245_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanSpy:AndroidOS/RewardSteal.C!MTB"
+        threat_id = "2147841245"
+        type = "TrojanSpy"
+        platform = "AndroidOS: Android operating system"
+        family = "RewardSteal"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "16"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "S1m2s3L4i5s6t7n8e9r0" ascii //weight: 1
+        $x_5_2 = "/save_sms0.php" ascii //weight: 5
+        $x_5_3 = "Lcom/example/myapplication/SmsReceiver" ascii //weight: 5
+        $x_5_4 = "000webhostapp.com/" ascii //weight: 5
+        $x_1_5 = "sendSMS" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((3 of ($x_5_*) and 1 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+
+rule TrojanSpy_AndroidOS_RewardSteal_B_2147841564_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanSpy:AndroidOS/RewardSteal.B!MTB"
+        threat_id = "2147841564"
+        type = "TrojanSpy"
+        platform = "AndroidOS: Android operating system"
+        family = "RewardSteal"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = "com.mykycandroid." ascii //weight: 5
+        $x_5_2 = "com/hdreward/points/MainActivity" ascii //weight: 5
+        $x_1_3 = "&from=app" ascii //weight: 1
+        $x_1_4 = "sendData" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_5_*) and 2 of ($x_1_*))) or
+            ((2 of ($x_5_*))) or
+            (all of ($x*))
+        )
+}
+
+rule TrojanSpy_AndroidOS_RewardSteal_F_2147842154_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanSpy:AndroidOS/RewardSteal.F!MTB"
+        threat_id = "2147842154"
+        type = "TrojanSpy"
+        platform = "AndroidOS: Android operating system"
+        family = "RewardSteal"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = "com.imranhasmi." ascii //weight: 5
+        $x_5_2 = "com/allservicecenter/android/MainActivity" ascii //weight: 5
+        $x_1_3 = "&from=app" ascii //weight: 1
+        $x_1_4 = "sendData" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_5_*) and 2 of ($x_1_*))) or
+            ((2 of ($x_5_*))) or
+            (all of ($x*))
+        )
+}
+
+rule TrojanSpy_AndroidOS_RewardSteal_D_2147843265_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanSpy:AndroidOS/RewardSteal.D!MTB"
+        threat_id = "2147843265"
+        type = "TrojanSpy"
+        platform = "AndroidOS: Android operating system"
+        family = "RewardSteal"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "submitContactMsgData" ascii //weight: 1
+        $x_1_2 = "get_msg_and_contact" ascii //weight: 1
+        $x_1_3 = "Lcom/app/bonusreward" ascii //weight: 1
+        $x_1_4 = "PresenterSMS" ascii //weight: 1
+        $x_1_5 = "submitFormData" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule TrojanSpy_AndroidOS_RewardSteal_E_2147850538_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanSpy:AndroidOS/RewardSteal.E!MTB"
+        threat_id = "2147850538"
+        type = "TrojanSpy"
+        platform = "AndroidOS: Android operating system"
+        family = "RewardSteal"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "adpter_getuset" ascii //weight: 1
+        $x_1_2 = "senderNoti" ascii //weight: 1
+        $x_1_3 = "server_down" ascii //weight: 1
+        $x_1_4 = "diviceblock" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule TrojanSpy_AndroidOS_RewardSteal_G_2147905722_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanSpy:AndroidOS/RewardSteal.G!MTB"
+        threat_id = "2147905722"
+        type = "TrojanSpy"
+        platform = "AndroidOS: Android operating system"
+        family = "RewardSteal"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "ttps://filipkatrt.in/admin" ascii //weight: 1
+        $x_1_2 = "MessageResever" ascii //weight: 1
+        $x_1_3 = "pussword" ascii //weight: 1
+        $x_1_4 = "com/example/bill_updatetrygreert354rt534t" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule TrojanSpy_AndroidOS_RewardSteal_H_2147910825_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanSpy:AndroidOS/RewardSteal.H!MTB"
+        threat_id = "2147910825"
+        type = "TrojanSpy"
+        platform = "AndroidOS: Android operating system"
+        family = "RewardSteal"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "ttps://panel247.xyz/" ascii //weight: 1
+        $x_1_2 = "api/messege.php" ascii //weight: 1
+        $x_1_3 = "card_number" ascii //weight: 1
+        $x_1_4 = "api/insert.php" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule TrojanSpy_AndroidOS_RewardSteal_I_2147914095_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanSpy:AndroidOS/RewardSteal.I!MTB"
+        threat_id = "2147914095"
+        type = "TrojanSpy"
+        platform = "AndroidOS: Android operating system"
+        family = "RewardSteal"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "/userMessage.php" ascii //weight: 1
+        $x_1_2 = "/getAppData.php" ascii //weight: 1
+        $x_1_3 = "sendDataToServer" ascii //weight: 1
+        $x_5_4 = "Lcom/idbibankou/idbibank" ascii //weight: 5
+        $x_5_5 = "Lcom/load/loan" ascii //weight: 5
+        $x_1_6 = "readOldSmsMessages" ascii //weight: 1
+        $x_1_7 = "/appReg.php" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_5_*) and 3 of ($x_1_*))) or
+            ((2 of ($x_5_*))) or
+            (all of ($x*))
+        )
+}
+

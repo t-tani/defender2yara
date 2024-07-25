@@ -1,0 +1,27 @@
+rule VirTool_Win32_LsassDump_Q_2147827003_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "VirTool:Win32/LsassDump.Q!MTB"
+        threat_id = "2147827003"
+        type = "VirTool"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LsassDump"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {8b 45 e0 8d 14 85 00 00 00 00 8b 45 0c 01 d0 8b 00 8d 95 18 fd ff ff 89 54 24 04 ?? ?? ?? a1 [0-4] ff d0 85 c0 0f [0-5] 8b 45 e0 8d 14 85 00 00 00 00 8b 45 0c 01 d0 8b 00 c7 44 24 04 [0-4] 00 a1 01 ff d0}  //weight: 2, accuracy: Low
+        $x_2_2 = {48 8d 14 c5 00 00 00 00 48 8b 85 [0-4] 48 01 d0 48 8b 00 48 8d 55 a0 48 89 c1 48 8b 05 [0-4] ff d0 85 c0 0f 85 [0-4] 8b 85 ec 02 00 00 [0-2] 48 8d 14 c5 00 00 00 00 48 8b 85 [0-4] 48 01 d0 48 8b 00 48 8d 15 ?? ?? 00 00 48 89 c1 48 8b 05 [0-4] ff d0}  //weight: 2, accuracy: Low
+        $x_1_3 = {6c 73 61 73 72 76 2e 64 6c 6c 00 6d 73 76 31 5f 30 2e 64 6c 6c 00 74 73 70 6b 67 2e 64 6c 6c 00 77 64 69 67 65 73 74 2e 64 6c 6c 00 6b 65 72 62 65 72 6f 73 2e 64 6c 6c 00 6c 69 76 65 73 73 70 2e 64 6c 6c}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_2_*) and 1 of ($x_1_*))) or
+            ((2 of ($x_2_*))) or
+            (all of ($x*))
+        )
+}
+

@@ -1,0 +1,145 @@
+rule Trojan_Win64_BruteRatel_DA_2147827936_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/BruteRatel.DA!MTB"
+        threat_id = "2147827936"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "BruteRatel"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {48 8b cb 48 83 f8 1c 48 0f 45 c8 42 0f b6 04 09 30 02 48 8d 41 01 41 ff c0 48 8d 52 01 41 81 f8 e0 93 04 00 72}  //weight: 1, accuracy: High
+        $x_1_2 = "jikoewarfkmzsdlhfnuiwaejrpaw" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_BruteRatel_A_2147829031_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/BruteRatel.A"
+        threat_id = "2147829031"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "BruteRatel"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "22"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = "software\\classes\\clsid\\{9fc8e510-a27c-4b3b-b9a3-bf65f00256a8}\\inprocserver32" ascii //weight: 10
+        $x_10_2 = "\\windows\\explorer.exe /e,::{9fc8e510-a27c-4b3b-b9a3-bf65f00256a8}" ascii //weight: 10
+        $x_2_3 = "%localappdata%\\microsoft\\windowsapps\\datalayer.dll" ascii //weight: 2
+        $x_1_4 = "wireshark.exe" ascii //weight: 1
+        $x_1_5 = "desktop-" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((2 of ($x_10_*) and 2 of ($x_1_*))) or
+            ((2 of ($x_10_*) and 1 of ($x_2_*))) or
+            (all of ($x*))
+        )
+}
+
+rule Trojan_Win64_BruteRatel_DB_2147829274_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/BruteRatel.DB!MTB"
+        threat_id = "2147829274"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "BruteRatel"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "12"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "] Screenshot downloaded:" ascii //weight: 1
+        $x_1_2 = "] Spoofed argument:" ascii //weight: 1
+        $x_1_3 = "] TCP listener started" ascii //weight: 1
+        $x_1_4 = "] Wallpaper changed" ascii //weight: 1
+        $x_1_5 = "] Child process not set" ascii //weight: 1
+        $x_1_6 = "] Process Killed" ascii //weight: 1
+        $x_1_7 = "] Directory Created" ascii //weight: 1
+        $x_1_8 = "] Workstation locked" ascii //weight: 1
+        $x_1_9 = "] Object pipe name:" ascii //weight: 1
+        $x_1_10 = "] Download complete" ascii //weight: 1
+        $x_1_11 = "] Duplicate listener:" ascii //weight: 1
+        $x_1_12 = "] Injected to:" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_BruteRatel_UL_2147832641_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/BruteRatel.UL!MTB"
+        threat_id = "2147832641"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "BruteRatel"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {41 8d 52 01 44 0f b6 d2 0f b6 d2 0f b6 04 14 42 8d 0c 08 44 0f b6 c9 0f b6 c9 0f b6 3c 0c 40 88 3c 14 88 04 0c 02 04 14 0f b6 c0 0f b6 04 04 42 32 04 03 42 88 04 06 4c 89 c0 49 83 c0 01 49 39 c3 75 bd}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_BruteRatel_ABR_2147890049_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/BruteRatel.ABR!MTB"
+        threat_id = "2147890049"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "BruteRatel"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {ff c9 8b 72 20 48 01 ee 8b 34 8e 48 01 ee 48 31 ff 48 31 c0 fc ac 84 c0 74 ?? c1 cf 0d 01 c7}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_BruteRatel_YAA_2147893849_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/BruteRatel.YAA!MTB"
+        threat_id = "2147893849"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "BruteRatel"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {99 b9 2a 00 00 00 f7 f9 8b c2 48 98 48 8d 0d ?? ?? ?? ?? 0f be 04 01 8b 4c 24 74 33 c8 8b c1 89 84 24 a4 00 00 00 48 8d 0d 20 d6 04 00}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

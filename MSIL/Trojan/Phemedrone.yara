@@ -1,0 +1,44 @@
+rule Trojan_MSIL_Phemedrone_AO_2147904028_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Phemedrone.AO!MTB"
+        threat_id = "2147904028"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Phemedrone"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {fe 0e 04 00 fe 0c 03 00 fe 0c 04 00 61 d1 fe 0e 05 00 fe 0c 01 00 fe 0c 05 00 6f}  //weight: 2, accuracy: High
+        $x_2_2 = {fe 0c 00 00 fe 0c 02 00 91 fe 0e 03 00 7e ?? 00 00 04 fe 0c 02 00}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Phemedrone_APH_2147914788_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Phemedrone.APH!MTB"
+        threat_id = "2147914788"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Phemedrone"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {0a 16 0b 2b 1c 00 06 07 03 07 91 04 07 04 6f ?? 00 00 0a 5d 6f ?? 00 00 0a 61 d2 9c 00 07 17 58}  //weight: 2, accuracy: Low
+        $x_1_2 = "Debug\\Phemedrone-Stealer.pdb" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
