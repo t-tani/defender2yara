@@ -2193,28 +2193,3 @@ rule Trojan_O97M_Obfuse_SIT_2147898461_0
         (all of ($x*))
 }
 
-rule Trojan_O97M_Obfuse_RVA_2147916692_0
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "Trojan:O97M/Obfuse.RVA!MTB"
-        threat_id = "2147916692"
-        type = "Trojan"
-        platform = "O97M: Office 97, 2000, XP, 2003, 2007, and 2010 macros - those that affect Word, Excel, and PowerPoint"
-        family = "Obfuse"
-        severity = "Critical"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_MACROHSTR_EXT"
-        threshold = "5"
-        strings_accuracy = "High"
-    strings:
-        $x_1_1 = "document_open()ingsetx5=activedocument.vbproject.vbcomponents.item(1)setx6=normaltemplate.vbproject.vbcomponents.item(1)x3=x5.codemodule.find(x15,1,1,10000,10000)" ascii //weight: 1
-        $x_1_2 = "withoptions:.confirmconversions=0:.virusprotection=0:.savenormalprompt=0" ascii //weight: 1
-        $x_1_3 = "document_close()onerrorresumenextsetx5=activedocument.vbproject.vbcomponents.item(1)setx6=normaltemplate.vbproject.vbcomponents.item(1)x3=x5.codemodule.find(" ascii //weight: 1
-        $x_1_4 = "x5.codemodule.countoflinesendifx9=now()x7=day(x9)x8=month(x9)" ascii //weight: 1
-        $x_1_5 = "\"youareheartless.\"&vbcrlf&\"youwillbepunishedforthis\"," ascii //weight: 1
-    condition:
-        (filesize < 20MB) and
-        (all of ($x*))
-}
-
