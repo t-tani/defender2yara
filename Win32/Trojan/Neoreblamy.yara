@@ -915,3 +915,58 @@ rule Trojan_Win32_Neoreblamy_AQ_2147916403_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Neoreblamy_ASA_2147916960_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Neoreblamy.ASA!MTB"
+        threat_id = "2147916960"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Neoreblamy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "BnelqbRvMtoEWPBUbgyubHyBJpJGEB" ascii //weight: 1
+        $x_1_2 = "huXkwzeouonixlmWz" ascii //weight: 1
+        $x_1_3 = "fwLYDUZUcoYeDFYkBoOVhNomTGOLaPnovN" ascii //weight: 1
+        $x_1_4 = "mgnVPcrLihAGzMbVZAmVVBRecVyJ" ascii //weight: 1
+        $x_1_5 = "YgymvWYlVhFCkgxqodqHMevBTNOO" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Neoreblamy_ASB_2147916961_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Neoreblamy.ASB!MTB"
+        threat_id = "2147916961"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Neoreblamy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "hlfpCkgPKUJwxaArcRynZn" ascii //weight: 1
+        $x_1_2 = "ptEHhqDcuaijwKQAeeYgEjZvhvfO" ascii //weight: 1
+        $x_1_3 = "vYFKIDBcKbGTUknkkgNQMDqoOupLvo" ascii //weight: 1
+        $x_1_4 = "xooBipYNfxLanhGgoHjCRHePLeGYR" ascii //weight: 1
+        $x_1_5 = "AVTXRUINmLablxSmabnNsiBjskRCawCBof" ascii //weight: 1
+        $x_1_6 = "SSoQHjdPlTKeWUqKgKhhwiE" ascii //weight: 1
+        $x_1_7 = "kBwtnkHUtGIjlLdydzwvxuwcMoRDTA" ascii //weight: 1
+        $x_1_8 = "WusPebppWWJQogPWyGjlyoAaxpyM" ascii //weight: 1
+        $x_1_9 = "gvasaWXLdpADUwuuBfrbsyQvyWVRtX" ascii //weight: 1
+        $x_1_10 = "fDuONwLoggshmDuyBScLaOwLyEkT" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (5 of ($x*))
+}
+

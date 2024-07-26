@@ -18970,3 +18970,25 @@ rule Trojan_Win32_Redline_AMAS_2147916655_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Redline_ASCE_2147916972_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Redline.ASCE!MTB"
+        threat_id = "2147916972"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Redline"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {8a 04 01 8d 4c 24 ?? 30 04 2a e8 ?? ?? ?? ff 8d 4c 24 ?? e8 ?? ?? ?? ff 8d 4c 24 ?? e8 ?? ?? ?? ff 8d 4c 24 ?? e8 ?? ?? ?? ff 8b 7c 24 ?? 46 89 74 24 ?? 3b b4 24}  //weight: 4, accuracy: Low
+        $x_1_2 = "Asucjhudaujsa" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

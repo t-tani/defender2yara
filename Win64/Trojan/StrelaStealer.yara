@@ -1044,3 +1044,25 @@ rule Trojan_Win64_StrelaStealer_ASN_2147916715_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_StrelaStealer_GPAN_2147916981_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/StrelaStealer.GPAN!MTB"
+        threat_id = "2147916981"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "StrelaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {44 89 c2 20 c2 44 30 c0 08 d0 89 c2}  //weight: 1, accuracy: High
+        $x_1_2 = "DllRegisterServer" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

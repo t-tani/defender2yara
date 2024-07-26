@@ -80,6 +80,29 @@ rule TrojanDownloader_O97M_Lokibot_RV_2147769051_0
         )
 }
 
+rule TrojanDownloader_O97M_Lokibot_RVA_2147771847_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:O97M/Lokibot.RVA!MTB"
+        threat_id = "2147771847"
+        type = "TrojanDownloader"
+        platform = "O97M: Office 97, 2000, XP, 2003, 2007, and 2010 macros - those that affect Word, Excel, and PowerPoint"
+        family = "Lokibot"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_MACROHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {64 6f 63 75 6d 65 6e 74 5f 6f 70 65 6e 28 29 6f 6e 65 72 72 6f 72 67 6f 74 6f 65 72 72 6f 72 68 61 6e 64 6c 65 72 63 6f 6e 73 74 64 6f 77 6e 6c 6f 61 64 5f 75 72 6c 61 73 73 74 72 69 6e 67 3d 22 68 74 74 70 73 3a 2f 2f 63 64 6e 2e 64 69 73 63 6f 72 64 61 70 70 2e 63 6f 6d 2f 61 74 74 61 63 68 6d 65 6e 74 73 2f 31 32 36 35 35 39 32 36 38 30 37 30 30 37 31 31 30 30 36 2f 31 32 36 35 38 32 33 39 31 37 31 30 31 30 32 33 32 35 32 2f [0-15] 2e 65 78 65 3f 65 78 3d}  //weight: 1, accuracy: Low
+        $x_1_2 = "=environ$(\"tmp\")&\"\\downloaded_file.exe\"" ascii //weight: 1
+        $x_1_3 = "=createobject(\"msxml2.xmlhttp\")xmlhttp.open\"get\",url,falsexmlhttp.send" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule TrojanDownloader_O97M_Lokibot_LPK_2147816784_0
 {
     meta:

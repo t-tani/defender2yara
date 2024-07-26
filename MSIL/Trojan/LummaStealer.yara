@@ -1664,3 +1664,26 @@ rule Trojan_MSIL_LummaStealer_I_2147915966_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_LummaStealer_KAM_2147916977_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/LummaStealer.KAM!MTB"
+        threat_id = "2147916977"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "6f8af69d-486a-4cd6-ba6e-83ae85bbc060" ascii //weight: 1
+        $x_1_2 = "Intel Core Inc. Trademark" ascii //weight: 1
+        $x_1_3 = "Adjectives which will randomly appear with a click" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
