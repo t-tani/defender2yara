@@ -2572,11 +2572,10 @@ rule Trojan_Win32_Ekstak_RH_2147848153_1
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "6"
+        threshold = "1"
         strings_accuracy = "High"
     strings:
-        $x_5_1 = {55 8b ec 56 e8 b7 6a fb ff e9}  //weight: 5, accuracy: High
-        $x_1_2 = {40 00 00 40 2e 6d 70 67}  //weight: 1, accuracy: High
+        $x_1_1 = {56 68 84 a0 65 00 e8 45 57 fb ff 8b f0 e9}  //weight: 1, accuracy: High
     condition:
         (filesize < 20MB) and
         (all of ($x*))
@@ -2594,10 +2593,11 @@ rule Trojan_Win32_Ekstak_RH_2147848153_2
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "1"
+        threshold = "6"
         strings_accuracy = "High"
     strings:
-        $x_1_1 = {51 56 57 68 04 01 00 00 6a 00 68 a8 ee 4c 00 e8 fc 01 00 00 83 c4 0c e9}  //weight: 1, accuracy: High
+        $x_5_1 = {55 8b ec 56 e8 b7 6a fb ff e9}  //weight: 5, accuracy: High
+        $x_1_2 = {40 00 00 40 2e 6d 70 67}  //weight: 1, accuracy: High
     condition:
         (filesize < 20MB) and
         (all of ($x*))
@@ -2618,13 +2618,34 @@ rule Trojan_Win32_Ekstak_RH_2147848153_3
         threshold = "1"
         strings_accuracy = "High"
     strings:
-        $x_1_1 = {ff 15 6c 32 65 00 8b f0 ff 15 00 33 65 00 85 c0 74 1a 8d 4c 24 04 51 50 ff 15 fc 32 65 00}  //weight: 1, accuracy: High
+        $x_1_1 = {51 56 57 68 04 01 00 00 6a 00 68 a8 ee 4c 00 e8 fc 01 00 00 83 c4 0c e9}  //weight: 1, accuracy: High
     condition:
         (filesize < 20MB) and
         (all of ($x*))
 }
 
 rule Trojan_Win32_Ekstak_RH_2147848153_4
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Ekstak.RH!MTB"
+        threat_id = "2147848153"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Ekstak"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {ff 15 6c 32 65 00 8b f0 ff 15 00 33 65 00 85 c0 74 1a 8d 4c 24 04 51 50 ff 15 fc 32 65 00}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Ekstak_RH_2147848153_5
 {
     meta:
         author = "defender2yara"
@@ -2646,7 +2667,7 @@ rule Trojan_Win32_Ekstak_RH_2147848153_4
         (1 of ($x*))
 }
 
-rule Trojan_Win32_Ekstak_RH_2147848153_5
+rule Trojan_Win32_Ekstak_RH_2147848153_6
 {
     meta:
         author = "defender2yara"
