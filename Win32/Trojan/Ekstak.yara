@@ -7862,3 +7862,56 @@ rule Trojan_Win32_Ekstak_GPQ_2147916982_0
         (1 of ($x*))
 }
 
+rule Trojan_Win32_Ekstak_ASGT_2147917039_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Ekstak.ASGT!MTB"
+        threat_id = "2147917039"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Ekstak"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {55 8b ec 53 56 57 55 6a 00 6a 00 68 ?? ?? 4b 00 ff 75 08 e8 ?? ?? 00 00 5d 5f 5e 5b 8b e5 5d c3}  //weight: 2, accuracy: Low
+        $x_2_2 = {55 8b ec 83 ec 10 53 56 57 68 ?? ?? 4c 00 e8 ?? ?? f5 ff 83 c4 04 89 45 fc e9}  //weight: 2, accuracy: Low
+        $x_1_3 = "cmdfmt.exe" wide //weight: 1
+        $x_1_4 = "AGP BUS Driver" wide //weight: 1
+        $x_1_5 = "AFI CIO Print Driver" wide //weight: 1
+        $x_1_6 = "Aero Sample" wide //weight: 1
+        $x_1_7 = "wsgen.exe" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((5 of ($x_1_*))) or
+            ((1 of ($x_2_*) and 3 of ($x_1_*))) or
+            ((2 of ($x_2_*) and 1 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+
+rule Trojan_Win32_Ekstak_CCJF_2147917043_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Ekstak.CCJF!MTB"
+        threat_id = "2147917043"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Ekstak"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {55 8b ec 6a ff 68 10 b5 65 00 68 90 62 65 00 64 a1 00 00 00 00 50 64 89 25 00 00 00 00 83 ec 58 53 56 57 89 65 e8 ff 15 20 b2 65 00 33 d2}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

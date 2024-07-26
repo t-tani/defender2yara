@@ -970,3 +970,26 @@ rule Trojan_Win32_Neoreblamy_ASB_2147916961_0
         (5 of ($x*))
 }
 
+rule Trojan_Win32_Neoreblamy_AP_2147917040_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Neoreblamy.AP!MTB"
+        threat_id = "2147917040"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Neoreblamy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {55 8b ec ff 75 18 68 1b 03 00 00 6a 01 ff 75 08 68 4c 28 00 00 ff 75 14 68 f2 28 00 00 ff 75 0c 68 e8 4a 00 00 ff 75 10 68 c9 38 00 00 6a 01 e8 ?? ?? 00 00 83 c4 30 5d c3}  //weight: 2, accuracy: Low
+        $x_2_2 = {c7 85 7c ff ff ff 10 b9 13 17 c7 85 dc fb ff ff 5c 46 f2 0b c7 85 88 ea ff ff a9 51 03 ec c7 85 08 f4 ff ff 87 59 b0 91}  //weight: 2, accuracy: High
+        $x_1_3 = "gbITNPwbYsMlaGlDWnIXgBGgFWsHVtBN" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
