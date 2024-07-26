@@ -42,6 +42,15 @@ jobs:
       run: |
         echo "SIG_VERSION=$(poetry run python -m defender2yara --latest_signature_version)" >> $GITHUB_ENV
 
+    - name: Check if SIG_VERSION is empty and fail if true
+      run: |
+        if [ -z "$SIG_VERSION" ]; then
+          echo "SIG_VERSION is empty, failing the job."
+          exit 1
+        else
+          echo "SIG_VERSION is not empty, continuing."
+        fi
+
     - name: Load cached vdm files
       id: cached-vdm
       uses: actions/cache@v4
