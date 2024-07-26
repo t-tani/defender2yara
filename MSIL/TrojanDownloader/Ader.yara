@@ -438,3 +438,24 @@ rule TrojanDownloader_MSIL_Ader_ARC_2147899493_0
         (all of ($x*))
 }
 
+rule TrojanDownloader_MSIL_Ader_SS_2147917075_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:MSIL/Ader.SS!MTB"
+        threat_id = "2147917075"
+        type = "TrojanDownloader"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Ader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {04 05 8e 69 42 ?? ?? ?? 00 04 38 ?? ?? ?? 00 05 8e 69 0a 03 05 16 06 6f 1a 00 00 0a 26 02 05 16 06 28 28 00 00 06 04 06 59 10 02 04 16 42 ce ff ff ff}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

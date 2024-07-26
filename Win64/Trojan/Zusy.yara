@@ -456,6 +456,29 @@ rule Trojan_Win64_Zusy_AMAA_2147912509_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Zusy_AR_2147913081_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Zusy.AR!MTB"
+        threat_id = "2147913081"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {48 2b e0 48 8b 05 ?? ?? 00 00 48 33 c4 48 89 84 24 ?? ?? 00 00 48 8b f9 b9 ?? ?? 00 00 ff 15 ?? ?? 00 00 b9 ?? ?? 00 00 48 8d 54 24 ?? 48 8b f0 ff 15 ?? ?? 00 00 48 8b 4f 08 0f b7 09 ff 15 ?? ?? 00 00 48 8b 0f 48 8b 09 ff 15 ?? ?? 00 00 ba 02 00 00 00 8b ca 44 8d 42 0f ff 15}  //weight: 5, accuracy: Low
+        $x_5_2 = {48 2b e0 48 8b 05 ?? ?? 00 00 48 33 c4 48 89 84 24 ?? ?? 00 00 4c 8b ?? 48 8b 49 08 0f b7 09 ff 15 ?? ?? 00 00 49 8b 0e 48 8b 09 ff 15 ?? ?? 00 00 b9 01 01 00 00 48 8d 54 24 ?? ff 15 ?? ?? 00 00 ba 02 00 00 00 8b ca 44 8d 42 0f ff 15}  //weight: 5, accuracy: Low
+        $x_5_3 = {48 2b e0 48 8b 05 ?? ?? 00 00 48 33 c4 48 89 84 24 ?? ?? 00 00 4c 8b ?? 48 8d 54 24 ?? b9 01 01 00 00 ff 15 ?? ?? 00 00 49 8b ?? 08 0f b7 09 ff 15 ?? ?? 00 00 49 8b 0e 48 8b 09 ff 15 ?? ?? 00 00 ba 02 00 00 00 8b ca 44 8d 42 0f ff 15}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (1 of ($x*))
+}
+
 rule Trojan_Win64_Zusy_CCIZ_2147913302_0
 {
     meta:

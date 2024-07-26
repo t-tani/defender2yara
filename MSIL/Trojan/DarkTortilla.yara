@@ -3359,6 +3359,33 @@ rule Trojan_MSIL_DarkTortilla_RP_2147913029_13
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "101"
+        strings_accuracy = "Low"
+    strings:
+        $x_100_1 = {25 16 02 a2 25 17 16 ?? ?? ?? ?? ?? a2 25 18 02 8e 69 ?? ?? ?? ?? ?? a2 25 13 08 14 14 19}  //weight: 100, accuracy: Low
+        $x_100_2 = {0d 07 06 17 da 09 28 ?? ?? ?? ?? a2 07 06 28 ?? ?? ?? ?? 00 de 1f}  //weight: 100, accuracy: Low
+        $x_1_3 = ".g.resources" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_100_*) and 1 of ($x_1_*))) or
+            ((2 of ($x_100_*))) or
+            (all of ($x*))
+        )
+}
+
+rule Trojan_MSIL_DarkTortilla_RP_2147913029_14
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/DarkTortilla.RP!MTB"
+        threat_id = "2147913029"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "DarkTortilla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "11"
         strings_accuracy = "High"
     strings:
@@ -3369,7 +3396,7 @@ rule Trojan_MSIL_DarkTortilla_RP_2147913029_13
         (all of ($x*))
 }
 
-rule Trojan_MSIL_DarkTortilla_RP_2147913029_14
+rule Trojan_MSIL_DarkTortilla_RP_2147913029_15
 {
     meta:
         author = "defender2yara"

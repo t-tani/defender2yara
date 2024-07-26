@@ -137,3 +137,24 @@ rule Trojan_MSIL_Dapato_ARA_2147913776_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Dapato_SH_2147917074_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Dapato.SH!MTB"
+        threat_id = "2147917074"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Dapato"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {28 1c 00 00 0a 7e 0d 00 00 04 07 06 6f ?? ?? ?? 0a 28 ?? ?? ?? 0a 0d 28 ?? ?? ?? 0a 09 16 09 8e 69 6f ?? ?? ?? 0a 28 ?? ?? ?? 0a 13 04 7e 10 00 00 04 2c 08 02 11 04 28 1d 00 00 06 11 04 13 05 de 06}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

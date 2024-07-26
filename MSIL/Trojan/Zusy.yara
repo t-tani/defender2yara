@@ -1783,3 +1783,26 @@ rule Trojan_MSIL_Zusy_AMAA_2147915079_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Zusy_SSA_2147917073_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Zusy.SSA!MTB"
+        threat_id = "2147917073"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "http://103.116.105.90/kyuc1/" ascii //weight: 1
+        $x_1_2 = "so2game_lite.exe" ascii //weight: 1
+        $x_1_3 = "Autoupdate_bak.exe" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
