@@ -4973,3 +4973,24 @@ rule Trojan_Win32_Smokeloader_GNN_2147916574_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Smokeloader_KAF_2147917014_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Smokeloader.KAF!MTB"
+        threat_id = "2147917014"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Smokeloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {03 d6 33 c2 33 c1 2b f8 83 3d ?? ?? ?? ?? ?? c7 05}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

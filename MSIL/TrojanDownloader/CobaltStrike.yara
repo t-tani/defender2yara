@@ -19,3 +19,27 @@ rule TrojanDownloader_MSIL_CobaltStrike_ACS_2147843995_0
         (all of ($x*))
 }
 
+rule TrojanDownloader_MSIL_CobaltStrike_AV_2147917012_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:MSIL/CobaltStrike.AV!MTB"
+        threat_id = "2147917012"
+        type = "TrojanDownloader"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "CobaltStrike"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "134.122.176.156" wide //weight: 2
+        $x_1_2 = "ByPassbbb" wide //weight: 1
+        $x_1_3 = "l8brmJSA79tc6z01ugButg==" wide //weight: 1
+        $x_2_4 = "COM_Surrogate.exe" wide //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
