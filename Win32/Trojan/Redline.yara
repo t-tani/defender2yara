@@ -10561,27 +10561,6 @@ rule Trojan_Win32_Redline_NEAY_2147842281_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Redline_BZ_2147842499_0
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "Trojan:Win32/Redline.BZ!MTB"
-        threat_id = "2147842499"
-        type = "Trojan"
-        platform = "Win32: Windows 32-bit platform"
-        family = "Redline"
-        severity = "Critical"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "4"
-        strings_accuracy = "Low"
-    strings:
-        $x_4_1 = {0f be 04 10 69 c0 [0-4] 6b c0 ?? 99 bf [0-4] f7 ff 99 bf [0-4] f7 ff 83 e0 ?? 33 f0 03 ce 8b 55 0c 03 55 fc 88 0a 0f be 45 fb 8b 4d 0c 03 4d fc 0f b6 11 2b d0 8b 45 0c 03 45 fc 88 10 eb}  //weight: 4, accuracy: Low
-    condition:
-        (filesize < 20MB) and
-        (all of ($x*))
-}
-
 rule Trojan_Win32_Redline_MOO_2147842521_0
 {
     meta:

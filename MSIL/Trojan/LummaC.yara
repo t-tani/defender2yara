@@ -352,3 +352,30 @@ rule Trojan_MSIL_LummaC_AMAJ_2147915323_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_LummaC_AZ_2147917090_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/LummaC.AZ!MTB"
+        threat_id = "2147917090"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "LummaC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "ZCnwQyuczHNVZsLbVfaNtAuK.dll" ascii //weight: 1
+        $x_1_2 = "VGFmjPREyWEsbjHmeHebQcQAmJ" ascii //weight: 1
+        $x_1_3 = "LcrVaCVWmQbNGePKXQvFtVyp" ascii //weight: 1
+        $x_1_4 = "YsooMXpGMiFwvybtqHIkaTRdC" ascii //weight: 1
+        $x_1_5 = "cTnXHzFElfSUJxItbwZosDJXAsr" ascii //weight: 1
+        $x_1_6 = "PfdxUKDVsmHGffSewIrTbKRl.dll" ascii //weight: 1
+        $x_1_7 = "XcDvbkQnFxVKtUKZuwJGytHA.dll" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
