@@ -103521,6 +103521,28 @@ rule Trojan_MSIL_AgentTesla_SOL_2147910907_1
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AgentTesla_SOL_2147910907_2
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.SOL!MTB"
+        threat_id = "2147910907"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {11 14 11 16 61 13 17 11 07 11 13 d4 11 17 20 ff 00 00 00 5f d2 9c 16 13 1b 2b 25 00 11 17 6e 11 1b 6a 5a 11 16 6e 58 69 20 00 01 00 00 5d 13 1c 11 1c 19 58 1f 40 5d 13 1c 00 11 1b 17 58 13 1b 11 1b 19 fe 04 13 1d 11 1d 2d d0}  //weight: 1, accuracy: High
+        $x_1_2 = "F7H8A87554B888QJH574E2" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_AgentTesla_MBYI_2147911014_0
 {
     meta:
@@ -104470,6 +104492,27 @@ rule Trojan_MSIL_AgentTesla_SOK_2147917070_0
     strings:
         $x_1_1 = "CEPZ675RR7FP7GQ7DEZY8H" ascii //weight: 1
         $x_1_2 = {00 11 07 11 12 58 20 00 01 00 00 5d 13 13 00 11 12 17 58 13 12 11 12 19 fe 04 13 14 11 14 2d e0}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_AgentTesla_RDCB_2147917193_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.RDCB!MTB"
+        threat_id = "2147917193"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {5f 95 d2 13 16 11 14 11 16 61 13 17 11 07}  //weight: 2, accuracy: High
     condition:
         (filesize < 20MB) and
         (all of ($x*))

@@ -8044,3 +8044,26 @@ rule Trojan_Win32_Zenpak_SCCK_2147917130_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Zenpak_ASAL_2147917189_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zenpak.ASAL!MTB"
+        threat_id = "2147917189"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zenpak"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {55 89 e5 56 8a 45 ?? 8a 4d ?? 88 0d [0-4] 88 c2 30 ca a2 [0-4] 88 15 [0-4] 8b 35 [0-4] 81 c6 [0-4] 89 35 [0-4] c7 05 [0-8] 0f b6 c2 5e 5d c3}  //weight: 5, accuracy: Low
+        $x_5_2 = {55 89 e5 50 8a 45 0c 8a 4d 08 88 0d [0-4] 88 45 ff 88 4d fe 8a 45 ff a2 [0-4] 8a 4d fe 30 c8 a2 [0-4] c7 05 [0-8] c7 05 [0-8] 0f b6 c0 83 c4 04 5d c3}  //weight: 5, accuracy: Low
+        $x_5_3 = {31 f2 88 d4 88 25 [0-4] c7 05 [0-8] c7 05 [0-8] c7 05 [0-8] 0f b6 05 8c 40 1f 10 83 c4 04 5e 5d c3}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (1 of ($x*))
+}
+

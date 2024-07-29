@@ -1992,13 +1992,34 @@ rule Trojan_Win32_Remcos_ARM_2147894535_0
         threshold = "1"
         strings_accuracy = "High"
     strings:
-        $x_1_1 = {86 0e 0a 01 01 b9 6c 01 01 01 67 8a 86 e9 e7 00 00 ba 66 01 01 01 67 8a 8e eb e7 00 00 bb 73 01 01 01 67 8a 96 ed e7}  //weight: 1, accuracy: High
+        $x_1_1 = {8b 04 8d a0 01 43 00 8b f0 81 e6 ff 00 00 00 c1 e8 08 33 04 b5 a0 05 43 00 41 89 04 8d 9c 05 43 00 3b ca}  //weight: 1, accuracy: High
     condition:
         (filesize < 20MB) and
         (all of ($x*))
 }
 
 rule Trojan_Win32_Remcos_ARM_2147894535_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Remcos.ARM!MTB"
+        threat_id = "2147894535"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Remcos"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {86 0e 0a 01 01 b9 6c 01 01 01 67 8a 86 e9 e7 00 00 ba 66 01 01 01 67 8a 8e eb e7 00 00 bb 73 01 01 01 67 8a 96 ed e7}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Remcos_ARM_2147894535_2
 {
     meta:
         author = "defender2yara"
@@ -2019,7 +2040,7 @@ rule Trojan_Win32_Remcos_ARM_2147894535_1
         (all of ($x*))
 }
 
-rule Trojan_Win32_Remcos_ARM_2147894535_2
+rule Trojan_Win32_Remcos_ARM_2147894535_3
 {
     meta:
         author = "defender2yara"
@@ -2040,7 +2061,7 @@ rule Trojan_Win32_Remcos_ARM_2147894535_2
         (all of ($x*))
 }
 
-rule Trojan_Win32_Remcos_ARM_2147894535_3
+rule Trojan_Win32_Remcos_ARM_2147894535_4
 {
     meta:
         author = "defender2yara"
@@ -2061,7 +2082,7 @@ rule Trojan_Win32_Remcos_ARM_2147894535_3
         (all of ($x*))
 }
 
-rule Trojan_Win32_Remcos_ARM_2147894535_4
+rule Trojan_Win32_Remcos_ARM_2147894535_5
 {
     meta:
         author = "defender2yara"
