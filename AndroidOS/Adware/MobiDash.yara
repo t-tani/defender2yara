@@ -581,3 +581,27 @@ rule Adware_AndroidOS_MobiDash_AA_360675_0
         (all of ($x*))
 }
 
+rule Adware_AndroidOS_MobiDash_AD_433492_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Adware:AndroidOS/MobiDash.AD!MTB"
+        threat_id = "433492"
+        type = "Adware"
+        platform = "AndroidOS: Android operating system"
+        family = "MobiDash"
+        severity = "High"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "com/propublica" ascii //weight: 1
+        $x_1_2 = "propublica.db" ascii //weight: 1
+        $x_1_3 = "InterstitialAd" ascii //weight: 1
+        $x_1_4 = "NotificationListener" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

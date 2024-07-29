@@ -69,3 +69,27 @@ rule Trojan_MacOS_HashBreaker_B_2147844827_0
         (2 of ($x*))
 }
 
+rule Trojan_MacOS_HashBreaker_C_2147917118_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MacOS/HashBreaker.C!MTB"
+        threat_id = "2147917118"
+        type = "Trojan"
+        platform = "MacOS: "
+        family = "HashBreaker"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_MACHOHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "dump-generic-passwords" ascii //weight: 1
+        $x_1_2 = "esrc/main.rsGet password" ascii //weight: 1
+        $x_1_3 = "punlock-keychain" ascii //weight: 1
+        $x_1_4 = "injecting/Documents/Addons.zip" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (3 of ($x*))
+}
+

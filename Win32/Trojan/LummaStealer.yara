@@ -1686,3 +1686,24 @@ rule Trojan_Win32_LummaStealer_QTW_2147916525_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_LummaStealer_AMAX_2147917143_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaStealer.AMAX!MTB"
+        threat_id = "2147917143"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {8b 0c b8 8b 44 24 ?? 8a 04 01 8d 4c 24 ?? 30 82 ?? ?? ?? ?? e8}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

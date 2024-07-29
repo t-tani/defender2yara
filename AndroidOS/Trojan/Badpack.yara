@@ -64,3 +64,25 @@ rule Trojan_AndroidOS_Badpack_B_2147915261_0
         (all of ($x*))
 }
 
+rule Trojan_AndroidOS_Badpack_C_2147917135_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:AndroidOS/Badpack.C!MTB"
+        threat_id = "2147917135"
+        type = "Trojan"
+        platform = "AndroidOS: Android operating system"
+        family = "Badpack"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {14 00 41 14 00 00 14 01 b5 db ff ff 90 00 00 01 94 00 00 01 3d 00 1a 00 14 00 69 2c 00 00 14 01 14 f6 ff ff 91 01 00 01 90 01 00 01 94 00 01 01}  //weight: 1, accuracy: High
+        $x_1_2 = {14 09 86 c5 08 00 71 30 db 00 99 09 0a 09 35 98 0f 00 21 59 35 98 0c 00 48 09 05 08 d7 99 18 00 8d 99 4f 09 05 08 d8 08 08 01}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

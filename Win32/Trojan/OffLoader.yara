@@ -2322,3 +2322,25 @@ rule Trojan_Win32_OffLoader_SPKM_2147916324_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_OffLoader_SCBC_2147917129_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/OffLoader.SCBC!MTB"
+        threat_id = "2147917129"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "OffLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "/sheetcopper.xyz/hc.php" wide //weight: 2
+        $x_1_2 = "/silent" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

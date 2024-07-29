@@ -8023,3 +8023,24 @@ rule Trojan_Win32_Zenpak_ASAK_2147916959_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Zenpak_SCCK_2147917130_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zenpak.SCCK!MTB"
+        threat_id = "2147917130"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zenpak"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {8a 45 0c 8a 4d 08 8b 15 ?? ?? ?? ?? 81 c2 ?? ?? ?? ?? 89 15 ?? ?? ?? ?? 88 0d ?? ?? ?? ?? a2 ?? ?? ?? ?? 30 c8 a2 ?? ?? ?? ?? c7 05 ?? ?? ?? ?? ?? ?? ?? ?? 0f b6 c0 5d}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
