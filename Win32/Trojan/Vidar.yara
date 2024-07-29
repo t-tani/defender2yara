@@ -5794,24 +5794,3 @@ rule Trojan_Win32_Vidar_TOQ_2147916281_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Vidar_KNN_2147917128_0
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "Trojan:Win32/Vidar.KNN!MTB"
-        threat_id = "2147917128"
-        type = "Trojan"
-        platform = "Win32: Windows 32-bit platform"
-        family = "Vidar"
-        severity = "Critical"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "1"
-        strings_accuracy = "Low"
-    strings:
-        $x_1_1 = {c1 e8 05 89 45 fc 8b 45 fc 03 45 e4 8b 55 f8 03 d6 33 c2 33 45 e0 81 3d ?? ?? ?? ?? 13 02 00 00 c7 05 ec 8e 44 02 ee 3d ea ?? ?? ?? ?? 75}  //weight: 1, accuracy: Low
-    condition:
-        (filesize < 20MB) and
-        (all of ($x*))
-}
-

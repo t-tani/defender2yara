@@ -88,3 +88,24 @@ rule Trojan_MSIL_Xworm_KAE_2147910953_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Xworm_KAG_2147917156_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Xworm.KAG!MTB"
+        threat_id = "2147917156"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Xworm"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {9a 0d 00 07 08 8f ?? 00 00 01 25 71 ?? 00 00 01 09 08 09 8e 69 5d 91 61 d2 81 ?? 00 00 01 00 11 07 17 58 13 07}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
