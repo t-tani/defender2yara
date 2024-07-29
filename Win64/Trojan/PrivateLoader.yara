@@ -105,3 +105,55 @@ rule Trojan_Win64_PrivateLoader_NR_2147898653_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_PrivateLoader_BZ_2147917164_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/PrivateLoader.BZ!MTB"
+        threat_id = "2147917164"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "PrivateLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = "powershell -NoProfile -ep Bypass -c \" $response = Invoke-WebRequest -Uri" ascii //weight: 1
+        $x_1_2 = {68 00 74 74 00 70 00 3a 00 2f 00 2f 00 [0-15] 2f 00 56 00 43 00 2f 00 54 00 68 00 65 00 2f 00 53 00 65 00 74 00 2e 00 70 00 68 00 70 00}  //weight: 1, accuracy: Low
+        $x_1_3 = {68 74 74 70 3a 2f 2f [0-15] 2f 56 43 2f 54 68 65 2f 53 65 74 2e 70 68 70}  //weight: 1, accuracy: Low
+        $x_1_4 = "Not Found AntiVirus" ascii //weight: 1
+        $x_1_5 = "LOAD_EXE.pdb" ascii //weight: 1
+        $x_1_6 = "C:\\SbieDll.dll" ascii //weight: 1
+        $x_1_7 = "<DLL_INJECT>" ascii //weight: 1
+        $x_1_8 = "<EXE_INJECT_WINLOGON>" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (7 of ($x*))
+}
+
+rule Trojan_Win64_PrivateLoader_CZ_2147917165_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/PrivateLoader.CZ!MTB"
+        threat_id = "2147917165"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "PrivateLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {41 0f be 14 18 49 ff c0 41 69 c9 9f f2 10 00 03 d1 81 e2 ff ff ff 00 44 03 ca 4c 3b c0 72}  //weight: 1, accuracy: High
+        $x_1_2 = "powershell -NoProfile -ep Bypass -c " ascii //weight: 1
+        $x_1_3 = ")return [System.Linq.Enumerable]::Reverse($" ascii //weight: 1
+        $x_1_4 = "(\\\"putratS\\\");$" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -183,3 +183,25 @@ rule Trojan_Win32_Blackmoon_MBXH_2147916277_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Blackmoon_NC_2147917179_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Blackmoon.NC!MTB"
+        threat_id = "2147917179"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Blackmoon"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {8d 86 80 04 00 00 3b f0 73 ?? 80 66 04 00 83 0e ff 83 66 08 00 c6 46 05 0a a1 80 3c 45 00 83 c6 24 05 80 04 00 00}  //weight: 3, accuracy: Low
+        $x_1_2 = "/*rep1021lace*/" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

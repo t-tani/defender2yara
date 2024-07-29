@@ -629,3 +629,27 @@ rule Trojan_Win32_KillMBR_AKM_2147905249_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_KillMBR_NM_2147917175_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/KillMBR.NM!MTB"
+        threat_id = "2147917175"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "KillMBR"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "zirconium the virus wants your pc" wide //weight: 2
+        $x_2_2 = "You have to run a malware named Zirconium.exe" wide //weight: 2
+        $x_2_3 = "free life hacks no fake!!11" wide //weight: 2
+        $x_1_4 = "if you dont want to destroy your pc PRESS NO AND DELETE IT FASTLY!" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

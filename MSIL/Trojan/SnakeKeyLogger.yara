@@ -1449,3 +1449,24 @@ rule Trojan_MSIL_SnakeKeyLogger_RDBL_2147916953_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_SnakeKeyLogger_RDBM_2147917167_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/SnakeKeyLogger.RDBM!MTB"
+        threat_id = "2147917167"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "SnakeKeyLogger"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {07 03 17 8d 06 00 00 01 25 16 09 20 b9 87 02 00 d6}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
