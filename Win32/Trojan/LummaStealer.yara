@@ -1701,7 +1701,28 @@ rule Trojan_Win32_LummaStealer_AMAX_2147917143_0
         threshold = "1"
         strings_accuracy = "Low"
     strings:
-        $x_1_1 = {8b 0c b8 8b 44 24 ?? 8a 04 01 8d 4c 24 ?? 30 82 ?? ?? ?? ?? e8}  //weight: 1, accuracy: Low
+        $x_1_1 = {8b 0c b8 8b 44 24 ?? 8a 04 01 8d 4c 24 ?? 30 [0-5] e8 ?? ?? ?? ?? 8d 4c 24 ?? e8}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_LummaStealer_AFZ_2147917295_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaStealer.AFZ!MTB"
+        threat_id = "2147917295"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {8a 01 30 04 37 8b 44 24 18 2b c1 83 e0 fc 50 51 e8 ?? ?? ?? ?? 46 89 5c 24 18 59 59 89 5c 24 14 89 5c 24 18 3b 74 24 30 0f 82}  //weight: 5, accuracy: Low
     condition:
         (filesize < 20MB) and
         (all of ($x*))

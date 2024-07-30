@@ -8472,6 +8472,33 @@ rule Trojan_MSIL_Remcos_ARM_2147849040_6
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Remcos_ARM_2147849040_7
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Remcos.ARM!MTB"
+        threat_id = "2147849040"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Remcos"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "9"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "SolaraBootstrapper\\bin\\Release\\Bootstrapper.pdb" ascii //weight: 2
+        $x_2_2 = "New bootstrapper downloaded" wide //weight: 2
+        $x_1_3 = "/silent /install" wide //weight: 1
+        $x_1_4 = "WebView2 runtime installed successfully" wide //weight: 1
+        $x_1_5 = "/install /quiet /norestart" wide //weight: 1
+        $x_1_6 = "killing Solara.exe process" wide //weight: 1
+        $x_1_7 = "killing node.exe process" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_Remcos_MA_2147849125_0
 {
     meta:
@@ -10926,6 +10953,31 @@ rule Trojan_MSIL_Remcos_GNK_2147917085_0
         strings_accuracy = "Low"
     strings:
         $x_10_1 = {0a 02 16 02 8e 69 6f ?? ?? ?? 0a 0d 09 8e 69 1f 11 59 17 58 8d ?? ?? ?? 01 13 04 09 1f 10 11 04 16 09 8e 69 1f 10 59 28 ?? ?? ?? 0a 11 04 13 05 dd}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Remcos_SML_2147917322_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Remcos.SML!MTB"
+        threat_id = "2147917322"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Remcos"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "Project_Calendar.Properties.Resources.resources" ascii //weight: 1
+        $x_1_2 = "$36031fe2-536e-44b7-ae4d-1f680f68032f" ascii //weight: 1
+        $x_1_3 = "G5ZPEF865HC88G0GCD4GD0" ascii //weight: 1
+        $x_1_4 = "Bitmap" ascii //weight: 1
+        $x_1_5 = "GetBytes" ascii //weight: 1
     condition:
         (filesize < 20MB) and
         (all of ($x*))

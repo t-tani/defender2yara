@@ -478,3 +478,24 @@ rule Trojan_Win32_LummaC_ASGV_2147916172_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_LummaC_CCJF_2147917324_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaC.CCJF!MTB"
+        threat_id = "2147917324"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {21 d0 01 f0 89 c2 31 ca f7 d0 21 c8 01 c0 29 d0}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

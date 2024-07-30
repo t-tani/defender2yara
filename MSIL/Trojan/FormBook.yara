@@ -12119,3 +12119,32 @@ rule Trojan_MSIL_FormBook_NS_2147916584_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_FormBook_NNB_2147917313_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/FormBook.NNB!MTB"
+        threat_id = "2147917313"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "FormBook"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {02 8e 69 1f 11 da 17 d6 ?? ?? 00 00 01 0d 02 16 09 16 02 8e 69 1f 10 da}  //weight: 2, accuracy: Low
+        $x_2_2 = {0c 02 02 8e 69 1f 10 da 08 16 1f 10}  //weight: 2, accuracy: High
+        $x_2_3 = {68 00 6f 00 6d 00 65 00 2f 00 70 00 78 00 6e 00 73 00 74 00 2f 00 75 00 73 00 65 00 72 00 73 00 2f 00 34 00 2f 00 53 00 74 00 75 00 62 00 2f 00 6f 00 62 00 6a 00 2f 00 52 00 65 00 6c 00 65 00 61 00 73 00 65 00 2f 00 [0-32] 2e 00 70 00 64 00 62 00}  //weight: 2, accuracy: Low
+        $x_2_4 = {68 6f 6d 65 2f 70 78 6e 73 74 2f 75 73 65 72 73 2f 34 2f 53 74 75 62 2f 6f 62 6a 2f 52 65 6c 65 61 73 65 2f [0-32] 2e 70 64 62}  //weight: 2, accuracy: Low
+        $x_1_5 = "SHA256CryptoServiceProvider" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((3 of ($x_2_*) and 1 of ($x_1_*))) or
+            ((4 of ($x_2_*))) or
+            (all of ($x*))
+        )
+}
+

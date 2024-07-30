@@ -108,3 +108,30 @@ rule Trojan_Win64_KillAV_MKX_2147897033_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_KillAV_DA_2147917260_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/KillAV.DA!MTB"
+        threat_id = "2147917260"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "KillAV"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "56"
+        strings_accuracy = "High"
+    strings:
+        $x_50_1 = "AV_KILLER" ascii //weight: 50
+        $x_1_2 = "sc.exe create" ascii //weight: 1
+        $x_1_3 = "sc.exe start " ascii //weight: 1
+        $x_1_4 = ".\\TrueSight" ascii //weight: 1
+        $x_1_5 = "MsMpEng.exe" ascii //weight: 1
+        $x_1_6 = "Driver file created" ascii //weight: 1
+        $x_1_7 = "Successfully terminated process" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
