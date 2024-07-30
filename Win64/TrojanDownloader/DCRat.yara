@@ -66,3 +66,24 @@ rule TrojanDownloader_Win64_DCRat_D_2147896976_0
         (all of ($x*))
 }
 
+rule TrojanDownloader_Win64_DCRat_E_2147917329_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:Win64/DCRat.E!MTB"
+        threat_id = "2147917329"
+        type = "TrojanDownloader"
+        platform = "Win64: Windows 64-bit platform"
+        family = "DCRat"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {c6 44 24 38 00 48 c7 44 24 20 00 00 00 00 45 33 c9 4c 8d 44 24 30 33 c9 ff 15 ?? ?? 00 00 c7 44 24 28 00 00 00 00 48 c7 44 24 20 00 00 00 00 45 33 c9 4c 8d 05 96 20 00 00 48 8d 15 9b 20 00 00 33 c9 ff 15 ?? ?? 00 00 b9 23 00 00 00 ff 15 ?? ?? 00 00 66 85 c0 75 ?? b9 01 00 00 00 ff 15 ?? ?? 00 00 b9 ?? 00 00 00 ff 15 ?? ?? 00 00 66 85 c0}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

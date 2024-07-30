@@ -5738,6 +5738,28 @@ rule Trojan_MSIL_FormBook_AFB_2147832252_18
         (all of ($x*))
 }
 
+rule Trojan_MSIL_FormBook_AFB_2147832252_19
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/FormBook.AFB!MTB"
+        threat_id = "2147832252"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "FormBook"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {25 16 16 02 08 91 28 ?? 00 00 0a 25 17 16 02 08 17 58 91 28 ?? 00 00 0a 0d 06 09 28 ?? 00 00 06 13 04 07 08 11 04 16 16 28 ?? 00 00 0a d2 9c 07 08 17 58 11 04 17 16 28}  //weight: 2, accuracy: Low
+        $x_1_2 = "investdirectinsurance.com/assuence/litesolidCha/Chief.he" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_FormBook_AJBI_2147832254_0
 {
     meta:

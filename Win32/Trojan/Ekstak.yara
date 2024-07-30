@@ -7937,3 +7937,25 @@ rule Trojan_Win32_Ekstak_SSAA_2147917142_0
         (1 of ($x*))
 }
 
+rule Trojan_Win32_Ekstak_ASGZ_2147917333_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Ekstak.ASGZ!MTB"
+        threat_id = "2147917333"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Ekstak"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {8d 14 09 8b 0d ?? ?? 65 00 0b d1 89 54 24 04 df 6c 24 04 dc 05 ?? ?? 65 00 dd 1d ?? ?? 65 00 ff 15 ?? ?? 65 00 a1 ?? ?? ?? 00 50 ff 15 ?? ?? 65 00 68 ?? ?? 65 00 ff 15 ?? ?? 65 00 b8 01 00 00 00 83 c4 08 c3}  //weight: 4, accuracy: Low
+        $x_1_2 = {83 ec 08 a1 [0-9] 00 8b 0d 30 ?? ?? 00 50 c7 44 24 08}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
