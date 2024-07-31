@@ -322,3 +322,24 @@ rule Trojan_MSIL_StealC_CCIG_2147911410_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_StealC_CCJB_2147917340_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/StealC.CCJB!MTB"
+        threat_id = "2147917340"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "StealC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {0c 08 07 08 6f ?? 00 00 0a 1e 5b 6f ?? 00 00 0a 6f ?? 00 00 0a 00 08 07 08 6f ?? 00 00 0a 1e 5b 6f ?? 00 00 0a 6f ?? 00 00 0a 00 73 ?? ?? ?? ?? 0d 09 08 6f ?? 00 00 0a 17 73 ?? ?? ?? ?? 13 04 11 04 02 16 02 8e 69 6f ?? 00 00 0a 00 11 04 6f ?? 00 00 0a 00 09 6f ?? 00 00 0a 13 05 11 05 13 06 2b}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

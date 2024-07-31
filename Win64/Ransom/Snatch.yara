@@ -140,3 +140,27 @@ rule Ransom_Win64_Snatch_MA_2147893390_0
         (all of ($x*))
 }
 
+rule Ransom_Win64_Snatch_PC_2147917344_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win64/Snatch.PC!MTB"
+        threat_id = "2147917344"
+        type = "Ransom"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Snatch"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = ".enc202407" ascii //weight: 1
+        $x_1_2 = "ReadMe.txt" ascii //weight: 1
+        $x_1_3 = "main.encryptFile" ascii //weight: 1
+        $x_4_4 = "All your data has been encrypted by me" ascii //weight: 4
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
