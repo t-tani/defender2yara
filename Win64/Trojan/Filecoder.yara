@@ -19,3 +19,28 @@ rule Trojan_Win64_Filecoder_TR_2147835525_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Filecoder_PAP_2147917354_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Filecoder.PAP!MTB"
+        threat_id = "2147917354"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Filecoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "rename each file after encrypted" wide //weight: 2
+        $x_1_2 = "start encrypting hardisks/USBs" wide //weight: 1
+        $x_1_3 = "shutdown machine after encryption" wide //weight: 1
+        $x_1_4 = "log encrypted files" wide //weight: 1
+        $x_1_5 = "put your email address" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
