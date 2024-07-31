@@ -393,3 +393,24 @@ rule Ransom_Win64_FileCoder_RHN_2147914307_0
         )
 }
 
+rule Ransom_Win64_FileCoder_CCJF_2147917358_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win64/FileCoder.CCJF!MTB"
+        threat_id = "2147917358"
+        type = "Ransom"
+        platform = "Win64: Windows 64-bit platform"
+        family = "FileCoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {8a 22 48 81 f9 ?? ?? ?? ?? 32 e3 48 81 f9 ?? ?? ?? ?? 80 f4 ?? 48 81 f9 ?? ?? ?? ?? 88 22 48 81 f9 ?? ?? ?? ?? 8a dc 48 81 f9 ?? ?? ?? ?? 48 ff c2 48 81 f9 ?? ?? ?? ?? 48 ff c1 48 81 f9 ?? ?? ?? ?? 48 81 f9 ?? ?? ?? ?? 72 ae}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
