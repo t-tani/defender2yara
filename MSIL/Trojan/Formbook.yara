@@ -6916,3 +6916,24 @@ rule Trojan_MSIL_Formbook_KAM_2147916730_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Formbook_RDAT_2147917425_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Formbook.RDAT!MTB"
+        threat_id = "2147917425"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Formbook"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {08 5d 13 0e 07 11 0e 91 13 0f 11 0f 11 0a 61 13 10 11 10 11 0d 59}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -23,3 +23,27 @@ rule Ransom_Win64_SmertRansom_YAB_2147917190_0
         (all of ($x*))
 }
 
+rule Ransom_Win64_SmertRansom_YAC_2147917406_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win64/SmertRansom.YAC!MTB"
+        threat_id = "2147917406"
+        type = "Ransom"
+        platform = "Win64: Windows 64-bit platform"
+        family = "SmertRansom"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "xmb.pythonanywhere.com" ascii //weight: 1
+        $x_1_2 = "Your files have been fucked" ascii //weight: 1
+        $x_1_3 = "Play chess against me. If you win, you will get your files back" ascii //weight: 1
+        $x_1_4 = "--foodsum" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
