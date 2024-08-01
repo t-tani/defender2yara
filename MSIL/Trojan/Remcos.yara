@@ -7309,6 +7309,28 @@ rule Trojan_MSIL_Remcos_ARO_2147841227_8
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Remcos_ARO_2147841227_9
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Remcos.ARO!MTB"
+        threat_id = "2147841227"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Remcos"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {5d 91 1e 5d 0b 02 7b ?? 00 00 04 06 18 58 02 7b ?? 00 00 04 5d 91 0c 02 7b ?? 00 00 04 06 19 58 02 7b ?? 00 00 04 5d 91 0d 02 03 06 91 28}  //weight: 2, accuracy: Low
+        $x_1_2 = "investdirectinsurance.com" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_Remcos_AOS_2147841230_0
 {
     meta:

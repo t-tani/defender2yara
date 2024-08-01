@@ -984,3 +984,45 @@ rule Trojan_MSIL_NjRAT_SJPL_2147914953_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_NjRAT_KAAA_2147917506_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/NjRAT.KAAA!MTB"
+        threat_id = "2147917506"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "NjRAT"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {5d 91 04 8e 69 5d 91 28 ?? 00 00 06 61 04 07 07 1d 5d d6 04 8e 69 5d 04 8e 69 5d 91 61 9c 07 17 d6 0b}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_NjRAT_KAAB_2147917507_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/NjRAT.KAAB!MTB"
+        threat_id = "2147917507"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "NjRAT"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {09 08 9a 0b 06 07 18 28 ?? 01 00 0a 28 ?? 01 00 0a 28 ?? 01 00 0a 28 ?? 01 00 0a 0a 08 17 d6 0c}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

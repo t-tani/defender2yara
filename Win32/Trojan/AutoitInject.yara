@@ -2308,3 +2308,26 @@ rule Trojan_Win32_AutoitInject_SAU_2147916387_0
         (7 of ($x*))
 }
 
+rule Trojan_Win32_AutoitInject_KAD_2147917511_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.KAD!MTB"
+        threat_id = "2147917511"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {46 00 49 00 4c 00 45 00 49 00 4e 00 53 00 54 00 41 00 4c 00 4c 00 20 00 28 00 20 00 22 00 [0-30] 22 00 20 00 2c 00 20 00 45 00 4e 00 56 00 47 00 45 00 54 00 20 00 28 00 20 00 22 00 [0-40] 22 00 20 00 29 00 20 00 26 00 20 00 22 00 [0-30] 22 00 20 00 2c 00 20 00 31 00 20 00 29 00}  //weight: 1, accuracy: Low
+        $x_1_2 = {44 00 4c 00 4c 00 53 00 54 00 52 00 55 00 43 00 54 00 43 00 52 00 45 00 41 00 54 00 45 00 20 00 28 00 20 00 [0-30] 20 00 28 00 20 00 22 00 [0-30] 22 00 20 00 29 00 20 00 26 00 20 00 42 00 49 00 4e 00 41 00 52 00 59 00 4c 00 45 00 4e 00}  //weight: 1, accuracy: Low
+        $x_1_3 = "&= CHR ( BITXOR ( ASC ( STRINGMID" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
