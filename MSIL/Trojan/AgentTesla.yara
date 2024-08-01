@@ -40644,6 +40644,30 @@ rule Trojan_MSIL_AgentTesla_SML_2147799421_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AgentTesla_SML_2147799421_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.SML!MTB"
+        threat_id = "2147799421"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "5AXBJZ78H857Y54D77XJP8" ascii //weight: 1
+        $x_1_2 = "CheckBoxStudio.WinForms.Properties.Resources.resources" ascii //weight: 1
+        $x_1_3 = {00 02 09 11 06 28 21 00 00 06 13 07 02 11 06 08 28 22 00 00 06 13 08 02 07 11 08 08 28 23 00 00 06 13 09 02 07 11 06 08 11 07 11 09 28 24 00 00 06}  //weight: 1, accuracy: High
+        $x_1_4 = "$cb0c8d54-14d1-4f55-b655-d846e757fe2f" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_AgentTesla_LMD_2147799493_0
 {
     meta:

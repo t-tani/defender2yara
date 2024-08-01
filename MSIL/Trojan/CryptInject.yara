@@ -2930,3 +2930,29 @@ rule Trojan_MSIL_CryptInject_RHO_2147916625_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_CryptInject_MBXL_2147917539_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/CryptInject.MBXL!MTB"
+        threat_id = "2147917539"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {2c 61 02 17 9a 12 00 28 52 01 00 0a 2c 55 02 18 9a}  //weight: 2, accuracy: High
+        $x_2_2 = {57 bf a2 3f 09 1f 00 00 00 fa 25 33 00 16 00 00 01}  //weight: 2, accuracy: High
+        $x_1_3 = "CreateDecryptor" wide //weight: 1
+        $x_1_4 = "RijndaelManaged" wide //weight: 1
+        $x_1_5 = "System.Security.Cryptography.DESCryptoServiceProvider" wide //weight: 1
+        $x_1_6 = "TRM.Properties.Resources.resources" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

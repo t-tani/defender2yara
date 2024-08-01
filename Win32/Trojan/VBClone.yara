@@ -42,3 +42,26 @@ rule Trojan_Win32_VBClone_CCIB_2147912477_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_VBClone_TAAA_2147917520_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/VBClone.TAAA!MTB"
+        threat_id = "2147917520"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "VBClone"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = {0e dd 87 4a bd 0f 5a 09 49 b5 36 eb dd ad fe ba 62 3a 4f ad 33 99 66 cf 11 b7 0c 00 aa 00 60 d3}  //weight: 3, accuracy: High
+        $x_1_2 = "\\Unicorn-" wide //weight: 1
+        $x_1_3 = "c rename" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

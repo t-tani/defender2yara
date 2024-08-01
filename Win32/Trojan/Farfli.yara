@@ -5320,3 +5320,31 @@ rule Trojan_Win32_Farfli_AFF_2147913853_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Farfli_RP_2147917553_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Farfli.RP!MTB"
+        threat_id = "2147917553"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Farfli"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "26"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = "C:\\Users\\Public\\Documents\\logo.cco" ascii //weight: 10
+        $x_10_2 = "C:\\Users\\Public\\Documents\\logo.cco" wide //weight: 10
+        $x_1_3 = "Parallels Software International Inc." ascii //weight: 1
+        $x_1_4 = "innotek GmbH" ascii //weight: 1
+        $x_1_5 = "Microsoft Corporation" ascii //weight: 1
+        $x_1_6 = "VMware" ascii //weight: 1
+        $x_1_7 = "Failed to query value: SystemManufacturer" ascii //weight: 1
+        $x_1_8 = "HARDWARE\\DESCRIPTION\\System\\BIOS" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

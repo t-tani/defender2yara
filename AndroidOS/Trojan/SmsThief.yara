@@ -905,3 +905,50 @@ rule Trojan_AndroidOS_SmsThief_CV_2147912362_0
         (all of ($x*))
 }
 
+rule Trojan_AndroidOS_SmsThief_FK_2147917541_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:AndroidOS/SmsThief.FK"
+        threat_id = "2147917541"
+        type = "Trojan"
+        platform = "AndroidOS: Android operating system"
+        family = "SmsThief"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "mnnn.live/api.php" ascii //weight: 2
+        $x_2_2 = "nooraz/ThirdActivity" ascii //weight: 2
+        $x_2_3 = "nbp-web.myapp.ru.com" ascii //weight: 2
+        $x_2_4 = "bopdigital/MyReceiver" ascii //weight: 2
+        $x_2_5 = "Your request is successfully submitted.We try to optimize your account.It may take a few hours or days" ascii //weight: 2
+        $x_2_6 = "instabrowser/sendSmsToServer" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (2 of ($x*))
+}
+
+rule Trojan_AndroidOS_SmsThief_VA_2147917543_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:AndroidOS/SmsThief.VA"
+        threat_id = "2147917543"
+        type = "Trojan"
+        platform = "AndroidOS: Android operating system"
+        family = "SmsThief"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "pay/recive.php?phone=" ascii //weight: 2
+        $x_2_2 = "116.202.255.100/add" ascii //weight: 2
+        $x_2_3 = "ir/siqe/holo/connect" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

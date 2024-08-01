@@ -98,3 +98,28 @@ rule Ransom_Win64_BianLian_PC_2147838463_0
         )
 }
 
+rule Ransom_Win64_BianLian_OBS_2147917547_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win64/BianLian.OBS!MTB"
+        threat_id = "2147917547"
+        type = "Ransom"
+        platform = "Win64: Windows 64-bit platform"
+        family = "BianLian"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "Starting BianLian emulation" ascii //weight: 1
+        $x_2_2 = "rundll32.exe runcalc.dll,emptyzip" ascii //weight: 2
+        $x_2_3 = "trellix.digital" ascii //weight: 2
+        $x_1_4 = "All your files have been encrypted. Pay the ransom to get them back" ascii //weight: 1
+        $x_1_5 = "Look at this instruction.txt" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
