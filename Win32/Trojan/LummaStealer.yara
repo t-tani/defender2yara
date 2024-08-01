@@ -1728,3 +1728,33 @@ rule Trojan_Win32_LummaStealer_AFZ_2147917295_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_LummaStealer_DA_2147917488_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaStealer.DA!MTB"
+        threat_id = "2147917488"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "23"
+        strings_accuracy = "Low"
+    strings:
+        $x_20_1 = "<HTA:APPLICATION icon=\"#\" WINDOWSTATE=\"normal\" SHOWINTASKBAR=\"no\" SYSMENU=\"no\" CAPTION=\"no\" BORDER=\"none\" SCROLL=\"no\"" ascii //weight: 20
+        $x_20_2 = "<HTA:APPLICATION CAPTION = \"no\" WINDOWSTATE = \"minimize\" SHOWINTASKBAR = \"no\"" ascii //weight: 20
+        $x_1_3 = "window.close();" ascii //weight: 1
+        $x_1_4 = {65 00 76 00 61 00 6c 00 28 00 [0-15] 29 00}  //weight: 1, accuracy: Low
+        $x_1_5 = {65 76 61 6c 28 [0-15] 29}  //weight: 1, accuracy: Low
+        $x_1_6 = "</script>" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_20_*) and 3 of ($x_1_*))) or
+            ((2 of ($x_20_*))) or
+            (all of ($x*))
+        )
+}
+

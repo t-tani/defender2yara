@@ -8130,3 +8130,24 @@ rule Trojan_Win32_Zenpak_KAT_2147917385_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Zenpak_ASAM_2147917449_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zenpak.ASAM!MTB"
+        threat_id = "2147917449"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zenpak"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {55 89 e5 8a 45 0c 8a 4d 08 88 c2 30 ca 88 0d ?? ?? ?? ?? a2 ?? ?? ?? ?? 88 15 ?? ?? ?? ?? c7 05 [0-8] c7 05 [0-8] 0f b6 c2 5d c3}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

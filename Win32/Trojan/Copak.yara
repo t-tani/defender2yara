@@ -3110,3 +3110,24 @@ rule Trojan_Win32_Copak_AMAX_2147917214_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Copak_KAV_2147917474_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Copak.KAV!MTB"
+        threat_id = "2147917474"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Copak"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {7c 9a 65 00 [0-20] 70 9c 65 00 [0-40] 81 ?? ff 00 00 00 [0-15] 31 [0-50] 81 ?? 92 9c 65 00 0f 8c}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
