@@ -478,3 +478,24 @@ rule TrojanDownloader_MSIL_Small_SGA_2147913706_0
         (all of ($x*))
 }
 
+rule TrojanDownloader_MSIL_Small_SLE_2147917595_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:MSIL/Small.SLE!MTB"
+        threat_id = "2147917595"
+        type = "TrojanDownloader"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Small"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {06 72 63 00 00 70 02 6f 1c 00 00 0a 26 00 de 0b}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

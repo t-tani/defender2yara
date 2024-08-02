@@ -666,3 +666,24 @@ rule Trojan_Win32_Midie_YZ_2147912031_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Midie_SSB_2147917597_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Midie.SSB!MTB"
+        threat_id = "2147917597"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Midie"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {e8 b7 12 00 00 c6 45 fc 02 8b 45 10 50 8b 4d 0c 83 c9 02 51 8b 55 08 52 8b 4d f0 83 c1 04}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

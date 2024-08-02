@@ -41,3 +41,31 @@ rule Trojan_Win32_SpyVoltar_ASV_2147916951_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_SpyVoltar_EM_2147917567_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/SpyVoltar.EM!MTB"
+        threat_id = "2147917567"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "SpyVoltar"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "C:\\WINDOWS\\system32\\gbdwpbm.dll" ascii //weight: 1
+        $x_1_2 = "begun.ru/click.jsp?url=" ascii //weight: 1
+        $x_1_3 = "_blank" ascii //weight: 1
+        $x_1_4 = "ow5dirasuek.com" ascii //weight: 1
+        $x_1_5 = "mkkuei4kdsz.com" ascii //weight: 1
+        $x_1_6 = "lousta.net" ascii //weight: 1
+        $x_1_7 = "%SystemRoot%\\System32\\omsecor.exe" ascii //weight: 1
+        $x_1_8 = "%APPDATA%\\omsecor.exe" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -241,12 +241,12 @@ rule Trojan_MSIL_Loki_D_2147915065_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Loki_E_2147917553_0
+rule Trojan_MSIL_Loki_E_2147917578_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Loki.E!MTB"
-        threat_id = "2147917553"
+        threat_id = "2147917578"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Loki"

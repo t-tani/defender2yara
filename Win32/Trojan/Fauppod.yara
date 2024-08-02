@@ -486,13 +486,34 @@ rule Trojan_Win32_Fauppod_GNT_2147852331_0
         threshold = "10"
         strings_accuracy = "Low"
     strings:
-        $x_10_1 = {8b 55 14 68 ?? ?? ?? ?? 83 c4 04 80 3a 00 ?? ?? ?? ?? ac 32 02 47 88 47 ff 68 ?? ?? ?? ?? 83 c4 04 83 ec 04 c7 04 24 ?? ?? ?? ?? 83 c4 04 42 83 e9 01 85 c9}  //weight: 10, accuracy: Low
+        $x_10_1 = {30 c8 88 45 ?? 8a 45 ?? a2 ?? ?? ?? ?? c7 05 ?? ?? ?? ?? ?? ?? ?? ?? c7 05 ?? ?? ?? ?? ?? ?? ?? ?? 0f b6 c0 83 c4}  //weight: 10, accuracy: Low
     condition:
         (filesize < 20MB) and
         (all of ($x*))
 }
 
 rule Trojan_Win32_Fauppod_GNT_2147852331_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Fauppod.GNT!MTB"
+        threat_id = "2147852331"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Fauppod"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {8b 55 14 68 ?? ?? ?? ?? 83 c4 04 80 3a 00 ?? ?? ?? ?? ac 32 02 47 88 47 ff 68 ?? ?? ?? ?? 83 c4 04 83 ec 04 c7 04 24 ?? ?? ?? ?? 83 c4 04 42 83 e9 01 85 c9}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Fauppod_GNT_2147852331_2
 {
     meta:
         author = "defender2yara"

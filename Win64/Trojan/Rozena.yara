@@ -1095,3 +1095,24 @@ rule Trojan_Win64_Rozena_HNJ_2147913724_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Rozena_BAO_2147917574_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Rozena.BAO!MTB"
+        threat_id = "2147917574"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Rozena"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {8b 45 fc 48 8b 55 ?? 48 01 d0 0f b6 00 8b 55 fc 48 8b 4d ?? 48 01 ca 32 45 ?? 88 02 83 45 fc 01 8b 45 fc 3b 45 ?? 72}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
