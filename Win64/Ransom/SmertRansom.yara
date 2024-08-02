@@ -72,12 +72,12 @@ rule Ransom_Win64_SmertRansom_YAD_2147917518_0
         (all of ($x*))
 }
 
-rule Ransom_Win64_SmertRansom_YAE_2147917548_0
+rule Ransom_Win64_SmertRansom_YAE_2147917552_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Ransom:Win64/SmertRansom.YAE!MTB"
-        threat_id = "2147917548"
+        threat_id = "2147917552"
         type = "Ransom"
         platform = "Win64: Windows 64-bit platform"
         family = "SmertRansom"

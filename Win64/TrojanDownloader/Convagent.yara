@@ -1,9 +1,9 @@
-rule TrojanDownloader_Win64_Convagent_ARA_2147917550_0
+rule TrojanDownloader_Win64_Convagent_ARA_2147917554_0
 {
     meta:
         author = "defender2yara"
         detection_name = "TrojanDownloader:Win64/Convagent.ARA!MTB"
-        threat_id = "2147917550"
+        threat_id = "2147917554"
         type = "TrojanDownloader"
         platform = "Win64: Windows 64-bit platform"
         family = "Convagent"

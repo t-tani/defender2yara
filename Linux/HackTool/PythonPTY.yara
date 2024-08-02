@@ -21,8 +21,10 @@ rule HackTool_Linux_PythonPTY_A_2147794477_0
         $x_1_7 = "/bin/ksh93" wide //weight: 1
         $x_1_8 = "/bin/ksh" wide //weight: 1
         $x_1_9 = "/bin/tcsh" wide //weight: 1
+        $n_10_10 = "ansys" wide //weight: -10
     condition:
         (filesize < 20MB) and
+        (not (any of ($n*))) and
         (
             ((1 of ($x_5_*) and 6 of ($x_1_*))) or
             ((2 of ($x_5_*) and 1 of ($x_1_*))) or

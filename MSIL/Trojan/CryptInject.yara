@@ -2930,12 +2930,12 @@ rule Trojan_MSIL_CryptInject_RHO_2147916625_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_CryptInject_MBXL_2147917542_0
+rule Trojan_MSIL_CryptInject_MBXL_2147917546_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/CryptInject.MBXL!MTB"
-        threat_id = "2147917542"
+        threat_id = "2147917546"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "CryptInject"

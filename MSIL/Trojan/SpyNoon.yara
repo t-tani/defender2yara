@@ -2355,3 +2355,24 @@ rule Trojan_MSIL_SpyNoon_AMAX_2147917341_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_SpyNoon_SGRG_2147917560_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/SpyNoon.SGRG!MTB"
+        threat_id = "2147917560"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "SpyNoon"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {04 05 5d 05 58 05 5d 0a 03 06 91 0e 04 61 0e 05 59 20 00 02 00 00 58}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

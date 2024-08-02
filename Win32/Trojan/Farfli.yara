@@ -5320,12 +5320,12 @@ rule Trojan_Win32_Farfli_AFF_2147913853_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Farfli_RP_2147917559_0
+rule Trojan_Win32_Farfli_RP_2147917565_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Farfli.RP!MTB"
-        threat_id = "2147917559"
+        threat_id = "2147917565"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Farfli"
