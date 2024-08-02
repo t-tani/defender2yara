@@ -143,3 +143,25 @@ rule Trojan_Win64_KillMBR_ARA_2147914690_1
         (all of ($x*))
 }
 
+rule Trojan_Win64_KillMBR_NM_2147917665_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/KillMBR.NM!MTB"
+        threat_id = "2147917665"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "KillMBR"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {41 83 fe 01 75 ?? 8b 45 40 ff c8 48 89 1d cf 80 01 00 89 05 c5 80 01 00 eb ?? 48 8d 55 38 48 89 7d 38 48 8b cb}  //weight: 3, accuracy: Low
+        $x_1_2 = "APM 08279+5255.exe" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

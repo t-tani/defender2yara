@@ -637,6 +637,29 @@ rule Trojan_MSIL_KillMBR_NK_2147912384_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {06 09 17 58 9a 28 ?? 00 00 0a 13 08 02 11 08 28 06 00 00 06}  //weight: 3, accuracy: Low
+        $x_1_2 = "$3f85ff0f-4d0f-4eab-996b-bdfaedfa5363" ascii //weight: 1
+        $x_1_3 = "geometry dash auto bot for extreme demons" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_KillMBR_NK_2147912384_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/KillMBR.NK!MTB"
+        threat_id = "2147912384"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "KillMBR"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "8"
         strings_accuracy = "High"
     strings:

@@ -427,6 +427,34 @@ rule Trojan_Win64_ShellcodeRunner_RP_2147908480_1
         (all of ($x*))
 }
 
+rule Trojan_Win64_ShellcodeRunner_RP_2147908480_2
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/ShellcodeRunner.RP!MTB"
+        threat_id = "2147908480"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "ShellcodeRunner"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "26"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "InternetOpenUrlW" ascii //weight: 1
+        $x_1_2 = "InternetReadFile" ascii //weight: 1
+        $x_1_3 = ".amazonaws.com/config/config.txt" wide //weight: 1
+        $x_10_4 = "dick.exe" wide //weight: 10
+        $x_1_5 = "afhost" wide //weight: 1
+        $x_10_6 = "C:\\users\\public\\music\\ttmnq\\vbox\\" wide //weight: 10
+        $x_1_7 = "C:\\users\\public\\pictures\\" wide //weight: 1
+        $x_1_8 = "Failed to download file: " wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win64_ShellcodeRunner_CCID_2147908511_0
 {
     meta:

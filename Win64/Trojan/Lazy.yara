@@ -1382,12 +1382,12 @@ rule Trojan_Win64_Lazy_NK_2147916633_0
         )
 }
 
-rule Trojan_Win64_Lazy_WC_2147917588_0
+rule Trojan_Win64_Lazy_WC_2147917609_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/Lazy.WC!MTB"
-        threat_id = "2147917588"
+        threat_id = "2147917609"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "Lazy"

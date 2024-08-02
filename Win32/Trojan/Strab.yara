@@ -1208,12 +1208,43 @@ rule Trojan_Win32_Strab_NJ_2147916939_0
         )
 }
 
-rule Trojan_Win32_Strab_NO_2147917636_0
+rule Trojan_Win32_Strab_NI_2147917682_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Strab.NI!MTB"
+        threat_id = "2147917682"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Strab"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "14"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {46 00 49 00 4c 00 45 00 49 00 4e 00 53 00 54 00 41 00 4c 00 4c 00 20 00 28 00 20 00 22 00 [0-47] 22 00 20 00 2c 00 20 00 40 00 54 00 45 00 4d 00 50 00 44 00 49 00 52 00 20 00 26 00 20 00 22 00 5c 00 00 22 00 20 00 2c 00 20 00 31 00 20 00 29 00}  //weight: 4, accuracy: Low
+        $x_4_2 = {46 49 4c 45 49 4e 53 54 41 4c 4c 20 28 20 22 [0-47] 22 20 2c 20 40 54 45 4d 50 44 49 52 20 26 20 22 5c 00 22 20 2c 20 31 20 29}  //weight: 4, accuracy: Low
+        $x_2_3 = "= EXECUTE ( \"FileRead(FileOpen(@TempDir  &" ascii //weight: 2
+        $x_2_4 = "= EXECUTE ( \"StringReplace(" ascii //weight: 2
+        $x_2_5 = "= EXECUTE ( \"DllCall" ascii //weight: 2
+        $x_2_6 = "= EXECUTE ( \"Mod((Asc(StringMid(" ascii //weight: 2
+        $x_2_7 = "&= EXECUTE ( \"Chr(BitXOR(" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_4_*) and 5 of ($x_2_*))) or
+            ((2 of ($x_4_*) and 3 of ($x_2_*))) or
+            (all of ($x*))
+        )
+}
+
+rule Trojan_Win32_Strab_NO_2147917689_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Strab.NO!MTB"
-        threat_id = "2147917636"
+        threat_id = "2147917689"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Strab"

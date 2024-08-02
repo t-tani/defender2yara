@@ -1268,6 +1268,28 @@ rule Trojan_MSIL_LummaStealer_NM_2147906801_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {1f 10 8d 7e 00 00 01 13 14 11 09 28 ?? 07 00 0a 16 11 14 16 1a 28 ?? 07 00 0a 11 0a 28 ?? 07 00 0a 16 11 14}  //weight: 3, accuracy: Low
+        $x_1_2 = "FernandoKap_digitalEU" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_LummaStealer_NM_2147906801_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/LummaStealer.NM!MTB"
+        threat_id = "2147906801"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "6"
         strings_accuracy = "Low"
     strings:
@@ -1752,12 +1774,12 @@ rule Trojan_MSIL_LummaStealer_CCJB_2147917223_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_LummaStealer_LLO_2147917641_0
+rule Trojan_MSIL_LummaStealer_LLO_2147917694_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/LummaStealer.LLO!MTB"
-        threat_id = "2147917641"
+        threat_id = "2147917694"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "LummaStealer"

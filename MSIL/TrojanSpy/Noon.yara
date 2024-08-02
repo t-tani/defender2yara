@@ -405,12 +405,12 @@ rule TrojanSpy_MSIL_Noon_ARA_2147910756_0
         (all of ($x*))
 }
 
-rule TrojanSpy_MSIL_Noon_SH_2147917612_0
+rule TrojanSpy_MSIL_Noon_SH_2147917641_0
 {
     meta:
         author = "defender2yara"
         detection_name = "TrojanSpy:MSIL/Noon.SH!MTB"
-        threat_id = "2147917612"
+        threat_id = "2147917641"
         type = "TrojanSpy"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Noon"
@@ -422,6 +422,27 @@ rule TrojanSpy_MSIL_Noon_SH_2147917612_0
     strings:
         $x_2_1 = {11 07 61 13 1a 07 09 17 58 08 5d 91 13 1b 11 1a 11 1b 59}  //weight: 2, accuracy: High
         $x_2_2 = "heidi_schwartz_C968.Properties.Resources" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule TrojanSpy_MSIL_Noon_SJ_2147917649_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanSpy:MSIL/Noon.SJ!MTB"
+        threat_id = "2147917649"
+        type = "TrojanSpy"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Noon"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {00 09 11 07 09 8e 69 5d 91 13 08 07 11 07 91 11 08 61 13 09 11 07 17 58 08 5d 13 0a 07}  //weight: 2, accuracy: High
     condition:
         (filesize < 20MB) and
         (all of ($x*))

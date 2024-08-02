@@ -1070,3 +1070,46 @@ rule Ransom_Win32_Tescrypt_ND_2147916379_0
         (all of ($x*))
 }
 
+rule Ransom_Win32_Tescrypt_NB_2147917686_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win32/Tescrypt.NB!MTB"
+        threat_id = "2147917686"
+        type = "Ransom"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Tescrypt"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {83 ec 08 83 f8 00 0f 95 c3 8a 7c 24 ?? 30 fb f6 c3 01}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Ransom_Win32_Tescrypt_NC_2147917687_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win32/Tescrypt.NC!MTB"
+        threat_id = "2147917687"
+        type = "Ransom"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Tescrypt"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = "abacistabackabacliabacotabacusabacuses" ascii //weight: 3
+        $x_2_2 = "n if you like" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

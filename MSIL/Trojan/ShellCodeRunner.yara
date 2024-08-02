@@ -48,3 +48,25 @@ rule Trojan_MSIL_ShellCodeRunner_GP_2147891923_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_ShellCodeRunner_NR_2147917667_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/ShellCodeRunner.NR!MTB"
+        threat_id = "2147917667"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "ShellCodeRunner"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {11 06 11 05 09 11 04 6f ?? 00 00 0a 16 73 ?? 00 00 0a 13 07 16 fe 0e ee 01}  //weight: 3, accuracy: Low
+        $x_1_2 = "RVirus.pdb" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

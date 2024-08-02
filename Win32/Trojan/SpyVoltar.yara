@@ -41,12 +41,12 @@ rule Trojan_Win32_SpyVoltar_ASV_2147916951_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_SpyVoltar_EM_2147917591_0
+rule Trojan_Win32_SpyVoltar_EM_2147917612_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/SpyVoltar.EM!MTB"
-        threat_id = "2147917591"
+        threat_id = "2147917612"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "SpyVoltar"

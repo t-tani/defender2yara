@@ -1166,12 +1166,12 @@ rule Backdoor_MSIL_Remcos_SGAA_2147916724_0
         (all of ($x*))
 }
 
-rule Backdoor_MSIL_Remcos_SW_2147917619_0
+rule Backdoor_MSIL_Remcos_SW_2147917648_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Backdoor:MSIL/Remcos.SW!MTB"
-        threat_id = "2147917619"
+        threat_id = "2147917648"
         type = "Backdoor"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Remcos"
@@ -1182,6 +1182,69 @@ rule Backdoor_MSIL_Remcos_SW_2147917619_0
         strings_accuracy = "High"
     strings:
         $x_2_1 = {02 08 02 8e 69 5d 1f 66 59 1f 66 58 02 08 02 8e 69 5d 1f 09 58 1f 0d 58 1f 16 59 91 07 08 07 8e 69 5d 1f 09 58 1f 0f 58 1f 18 59 1f 16 58 1f 16 59 91 61 02 08}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Backdoor_MSIL_Remcos_SX_2147917655_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Backdoor:MSIL/Remcos.SX!MTB"
+        threat_id = "2147917655"
+        type = "Backdoor"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Remcos"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {19 2c 0d 2b 0d 72 7f 00 00 70 2b 0d 2b 12 2b 17 de 1b 73 24 00 00 0a 2b ec 28 25 00 00 0a 2b ec 6f 26 00 00 0a 2b e7 0a 2b e6}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Backdoor_MSIL_Remcos_SY_2147917656_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Backdoor:MSIL/Remcos.SY!MTB"
+        threat_id = "2147917656"
+        type = "Backdoor"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Remcos"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {11 15 1d 5a 11 10 58 1f 13 5d 13 16 11 16 18 5d 16 fe 01 13 17 11 17 2c 08 00 11 16 18 5a 13 16 00 00 11 15 17 58 13 15 11 15 19 fe 04 13 18 11 18 2d cc}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Backdoor_MSIL_Remcos_SZ_2147917657_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Backdoor:MSIL/Remcos.SZ!MTB"
+        threat_id = "2147917657"
+        type = "Backdoor"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Remcos"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {07 11 06 91 11 07 61 11 09 59 20 00 02 00 00 58 13 0a 16 13 1b 2b 0f}  //weight: 2, accuracy: High
     condition:
         (filesize < 20MB) and
         (all of ($x*))

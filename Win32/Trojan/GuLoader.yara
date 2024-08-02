@@ -1955,6 +1955,32 @@ rule Trojan_Win32_GuLoader_NG_2147914184_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "klassifikationen.Sur" ascii //weight: 1
+        $x_1_2 = "mediative\\prioriteterne\\smuglings" ascii //weight: 1
+        $x_1_3 = "beklages.lnk" ascii //weight: 1
+        $x_1_4 = "Besaetter\\Propagandism.Ens" ascii //weight: 1
+        $x_1_5 = "bassetternes.for" ascii //weight: 1
+        $x_1_6 = "Crackerberry" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_GuLoader_NG_2147914184_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/GuLoader.NG!MTB"
+        threat_id = "2147914184"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "GuLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "7"
         strings_accuracy = "High"
     strings:
@@ -1965,6 +1991,31 @@ rule Trojan_Win32_GuLoader_NG_2147914184_0
         $x_1_5 = "Partaker195.est" ascii //weight: 1
         $x_1_6 = "merinould.mon" ascii //weight: 1
         $x_1_7 = "fraadserierne.rip" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_GuLoader_NG_2147914184_2
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/GuLoader.NG!MTB"
+        threat_id = "2147914184"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "GuLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "undsttelsernes underlbendes blecidere" wide //weight: 2
+        $x_2_2 = "casanova subbookkeeper" wide //weight: 2
+        $x_2_3 = "haustrum wasir" wide //weight: 2
+        $x_1_4 = "dybdepsykologs dolktid urinvejssygdommens" wide //weight: 1
+        $x_1_5 = "besejledes.exe" wide //weight: 1
     condition:
         (filesize < 20MB) and
         (all of ($x*))

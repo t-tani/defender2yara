@@ -1728,12 +1728,12 @@ rule Ransom_Win32_Genasom_EA_2147853201_0
         (all of ($x*))
 }
 
-rule Ransom_Win32_Genasom_AGM_2147917602_0
+rule Ransom_Win32_Genasom_AGM_2147917623_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Ransom:Win32/Genasom.AGM!MTB"
-        threat_id = "2147917602"
+        threat_id = "2147917623"
         type = "Ransom"
         platform = "Win32: Windows 32-bit platform"
         family = "Genasom"

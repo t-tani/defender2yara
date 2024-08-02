@@ -516,12 +516,12 @@ rule Trojan_MSIL_Mardom_SSXP_2147910850_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Mardom_SQ_2147917616_0
+rule Trojan_MSIL_Mardom_SQ_2147917645_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Mardom.SQ!MTB"
-        threat_id = "2147917616"
+        threat_id = "2147917645"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Mardom"

@@ -636,6 +636,31 @@ rule Trojan_Win32_Fragtor_NF_2147899073_2
         (all of ($x*))
 }
 
+rule Trojan_Win32_Fragtor_NF_2147899073_3
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Fragtor.NF!MTB"
+        threat_id = "2147899073"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Fragtor"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "DETCEJENIW trojan setup" wide //weight: 2
+        $x_2_2 = "The software you just executed is considered malware" wide //weight: 2
+        $x_1_3 = "This malware will harm your computer and makes it unusable" wide //weight: 1
+        $x_1_4 = "If you know what this malware does and are using a safe environment to test, press Yes to start it" wide //weight: 1
+        $x_1_5 = "THE CREATOR IS NOT RESPONSIBLE FOR ANY DAMAGE MADE USING THIS MALWARE!" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win32_Fragtor_AMBI_2147900303_0
 {
     meta:

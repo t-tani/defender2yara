@@ -310,12 +310,12 @@ rule Trojan_MSIL_Zemsil_SF_2147915521_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Zemsil_SG_2147917615_0
+rule Trojan_MSIL_Zemsil_SG_2147917644_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Zemsil.SG!MTB"
-        threat_id = "2147917615"
+        threat_id = "2147917644"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Zemsil"
@@ -333,12 +333,12 @@ rule Trojan_MSIL_Zemsil_SG_2147917615_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Zemsil_SI_2147917617_0
+rule Trojan_MSIL_Zemsil_SI_2147917646_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Zemsil.SI!MTB"
-        threat_id = "2147917617"
+        threat_id = "2147917646"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Zemsil"
@@ -350,6 +350,27 @@ rule Trojan_MSIL_Zemsil_SI_2147917617_0
     strings:
         $x_2_1 = {07 17 58 0b 07 06 8e 69 fe 04 13 06 11 06 2d ce}  //weight: 2, accuracy: High
         $x_1_2 = "BombosForm.Form1.resources" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Zemsil_SJ_2147917650_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Zemsil.SJ!MTB"
+        threat_id = "2147917650"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Zemsil"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {11 07 06 11 07 8e 69 5d 91 13 0b 07 06 91 11 0b 61 13 0c 06 17 58 09 5d 13 0d 07 11 0d 91 13 0e 16 13 05 2b 55}  //weight: 2, accuracy: High
     condition:
         (filesize < 20MB) and
         (all of ($x*))

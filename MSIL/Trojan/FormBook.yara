@@ -4634,6 +4634,28 @@ rule Trojan_MSIL_FormBook_NX_2147829819_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "9"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {05 0e 04 06 58 03 04 06 58 91 9c 06 17 58 0a 06 0e 05 32 ec 2a}  //weight: 5, accuracy: High
+        $x_4_2 = {06 07 02 7b ?? 00 00 04 07 94 9e 07 17 58 0b 07 02}  //weight: 4, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_FormBook_NX_2147829819_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/FormBook.NX!MTB"
+        threat_id = "2147829819"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "FormBook"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "4"
         strings_accuracy = "High"
     strings:
@@ -12215,6 +12237,29 @@ rule Trojan_MSIL_FormBook_CU_2147917437_0
         $x_2_3 = {61 06 09 91 16}  //weight: 2, accuracy: High
         $x_2_4 = {02 8e 69 17 58 8d}  //weight: 2, accuracy: High
         $x_2_5 = {02 8e 69 17 59 28}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_FormBook_NT_2147917683_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/FormBook.NT!MTB"
+        threat_id = "2147917683"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "FormBook"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {00 00 00 5f d2 61 d2 81}  //weight: 5, accuracy: High
+        $x_5_2 = "ca069172-b14a-40c4-b137-ac5721dad18c" ascii //weight: 5
+        $x_1_3 = "C:\\temp\\NZESL.mdb" ascii //weight: 1
     condition:
         (filesize < 20MB) and
         (all of ($x*))

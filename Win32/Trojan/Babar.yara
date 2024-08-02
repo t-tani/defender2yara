@@ -199,3 +199,60 @@ rule Trojan_Win32_Babar_GLY_2147912815_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Babar_NB_2147917666_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Babar.NB!MTB"
+        threat_id = "2147917666"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Babar"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "The software you just executed is considered (no skidddddddddeddddd) malware" wide //weight: 2
+        $x_2_2 = "THE CREATOR (Hugopako) IS NOT RESPONSIBLE FOR ANY DAMAGE MADE USING THIS (NOSKID) MALWARE!" wide //weight: 2
+        $x_1_3 = "DO YOU WANT TO EXECUTE THIS MALWARE, RESULTING IN AN UNUSABLE MACHINE" wide //weight: 1
+        $x_1_4 = "STILL EXECUTE IT?" wide //weight: 1
+        $x_1_5 = "This malware will harm your computer and makes it unusable" wide //weight: 1
+        $x_1_6 = "If you are seeing this message without knowing what you just executed, simply press No and nothing will happen" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Babar_NK_2147917684_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Babar.NK!MTB"
+        threat_id = "2147917684"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Babar"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {43 00 3a 00 5c 00 4d 00 41 00 54 00 52 00 49 00 58 00 5c 00 74 00 6d 00 70 00 5c 00 [0-32] 2e 00 76 00 62 00 70 00}  //weight: 3, accuracy: Low
+        $x_3_2 = {43 3a 5c 4d 41 54 52 49 58 5c 74 6d 70 5c [0-32] 2e 76 62 70}  //weight: 3, accuracy: Low
+        $x_3_3 = "770aae78-f26f-4dba-a829-253c83d1b387" ascii //weight: 3
+        $x_1_4 = "GetInstallDetailsPayload" ascii //weight: 1
+        $x_1_5 = "DllCanUnloadNow" ascii //weight: 1
+        $x_1_6 = "DllRegisterServer" ascii //weight: 1
+        $x_1_7 = "DllUnregisterServer" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((2 of ($x_3_*) and 4 of ($x_1_*))) or
+            ((3 of ($x_3_*) and 1 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+

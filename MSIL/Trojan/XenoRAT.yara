@@ -89,3 +89,27 @@ rule Trojan_MSIL_XenoRAT_RDB_2147915350_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_XenoRAT_RDC_2147917671_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/XenoRAT.RDC!MTB"
+        threat_id = "2147917671"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "XenoRAT"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "Display Driver Display Improve Inc" ascii //weight: 1
+        $x_1_2 = "HDisplay Driver Recovery" ascii //weight: 1
+        $x_1_3 = "Important display driver update (Don not delete)" ascii //weight: 1
+        $x_2_4 = "server1" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

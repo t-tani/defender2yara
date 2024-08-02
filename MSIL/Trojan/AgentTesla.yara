@@ -104585,12 +104585,12 @@ rule Trojan_MSIL_AgentTesla_RDCB_2147917193_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_AgentTesla_MVS_2147917606_0
+rule Trojan_MSIL_AgentTesla_MVS_2147917633_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/AgentTesla.MVS!MTB"
-        threat_id = "2147917606"
+        threat_id = "2147917633"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "AgentTesla"
@@ -104602,6 +104602,48 @@ rule Trojan_MSIL_AgentTesla_MVS_2147917606_0
     strings:
         $x_1_1 = {08 06 16 06 8e 69 6f 60 00 00 0a 0d 09 28 61 00 00 0a 13 04}  //weight: 1, accuracy: High
         $x_1_2 = "2875f92c-dfc5-46f6-8d4f-c7c18ec5364b" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_AgentTesla_ARK_2147917651_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.ARK!MTB"
+        threat_id = "2147917651"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {11 04 1f 0d 5a 06 58 1f 11 5d 26 11 04 17 58 13 04 11 04 18 fe 04 13 0f 11 0f 2d e4}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_AgentTesla_ASK_2147917652_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.ASK!MTB"
+        threat_id = "2147917652"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {06 91 03 06 0e 04 8e 69 5d 91 61 d2 9c 00 06 17 58 0a}  //weight: 2, accuracy: High
     condition:
         (filesize < 20MB) and
         (all of ($x*))

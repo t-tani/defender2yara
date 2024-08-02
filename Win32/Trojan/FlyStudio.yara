@@ -679,12 +679,12 @@ rule Trojan_Win32_FlyStudio_AFS_2147914014_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_FlyStudio_MA_2147917589_0
+rule Trojan_Win32_FlyStudio_MA_2147917610_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/FlyStudio.MA!MTB"
-        threat_id = "2147917589"
+        threat_id = "2147917610"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "FlyStudio"

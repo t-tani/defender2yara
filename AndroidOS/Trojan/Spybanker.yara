@@ -19,12 +19,12 @@ rule Trojan_AndroidOS_Spybanker_P_2147850577_0
         (all of ($x*))
 }
 
-rule Trojan_AndroidOS_Spybanker_V_2147917595_0
+rule Trojan_AndroidOS_Spybanker_V_2147917616_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:AndroidOS/Spybanker.V"
-        threat_id = "2147917595"
+        threat_id = "2147917616"
         type = "Trojan"
         platform = "AndroidOS: Android operating system"
         family = "Spybanker"

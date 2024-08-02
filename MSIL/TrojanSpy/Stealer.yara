@@ -373,12 +373,12 @@ rule TrojanSpy_MSIL_Stealer_SN_2147914442_0
         (all of ($x*))
 }
 
-rule TrojanSpy_MSIL_Stealer_SP_2147917613_0
+rule TrojanSpy_MSIL_Stealer_SP_2147917642_0
 {
     meta:
         author = "defender2yara"
         detection_name = "TrojanSpy:MSIL/Stealer.SP!MTB"
-        threat_id = "2147917613"
+        threat_id = "2147917642"
         type = "TrojanSpy"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Stealer"
