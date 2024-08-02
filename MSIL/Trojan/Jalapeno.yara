@@ -165,12 +165,12 @@ rule Trojan_MSIL_Jalapeno_SWAA_2147917323_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Jalapeno_PPF_2147917599_0
+rule Trojan_MSIL_Jalapeno_PPF_2147917642_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Jalapeno.PPF!MTB"
-        threat_id = "2147917599"
+        threat_id = "2147917642"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Jalapeno"

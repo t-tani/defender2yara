@@ -4722,12 +4722,12 @@ rule Trojan_Win32_CobaltStrike_UTA_2147917155_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_CobaltStrike_AMMH_2147917589_0
+rule Trojan_Win32_CobaltStrike_AMMH_2147917632_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/CobaltStrike.AMMH!MTB"
-        threat_id = "2147917589"
+        threat_id = "2147917632"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "CobaltStrike"

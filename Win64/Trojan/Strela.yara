@@ -24,6 +24,47 @@ rule Trojan_Win64_Strela_GA_2147917187_0
         )
 }
 
+rule Trojan_Win64_Strela_GA_2147917187_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Strela.GA!MTB"
+        threat_id = "2147917187"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Strela"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "46"
+        strings_accuracy = "High"
+    strings:
+        $x_20_1 = "SOFTWARE\\Microsoft\\Office\\16.0\\Outlook\\Profiles\\Outlook\\9375CFF0413111d3B88A00104B2A6676" ascii //weight: 20
+        $x_10_2 = "/server.php" ascii //weight: 10
+        $x_10_3 = "/out.php" ascii //weight: 10
+        $x_5_4 = "mscoree.dll" ascii //weight: 5
+        $x_5_5 = "AppPolicyGetProcessTerminationMethod" ascii //weight: 5
+        $x_1_6 = "POST" ascii //weight: 1
+        $x_1_7 = "\\Thunderbird\\Profiles" ascii //weight: 1
+        $x_1_8 = "Mozilla/" ascii //weight: 1
+        $x_1_9 = "IMAP User" ascii //weight: 1
+        $x_1_10 = "IMAP Server" ascii //weight: 1
+        $x_1_11 = "IMAP Password" ascii //weight: 1
+        $x_1_12 = "%s%s\\logins.json" ascii //weight: 1
+        $x_1_13 = "%s%s\\key4.db" ascii //weight: 1
+        $x_1_14 = "MessageBoxTimeoutA" ascii //weight: 1
+        $x_1_15 = "RtlPcToFileHeader" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_20_*) and 1 of ($x_10_*) and 2 of ($x_5_*) and 6 of ($x_1_*))) or
+            ((1 of ($x_20_*) and 2 of ($x_10_*) and 6 of ($x_1_*))) or
+            ((1 of ($x_20_*) and 2 of ($x_10_*) and 1 of ($x_5_*) and 1 of ($x_1_*))) or
+            ((1 of ($x_20_*) and 2 of ($x_10_*) and 2 of ($x_5_*))) or
+            (all of ($x*))
+        )
+}
+
 rule Trojan_Win64_Strela_GB_2147917188_0
 {
     meta:

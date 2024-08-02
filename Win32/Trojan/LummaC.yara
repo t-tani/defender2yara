@@ -495,6 +495,7 @@ rule Trojan_Win32_LummaC_CCJF_2147917324_0
     strings:
         $x_5_1 = {21 d0 01 f0 89 c2 31 ca f7 d0 21 c8 01 c0 29 d0}  //weight: 5, accuracy: High
         $x_5_2 = {21 ca 01 c8 01 d2 29 d0 05 ?? ?? ?? ?? 89 44 24 ?? 8b 44 24 ?? 04 ?? 8b 0c 24 88 44 0c 08 ff 04 24 8b 04 24 83 f8}  //weight: 5, accuracy: Low
+        $x_5_3 = {21 d0 01 c0 89 ca f7 d2 21 c2 f7 d0 21 c8 29 d0 89 44 24}  //weight: 5, accuracy: High
     condition:
         (filesize < 20MB) and
         (1 of ($x*))

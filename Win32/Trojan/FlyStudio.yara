@@ -679,3 +679,32 @@ rule Trojan_Win32_FlyStudio_AFS_2147914014_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_FlyStudio_MA_2147917589_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/FlyStudio.MA!MTB"
+        threat_id = "2147917589"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "FlyStudio"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "9"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "txt.ziboshuozuan.com/dxd" ascii //weight: 1
+        $x_1_2 = "xiazaiba.com/html/" ascii //weight: 1
+        $x_1_3 = "WinHttp.WinHttpRequest.5.1" ascii //weight: 1
+        $x_1_4 = "Content-Type: application/x-www-form-urlencoded" ascii //weight: 1
+        $x_1_5 = "cmd.exe /c del" ascii //weight: 1
+        $x_1_6 = "Mozilla/4.0 (compatible; MSIE 9.0; Windows NT 6.1)" ascii //weight: 1
+        $x_1_7 = "mshta.exe" ascii //weight: 1
+        $x_1_8 = "Set WshShell = CreateObject(\"WScript.Shell\")" ascii //weight: 1
+        $x_1_9 = "WshShell.Exec" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

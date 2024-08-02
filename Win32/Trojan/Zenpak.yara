@@ -8172,3 +8172,56 @@ rule Trojan_Win32_Zenpak_SBMB_2147917503_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Zenpak_ASAN_2147917600_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zenpak.ASAN!MTB"
+        threat_id = "2147917600"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zenpak"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {55 89 e5 50 8a 45 0c 8a 4d 08 88 0d}  //weight: 2, accuracy: High
+        $x_2_2 = {0f b6 c0 83 c4 04}  //weight: 2, accuracy: High
+        $x_1_3 = {8a 4d fe 30 c8 a2}  //weight: 1, accuracy: High
+        $x_3_4 = {55 89 e5 56 50 8a 45 0c 8a 4d 08 88 0d ?? ?? ?? 10 88 45 fb 88 4d fa 8a 45 fb 8a 4d fa 30 c8 8a 55 fb 88 15 ?? ?? ?? 10 a2}  //weight: 3, accuracy: Low
+        $x_3_5 = {55 89 e5 56 50 8a 45 0c 8a 4d 08 88 0d ?? ?? ?? 10 88 c2 30 ca a2}  //weight: 3, accuracy: Low
+        $x_2_6 = {0f b6 c0 83 c4 04 5e 5d c3}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (
+            ((2 of ($x_2_*) and 1 of ($x_1_*))) or
+            ((3 of ($x_2_*))) or
+            ((1 of ($x_3_*) and 1 of ($x_2_*))) or
+            ((2 of ($x_3_*))) or
+            (all of ($x*))
+        )
+}
+
+rule Trojan_Win32_Zenpak_SXMB_2147917629_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zenpak.SXMB!MTB"
+        threat_id = "2147917629"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zenpak"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {8a 45 0c 8a 4d 08 88 0d ?? ?? ?? ?? a2 ?? ?? ?? ?? 30 c8 a2 ?? ?? ?? ?? c7 05 ?? ?? ?? ?? ?? ?? ?? ?? 8b 15 ?? ?? ?? ?? 81 c2 ?? ?? ?? ?? 89 15 ?? ?? ?? ?? 88 45 ff 8a 45 ff 0f b6 c0 83 c4 04}  //weight: 4, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

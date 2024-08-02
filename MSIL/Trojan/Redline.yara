@@ -4811,12 +4811,12 @@ rule Trojan_MSIL_Redline_AZ_2147917213_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Redline_AMAZ_2147917590_0
+rule Trojan_MSIL_Redline_AMAZ_2147917633_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Redline.AMAZ!MTB"
-        threat_id = "2147917590"
+        threat_id = "2147917633"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Redline"

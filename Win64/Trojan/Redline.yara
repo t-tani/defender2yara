@@ -126,12 +126,33 @@ rule Trojan_Win64_Redline_MB_2147892669_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_Redline_GNK_2147917576_0
+rule Trojan_Win64_Redline_MAA_2147917587_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Redline.MAA!MTB"
+        threat_id = "2147917587"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Redline"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {48 98 0f b6 44 05 ?? 48 63 8d ?? ?? ?? ?? 48 8b 95 ?? ?? ?? ?? 0f b6 0c 0a 33 c8 8b c1 48 63 8d ?? ?? ?? ?? 48 8b 95 ?? ?? ?? ?? 88 04 0a e9}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_Redline_GNK_2147917603_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/Redline.GNK!MTB"
-        threat_id = "2147917576"
+        threat_id = "2147917603"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "Redline"

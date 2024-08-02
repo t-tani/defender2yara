@@ -370,12 +370,56 @@ rule TrojanDownloader_MSIL_Heracles_VS_2147915518_0
         (all of ($x*))
 }
 
-rule TrojanDownloader_MSIL_Heracles_SI_2147917594_0
+rule TrojanDownloader_MSIL_Heracles_VT_2147917610_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:MSIL/Heracles.VT!MTB"
+        threat_id = "2147917610"
+        type = "TrojanDownloader"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Heracles"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "KutuphaneOtomasyonu.Properties" ascii //weight: 2
+        $x_2_2 = "$09c26a9f-2d05-4a65-8ac1-a01ebdd7d012" ascii //weight: 2
+        $x_1_3 = "tempuri.org/DataSetAAAAAAAAA.xsd" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule TrojanDownloader_MSIL_Heracles_VU_2147917618_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:MSIL/Heracles.VU!MTB"
+        threat_id = "2147917618"
+        type = "TrojanDownloader"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Heracles"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {07 06 06 9e 06 17 58 0a 06 20 ff 00 00 00 fe 03 16 fe 01 13 0d 11 0d 2d e7}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule TrojanDownloader_MSIL_Heracles_SI_2147917637_0
 {
     meta:
         author = "defender2yara"
         detection_name = "TrojanDownloader:MSIL/Heracles.SI!MTB"
-        threat_id = "2147917594"
+        threat_id = "2147917637"
         type = "TrojanDownloader"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Heracles"

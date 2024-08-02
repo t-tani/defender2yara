@@ -1728,3 +1728,26 @@ rule Ransom_Win32_Genasom_EA_2147853201_0
         (all of ($x*))
 }
 
+rule Ransom_Win32_Genasom_AGM_2147917602_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win32/Genasom.AGM!MTB"
+        threat_id = "2147917602"
+        type = "Ransom"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Genasom"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {33 c5 89 45 fc 56 8b f1 e8 ?? ?? ?? ?? 85 c0 75 47 56 68 14 33 40 00}  //weight: 2, accuracy: Low
+        $x_2_2 = {68 24 33 40 00 50 ff 15 ?? ?? ?? ?? 8b f0 83 c4 18 85 f6 74 15 68 28 33 40 00 56}  //weight: 2, accuracy: Low
+        $x_1_3 = {0f 10 04 2f 0f 28 ca 0f 57 c8 0f 11 0c 2f 83 c7 10 83 ff 20}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

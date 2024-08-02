@@ -98,12 +98,12 @@ rule Ransom_Win64_BianLian_PC_2147838463_0
         )
 }
 
-rule Ransom_Win64_BianLian_OBS_2147917581_0
+rule Ransom_Win64_BianLian_OBS_2147917620_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Ransom:Win64/BianLian.OBS!MTB"
-        threat_id = "2147917581"
+        threat_id = "2147917620"
         type = "Ransom"
         platform = "Win64: Windows 64-bit platform"
         family = "BianLian"

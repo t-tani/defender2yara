@@ -1,9 +1,9 @@
-rule Trojan_MSIL_JellyfishLoader_AJL_2147917575_0
+rule Trojan_MSIL_JellyfishLoader_AJL_2147917601_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/JellyfishLoader.AJL!MTB"
-        threat_id = "2147917575"
+        threat_id = "2147917601"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "JellyfishLoader"

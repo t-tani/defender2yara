@@ -905,12 +905,12 @@ rule Trojan_AndroidOS_SmsThief_CV_2147912362_0
         (all of ($x*))
 }
 
-rule Trojan_AndroidOS_SmsThief_FK_2147917570_0
+rule Trojan_AndroidOS_SmsThief_FK_2147917594_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:AndroidOS/SmsThief.FK"
-        threat_id = "2147917570"
+        threat_id = "2147917594"
         type = "Trojan"
         platform = "AndroidOS: Android operating system"
         family = "SmsThief"
@@ -930,12 +930,12 @@ rule Trojan_AndroidOS_SmsThief_FK_2147917570_0
         (2 of ($x*))
 }
 
-rule Trojan_AndroidOS_SmsThief_VA_2147917572_0
+rule Trojan_AndroidOS_SmsThief_VA_2147917596_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:AndroidOS/SmsThief.VA"
-        threat_id = "2147917572"
+        threat_id = "2147917596"
         type = "Trojan"
         platform = "AndroidOS: Android operating system"
         family = "SmsThief"

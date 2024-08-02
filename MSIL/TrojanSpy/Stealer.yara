@@ -373,3 +373,25 @@ rule TrojanSpy_MSIL_Stealer_SN_2147914442_0
         (all of ($x*))
 }
 
+rule TrojanSpy_MSIL_Stealer_SP_2147917613_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanSpy:MSIL/Stealer.SP!MTB"
+        threat_id = "2147917613"
+        type = "TrojanSpy"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Stealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {00 03 06 7e 04 00 00 04 06 91 04 06 04 8e 69 5d 91 61 d2 9c 00 06 17 58 0a 06 7e 04 00 00 04 8e 69 fe 04 0b 07 2d d9}  //weight: 2, accuracy: High
+        $x_2_2 = "Shroud.Properties.Resources.resources" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

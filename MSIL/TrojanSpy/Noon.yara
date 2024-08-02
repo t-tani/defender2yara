@@ -405,3 +405,25 @@ rule TrojanSpy_MSIL_Noon_ARA_2147910756_0
         (all of ($x*))
 }
 
+rule TrojanSpy_MSIL_Noon_SH_2147917612_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanSpy:MSIL/Noon.SH!MTB"
+        threat_id = "2147917612"
+        type = "TrojanSpy"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Noon"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {11 07 61 13 1a 07 09 17 58 08 5d 91 13 1b 11 1a 11 1b 59}  //weight: 2, accuracy: High
+        $x_2_2 = "heidi_schwartz_C968.Properties.Resources" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

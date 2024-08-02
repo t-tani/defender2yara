@@ -1382,3 +1382,29 @@ rule Trojan_Win64_Lazy_NK_2147916633_0
         )
 }
 
+rule Trojan_Win64_Lazy_WC_2147917588_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Lazy.WC!MTB"
+        threat_id = "2147917588"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Lazy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "Go build ID:" ascii //weight: 1
+        $x_1_2 = "navegador/logger.Configure" ascii //weight: 1
+        $x_1_3 = "main.Execute" ascii //weight: 1
+        $x_1_4 = "navegador/cmd/navegador" ascii //weight: 1
+        $x_1_5 = "navegador/logger.(*Logger).SetVerbose" ascii //weight: 1
+        $x_1_6 = "YsImfSBoP9QPYL0xyKJPq0gcaJdG3rInoqxTWbfQu9M=" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

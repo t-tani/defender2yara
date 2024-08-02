@@ -310,3 +310,48 @@ rule Trojan_MSIL_Zemsil_SF_2147915521_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Zemsil_SG_2147917615_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Zemsil.SG!MTB"
+        threat_id = "2147917615"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Zemsil"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "server1.exe" ascii //weight: 2
+        $x_2_2 = "2024 Display Driver" ascii //weight: 2
+        $x_2_3 = "$cc7fad03-816e-432c-9b92-001f2d378392" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Zemsil_SI_2147917617_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Zemsil.SI!MTB"
+        threat_id = "2147917617"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Zemsil"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {07 17 58 0b 07 06 8e 69 fe 04 13 06 11 06 2d ce}  //weight: 2, accuracy: High
+        $x_1_2 = "BombosForm.Form1.resources" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

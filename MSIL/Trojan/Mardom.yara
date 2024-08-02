@@ -516,3 +516,26 @@ rule Trojan_MSIL_Mardom_SSXP_2147910850_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Mardom_SQ_2147917616_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Mardom.SQ!MTB"
+        threat_id = "2147917616"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Mardom"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "Zklymrrqljc" ascii //weight: 2
+        $x_2_2 = "$697ceff4-130f-468a-bbee-4b7a0801a6f0" ascii //weight: 2
+        $x_2_3 = "toyscenter.cl" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

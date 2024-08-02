@@ -1,9 +1,9 @@
-rule Trojan_Win64_Keylogiz_A_2147917566_0
+rule Trojan_Win64_Keylogiz_A_2147917590_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/Keylogiz.A!MTB"
-        threat_id = "2147917566"
+        threat_id = "2147917590"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "Keylogiz"

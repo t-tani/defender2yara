@@ -1145,3 +1145,24 @@ rule Trojan_Win32_Tofsee_TTW_2147916526_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Tofsee_EEZ_2147917622_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Tofsee.EEZ!MTB"
+        threat_id = "2147917622"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Tofsee"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {56 8d 75 f8 89 7d f8 e8 ?? ?? ?? ?? 8b 4d fc 8b 45 08 8b 75 0c 03 c1 8a 4d f8 30 08 83 fe 0f 75}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
