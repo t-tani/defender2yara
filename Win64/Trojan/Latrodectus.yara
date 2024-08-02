@@ -251,12 +251,12 @@ rule Trojan_Win64_Latrodectus_OBS_2147917294_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_Latrodectus_LAZ_2147917548_0
+rule Trojan_Win64_Latrodectus_LAZ_2147917552_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/Latrodectus.LAZ!MTB"
-        threat_id = "2147917548"
+        threat_id = "2147917552"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "Latrodectus"

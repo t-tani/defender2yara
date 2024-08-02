@@ -165,3 +165,28 @@ rule Trojan_MSIL_Jalapeno_SWAA_2147917323_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Jalapeno_PPF_2147917560_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Jalapeno.PPF!MTB"
+        threat_id = "2147917560"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Jalapeno"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "cdn.gosth.ltd/launcher.exe" wide //weight: 2
+        $x_2_2 = "Temp\\eu.png" wide //weight: 2
+        $x_1_3 = "Gosth Injected!" wide //weight: 1
+        $x_1_4 = "all traces destroyed!" wide //weight: 1
+        $x_1_5 = "Self Delete" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

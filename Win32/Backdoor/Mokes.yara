@@ -204,6 +204,27 @@ rule Backdoor_Win32_Mokes_GNK_2147916832_0
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = {8b 45 08 59 8a 4d fc 03 c3 30 08 83 7d 0c 0f}  //weight: 10, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Backdoor_Win32_Mokes_GNK_2147916832_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Backdoor:Win32/Mokes.GNK!MTB"
+        threat_id = "2147916832"
+        type = "Backdoor"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Mokes"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
         strings_accuracy = "Low"
     strings:
         $x_10_1 = {03 c6 30 08 83 7d 0c 0f ?? ?? 57 ff 75}  //weight: 10, accuracy: Low
