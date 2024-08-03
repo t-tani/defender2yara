@@ -143,12 +143,12 @@ rule Trojan_Win64_KillMBR_ARA_2147914690_1
         (all of ($x*))
 }
 
-rule Trojan_Win64_KillMBR_NM_2147917665_0
+rule Trojan_Win64_KillMBR_NM_2147917687_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/KillMBR.NM!MTB"
-        threat_id = "2147917665"
+        threat_id = "2147917687"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "KillMBR"

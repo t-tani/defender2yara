@@ -251,12 +251,12 @@ rule Trojan_Win64_Latrodectus_OBS_2147917294_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_Latrodectus_LAZ_2147917659_0
+rule Trojan_Win64_Latrodectus_LAZ_2147917681_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/Latrodectus.LAZ!MTB"
-        threat_id = "2147917659"
+        threat_id = "2147917681"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "Latrodectus"
@@ -272,12 +272,12 @@ rule Trojan_Win64_Latrodectus_LAZ_2147917659_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_Latrodectus_QEZ_2147917661_0
+rule Trojan_Win64_Latrodectus_QEZ_2147917683_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/Latrodectus.QEZ!MTB"
-        threat_id = "2147917661"
+        threat_id = "2147917683"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "Latrodectus"

@@ -1,9 +1,9 @@
-rule Trojan_Win32_NjRAT_A_2147917630_0
+rule Trojan_Win32_NjRAT_A_2147917650_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/NjRAT.A!MTB"
-        threat_id = "2147917630"
+        threat_id = "2147917650"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "NjRAT"

@@ -405,12 +405,12 @@ rule TrojanSpy_MSIL_Noon_ARA_2147910756_0
         (all of ($x*))
 }
 
-rule TrojanSpy_MSIL_Noon_SH_2147917641_0
+rule TrojanSpy_MSIL_Noon_SH_2147917662_0
 {
     meta:
         author = "defender2yara"
         detection_name = "TrojanSpy:MSIL/Noon.SH!MTB"
-        threat_id = "2147917641"
+        threat_id = "2147917662"
         type = "TrojanSpy"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Noon"
@@ -427,12 +427,12 @@ rule TrojanSpy_MSIL_Noon_SH_2147917641_0
         (all of ($x*))
 }
 
-rule TrojanSpy_MSIL_Noon_SJ_2147917649_0
+rule TrojanSpy_MSIL_Noon_SJ_2147917670_0
 {
     meta:
         author = "defender2yara"
         detection_name = "TrojanSpy:MSIL/Noon.SJ!MTB"
-        threat_id = "2147917649"
+        threat_id = "2147917670"
         type = "TrojanSpy"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Noon"

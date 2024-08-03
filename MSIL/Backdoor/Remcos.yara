@@ -1166,12 +1166,12 @@ rule Backdoor_MSIL_Remcos_SGAA_2147916724_0
         (all of ($x*))
 }
 
-rule Backdoor_MSIL_Remcos_SW_2147917648_0
+rule Backdoor_MSIL_Remcos_SW_2147917669_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Backdoor:MSIL/Remcos.SW!MTB"
-        threat_id = "2147917648"
+        threat_id = "2147917669"
         type = "Backdoor"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Remcos"
@@ -1187,12 +1187,12 @@ rule Backdoor_MSIL_Remcos_SW_2147917648_0
         (all of ($x*))
 }
 
-rule Backdoor_MSIL_Remcos_SX_2147917655_0
+rule Backdoor_MSIL_Remcos_SX_2147917676_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Backdoor:MSIL/Remcos.SX!MTB"
-        threat_id = "2147917655"
+        threat_id = "2147917676"
         type = "Backdoor"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Remcos"
@@ -1208,12 +1208,12 @@ rule Backdoor_MSIL_Remcos_SX_2147917655_0
         (all of ($x*))
 }
 
-rule Backdoor_MSIL_Remcos_SY_2147917656_0
+rule Backdoor_MSIL_Remcos_SY_2147917677_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Backdoor:MSIL/Remcos.SY!MTB"
-        threat_id = "2147917656"
+        threat_id = "2147917677"
         type = "Backdoor"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Remcos"
@@ -1229,12 +1229,12 @@ rule Backdoor_MSIL_Remcos_SY_2147917656_0
         (all of ($x*))
 }
 
-rule Backdoor_MSIL_Remcos_SZ_2147917657_0
+rule Backdoor_MSIL_Remcos_SZ_2147917678_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Backdoor:MSIL/Remcos.SZ!MTB"
-        threat_id = "2147917657"
+        threat_id = "2147917678"
         type = "Backdoor"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Remcos"

@@ -1,9 +1,9 @@
-rule Trojan_Win32_MemoLoader_DA_2147917606_0
+rule Trojan_Win32_MemoLoader_DA_2147917626_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/MemoLoader.DA!MTB"
-        threat_id = "2147917606"
+        threat_id = "2147917626"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "MemoLoader"

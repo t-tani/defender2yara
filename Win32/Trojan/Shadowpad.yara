@@ -1,9 +1,9 @@
-rule Trojan_Win32_Shadowpad_AMMF_2147917675_0
+rule Trojan_Win32_Shadowpad_AMMF_2147917699_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Shadowpad.AMMF!MTB"
-        threat_id = "2147917675"
+        threat_id = "2147917699"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Shadowpad"

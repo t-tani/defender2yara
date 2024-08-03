@@ -1145,12 +1145,12 @@ rule Trojan_Win32_Tofsee_TTW_2147916526_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Tofsee_EEZ_2147917660_0
+rule Trojan_Win32_Tofsee_EEZ_2147917682_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Tofsee.EEZ!MTB"
-        threat_id = "2147917660"
+        threat_id = "2147917682"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Tofsee"

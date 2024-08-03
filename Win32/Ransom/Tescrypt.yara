@@ -1070,12 +1070,12 @@ rule Ransom_Win32_Tescrypt_ND_2147916379_0
         (all of ($x*))
 }
 
-rule Ransom_Win32_Tescrypt_NB_2147917686_0
+rule Ransom_Win32_Tescrypt_NB_2147917710_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Ransom:Win32/Tescrypt.NB!MTB"
-        threat_id = "2147917686"
+        threat_id = "2147917710"
         type = "Ransom"
         platform = "Win32: Windows 32-bit platform"
         family = "Tescrypt"
@@ -1091,12 +1091,12 @@ rule Ransom_Win32_Tescrypt_NB_2147917686_0
         (all of ($x*))
 }
 
-rule Ransom_Win32_Tescrypt_NC_2147917687_0
+rule Ransom_Win32_Tescrypt_NC_2147917711_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Ransom:Win32/Tescrypt.NC!MTB"
-        threat_id = "2147917687"
+        threat_id = "2147917711"
         type = "Ransom"
         platform = "Win32: Windows 32-bit platform"
         family = "Tescrypt"

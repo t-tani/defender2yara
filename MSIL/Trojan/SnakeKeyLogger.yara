@@ -1491,12 +1491,12 @@ rule Trojan_MSIL_SnakeKeyLogger_RDBN_2147917302_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_SnakeKeyLogger_RDBO_2147917668_0
+rule Trojan_MSIL_SnakeKeyLogger_RDBO_2147917690_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/SnakeKeyLogger.RDBO!MTB"
-        threat_id = "2147917668"
+        threat_id = "2147917690"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "SnakeKeyLogger"
@@ -1512,12 +1512,12 @@ rule Trojan_MSIL_SnakeKeyLogger_RDBO_2147917668_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_SnakeKeyLogger_RDBP_2147917669_0
+rule Trojan_MSIL_SnakeKeyLogger_RDBP_2147917691_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/SnakeKeyLogger.RDBP!MTB"
-        threat_id = "2147917669"
+        threat_id = "2147917691"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "SnakeKeyLogger"
@@ -1528,6 +1528,27 @@ rule Trojan_MSIL_SnakeKeyLogger_RDBP_2147917669_0
         strings_accuracy = "High"
     strings:
         $x_2_1 = {07 08 18 6f 17 00 00 0a 1f 10 28 18 00 00 0a 6f 19 00 00 0a 08 18}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_SnakeKeyLogger_RDBQ_2147917694_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/SnakeKeyLogger.RDBQ!MTB"
+        threat_id = "2147917694"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "SnakeKeyLogger"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {28 5f 01 00 0a 6f 60 01 00 0a 0b 73 61 01 00 0a 0c 16}  //weight: 2, accuracy: High
     condition:
         (filesize < 20MB) and
         (all of ($x*))

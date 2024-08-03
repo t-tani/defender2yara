@@ -2331,12 +2331,12 @@ rule Trojan_Win32_AutoitInject_KAD_2147917511_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_AutoitInject_SKL_2147917607_0
+rule Trojan_Win32_AutoitInject_SKL_2147917627_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/AutoitInject.SKL!MTB"
-        threat_id = "2147917607"
+        threat_id = "2147917627"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "AutoitInject"
@@ -2363,12 +2363,12 @@ rule Trojan_Win32_AutoitInject_SKL_2147917607_0
         (6 of ($x*))
 }
 
-rule Trojan_Win32_AutoitInject_TEAA_2147917635_0
+rule Trojan_Win32_AutoitInject_TEAA_2147917655_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/AutoitInject.TEAA!MTB"
-        threat_id = "2147917635"
+        threat_id = "2147917655"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "AutoitInject"

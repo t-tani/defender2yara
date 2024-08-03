@@ -550,12 +550,12 @@ rule Trojan_MSIL_RemcosRAT_SGRG_2147917283_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_RemcosRAT_C_2147917631_0
+rule Trojan_MSIL_RemcosRAT_C_2147917651_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/RemcosRAT.C!MTB"
-        threat_id = "2147917631"
+        threat_id = "2147917651"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "RemcosRAT"

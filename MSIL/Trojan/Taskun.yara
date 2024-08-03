@@ -3600,12 +3600,12 @@ rule Trojan_MSIL_Taskun_SRAA_2147917041_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Taskun_NE_2147917688_0
+rule Trojan_MSIL_Taskun_NE_2147917712_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Taskun.NE!MTB"
-        threat_id = "2147917688"
+        threat_id = "2147917712"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Taskun"

@@ -42,12 +42,12 @@ rule Trojan_MSIL_AgenTesla_MBYO_2147912556_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_AgenTesla_MBXL_2147917614_0
+rule Trojan_MSIL_AgenTesla_MBXL_2147917634_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/AgenTesla.MBXL!MTB"
-        threat_id = "2147917614"
+        threat_id = "2147917634"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "AgenTesla"

@@ -1095,12 +1095,12 @@ rule Trojan_Win64_Rozena_HNJ_2147913724_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_Rozena_BAO_2147917620_0
+rule Trojan_Win64_Rozena_BAO_2147917640_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/Rozena.BAO!MTB"
-        threat_id = "2147917620"
+        threat_id = "2147917640"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "Rozena"

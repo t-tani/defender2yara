@@ -8172,12 +8172,12 @@ rule Trojan_Win32_Zenpak_SBMB_2147917503_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Zenpak_ASAN_2147917621_0
+rule Trojan_Win32_Zenpak_ASAN_2147917641_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Zenpak.ASAN!MTB"
-        threat_id = "2147917621"
+        threat_id = "2147917641"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Zenpak"
@@ -8204,12 +8204,12 @@ rule Trojan_Win32_Zenpak_ASAN_2147917621_0
         )
 }
 
-rule Trojan_Win32_Zenpak_SXMB_2147917673_0
+rule Trojan_Win32_Zenpak_SXMB_2147917696_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Zenpak.SXMB!MTB"
-        threat_id = "2147917673"
+        threat_id = "2147917696"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Zenpak"
@@ -8220,6 +8220,27 @@ rule Trojan_Win32_Zenpak_SXMB_2147917673_0
         strings_accuracy = "Low"
     strings:
         $x_4_1 = {8a 45 0c 8a 4d 08 88 0d ?? ?? ?? ?? a2 ?? ?? ?? ?? 30 c8 a2 ?? ?? ?? ?? c7 05 ?? ?? ?? ?? ?? ?? ?? ?? 8b 15 ?? ?? ?? ?? 81 c2 ?? ?? ?? ?? 89 15 ?? ?? ?? ?? 88 45 ff 8a 45 ff 0f b6 c0 83 c4 04}  //weight: 4, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Zenpak_SZMB_2147917697_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zenpak.SZMB!MTB"
+        threat_id = "2147917697"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zenpak"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {8a 45 0c 8a 4d 08 88 0d ?? ?? ?? ?? a2 ?? ?? ?? ?? 30 c8 a2 ?? ?? ?? ?? c7 05 ?? ?? ?? ?? ?? ?? ?? ?? 88 45 ff a1 ?? ?? ?? ?? 05 ?? ?? ?? ?? a3 ?? ?? ?? ?? 8a 4d ff 0f b6 c1}  //weight: 4, accuracy: Low
     condition:
         (filesize < 20MB) and
         (all of ($x*))

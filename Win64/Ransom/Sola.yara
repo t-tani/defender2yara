@@ -1,9 +1,9 @@
-rule Ransom_Win64_Sola_YAC_2147917628_0
+rule Ransom_Win64_Sola_YAC_2147917648_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Ransom:Win64/Sola.YAC!MTB"
-        threat_id = "2147917628"
+        threat_id = "2147917648"
         type = "Ransom"
         platform = "Win64: Windows 64-bit platform"
         family = "Sola"

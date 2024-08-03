@@ -478,12 +478,12 @@ rule TrojanDownloader_MSIL_Small_SGA_2147913706_0
         (all of ($x*))
 }
 
-rule TrojanDownloader_MSIL_Small_SLE_2147917691_0
+rule TrojanDownloader_MSIL_Small_SLE_2147917715_0
 {
     meta:
         author = "defender2yara"
         detection_name = "TrojanDownloader:MSIL/Small.SLE!MTB"
-        threat_id = "2147917691"
+        threat_id = "2147917715"
         type = "TrojanDownloader"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Small"

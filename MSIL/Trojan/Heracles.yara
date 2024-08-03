@@ -5374,12 +5374,12 @@ rule Trojan_MSIL_Heracles_NM_2147917334_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Heracles_AMBF_2147917674_0
+rule Trojan_MSIL_Heracles_AMBF_2147917698_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Heracles.AMBF!MTB"
-        threat_id = "2147917674"
+        threat_id = "2147917698"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Heracles"

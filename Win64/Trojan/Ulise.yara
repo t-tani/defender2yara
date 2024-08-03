@@ -134,12 +134,12 @@ rule Trojan_Win64_Ulise_A_2147906573_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_Ulise_AI_2147917618_0
+rule Trojan_Win64_Ulise_AI_2147917638_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/Ulise.AI!MTB"
-        threat_id = "2147917618"
+        threat_id = "2147917638"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "Ulise"

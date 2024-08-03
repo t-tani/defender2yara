@@ -1,9 +1,9 @@
-rule TrojanDownloader_Win64_Dorifel_ARA_2147917638_0
+rule TrojanDownloader_Win64_Dorifel_ARA_2147917659_0
 {
     meta:
         author = "defender2yara"
         detection_name = "TrojanDownloader:Win64/Dorifel.ARA!MTB"
-        threat_id = "2147917638"
+        threat_id = "2147917659"
         type = "TrojanDownloader"
         platform = "Win64: Windows 64-bit platform"
         family = "Dorifel"

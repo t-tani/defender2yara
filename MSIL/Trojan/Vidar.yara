@@ -2045,3 +2045,24 @@ rule Trojan_MSIL_Vidar_RP_2147915183_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Vidar_OBS_2147917680_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Vidar.OBS!MTB"
+        threat_id = "2147917680"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Vidar"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {fe 0c 06 00 20 05 00 00 00 fe 0c 08 00 9c 20 54 00 00 00 38 10 e5 ff ff 11 27 11 03 19 58 e0 91 1f 18 62 11 27 11 03 18 58 e0 91 1f 10 62 60 11 27 11 03 17 58 e0 91 1e 62 60}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
