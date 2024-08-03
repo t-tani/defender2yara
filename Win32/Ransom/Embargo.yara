@@ -22,12 +22,12 @@ rule Ransom_Win32_Embargo_DA_2147912233_0
         (3 of ($x*))
 }
 
-rule Ransom_Win32_Embargo_A_2147917622_0
+rule Ransom_Win32_Embargo_A_2147917637_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Ransom:Win32/Embargo.A"
-        threat_id = "2147917622"
+        threat_id = "2147917637"
         type = "Ransom"
         platform = "Win32: Windows 32-bit platform"
         family = "Embargo"
@@ -50,12 +50,12 @@ rule Ransom_Win32_Embargo_A_2147917622_0
         )
 }
 
-rule Ransom_Win32_Embargo_B_2147917624_0
+rule Ransom_Win32_Embargo_B_2147917639_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Ransom:Win32/Embargo.B"
-        threat_id = "2147917624"
+        threat_id = "2147917639"
         type = "Ransom"
         platform = "Win32: Windows 32-bit platform"
         family = "Embargo"

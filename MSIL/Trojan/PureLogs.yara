@@ -61,12 +61,12 @@ rule Trojan_MSIL_PureLogs_KAF_2147917510_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_PureLogs_SN_2147917674_0
+rule Trojan_MSIL_PureLogs_SN_2147917691_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/PureLogs.SN!MTB"
-        threat_id = "2147917674"
+        threat_id = "2147917691"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "PureLogs"

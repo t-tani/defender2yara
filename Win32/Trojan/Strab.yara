@@ -1208,12 +1208,12 @@ rule Trojan_Win32_Strab_NJ_2147916939_0
         )
 }
 
-rule Trojan_Win32_Strab_NI_2147917706_0
+rule Trojan_Win32_Strab_NI_2147917723_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Strab.NI!MTB"
-        threat_id = "2147917706"
+        threat_id = "2147917723"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Strab"
@@ -1239,12 +1239,12 @@ rule Trojan_Win32_Strab_NI_2147917706_0
         )
 }
 
-rule Trojan_Win32_Strab_NO_2147917713_0
+rule Trojan_Win32_Strab_NO_2147917730_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Strab.NO!MTB"
-        threat_id = "2147917713"
+        threat_id = "2147917730"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Strab"

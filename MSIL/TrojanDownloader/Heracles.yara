@@ -370,12 +370,12 @@ rule TrojanDownloader_MSIL_Heracles_VS_2147915518_0
         (all of ($x*))
 }
 
-rule TrojanDownloader_MSIL_Heracles_VT_2147917660_0
+rule TrojanDownloader_MSIL_Heracles_VT_2147917677_0
 {
     meta:
         author = "defender2yara"
         detection_name = "TrojanDownloader:MSIL/Heracles.VT!MTB"
-        threat_id = "2147917660"
+        threat_id = "2147917677"
         type = "TrojanDownloader"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Heracles"
@@ -393,12 +393,12 @@ rule TrojanDownloader_MSIL_Heracles_VT_2147917660_0
         (all of ($x*))
 }
 
-rule TrojanDownloader_MSIL_Heracles_VU_2147917668_0
+rule TrojanDownloader_MSIL_Heracles_VU_2147917685_0
 {
     meta:
         author = "defender2yara"
         detection_name = "TrojanDownloader:MSIL/Heracles.VU!MTB"
-        threat_id = "2147917668"
+        threat_id = "2147917685"
         type = "TrojanDownloader"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Heracles"
@@ -414,12 +414,12 @@ rule TrojanDownloader_MSIL_Heracles_VU_2147917668_0
         (all of ($x*))
 }
 
-rule TrojanDownloader_MSIL_Heracles_SI_2147917714_0
+rule TrojanDownloader_MSIL_Heracles_SI_2147917731_0
 {
     meta:
         author = "defender2yara"
         detection_name = "TrojanDownloader:MSIL/Heracles.SI!MTB"
-        threat_id = "2147917714"
+        threat_id = "2147917731"
         type = "TrojanDownloader"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Heracles"

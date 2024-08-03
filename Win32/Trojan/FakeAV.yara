@@ -73,12 +73,12 @@ rule Trojan_Win32_FakeAV_ARAA_2147906264_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_FakeAV_NF_2147917686_0
+rule Trojan_Win32_FakeAV_NF_2147917703_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/FakeAV.NF!MTB"
-        threat_id = "2147917686"
+        threat_id = "2147917703"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "FakeAV"

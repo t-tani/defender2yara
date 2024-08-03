@@ -8172,12 +8172,12 @@ rule Trojan_Win32_Zenpak_SBMB_2147917503_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Zenpak_ASAN_2147917641_0
+rule Trojan_Win32_Zenpak_ASAN_2147917657_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Zenpak.ASAN!MTB"
-        threat_id = "2147917641"
+        threat_id = "2147917657"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Zenpak"
@@ -8204,12 +8204,12 @@ rule Trojan_Win32_Zenpak_ASAN_2147917641_0
         )
 }
 
-rule Trojan_Win32_Zenpak_SXMB_2147917696_0
+rule Trojan_Win32_Zenpak_SXMB_2147917713_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Zenpak.SXMB!MTB"
-        threat_id = "2147917696"
+        threat_id = "2147917713"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Zenpak"
@@ -8225,12 +8225,12 @@ rule Trojan_Win32_Zenpak_SXMB_2147917696_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Zenpak_SZMB_2147917697_0
+rule Trojan_Win32_Zenpak_SZMB_2147917714_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Zenpak.SZMB!MTB"
-        threat_id = "2147917697"
+        threat_id = "2147917714"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Zenpak"

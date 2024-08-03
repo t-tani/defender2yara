@@ -1,9 +1,9 @@
-rule Ransom_Win32_SmertRansom_YAF_2147917647_0
+rule Ransom_Win32_SmertRansom_YAF_2147917663_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Ransom:Win32/SmertRansom.YAF!MTB"
-        threat_id = "2147917647"
+        threat_id = "2147917663"
         type = "Ransom"
         platform = "Win32: Windows 32-bit platform"
         family = "SmertRansom"

@@ -1,9 +1,9 @@
-rule Trojan_Win32_Zdowbot_NZ_2147917685_0
+rule Trojan_Win32_Zdowbot_NZ_2147917702_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Zdowbot.NZ!MTB"
-        threat_id = "2147917685"
+        threat_id = "2147917702"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Zdowbot"

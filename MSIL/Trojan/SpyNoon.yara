@@ -2355,12 +2355,12 @@ rule Trojan_MSIL_SpyNoon_AMAX_2147917341_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_SpyNoon_SGRG_2147917695_0
+rule Trojan_MSIL_SpyNoon_SGRG_2147917712_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/SpyNoon.SGRG!MTB"
-        threat_id = "2147917695"
+        threat_id = "2147917712"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "SpyNoon"

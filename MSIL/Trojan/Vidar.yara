@@ -2045,12 +2045,12 @@ rule Trojan_MSIL_Vidar_RP_2147915183_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Vidar_OBS_2147917680_0
+rule Trojan_MSIL_Vidar_OBS_2147917697_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Vidar.OBS!MTB"
-        threat_id = "2147917680"
+        threat_id = "2147917697"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Vidar"

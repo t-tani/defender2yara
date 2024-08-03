@@ -4577,12 +4577,12 @@ rule Trojan_MSIL_AsyncRAT_BH_2147915711_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_AsyncRAT_BJ_2147917649_0
+rule Trojan_MSIL_AsyncRAT_BJ_2147917665_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/AsyncRAT.BJ!MTB"
-        threat_id = "2147917649"
+        threat_id = "2147917665"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "AsyncRAT"

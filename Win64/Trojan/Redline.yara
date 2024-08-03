@@ -126,12 +126,12 @@ rule Trojan_Win64_Redline_MB_2147892669_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_Redline_MAA_2147917628_0
+rule Trojan_Win64_Redline_MAA_2147917644_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/Redline.MAA!MTB"
-        threat_id = "2147917628"
+        threat_id = "2147917644"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "Redline"
@@ -147,12 +147,12 @@ rule Trojan_Win64_Redline_MAA_2147917628_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_Redline_GNK_2147917645_0
+rule Trojan_Win64_Redline_GNK_2147917661_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/Redline.GNK!MTB"
-        threat_id = "2147917645"
+        threat_id = "2147917661"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "Redline"

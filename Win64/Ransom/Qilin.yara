@@ -1,9 +1,9 @@
-rule Ransom_Win64_Qilin_B_2147917620_0
+rule Ransom_Win64_Qilin_B_2147917635_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Ransom:Win64/Qilin.B"
-        threat_id = "2147917620"
+        threat_id = "2147917635"
         type = "Ransom"
         platform = "Win64: Windows 64-bit platform"
         family = "Qilin"

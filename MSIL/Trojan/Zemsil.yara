@@ -310,12 +310,12 @@ rule Trojan_MSIL_Zemsil_SF_2147915521_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Zemsil_SG_2147917665_0
+rule Trojan_MSIL_Zemsil_SG_2147917682_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Zemsil.SG!MTB"
-        threat_id = "2147917665"
+        threat_id = "2147917682"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Zemsil"
@@ -333,12 +333,12 @@ rule Trojan_MSIL_Zemsil_SG_2147917665_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Zemsil_SI_2147917667_0
+rule Trojan_MSIL_Zemsil_SI_2147917684_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Zemsil.SI!MTB"
-        threat_id = "2147917667"
+        threat_id = "2147917684"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Zemsil"
@@ -355,12 +355,12 @@ rule Trojan_MSIL_Zemsil_SI_2147917667_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Zemsil_SJ_2147917671_0
+rule Trojan_MSIL_Zemsil_SJ_2147917688_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Zemsil.SJ!MTB"
-        threat_id = "2147917671"
+        threat_id = "2147917688"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Zemsil"

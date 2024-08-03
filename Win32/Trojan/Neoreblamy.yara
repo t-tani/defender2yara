@@ -1068,12 +1068,12 @@ rule Trojan_Win32_Neoreblamy_ASE_2147917226_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Neoreblamy_ASF_2147917639_0
+rule Trojan_Win32_Neoreblamy_ASF_2147917655_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Neoreblamy.ASF!MTB"
-        threat_id = "2147917639"
+        threat_id = "2147917655"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Neoreblamy"

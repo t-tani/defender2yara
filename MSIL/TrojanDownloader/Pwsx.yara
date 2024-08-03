@@ -124,12 +124,12 @@ rule TrojanDownloader_MSIL_Pwsx_ST_2147906163_0
         (all of ($x*))
 }
 
-rule TrojanDownloader_MSIL_Pwsx_SV_2147917675_0
+rule TrojanDownloader_MSIL_Pwsx_SV_2147917692_0
 {
     meta:
         author = "defender2yara"
         detection_name = "TrojanDownloader:MSIL/Pwsx.SV!MTB"
-        threat_id = "2147917675"
+        threat_id = "2147917692"
         type = "TrojanDownloader"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Pwsx"

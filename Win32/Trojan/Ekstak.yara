@@ -8003,12 +8003,12 @@ rule Trojan_Win32_Ekstak_SZAA_2147917519_0
         (1 of ($x*))
 }
 
-rule Trojan_Win32_Ekstak_TCAA_2147917654_0
+rule Trojan_Win32_Ekstak_TCAA_2147917671_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Ekstak.TCAA!MTB"
-        threat_id = "2147917654"
+        threat_id = "2147917671"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Ekstak"

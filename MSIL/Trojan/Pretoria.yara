@@ -1,9 +1,9 @@
-rule Trojan_MSIL_Pretoria_SK_2147917664_0
+rule Trojan_MSIL_Pretoria_SK_2147917681_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Pretoria.SK!MTB"
-        threat_id = "2147917664"
+        threat_id = "2147917681"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Pretoria"

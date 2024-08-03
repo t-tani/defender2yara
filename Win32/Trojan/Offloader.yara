@@ -948,12 +948,12 @@ rule Trojan_Win32_Offloader_KAI_2147917386_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Offloader_KAJ_2147917703_0
+rule Trojan_Win32_Offloader_KAJ_2147917720_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Offloader.KAJ!MTB"
-        threat_id = "2147917703"
+        threat_id = "2147917720"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Offloader"

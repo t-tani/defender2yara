@@ -12242,12 +12242,12 @@ rule Trojan_MSIL_FormBook_CU_2147917437_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_FormBook_NT_2147917707_0
+rule Trojan_MSIL_FormBook_NT_2147917724_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/FormBook.NT!MTB"
-        threat_id = "2147917707"
+        threat_id = "2147917724"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "FormBook"

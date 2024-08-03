@@ -3685,12 +3685,12 @@ rule Trojan_MSIL_RedLine_KAP_2147917504_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_RedLine_RDFB_2147917692_0
+rule Trojan_MSIL_RedLine_RDFB_2147917709_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/RedLine.RDFB!MTB"
-        threat_id = "2147917692"
+        threat_id = "2147917709"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "RedLine"

@@ -1,9 +1,9 @@
-rule Trojan_MSIL_SnakeStealer_NA_2147917709_0
+rule Trojan_MSIL_SnakeStealer_NA_2147917726_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/SnakeStealer.NA!MTB"
-        threat_id = "2147917709"
+        threat_id = "2147917726"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "SnakeStealer"

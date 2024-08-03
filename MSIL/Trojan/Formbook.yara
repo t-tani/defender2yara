@@ -6937,12 +6937,12 @@ rule Trojan_MSIL_Formbook_RDAT_2147917425_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Formbook_GPB_2147917704_0
+rule Trojan_MSIL_Formbook_GPB_2147917721_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Formbook.GPB!MTB"
-        threat_id = "2147917704"
+        threat_id = "2147917721"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Formbook"

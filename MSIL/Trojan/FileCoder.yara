@@ -592,12 +592,12 @@ rule Trojan_MSIL_FileCoder_B_2147916191_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_FileCoder_SM_2147917661_0
+rule Trojan_MSIL_FileCoder_SM_2147917678_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/FileCoder.SM!MTB"
-        threat_id = "2147917661"
+        threat_id = "2147917678"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "FileCoder"

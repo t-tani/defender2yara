@@ -20,12 +20,12 @@ rule Trojan_Win32_ParallaxRat_CCEE_2147896974_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_ParallaxRat_APA_2147917644_0
+rule Trojan_Win32_ParallaxRat_APA_2147917660_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/ParallaxRat.APA!MTB"
-        threat_id = "2147917644"
+        threat_id = "2147917660"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "ParallaxRat"
