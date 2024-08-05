@@ -10822,27 +10822,6 @@ rule Trojan_Win64_CobaltStrike_LKBH_2147899306_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_CobaltStrike_CCFL_2147899502_0
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "Trojan:Win64/CobaltStrike.CCFL!MTB"
-        threat_id = "2147899502"
-        type = "Trojan"
-        platform = "Win64: Windows 64-bit platform"
-        family = "CobaltStrike"
-        severity = "Critical"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "1"
-        strings_accuracy = "Low"
-    strings:
-        $x_1_1 = {41 01 de 41 c1 ee ?? 43 8d 1c b6 41 8d 1c 9e 41 89 f6 41 29 de 42 0f b6 1c 32 32 1c 37 88 1c 31 ff c6 83 fe ?? 4c 89 c7 48 0f 44 f8 e9}  //weight: 1, accuracy: Low
-    condition:
-        (filesize < 20MB) and
-        (all of ($x*))
-}
-
 rule Trojan_Win64_CobaltStrike_CCFN_2147899680_0
 {
     meta:
