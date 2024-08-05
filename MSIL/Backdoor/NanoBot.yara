@@ -117,3 +117,24 @@ rule Backdoor_MSIL_NanoBot_SK_2147851081_0
         (all of ($x*))
 }
 
+rule Backdoor_MSIL_NanoBot_SM_2147917842_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Backdoor:MSIL/NanoBot.SM!MTB"
+        threat_id = "2147917842"
+        type = "Backdoor"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "NanoBot"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {19 2c 0d 2b 0d 72 a5 00 00 70 2b 0d 2b 12 2b 17 de 1b 73 55 00 00 0a 2b ec 28 56 00 00 0a 2b ec 6f 57 00 00 0a 2b e7 0a 2b e6}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

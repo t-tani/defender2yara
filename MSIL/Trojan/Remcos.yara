@@ -8222,6 +8222,35 @@ rule Trojan_MSIL_Remcos_ARE_2147848365_1
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Remcos_ARE_2147848365_2
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Remcos.ARE!MTB"
+        threat_id = "2147848365"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Remcos"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {0a 16 0a 2b 0e 20 e8 03 00 00 28 ?? 00 00 0a 06 17 58 0a 06 1b 32 ee}  //weight: 2, accuracy: Low
+        $x_1_2 = "mdnckhzntmvk4sbnewqcf7t5ypa27567" ascii //weight: 1
+        $x_1_3 = "aem78u4jy3hppwkaqwjj2jgmuzmar4d8" ascii //weight: 1
+        $x_1_4 = "ccvk3ycfbz2ptmbjnkzpexr4s5bjfnmb" ascii //weight: 1
+        $x_1_5 = "tmf4w9dq9xyfblsp8fu3ytwh8zx8avad" ascii //weight: 1
+        $x_1_6 = "79e93ek6jrwnqqwyypgeft4qskerzjwf" ascii //weight: 1
+        $x_1_7 = "rcrf5k9hyfqraq34f6ab3fxn5e7y5rmp" ascii //weight: 1
+        $x_1_8 = "f763dqn9gaqcyh7k7xvq78jwdex8sacs" ascii //weight: 1
+        $x_1_9 = "6700a56d-c0ac-4c2a-bfad-3353181481e5" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_Remcos_ABVC_2147848550_0
 {
     meta:

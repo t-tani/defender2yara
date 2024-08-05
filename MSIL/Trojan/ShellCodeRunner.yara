@@ -70,3 +70,33 @@ rule Trojan_MSIL_ShellCodeRunner_NR_2147917706_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_ShellCodeRunner_RP_2147917846_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/ShellCodeRunner.RP!MTB"
+        threat_id = "2147917846"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "ShellCodeRunner"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "28"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = ".win Tools.exe" ascii //weight: 1
+        $x_1_2 = "BlockNetwork" ascii //weight: 1
+        $x_1_3 = "AddScheduledTask" ascii //weight: 1
+        $x_1_4 = ".msvcp120.dll" ascii //weight: 1
+        $x_1_5 = ".msvcr120.dll" ascii //weight: 1
+        $x_1_6 = ".w10.rar" ascii //weight: 1
+        $x_1_7 = ".w7.rar" ascii //weight: 1
+        $x_1_8 = "QzpcUHJvZ3JhbSBGaWxlc1" wide //weight: 1
+        $x_10_9 = "FWQGWQ231241ASF" wide //weight: 10
+        $x_10_10 = {09 11 06 07 11 06 91 08 11 06 08 8e 69 5d 91 61 d2 9c 11 06 17 58 13 06 11 06 07 8e 69 32}  //weight: 10, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
