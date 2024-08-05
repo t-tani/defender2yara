@@ -88,3 +88,25 @@ rule Backdoor_MSIL_XWorm_PAEW_2147913786_0
         (all of ($x*))
 }
 
+rule Backdoor_MSIL_XWorm_GNK_2147917814_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Backdoor:MSIL/XWorm.GNK!MTB"
+        threat_id = "2147917814"
+        type = "Backdoor"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "XWorm"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {11 02 1b 63 61 11 02 58 11 03 11 00 11 03 19 5f 94 58 61 59 13 01 20 0e 00 00 00}  //weight: 5, accuracy: High
+        $x_5_2 = {11 01 11 06 1f 10 63 d2 6f ?? ?? ?? 0a 20 07 00 00 00}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

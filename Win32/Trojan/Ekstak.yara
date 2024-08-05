@@ -8024,3 +8024,31 @@ rule Trojan_Win32_Ekstak_TCAA_2147917671_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Ekstak_ASHA_2147917812_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Ekstak.ASHA!MTB"
+        threat_id = "2147917812"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Ekstak"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {81 ec 1c 06 00 00 53 55 56 57 ff 15 ?? ?? 4b 00 8b ac 24 ?? ?? 00 00 8b b4 24 ?? ?? 00 00 55 56 a3 ?? ?? 4c 00 ff 15}  //weight: 4, accuracy: Low
+        $x_1_2 = {ff d3 8d 4c 24 ?? 51 6a ff 56 6a 04 57 ff d3 8d 94 24}  //weight: 1, accuracy: Low
+        $x_4_3 = {83 ec 08 a1 ?? ?? 66 00 50 e8 ?? ?? ?? 00 8b 0d ?? ?? 65 00 50 c7 44 24 08 00 00 00 00 a3 ?? ?? 66 00 8d 14 09 8b 0d ?? ?? 65 00 0b d1 89 54 24 04 df 6c 24 04 dc 05 ?? ?? 65 00 dd 1d ?? ?? 65 00 ff 15 ?? ?? 65 00 a1 ?? ?? 66 00 50 ff 15 ?? ?? 65 00 b8 01 00 00 00 83 c4 08 c3}  //weight: 4, accuracy: Low
+        $x_1_4 = "FFRestorer" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_4_*) and 1 of ($x_1_*))) or
+            ((2 of ($x_4_*))) or
+            (all of ($x*))
+        )
+}
+
