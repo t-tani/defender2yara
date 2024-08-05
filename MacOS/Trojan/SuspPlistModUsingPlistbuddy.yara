@@ -27,8 +27,8 @@ rule Trojan_MacOS_SuspPlistModUsingPlistbuddy_C_2147915648_0
         $x_1_13 = {2f 00 75 00 73 00 72 00 2f 00 6c 00 69 00 62 00 65 00 78 00 65 00 63 00 2f 00 70 00 6c 00 69 00 73 00 74 00 62 00 75 00 64 00 64 00 79 00 20 00 2d 00 63 00 20 00 [0-2] 69 00 6d 00 70 00 6f 00 72 00 74 00 [0-255] 2f 00 6c 00 69 00 62 00 72 00 61 00 72 00 79 00 2f 00 70 00 72 00 65 00 66 00 65 00 72 00 65 00 6e 00 63 00 65 00 73 00 2f 00}  //weight: 1, accuracy: Low
         $x_1_14 = {2f 00 75 00 73 00 72 00 2f 00 6c 00 69 00 62 00 65 00 78 00 65 00 63 00 2f 00 70 00 6c 00 69 00 73 00 74 00 62 00 75 00 64 00 64 00 79 00 20 00 2d 00 63 00 20 00 [0-2] 61 00 64 00 64 00 [0-255] 2f 00 6c 00 69 00 62 00 72 00 61 00 72 00 79 00 2f 00 70 00 72 00 65 00 66 00 65 00 72 00 65 00 6e 00 63 00 65 00 73 00 2f 00}  //weight: 1, accuracy: Low
         $x_1_15 = {2f 00 75 00 73 00 72 00 2f 00 6c 00 69 00 62 00 65 00 78 00 65 00 63 00 2f 00 70 00 6c 00 69 00 73 00 74 00 62 00 75 00 64 00 64 00 79 00 20 00 2d 00 78 00 20 00 2d 00 63 00 20 00 [0-2] 6d 00 65 00 72 00 67 00 65 00 [0-255] 2f 00 6c 00 69 00 62 00 72 00 61 00 72 00 79 00 2f 00 70 00 72 00 65 00 66 00 65 00 72 00 65 00 6e 00 63 00 65 00 73 00 2f 00}  //weight: 1, accuracy: Low
-        $n_1_16 = "/library/preferences/com.microsoft.autoupdate2.plist" wide //weight: -1
-        $n_1_17 = "scripts/com.microsoft.edgemac" wide //weight: -1
+        $n_20_16 = "/library/preferences/com.microsoft.autoupdate2.plist" wide //weight: -20
+        $n_20_17 = "scripts/com.microsoft.edgemac" wide //weight: -20
     condition:
         (filesize < 20MB) and
         (not (any of ($n*))) and

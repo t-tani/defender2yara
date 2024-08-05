@@ -2021,3 +2021,26 @@ rule Trojan_Win32_GuLoader_NG_2147914184_2
         (all of ($x*))
 }
 
+rule Trojan_Win32_GuLoader_HNA_2147917861_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/GuLoader.HNA!MTB"
+        threat_id = "2147917861"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "GuLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "16"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = {ae 98 75 9e 8a 6d 00 00 00 be b4 b1 b8 af ad e0}  //weight: 10, accuracy: High
+        $x_5_2 = {ea 9d 12 f3 b0 14 f9 c4 16 ee c4 1b bd 95 4b 8c 77 69 88 73 67 86 73 68 82 6f 64 80 71 6b 00 00}  //weight: 5, accuracy: High
+        $x_1_3 = {83 e9 30 2c 53 c6 45 d6 04 f6 d8 1b c0 f7 d0 23 c1}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

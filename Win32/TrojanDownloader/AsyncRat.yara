@@ -83,3 +83,24 @@ rule TrojanDownloader_Win32_AsyncRat_CCJB_2147915088_0
         (all of ($x*))
 }
 
+rule TrojanDownloader_Win32_AsyncRat_G_2147917857_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:Win32/AsyncRat.G!MTB"
+        threat_id = "2147917857"
+        type = "TrojanDownloader"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AsyncRat"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {8a 4c 05 c9 32 ca 88 88 ?? ?? ?? ?? 40 83 f8}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
