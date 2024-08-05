@@ -8351,3 +8351,25 @@ rule Backdoor_Linux_Mirai_JR_2147917136_0
         (all of ($x*))
 }
 
+rule Backdoor_Linux_Mirai_JS_2147917787_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Backdoor:Linux/Mirai.JS!MTB"
+        threat_id = "2147917787"
+        type = "Backdoor"
+        platform = "Linux: Linux platform"
+        family = "Mirai"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_ELFHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {10 40 2d e9 25 00 ?? ef 01 0a 70 e3 00 40 a0 e1 03 ?? ?? ?? e0 00 00 eb 00 30 64 e2 00 30 80 e5 00 40 e0 e3 04 00 a0 e1 10 80 bd e8}  //weight: 1, accuracy: Low
+        $x_1_2 = {80 30 80 e2 06 0d 53 e3 80 10 a0 e1 0e f0 a0 21 18 30 9f e5 00 30 93 e5 03 20 81 e0 03 10 d1 e7 01 30 d2 e5 03 3c a0 e1 43 08 81 e1 0e f0 a0 e1}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

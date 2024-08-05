@@ -135,3 +135,25 @@ rule TrojanDownloader_MacOS_Adload_F_2147915945_0
         (all of ($x*))
 }
 
+rule TrojanDownloader_MacOS_Adload_I_2147917789_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:MacOS/Adload.I!MTB"
+        threat_id = "2147917789"
+        type = "TrojanDownloader"
+        platform = "MacOS: "
+        family = "Adload"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_MACHOHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {f6 85 20 ff ff ff 01 74 ?? 48 8b bd 30 ff ff ff e8 a0 41 00 00 0f 57 c0 0f 29 85 20 ff ff ff 48 c7 85 30 ff ff ff 00 00 00 00 66 c7 85 20 ff ff ff 02 67 c6 85 22 ff ff ff 00 48 ?? ?? ?? ?? ?? ?? ba 01 00 00 00 4c 89 ee e8 55 41 00 00 f6 85 20 ff ff ff 01}  //weight: 1, accuracy: Low
+        $x_1_2 = {55 48 89 e5 41 57 41 56 41 54 53 48 83 ec 60 0f 57 c0 0f 29 45 a0 48 c7 45 b0 00 00 00 00 4c ?? ?? ?? 0f 29 45 c0 48 c7 45 d0 00 00 00 00 66 c7 45 c0 02 64 c6 45 c2 00}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

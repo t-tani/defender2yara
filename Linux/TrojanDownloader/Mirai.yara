@@ -293,3 +293,25 @@ rule TrojanDownloader_Linux_Mirai_J_2147906808_0
         (all of ($x*))
 }
 
+rule TrojanDownloader_Linux_Mirai_K_2147917788_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:Linux/Mirai.K!MTB"
+        threat_id = "2147917788"
+        type = "TrojanDownloader"
+        platform = "Linux: Linux platform"
+        family = "Mirai"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_ELFHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {54 00 a2 27 40 00 a2 af 40 00 a3 8f 00 00 00 00 04 00 62 24 40 00 a2 af 21 10 60 00 00 00 42 8c 00 00 00 00 3c 00 a2 af 40 00 a3 8f 00 00 00 00 04 00 62 24 40 00 a2 af 21 10 60 00 00 00 42 8c}  //weight: 1, accuracy: High
+        $x_1_2 = {21 28 60 02 21 c8 00 02 09 f8 20 03 80 00 06 24 21 30 40 00 10 00 bc 8f 21 20 80 02 07 ?? ?? ?? 21 28 60 02 21 c8 40 02 09 f8 20 03 00 00 00 00 10 00 bc 8f f2 ?? ?? ?? 21 20 20 02}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
