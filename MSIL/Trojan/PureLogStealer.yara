@@ -1693,3 +1693,47 @@ rule Trojan_MSIL_PureLogStealer_SVAA_2147917275_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_PureLogStealer_RDO_2147917891_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/PureLogStealer.RDO!MTB"
+        threat_id = "2147917891"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "PureLogStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "[System.BitConverter]::GetBytes($L[$i] - 1100)" wide //weight: 2
+        $x_1_2 = "$A = [System.Reflection.Assembly]::Load($L)" wide //weight: 1
+        $x_1_3 = "$A.CreateInstance('B')" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_PureLogStealer_RDP_2147917892_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/PureLogStealer.RDP!MTB"
+        threat_id = "2147917892"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "PureLogStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {06 03 04 6f 29 00 00 0a 0b 02 07 28 39 00 00 06 0c}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -5794,3 +5794,24 @@ rule Trojan_Win32_Vidar_TOQ_2147916281_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Vidar_ADG_2147917890_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Vidar.ADG!MTB"
+        threat_id = "2147917890"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Vidar"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {eb 08 0f c6 1c 00 00 00 00 00 e9}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
