@@ -2044,3 +2044,29 @@ rule Trojan_Win32_GuLoader_HNA_2147917861_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_GuLoader_NL_2147917959_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/GuLoader.NL!MTB"
+        threat_id = "2147917959"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "GuLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "skatkammer.opt" ascii //weight: 2
+        $x_2_2 = "underskriftindsmlinger.man" ascii //weight: 2
+        $x_1_3 = "Nonsuccour.whi" ascii //weight: 1
+        $x_1_4 = "Elokvent.hal" ascii //weight: 1
+        $x_1_5 = "Forgring.sam" ascii //weight: 1
+        $x_1_6 = "blommehave" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

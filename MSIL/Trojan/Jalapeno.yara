@@ -144,6 +144,29 @@ rule Trojan_MSIL_Jalapeno_NL_2147917177_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Jalapeno_NL_2147917177_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Jalapeno.NL!MTB"
+        threat_id = "2147917177"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Jalapeno"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = {02 7b bc 01 00 04 1c 8d 78 00 00 01 25 16 02 7c b8 00 00 04 28 57 00 00 0a a2 25 17 72 95 32 00 70 a2 25 18 02 7c b6 00 00 04 28 57 00 00 0a a2 25 19 72 a7 32 00 70 a2 25 1a 02 7c b7 00 00 04 28 57 00 00 0a a2 25 1b 72 ab 32 00 70 a2 28 5e 00 00 0a 6f 2a 00 00 0a}  //weight: 3, accuracy: High
+        $x_1_2 = "done_droped" wide //weight: 1
+        $x_1_3 = "eDba.exe" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_Jalapeno_SWAA_2147917323_0
 {
     meta:
@@ -207,6 +230,28 @@ rule Trojan_MSIL_Jalapeno_PJ_2147917932_0
     strings:
         $x_2_1 = {73 5a 03 00 0a 0d 08 6f ?? ?? ?? 0a 16 09 a2 28 ?? ?? ?? 0a 28 ?? ?? ?? 06 13 04 06 7e 4a 01 00 04 11 04 08 6f ?? ?? ?? 0a 08 2c 06}  //weight: 2, accuracy: Low
         $x_2_2 = {7e 4a 01 00 04 6f ?? ?? ?? 0a 6f ?? ?? ?? 0a 6f ?? ?? ?? 0a 28 ?? ?? ?? 06 26 7e 4c 01 00 04 28 ?? ?? ?? 0a de 0a}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Jalapeno_NJ_2147917953_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Jalapeno.NJ!MTB"
+        threat_id = "2147917953"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Jalapeno"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = {28 fb 03 00 0a 6f fc 03 00 0a 28 fd 03 00 0a 28 fe 03 00 0a 28 07 00 00 2b 17 fe 02 0a 06}  //weight: 3, accuracy: High
+        $x_1_2 = "SuDungSoLuong" ascii //weight: 1
     condition:
         (filesize < 20MB) and
         (all of ($x*))

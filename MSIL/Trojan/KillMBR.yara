@@ -676,3 +676,76 @@ rule Trojan_MSIL_KillMBR_NK_2147912384_1
         (all of ($x*))
 }
 
+rule Trojan_MSIL_KillMBR_NM_2147917956_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/KillMBR.NM!MTB"
+        threat_id = "2147917956"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "KillMBR"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {16 8d 22 00 00 01 0a 72 ?? 00 00 70 20 ?? 00 00 10 19 7e ?? 00 00 0a 19 16 7e ?? 00 00 0a 28 ?? 00 00 06 0b}  //weight: 3, accuracy: Low
+        $x_1_2 = "$f45401c8-034e-4a5c-9c06-15dd8093301d" ascii //weight: 1
+        $x_1_3 = "/k reg delete hklm /f" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_KillMBR_NM_2147917956_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/KillMBR.NM!MTB"
+        threat_id = "2147917956"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "KillMBR"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "9"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "\"encryption\" is very insecur" wide //weight: 2
+        $x_2_2 = "Save the key you set, otherwise, when you want to decrypt your files, it will be very difficult or impossible" wide //weight: 2
+        $x_2_3 = "a toolkit that looks like a virus but is not" wide //weight: 2
+        $x_1_4 = "rx_defender.Properties.Resources" ascii //weight: 1
+        $x_1_5 = "CSharp Executer has been loaded!" wide //weight: 1
+        $x_1_6 = "$78c5bfcc-6917-41a5-a37a-b4b053a7e9dc" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_KillMBR_NR_2147917958_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/KillMBR.NR!MTB"
+        threat_id = "2147917958"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "KillMBR"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = {4d 4f 4e 41 00 46 69 6c 65 41 63 63 65 73 73 00 46 69 6c 65 53 68 61 72 65 00 46 41 43 4f 43 4c 42 4c 4e 49 45 49 46 4b 50 42 43 4a 48 43 43 48 45 46 49 41 50 44 4c 42 43 48 45 47 41 41 00 73 65 74}  //weight: 3, accuracy: High
+        $x_1_2 = "vGH9s7C7kSkpKhe3jW" ascii //weight: 1
+        $x_1_3 = "NNDPFJONBBMAHCCMACGCIFFNCNJBMDNHMCJN" ascii //weight: 1
+        $x_1_4 = "d2d520e1-9bda-4a87-bf5a-5e8175a2eb4d" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

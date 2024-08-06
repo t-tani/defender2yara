@@ -4053,3 +4053,28 @@ rule Trojan_MSIL_Bladabindi_NM_2147915269_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Bladabindi_NP_2147917944_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Bladabindi.NP!MTB"
+        threat_id = "2147917944"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Bladabindi"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "http://167.71.14.135" ascii //weight: 2
+        $x_1_2 = "Add-MpPreference -ExclusionProcess \"svchost.exe\"" ascii //weight: 1
+        $x_1_3 = "AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup" ascii //weight: 1
+        $x_1_4 = "AppData\\Roaming\\Microsoft\\Windows';Add-MpPreference -ExclusionPath 'C:\\Users" ascii //weight: 1
+        $x_1_5 = "Microsoft\\Windows\\Windows.exe" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

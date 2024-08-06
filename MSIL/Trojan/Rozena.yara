@@ -2066,3 +2066,47 @@ rule Trojan_MSIL_Rozena_RP_2147915841_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Rozena_NK_2147917955_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Rozena.NK!MTB"
+        threat_id = "2147917955"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Rozena"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = {11 04 09 28 15 00 00 0a 7e 14 00 00 0a 16 11 04 7e 14 00 00 0a 16 7e 14 00 00 0a 28 02 00 00 06 15}  //weight: 3, accuracy: High
+        $x_1_2 = "av_bypass.pdb" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Rozena_NL_2147917957_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Rozena.NL!MTB"
+        threat_id = "2147917957"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Rozena"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = {7e 14 00 00 0a 16 11 04 7e 14 00 00 0a 16 7e 14 00 00 0a 28 02 00 00 06 15}  //weight: 3, accuracy: High
+        $x_2_2 = {0a 20 d0 07 00 00 28 04 00 00 06 28 10 00 00 0a 13 05 12 05 06 28 11 00 00 0a 13 06 12 06 28 12 00 00 0a}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

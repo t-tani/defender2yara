@@ -1497,3 +1497,25 @@ rule Trojan_MSIL_DarkComet_ADB_2147916973_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_DarkComet_NM_2147917954_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/DarkComet.NM!MTB"
+        threat_id = "2147917954"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "DarkComet"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = {58 20 e4 db 9b 28 58 20 cb 52 ca b8 20 e8 2c a2 69 59 59 20 f4 26 7d 94 20 7b 18 00 ab 20 c0 73 82 50 59 20 02 69 fd 09 58 59 61 61 11 06 61 d2 9c 11 06 17 58 13 06 18 13 08 2b 90 d0 01 00 00 04 17 1c 33 03 26 2b 01 26 01 11 06 11 05 8e 69 fe 04 2d 8d}  //weight: 3, accuracy: High
+        $x_1_2 = "enizum.exe" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
