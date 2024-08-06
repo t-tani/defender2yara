@@ -2437,6 +2437,27 @@ rule Trojan_Win32_Amadey_AMA_2147902432_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Amadey_AMA_2147902432_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Amadey.AMA!MTB"
+        threat_id = "2147902432"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Amadey"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {f7 d9 c1 e1 05 c1 e1 05 c1 e9 03 c1 e9 07 81 e9 4a 0e 4c 89 89 cb 59 81 f3 0d 10 fb 79 81 f3 81 81 42 0f 89 d8 5b 01 f0 01 18 58}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win32_Amadey_RDU_2147902624_0
 {
     meta:

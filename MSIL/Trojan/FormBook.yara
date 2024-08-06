@@ -6895,6 +6895,32 @@ rule Trojan_MSIL_FormBook_AFM_2147834667_12
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "ReichUI.Properties.Resources" wide //weight: 2
+        $x_1_2 = "Failed to retrieve custom cursor from embedded resource" wide //weight: 1
+        $x_1_3 = "77cd30fd-bf09-4843-8e1b-14960d283e0a" ascii //weight: 1
+        $x_1_4 = "get_ResourceManager" ascii //weight: 1
+        $x_1_5 = "GetManifestResourceNames" ascii //weight: 1
+        $x_1_6 = "CreateIconFromResource" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_FormBook_AFM_2147834667_13
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/FormBook.AFM!MTB"
+        threat_id = "2147834667"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "FormBook"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "6"
         strings_accuracy = "High"
     strings:

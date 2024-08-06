@@ -1613,3 +1613,24 @@ rule Trojan_Win32_LokiBot_NH_2147910554_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_LokiBot_SCMB_2147917937_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LokiBot.SCMB!MTB"
+        threat_id = "2147917937"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LokiBot"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {c1 e8 05 89 45 f8 8b 45 f8 03 45 e4 c7 05 ?? ?? ?? ?? ee 3d ea f4 33 c2 33 c1 2b f8 83 3d ?? ?? ?? ?? 0c 89 45 f8 75}  //weight: 4, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

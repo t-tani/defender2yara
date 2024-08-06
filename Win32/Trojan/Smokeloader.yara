@@ -815,6 +815,69 @@ rule Trojan_Win32_Smokeloader_ID_2147838195_1
         (all of ($x*))
 }
 
+rule Trojan_Win32_Smokeloader_CZ_2147839715_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Smokeloader.CZ!MTB"
+        threat_id = "2147839715"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Smokeloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {8b 45 08 8a 4d ?? 03 c3 30 08 83 7d ?? 0f 75}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Smokeloader_CZ_2147839715_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Smokeloader.CZ!MTB"
+        threat_id = "2147839715"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Smokeloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {8b c3 d3 e8 8b 4d ?? 89 45 ?? 8d 45 fc e8 ?? ?? ?? ?? 8b 45 ?? 31 45 ?? 8b 45 ?? 31 45 ?? 89 3d ?? ?? ?? ?? 8b 45 ?? 89 45 ?? 8b 45 ?? 29 45 ?? 8b 45}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Smokeloader_CZ_2147839715_2
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Smokeloader.CZ!MTB"
+        threat_id = "2147839715"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Smokeloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {d3 ea 8b 4c 24 34 8d 44 24 28 c7 05 [0-4] ee 3d ea f4 89 54 24 28 e8 [0-4] 8b 44 24 20 31 44 24 10 81 3d [0-4] e6 09 00 00 75 08 56 56 ff 15 [0-4] 8b 44 24 10 31 44 24 28 8b 44 24 28 83 44 24 18 64 29 44 24 18 83 6c 24 18 64 83 3d [0-4] 0c 75}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win32_Smokeloader_GFQ_2147842696_0
 {
     meta:

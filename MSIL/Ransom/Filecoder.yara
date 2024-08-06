@@ -3004,3 +3004,26 @@ rule Ransom_MSIL_Filecoder_AAW_2147914875_0
         (all of ($x*))
 }
 
+rule Ransom_MSIL_Filecoder_PAB_2147917928_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:MSIL/Filecoder.PAB!MTB"
+        threat_id = "2147917928"
+        type = "Ransom"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Filecoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "You became victim of the keygroup777 RANSOMWARE!" wide //weight: 2
+        $x_2_2 = "All your files are stolen and encrypted" wide //weight: 2
+        $x_1_3 = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

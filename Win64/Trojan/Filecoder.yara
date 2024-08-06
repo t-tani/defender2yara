@@ -44,3 +44,27 @@ rule Trojan_Win64_Filecoder_PAP_2147917354_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Filecoder_PAZ_2147917931_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Filecoder.PAZ!MTB"
+        threat_id = "2147917931"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Filecoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "Your files have been fucked" ascii //weight: 2
+        $x_2_2 = "you will get your files back" ascii //weight: 2
+        $x_1_3 = "\\README.txt" ascii //weight: 1
+        $x_1_4 = "\\Windows" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
