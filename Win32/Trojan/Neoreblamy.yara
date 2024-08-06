@@ -1104,3 +1104,28 @@ rule Trojan_Win32_Neoreblamy_ASF_2147917655_0
         (4 of ($x*))
 }
 
+rule Trojan_Win32_Neoreblamy_ASG_2147917916_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Neoreblamy.ASG!MTB"
+        threat_id = "2147917916"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Neoreblamy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "wWAXSQVokUkxfzAQGSqXAfxkTMIyyUVF" ascii //weight: 1
+        $x_1_2 = "bbOzeddgpxCZdsAviIewTdZhdnfskamHnGNJJecag" ascii //weight: 1
+        $x_1_3 = "qaNJTvjPYdEFgUGcVPKBoQlKIwRyZmH" ascii //weight: 1
+        $x_1_4 = "aoQTGTqbmXvIuYDlpdIjmhURTYCTGQqQjU" ascii //weight: 1
+        $x_1_5 = "yklwZmhLZnxkjHRvUBlQAWwKPgehyi" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
