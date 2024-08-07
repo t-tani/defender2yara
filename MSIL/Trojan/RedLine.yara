@@ -3706,3 +3706,26 @@ rule Trojan_MSIL_RedLine_RDFB_2147917709_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_RedLine_KAV_2147917998_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/RedLine.KAV!MTB"
+        threat_id = "2147917998"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "RedLine"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "369b0077-af55-437a-99f5-4f3939700d2d" ascii //weight: 1
+        $x_1_2 = "Logitech G Innovations Trademark" ascii //weight: 1
+        $x_1_3 = "Logitech G professional gaming keyboards are designed for competition" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
