@@ -278,3 +278,28 @@ rule Trojan_MSIL_Jalapeno_TMAA_2147917980_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Jalapeno_BZ_2147918059_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Jalapeno.BZ!MTB"
+        threat_id = "2147918059"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Jalapeno"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "CryptedFile.exe" ascii //weight: 1
+        $x_1_2 = "Soraadd.Resources" ascii //weight: 1
+        $x_1_3 = "SoraAdd.exe" ascii //weight: 1
+        $x_1_4 = "36537493-e85c-4d7e-96bc-32c472e96b4c" ascii //weight: 1
+        $x_1_5 = "7c23ff90-33af-11d3-95da-00a024a85b51" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
