@@ -2344,3 +2344,26 @@ rule Trojan_Win32_OffLoader_SCBC_2147917129_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_OffLoader_ADO_2147918023_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/OffLoader.ADO!MTB"
+        threat_id = "2147918023"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "OffLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = "amountnorth.icu/abb.php?" wide //weight: 3
+        $x_1_2 = "/nocookies" wide //weight: 1
+        $x_1_3 = "/silent" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
