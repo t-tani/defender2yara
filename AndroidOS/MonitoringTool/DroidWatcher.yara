@@ -74,3 +74,27 @@ rule MonitoringTool_AndroidOS_DroidWatcher_C_428356_0
         (all of ($x*))
 }
 
+rule MonitoringTool_AndroidOS_DroidWatcher_D_434443_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "MonitoringTool:AndroidOS/DroidWatcher.D!MTB"
+        threat_id = "434443"
+        type = "MonitoringTool"
+        platform = "AndroidOS: Android operating system"
+        family = "DroidWatcher"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "com/watchmydroid/receivers" ascii //weight: 1
+        $x_1_2 = "Kate_messages.db" ascii //weight: 1
+        $x_1_3 = "OutgoingCallReceiver" ascii //weight: 1
+        $x_1_4 = "RECORD_CALLS" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

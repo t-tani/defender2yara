@@ -2247,6 +2247,27 @@ rule Trojan_Win32_Ekstak_RK_2147842777_3
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {df 6c 24 04 dc 05 58 d0 65 00 dd 1d 58 d0 65 00 ff 15 b0 b2 65 00 a1 04 05 66 00 50 ff 15 0c b2 65 00}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Ekstak_RK_2147842777_4
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Ekstak.RK!MTB"
+        threat_id = "2147842777"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Ekstak"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
         strings_accuracy = "Low"
     strings:
         $x_1_1 = {31 05 7c 4b 08 01 68 ?? ?? ?? ?? e8 ?? 00 00 00 59 a3 ?? 4b 08 01 e8 ?? 00 00 00 8b c8 b8 ?? ?? ?? ?? 33 d2 f7 f1 31 05 ?? 4b 08 01 e8 ?? ?? 00 00 33 c0 50 50 e8}  //weight: 1, accuracy: Low
