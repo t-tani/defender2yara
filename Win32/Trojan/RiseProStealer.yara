@@ -538,3 +538,24 @@ rule Trojan_Win32_RiseProStealer_RHF_2147913361_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_RiseProStealer_ADG_2147918115_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/RiseProStealer.ADG!MTB"
+        threat_id = "2147918115"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "RiseProStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {64 a1 30 00 00 00 8b 48 0c 89 8d 74 fd ff ff 8b 95 74 fd ff ff 8b 42 0c 89 85 70 fd ff ff 8b 8d 70 fd ff ff 89 8d d8 fe ff ff}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

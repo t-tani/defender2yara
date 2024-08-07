@@ -4046,3 +4046,26 @@ rule Trojan_Win32_Guloader_KAB_2147917505_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Guloader_PAFA_2147918100_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Guloader.PAFA!MTB"
+        threat_id = "2147918100"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Guloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "jammerlig.kle" ascii //weight: 1
+        $x_1_2 = "baisakh\\straalingsfarens" ascii //weight: 1
+        $x_1_3 = "bronkiernes inspektrs" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

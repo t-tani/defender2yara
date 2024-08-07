@@ -569,3 +569,26 @@ rule Trojan_Win32_Grandoreiro_PAEY_2147915373_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Grandoreiro_PAFD_2147918101_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Grandoreiro.PAFD!MTB"
+        threat_id = "2147918101"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Grandoreiro"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "Dlp Loper" wide //weight: 2
+        $x_2_2 = ".themida" ascii //weight: 2
+        $x_2_3 = "19.7.4674.1" wide //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
