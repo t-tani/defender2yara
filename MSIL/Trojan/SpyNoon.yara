@@ -1,3 +1,25 @@
+rule Trojan_MSIL_SpyNoon_AR_2147772592_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/SpyNoon.AR!MTB"
+        threat_id = "2147772592"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "SpyNoon"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_4_1 = {08 5d 08 58 13 10 11 10 08 5d 13 11 07 11 11 91 13 12 11 12 11 09 61 13 13 11 13 20 00 04 00 00 58}  //weight: 4, accuracy: High
+        $x_1_2 = "HF44P78RZ48JUYIBGG54P4" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_SpyNoon_AN_2147772839_0
 {
     meta:
