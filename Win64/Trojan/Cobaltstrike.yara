@@ -2099,3 +2099,34 @@ rule Trojan_Win64_Cobaltstrike_HO_2147916215_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Cobaltstrike_FB_2147918130_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Cobaltstrike.FB!MTB"
+        threat_id = "2147918130"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Cobaltstrike"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "15"
+        strings_accuracy = "Low"
+    strings:
+        $x_15_1 = {8b 04 24 48 89 44 24 ?? 8b 0c 24 33 d2 8b c1 b9 ?? ?? ?? ?? 48 f7 f1 48 8b c2 0f b6 44 04 ?? 48 8b 4c 24 ?? 48 8b 54 24 ?? 0f be 0c 11 33 c8 8b c1 8b 0c 24 48 8b 54 24 ?? 88 04 0a}  //weight: 15, accuracy: Low
+        $x_10_2 = "fuuuuuccccckkkkkkmmmeeee" ascii //weight: 10
+        $x_1_3 = "dsssssaaaaaiiiii" ascii //weight: 1
+        $x_1_4 = "LoadResource" ascii //weight: 1
+        $x_1_5 = "IsDebuggerPresent" ascii //weight: 1
+        $x_1_6 = "CreateFileA" ascii //weight: 1
+        $x_1_7 = "WriteFile" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_10_*) and 5 of ($x_1_*))) or
+            ((1 of ($x_15_*))) or
+            (all of ($x*))
+        )
+}
+
