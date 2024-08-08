@@ -157,3 +157,91 @@ rule TrojanDownloader_MacOS_Adload_I_2147917789_0
         (all of ($x*))
 }
 
+rule TrojanDownloader_MacOS_Adload_H_2147918315_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:MacOS/Adload.H!MTB"
+        threat_id = "2147918315"
+        type = "TrojanDownloader"
+        platform = "MacOS: "
+        family = "Adload"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_MACHOHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {53 49 89 d7 ff 15 98 25 00 00 41 89 c6 85 c0 74 ?? 45 89 f4 49 c1 e4 03 31 db 49 8b 3c 1f e8 a8 0e 00 00 48 83 c3 08 49 39 dc}  //weight: 1, accuracy: Low
+        $x_1_2 = {41 83 e7 0f 74 ?? 48 89 55 c0 48 89 4d b8 48 89 45 b0 48 8b 1d 42 26 00 00 41 ff cf 41 83 e4 0f 45 31 f6 4b 8b 7c f5 00 48 85 ff}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule TrojanDownloader_MacOS_Adload_J_2147918316_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:MacOS/Adload.J!MTB"
+        threat_id = "2147918316"
+        type = "TrojanDownloader"
+        platform = "MacOS: "
+        family = "Adload"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_MACHOHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {c6 45 c2 00 48 ?? ?? ?? ba 01 00 00 00 4c 89 f6 e8 aa 09 00 00 f6 45 c0 01 74 ?? 48 8b 7d d0 e8 ad 09 00 00 0f 57 c0 0f 29 45 c0}  //weight: 1, accuracy: Low
+        $x_1_2 = {ff 15 45 5e 00 00 41 f6 c7 01 49 0f 44 dd 4c 89 f7 48 8b 35 7b 5f 00 00 48 89 da 48 89 c1 ff 15 27 5e 00 00 48 89 c7 e8 3d 3e 00 00 48 89 c3 f6 85 20 ff ff ff 01 0f ?? ?? ?? ?? ?? f6 85 e8 fe ff ff 01}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule TrojanDownloader_MacOS_Adload_K_2147918317_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:MacOS/Adload.K!MTB"
+        threat_id = "2147918317"
+        type = "TrojanDownloader"
+        platform = "MacOS: "
+        family = "Adload"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_MACHOHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {ff d3 0f 57 c0 0f 29 85 00 ff ff ff 48 c7 85 10 ff ff ff 00 00 00 00 4c ?? ?? ?? ?? ?? ?? 31 db 4c ?? ?? ?? ?? ?? ?? 66 ?? 41 0f b6 07 0f 57 c0 0f 29 85 20 ff ff ff 48 c7 85 30 ff ff ff 00 00 00 00 c6 85 20 ff ff ff 02}  //weight: 1, accuracy: Low
+        $x_1_2 = {0f b6 03 0f 57 c0 0f 29 85 20 ff ff ff 48 c7 85 30 ff ff ff 00 00 00 00 c6 85 20 ff ff ff 02 41 88 45 00 c6 85 22 ff ff ff 00 ba 01 00 00 00 4c 89 ff 4c 89 ee e8 d4 57 00 00 f6 85 20 ff ff ff 01 74 ?? 48 8b bd 30 ff ff ff e8 d1 57 00 00}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule TrojanDownloader_MacOS_Adload_L_2147918318_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:MacOS/Adload.L!MTB"
+        threat_id = "2147918318"
+        type = "TrojanDownloader"
+        platform = "MacOS: "
+        family = "Adload"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_MACHOHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {43 c6 04 2c 00 4d 8b 7e 10 66 0f ef c0 66 0f 7f 85 a0 fc ff ff 48 c7 85 b0 fc ff ff 00 00 00 00 4c 89 ff e8 52 4b 00 00 48 83 f8 f0 0f ?? ?? ?? ?? ?? 49 89 c5 48 83 f8 17 73 ?? 44 89 e8 44 00 e8 88 85 a0 fc ff ff}  //weight: 1, accuracy: Low
+        $x_1_2 = {45 31 e4 45 31 ed e9 ?? ?? ?? ?? 0f 1f 84 00 00 00 00 00 4c 39 f1 0f ?? ?? ?? ?? ?? 46 0f b6 7c 37 ff 42 8b 04 37 44 01 c0 41 28 c7 48 8b 9d 08 ff ff ff 48 8b 85 10 ff ff ff 48 39 c3}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

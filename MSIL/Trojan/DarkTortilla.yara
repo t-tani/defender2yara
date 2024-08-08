@@ -3408,6 +3408,34 @@ rule Trojan_MSIL_DarkTortilla_RP_2147913029_15
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "111"
+        strings_accuracy = "Low"
+    strings:
+        $x_100_1 = "WindowsApp1.Resources" wide //weight: 100
+        $x_10_2 = {72 00 65 00 73 00 6f 00 75 00 72 00 63 00 65 00 73 00 2f 00 [0-16] 2e 00 (70 00 6e 00|6a 00 70 00)}  //weight: 10, accuracy: Low
+        $x_10_3 = {1f 18 0a 72 ?? ?? ?? ?? 28 ?? ?? ?? ?? 0b}  //weight: 10, accuracy: Low
+        $x_1_4 = ".g.resources" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_100_*) and 1 of ($x_10_*) and 1 of ($x_1_*))) or
+            ((1 of ($x_100_*) and 2 of ($x_10_*))) or
+            (all of ($x*))
+        )
+}
+
+rule Trojan_MSIL_DarkTortilla_RP_2147913029_16
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/DarkTortilla.RP!MTB"
+        threat_id = "2147913029"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "DarkTortilla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "104"
         strings_accuracy = "Low"
     strings:
