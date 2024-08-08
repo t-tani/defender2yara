@@ -2956,3 +2956,29 @@ rule Trojan_MSIL_CryptInject_MBXL_2147917649_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_CryptInject_RHP_2147918300_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/CryptInject.RHP!MTB"
+        threat_id = "2147918300"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {50 45 00 00 4c 01 03 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 0b 01 0b 00 00 ?? 03 00 00 16 00 00 00 00 00 00 ?? ?? 03}  //weight: 2, accuracy: Low
+        $x_2_2 = {48 6f 69 00 47 65 74 4d 61 6e 69 66 65 73 74 52 65 73 6f 75 72 63 65 53 74 72 65 61 6d}  //weight: 2, accuracy: High
+        $x_2_3 = {6f 70 5f 45 71 75 61 6c 69 74 79 00 e2 80}  //weight: 2, accuracy: High
+        $x_1_4 = "server1.exe" wide //weight: 1
+        $x_1_5 = "Important display driver" wide //weight: 1
+        $x_2_6 = {43 00 6f 00 6d 00 70 00 61 00 6e 00 79 00 4e 00 61 00 6d 00 65 00 ?? ?? ?? ?? 44 00 69 00 73 00 70 00 6c 00 61 00 79 00 20 00 44 00 72 00 69 00 76 00 65 00 72 00}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

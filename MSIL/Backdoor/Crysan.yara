@@ -1397,3 +1397,24 @@ rule Backdoor_MSIL_Crysan_SAAA_2147916438_0
         (all of ($x*))
 }
 
+rule Backdoor_MSIL_Crysan_TRAA_2147918295_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Backdoor:MSIL/Crysan.TRAA!MTB"
+        threat_id = "2147918295"
+        type = "Backdoor"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Crysan"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {16 0b 2b 1d 00 02 7b ?? 00 00 04 07 02 7b ?? 00 00 04 07 91 20 ?? ?? 00 00 59 d2 9c 00 07 17 58 0b 07 02 7b ?? 00 00 04 8e 69 fe 04 0c 08 2d d4}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

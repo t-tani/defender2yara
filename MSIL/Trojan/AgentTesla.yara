@@ -40637,8 +40637,8 @@ rule Trojan_MSIL_AgentTesla_SML_2147799421_0
         threshold = "2"
         strings_accuracy = "High"
     strings:
-        $x_1_1 = "HF44P78RZ48JUYIBGG54P4" ascii //weight: 1
-        $x_1_2 = {08 5d 13 11 07 11 11 91 13 12 11 12 11 09 61 13 13 11 13 20 00 04 00 00 58 13 14 11 14 20 00 04 00 00 59 13 15 11 15 11 0f 59}  //weight: 1, accuracy: High
+        $x_1_1 = {07 11 09 91 11 06 61 11 08 59 20 00 02 00 00 58 20 00 01 00 00 5d 20 00 04 00 00 58 20 00 02 00 00 5d 13 0a 16 13 10 2b 14 11 0a 11 10 5a 1d 58 20 00 01 00 00 5d 26 11 10 17 58 13 10 11 10 19 32 e7}  //weight: 1, accuracy: High
+        $x_1_2 = "G5ZPEF865HC88G0GCD4GD0" ascii //weight: 1
     condition:
         (filesize < 20MB) and
         (all of ($x*))
@@ -40659,11 +40659,12 @@ rule Trojan_MSIL_AgentTesla_SML_2147799421_1
         threshold = "2"
         strings_accuracy = "High"
     strings:
-        $x_1_1 = {07 11 09 91 11 06 61 11 08 59 20 00 02 00 00 58 20 00 01 00 00 5d 20 00 04 00 00 58 20 00 02 00 00 5d 13 0a 16 13 10 2b 14 11 0a 11 10 5a 1d 58 20 00 01 00 00 5d 26 11 10 17 58 13 10 11 10 19 32 e7}  //weight: 1, accuracy: High
-        $x_1_2 = "G5ZPEF865HC88G0GCD4GD0" ascii //weight: 1
+        $x_1_1 = "HF44P78RZ48JUYIBGG54P4" ascii //weight: 1
+        $x_1_2 = {08 5d 13 11 07 11 11 91 13 12 11 12 11 09 61 13 13 11 13 20 00 04 00 00 58 13 14 11 14 20 00 04 00 00 59 13 15 11 15 11 0f 59}  //weight: 1, accuracy: High
+        $x_1_3 = {19 08 5d 13 1a 07 11 1a 91 13 1b 11 1b 11 12 61 13 1c 11 1c 20 00 04 00 00 58 13 1d 11 1d 20 00 04 00 00 59 13 1e 11 1e 11 18 59 13 1f 11 1f 20 00 02 00 00}  //weight: 1, accuracy: High
     condition:
         (filesize < 20MB) and
-        (all of ($x*))
+        (2 of ($x*))
 }
 
 rule Trojan_MSIL_AgentTesla_SML_2147799421_2
@@ -104687,6 +104688,32 @@ rule Trojan_MSIL_AgentTesla_ATK_2147917837_0
         strings_accuracy = "High"
     strings:
         $x_2_1 = {06 03 33 06 07 04 fe 01 2b 01 16 0c 08 2c 03 00 2b 01 00 07 17 58 0b 07 02 7b 0f 00 00 04 6f 38 00 00 06 fe 04 0d 09 2d d6}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_AgentTesla_SMH_2147918291_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.SMH!MTB"
+        threat_id = "2147918291"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "Crud3CamadasMota.Properties" ascii //weight: 1
+        $x_1_2 = "Crud3CamadasMota.Form1.resources" ascii //weight: 1
+        $x_1_3 = "Concat" ascii //weight: 1
+        $x_1_4 = "FailFast" ascii //weight: 1
+        $x_1_5 = "Crud3CamadasMota.Properties.Resources.resources" ascii //weight: 1
+        $x_1_6 = "IsDebuggerPresent" ascii //weight: 1
     condition:
         (filesize < 20MB) and
         (all of ($x*))

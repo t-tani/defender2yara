@@ -2935,3 +2935,24 @@ rule Trojan_MSIL_Injuke_TKAA_2147917936_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Injuke_TQAA_2147918294_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Injuke.TQAA!MTB"
+        threat_id = "2147918294"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Injuke"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {16 0d 2b 13 00 08 09 08 09 91 20 ?? ?? 00 00 59 d2 9c 00 09 17 58 0d 09 08 8e 69 fe 04 13 04 11 04 2d e1}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

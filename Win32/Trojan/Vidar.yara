@@ -5815,3 +5815,25 @@ rule Trojan_Win32_Vidar_ADG_2147917890_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Vidar_PAFH_2147918296_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Vidar.PAFH!MTB"
+        threat_id = "2147918296"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Vidar"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {8b c8 33 d2 8b c7 f7 f1 8b 45 0c 68 ?? ?? ?? ?? 8a 0c 02 8b 55 f8 32 0c 1a 88 0b}  //weight: 1, accuracy: Low
+        $x_1_2 = "\\Monero\\wallet.keys" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

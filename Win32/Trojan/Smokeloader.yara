@@ -5267,3 +5267,24 @@ rule Trojan_Win32_Smokeloader_GNX_2147918132_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Smokeloader_NEE_2147918298_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Smokeloader.NEE!MTB"
+        threat_id = "2147918298"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Smokeloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {56 8d b5 f4 fb ff ff 89 bd f4 fb ff ff e8 ?? ?? ?? ?? 8b 85 f8 fb ff ff 8a 8d f4 fb ff ff 03 c3 30 08 83 7d 0c 0f 75}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

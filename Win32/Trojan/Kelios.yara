@@ -42,3 +42,24 @@ rule Trojan_Win32_Kelios_GZX_2147907199_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Kelios_GNX_2147918293_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Kelios.GNX!MTB"
+        threat_id = "2147918293"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Kelios"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {32 cb 68 02 ?? ?? ?? d0 c1 fe c1 d0 c9 c1 34 24 ?? 80 d1 ?? f6 d1 32 d9 c0 64 24 ?? 22 81 ed ?? ?? ?? ?? 66 89 4c 25 ?? f6 54 24}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
