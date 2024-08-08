@@ -3622,3 +3622,27 @@ rule Trojan_MSIL_Taskun_NE_2147917729_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Taskun_NG_2147918285_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Taskun.NG!MTB"
+        threat_id = "2147918285"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Taskun"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = "c8a6a85f-12f9-431d-a126-c94adcb9d296" ascii //weight: 3
+        $x_1_2 = "kanjiToolStripMenuItem" ascii //weight: 1
+        $x_1_3 = "displayFuriganaToolStripMenuItem" ascii //weight: 1
+        $x_1_4 = "btnNextKanji" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

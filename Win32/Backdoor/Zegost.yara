@@ -3693,3 +3693,25 @@ rule Backdoor_Win32_Zegost_GKH_2147849938_0
         (all of ($x*))
 }
 
+rule Backdoor_Win32_Zegost_GNX_2147918284_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Backdoor:Win32/Zegost.GNX!MTB"
+        threat_id = "2147918284"
+        type = "Backdoor"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zegost"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {03 55 f0 8b 45 08 03 45 f8 8a 0a 32 08 8b 55 0c 03 55 f0 88 0a}  //weight: 5, accuracy: High
+        $x_5_2 = {8b ec 83 ec 0c c6 45 f4 44 c6 45 f5 6c c6 45 f6 6c c6 45 f7 53 c6 45 f8 68 c6 45 f9 65 c6 45 fa 6c c6 45 fb 6c c6 45 fc 00 8b 45 08 50}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
