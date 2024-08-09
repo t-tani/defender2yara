@@ -8321,3 +8321,25 @@ rule Trojan_Win32_SmokeLoader_KWW_2147917147_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_SmokeLoader_ASGI_2147918380_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/SmokeLoader.ASGI!MTB"
+        threat_id = "2147918380"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "SmokeLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {03 c3 30 08 83 7d 0c 0f 75}  //weight: 5, accuracy: High
+        $x_5_2 = {8b 4d fc 5f 5e 33 cd 5b e8}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

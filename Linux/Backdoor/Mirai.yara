@@ -4847,27 +4847,6 @@ rule Backdoor_Linux_Mirai_DD_2147832440_0
         (all of ($x*))
 }
 
-rule Backdoor_Linux_Mirai_DD_2147832440_1
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "Backdoor:Linux/Mirai.DD!MTB"
-        threat_id = "2147832440"
-        type = "Backdoor"
-        platform = "Linux: Linux platform"
-        family = "Mirai"
-        severity = "Critical"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_ELFHSTR_EXT"
-        threshold = "1"
-        strings_accuracy = "Low"
-    strings:
-        $x_1_1 = {8d 03 00 01 9d 05 00 01 4b ff ?? ?? 41 81 ?? ?? 38 e0 00 01 4b ff ?? ?? 7c e7 39 15 4b ff ?? ?? 41 a0 ?? ?? 34 e7 ff fd 39 00 00 00 41 80 ?? ?? 8d 63 00 01 54 e7 40 2e 7c ea 58 f9 41 82 ?? ?? 4b ff ?? ?? 7d 08 41 15 4b ff ?? ?? 7d 08 41 15 38 e0 00 01 40 82}  //weight: 1, accuracy: Low
-    condition:
-        (filesize < 20MB) and
-        (all of ($x*))
-}
-
 rule Backdoor_Linux_Mirai_DB_2147832483_0
 {
     meta:

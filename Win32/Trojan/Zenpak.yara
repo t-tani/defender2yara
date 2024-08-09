@@ -8330,3 +8330,26 @@ rule Trojan_Win32_Zenpak_GXM_2147917935_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Zenpak_ASAO_2147918381_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zenpak.ASAO!MTB"
+        threat_id = "2147918381"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zenpak"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {55 89 e5 50 8a 45 0c 8a 4d 08 88 0d [0-4] a2 [0-4] 30 c8 a2 [0-4] 88 45 ff c7 05 [0-8] a1 [0-4] 05 [0-4] a3 [0-4] 8a 4d ff 0f b6 c1 83 c4 04 5d c3}  //weight: 5, accuracy: Low
+        $x_5_2 = {55 89 e5 83 ec 08 8a 45 0c 8a 4d 08 88 0d [0-4] a2 [0-4] 30 c8 a2 [0-4] 8b 15 [0-4] 81 c2 [0-4] 88 45 ff 89 55 f8 8b 45 f8 a3 [0-4] c7 05 [0-8] 8a 4d ff 0f b6 c1 83 c4 08 5d c3}  //weight: 5, accuracy: Low
+        $x_5_3 = {55 89 e5 56 8a 45 0c 8a 4d 08 8b 15 [0-4] 88 0d [0-4] 89 d6 81 c6 [0-4] 89 35 [0-4] a2 [0-4] 30 c8 a2 [0-4] 81 c2 [0-4] 89 15 [0-4] 0f b6 c0 5e 5d c3}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (1 of ($x*))
+}
+
