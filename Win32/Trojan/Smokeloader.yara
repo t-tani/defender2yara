@@ -5309,3 +5309,24 @@ rule Trojan_Win32_Smokeloader_PAFC_2147918308_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Smokeloader_MEE_2147918395_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Smokeloader.MEE!MTB"
+        threat_id = "2147918395"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Smokeloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {8b c3 c1 e8 05 89 45 fc 8b 45 dc 01 45 fc 8b 4d f8 03 4d f0 c1 e3 04 03 5d d8 33 d9 81 3d ?? ?? ?? ?? 03 0b 00 00 75}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

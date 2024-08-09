@@ -95,3 +95,29 @@ rule Trojan_Win64_Stealer_RP_2147911246_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Stealer_WZ_2147918410_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Stealer.WZ!MTB"
+        threat_id = "2147918410"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Stealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "runtime.stealWork" ascii //weight: 1
+        $x_1_2 = "/Desktop/Stealer/main.go" ascii //weight: 1
+        $x_1_3 = "Go build ID: " ascii //weight: 1
+        $x_1_4 = "h1:H+t6A/QJMbhCSEH5rAuRxh+CtW96g0Or0Fxa9IKr4uc=" ascii //weight: 1
+        $x_1_5 = "main.reverseString" ascii //weight: 1
+        $x_1_6 = "type:.eq.main.Response" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

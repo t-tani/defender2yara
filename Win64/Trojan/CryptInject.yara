@@ -2616,3 +2616,34 @@ rule Trojan_Win64_CryptInject_RHR_2147918335_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_CryptInject_RHV_2147918415_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CryptInject.RHV!MTB"
+        threat_id = "2147918415"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "12"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {50 45 00 00 64 86 06 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 0b 02 0a 00 00 84 03 00 00 e0 68 01 00 00 00 00 28 fe 01}  //weight: 2, accuracy: Low
+        $x_1_2 = "ZhuDongFangYu.exe" wide //weight: 1
+        $x_1_3 = "Windows\\CurrentVersion\\Run" wide //weight: 1
+        $x_1_4 = "BEIZHU" wide //weight: 1
+        $x_1_5 = "HipsTray.exe" wide //weight: 1
+        $x_1_6 = "Mcshield.exe" wide //weight: 1
+        $x_1_7 = "mssecess.exe" wide //weight: 1
+        $x_1_8 = "rtvscan.exe" wide //weight: 1
+        $x_1_9 = "shell\\open\\command" wide //weight: 1
+        $x_1_10 = ".pdata" ascii //weight: 1
+        $x_1_11 = "QQPCRTP.exe" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

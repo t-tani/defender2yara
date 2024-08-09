@@ -657,6 +657,27 @@ rule Trojan_Win32_FlyStudio_AFY_2147911888_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_FlyStudio_AFY_2147911888_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/FlyStudio.AFY!MTB"
+        threat_id = "2147911888"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "FlyStudio"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {6a 00 6a 00 51 68 c0 5c 4e 00 6a 00 ff 15 ?? ?? ?? ?? 8b f0 83 fe 20 0f 87 e4 00 00 00 8d 54 24 14 8b cf 52 68 b8 5c 4e 00 68 00 00 00 80 e8 ?? ?? ?? ?? 85 c0 0f 85 c6 00 00 00 8b 1d 9c 62 4a 00 8d 44 24 14 68 a4 5c 4e 00 50 ff d3}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win32_FlyStudio_AFS_2147914014_0
 {
     meta:

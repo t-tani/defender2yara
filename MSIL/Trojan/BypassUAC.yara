@@ -112,3 +112,30 @@ rule Trojan_MSIL_BypassUAC_NB_2147916239_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_BypassUAC_NC_2147918386_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/BypassUAC.NC!MTB"
+        threat_id = "2147918386"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "BypassUAC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = "ZT_RAT_Client.Resources" ascii //weight: 3
+        $x_2_2 = "Select * from AntivirusProduct" ascii //weight: 2
+        $x_1_3 = "/get-clipboard-text" ascii //weight: 1
+        $x_1_4 = "/send-passwords" ascii //weight: 1
+        $x_1_5 = "netsh firewall delete allowedprogram" ascii //weight: 1
+        $x_1_6 = "CreateDecryptor" ascii //weight: 1
+        $x_1_7 = "FromBase64String" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

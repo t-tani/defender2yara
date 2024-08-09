@@ -6282,3 +6282,93 @@ rule Trojan_Win32_CryptInject_RHN_2147915546_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_CryptInject_RHS_2147918387_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/CryptInject.RHS!MTB"
+        threat_id = "2147918387"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {50 45 00 00 4c 01 03 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 0b 01 08 00 00 10 00 00 00 22 01 00 00 00 00 00 86 2e}  //weight: 2, accuracy: Low
+        $x_1_2 = "csacsadhe.duckdns.org" wide //weight: 1
+        $x_1_3 = "byfronbypass.html" wide //weight: 1
+        $x_1_4 = "Arzgohi.mp3" wide //weight: 1
+        $x_1_5 = "Microsoft Edge" wide //weight: 1
+        $x_1_6 = {a8 25 00 00 03 00 28 28 00 00 01 00 20 00 68 1a 00 00 04 00 20 20 00 00 01 00 20 00 a8}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_CryptInject_RHT_2147918388_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/CryptInject.RHT!MTB"
+        threat_id = "2147918388"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "15"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {50 45 00 00 4c 01 04 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 0b 01 0a 00 00 3a 02 00 00 1c 22 00 00 00 00 00 6b a7 01}  //weight: 2, accuracy: Low
+        $x_1_2 = "From Win32" wide //weight: 1
+        $x_1_3 = "SecurityCenter2" wide //weight: 1
+        $x_1_4 = "DownloadString" ascii //weight: 1
+        $x_1_5 = "Install Date" ascii //weight: 1
+        $x_1_6 = "MachineID" ascii //weight: 1
+        $x_1_7 = "timeout" ascii //weight: 1
+        $x_1_8 = "wallet.keys" ascii //weight: 1
+        $x_1_9 = "t.me/bu77un" ascii //weight: 1
+        $x_1_10 = "encrypted_key" ascii //weight: 1
+        $x_1_11 = "PortNumber" ascii //weight: 1
+        $x_1_12 = "DRIVE_REMOVABLE" ascii //weight: 1
+        $x_1_13 = "powershell.exe" ascii //weight: 1
+        $x_1_14 = "passwords.txt" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_CryptInject_RHU_2147918398_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/CryptInject.RHU!MTB"
+        threat_id = "2147918398"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "12"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {50 45 00 00 4c 01 02 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 0b 01 06 00 00 b0 00 00 00 70 00 00 00 00 00 00 50 11}  //weight: 2, accuracy: Low
+        $x_1_2 = "CurrentVersion\\Explorer" wide //weight: 1
+        $x_1_3 = "Happy BirthDay my's Boss" wide //weight: 1
+        $x_1_4 = "musicvn.exe" wide //weight: 1
+        $x_1_5 = "Logon User Name" wide //weight: 1
+        $x_1_6 = "temp.zip" wide //weight: 1
+        $x_1_7 = "HideFileExt" wide //weight: 1
+        $x_1_8 = "System Restore" wide //weight: 1
+        $x_1_9 = "MethCallEngine" ascii //weight: 1
+        $x_2_10 = {a8 25 00 00 34 75 20 20 00 00 01 00 20 00 a8 10 00 00 35 75 10 10 00 00 01 00 20 00 68 04 00 00 36 75}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
