@@ -19,27 +19,6 @@ rule Trojan_MSIL_ZgRat_RPX_2147906235_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_ZgRat_MA_2147911088_0
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "Trojan:MSIL/ZgRat.MA!MTB"
-        threat_id = "2147911088"
-        type = "Trojan"
-        platform = "MSIL: .NET intermediate language scripts"
-        family = "ZgRat"
-        severity = "Critical"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "1"
-        strings_accuracy = "High"
-    strings:
-        $x_1_1 = {7e 97 00 00 04 20 2e 01 00 00 7e 97 00 00 04 20 2e 01 00 00 93 04 5a 20 d2 00 00 00 5f 9d}  //weight: 1, accuracy: High
-    condition:
-        (filesize < 20MB) and
-        (all of ($x*))
-}
-
 rule Trojan_MSIL_ZgRat_SGB_2147912597_0
 {
     meta:

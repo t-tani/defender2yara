@@ -93,7 +93,7 @@ rule Trojan_Win32_RegistryExfil_F_2147905309_0
         $n_1000_3 = ":\\program files\\sangfor\\cwpp\\agent\\bin\\python" wide //weight: -1000
         $n_1000_4 = "components\\insight_agent\\common\\ir_agent_tmp" wide //weight: -1000
         $n_1000_5 = ":\\SSR\\SolidStep_NGTD_TMP" wide //weight: -1000
-        $n_1000_6 = ":\\Windows\\TEMP\\CollectGuestLogs_" wide //weight: -1000
+        $n_1000_6 = "\\CollectGuestLogs_" wide //weight: -1000
         $n_1000_7 = ":\\program files\\sangfor" wide //weight: -1000
         $n_1000_8 = ":\\MS_DATA\\" wide //weight: -1000
         $n_1000_9 = "_reg_System.HIV" wide //weight: -1000

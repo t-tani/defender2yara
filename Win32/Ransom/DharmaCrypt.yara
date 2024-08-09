@@ -212,3 +212,24 @@ rule Ransom_Win32_DharmaCrypt_YAE_2147913735_0
         (all of ($x*))
 }
 
+rule Ransom_Win32_DharmaCrypt_YAF_2147918358_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win32/DharmaCrypt.YAF!MTB"
+        threat_id = "2147918358"
+        type = "Ransom"
+        platform = "Win32: Windows 32-bit platform"
+        family = "DharmaCrypt"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {89 15 30 0b 44 00 0f b6 45 e3 33 45 d8 88 45 eb 8b 4d c8 3b 4d 98}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
