@@ -5825,3 +5825,26 @@ rule Trojan_MSIL_SnakeKeylogger_GPD_2147918272_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_SnakeKeylogger_SML_2147918329_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/SnakeKeylogger.SML!MTB"
+        threat_id = "2147918329"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "SnakeKeylogger"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "https://www.vascocorretora.com.br/PPI/" ascii //weight: 1
+        $x_1_2 = "GetByteArrayAsync" ascii //weight: 1
+        $x_1_3 = "FromBase64String" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

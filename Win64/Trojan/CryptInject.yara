@@ -2587,3 +2587,32 @@ rule Trojan_Win64_CryptInject_RHG_2147914325_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_CryptInject_RHR_2147918335_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CryptInject.RHR!MTB"
+        threat_id = "2147918335"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {50 45 00 00 64 86 08 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 0b 02 0e 1c 00 de 00 00 00 e4 00 00 00 00 00 00 e0 30}  //weight: 2, accuracy: Low
+        $x_1_2 = "roaming.dat" wide //weight: 1
+        $x_1_3 = "explorer.exe" wide //weight: 1
+        $x_1_4 = "targetProcess" ascii //weight: 1
+        $x_1_5 = "ProcessId" ascii //weight: 1
+        $x_1_6 = "XcLoader_x64.dll" ascii //weight: 1
+        $x_1_7 = "DllRegisterServer" ascii //weight: 1
+        $x_1_8 = ".pdata" ascii //weight: 1
+        $x_1_9 = ".msvc" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

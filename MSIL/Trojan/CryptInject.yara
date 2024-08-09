@@ -2982,3 +2982,42 @@ rule Trojan_MSIL_CryptInject_RHP_2147918300_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_CryptInject_RHQ_2147918334_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/CryptInject.RHQ!MTB"
+        threat_id = "2147918334"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "15"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {50 45 00 00 4c 01 03 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 0b 01 0b 00 00 f0 49 00 00 a0 01 00 00 00 00 00 fe 0d 4a}  //weight: 2, accuracy: Low
+        $x_1_2 = "file:" wide //weight: 1
+        $x_1_3 = "Location" wide //weight: 1
+        $x_1_4 = "ResourceA" wide //weight: 1
+        $x_1_5 = "Write" wide //weight: 1
+        $x_1_6 = "Process" wide //weight: 1
+        $x_1_7 = "Memory" wide //weight: 1
+        $x_1_8 = "Close" wide //weight: 1
+        $x_1_9 = "Handle" wide //weight: 1
+        $x_1_10 = "kernel" wide //weight: 1
+        $x_1_11 = "32.dll" wide //weight: 1
+        $x_1_12 = "Debugger Detected" wide //weight: 1
+        $x_1_13 = "clientMutexId" ascii //weight: 1
+        $x_2_14 = {a8 25 00 00 04 00 80 80 00 00 01 00 20 00 28 08 01 00 05 00 00 00 00 00 01 00 20 00 be 52}  //weight: 2, accuracy: High
+        $x_1_15 = "newsoftgnu" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_2_*) and 13 of ($x_1_*))) or
+            ((2 of ($x_2_*) and 11 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+

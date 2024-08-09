@@ -3454,6 +3454,47 @@ rule Trojan_MSIL_DarkTortilla_RP_2147913029_16
         )
 }
 
+rule Trojan_MSIL_DarkTortilla_RP_2147913029_17
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/DarkTortilla.RP!MTB"
+        threat_id = "2147913029"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "DarkTortilla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "148"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "CryptoStreamMode" ascii //weight: 1
+        $x_1_2 = "EndInvoke" ascii //weight: 1
+        $x_1_3 = "BeginInvoke" ascii //weight: 1
+        $x_1_4 = "CreateDecryptor" ascii //weight: 1
+        $x_1_5 = "get_Key" ascii //weight: 1
+        $x_1_6 = "set_Key" ascii //weight: 1
+        $x_1_7 = "ContainsKey" ascii //weight: 1
+        $x_1_8 = "System.Security.Cryptography" ascii //weight: 1
+        $x_10_9 = "Create__Instance__" ascii //weight: 10
+        $x_10_10 = "Dispose__Instance__" ascii //weight: 10
+        $x_100_11 = "ConnectionTester" ascii //weight: 100
+        $x_10_12 = "TestConnection Lansweeper" ascii //weight: 10
+        $x_10_13 = ", WindowsApp1," ascii //weight: 10
+        $x_100_14 = "WindowsApp1.WeatherApp+" ascii //weight: 100
+        $x_10_15 = "WindowsApp1.AirplaneWeatherControl+" ascii //weight: 10
+        $x_10_16 = "WindowsApp1.MLWeatherForecast+" ascii //weight: 10
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_100_*) and 4 of ($x_10_*) and 8 of ($x_1_*))) or
+            ((1 of ($x_100_*) and 5 of ($x_10_*))) or
+            ((2 of ($x_100_*))) or
+            (all of ($x*))
+        )
+}
+
 rule Trojan_MSIL_DarkTortilla_SPBF_2147913107_0
 {
     meta:
