@@ -604,3 +604,34 @@ rule Trojan_Win32_Keylogger_AMBE_2147899964_1
         (all of ($x*))
 }
 
+rule Trojan_Win32_Keylogger_ARA_2147906067_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Keylogger.ARA!MTB"
+        threat_id = "2147906067"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Keylogger"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "13"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {80 c2 41 88 54 ?? ?? ?? 3b ?? 7c e8}  //weight: 2, accuracy: Low
+        $x_3_2 = {8a 44 14 14 30 ?? ?? ?? ?? ?? ?? 3b ?? 7c e9}  //weight: 3, accuracy: Low
+        $x_3_3 = {8a 44 14 10 30 ?? ?? ?? ?? ?? ?? 3b ?? 7c e9}  //weight: 3, accuracy: Low
+        $x_2_4 = "/c2/data" ascii //weight: 2
+        $x_2_5 = "GetAsyncKeyState" ascii //weight: 2
+        $x_2_6 = "vmware.exe" ascii //weight: 2
+        $x_2_7 = "HttpSendRequestA" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_3_*) and 5 of ($x_2_*))) or
+            ((2 of ($x_3_*) and 4 of ($x_2_*))) or
+            (all of ($x*))
+        )
+}
+

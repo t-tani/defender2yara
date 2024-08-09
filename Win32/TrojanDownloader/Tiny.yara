@@ -349,3 +349,24 @@ rule TrojanDownloader_Win32_Tiny_AB_2147849948_0
         (all of ($x*))
 }
 
+rule TrojanDownloader_Win32_Tiny_ARA_2147918443_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:Win32/Tiny.ARA!MTB"
+        threat_id = "2147918443"
+        type = "TrojanDownloader"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Tiny"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {8b 4d f4 03 4d fc 8b 95 64 ff ff ff 8b 45 fc 8a 84 05 ac fa ff ff 88 04 0a e9}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

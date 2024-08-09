@@ -114,3 +114,27 @@ rule Trojan_MSIL_RecordBreaker_RDH_2147896725_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_RecordBreaker_TWAA_2147918430_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/RecordBreaker.TWAA!MTB"
+        threat_id = "2147918430"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "RecordBreaker"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {06 72 01 00 00 70 28 ?? 00 00 06 72 33 00 00 70 28 ?? 00 00 06 6f ?? 00 00 0a 13 0b}  //weight: 2, accuracy: Low
+        $x_2_2 = {09 11 0a 28 ?? 00 00 2b 16 11 0a 28 ?? 00 00 2b 8e 69 6f ?? 00 00 0a 16}  //weight: 2, accuracy: Low
+        $x_1_3 = "CreateDecryptor" ascii //weight: 1
+        $x_1_4 = "FromBase64String" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

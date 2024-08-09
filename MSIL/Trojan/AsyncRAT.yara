@@ -1640,6 +1640,50 @@ rule Trojan_MSIL_AsyncRAT_ARA_2147847940_3
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "6"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {11 09 11 08 9a 13 06 09 11 06 28 ?? ?? ?? 0a 28 ?? ?? ?? 0a b4 6f ?? ?? ?? 0a 11 08 17 d6 13 08 11 08 11 09 8e b7 32 d8}  //weight: 2, accuracy: Low
+        $x_2_2 = "funccall22" ascii //weight: 2
+        $x_2_3 = "ReD_Security.resources" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_AsyncRAT_ARA_2147847940_4
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AsyncRAT.ARA!MTB"
+        threat_id = "2147847940"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AsyncRAT"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {00 02 11 05 91 13 06 03 11 05 07 5d 91 13 07 11 07 08 20 00 01 00 00 5d 58 11 05 58 20 00 01 00 00 5d 13 08 11 06 11 08 19 5a 59 20 00 01 00 00 58 20 00 01 00 00 5d d2 13 09 06 11 05 11 09 9c 00 11 05 17 58 13 05 11 05 02 8e 69 fe 04 13 0a 11 0a 2d ac}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_AsyncRAT_ARA_2147847940_5
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AsyncRAT.ARA!MTB"
+        threat_id = "2147847940"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AsyncRAT"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
         strings_accuracy = "High"
     strings:
         $x_2_1 = "<t.me/GhostHackersNetwork>" ascii //weight: 2
@@ -1650,7 +1694,7 @@ rule Trojan_MSIL_AsyncRAT_ARA_2147847940_3
         (all of ($x*))
 }
 
-rule Trojan_MSIL_AsyncRAT_ARA_2147847940_4
+rule Trojan_MSIL_AsyncRAT_ARA_2147847940_6
 {
     meta:
         author = "defender2yara"
@@ -1673,7 +1717,7 @@ rule Trojan_MSIL_AsyncRAT_ARA_2147847940_4
         (all of ($x*))
 }
 
-rule Trojan_MSIL_AsyncRAT_ARA_2147847940_5
+rule Trojan_MSIL_AsyncRAT_ARA_2147847940_7
 {
     meta:
         author = "defender2yara"
@@ -1700,7 +1744,7 @@ rule Trojan_MSIL_AsyncRAT_ARA_2147847940_5
         )
 }
 
-rule Trojan_MSIL_AsyncRAT_ARA_2147847940_6
+rule Trojan_MSIL_AsyncRAT_ARA_2147847940_8
 {
     meta:
         author = "defender2yara"
@@ -1722,7 +1766,7 @@ rule Trojan_MSIL_AsyncRAT_ARA_2147847940_6
         (all of ($x*))
 }
 
-rule Trojan_MSIL_AsyncRAT_ARA_2147847940_7
+rule Trojan_MSIL_AsyncRAT_ARA_2147847940_9
 {
     meta:
         author = "defender2yara"
@@ -1747,7 +1791,7 @@ rule Trojan_MSIL_AsyncRAT_ARA_2147847940_7
         (all of ($x*))
 }
 
-rule Trojan_MSIL_AsyncRAT_ARA_2147847940_8
+rule Trojan_MSIL_AsyncRAT_ARA_2147847940_10
 {
     meta:
         author = "defender2yara"
@@ -1772,7 +1816,7 @@ rule Trojan_MSIL_AsyncRAT_ARA_2147847940_8
         (all of ($x*))
 }
 
-rule Trojan_MSIL_AsyncRAT_ARA_2147847940_9
+rule Trojan_MSIL_AsyncRAT_ARA_2147847940_11
 {
     meta:
         author = "defender2yara"
