@@ -1870,3 +1870,25 @@ rule Trojan_Win32_Fauppod_SBXC_2147918331_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Fauppod_MEA_2147918455_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Fauppod.MEA!MTB"
+        threat_id = "2147918455"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Fauppod"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {89 d3 01 fb 8b 3b 69 d8 e8 00 00 00 01 da 81 c2 0a 00 00 00 0f b7 12 31 f2 8b b5 98 fe ff ff 01 ce 89 34 24 89 7c 24 04}  //weight: 3, accuracy: High
+        $x_3_2 = {8b 45 e0 8b 4d e4 03 0d ?? ?? ?? ?? 89 0d ?? ?? ?? ?? 8b 4d f0 8a 14 01 8b 75 ec 88 14 06 05 01 00 00 00 8b 7d f4 39 f8 89 45 dc 74}  //weight: 3, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

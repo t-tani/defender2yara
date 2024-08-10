@@ -8178,3 +8178,24 @@ rule Trojan_Win32_Ekstak_MBXM_2147917867_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Ekstak_TXAA_2147918452_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Ekstak.TXAA!MTB"
+        threat_id = "2147918452"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Ekstak"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {55 8b ec 6a ff 68 ?? b2 65 00 68 ?? 5d 65 00 64 a1 00 00 00 00 50 64 89 25 00 00 00 00 83 ec 58 53 56 57 89 65 e8 ff 15 ?? ?? 65 00 33 d2 8a d4 89 15 ?? 27 a6 00 8b c8 81 e1 ff 00 00 00 89 0d ?? 27 a6 00 c1 e1 08 03 ca 89 0d ?? 27 a6 00 c1 e8 10 a3 ?? 27 a6 00 33 f6 56 e8}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
