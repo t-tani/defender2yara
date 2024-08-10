@@ -222,3 +222,24 @@ rule TrojanDownloader_MSIL_DCRat_U_2147917669_0
         (all of ($x*))
 }
 
+rule TrojanDownloader_MSIL_DCRat_X_2147918467_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:MSIL/DCRat.X!MTB"
+        threat_id = "2147918467"
+        type = "TrojanDownloader"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "DCRat"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {06 19 9a 74 ?? 00 00 02 07 1b 9a 28 ?? 00 00 0a 07 18 9a 28 ?? ?? 00 0a 07 1c 9a 14 72 ?? ?? 00 70 18 8d ?? 00 00 01 25 16 72 ?? ?? 00 70 a2 25 17 7e ?? ?? 00 0a a2 14 14 14 28 ?? 00 00 0a 14 72 ?? ?? 00 70 18 8d ?? 00 00 01 25 16 72 ?? ?? 00 70 a2 25 17 7e ?? ?? 00 0a a2 14 14 14 28}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -497,3 +497,28 @@ rule Trojan_MSIL_Small_RKAA_2147915865_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Small_SK_2147918468_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Small.SK!MTB"
+        threat_id = "2147918468"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Small"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "FakeFunctionDriver" ascii //weight: 1
+        $x_1_2 = "DisableRealTimeProtection" ascii //weight: 1
+        $x_1_3 = "AntiVMCheck" ascii //weight: 1
+        $x_1_4 = "DisableDefenderServices" ascii //weight: 1
+        $x_1_5 = "INFARCTED LAUNCHER 2K24" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (3 of ($x*))
+}
+
