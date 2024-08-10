@@ -3044,3 +3044,24 @@ rule Trojan_Win32_Amadey_ADG_2147918431_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Amadey_KAA_2147918471_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Amadey.KAA!MTB"
+        threat_id = "2147918471"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Amadey"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {8a ca 2a c8 80 c1 ?? 30 ?? 15 [0-4] 42 89 55}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

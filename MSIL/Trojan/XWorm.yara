@@ -653,3 +653,24 @@ rule Trojan_MSIL_XWorm_RDK_2147916220_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_XWorm_AMAA_2147918470_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/XWorm.AMAA!MTB"
+        threat_id = "2147918470"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "XWorm"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {08 5d 08 58 13 [0-30] 08 5d 13 [0-20] 61 [0-50] 20 00 04 00 00 59 [0-40] 20 00 01 00 00 5d 13}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
