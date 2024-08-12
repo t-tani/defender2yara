@@ -1178,3 +1178,27 @@ rule Trojan_Win32_Neoreblamy_SPSH_2147918396_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Neoreblamy_GPA_2147918504_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Neoreblamy.GPA!MTB"
+        threat_id = "2147918504"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Neoreblamy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "16"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "RywjRURvTHxFkk" ascii //weight: 1
+        $x_3_2 = "EkDmRTHVLqBoJvetwcsLjMw" ascii //weight: 3
+        $x_5_3 = "FgbdIYubCAnaElbGjlq" ascii //weight: 5
+        $x_7_4 = "qQptxMomkNymuOqXMrWXba" ascii //weight: 7
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
