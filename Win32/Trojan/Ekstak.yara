@@ -5663,13 +5663,34 @@ rule Trojan_Win32_Ekstak_RL_2147906213_1
         threshold = "1"
         strings_accuracy = "High"
     strings:
-        $x_1_1 = {64 00 8b c8 33 d2 81 e1 ff 00 00 00 8a d4 83 f9 05 8b c2 75 10 83 f8 01 73 18 c7 05}  //weight: 1, accuracy: High
+        $x_1_1 = {55 8b ec 83 ec 10 53 56 57 68 a9 3c 4c 00 e8 ed 07 f6 ff 89 45 fc e9}  //weight: 1, accuracy: High
     condition:
         (filesize < 20MB) and
         (all of ($x*))
 }
 
 rule Trojan_Win32_Ekstak_RL_2147906213_2
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Ekstak.RL!MTB"
+        threat_id = "2147906213"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Ekstak"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {64 00 8b c8 33 d2 81 e1 ff 00 00 00 8a d4 83 f9 05 8b c2 75 10 83 f8 01 73 18 c7 05}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Ekstak_RL_2147906213_3
 {
     meta:
         author = "defender2yara"
@@ -5691,7 +5712,7 @@ rule Trojan_Win32_Ekstak_RL_2147906213_2
         (1 of ($x*))
 }
 
-rule Trojan_Win32_Ekstak_RL_2147906213_3
+rule Trojan_Win32_Ekstak_RL_2147906213_4
 {
     meta:
         author = "defender2yara"
@@ -6094,6 +6115,27 @@ rule Trojan_Win32_Ekstak_ASFZ_2147908411_0
 }
 
 rule Trojan_Win32_Ekstak_RM_2147908996_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Ekstak.RM!MTB"
+        threat_id = "2147908996"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Ekstak"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {55 8b ec 83 ec 10 53 56 57 e8 a2 07 f6 ff e9}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Ekstak_RM_2147908996_1
 {
     meta:
         author = "defender2yara"

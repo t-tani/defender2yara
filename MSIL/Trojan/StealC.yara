@@ -343,3 +343,24 @@ rule Trojan_MSIL_StealC_CCJB_2147917340_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_StealC_KAG_2147918532_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/StealC.KAG!MTB"
+        threat_id = "2147918532"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "StealC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {06 11 22 91 61 d2 81 ?? 00 00 01 11 08 17 58 13 08}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
