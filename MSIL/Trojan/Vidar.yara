@@ -2087,3 +2087,25 @@ rule Trojan_MSIL_Vidar_PAFI_2147918297_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Vidar_NC_2147918578_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Vidar.NC!MTB"
+        threat_id = "2147918578"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Vidar"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = {02 03 02 4b 03 04 61 05 61 58 0e 07 0e 04 e0 95 58}  //weight: 3, accuracy: High
+        $x_2_2 = "13eaff9e-4eba-4e0b-aa0b-f5aa3e330281" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
