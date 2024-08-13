@@ -211,3 +211,24 @@ rule Trojan_Win32_Vilsel_EN_2147852399_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Vilsel_MBXQ_2147918552_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Vilsel.MBXQ!MTB"
+        threat_id = "2147918552"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Vilsel"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {34 73 40 00 00 f8 32 00 00 ff ff ff 08 00 00 00 01 00 00 00 01 00 00 00 e9 00 00 00 6c 6a 40 00 6c 6a 40 00 5c 11 40 00 78 00 00 00 80 00 00 00 92 00 00 00 93}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

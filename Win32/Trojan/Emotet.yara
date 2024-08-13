@@ -21503,3 +21503,66 @@ rule Trojan_Win32_Emotet_VAV_2147918528_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Emotet_VAC_2147918553_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Emotet.VAC!MTB"
+        threat_id = "2147918553"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Emotet"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {01 d8 21 f0 8b 74 24 18 8a 0c 06 8b 44 24 20 8a 2c 38 30 e9 8b 5c 24 1c 88 0c 3b 8b 44 24 14 8d bc 07 97 57 aa d9 c7 44 24 ?? ff ff ff ff c7 44 24 ?? c8 c8 af e4 8b 44 24 0c 89 44 24 34 89 7c 24 38 8b 44 24 04 89 44 24 3c 8b 44 24 30 39 c7 74}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Emotet_VAD_2147918554_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Emotet.VAD!MTB"
+        threat_id = "2147918554"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Emotet"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {30 df 8b 54 24 54 8b 44 24 50 89 c6 0f af f2 89 44 24 04 8b 54 24 04 f7 e2 01 f2 01 f2 89 44 24 ?? 89 54 24 ?? 8a 5c 24 33 80 f3 3b 88 5c 24 4f 8b 44 24 48 35 18 d6 70 66 8b 54 24 2c 88 3c 0a}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Emotet_VAE_2147918555_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Emotet.VAE!MTB"
+        threat_id = "2147918555"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Emotet"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {0f b6 ca 8b 54 24 08 01 d1 21 f1 8b 74 24 24 8a 0c 0e 8b 54 24 ?? 8b 74 24 2c 32 0c 16 8b 54 24 70 8b 74 24 28 88 0c 16 03 7c 24 70 89 5c 24 4c 89 7c 24 6c}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
