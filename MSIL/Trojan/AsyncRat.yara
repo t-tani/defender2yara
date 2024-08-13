@@ -1914,6 +1914,53 @@ rule Trojan_MSIL_AsyncRat_CXRK_2147848402_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AsyncRat_AE_2147848439_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AsyncRat.AE!MTB"
+        threat_id = "2147848439"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AsyncRat"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {57 d4 02 e8 c9 0f 00 00 00 fa 25 33 00 16 00 00 02 00 00 00 31 00 00 00 17 00 00 00 58 00 00 00 9e}  //weight: 2, accuracy: High
+        $x_2_2 = "server.Resources.resources" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_AsyncRat_AE_2147848439_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AsyncRat.AE!MTB"
+        threat_id = "2147848439"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AsyncRat"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "wcvzlm8pwdpsbuyx64335lhzt2mzfq27" ascii //weight: 1
+        $x_1_2 = "6xvk9py559mzlydjwg876frq62sm3sfb" ascii //weight: 1
+        $x_1_3 = "texkw4l3swqdzdyvpjyhcyyhsmt88naz" ascii //weight: 1
+        $x_1_4 = "dt2fermwv3yyl5plv85w4xguzma6sm6v" ascii //weight: 1
+        $x_1_5 = "8k5u586xkheshr2dtrdta2gcukvg2xss" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_AsyncRat_ASY_2147848530_0
 {
     meta:

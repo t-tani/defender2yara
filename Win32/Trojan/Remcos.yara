@@ -2533,3 +2533,24 @@ rule Trojan_Win32_Remcos_NH_2147916732_0
         )
 }
 
+rule Trojan_Win32_Remcos_AREM_2147918614_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Remcos.AREM!MTB"
+        threat_id = "2147918614"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Remcos"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {b9 7c d6 83 58 35 33 34 55 bf 64 d2 8c 02 ?? ?? ?? ?? bf 45 d5 8f 07 37 35 37 56 b8 7b df 8e ?? ?? ?? ?? 50 b8 65 dc 89 51 32 33}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

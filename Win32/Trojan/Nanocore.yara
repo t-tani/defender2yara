@@ -589,3 +589,28 @@ rule Trojan_Win32_Nanocore_NA_2147906027_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Nanocore_NE_2147918604_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Nanocore.NE!MTB"
+        threat_id = "2147918604"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Nanocore"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "FOR $I = \"1\" TO $SPLIT [ \"0\" ]" ascii //weight: 1
+        $x_1_2 = "$CHAR = ASC ( $SPLIT [ $I ] )" ascii //weight: 1
+        $x_1_3 = "FOR $II = \"0\" TO $LEN - \"1\"" ascii //weight: 1
+        $x_2_4 = "$XOR = BITXOR ( $XOR , $LEN + $II )" ascii //weight: 2
+        $x_2_5 = "$RESULT &= CHRW ( $XOR )" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

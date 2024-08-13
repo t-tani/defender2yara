@@ -22,40 +22,6 @@ rule PWS_Win32_Stimilina_A_2147694882_0
         (4 of ($x*))
 }
 
-rule PWS_Win32_Stimilina_A_2147694882_1
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "PWS:Win32/Stimilina.A"
-        threat_id = "2147694882"
-        type = "PWS"
-        platform = "Win32: Windows 32-bit platform"
-        family = "Stimilina"
-        severity = "Critical"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "8"
-        strings_accuracy = "High"
-    strings:
-        $x_1_1 = "SOFTWARE\\Valve\\Steam" ascii //weight: 1
-        $x_1_2 = "SteamPath" ascii //weight: 1
-        $x_1_3 = "/SteamAppData.vdf" ascii //weight: 1
-        $x_2_4 = "ssfn*" ascii //weight: 2
-        $x_5_5 = "steamcomnunity" ascii //weight: 5
-        $x_5_6 = "steamcommumnitty" ascii //weight: 5
-        $x_5_7 = "steamcommunnitty" ascii //weight: 5
-        $x_5_8 = "steamrommunity.com" ascii //weight: 5
-        $x_5_9 = "steazommunity.com" ascii //weight: 5
-        $x_5_10 = "/ssfnUpload" ascii //weight: 5
-    condition:
-        (filesize < 20MB) and
-        (
-            ((1 of ($x_5_*) and 3 of ($x_1_*))) or
-            ((1 of ($x_5_*) and 1 of ($x_2_*) and 1 of ($x_1_*))) or
-            ((2 of ($x_5_*))) or
-            (all of ($x*))
-        )
-}
-
 rule PWS_Win32_Stimilina_B_2147695034_0
 {
     meta:
