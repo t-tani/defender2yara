@@ -10,6 +10,30 @@ rule Trojan_MSIL_Jalapeno_AJL_2147910601_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "13"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "Tilesetter 2024" wide //weight: 1
+        $x_2_2 = "20F3B949-149A-4515-B752-5497C04E16D4" ascii //weight: 2
+        $x_5_3 = "Burstein.dll" wide //weight: 5
+        $x_5_4 = "Burstein Applebee" wide //weight: 5
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Jalapeno_AJL_2147910601_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Jalapeno.AJL!MTB"
+        threat_id = "2147910601"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Jalapeno"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "46"
         strings_accuracy = "High"
     strings:

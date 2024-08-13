@@ -6541,6 +6541,29 @@ rule Trojan_MSIL_Remcos_AR_2147838078_21
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {91 13 11 11 11 11 0a 61 11 0e 59 20 00 02 00 00 58 13 12 11 12 20 00 01 00 00 5d 20 00 04 00 00 58 13 13 16 13 1b 2b}  //weight: 2, accuracy: High
+        $x_2_2 = {20 00 02 00 00 5d 13 14 11 14 20 00 01 00 00 59 20 00 04 00 00 58 13}  //weight: 2, accuracy: High
+        $x_1_3 = "55ZJG5TE7CJ865EHZGCE40" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Remcos_AR_2147838078_22
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Remcos.AR!MTB"
+        threat_id = "2147838078"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Remcos"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "4"
         strings_accuracy = "Low"
     strings:
@@ -6552,7 +6575,7 @@ rule Trojan_MSIL_Remcos_AR_2147838078_21
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Remcos_AR_2147838078_22
+rule Trojan_MSIL_Remcos_AR_2147838078_23
 {
     meta:
         author = "defender2yara"
@@ -6576,7 +6599,7 @@ rule Trojan_MSIL_Remcos_AR_2147838078_22
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Remcos_AR_2147838078_23
+rule Trojan_MSIL_Remcos_AR_2147838078_24
 {
     meta:
         author = "defender2yara"
@@ -6601,7 +6624,7 @@ rule Trojan_MSIL_Remcos_AR_2147838078_23
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Remcos_AR_2147838078_24
+rule Trojan_MSIL_Remcos_AR_2147838078_25
 {
     meta:
         author = "defender2yara"
@@ -6624,7 +6647,7 @@ rule Trojan_MSIL_Remcos_AR_2147838078_24
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Remcos_AR_2147838078_25
+rule Trojan_MSIL_Remcos_AR_2147838078_26
 {
     meta:
         author = "defender2yara"
@@ -6649,7 +6672,7 @@ rule Trojan_MSIL_Remcos_AR_2147838078_25
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Remcos_AR_2147838078_26
+rule Trojan_MSIL_Remcos_AR_2147838078_27
 {
     meta:
         author = "defender2yara"
@@ -6673,7 +6696,7 @@ rule Trojan_MSIL_Remcos_AR_2147838078_26
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Remcos_AR_2147838078_27
+rule Trojan_MSIL_Remcos_AR_2147838078_28
 {
     meta:
         author = "defender2yara"

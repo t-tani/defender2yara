@@ -5748,6 +5748,28 @@ rule Trojan_MSIL_FormBook_AFB_2147832252_18
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {5d 08 58 08 5d 13 0b 16 13 17 2b 29 00 11 17 13 19 11 19 13 18 11 18 2c 09 2b 00 11 18 17 2e 08 2b 0c 11 0b 13 0b 2b 06 11 0b 13 0b 2b 00 00 11 17 17 58 13 17 11 17 18 fe 04}  //weight: 1, accuracy: High
+        $x_1_2 = {16 13 1b 2b 29 00 11 1b 13 1d 11 1d 13 1c 11 1c 2c 09 2b 00 11 1c 17 2e 08 2b 0c 11 13 13 13 2b 06 11 13 13 13 2b 00 00 11 1b 17 58 13 1b 11 1b 18 fe 04}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_FormBook_AFB_2147832252_19
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/FormBook.AFB!MTB"
+        threat_id = "2147832252"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "FormBook"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
         strings_accuracy = "Low"
     strings:
         $x_1_1 = {0d 09 2c 5b 00 02 7b ?? 00 00 04 08 6f ?? 00 00 0a 6f ?? 00 00 0a 13 04 11 04 2c 22 00 02 7b ?? 00 00 04 08 6f ?? 00 00 0a 16}  //weight: 1, accuracy: Low
@@ -5757,7 +5779,7 @@ rule Trojan_MSIL_FormBook_AFB_2147832252_18
         (all of ($x*))
 }
 
-rule Trojan_MSIL_FormBook_AFB_2147832252_19
+rule Trojan_MSIL_FormBook_AFB_2147832252_20
 {
     meta:
         author = "defender2yara"
@@ -5782,7 +5804,7 @@ rule Trojan_MSIL_FormBook_AFB_2147832252_19
         (all of ($x*))
 }
 
-rule Trojan_MSIL_FormBook_AFB_2147832252_20
+rule Trojan_MSIL_FormBook_AFB_2147832252_21
 {
     meta:
         author = "defender2yara"

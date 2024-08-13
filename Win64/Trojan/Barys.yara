@@ -367,3 +367,25 @@ rule Trojan_Win64_Barys_RD_2147915509_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Barys_GPA_2147918624_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Barys.GPA!MTB"
+        threat_id = "2147918624"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Barys"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_4_1 = "cipher-0.3.0\\src\\stream.rs" ascii //weight: 4
+        $x_3_2 = "src\\misc\\discord.rs" ascii //weight: 3
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

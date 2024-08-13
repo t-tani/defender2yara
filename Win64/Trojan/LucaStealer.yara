@@ -20,3 +20,27 @@ rule Trojan_Win64_LucaStealer_NC_2147899137_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_LucaStealer_GPA_2147918623_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/LucaStealer.GPA!MTB"
+        threat_id = "2147918623"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "LucaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "\\regex\\string.rs" ascii //weight: 1
+        $x_1_2 = "\\defense\\anti_dbg.rs" ascii //weight: 1
+        $x_1_3 = "\\defense\\anti_vm.rs" ascii //weight: 1
+        $x_1_4 = "\\discord.rs" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -2151,3 +2151,24 @@ rule Trojan_Win64_Cobaltstrike_NSK_2147918414_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Cobaltstrike_ADG_2147918630_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Cobaltstrike.ADG!MTB"
+        threat_id = "2147918630"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Cobaltstrike"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {ff c0 89 44 24 30 8b 44 24 34 39 44 24 30 73 20 48 63 44 24 30 48 8b 4c 24 38 0f be 04 01 83 f0 32 48 63 4c 24 30 48 8b 54 24 38 88 04 0a}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

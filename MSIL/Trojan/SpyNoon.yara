@@ -2440,3 +2440,45 @@ rule Trojan_MSIL_SpyNoon_KAK_2147918332_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_SpyNoon_PPA_2147918636_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/SpyNoon.PPA!MTB"
+        threat_id = "2147918636"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "SpyNoon"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {02 09 11 04 28 ?? ?? ?? 06 13 05 02 11 04 08 28 ?? ?? ?? 06 13 06 02 07 11 06 08 28 ?? ?? ?? 06 13 07 02 07 11 04 08 11 05 11 07}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_SpyNoon_PPF_2147918637_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/SpyNoon.PPF!MTB"
+        threat_id = "2147918637"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "SpyNoon"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {11 06 09 8e 69 5d 09 8e 69 58 13 07 11 07 09 8e 69 5d 13 08 09 11 08 91 13 09 11 06 17 58 08 5d 13 0a 11 0a 08 58 13 0b 11 0b 08 5d 13 0c 11 0c 08 5d 08 58 13 0d 11 0d 08 5d 13 0e 07 11 0e 91 13 0f 11 06 08 5d 08 58 13 10 11 10 08 5d 13 11 07 11 11 91 13 12 11 12 11 09 61 13 13 11 13}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

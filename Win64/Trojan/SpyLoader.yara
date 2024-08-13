@@ -62,27 +62,6 @@ rule Trojan_Win64_SpyLoader_SA_2147889461_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_SpyLoader_AB_2147890102_0
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "Trojan:Win64/SpyLoader.AB!MTB"
-        threat_id = "2147890102"
-        type = "Trojan"
-        platform = "Win64: Windows 64-bit platform"
-        family = "SpyLoader"
-        severity = "Critical"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "1"
-        strings_accuracy = "Low"
-    strings:
-        $x_1_1 = {41 f7 e8 41 03 d0 c1 fa ?? 8b c2 c1 e8 ?? 03 d0 0f be c2 6b c8 ?? 41 0f b6 c0 41 ff c0 2a c1 04 ?? 41 30 41 ?? 41 83 f8 ?? 7c}  //weight: 1, accuracy: Low
-    condition:
-        (filesize < 20MB) and
-        (all of ($x*))
-}
-
 rule Trojan_Win64_SpyLoader_NS_2147898389_0
 {
     meta:

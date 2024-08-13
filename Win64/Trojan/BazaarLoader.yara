@@ -67,3 +67,24 @@ rule Trojan_Win64_BazaarLoader_OBS_2147917301_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_BazaarLoader_MKV_2147918658_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/BazaarLoader.MKV!MTB"
+        threat_id = "2147918658"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "BazaarLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {44 03 d6 48 f7 e1 48 8b c1 48 2b c2 48 d1 e8 48 03 c2 48 c1 e8 04 48 6b c0 ?? 48 2b c8 49 2b cb 8a 44 0c 20 42 32 04 0b 41 88 01 4c 03 ce 45 3b d4 72}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
