@@ -27539,3 +27539,27 @@ rule TrojanDownloader_O97M_Obfuse_RVCG_2147917338_0
         (all of ($x*))
 }
 
+rule TrojanDownloader_O97M_Obfuse_RVCH_2147918770_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:O97M/Obfuse.RVCH!MTB"
+        threat_id = "2147918770"
+        type = "TrojanDownloader"
+        platform = "O97M: Office 97, 2000, XP, 2003, 2007, and 2010 macros - those that affect Word, Excel, and PowerPoint"
+        family = "Obfuse"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_MACROHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "Shell RzNcVQ12ahwQ4s4(\"52756e444C4c33322e455845207368656c6C33322e646C6C2c5368656C6c457865635f52756e444C4C20\")" ascii //weight: 1
+        $x_1_2 = "Q4s4(\"66676b6a673967726A6B396a6B67726a693339346A676b6664676a6C6c6a33\")" ascii //weight: 1
+        $x_1_3 = "Chr(Int(\"&h\" & Mid(gJFVoJJO, ysGdGeV, 2)))" ascii //weight: 1
+        $x_1_4 = "WorkbooK_oPen()" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

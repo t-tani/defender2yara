@@ -2109,3 +2109,34 @@ rule Trojan_MSIL_Vidar_NC_2147918578_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Vidar_AVD_2147918731_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Vidar.AVD!MTB"
+        threat_id = "2147918731"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Vidar"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "TAZRJSZMYHHADNVWNOMASQJOGTEXGEFCT" ascii //weight: 1
+        $x_1_2 = "TUWEYKHLPDTFBSTHVXUJESNLBVXIKWKYJBMAINVKOA" ascii //weight: 1
+        $x_1_3 = "USNMPXQVPYGGWPFNFODINAEHIMVNBQVNZBWWTPXMTQSNPCLZDPTQBLGUOGEDCDTYDT" ascii //weight: 1
+        $x_1_4 = "UGARLOLYMRDXOSMNESOVOYBEZJYRRPSQDSGQGANCNISFCZLWTIEQBTBVFWR" ascii //weight: 1
+        $x_1_5 = "MXRFMZZUIXCBVRFIIGTZJMWXVJYNXHWMCCKMUKZHOKGINWLWOYYDWELABUKCBMWABPYT" ascii //weight: 1
+        $x_1_6 = "KACWSCOGIZLEIQTUFAODULXDBZHROGWFGYLQMHSAEXNPHBKDJLZKSVXYCYUSVXR" ascii //weight: 1
+        $x_1_7 = "ULSWOSRQWJPPGRJPUWEIMYHXOLNOOHIZJEVITLTZAWZKHZZJQQNM" ascii //weight: 1
+        $x_1_8 = "RAVDUHDECCOBPGCWBVJCFIQYXPPLDYYTVQSEZEYDQUYU" ascii //weight: 1
+        $x_1_9 = "KZUUQRETFYQRXYYTZMJRIWCKTZETLFDUZDUMPPGWKDRQZSGQMTIHTGKOWKBQMKHZV" ascii //weight: 1
+        $x_1_10 = "AFYCMGYXDEISOPUYSZNNACNSQMGEPFBHWWJMQLGOEOGQXGOTHHJPE" ascii //weight: 1
+        $x_1_11 = "AFHFLMBDAYGDBCEWAZTCUDRPOUQRNKRPTLHIRRNVUXPFBZFIJNA" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

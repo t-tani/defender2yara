@@ -147,3 +147,66 @@ rule Trojan_Win32_Bayrob_MD_2147917206_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Bayrob_MME_2147918777_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Bayrob.MME!MTB"
+        threat_id = "2147918777"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Bayrob"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {74 07 50 e8 ea fb ff ff 59 e8 ed 68 00 00}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Bayrob_MH_2147918778_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Bayrob.MH!MTB"
+        threat_id = "2147918778"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Bayrob"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {74 11 c7 45 fc fe ff ff ff b8 ff 00 00 00 e9 04 01 00 00 68 14 62 49 00}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Bayrob_MK_2147918779_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Bayrob.MK!MTB"
+        threat_id = "2147918779"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Bayrob"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {74 11 29 d1 31 f6 8a 1c 32 88 1c 30 46 39 f1 75 f5 01 c8}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

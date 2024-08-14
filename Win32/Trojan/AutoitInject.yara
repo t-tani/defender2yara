@@ -2386,3 +2386,35 @@ rule Trojan_Win32_AutoitInject_TEAA_2147917672_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_AutoitInject_SAV_2147918776_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.SAV!MTB"
+        threat_id = "2147918776"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {45 00 58 00 45 00 43 00 55 00 54 00 45 00 20 00 28 00 20 00 22 00 [0-42] 22 00 20 00 29 00}  //weight: 1, accuracy: Low
+        $x_1_2 = {45 58 45 43 55 54 45 20 28 20 22 [0-42] 22 20 29}  //weight: 1, accuracy: Low
+        $x_1_3 = {46 00 49 00 4c 00 45 00 57 00 52 00 49 00 54 00 45 00 20 00 28 00 20 00 [0-42] 20 00 2c 00 20 00 [0-42] 20 00 29 00}  //weight: 1, accuracy: Low
+        $x_1_4 = {46 49 4c 45 57 52 49 54 45 20 28 20 [0-42] 20 2c 20 [0-42] 20 29}  //weight: 1, accuracy: Low
+        $x_1_5 = {46 00 49 00 4c 00 45 00 49 00 4e 00 53 00 54 00 41 00 4c 00 4c 00 20 00 28 00 20 00 22 00 [0-47] 22 00 20 00 2c 00 20 00 40 00 54 00 45 00 4d 00 50 00 44 00 49 00 52 00 20 00 26 00 20 00 22 00 5c 00 00 22 00 20 00 2c 00 20 00 31 00 20 00 29 00}  //weight: 1, accuracy: Low
+        $x_1_6 = {46 49 4c 45 49 4e 53 54 41 4c 4c 20 28 20 22 [0-47] 22 20 2c 20 40 54 45 4d 50 44 49 52 20 26 20 22 5c 00 22 20 2c 20 31 20 29}  //weight: 1, accuracy: Low
+        $x_1_7 = {52 00 45 00 47 00 57 00 52 00 49 00 54 00 45 00 20 00 28 00 20 00 24 00 [0-42] 20 00 2c 00 20 00 22 00 [0-42] 22 00 20 00 2c 00 20 00 22 00 [0-42] 22 00 20 00 2c 00 20 00 24 00 [0-42] 20 00 29 00}  //weight: 1, accuracy: Low
+        $x_1_8 = {52 45 47 57 52 49 54 45 20 28 20 24 [0-42] 20 2c 20 22 [0-42] 22 20 2c 20 22 [0-42] 22 20 2c 20 24 [0-42] 20 29}  //weight: 1, accuracy: Low
+        $x_1_9 = {52 00 45 00 47 00 44 00 45 00 4c 00 45 00 54 00 45 00 20 00 28 00 20 00 24 00 [0-42] 20 00 2c 00 20 00 22 00 [0-42] 22 00 20 00 29 00}  //weight: 1, accuracy: Low
+        $x_1_10 = {52 45 47 44 45 4c 45 54 45 20 28 20 24 [0-42] 20 2c 20 22 [0-42] 22 20 29}  //weight: 1, accuracy: Low
+        $x_1_11 = {53 00 54 00 52 00 49 00 4e 00 47 00 52 00 45 00 50 00 4c 00 41 00 43 00 45 00 20 00 28 00 20 00 [0-47] 2c 00 20 00 [0-47] 2c 00 20 00 24 00 [0-47] 2c 00 20 00 [0-42] 2c 00 20 00 [0-42] 20 00 29 00}  //weight: 1, accuracy: Low
+        $x_1_12 = {53 54 52 49 4e 47 52 45 50 4c 41 43 45 20 28 20 [0-47] 2c 20 [0-47] 2c 20 24 [0-47] 2c 20 [0-42] 2c 20 [0-42] 20 29}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (6 of ($x*))
+}
+

@@ -1632,6 +1632,28 @@ rule Trojan_Win32_OffLoader_SPLL_2147904781_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_OffLoader_SPLL_2147904781_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/OffLoader.SPLL!MTB"
+        threat_id = "2147904781"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "OffLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "/magiclunch.icu/trr.php" wide //weight: 2
+        $x_1_2 = "/silent" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win32_OffLoader_GK_2147904920_0
 {
     meta:

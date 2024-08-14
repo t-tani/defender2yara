@@ -168,43 +168,6 @@ rule Trojan_MSIL_ElysiumStealer_DE_2147780334_0
         )
 }
 
-rule Trojan_MSIL_ElysiumStealer_DF_2147780433_0
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "Trojan:MSIL/ElysiumStealer.DF!MTB"
-        threat_id = "2147780433"
-        type = "Trojan"
-        platform = "MSIL: .NET intermediate language scripts"
-        family = "ElysiumStealer"
-        severity = "Critical"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "27"
-        strings_accuracy = "High"
-    strings:
-        $x_20_1 = "Glory_to_the_Great_Lenin_and_the_October_Revolution" ascii //weight: 20
-        $x_20_2 = "jkalsjdnaskdas" ascii //weight: 20
-        $x_20_3 = "gsdffdssdfgsdfsd" ascii //weight: 20
-        $x_20_4 = "jdfghdfgdf" ascii //weight: 20
-        $x_20_5 = "sdfsdfsdfsdfsdfsd" ascii //weight: 20
-        $x_20_6 = "gsdgsdf" ascii //weight: 20
-        $x_1_7 = "IsDebuggerPresent" ascii //weight: 1
-        $x_1_8 = "ToBase64String" ascii //weight: 1
-        $x_1_9 = "tester" ascii //weight: 1
-        $x_1_10 = "Decompress" ascii //weight: 1
-        $x_1_11 = "Decrypt" ascii //weight: 1
-        $x_1_12 = "ReverseDecode" ascii //weight: 1
-        $x_1_13 = "eshelon" ascii //weight: 1
-    condition:
-        (filesize < 20MB) and
-        (
-            ((1 of ($x_20_*) and 7 of ($x_1_*))) or
-            ((2 of ($x_20_*))) or
-            (all of ($x*))
-        )
-}
-
 rule Trojan_MSIL_ElysiumStealer_DG_2147780443_0
 {
     meta:

@@ -11163,3 +11163,24 @@ rule Trojan_MSIL_Remcos_SPDG_2147918667_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Remcos_KAAY_2147918743_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Remcos.KAAY!MTB"
+        threat_id = "2147918743"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Remcos"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {08 5d 08 58 [0-8] 5d [0-15] 61 ?? ?? 59 20 00 02 00 00 58}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
