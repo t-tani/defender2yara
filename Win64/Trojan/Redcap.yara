@@ -140,3 +140,26 @@ rule Trojan_Win64_Redcap_NR_2147899136_1
         (all of ($x*))
 }
 
+rule Trojan_Win64_Redcap_APC_2147918689_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Redcap.APC!MTB"
+        threat_id = "2147918689"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Redcap"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "parsexxxxx.text" ascii //weight: 1
+        $x_1_2 = ", hostname: %v, elevated: " ascii //weight: 1
+        $x_1_3 = "Payload(%v) active, connecting to" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

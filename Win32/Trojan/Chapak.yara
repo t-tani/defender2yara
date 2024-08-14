@@ -334,3 +334,24 @@ rule Trojan_Win32_Chapak_SPDB_2147907618_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Chapak_GNN_2147918704_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Chapak.GNN!MTB"
+        threat_id = "2147918704"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Chapak"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {8d 14 3b 33 c2 33 c1 81 3d ?? ?? ?? ?? ?? ?? ?? ?? c7 05 ?? ?? ?? ?? ee 3d ea f4 89 44 24}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

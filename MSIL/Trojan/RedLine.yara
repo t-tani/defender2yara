@@ -3729,3 +3729,47 @@ rule Trojan_MSIL_RedLine_KAV_2147917998_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_RedLine_RDFC_2147918685_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/RedLine.RDFC!MTB"
+        threat_id = "2147918685"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "RedLine"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "2fd5dd05-0c12-4ab3-911c-c930a5602d87" ascii //weight: 2
+        $x_1_2 = "IntelCore Innovations Trademark" ascii //weight: 1
+        $x_1_3 = "professional gaming keyboards are designed for competition" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_RedLine_RDFD_2147918690_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/RedLine.RDFD!MTB"
+        threat_id = "2147918690"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "RedLine"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {28 42 00 00 0a 28 43 00 00 0a 28 45 00 00 0a fe 0e dc 04}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
