@@ -7043,3 +7043,24 @@ rule Trojan_MSIL_Formbook_AMAC_2147918686_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Formbook_RDAU_2147918799_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Formbook.RDAU!MTB"
+        threat_id = "2147918799"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Formbook"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {16 03 6f 49 00 00 0a 8e 69 6f 4d 00 00 0a 28 08 00 00 2b 2a}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
