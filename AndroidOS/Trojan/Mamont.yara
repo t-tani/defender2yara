@@ -180,3 +180,24 @@ rule Trojan_AndroidOS_Mamont_M_2147915767_0
         (all of ($x*))
 }
 
+rule Trojan_AndroidOS_Mamont_T_2147918895_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:AndroidOS/Mamont.T"
+        threat_id = "2147918895"
+        type = "Trojan"
+        platform = "AndroidOS: Android operating system"
+        family = "Mamont"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "onTelephonyRatCommandExecuted" ascii //weight: 2
+        $x_2_2 = "sendPhoneNumberToRetransmitter" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
