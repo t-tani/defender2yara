@@ -1046,3 +1046,24 @@ rule Trojan_Win32_Injuke_GXM_2147913810_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Injuke_AMAD_2147918877_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Injuke.AMAD!MTB"
+        threat_id = "2147918877"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Injuke"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {2b d0 8b 45 ?? 31 10 83 45 ?? 04 6a 00 e8 ?? ?? ?? ?? 83 c0 04 01 45}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

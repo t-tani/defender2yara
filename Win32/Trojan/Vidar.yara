@@ -5837,3 +5837,24 @@ rule Trojan_Win32_Vidar_PAFH_2147918296_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Vidar_KAE_2147918871_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Vidar.KAE!MTB"
+        threat_id = "2147918871"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Vidar"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {03 d7 8b 44 24 ?? c1 e8 05 89 44 24 ?? 8b 44 24 ?? 03 c5 33 c2 33 c1 81 3d ?? ?? ?? ?? 13 02 00 00 c7 05 ?? ?? ?? ?? ?? ?? ?? ?? 89 44 24 ?? 75}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

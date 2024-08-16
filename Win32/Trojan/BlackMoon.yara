@@ -634,3 +634,24 @@ rule Trojan_Win32_BlackMoon_GXN_2147918131_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_BlackMoon_GNN_2147918868_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/BlackMoon.GNN!MTB"
+        threat_id = "2147918868"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "BlackMoon"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = {8b 5d 0c 89 03 8b 4d f4 8b 55 0c 8b 12 83 c2 08 33 c0 33 db 51 0f b6 c8 fe c1 52 8a 34 39 02 de 8a 14 3b 88 14 39 88 34 3b 02 d6 0f b6 d2 8a 14 3a 8a 0c 30 32 ca 5a 88 0c 10 40 59 e2 d6}  //weight: 10, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

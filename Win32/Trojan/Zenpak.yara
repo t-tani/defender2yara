@@ -8437,3 +8437,24 @@ rule Trojan_Win32_Zenpak_KAW_2147918750_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Zenpak_KAX_2147918872_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zenpak.KAX!MTB"
+        threat_id = "2147918872"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zenpak"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {89 e5 56 8a 45 [0-50] 30 c8 81 c2 [0-15] 0f b6 c0 5e}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
