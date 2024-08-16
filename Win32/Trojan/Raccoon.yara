@@ -3291,3 +3291,25 @@ rule Trojan_Win32_Raccoon_MKQ_2147895550_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Raccoon_MZZ_2147918918_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Raccoon.MZZ!MTB"
+        threat_id = "2147918918"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Raccoon"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {0f b6 c9 c1 ea 18 8b b4 8f ?? ?? ?? ?? 8b c8 03 74 97 48 8b 55 f4 c1 e9 08 0f b6 c9 33 b4 8f 48 08 00 00 0f b6 c8 03 b4 8f 48 0c 00 00 8b 4d 0c 33 34 0a 83 6d fc 01 8b 4d 08 89 34 0a 8b 4d 0c 8b 75 08 89 04 0a 75}  //weight: 5, accuracy: Low
+        $x_5_2 = {8d 4f 44 89 44 32 04 8b 07 31 04 32 8b 45 f8 40 89 45 f8 3b 45 10 0f 82 68 ff ff ff}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

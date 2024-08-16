@@ -705,3 +705,25 @@ rule Trojan_MSIL_AveMariaRAT_Q_2147902183_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AveMariaRAT_R_2147918905_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AveMariaRAT.R!MTB"
+        threat_id = "2147918905"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AveMariaRAT"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {2b 0c 03 16 31 09 03 08 6f ?? 00 00 0a 32 06}  //weight: 2, accuracy: Low
+        $x_4_2 = {08 03 17 59 6f ?? 00 00 0a 06 7b ?? 00 00 04 8e 69 58 0d 08 03 6f ?? 00 00 0a 09 59 13 04 06 7b ?? 00 00 04 09 28}  //weight: 4, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
