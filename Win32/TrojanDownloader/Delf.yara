@@ -3650,3 +3650,32 @@ rule TrojanDownloader_Win32_Delf_RK_2147804287_0
         (2 of ($x*))
 }
 
+rule TrojanDownloader_Win32_Delf_PAFJ_2147918849_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:Win32/Delf.PAFJ!MTB"
+        threat_id = "2147918849"
+        type = "TrojanDownloader"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Delf"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "9"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "processhacker.exe" ascii //weight: 1
+        $x_1_2 = "taskmgr.exe" ascii //weight: 1
+        $x_1_3 = "regsvr32.exe /s" ascii //weight: 1
+        $x_1_4 = "SOFTWARE\\VMware, Inc.\\VMware Tools" ascii //weight: 1
+        $x_1_5 = "SOFTWARE\\Oracle\\VirtualBox Guest Additions" ascii //weight: 1
+        $x_1_6 = "://%s/gate/download_exec" ascii //weight: 1
+        $x_1_7 = "://%s/gate/update_exec" ascii //weight: 1
+        $x_1_8 = "procexp.exe" ascii //weight: 1
+        $x_1_9 = "procmon.exe" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

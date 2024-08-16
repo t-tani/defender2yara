@@ -27,3 +27,29 @@ rule Ransom_Win32_Mallox_AD_2147852013_0
         )
 }
 
+rule Ransom_Win32_Mallox_DA_2147918847_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win32/Mallox.DA!MTB"
+        threat_id = "2147918847"
+        type = "Ransom"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Mallox"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "Cant send target info data to the server" ascii //weight: 1
+        $x_1_2 = "HOW TO DECRYPT.txt" ascii //weight: 1
+        $x_1_3 = "delete shadows /all /quiet" ascii //weight: 1
+        $x_1_4 = "vssadmin.exe" ascii //weight: 1
+        $x_1_5 = "taskkill.exe" ascii //weight: 1
+        $x_1_6 = ".mallox" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
