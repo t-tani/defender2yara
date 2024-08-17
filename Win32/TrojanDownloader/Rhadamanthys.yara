@@ -10,7 +10,7 @@ rule TrojanDownloader_Win32_Rhadamanthys_BB_2147905190_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "19"
+        threshold = "18"
         strings_accuracy = "High"
     strings:
         $x_10_1 = "textbin.net/raw/" ascii //weight: 10
@@ -27,7 +27,7 @@ rule TrojanDownloader_Win32_Rhadamanthys_BB_2147905190_0
     condition:
         (filesize < 20MB) and
         (
-            ((1 of ($x_10_*) and 9 of ($x_1_*))) or
+            ((1 of ($x_10_*) and 8 of ($x_1_*))) or
             ((2 of ($x_10_*))) or
             (all of ($x*))
         )
