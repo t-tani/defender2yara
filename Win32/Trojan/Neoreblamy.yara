@@ -1305,3 +1305,39 @@ rule Trojan_Win32_Neoreblamy_ASK_2147918708_0
         (4 of ($x*))
 }
 
+rule Trojan_Win32_Neoreblamy_ASL_2147918978_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Neoreblamy.ASL!MTB"
+        threat_id = "2147918978"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Neoreblamy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "jRhkTfgSEqQGqcnMbYHRbyMyMSNKjU" ascii //weight: 1
+        $x_1_2 = "UvJcTAgHWCyDqCJtKgiKsaxWgxEgVN" ascii //weight: 1
+        $x_1_3 = "ESXQoeXEjSFdZcFHNwNJuFMoWWrxYBXanlsyH" ascii //weight: 1
+        $x_1_4 = "qeXYDiNcAXbtiUKnwMbsFDjYWbglUdlXjv" ascii //weight: 1
+        $x_1_5 = "SzckAEMmSQwcbgBOMknWXjFVeGeSOXxgku" ascii //weight: 1
+        $x_1_6 = "OjrrKlScCkKhJxwTzygzibOPurXmkVwbclLxB" ascii //weight: 1
+        $x_1_7 = "chDfqpgmgZrFqTFExXfGtoTtmfmLatIZdaSzcZLsjxxYYNrBXkJ" ascii //weight: 1
+        $x_1_8 = "RaGDmEqNXKpoPmxiTPANRlDqt" ascii //weight: 1
+        $x_1_9 = "OoeMNmuWPnYUnVlElXgRuaUKcIDhZa" ascii //weight: 1
+        $x_1_10 = "HVRVuZSxgGwXJAhleJQlSYbMAcKBtu" ascii //weight: 1
+        $x_1_11 = "PTpPKWjlfdDeGpNmTFQCZnoQsdyASgQNmt" ascii //weight: 1
+        $x_1_12 = "BCiZXMuPyRnwvEKmjiSyGRnxpkCShIzlQVZuixKDAw" ascii //weight: 1
+        $x_1_13 = "MCLwhjlFnNFRtHDaNjTvnGbaoAYa" ascii //weight: 1
+        $x_1_14 = "xBzXsMVaqaqMxcjuhCtZMHIwjzuBECWHuV" ascii //weight: 1
+        $x_1_15 = "YfsEYMqDjdtjyRAElUAPwpXEjTyKbFq" ascii //weight: 1
+        $x_1_16 = "PtQPzdfDgYsquoaUWkHGsguEYTxlLjnkvKmrPGw" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (4 of ($x*))
+}
+
