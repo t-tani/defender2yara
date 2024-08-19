@@ -452,3 +452,24 @@ rule Trojan_MSIL_StealC_RDH_2147918932_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_StealC_KAJ_2147919017_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/StealC.KAJ!MTB"
+        threat_id = "2147919017"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "StealC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {02 11 13 8f ?? 00 00 01 25 71 ?? 00 00 01 06 11 28 91 61 d2 81 ?? 00 00 01 11 13 17 58}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
