@@ -5203,6 +5203,28 @@ rule Trojan_Win32_Zbot_AZB_2147848498_1
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {c1 e1 02 d3 e0 c1 e1 03 23 c8 33 ce f7 e3 83 ef 72 49 c1 e0 04 23 d9}  //weight: 1, accuracy: High
+        $x_2_2 = {f7 e1 33 f6 d3 ee 0b cf 42 d1 e9 d3 e6 8d 0c 80 d3 e3 8d 93 da 00 00 00 33 c9 8d 0c 89 ba 95 15 de f4 c1 e0 04 42 81 ef 7c 2b 00 00 c1 e7 05 83 e8 24}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Zbot_AZB_2147848498_2
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zbot.AZB!MTB"
+        threat_id = "2147848498"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zbot"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "1"
         strings_accuracy = "High"
     strings:
