@@ -277,6 +277,27 @@ rule Ransom_MSIL_FileCoder_AC_2147797580_0
         (all of ($x*))
 }
 
+rule Ransom_MSIL_FileCoder_SM_2147807282_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:MSIL/FileCoder.SM!MTB"
+        threat_id = "2147807282"
+        type = "Ransom"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "FileCoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {00 11 04 07 09 91 58 06 09 06 8e 69 5d 91 58 20 00 01 00 00 5d 13 04 07 09 11 04 28 0b 00 00 06 00 00 09 17 58 0d 09 20 00 01 00 00 fe 04 13 08 11 08 2d cc}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Ransom_MSIL_FileCoder_AF_2147807870_0
 {
     meta:
@@ -1026,6 +1047,30 @@ rule Ransom_MSIL_FileCoder_RHR_2147916491_0
         $x_1_9 = "EncryptFiles" ascii //weight: 1
         $x_1_10 = "pdf.exe" ascii //weight: 1
         $x_2_11 = {50 45 00 00 4c 01 03 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 0b 01 30 00 00 40 00 00 00 10 01 00 00 00 00 00 9e 5f}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Ransom_MSIL_FileCoder_AYA_2147919076_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:MSIL/FileCoder.AYA!MTB"
+        threat_id = "2147919076"
+        type = "Ransom"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "FileCoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "Users\\Public\\Windows\\Ui\\unlock your files.lnk" wide //weight: 2
+        $x_1_2 = "DeleteShadowCopies" ascii //weight: 1
+        $x_1_3 = "alertmsg.zip" wide //weight: 1
+        $x_1_4 = "error ha bhaiya" wide //weight: 1
     condition:
         (filesize < 20MB) and
         (all of ($x*))
