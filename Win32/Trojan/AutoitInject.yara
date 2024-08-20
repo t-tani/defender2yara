@@ -2418,3 +2418,29 @@ rule Trojan_Win32_AutoitInject_SAV_2147918776_0
         (6 of ($x*))
 }
 
+rule Trojan_Win32_AutoitInject_NB_2147919154_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.NB!MTB"
+        threat_id = "2147919154"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = "rblxhubdeploy.rand744.nl" ascii //weight: 3
+        $x_1_2 = "ExecQuery ( \"Select * from Win32_OperatingSystem\" )" ascii //weight: 1
+        $x_1_3 = "SHELLEXECUTEWAIT ( \"powershell\" , \"start-process -verb runas 'cmd.exe' -argumentlist" ascii //weight: 1
+        $x_1_4 = "webserver\\apache\\www" ascii //weight: 1
+        $x_1_5 = "c:\\Windows\\System32\\Drivers\\etc\\hosts &&" ascii //weight: 1
+        $x_1_6 = "_BINARYCALL_BASE64DECODE" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

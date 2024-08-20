@@ -4153,6 +4153,29 @@ rule Trojan_MSIL_Formbook_NZB_2147836036_0
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = {00 06 18 d8 0a 06 07 fe 02 13 05 11 05 2c 02 07 0a 00 06 07 5d 16}  //weight: 3, accuracy: High
+        $x_1_2 = "CreateDecryptor" ascii //weight: 1
+        $x_1_3 = "WebServices" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Formbook_NZB_2147836036_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Formbook.NZB!MTB"
+        threat_id = "2147836036"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Formbook"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
         strings_accuracy = "Low"
     strings:
         $x_3_1 = {25 16 1f 25 9d 6f ?? 00 00 0a 13 04 38 ?? ?? ?? ?? 00 02}  //weight: 3, accuracy: Low
@@ -4163,7 +4186,7 @@ rule Trojan_MSIL_Formbook_NZB_2147836036_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Formbook_NZB_2147836036_1
+rule Trojan_MSIL_Formbook_NZB_2147836036_2
 {
     meta:
         author = "defender2yara"
@@ -6654,33 +6677,6 @@ rule Trojan_MSIL_Formbook_PAET_2147913245_0
         strings_accuracy = "High"
     strings:
         $x_2_1 = {07 11 04 91 11 06 61 13 07 11 04 17 58 13 08 07 11 08 11 05 5d 91 13 09 20 00 01 00 00 13 0a 11 07 11 09 59 11 0a 58 11 0a 17 59 5f 13 0b 07 11 04 11 0b d2 9c 00 11 04 17 58 13 04}  //weight: 2, accuracy: High
-    condition:
-        (filesize < 20MB) and
-        (all of ($x*))
-}
-
-rule Trojan_MSIL_Formbook_NJ_2147913583_0
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "Trojan:MSIL/Formbook.NJ!MTB"
-        threat_id = "2147913583"
-        type = "Trojan"
-        platform = "MSIL: .NET intermediate language scripts"
-        family = "Formbook"
-        severity = "Critical"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "11"
-        strings_accuracy = "High"
-    strings:
-        $x_5_1 = {00 06 18 d8 1f 18 30 05 06 18 d8 2b 02 1f 18 0a 00 06 1f 18 5d 16 fe 01 0c 08 2c e4}  //weight: 5, accuracy: High
-        $x_1_2 = "Password" ascii //weight: 1
-        $x_1_3 = "CreditCardNumber" ascii //weight: 1
-        $x_1_4 = "CreditCardCvv" ascii //weight: 1
-        $x_1_5 = "BitcoinAddress" ascii //weight: 1
-        $x_1_6 = "EthereumAddress" ascii //weight: 1
-        $x_1_7 = "Invoke" ascii //weight: 1
     condition:
         (filesize < 20MB) and
         (all of ($x*))

@@ -166,24 +166,3 @@ rule Trojan_Win32_Reconyc_GXZ_2147903460_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Reconyc_ARY_2147918981_0
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "Trojan:Win32/Reconyc.ARY!MTB"
-        threat_id = "2147918981"
-        type = "Trojan"
-        platform = "Win32: Windows 32-bit platform"
-        family = "Reconyc"
-        severity = "Critical"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "1"
-        strings_accuracy = "Low"
-    strings:
-        $x_1_1 = {f3 ab 8b 06 f7 d8 99 6a 02 52 50 8b cb e8 ?? ?? ?? ?? 85 c0 7c 3f 6a 25 8d 45 d4 6a 00 50 e8 ?? ?? ?? ?? 83 c4 0c 6a 24 8d 45 d4 50 8b cb e8 ?? ?? ?? ?? 85 c0 7c 1e 8d 45 d4 50 68 e4 c7 41 00 e8 ?? ?? ?? ?? f7 d8 1b c0 59 40 59}  //weight: 1, accuracy: Low
-    condition:
-        (filesize < 20MB) and
-        (all of ($x*))
-}
-
