@@ -3489,6 +3489,33 @@ rule Trojan_MSIL_DarkTortilla_RP_2147913029_18
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "106"
+        strings_accuracy = "Low"
+    strings:
+        $x_100_1 = {00 1b 19 9a 28 ?? 00 00 0a 28 ?? ?? 00 06 26 de}  //weight: 100, accuracy: Low
+        $x_1_2 = "Create__Instance__" ascii //weight: 1
+        $x_1_3 = "Dispose__Instance__" ascii //weight: 1
+        $x_1_4 = "System.Security.Cryptography" ascii //weight: 1
+        $x_1_5 = "GetResourceString" ascii //weight: 1
+        $x_1_6 = "CryptoStreamMode" ascii //weight: 1
+        $x_1_7 = "CreateDecryptor" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_DarkTortilla_RP_2147913029_19
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/DarkTortilla.RP!MTB"
+        threat_id = "2147913029"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "DarkTortilla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "148"
         strings_accuracy = "High"
     strings:

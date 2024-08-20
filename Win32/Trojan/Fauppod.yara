@@ -1934,3 +1934,24 @@ rule Trojan_Win32_Fauppod_PWH_2147919002_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Fauppod_KAA_2147919039_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Fauppod.KAA!MTB"
+        threat_id = "2147919039"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Fauppod"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {89 e5 8a 45 [0-15] 88 c2 02 15 [0-50] 30 c8 0f b6 c0 5d}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

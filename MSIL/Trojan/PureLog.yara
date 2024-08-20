@@ -299,3 +299,26 @@ rule Trojan_MSIL_PureLog_KAG_2147919016_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_PureLog_RDQ_2147919038_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/PureLog.RDQ!MTB"
+        threat_id = "2147919038"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "PureLog"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "095a5c88-d365-4c54-9aff-d168cb28ed00" ascii //weight: 2
+        $x_1_2 = "musicSDplayer" ascii //weight: 1
+        $x_1_3 = "Speccy Installer" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

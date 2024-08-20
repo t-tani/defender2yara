@@ -3794,3 +3794,24 @@ rule Trojan_MSIL_RedLine_RDFE_2147918907_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_RedLine_RDFF_2147919023_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/RedLine.RDFF!MTB"
+        threat_id = "2147919023"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "RedLine"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {07 72 61 00 00 70 28 44 00 00 0a 72 93 00 00 70 28 44 00 00 0a 6f 45 00 00 0a 0c 73 46 00 00 0a 0d 09 08 17 73 47 00 00 0a 13 04}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

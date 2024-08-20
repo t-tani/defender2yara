@@ -102,42 +102,6 @@ rule Trojan_Win32_ClipBanker_RA_2147755650_1
         (all of ($x*))
 }
 
-rule Trojan_Win32_ClipBanker_GA_2147773591_0
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "Trojan:Win32/ClipBanker.GA!MTB"
-        threat_id = "2147773591"
-        type = "Trojan"
-        platform = "Win32: Windows 32-bit platform"
-        family = "ClipBanker"
-        severity = "Critical"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "27"
-        strings_accuracy = "High"
-    strings:
-        $x_10_1 = "Clipboard" ascii //weight: 10
-        $x_10_2 = "AddClipboardFormatListener" ascii //weight: 10
-        $x_1_3 = "WM_CLIPBOARDUPDATE" ascii //weight: 1
-        $x_1_4 = "currentClipboard" ascii //weight: 1
-        $x_1_5 = "Regex" ascii //weight: 1
-        $x_1_6 = "bitcoin" ascii //weight: 1
-        $x_1_7 = "ethereum" ascii //weight: 1
-        $x_1_8 = "monero" ascii //weight: 1
-        $x_1_9 = "ripple" ascii //weight: 1
-        $x_1_10 = "bitcoincash" ascii //weight: 1
-        $x_1_11 = "litecoin" ascii //weight: 1
-        $x_1_12 = "binance" ascii //weight: 1
-        $x_1_13 = "tezos" ascii //weight: 1
-    condition:
-        (filesize < 20MB) and
-        (
-            ((2 of ($x_10_*) and 7 of ($x_1_*))) or
-            (all of ($x*))
-        )
-}
-
 rule Trojan_Win32_ClipBanker_MR_2147776634_0
 {
     meta:

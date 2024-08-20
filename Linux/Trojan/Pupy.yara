@@ -43,3 +43,28 @@ rule Trojan_Linux_Pupy_B_2147821036_0
         (2 of ($x*))
 }
 
+rule Trojan_Linux_Pupy_C_2147919020_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Linux/Pupy.C!MTB"
+        threat_id = "2147919020"
+        type = "Trojan"
+        platform = "Linux: Linux platform"
+        family = "Pupy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_ELFHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "reflective_inject_dll" ascii //weight: 1
+        $x_1_2 = "get_pupy_config" ascii //weight: 1
+        $x_1_3 = "linux-inject" ascii //weight: 1
+        $x_1_4 = "pupy.error" ascii //weight: 1
+        $x_1_5 = "injectSharedLibrary" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

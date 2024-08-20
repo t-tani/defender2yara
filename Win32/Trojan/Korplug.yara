@@ -19,3 +19,24 @@ rule Trojan_Win32_Korplug_GMN_2147918622_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Korplug_WFB_2147919021_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Korplug.WFB!MTB"
+        threat_id = "2147919021"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Korplug"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {8b 45 0c 8a 4d e0 d3 f8 30 44 37 08 83 fb 03}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
