@@ -103,3 +103,27 @@ rule TrojanSpy_AndroidOS_GossRat_D_2147914097_0
         )
 }
 
+rule TrojanSpy_AndroidOS_GossRat_E_2147919060_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanSpy:AndroidOS/GossRat.E!MTB"
+        threat_id = "2147919060"
+        type = "TrojanSpy"
+        platform = "AndroidOS: Android operating system"
+        family = "GossRat"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "mellat" ascii //weight: 1
+        $x_1_2 = "Lir/expert/sms/Constants" ascii //weight: 1
+        $x_1_3 = "Lir/expert/sms/Url" ascii //weight: 1
+        $x_1_4 = "Lir/expert/sms/Api" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

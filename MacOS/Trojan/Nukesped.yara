@@ -42,3 +42,25 @@ rule Trojan_MacOS_Nukesped_H_2147850534_0
         (1 of ($x*))
 }
 
+rule Trojan_MacOS_Nukesped_I_2147919059_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MacOS/Nukesped.I!MTB"
+        threat_id = "2147919059"
+        type = "Trojan"
+        platform = "MacOS: "
+        family = "Nukesped"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_MACHOHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {44 89 e0 31 c9 ?? ?? ?? ?? ?? ?? ?? 89 ce 83 e6 1f 8a 14 3e 30 14 0b 48 ff c1 48 39 c8}  //weight: 1, accuracy: Low
+        $x_1_2 = {8b 4d ec 89 ce c1 ee 02 83 e6 3f 42 8a 34 06 89 c7 40 88 34 3a c1 e1 04 83 e1 30 44 89 ce c1 ee 04 83 e6 0f 48 09 ce 41 8a 0c 30}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

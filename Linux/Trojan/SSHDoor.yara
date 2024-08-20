@@ -1,3 +1,25 @@
+rule Trojan_Linux_SSHDoor_D_2147846544_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Linux/SSHDoor.D!MTB"
+        threat_id = "2147846544"
+        type = "Trojan"
+        platform = "Linux: Linux platform"
+        family = "SSHDoor"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_ELFHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {48 83 ec 18 89 f1 31 d2 ?? ?? ?? ?? ?? 64 48 8b 04 25 28 00 00 00 48 89 44 24 08 31 c0 e8 2e fc ff ff 89 c2 b8 ff ff ff ff 85 d2 0f 45 44 24 04 48 8b 54 24 08 64 48 33 14 25 28 00 00 00 75 ?? 48 83 c4 18}  //weight: 1, accuracy: Low
+        $x_1_2 = {41 80 3c 24 58 0f 85 ?? ?? ?? ?? 0f 1f 44 00 00 e8 0b eb ff ff 0f b7 c8 b8 4f ec c4 4e f7 e1 b8 34 00 00 00 c1 ea 04 0f af d0 29 d1 89 ca ?? ?? ?? ?? ?? ?? 83 fa 19 0f 4f c1 41 88 04 24 49 83 ec 01 4c 39 e3}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Linux_SSHDoor_C_2147914066_0
 {
     meta:

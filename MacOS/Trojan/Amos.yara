@@ -623,3 +623,75 @@ rule Trojan_MacOS_Amos_AE_2147917786_0
         (all of ($x*))
 }
 
+rule Trojan_MacOS_Amos_AJ_2147919057_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MacOS/Amos.AJ!MTB"
+        threat_id = "2147919057"
+        type = "Trojan"
+        platform = "MacOS: "
+        family = "Amos"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_MACHOHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {2a 41 00 51 eb 43 00 91 4b 0d 40 b3 0a 69 69 38 6b 01 40 39 4a 01 0b 4a 0a 69 29 38 29 05 00 91 3f 49 02 f1}  //weight: 1, accuracy: High
+        $x_1_2 = {bf 6a 34 38 e8 1f 46 39 09 1d 00 13 ea 2f 57 a9 3f 01 00 71 e9 c3 05 91 41 b1 89 9a 62 b1 88 9a e0 43 1f 91}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MacOS_Amos_AN_2147919058_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MacOS/Amos.AN!MTB"
+        threat_id = "2147919058"
+        type = "Trojan"
+        platform = "MacOS: "
+        family = "Amos"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_MACHOHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {e8 04 80 52 08 00 08 4a e8 83 02 39 2a fc 78 d3 48 09 1c 52 e8 7f 02 39 2b fc 70 d3 e9 0d 80 52 68 01 09 4a e8 7b 02 39 2c fc 68 d3 93 0e 80 52 88 01 13 4a e8 77 02 39 2d fc 60 d3 68 0e 80 52 ae 01 08 4a 68 0e 80 52 ee 73 02 39 2e fc 58 d3 cf 01 1b 52 ef 6f 02 39}  //weight: 1, accuracy: High
+        $x_1_2 = {1f 21 00 f1 00 ?? ?? ?? 2a 01 08 8b 4b 01 40 39 4c 41 40 39 8b 01 0b 4a 4b 41 00 39 08 05 00 91}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MacOS_Amos_AO_2147919063_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MacOS/Amos.AO!MTB"
+        threat_id = "2147919063"
+        type = "Trojan"
+        platform = "MacOS: "
+        family = "Amos"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_MACHOHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = "walletwasabi/client/Wallets/" ascii //weight: 5
+        $x_5_2 = "Exodus/exodus.wallet/" ascii //weight: 5
+        $x_1_3 = "atomic/Local Stveldb/" ascii //weight: 1
+        $x_1_4 = "Guarda/Local Storage/leveldb/" ascii //weight: 1
+        $x_1_5 = {ff 43 01 d1 fd 7b 04 a9 fd 03 01 91 a0 83 1f f8 a8 83 5f f8 e8 07 00 f9 e0 83 00 91 e0 03 00 f9 61 00 00 f0 21 f8 06 91 6a ?? ?? ?? e1 03 40 f9 e2 07 40 f9 e0 03 02 aa}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (
+            ((2 of ($x_5_*) and 1 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+
