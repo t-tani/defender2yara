@@ -5348,6 +5348,38 @@ rule Trojan_Win32_Farfli_RP_2147917722_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Farfli_RP_2147917722_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Farfli.RP!MTB"
+        threat_id = "2147917722"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Farfli"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "165"
+        strings_accuracy = "High"
+    strings:
+        $x_100_1 = "C:\\Users\\inx.cod" ascii //weight: 100
+        $x_10_2 = "wmic bios get manufacturer" ascii //weight: 10
+        $x_10_3 = "VMware" ascii //weight: 10
+        $x_10_4 = "Virtual" ascii //weight: 10
+        $x_10_5 = "Microsoft Corporation" ascii //weight: 10
+        $x_10_6 = "innotek GmbH" ascii //weight: 10
+        $x_10_7 = "Parallels Software International Inc." ascii //weight: 10
+        $x_1_8 = "\\VC\\include\\streambuf" ascii //weight: 1
+        $x_1_9 = "C:\\INTERNAL\\REMOTE.EXE" wide //weight: 1
+        $x_1_10 = "strcat_s(CommandLine, CommandLineSize, cmdstring)" wide //weight: 1
+        $x_1_11 = "strcat_s(CommandLine, CommandLineSize, \" /c \")" wide //weight: 1
+        $x_1_12 = "strcpy_s(CommandLine, CommandLineSize, cmdexe)" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win32_Farfli_MKV_2147918906_0
 {
     meta:

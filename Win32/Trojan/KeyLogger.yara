@@ -551,3 +551,34 @@ rule Trojan_Win32_KeyLogger_ASM_2147915755_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_KeyLogger_AMAD_2147919142_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/KeyLogger.AMAD!MTB"
+        threat_id = "2147919142"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "KeyLogger"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = "main.keyboardHook" ascii //weight: 2
+        $x_2_2 = "main.keylogger" ascii //weight: 2
+        $x_2_3 = "Starting keylogger" ascii //weight: 2
+        $x_1_4 = "zaneGittins/go-inject/inject.init" ascii //weight: 1
+        $x_1_5 = {6d 61 69 6e 2e 67 65 74 45 78 65 63 49 44 00 6d 61 74 68 2f 62 69 67 2e 28 2a 49 6e 74 29 2e 49 6e 74 36 34 00 6d 61 74 68 2f 62 69 67 2e 6c 6f 77 36 34 00 6d 61 69 6e 2e 66 69 6e 67 65 72 70 72 69 6e 74 43 50 55 00 6d 61 69 6e 2e 68 61 73 68 53 74 72 69 6e 67 00 68 61 73 68 2f 66 6e 76 2e 4e 65 77 33 32 61 00 6d 61 69 6e 2e 68 69 73 74 6f 72 79 54 6f 43 52 43}  //weight: 1, accuracy: High
+        $x_1_6 = "(*tripleDESCipher).Decrypt" ascii //weight: 1
+        $x_1_7 = {2d 00 6c 00 64 00 66 00 6c 00 61 00 67 00 73 00 3d 00 22 00 2d 00 73 00 20 00 2d 00 77 00 20 00 2d 00 6f 00 20 00 [0-30] 2e 00 65 00 78 00 65 00 20 00 2d 00 58 00 20 00 27 00 6d 00 61 00 69 00 6e 00 2e 00 42 00 69 00 6e 00 49 00 44 00 3d 00 ?? 27 00 20 00 2d 00 58 00 20 00 27 00 6d 00 61 00 69 00 6e 00 2e 00 63 00 6f 00 70 00 79 00 3d 00 [0-5] 27 00 20 00 2d 00 58 00 20 00 27 00 6d 00 61 00 69 00 6e 00 2e 00 64 00 6f 00 6d 00 61 00 69 00 6e 00 3d 00}  //weight: 1, accuracy: Low
+        $x_1_8 = {2d 6c 64 66 6c 61 67 73 3d 22 2d 73 20 2d 77 20 2d 6f 20 [0-30] 2e 65 78 65 20 2d 58 20 27 6d 61 69 6e 2e 42 69 6e 49 44 3d ?? 27 20 2d 58 20 27 6d 61 69 6e 2e 63 6f 70 79 3d [0-5] 27 20 2d 58 20 27 6d 61 69 6e 2e 64 6f 6d 61 69 6e 3d}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (
+            ((3 of ($x_2_*) and 4 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+

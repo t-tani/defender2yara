@@ -1955,3 +1955,24 @@ rule Trojan_MSIL_Stealer_AAW_2147916558_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Stealer_LLN_2147919112_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Stealer.LLN!MTB"
+        threat_id = "2147919112"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Stealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {17 13 1f 16 13 20 2b 43 00 02 11 20 02 11 20 91 66 d2 9c 02 11 20 8f 21 00 00 01 25 71 21 00 00 01 1f 64 58 d2 81 21 00 00 01 02 11 20 8f 21 00 00 01 25 71 21 00 00 01 20 92 00 00 00 59 d2 81 21 00 00 01 00 11 20 17 58 13 20 11 20 02 8e 69 fe 04 13 21 11 21 2d b0}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

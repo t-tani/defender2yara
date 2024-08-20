@@ -147,3 +147,24 @@ rule Trojan_Win32_Tepfer_SPPB_2147913143_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Tepfer_GNN_2147919098_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Tepfer.GNN!MTB"
+        threat_id = "2147919098"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Tepfer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = {8b 45 08 8a 4d fc 03 c7 30 08 47 3b 7d 0c}  //weight: 10, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
