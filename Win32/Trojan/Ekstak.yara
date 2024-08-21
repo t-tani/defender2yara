@@ -8377,3 +8377,24 @@ rule Trojan_Win32_Ekstak_ASHC_2147918979_0
         )
 }
 
+rule Trojan_Win32_Ekstak_SDOD_2147919181_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Ekstak.SDOD!MTB"
+        threat_id = "2147919181"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Ekstak"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {72 44 6c 50 74 53 cd e6 d7 7b 0b 2a 01 00 00 ?? ?? ?? ?? ?? ?? ?? ?? 00 00 d2 0a 00 54 dc 8d}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

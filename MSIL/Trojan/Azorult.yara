@@ -266,3 +266,24 @@ rule Trojan_MSIL_Azorult_GNK_2147917054_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Azorult_KAA_2147919182_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Azorult.KAA!MTB"
+        threat_id = "2147919182"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Azorult"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {02 08 91 0d 09 08 59 20 ff 00 00 00 5f 0d 09 03 1e 5d 1f 1f 5f 63 09 1e 03 1e 5d 59 1f 1f 5f 62 60 20 ff 00 00 00 5f 0d 09 03 59 20 ff 00 00 00 5f 0d 09 03 61 0d 06 08 09 d2 9c 00 08 17 58 0c}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
