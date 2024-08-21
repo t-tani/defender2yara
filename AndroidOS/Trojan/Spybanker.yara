@@ -42,3 +42,24 @@ rule Trojan_AndroidOS_Spybanker_V_2147917652_0
         (3 of ($x*))
 }
 
+rule Trojan_AndroidOS_Spybanker_YE_2147919239_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:AndroidOS/Spybanker.YE"
+        threat_id = "2147919239"
+        type = "Trojan"
+        platform = "AndroidOS: Android operating system"
+        family = "Spybanker"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "BjE0W10ndAJCTzt0trKp0g==" ascii //weight: 1
+        $x_1_2 = "ZmtKOjlmZV0nMWbdp871qZW3" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

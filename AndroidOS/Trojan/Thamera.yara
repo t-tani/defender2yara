@@ -166,3 +166,24 @@ rule Trojan_AndroidOS_Thamera_D_2147908990_0
         (all of ($x*))
 }
 
+rule Trojan_AndroidOS_Thamera_WT_2147919243_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:AndroidOS/Thamera.WT"
+        threat_id = "2147919243"
+        type = "Trojan"
+        platform = "AndroidOS: Android operating system"
+        family = "Thamera"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "QWxsb3cgcGVybWlzc2lvbiB0byBjb250aW51ZQ==" ascii //weight: 1
+        $x_1_2 = "QVBQX05FVw==" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

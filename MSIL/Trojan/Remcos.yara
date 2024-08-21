@@ -11228,3 +11228,28 @@ rule Trojan_MSIL_Remcos_SLA_2147919116_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Remcos_NJ_2147919211_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Remcos.NJ!MTB"
+        threat_id = "2147919211"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Remcos"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "9"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {00 03 8e 69 18 da 0b 73 ?? 00 00 0a 0c 07 0d 16}  //weight: 2, accuracy: Low
+        $x_2_2 = {11 04 19 32 0a 11 04 1b fe 02 16 fe 01}  //weight: 2, accuracy: High
+        $x_2_3 = {06 9a 08 06 19 da 07 d8}  //weight: 2, accuracy: High
+        $x_2_4 = "https://imgurl.ir/download.php" ascii //weight: 2
+        $x_1_5 = "ReadAsStringAsync" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

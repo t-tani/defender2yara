@@ -884,3 +884,47 @@ rule Trojan_AndroidOS_Rewardsteal_AF_2147916914_0
         (2 of ($x*))
 }
 
+rule Trojan_AndroidOS_Rewardsteal_PR_2147919238_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:AndroidOS/Rewardsteal.PR"
+        threat_id = "2147919238"
+        type = "Trojan"
+        platform = "AndroidOS: Android operating system"
+        family = "Rewardsteal"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "beta-carotene.000webhostapp.com/" ascii //weight: 1
+        $x_1_2 = "com.exa.hhkhkhkhk.jhkhkhkhk.jhkhkhkhkhk.mple.testttttt" ascii //weight: 1
+        $x_1_3 = "mWebw!!.getSettings()" ascii //weight: 1
+        $x_1_4 = "S1m2s3R4e5c6jksdfhksdhkfhkshfe7i8v9e0r" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (2 of ($x*))
+}
+
+rule Trojan_AndroidOS_Rewardsteal_FH_2147919246_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:AndroidOS/Rewardsteal.FH"
+        threat_id = "2147919246"
+        type = "Trojan"
+        platform = "AndroidOS: Android operating system"
+        family = "Rewardsteal"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "axscard.onrender.com" ascii //weight: 1
+        $x_1_2 = "Lcom/gurujifinder/mjpro" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

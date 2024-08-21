@@ -86,3 +86,24 @@ rule Trojan_AndroidOS_Badpack_C_2147917135_0
         (all of ($x*))
 }
 
+rule Trojan_AndroidOS_Badpack_ET_2147919242_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:AndroidOS/Badpack.ET"
+        threat_id = "2147919242"
+        type = "Trojan"
+        platform = "AndroidOS: Android operating system"
+        family = "Badpack"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "17f1afc746436f08" ascii //weight: 1
+        $x_1_2 = "Lqu0da6/d3x0/it0pmx;" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

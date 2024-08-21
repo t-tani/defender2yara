@@ -102,3 +102,53 @@ rule Trojan_Win32_Relatsnif_C_2147919081_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Relatsnif_D_2147919213_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Relatsnif.D"
+        threat_id = "2147919213"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Relatsnif"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "Standalone values not allowed. Was given: {}" ascii //weight: 1
+        $x_1_2 = "Config file contents:" ascii //weight: 1
+        $x_1_3 = "DQAADQAADQAADQAA" ascii //weight: 1
+        $x_1_4 = "C:\\ProgramData\\chocolatey\\lib\\Connhost\\tools\\sb.conf" ascii //weight: 1
+        $x_1_5 = "GetComputerNameA" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Relatsnif_E_2147919214_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Relatsnif.E"
+        threat_id = "2147919214"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Relatsnif"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "Failed to rename {} to {}. Error code: {}" ascii //weight: 1
+        $x_1_2 = "Renamed {} to {}." ascii //weight: 1
+        $x_1_3 = "File {} {}." ascii //weight: 1
+        $x_1_4 = "{} {}. Error code: {}" ascii //weight: 1
+        $x_1_5 = "Overwrote {} with {} {} {})" ascii //weight: 1
+        $x_1_6 = "[{}] [{}] {}" ascii //weight: 1
+        $x_1_7 = "{} {} after renaming it." ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

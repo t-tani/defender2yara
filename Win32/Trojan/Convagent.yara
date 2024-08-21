@@ -1366,3 +1366,24 @@ rule Trojan_Win32_Convagent_QAA_2147916452_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Convagent_MMZ_2147919248_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Convagent.MMZ!MTB"
+        threat_id = "2147919248"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Convagent"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {8b 45 f8 83 c0 46 89 45 fc 83 6d fc ?? 83 6d fc 3c 8b 45 08 8a 4d fc 03 c7 30 08 47 3b fb 7c}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

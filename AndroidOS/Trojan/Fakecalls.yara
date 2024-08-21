@@ -435,3 +435,25 @@ rule Trojan_AndroidOS_Fakecalls_U_2147915741_0
         (all of ($x*))
 }
 
+rule Trojan_AndroidOS_Fakecalls_2147919245_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:AndroidOS/Fakecalls.MT"
+        threat_id = "2147919245"
+        type = "Trojan"
+        platform = "AndroidOS: Android operating system"
+        family = "Fakecalls"
+        severity = "Critical"
+        info = "MT: an internal category used to refer to some threats"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "autoServiceForwar dingNumber" ascii //weight: 1
+        $x_1_2 = "autoServiceCa llNumber" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
