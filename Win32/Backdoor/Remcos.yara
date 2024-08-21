@@ -211,6 +211,45 @@ rule Backdoor_Win32_Remcos_PB_2147772778_0
         (all of ($x*))
 }
 
+rule Backdoor_Win32_Remcos_GA_2147773587_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Backdoor:Win32/Remcos.GA!MTB"
+        threat_id = "2147773587"
+        type = "Backdoor"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Remcos"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "17"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = "Remcos" ascii //weight: 10
+        $x_1_2 = "Remcos_Mutex_Inj" ascii //weight: 1
+        $x_1_3 = "BreakingSecurity.net" ascii //weight: 1
+        $x_1_4 = "Remcos restarted by watchdog" ascii //weight: 1
+        $x_1_5 = "Mutex_RemWatchdog" ascii //weight: 1
+        $x_1_6 = "%02i:%02i:%02i:%03i" ascii //weight: 1
+        $x_1_7 = "Remcos v" ascii //weight: 1
+        $x_1_8 = "keylogger" ascii //weight: 1
+        $x_1_9 = "CloseCamera" ascii //weight: 1
+        $x_1_10 = "OpenCamera" ascii //weight: 1
+        $x_1_11 = "[Enter]" ascii //weight: 1
+        $x_1_12 = "SbieDll.dll" ascii //weight: 1
+        $x_1_13 = "PROCMON_WINDOW_CLASS" ascii //weight: 1
+        $x_1_14 = "HARDWARE\\ACPI\\DSDT\\VBOX__" ascii //weight: 1
+        $x_1_15 = "[KeepAlive]" ascii //weight: 1
+        $x_1_16 = "\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System /v EnableLUA" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_10_*) and 7 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+
 rule Backdoor_Win32_Remcos_ZJ_2147776657_0
 {
     meta:

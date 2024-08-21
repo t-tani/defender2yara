@@ -161,3 +161,27 @@ rule TrojanDownloader_O97M_RevengeRAT_SIK_2147918043_0
         (all of ($x*))
 }
 
+rule TrojanDownloader_O97M_RevengeRAT_SS_2147919295_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:O97M/RevengeRAT.SS!MTB"
+        threat_id = "2147919295"
+        type = "TrojanDownloader"
+        platform = "O97M: Office 97, 2000, XP, 2003, 2007, and 2010 macros - those that affect Word, Excel, and PowerPoint"
+        family = "RevengeRAT"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_MACROHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = "Set wbResults = Workbooks.Open(FileName:=.FoundFiles(lCount), UpdateLinks:=0)" ascii //weight: 1
+        $x_1_2 = {2e 4c 6f 6f 6b 49 6e 20 3d 20 70 63 50 39 4d 73 73 6a 6c 28 [0-31] 28 22 34 46 35 36 37 43 34 42 37 32 38 31 36 46 35 35 36 38 37 37 35 38 35 35 22 29 2c 20 [0-31] 28 22 33 37 22 29 29}  //weight: 1, accuracy: Low
+        $x_1_3 = {27 4d 73 67 42 6f 78 20 28 70 63 50 39 4d 73 73 6a 6c 28 [0-31] 28 22 35 35 37 32 36 30 37 37 35 38 37 30 34 46 35 30 35 36 37 37 36 31 35 41 37 42 36 42 35 30 36 30 36 44 36 41 35 39 36 43 36 43 35 37 32 37 32 37 32 37 38 31 37 36 34 45 38 30 35 43 36 44 35 41 37 42 35 35 22 29 2c [0-31] 28 22 33 37 22 29 29 29}  //weight: 1, accuracy: Low
+        $x_1_4 = "ADoALwAvAGYAaQByAGUAYgBhAHMAZQBzAHQAbwByAGEAZwBlAC4AZwBvAG8AZwBsAGUAYQBwAGkAcwAuAGMAbwBtAC8AdgAwAC8AYgAvAHMAcABhAG0ALQBjADIANwAzAGEALgBhAHAAcABzAHAAbwB0AC4AYwBvAG0A" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

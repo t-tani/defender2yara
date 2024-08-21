@@ -1342,21 +1342,19 @@ rule Trojan_Win32_Strab_NQ_2147919183_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
-        threshold = "8"
+        threshold = "10"
         strings_accuracy = "Low"
     strings:
         $x_4_1 = {46 00 49 00 4c 00 45 00 49 00 4e 00 53 00 54 00 41 00 4c 00 4c 00 20 00 28 00 20 00 22 00 [0-47] 22 00 20 00 2c 00 20 00 40 00 54 00 45 00 4d 00 50 00 44 00 49 00 52 00 20 00 26 00 20 00 22 00 5c 00 00 22 00 20 00 2c 00 20 00 31 00 20 00 29 00}  //weight: 4, accuracy: Low
         $x_4_2 = {46 49 4c 45 49 4e 53 54 41 4c 4c 20 28 20 22 [0-47] 22 20 2c 20 40 54 45 4d 50 44 49 52 20 26 20 22 5c 00 22 20 2c 20 31 20 29}  //weight: 4, accuracy: Low
-        $x_2_3 = {3d 20 31 20 54 4f 20 53 54 52 49 4e 47 4c 45 4e 20 28 20 24 90 02 30 20 29 20 53 54 45 50 20 33}  //weight: 2, accuracy: High
-        $x_2_4 = "= EXECUTE ( \"Stri\" & \"ngM\" & \"id" ascii //weight: 2
-        $x_2_5 = "&= EXECUTE ( \"C\" & \"hr(D\" & \"ec" ascii //weight: 2
-        $x_2_6 = "6BR65V72X6EL65E6CQ33U32A2ER64P6CY6CX" ascii //weight: 2
+        $x_2_3 = "= EXECUTE ( \"Stri\" & \"ngM\" & \"id" ascii //weight: 2
+        $x_2_4 = "&= EXECUTE ( \"C\" & \"hr(D\" & \"ec" ascii //weight: 2
+        $x_2_5 = "6BR65V72X6EL65E6CQ33U32A2ER64P6CY6CX" ascii //weight: 2
     condition:
         (filesize < 20MB) and
         (
-            ((4 of ($x_2_*))) or
-            ((1 of ($x_4_*) and 2 of ($x_2_*))) or
-            ((2 of ($x_4_*))) or
+            ((1 of ($x_4_*) and 3 of ($x_2_*))) or
+            ((2 of ($x_4_*) and 1 of ($x_2_*))) or
             (all of ($x*))
         )
 }

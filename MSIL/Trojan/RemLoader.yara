@@ -452,3 +452,31 @@ rule Trojan_MSIL_RemLoader_NR_2147917176_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_RemLoader_CZ_2147919281_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/RemLoader.CZ!MTB"
+        threat_id = "2147919281"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "RemLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "MAK5ID7H6SF8ADGGHJFKILOO" ascii //weight: 2
+        $x_2_2 = "minelabfoto.My.Resources" ascii //weight: 2
+        $x_2_3 = "ncoevPI0jgIx9kwtRB.9gVCUF2McRe8OCARus" ascii //weight: 2
+        $x_1_4 = "1C4BFDD9-F7B3-4F42-AC3E-DC1CAE0984A6" ascii //weight: 1
+        $x_1_5 = "jZ9TmyBE4Iv51Ew9jw" ascii //weight: 1
+        $x_1_6 = "xSuCnIFm2UG4LTvByI" ascii //weight: 1
+        $x_1_7 = "XUR6qj3NuBaZKZEh88" ascii //weight: 1
+        $x_1_8 = "qrYEEQ5vCh6dvkNN3nG" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

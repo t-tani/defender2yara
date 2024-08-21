@@ -55,6 +55,27 @@ rule TrojanDownloader_Win64_Small_ARA_2147912986_0
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {41 8d 0c 30 41 ff c0 80 34 ?? ?? 44 3b c0 72 f0}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule TrojanDownloader_Win64_Small_ARA_2147912986_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:Win64/Small.ARA!MTB"
+        threat_id = "2147912986"
+        type = "TrojanDownloader"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Small"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
         strings_accuracy = "High"
     strings:
         $x_2_1 = {30 4c 24 3b b2 62 30 4c 24 3c 32 d1 30 4c 24 3d 41 b0 3b 30 4c 24 3e 44 32 c1 30 4c 24 3f 41 b2 6d 30 4c 24 40 44 32 d1}  //weight: 2, accuracy: High
