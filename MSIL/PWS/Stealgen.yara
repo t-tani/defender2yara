@@ -77,40 +77,6 @@ rule PWS_MSIL_Stealgen_GD_2147778576_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "10"
-        strings_accuracy = "High"
-    strings:
-        $x_1_1 = "Stealer" ascii //weight: 1
-        $x_1_2 = "_420_" ascii //weight: 1
-        $x_1_3 = "huffman" ascii //weight: 1
-        $x_1_4 = "NordPass" ascii //weight: 1
-        $x_1_5 = "<Grab>" ascii //weight: 1
-        $x_1_6 = "DBPass" ascii //weight: 1
-        $x_1_7 = "ProtonVPN" ascii //weight: 1
-        $x_1_8 = "Bitcoin" ascii //weight: 1
-        $x_1_9 = "Electrum" ascii //weight: 1
-        $x_1_10 = "Monero" ascii //weight: 1
-        $x_1_11 = "Exodus" ascii //weight: 1
-        $x_1_12 = "Card" ascii //weight: 1
-        $x_1_13 = "Password" ascii //weight: 1
-        $x_1_14 = "OpenVPN" ascii //weight: 1
-    condition:
-        (filesize < 20MB) and
-        (10 of ($x*))
-}
-
-rule PWS_MSIL_Stealgen_GD_2147778576_1
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "PWS:MSIL/Stealgen.GD!MTB"
-        threat_id = "2147778576"
-        type = "PWS"
-        platform = "MSIL: .NET intermediate language scripts"
-        family = "Stealgen"
-        severity = "Critical"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "19"
         strings_accuracy = "High"
     strings:

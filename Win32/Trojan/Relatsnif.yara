@@ -24,6 +24,33 @@ rule Trojan_Win32_Relatsnif_A_2147919071_0
         )
 }
 
+rule Trojan_Win32_Relatsnif_A_2147919071_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Relatsnif.A"
+        threat_id = "2147919071"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Relatsnif"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = "WATAUAVAWH" ascii //weight: 2
+        $x_2_2 = "VWATAVAWH" ascii //weight: 2
+        $x_2_3 = {83 e0 7f 42 0f b6 0c ?? 0f b6 44 15 ?? 32 c8 88 4c 15 ?? 48 ff c2 48 83 fa ?? 72 e1}  //weight: 2, accuracy: Low
+        $x_1_4 = "ABCDEFGHIJKLMNOPn" ascii //weight: 1
+        $x_1_5 = "14.121.222.11" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((3 of ($x_2_*) and 1 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+
 rule Trojan_Win32_Relatsnif_B_2147919080_0
 {
     meta:
