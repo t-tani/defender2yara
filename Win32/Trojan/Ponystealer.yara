@@ -20,12 +20,12 @@ rule Trojan_Win32_Ponystealer_RC_2147898498_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Ponystealer_MBXS_2147919365_0
+rule Trojan_Win32_Ponystealer_MBXS_2147919370_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Ponystealer.MBXS!MTB"
-        threat_id = "2147919365"
+        threat_id = "2147919370"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Ponystealer"

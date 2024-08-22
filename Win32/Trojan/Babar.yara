@@ -256,12 +256,12 @@ rule Trojan_Win32_Babar_NK_2147917725_0
         )
 }
 
-rule Trojan_Win32_Babar_MBXS_2147919364_0
+rule Trojan_Win32_Babar_MBXS_2147919369_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Babar.MBXS!MTB"
-        threat_id = "2147919364"
+        threat_id = "2147919369"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Babar"

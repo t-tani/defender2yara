@@ -8500,12 +8500,12 @@ rule Trojan_Win32_Zenpak_SNUK_2147919257_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Zenpak_AMAG_2147919389_0
+rule Trojan_Win32_Zenpak_AMAG_2147919399_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Zenpak.AMAG!MTB"
-        threat_id = "2147919389"
+        threat_id = "2147919399"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Zenpak"

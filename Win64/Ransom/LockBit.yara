@@ -1,9 +1,9 @@
-rule Ransom_Win64_LockBit_B_2147919359_0
+rule Ransom_Win64_LockBit_B_2147919364_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Ransom:Win64/LockBit.B"
-        threat_id = "2147919359"
+        threat_id = "2147919364"
         type = "Ransom"
         platform = "Win64: Windows 64-bit platform"
         family = "LockBit"

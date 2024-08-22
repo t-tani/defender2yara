@@ -21588,12 +21588,12 @@ rule Trojan_Win32_Emotet_VAF_2147918684_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Emotet_MIZ_2147919382_0
+rule Trojan_Win32_Emotet_MIZ_2147919389_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Emotet.MIZ!MTB"
-        threat_id = "2147919382"
+        threat_id = "2147919389"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Emotet"
@@ -21610,12 +21610,12 @@ rule Trojan_Win32_Emotet_MIZ_2147919382_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Emotet_MIU_2147919383_0
+rule Trojan_Win32_Emotet_MIU_2147919390_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Emotet.MIU!MTB"
-        threat_id = "2147919383"
+        threat_id = "2147919390"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Emotet"
@@ -21632,12 +21632,12 @@ rule Trojan_Win32_Emotet_MIU_2147919383_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Emotet_MIY_2147919384_0
+rule Trojan_Win32_Emotet_MIY_2147919391_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Emotet.MIY!MTB"
-        threat_id = "2147919384"
+        threat_id = "2147919391"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Emotet"
@@ -21649,6 +21649,50 @@ rule Trojan_Win32_Emotet_MIY_2147919384_0
     strings:
         $x_5_1 = {29 f7 8a 6c 24 7b 88 8c 24 b7 00 00 00 28 ea 81 f6 fd 23 b6 64 66 c7 84 24 ?? ?? ?? ?? 6a 8a 88 54 04 5b 01 f8 89 84 24 84 00 00 00 bf 63 2f ab 49 8b 5c 24 30 89 44 24 10 89 d8 f7 e7 8b 7c 24 34 69 ff 63 2f ab 49 01 fa 89 84 24 b8 00 00 00}  //weight: 5, accuracy: Low
         $x_5_2 = {28 c8 8a 54 24 6b 88 84 24 ?? ?? ?? ?? 8b 74 24 38 83 c6 14 66 8b 7c 24 4c 66 81 cf 2d 6b 66 89 bc 24 ?? ?? ?? ?? 8b 5c 24 48 83 f3 ff 8a 44 24 7b 89 9c 24 ?? ?? ?? ?? 34 e4 89 74 24 5c 66 c7 84 24 ?? ?? ?? ?? 43 32 38 d0 74}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Emotet_MIK_2147919392_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Emotet.MIK!MTB"
+        threat_id = "2147919392"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Emotet"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {89 f0 01 c8 83 c0 44 8b 4d c8 69 c9 ?? ?? ?? ?? 01 ce 81 c6 ?? ?? ?? ?? 8b 0e 8b 75 b8 33 0e 8b 00 29 da 8b 5d c4 81 f3 db d9 75 15 89 3c 24 89 44 24 04 89 4c 24 08 89 5d b4 89 55 b0 89 4d ac e8}  //weight: 5, accuracy: Low
+        $x_3_2 = {89 d7 81 f7 e4 2c 10 4b 31 db b8 e1 20 4f 43 29 d0 19 f3 89 5c 24 ?? 89 44 24 10 8b 44 24 ?? 8b 54 24 10 29 fa 19 f0 89 54 24 04 89 04 24 73}  //weight: 3, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Emotet_MID_2147919393_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Emotet.MID!MTB"
+        threat_id = "2147919393"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Emotet"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "9"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {8b 4d ec 8b 55 ec 81 f2 42 e4 dc 3e 8b 75 bc 8b 7d bc 8b 5d bc 89 75 ac 66 8b 75 f2 66 81 f6 91 36 89 45 a8 a1 ?? ?? ?? ?? 89 45 a4 8b 45 cc 89 45 a0 8a 45 f1 04 a0 88 45 9f 8b 45 a8}  //weight: 5, accuracy: Low
+        $x_4_2 = {21 cf 8b 4d 94 81 f1 43 e4 dc 3e 89 4d 8c 8b 4d a0 89 55 88 8b 55 8c 39 d1 8b 4d 88 0f 47 f9 8a 4d 9f 8b 55 a4 2a 0c 3a 66 8b 7d ?? 8b 55 b4 02 0c 1a 88 4d e7 66 39 f7 0f 85}  //weight: 4, accuracy: Low
     condition:
         (filesize < 20MB) and
         (all of ($x*))

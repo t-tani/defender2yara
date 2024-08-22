@@ -115,3 +115,27 @@ rule Trojan_MSIL_StealerC_EC_2147907693_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_StealerC_AMAG_2147919400_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/StealerC.AMAG!MTB"
+        threat_id = "2147919400"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "StealerC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "JprCj82eY1e7mjrGxw.d1oAiYIBYaO9D2A9cZ" ascii //weight: 2
+        $x_1_2 = "w5RWfKgbEirtaOLWRW.F1P6iqSIZ6HrtAgnwr" ascii //weight: 1
+        $x_1_3 = "AF1gaDhOOhOdbLwMjqt6" ascii //weight: 1
+        $x_1_4 = "bxKJoJNoGNGLTKQN99" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
