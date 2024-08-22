@@ -87,12 +87,12 @@ rule Trojan_MacOS_Rustbucket_AS_2147918958_0
         (all of ($x*))
 }
 
-rule Trojan_MacOS_Rustbucket_AU_2147919345_0
+rule Trojan_MacOS_Rustbucket_AU_2147919352_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MacOS/Rustbucket.AU"
-        threat_id = "2147919345"
+        threat_id = "2147919352"
         type = "Trojan"
         platform = "MacOS: "
         family = "Rustbucket"
