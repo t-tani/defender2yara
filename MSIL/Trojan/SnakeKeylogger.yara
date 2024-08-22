@@ -5869,12 +5869,33 @@ rule Trojan_MSIL_SnakeKeylogger_SML_2147918329_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_SnakeKeylogger_SLPF_2147919325_0
+rule Trojan_MSIL_SnakeKeylogger_SWDL_2147919335_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/SnakeKeylogger.SWDL!MTB"
+        threat_id = "2147919335"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "SnakeKeylogger"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {19 2c 0d 2b 0d 72 01 00 00 70 2b 0d 2b 12 2b 17 de 1b 73 8c 00 00 0a 2b ec 28 ?? ?? ?? 0a 2b ec 6f}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_SnakeKeylogger_SLPF_2147919336_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/SnakeKeylogger.SLPF!MTB"
-        threat_id = "2147919325"
+        threat_id = "2147919336"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "SnakeKeylogger"

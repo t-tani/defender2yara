@@ -87,3 +87,24 @@ rule Trojan_MacOS_Rustbucket_AS_2147918958_0
         (all of ($x*))
 }
 
+rule Trojan_MacOS_Rustbucket_AU_2147919325_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MacOS/Rustbucket.AU"
+        threat_id = "2147919325"
+        type = "Trojan"
+        platform = "MacOS: "
+        family = "Rustbucket"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_MACHOHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "com.howard.toolkit.calendar" ascii //weight: 1
+        $x_1_2 = "CUJH6YKSQY" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
