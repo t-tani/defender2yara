@@ -166,26 +166,3 @@ rule Trojan_Win32_Reconyc_GXZ_2147903460_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Reconyc_ARC_2147919247_0
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "Trojan:Win32/Reconyc.ARC!MTB"
-        threat_id = "2147919247"
-        type = "Trojan"
-        platform = "Win32: Windows 32-bit platform"
-        family = "Reconyc"
-        severity = "Critical"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "4"
-        strings_accuracy = "Low"
-    strings:
-        $x_2_1 = {f3 ab 8b 06 f7 d8 99 6a 02 52 50 8b cb e8 ?? ?? ?? ?? 85 c0 7c 3f 6a 25 8d 45 d4 6a 00 50 e8 ?? ?? ?? ?? 83 c4 0c 6a 24 8d 45 d4 50 8b cb e8 ?? ?? ?? ?? 85 c0 7c 1e 8d 45 d4 50 68 e4 c7 41 00 e8 ?? ?? ?? ?? f7 d8 1b c0 59 40 59}  //weight: 2, accuracy: Low
-        $x_1_2 = "53A217A-64A7-496c-9A7A-1144D34C3C7C" ascii //weight: 1
-        $x_1_3 = "ITripoli\\Self Extract Utility\\Src_2005\\Executables\\Release\\SelfExtractorTemplEx.pdb" ascii //weight: 1
-    condition:
-        (filesize < 20MB) and
-        (all of ($x*))
-}
-

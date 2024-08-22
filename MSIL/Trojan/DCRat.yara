@@ -2099,3 +2099,27 @@ rule Trojan_MSIL_DCRat_TZAA_2147918828_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_DCRat_RDP_2147919324_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/DCRat.RDP!MTB"
+        threat_id = "2147919324"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "DCRat"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "a119f643-943f-4714-a159-19ab9218b0a9" ascii //weight: 2
+        $x_1_2 = "EvilProgram" ascii //weight: 1
+        $x_1_3 = "TransformInput" ascii //weight: 1
+        $x_1_4 = "GetEncodedData" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
