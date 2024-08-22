@@ -111,12 +111,12 @@ rule Ransom_Win64_Clop_KWAA_2147907932_0
         (all of ($x*))
 }
 
-rule Ransom_Win64_Clop_A_2147919350_0
+rule Ransom_Win64_Clop_A_2147919372_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Ransom:Win64/Clop.A"
-        threat_id = "2147919350"
+        threat_id = "2147919372"
         type = "Ransom"
         platform = "Win64: Windows 64-bit platform"
         family = "Clop"

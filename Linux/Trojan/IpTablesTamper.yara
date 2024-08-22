@@ -1,9 +1,9 @@
-rule Trojan_Linux_IpTablesTamper_C1_2147919368_0
+rule Trojan_Linux_IpTablesTamper_C1_2147919396_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Linux/IpTablesTamper.C1"
-        threat_id = "2147919368"
+        threat_id = "2147919396"
         type = "Trojan"
         platform = "Linux: Linux platform"
         family = "IpTablesTamper"

@@ -1,9 +1,9 @@
-rule Trojan_Linux_HideUserAccounts_A_2147919367_0
+rule Trojan_Linux_HideUserAccounts_A_2147919395_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Linux/HideUserAccounts.A"
-        threat_id = "2147919367"
+        threat_id = "2147919395"
         type = "Trojan"
         platform = "Linux: Linux platform"
         family = "HideUserAccounts"

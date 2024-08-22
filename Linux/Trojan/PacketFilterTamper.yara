@@ -1,9 +1,9 @@
-rule Trojan_Linux_PacketFilterTamper_B_2147919370_0
+rule Trojan_Linux_PacketFilterTamper_B_2147919398_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Linux/PacketFilterTamper.B"
-        threat_id = "2147919370"
+        threat_id = "2147919398"
         type = "Trojan"
         platform = "Linux: Linux platform"
         family = "PacketFilterTamper"

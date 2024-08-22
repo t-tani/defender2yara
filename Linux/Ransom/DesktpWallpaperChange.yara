@@ -1,9 +1,9 @@
-rule Ransom_Linux_DesktpWallpaperChange_B_2147919366_0
+rule Ransom_Linux_DesktpWallpaperChange_B_2147919394_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Ransom:Linux/DesktpWallpaperChange.B"
-        threat_id = "2147919366"
+        threat_id = "2147919394"
         type = "Ransom"
         platform = "Linux: Linux platform"
         family = "DesktpWallpaperChange"

@@ -4069,3 +4069,30 @@ rule Trojan_Win32_Guloader_PAFA_2147918100_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Guloader_CT_2147919367_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Guloader.CT!MTB"
+        threat_id = "2147919367"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Guloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "pietetshensynene.dll" ascii //weight: 1
+        $x_1_2 = "Embarkment\\Lovbestemmelserne59" ascii //weight: 1
+        $x_1_3 = "mesenna\\gunbarrel.ini" ascii //weight: 1
+        $x_1_4 = "polymicrobial\\Pappen33.mur" ascii //weight: 1
+        $x_1_5 = "hexene\\erhvervsvejledningerne.dll" ascii //weight: 1
+        $x_1_6 = "Imperalistisk\\Stjplages.tar" ascii //weight: 1
+        $x_1_7 = "saucen\\helhederne\\befalingernes" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -11938,3 +11938,28 @@ rule Trojan_Win64_IcedID_RE_2147912754_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_IcedID_HD_2147919379_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/IcedID.HD!MTB"
+        threat_id = "2147919379"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "IcedID"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {0f b6 44 04 ?? 8b 4c 24 ?? 3a c9 0f 84 ?? ?? ?? ?? 33 c1 48 63 4c 24 ?? e9 ?? ?? ?? ?? 25 ?? ?? ?? ?? 2b c2 e9 ?? ?? ?? ?? 48 63 4c 24 ?? 0f b6 4c 0c ?? e9 ?? ?? ?? ?? 81 7c 24 ?? ?? ?? ?? ?? 0f 8d}  //weight: 5, accuracy: Low
+        $x_2_2 = {48 8b c1 e9 ?? ?? ?? ?? 48 ff c1 8b 54 24 ?? eb ?? 48 f7 f9 48 8b c2 eb}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_5_*))) or
+            (all of ($x*))
+        )
+}
+

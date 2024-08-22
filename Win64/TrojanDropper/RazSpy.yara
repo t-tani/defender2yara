@@ -1,9 +1,9 @@
-rule TrojanDropper_Win64_RazSpy_ARA_2147919354_0
+rule TrojanDropper_Win64_RazSpy_ARA_2147919378_0
 {
     meta:
         author = "defender2yara"
         detection_name = "TrojanDropper:Win64/RazSpy.ARA!MTB"
-        threat_id = "2147919354"
+        threat_id = "2147919378"
         type = "TrojanDropper"
         platform = "Win64: Windows 64-bit platform"
         family = "RazSpy"
