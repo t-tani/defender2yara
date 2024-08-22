@@ -5443,12 +5443,12 @@ rule Trojan_MSIL_Heracles_MBXQ_2147918465_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Heracles_KAX_2147919338_0
+rule Trojan_MSIL_Heracles_KAX_2147919349_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Heracles.KAX!MTB"
-        threat_id = "2147919338"
+        threat_id = "2147919349"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Heracles"

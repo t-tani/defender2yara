@@ -162,7 +162,7 @@ rule Trojan_Win32_Tepfer_GNN_2147919098_0
         threshold = "10"
         strings_accuracy = "High"
     strings:
-        $x_10_1 = {8b 45 08 8a 4d fc 03 c7 30 08 47 3b 7d 0c}  //weight: 10, accuracy: High
+        $x_10_1 = {8b 45 08 8a 4d fc 03 c7 30 08 47 3b}  //weight: 10, accuracy: High
     condition:
         (filesize < 20MB) and
         (all of ($x*))

@@ -1,9 +1,9 @@
-rule Trojan_Win64_RutzPatchAms_A_2147919324_0
+rule Trojan_Win64_RutzPatchAms_A_2147919335_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/RutzPatchAms.A!MTB"
-        threat_id = "2147919324"
+        threat_id = "2147919335"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "RutzPatchAms"
