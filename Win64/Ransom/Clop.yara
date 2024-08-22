@@ -111,3 +111,28 @@ rule Ransom_Win64_Clop_KWAA_2147907932_0
         (all of ($x*))
 }
 
+rule Ransom_Win64_Clop_A_2147919350_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win64/Clop.A"
+        threat_id = "2147919350"
+        type = "Ransom"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Clop"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "net stop mozyprobackup /y" ascii //weight: 1
+        $x_1_2 = "net stop EraserSvc11710 /y" ascii //weight: 1
+        $x_1_3 = "net stop SstpSvc /y" ascii //weight: 1
+        $x_1_4 = "net stop MSSQLSERVER /y" ascii //weight: 1
+        $x_1_5 = "net stop SQLWriter /y" ascii //weight: 1
+        $x_1_6 = "too many files open in system" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

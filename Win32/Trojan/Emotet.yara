@@ -21588,12 +21588,12 @@ rule Trojan_Win32_Emotet_VAF_2147918684_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Emotet_MIZ_2147919342_0
+rule Trojan_Win32_Emotet_MIZ_2147919356_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Emotet.MIZ!MTB"
-        threat_id = "2147919342"
+        threat_id = "2147919356"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Emotet"
@@ -21610,12 +21610,12 @@ rule Trojan_Win32_Emotet_MIZ_2147919342_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Emotet_MIU_2147919343_0
+rule Trojan_Win32_Emotet_MIU_2147919357_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Emotet.MIU!MTB"
-        threat_id = "2147919343"
+        threat_id = "2147919357"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Emotet"
@@ -21632,12 +21632,12 @@ rule Trojan_Win32_Emotet_MIU_2147919343_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Emotet_MIY_2147919344_0
+rule Trojan_Win32_Emotet_MIY_2147919358_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Emotet.MIY!MTB"
-        threat_id = "2147919344"
+        threat_id = "2147919358"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Emotet"

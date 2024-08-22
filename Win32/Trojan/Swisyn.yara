@@ -219,12 +219,12 @@ rule Trojan_Win32_Swisyn_GNF_2147896386_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Swisyn_MBXR_2147919337_0
+rule Trojan_Win32_Swisyn_MBXR_2147919346_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Swisyn.MBXR!MTB"
-        threat_id = "2147919337"
+        threat_id = "2147919346"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Swisyn"
