@@ -2647,12 +2647,12 @@ rule Trojan_Win64_CryptInject_RHV_2147918415_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_CryptInject_WFB_2147919365_0
+rule Trojan_Win64_CryptInject_WFB_2147919355_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/CryptInject.WFB!MTB"
-        threat_id = "2147919365"
+        threat_id = "2147919355"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "CryptInject"

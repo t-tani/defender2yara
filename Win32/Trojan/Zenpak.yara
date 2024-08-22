@@ -8500,24 +8500,3 @@ rule Trojan_Win32_Zenpak_SNUK_2147919257_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Zenpak_AMAG_2147919373_0
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "Trojan:Win32/Zenpak.AMAG!MTB"
-        threat_id = "2147919373"
-        type = "Trojan"
-        platform = "Win32: Windows 32-bit platform"
-        family = "Zenpak"
-        severity = "Critical"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "1"
-        strings_accuracy = "Low"
-    strings:
-        $x_1_1 = {55 89 e5 56 8a 45 0c 8a 4d 08 88 c2 02 15 ?? ?? ?? ?? 88 15 ?? ?? ?? ?? 8b 35 ?? ?? ?? ?? 81 c6 ?? ?? ?? ?? 89 35 ?? ?? ?? ?? 88 0d ?? ?? ?? ?? a2 ?? ?? ?? ?? 30 c8 0f b6 c0 5e 5d c3}  //weight: 1, accuracy: Low
-    condition:
-        (filesize < 20MB) and
-        (all of ($x*))
-}
-

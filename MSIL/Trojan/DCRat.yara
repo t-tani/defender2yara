@@ -2099,12 +2099,12 @@ rule Trojan_MSIL_DCRat_TZAA_2147918828_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_DCRat_RDP_2147919369_0
+rule Trojan_MSIL_DCRat_RDP_2147919359_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/DCRat.RDP!MTB"
-        threat_id = "2147919369"
+        threat_id = "2147919359"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "DCRat"

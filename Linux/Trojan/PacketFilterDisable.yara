@@ -1,9 +1,9 @@
-rule Trojan_Linux_PacketFilterDisable_A_2147919380_0
+rule Trojan_Linux_PacketFilterDisable_A_2147919369_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Linux/PacketFilterDisable.A"
-        threat_id = "2147919380"
+        threat_id = "2147919369"
         type = "Trojan"
         platform = "Linux: Linux platform"
         family = "PacketFilterDisable"
