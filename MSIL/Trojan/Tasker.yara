@@ -192,3 +192,28 @@ rule Trojan_MSIL_Tasker_ILAA_2147905677_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Tasker_NB_2147919498_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Tasker.NB!MTB"
+        threat_id = "2147919498"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Tasker"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {00 06 11 04 06 11 04 91 ?? ?? ?? 00 00 59 d2 9c 00 11 04 17 58 13 04}  //weight: 3, accuracy: Low
+        $x_1_2 = "https://onedrive.live.com/download?resid=59261C7E41B6478A%21223&authkey=!AEJZW7GtRXEfOGc" ascii //weight: 1
+        $x_1_3 = "DownloadData" ascii //weight: 1
+        $x_1_4 = "System.Reflection.Assembly" ascii //weight: 1
+        $x_1_5 = "Invoke" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
