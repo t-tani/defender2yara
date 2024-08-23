@@ -64,31 +64,6 @@ rule TrojanDownloader_O97M_Dotraj_D_2147731751_0
         (all of ($x*))
 }
 
-rule TrojanDownloader_O97M_Dotraj_E_2147731752_0
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "TrojanDownloader:O97M/Dotraj.E"
-        threat_id = "2147731752"
-        type = "TrojanDownloader"
-        platform = "O97M: Office 97, 2000, XP, 2003, 2007, and 2010 macros - those that affect Word, Excel, and PowerPoint"
-        family = "Dotraj"
-        severity = "Critical"
-        signature_type = "SIGNATURE_TYPE_MACROHSTR_EXT"
-        threshold = "1"
-        strings_accuracy = "Low"
-    strings:
-        $x_2_1 = {41 70 70 6c 69 63 61 74 69 6f 6e 2e 52 75 6e 20 22 [0-16] 22 2c 20 [0-16] 28 [0-16] 28 29 20 26 20 22 22 2c 20}  //weight: 2, accuracy: Low
-        $x_1_2 = {43 61 6c 6c 20 53 68 65 6c 6c 28 [0-16] 20 26 20 22 20 22 20 26 20 [0-16] 2c 20 [0-16] 20 2d 20}  //weight: 1, accuracy: Low
-    condition:
-        (filesize < 20MB) and
-        (
-            ((1 of ($x_1_*))) or
-            ((1 of ($x_2_*))) or
-            (all of ($x*))
-        )
-}
-
 rule TrojanDownloader_O97M_Dotraj_F_2147731841_0
 {
     meta:
