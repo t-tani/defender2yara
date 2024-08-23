@@ -425,3 +425,28 @@ rule Trojan_MSIL_LummaC_AMAF_2147919284_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_LummaC_EZ_2147919555_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/LummaC.EZ!MTB"
+        threat_id = "2147919555"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "LummaC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "375c5eff-0650-4301-85ef-382cfefa9adf" ascii //weight: 2
+        $x_2_2 = "c:\\56zm\\xzd9\\obj\\Releas\\Zaq1.pdbpdb" ascii //weight: 2
+        $x_1_3 = "CallWindowProcA" ascii //weight: 1
+        $x_1_4 = "Pewterer Hearses Intersession" ascii //weight: 1
+        $x_1_5 = "Bargello Encirclements" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -4921,6 +4921,33 @@ rule Trojan_MSIL_Redline_EZ_2147918721_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "9"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "ahgFMXgmHjjZKiDAlDYBAtWuKRIj" ascii //weight: 2
+        $x_2_2 = "CjGplvJttkKXzzUWSNcPHmDLYrskO" ascii //weight: 2
+        $x_1_3 = "oAMfDVwuqpCmOKYDCIPASnquS" ascii //weight: 1
+        $x_1_4 = "KkKTLGxmxhCtwWXbwozzpJKpYaxd" ascii //weight: 1
+        $x_1_5 = "mLkrpEezCVTNvWORYvQbWVKC" ascii //weight: 1
+        $x_1_6 = "FmnkpsaJNjLYhQZYScORStdRIOrkM" ascii //weight: 1
+        $x_1_7 = "pCPKvqGZWJUaWOUuMstAnndaWdR" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Redline_EZ_2147918721_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Redline.EZ!MTB"
+        threat_id = "2147918721"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Redline"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "7"
         strings_accuracy = "High"
     strings:
