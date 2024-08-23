@@ -5435,3 +5435,24 @@ rule Trojan_Win32_Smokeloader_VDZ_2147919001_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Smokeloader_MRR_2147919513_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Smokeloader.MRR!MTB"
+        threat_id = "2147919513"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Smokeloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {8d 14 07 8b 44 24 1c c1 e8 05 89 44 24 14 8b 44 24 14 33 ca 03 c5 33 c1 81 3d ?? ?? ?? ?? 13 02 00 00 c7 05 ?? ?? ?? ?? ee 3d ea f4 89 44 24 14 75}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

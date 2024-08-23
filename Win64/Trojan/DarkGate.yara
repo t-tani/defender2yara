@@ -21,3 +21,24 @@ rule Trojan_Win64_DarkGate_CCBP_2147891779_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_DarkGate_MZY_2147919514_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/DarkGate.MZY!MTB"
+        threat_id = "2147919514"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "DarkGate"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {45 03 cd 49 8b c8 49 f7 e0 48 2b ca 48 d1 e9 48 03 ca 48 c1 e9 04 48 6b c1 19 4c 2b c0 42 8a 44 04 ?? 43 32 04 13 41 88 02 4d 03 d5 44 3b ce 72}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
