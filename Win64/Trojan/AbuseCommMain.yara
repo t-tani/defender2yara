@@ -4207,12 +4207,12 @@ rule Trojan_Win64_AbuseCommMain_GB_2147917465_0
         (1 of ($x*))
 }
 
-rule Trojan_Win64_AbuseCommMain_GC_2147919461_0
+rule Trojan_Win64_AbuseCommMain_GC_2147919466_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/AbuseCommMain.GC"
-        threat_id = "2147919461"
+        threat_id = "2147919466"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "AbuseCommMain"
