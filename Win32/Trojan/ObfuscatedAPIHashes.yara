@@ -1,9 +1,9 @@
-rule Trojan_Win32_ObfuscatedAPIHashes_A_2147919398_0
+rule Trojan_Win32_ObfuscatedAPIHashes_A_2147919406_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/ObfuscatedAPIHashes.A"
-        threat_id = "2147919398"
+        threat_id = "2147919406"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "ObfuscatedAPIHashes"

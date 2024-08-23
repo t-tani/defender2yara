@@ -354,6 +354,33 @@ rule Trojan_Win32_KillMBR_ARA_2147837287_3
         (all of ($x*))
 }
 
+rule Trojan_Win32_KillMBR_ARA_2147837287_4
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/KillMBR.ARA!MTB"
+        threat_id = "2147837287"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "KillMBR"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "14"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "@reg delete \"HKEY_CLASSES_ROOT\" /f" ascii //weight: 2
+        $x_2_2 = "@reg delete \"HKEY_CURRENT_USER\" /f" ascii //weight: 2
+        $x_2_3 = "@reg delete \"HKEY_LOCAL_MACHINE\" /f" ascii //weight: 2
+        $x_2_4 = "@reg delete \"HKEY_USERS\" /f" ascii //weight: 2
+        $x_2_5 = "@reg delete \"HKEY_CURRENT_CONFIG\" /f" ascii //weight: 2
+        $x_2_6 = "\\\\.\\PhysicalDrive0" ascii //weight: 2
+        $x_2_7 = "\\\\.\\Harddisk0Partition" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win32_KillMBR_PAAF_2147850037_0
 {
     meta:

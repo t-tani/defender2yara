@@ -1,9 +1,9 @@
-rule Ransom_Win64_NcorbukRansom_YAA_2147919381_0
+rule Ransom_Win64_NcorbukRansom_YAA_2147919387_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Ransom:Win64/NcorbukRansom.YAA!MTB"
-        threat_id = "2147919381"
+        threat_id = "2147919387"
         type = "Ransom"
         platform = "Win64: Windows 64-bit platform"
         family = "NcorbukRansom"

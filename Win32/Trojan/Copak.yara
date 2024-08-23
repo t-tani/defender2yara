@@ -3131,12 +3131,12 @@ rule Trojan_Win32_Copak_KAV_2147917474_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Copak_GPAD_2147919403_0
+rule Trojan_Win32_Copak_GPAD_2147919411_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Copak.GPAD!MTB"
-        threat_id = "2147919403"
+        threat_id = "2147919411"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Copak"

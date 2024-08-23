@@ -11938,12 +11938,12 @@ rule Trojan_Win64_IcedID_RE_2147912754_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_IcedID_HD_2147919385_0
+rule Trojan_Win64_IcedID_HD_2147919392_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/IcedID.HD!MTB"
-        threat_id = "2147919385"
+        threat_id = "2147919392"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "IcedID"

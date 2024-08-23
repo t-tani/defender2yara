@@ -5529,12 +5529,12 @@ rule Trojan_MSIL_Seraph_UBAA_2147919099_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Seraph_UIAA_2147919382_0
+rule Trojan_MSIL_Seraph_UIAA_2147919389_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Seraph.UIAA!MTB"
-        threat_id = "2147919382"
+        threat_id = "2147919389"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Seraph"

@@ -7102,12 +7102,12 @@ rule Trojan_MSIL_Formbook_AMAD_2147918876_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Formbook_AY_2147919373_0
+rule Trojan_MSIL_Formbook_AY_2147919379_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Formbook.AY!MTB"
-        threat_id = "2147919373"
+        threat_id = "2147919379"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Formbook"

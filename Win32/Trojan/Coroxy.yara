@@ -373,12 +373,12 @@ rule Trojan_Win32_Coroxy_YAB_2147903487_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Coroxy_MKZ_2147919394_0
+rule Trojan_Win32_Coroxy_MKZ_2147919402_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Coroxy.MKZ!MTB"
-        threat_id = "2147919394"
+        threat_id = "2147919402"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Coroxy"

@@ -1451,12 +1451,12 @@ rule Trojan_Win64_Lazy_GPB_2147917860_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_Lazy_GBN_2147919376_0
+rule Trojan_Win64_Lazy_GBN_2147919382_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/Lazy.GBN!MTB"
-        threat_id = "2147919376"
+        threat_id = "2147919382"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "Lazy"

@@ -1,9 +1,9 @@
-rule Backdoor_Win64_SDBbot_A_2147919374_0
+rule Backdoor_Win64_SDBbot_A_2147919380_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Backdoor:Win64/SDBbot.A"
-        threat_id = "2147919374"
+        threat_id = "2147919380"
         type = "Backdoor"
         platform = "Win64: Windows 64-bit platform"
         family = "SDBbot"
@@ -25,12 +25,12 @@ rule Backdoor_Win64_SDBbot_A_2147919374_0
         )
 }
 
-rule Backdoor_Win64_SDBbot_C_2147919377_0
+rule Backdoor_Win64_SDBbot_C_2147919383_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Backdoor:Win64/SDBbot.C"
-        threat_id = "2147919377"
+        threat_id = "2147919383"
         type = "Backdoor"
         platform = "Win64: Windows 64-bit platform"
         family = "SDBbot"

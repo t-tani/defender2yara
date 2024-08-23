@@ -1795,12 +1795,12 @@ rule Trojan_MSIL_LummaStealer_LLO_2147917735_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_LummaStealer_KAN_2147919402_0
+rule Trojan_MSIL_LummaStealer_KAN_2147919410_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/LummaStealer.KAN!MTB"
-        threat_id = "2147919402"
+        threat_id = "2147919410"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "LummaStealer"

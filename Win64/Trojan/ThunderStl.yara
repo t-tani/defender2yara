@@ -1,9 +1,9 @@
-rule Trojan_Win64_ThunderStl_C_2147919379_0
+rule Trojan_Win64_ThunderStl_C_2147919385_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/ThunderStl.C"
-        threat_id = "2147919379"
+        threat_id = "2147919385"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "ThunderStl"

@@ -20,12 +20,12 @@ rule Trojan_Win32_OyesterLoader_YR_2147913258_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_OyesterLoader_WQF_2147919388_0
+rule Trojan_Win32_OyesterLoader_WQF_2147919395_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/OyesterLoader.WQF!MTB"
-        threat_id = "2147919388"
+        threat_id = "2147919395"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "OyesterLoader"

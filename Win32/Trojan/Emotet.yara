@@ -21588,12 +21588,12 @@ rule Trojan_Win32_Emotet_VAF_2147918684_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Emotet_MIZ_2147919389_0
+rule Trojan_Win32_Emotet_MIZ_2147919397_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Emotet.MIZ!MTB"
-        threat_id = "2147919389"
+        threat_id = "2147919397"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Emotet"
@@ -21610,12 +21610,12 @@ rule Trojan_Win32_Emotet_MIZ_2147919389_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Emotet_MIU_2147919390_0
+rule Trojan_Win32_Emotet_MIU_2147919398_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Emotet.MIU!MTB"
-        threat_id = "2147919390"
+        threat_id = "2147919398"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Emotet"
@@ -21632,12 +21632,12 @@ rule Trojan_Win32_Emotet_MIU_2147919390_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Emotet_MIY_2147919391_0
+rule Trojan_Win32_Emotet_MIY_2147919399_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Emotet.MIY!MTB"
-        threat_id = "2147919391"
+        threat_id = "2147919399"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Emotet"
@@ -21654,12 +21654,12 @@ rule Trojan_Win32_Emotet_MIY_2147919391_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Emotet_MIK_2147919392_0
+rule Trojan_Win32_Emotet_MIK_2147919400_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Emotet.MIK!MTB"
-        threat_id = "2147919392"
+        threat_id = "2147919400"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Emotet"
@@ -21676,12 +21676,12 @@ rule Trojan_Win32_Emotet_MIK_2147919392_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Emotet_MID_2147919393_0
+rule Trojan_Win32_Emotet_MID_2147919401_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Emotet.MID!MTB"
-        threat_id = "2147919393"
+        threat_id = "2147919401"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Emotet"

@@ -148,12 +148,12 @@ rule Trojan_MSIL_Donut_KAC_2147913640_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Donut_UJAA_2147919383_0
+rule Trojan_MSIL_Donut_UJAA_2147919390_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Donut.UJAA!MTB"
-        threat_id = "2147919383"
+        threat_id = "2147919390"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Donut"
