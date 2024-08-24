@@ -27563,3 +27563,28 @@ rule TrojanDownloader_O97M_Obfuse_RVCH_2147918770_0
         (all of ($x*))
 }
 
+rule TrojanDownloader_O97M_Obfuse_TZA_2147919558_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:O97M/Obfuse.TZA!MTB"
+        threat_id = "2147919558"
+        type = "TrojanDownloader"
+        platform = "O97M: Office 97, 2000, XP, 2003, 2007, and 2010 macros - those that affect Word, Excel, and PowerPoint"
+        family = "Obfuse"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_MACROHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "SQBFAFgAIAAgACgATgBlAHcALQBPAGIAagBlAGMAdAAgAE4AZQB0AC4AVwBlAGIAQwBsAGkAZQBuAHQAKQAuAEQAbwB3AG4AbABvAGEAZABTAHQAcgBpAG4AZwAuAEkAbgB2AG8AawBlACgAJwANAAoAaAB0AHQAcA" ascii //weight: 1
+        $x_1_2 = "BzADoALwAvAGYAaQByAGUAYgBhAHMAZQBzAHQAbwByAGEAZwBlAC4AZwBvAG8AZwBsAGUAYQBwAGkAcwAuAGMAbwBtAC8AdgAwAC8AYgAvAHMAcABhAG0ALQBjADIANwAzAGEALgBhAHAAcABzAHAAbwB0AC4AYwBvAG0ALwBvAC8AMQA1AC0AMAA4AC0AMgAwADIANAAuAGoAcABnAD8AYQBsAHQAPQBtAGUAZABpAGEA" ascii //weight: 1
+        $x_1_3 = "MsgBox(iDxl79abC(nS04dGMwS(\"4A68752E7B275C756B76277B6F707A27686A7B707675352727\"), nS04dGMwS(\"37\")) & iDxl79abC(nS04dGMwS(\"5B697E6D285F777A736A777773284E717A7B7C70\")," ascii //weight: 1
+        $x_1_4 = "Mid(JWDduK4uZ, I1PrV8sPb, 1) = Chr(Asc(Mid(JWDduK4uZ, I1PrV8sPb, 1)) - qRmYW5amD)" ascii //weight: 1
+        $x_1_5 = "Public Function iDxl79abC(JWDduK4uZ As String, qRmYW5amD As Integer)" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -566,3 +566,25 @@ rule Trojan_MSIL_QuasarRAT_ARA_2147916338_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_QuasarRAT_KAV_2147919573_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/QuasarRAT.KAV!MTB"
+        threat_id = "2147919573"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "QuasarRAT"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = "A722A020070280" wide //weight: 3
+        $x_3_2 = "A25723516007" wide //weight: 3
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

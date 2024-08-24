@@ -3840,3 +3840,24 @@ rule Trojan_MSIL_RedLine_ASJ_2147919077_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_RedLine_KAU_2147919571_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/RedLine.KAU!MTB"
+        threat_id = "2147919571"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "RedLine"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {03 08 04 08 1e 5d 9a 28 ?? 00 00 0a 03 08 91 28 ?? 01 00 06 28 ?? 00 00 0a 9c 08 17 d6 0c 08 07}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

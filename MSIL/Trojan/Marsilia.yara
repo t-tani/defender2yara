@@ -999,3 +999,24 @@ rule Trojan_MSIL_Marsilia_SAL_2147913912_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Marsilia_KAG_2147919570_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Marsilia.KAG!MTB"
+        threat_id = "2147919570"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Marsilia"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {06 11 04 06 11 04 91 18 59 20 ff 00 00 00 5f d2 9c 11 04 17 58 13 04 11 04 06 8e 69}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
