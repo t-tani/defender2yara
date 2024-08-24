@@ -953,48 +953,6 @@ rule VirTool_MSIL_Lore_2147749242_25
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "19"
-        strings_accuracy = "High"
-    strings:
-        $x_1_1 = "var1" ascii //weight: 1
-        $x_1_2 = "var2" ascii //weight: 1
-        $x_1_3 = "var3" ascii //weight: 1
-        $x_1_4 = "get_Jonas" ascii //weight: 1
-        $x_1_5 = "set_Jonas" ascii //weight: 1
-        $x_1_6 = "projectname" ascii //weight: 1
-        $x_1_7 = "GetPixel" ascii //weight: 1
-        $x_1_8 = "System.Drawing" ascii //weight: 1
-        $x_1_9 = "System.Threading" ascii //weight: 1
-        $x_1_10 = "FromBase64String" ascii //weight: 1
-        $x_1_11 = "Bitmap" ascii //weight: 1
-        $x_1_12 = "Invoke" ascii //weight: 1
-        $x_1_13 = "get_Size" ascii //weight: 1
-        $x_1_14 = "get_Length" ascii //weight: 1
-        $x_1_15 = "get_Width" ascii //weight: 1
-        $x_1_16 = "GetExecutingAssembly" ascii //weight: 1
-        $x_1_17 = "GetEntryAssembly" ascii //weight: 1
-        $x_1_18 = "System.Reflection.Emit" ascii //weight: 1
-        $x_1_19 = "System.Reflection.Assembly" ascii //weight: 1
-        $x_1_20 = "GetManifestResourceStream" ascii //weight: 1
-        $x_1_21 = "Load" wide //weight: 1
-        $x_1_22 = ".Resources" wide //weight: 1
-    condition:
-        (filesize < 20MB) and
-        (19 of ($x*))
-}
-
-rule VirTool_MSIL_Lore_2147749242_26
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "VirTool:MSIL/Lore!MTB"
-        threat_id = "2147749242"
-        type = "VirTool"
-        platform = "MSIL: .NET intermediate language scripts"
-        family = "Lore"
-        severity = "Critical"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "21"
         strings_accuracy = "High"
     strings:
@@ -1024,7 +982,7 @@ rule VirTool_MSIL_Lore_2147749242_26
         (all of ($x*))
 }
 
-rule VirTool_MSIL_Lore_2147749242_27
+rule VirTool_MSIL_Lore_2147749242_26
 {
     meta:
         author = "defender2yara"
@@ -1067,7 +1025,7 @@ rule VirTool_MSIL_Lore_2147749242_27
         (all of ($x*))
 }
 
-rule VirTool_MSIL_Lore_2147749242_28
+rule VirTool_MSIL_Lore_2147749242_27
 {
     meta:
         author = "defender2yara"
@@ -1116,7 +1074,7 @@ rule VirTool_MSIL_Lore_2147749242_28
         (all of ($x*))
 }
 
-rule VirTool_MSIL_Lore_2147749242_29
+rule VirTool_MSIL_Lore_2147749242_28
 {
     meta:
         author = "defender2yara"
@@ -1167,7 +1125,7 @@ rule VirTool_MSIL_Lore_2147749242_29
         (all of ($x*))
 }
 
-rule VirTool_MSIL_Lore_2147749242_30
+rule VirTool_MSIL_Lore_2147749242_29
 {
     meta:
         author = "defender2yara"
