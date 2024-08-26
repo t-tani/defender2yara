@@ -2956,26 +2956,3 @@ rule Trojan_MSIL_Injuke_TQAA_2147918294_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Injuke_UMAA_2147919644_0
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "Trojan:MSIL/Injuke.UMAA!MTB"
-        threat_id = "2147919644"
-        type = "Trojan"
-        platform = "MSIL: .NET intermediate language scripts"
-        family = "Injuke"
-        severity = "Critical"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "5"
-        strings_accuracy = "Low"
-    strings:
-        $x_3_1 = {0a 0d 09 08 17 73 ?? 00 00 0a 13 04 2b 19 2b 1b 16 2b 1b 8e 69 2b 1a 09 6f ?? 00 00 0a 13 05 16 2d f5 1a 2c e7 de 34 11 04 2b e3 06 2b e2 06 2b e2 6f ?? 00 00 0a 2b df}  //weight: 3, accuracy: Low
-        $x_1_2 = "FromBase64String" ascii //weight: 1
-        $x_1_3 = "CreateDecryptor" ascii //weight: 1
-    condition:
-        (filesize < 20MB) and
-        (all of ($x*))
-}
-

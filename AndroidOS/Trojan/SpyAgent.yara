@@ -914,24 +914,3 @@ rule Trojan_AndroidOS_SpyAgent_NS_2147912797_0
         (all of ($x*))
 }
 
-rule Trojan_AndroidOS_SpyAgent_AQ_2147919637_0
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "Trojan:AndroidOS/SpyAgent.AQ"
-        threat_id = "2147919637"
-        type = "Trojan"
-        platform = "AndroidOS: Android operating system"
-        family = "SpyAgent"
-        severity = "Critical"
-        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
-        threshold = "4"
-        strings_accuracy = "High"
-    strings:
-        $x_2_1 = "wwwhaha/homogePneous" ascii //weight: 2
-        $x_2_2 = "mymf/FullscreenActivity" ascii //weight: 2
-    condition:
-        (filesize < 20MB) and
-        (all of ($x*))
-}
-

@@ -494,24 +494,3 @@ rule Trojan_Win32_GCleaner_PAFL_2147919299_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_GCleaner_MFT_2147919647_0
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "Trojan:Win32/GCleaner.MFT!MTB"
-        threat_id = "2147919647"
-        type = "Trojan"
-        platform = "Win32: Windows 32-bit platform"
-        family = "GCleaner"
-        severity = "Critical"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "4"
-        strings_accuracy = "Low"
-    strings:
-        $x_4_1 = {56 83 65 fc 00 8d 75 fc e8 ?? ?? ?? ?? 8b 45 08 8a 4d fc 30 0c 38 47 3b fb 7c}  //weight: 4, accuracy: Low
-    condition:
-        (filesize < 20MB) and
-        (all of ($x*))
-}
-

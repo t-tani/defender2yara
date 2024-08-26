@@ -2299,24 +2299,3 @@ rule Trojan_Win64_Cobaltstrike_ALJ_2147919396_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_Cobaltstrike_RJS_2147919662_0
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "Trojan:Win64/Cobaltstrike.RJS!MTB"
-        threat_id = "2147919662"
-        type = "Trojan"
-        platform = "Win64: Windows 64-bit platform"
-        family = "Cobaltstrike"
-        severity = "Critical"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "1"
-        strings_accuracy = "High"
-    strings:
-        $x_1_1 = {48 b8 00 11 22 33 44 55 66 77 48 89 45 c8 48 b8 0f 05 90 90 c3 90 cc cc}  //weight: 1, accuracy: High
-    condition:
-        (filesize < 20MB) and
-        (all of ($x*))
-}
-

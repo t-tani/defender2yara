@@ -455,35 +455,6 @@ rule Trojan_Win64_ShellcodeRunner_RP_2147908480_2
         (all of ($x*))
 }
 
-rule Trojan_Win64_ShellcodeRunner_RP_2147908480_3
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "Trojan:Win64/ShellcodeRunner.RP!MTB"
-        threat_id = "2147908480"
-        type = "Trojan"
-        platform = "Win64: Windows 64-bit platform"
-        family = "ShellcodeRunner"
-        severity = "Critical"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "27"
-        strings_accuracy = "Low"
-    strings:
-        $x_1_1 = "InternetOpenUrlW" ascii //weight: 1
-        $x_1_2 = "InternetReadFile" ascii //weight: 1
-        $x_1_3 = {2e 00 73 00 33 00 2e 00 61 00 70 00 2d 00 65 00 61 00 73 00 74 00 2d 00 31 00 2e 00 61 00 6d 00 61 00 7a 00 6f 00 6e 00 61 00 77 00 73 00 2e 00 63 00 6f 00 6d 00 2f 00 [0-16] 2f 00 [0-16] 2e 00 74 00 78 00 74 00}  //weight: 1, accuracy: Low
-        $x_10_4 = "dick.exe" wide //weight: 10
-        $x_1_5 = "steam_api64.dll" wide //weight: 1
-        $x_1_6 = "afhost" wide //weight: 1
-        $x_10_7 = "C:\\users\\public\\music\\ttmnq\\vbox\\" wide //weight: 10
-        $x_1_8 = "C:\\users\\public\\pictures\\" wide //weight: 1
-        $x_1_9 = "Failed to download file: " wide //weight: 1
-    condition:
-        (filesize < 20MB) and
-        (all of ($x*))
-}
-
 rule Trojan_Win64_ShellcodeRunner_CCID_2147908511_0
 {
     meta:
