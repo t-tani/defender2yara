@@ -14566,3 +14566,46 @@ rule Trojan_Win64_CobaltStrike_YI_2147919497_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_CobaltStrike_PT_2147919610_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CobaltStrike.PT!MTB"
+        threat_id = "2147919610"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CobaltStrike"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {40 56 57 48 81 ec c8 03 00 00 48 8b 05 27 49 00 00 48 33 c4 48 89 84 24 b0 03 00 00 48 8d 05 75 2e 00 00 48 89 84 24 c8 00 00 00 48 8d 05 76 2e 00 00 48 89 84 24 c0 00 00 00 48 8d 84 24 b0 01 00 00 48 8d 0d 67 2e 00 00 48 8b f8 48 8b f1 b9 ?? 00 00 00 f3 a4 48 8d 84 24 ?? 01 00 00 48 8b f8 33 c0 b9 ?? 00 00 00 f3 aa 48 8d 84 24 b0 02 00 00 48 8d 0d 47 2e 00 00 48 8b f8 48 8b f1 b9 ?? 00 00 00 f3 a4 48 8d 84 24 ?? 02 00 00 48 8b f8 33 c0 b9 ?? 00 00 00 f3 aa 48 8d 0d 2f 2e 00 00 e8}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_CobaltStrike_YBQ_2147919619_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CobaltStrike.YBQ!MTB"
+        threat_id = "2147919619"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CobaltStrike"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {43 0f b6 44 31 08 0f b6 04 06 88 44 24 68 48 89 44 24 70 48 3d ff}  //weight: 1, accuracy: High
+        $x_1_2 = {48 8b 54 24 70 0f b6 4c 24 60 48 8d 76 01 4c 8b 84 24 d8 00 00 00 48 c1 fa 04 c1 e1 02 09 ca 4d 85 c0}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -700,3 +700,29 @@ rule Trojan_Win64_Zusy_HNG_2147919602_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Zusy_HNE_2147919616_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Zusy.HNE!MTB"
+        threat_id = "2147919616"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "16"
+        strings_accuracy = "Low"
+    strings:
+        $x_11_1 = {48 83 ec 28 48 8d 0d ?? ?? ?? ?? ?? ?? ?? ?? 00 45 31 c0 31 d2 31 c9 e8}  //weight: 11, accuracy: Low
+        $x_5_2 = {2e 6c 6e 6b 00 [0-4] 6e 6b 00 [0-8] [0-34] 00 00 ?? 14 00 00 ?? 03 03 03 [0-16] 03 03 03 03 03}  //weight: 5, accuracy: Low
+        $x_5_3 = {00 00 64 65 73 6b 74 6f 70 2e 69 6e 69 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 ?? ?? 00 00 ?? 14 00 00 ?? ?? ?? 02 ?? 02 ?? 02 ?? 02 ?? 02 ?? 02 ?? 02 ?? 02 11 02 ?? 02 11 02 ?? 02 ?? 02 1b 02 ?? 02}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_11_*) and 1 of ($x_5_*))) or
+            (all of ($x*))
+        )
+}
+

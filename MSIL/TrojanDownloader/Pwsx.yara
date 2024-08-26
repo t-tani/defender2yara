@@ -146,3 +146,25 @@ rule TrojanDownloader_MSIL_Pwsx_SV_2147917692_0
         (all of ($x*))
 }
 
+rule TrojanDownloader_MSIL_Pwsx_SW_2147919614_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:MSIL/Pwsx.SW!MTB"
+        threat_id = "2147919614"
+        type = "TrojanDownloader"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Pwsx"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {08 6f 6b 00 00 0a 20 00 b8 00 00 2f 0d 08 12 08 28 6d 00 00 0a 6f 6a 00 00 0a 11 07 17 58 13 07 11 07 07 6f 6e 00 00 0a 32 a3}  //weight: 2, accuracy: High
+        $x_2_2 = "Whisper.Properties.Resources.resources" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
