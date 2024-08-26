@@ -117,3 +117,25 @@ rule Trojan_Win32_Bulz_GZF_2147902853_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Bulz_GNM_2147919605_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Bulz.GNM!MTB"
+        threat_id = "2147919605"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Bulz"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = {f3 c0 00 fb fd 23 54 ff 2a 46 34 ff fc f6 c0 fb 32 04 00 58 ff 54 ff f3 53 21 eb f3 e3 12}  //weight: 10, accuracy: High
+        $x_1_2 = "e8it.net/tuiguang/qudao" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

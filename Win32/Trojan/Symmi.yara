@@ -72,3 +72,31 @@ rule Trojan_Win32_Symmi_GMR_2147893069_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Symmi_GNM_2147919600_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Symmi.GNM!MTB"
+        threat_id = "2147919600"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Symmi"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = {22 51 bc 24 56 60 30 3c bc 41 b3 ff c3}  //weight: 10, accuracy: High
+        $x_10_2 = {01 31 08 5f 0f 09 63 30 1d 81 16 c3 df 37 30 34 36 2b 4e 82 ed 88 b1}  //weight: 10, accuracy: High
+        $x_1_3 = "or'6lass HierJyo" ascii //weight: 1
+        $x_1_4 = "rvy8SizeofResourcLo" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_10_*) and 1 of ($x_1_*))) or
+            ((2 of ($x_10_*))) or
+            (all of ($x*))
+        )
+}
+
