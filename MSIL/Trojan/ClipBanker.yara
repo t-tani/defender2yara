@@ -3573,3 +3573,28 @@ rule Trojan_MSIL_ClipBanker_GNK_2147917071_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_ClipBanker_AYA_2147919626_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/ClipBanker.AYA!MTB"
+        threat_id = "2147919626"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "ClipBanker"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "$069e7dba-3b68-45b4-a873-42487370cb2e" ascii //weight: 2
+        $x_1_2 = "Steal.g.resources" ascii //weight: 1
+        $x_1_3 = "Steal.exe" ascii //weight: 1
+        $x_1_4 = "IEJAEJKFGOACAMHDNODBLDHPKADLKKOHCDHE" ascii //weight: 1
+        $x_1_5 = "Debugger Detected" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
