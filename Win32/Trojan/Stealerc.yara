@@ -878,3 +878,24 @@ rule Trojan_Win32_Stealerc_AMAI_2147913845_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Stealerc_PAFL_2147919661_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Stealerc.PAFL!MTB"
+        threat_id = "2147919661"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Stealerc"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {83 65 fc 00 8d 75 fc e8 ?? ?? ?? ?? 8b 45 08 8a 4d fc 30 0c 38 47 3b fb 7c e6}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
