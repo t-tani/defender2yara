@@ -717,3 +717,25 @@ rule Trojan_MacOS_Amos_T_2147919521_0
         (all of ($x*))
 }
 
+rule Trojan_MacOS_Amos_AQ_2147919678_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MacOS/Amos.AQ!MTB"
+        threat_id = "2147919678"
+        type = "Trojan"
+        platform = "MacOS: "
+        family = "Amos"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_MACHOHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {c0 e0 02 89 ca c0 ea 04 80 e2 03 08 c2 88 55 d1 c0 e1 04 8a 45 d6 c0 e8 02 24 0f 08 c8 88 45 d2 8b 45 c8 83 f8 02 6a 01 41 5e 44 0f 4d f0 41 ff ce 45 31 ff}  //weight: 1, accuracy: High
+        $x_1_2 = {0f 95 c0 0f b6 c0 5d c3 90 48 85 f6 74 13 55 48 89 e5 48 89 f0 0f be 32 48 89 c2}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

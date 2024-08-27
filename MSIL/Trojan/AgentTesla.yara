@@ -104825,3 +104825,52 @@ rule Trojan_MSIL_AgentTesla_AUK_2147919611_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AgentTesla_RDCC_2147919663_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.RDCC!MTB"
+        threat_id = "2147919663"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "d2174ca7-a13a-43df-b2d1-ce19505438f5" ascii //weight: 2
+        $x_2_2 = "abe14901-ef9e-4e70-9325-0162e75fa3e8" ascii //weight: 2
+        $x_1_3 = "MainRunner" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_AgentTesla_VG_2147919679_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.VG!MTB"
+        threat_id = "2147919679"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "BlockCopy" ascii //weight: 1
+        $x_1_2 = "c94e540b48d2ff499c90c69f31e05f006" ascii //weight: 1
+        $x_1_3 = "GetFilePath" ascii //weight: 1
+        $x_1_4 = "DebuggingModes" ascii //weight: 1
+        $x_1_5 = "EvilProgram" ascii //weight: 1
+        $x_1_6 = "c859aa88665be2148355b1794611631ff" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

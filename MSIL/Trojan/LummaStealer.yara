@@ -1816,3 +1816,37 @@ rule Trojan_MSIL_LummaStealer_KAN_2147919410_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_LummaStealer_GPB_2147919705_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/LummaStealer.GPB!MTB"
+        threat_id = "2147919705"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "9"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "FMsmfPvpRTiJdDAipsx" ascii //weight: 2
+        $x_2_2 = "btvHvRxBAlYaRPY" ascii //weight: 2
+        $x_2_3 = "ZKLLDguMzDHE" ascii //weight: 2
+        $x_2_4 = "fVpJRuXUyhGxRhaIcgZK" ascii //weight: 2
+        $x_2_5 = "xPloyPSpijYoSnlkGGCGIgDL" ascii //weight: 2
+        $x_2_6 = "alkmJIovvMRZyWZasQMu" ascii //weight: 2
+        $x_2_7 = "ClvBQJCDBVnRhnruzdGZe" ascii //weight: 2
+        $x_2_8 = "XCXbpOpdgKSRNNPjIVwWYugAU" ascii //weight: 2
+        $x_1_9 = "tLrmzJMsrWOFWmoOxcctAcCafzA.d" ascii //weight: 1
+        $x_1_10 = "FgLHhdSuJHOQcVWHZfF.d" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((4 of ($x_2_*) and 1 of ($x_1_*))) or
+            ((5 of ($x_2_*))) or
+            (all of ($x*))
+        )
+}
+
