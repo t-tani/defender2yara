@@ -152,3 +152,26 @@ rule Trojan_MSIL_DarkStealer_RHB_2147906792_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_DarkStealer_ASJ_2147919719_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/DarkStealer.ASJ!MTB"
+        threat_id = "2147919719"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "DarkStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {0d 16 13 05 08 11 05 09 11 05 9a 1f 10 28 ?? 00 00 0a 28 ?? 00 00 0a 9c 11 05 17 d6 13 05 11 05 1b 31 e1 1f 66 8d ?? 00 00 01 13 04 16 13 06 11 04 11 06 20 ff 00 00 00 9c 11 06 17 d6 13 06 11 06 1b 31 eb}  //weight: 3, accuracy: Low
+        $x_1_2 = {11 04 11 07 08 11 07 1c 5d 91 9c 11 07 17 d6 13 07 11 07 1f 65 31 e9}  //weight: 1, accuracy: High
+        $x_1_3 = "192.168.100.51\\Public\\MapDrive\\Public" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
