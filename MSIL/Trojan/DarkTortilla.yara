@@ -3339,6 +3339,27 @@ rule Trojan_MSIL_DarkTortilla_RP_2147913029_12
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {02 16 9a 14 [0-16] 20 ?? ?? ?? ?? 28 ?? ?? ?? ?? 17 8d ?? ?? 00 01 25 16 03 8c ?? ?? 00 01 a2 25 0b 14 14 17 8d ?? ?? 00 01 25 16 17 9c 25 0c 28 ?? ?? 00 0a 0d ?? 13 09 2b}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_DarkTortilla_RP_2147913029_13
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/DarkTortilla.RP!MTB"
+        threat_id = "2147913029"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "DarkTortilla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
         strings_accuracy = "High"
     strings:
         $x_1_1 = {28 ec 01 00 06 28 37 00 00 0a 10 00 02 28 37 00 00 0a 28 ed 01 00 06 28 37 00 00 0a 0a 02 74 1c 00 00 01 06 28 69 00 00 0a 28 ee 01 00 06 28 05 01 00 06 28 3d 02 00 06 28 37 00 00 0a 28 19 02 00 06}  //weight: 1, accuracy: High
@@ -3347,7 +3368,7 @@ rule Trojan_MSIL_DarkTortilla_RP_2147913029_12
         (all of ($x*))
 }
 
-rule Trojan_MSIL_DarkTortilla_RP_2147913029_13
+rule Trojan_MSIL_DarkTortilla_RP_2147913029_14
 {
     meta:
         author = "defender2yara"
@@ -3368,7 +3389,7 @@ rule Trojan_MSIL_DarkTortilla_RP_2147913029_13
         (all of ($x*))
 }
 
-rule Trojan_MSIL_DarkTortilla_RP_2147913029_14
+rule Trojan_MSIL_DarkTortilla_RP_2147913029_15
 {
     meta:
         author = "defender2yara"
@@ -3395,7 +3416,7 @@ rule Trojan_MSIL_DarkTortilla_RP_2147913029_14
         )
 }
 
-rule Trojan_MSIL_DarkTortilla_RP_2147913029_15
+rule Trojan_MSIL_DarkTortilla_RP_2147913029_16
 {
     meta:
         author = "defender2yara"
@@ -3417,7 +3438,7 @@ rule Trojan_MSIL_DarkTortilla_RP_2147913029_15
         (all of ($x*))
 }
 
-rule Trojan_MSIL_DarkTortilla_RP_2147913029_16
+rule Trojan_MSIL_DarkTortilla_RP_2147913029_17
 {
     meta:
         author = "defender2yara"
@@ -3445,7 +3466,7 @@ rule Trojan_MSIL_DarkTortilla_RP_2147913029_16
         )
 }
 
-rule Trojan_MSIL_DarkTortilla_RP_2147913029_17
+rule Trojan_MSIL_DarkTortilla_RP_2147913029_18
 {
     meta:
         author = "defender2yara"
@@ -3468,7 +3489,7 @@ rule Trojan_MSIL_DarkTortilla_RP_2147913029_17
         (1 of ($x*))
 }
 
-rule Trojan_MSIL_DarkTortilla_RP_2147913029_18
+rule Trojan_MSIL_DarkTortilla_RP_2147913029_19
 {
     meta:
         author = "defender2yara"
@@ -3498,7 +3519,7 @@ rule Trojan_MSIL_DarkTortilla_RP_2147913029_18
         )
 }
 
-rule Trojan_MSIL_DarkTortilla_RP_2147913029_19
+rule Trojan_MSIL_DarkTortilla_RP_2147913029_20
 {
     meta:
         author = "defender2yara"
@@ -3525,7 +3546,7 @@ rule Trojan_MSIL_DarkTortilla_RP_2147913029_19
         (all of ($x*))
 }
 
-rule Trojan_MSIL_DarkTortilla_RP_2147913029_20
+rule Trojan_MSIL_DarkTortilla_RP_2147913029_21
 {
     meta:
         author = "defender2yara"

@@ -3691,3 +3691,25 @@ rule Trojan_Win32_FormBook_NP_2147915266_0
         )
 }
 
+rule Trojan_Win32_FormBook_AFO_2147919711_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/FormBook.AFO!MTB"
+        threat_id = "2147919711"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "FormBook"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {59 59 8d 85 7c ea ff ff 50 8d 85 5c eb ff ff 50 8d 85 a0 eb ff ff 50 8d 85 54 eb ff ff 50 8d 85 4c fc ff ff 50 ff 15}  //weight: 1, accuracy: High
+        $x_1_2 = {6a 00 6a 00 6a 00 8d 85 74 fd ff ff 50 ff 15 ?? ?? ?? ?? 85 c0 74 3b a1 ?? ?? ?? ?? 0f af 45 c8 03 45 cc a3 ?? ?? ?? ?? 8b 45 98 48}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

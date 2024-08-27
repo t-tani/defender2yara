@@ -587,3 +587,30 @@ rule Trojan_Win32_LummaC_CCJK_2147919210_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_LummaC_ASN_2147919709_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaC.ASN!MTB"
+        threat_id = "2147919709"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_4_1 = {f6 17 90 89 d8 bb 99 00 00 00 90 31 c3 80 07 79 80 2f 35 90 89 d8 bb 99 00 00 00 90 31 c3 f6 2f 47 e2}  //weight: 4, accuracy: High
+        $x_4_2 = {8b 0a 8b 3e f6 17 53 5b 90 89 c3 83 f3 39 80 07 47 80 2f 25 53 5b 90 89 c3 83 f3 39 f6 2f 47 e2}  //weight: 4, accuracy: High
+        $x_1_3 = {20 ca 30 c8 08 c2}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_4_*) and 1 of ($x_1_*))) or
+            ((2 of ($x_4_*))) or
+            (all of ($x*))
+        )
+}
+

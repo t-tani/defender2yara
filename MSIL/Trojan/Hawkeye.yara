@@ -152,6 +152,28 @@ rule Trojan_MSIL_Hawkeye_AHW_2147849316_1
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Hawkeye_AHW_2147849316_2
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Hawkeye.AHW!MTB"
+        threat_id = "2147849316"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Hawkeye"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {16 06 8e b7 17 da 0d 0c 2b 3f 06 08 91 1f 1f fe 02 06 08 91 1f 7f fe 04 5f 2c 14 06 08 13 04 11 04 06 11 04 91 08 1f 1f 5d 18 d6 b4 59 86 9c 06 08 91 1f 20 2f 0f 06 08 13 04 11 04 06 11 04 91 1f 5f 58 86 9c 08 17 d6}  //weight: 1, accuracy: High
+        $x_2_2 = {06 17 d6 20 00 01 00 00 5d 0a 08 11 08 06 91 d6 20 00 01 00 00 5d 0c 11 08 06 91 0b 11 08 06 11 08 08 91 9c 11 08 08 07 9c 11 08 06 91 11 08 08 91 d6 20 00 01 00 00 5d 13 05 02 50 11 0a 02 50 11 0a 91 11 08 11 05 91 61 9c 11 0a 17 d6}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_Hawkeye_AHY_2147918875_0
 {
     meta:
@@ -168,6 +190,28 @@ rule Trojan_MSIL_Hawkeye_AHY_2147918875_0
         strings_accuracy = "High"
     strings:
         $x_1_1 = {16 0a 2b 2b 16 0b 2b 13 02 06 02 06 91 7e 01 00 00 04 07 91 61 d2 9c 07 17 58 0b 07 7e 01 00 00 04 8e 69 fe 04 13 04 11 04 2d dd}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Hawkeye_AHK_2147919712_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Hawkeye.AHK!MTB"
+        threat_id = "2147919712"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Hawkeye"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {02 8e b7 17 58 8d 0d 00 00 01 0a 16 13 04 16 02 8e b7 17 59 13 06 13 05 2b 34 06 11 05 02 11 05 91 09 61 07 11 04 91 61 9c 07 28 ?? 00 00 0a 11 04 07 8e b7 17 59 33 05 16 13 04 2b 06 11 04 17 58 13 04 11 05 17 58}  //weight: 2, accuracy: Low
+        $x_1_2 = {07 08 91 1f 1f 2b 4b 07 08 91 1f 7f 2b 3a 07 13 04 11 04 08 13 05 11 05 11 04 11 05 91 08 1f 1f 5d 17 58 28 ?? 00 00 0a 59 d2 9c 07 08 91 1f 20 2f 1a 07 13 04 11 04 08 13 05 11 05 11 04 11 05 91 1f 5f 58 d2 9c 2b 04 2f e1 2b c2 08 17 58}  //weight: 1, accuracy: Low
     condition:
         (filesize < 20MB) and
         (all of ($x*))

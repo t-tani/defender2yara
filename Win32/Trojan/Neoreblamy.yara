@@ -1413,3 +1413,43 @@ rule Trojan_Win32_Neoreblamy_ASN_2147919078_0
         (4 of ($x*))
 }
 
+rule Trojan_Win32_Neoreblamy_ASO_2147919710_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Neoreblamy.ASO!MTB"
+        threat_id = "2147919710"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Neoreblamy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "zPMSxSdxMhQYRzzDGTYHGCXeiVBzCi" ascii //weight: 1
+        $x_1_2 = "rWzrvQYZWWbnsSzUAlFQjeLIpSCVRGyZjb" ascii //weight: 1
+        $x_1_3 = "ZtMgnvwAqYJExMiZFkVdpMSsLdgKqKjbXp" ascii //weight: 1
+        $x_1_4 = "AUxAbyoPMdNdaKZZAVivvZATkCTxvyJdrZSqDhnuMn" ascii //weight: 1
+        $x_1_5 = "WeCLxQzoxGZHZGVNMncrBWAeKvnjNM" ascii //weight: 1
+        $x_1_6 = "wANpwFvqBLdQbHZkOAuiLmXGuqtnvtluLC" ascii //weight: 1
+        $x_1_7 = "UOriwOPGiBftlRlKocEqjFrHauAaLlyRRXEh" ascii //weight: 1
+        $x_1_8 = "pnIIPOAIFSZSdNHkUretDCqOucMVJdImCsCjZOY" ascii //weight: 1
+        $x_1_9 = "zCUrdpyiMNnWZQPkQBsIIZnAGJmWLE" ascii //weight: 1
+        $x_1_10 = "MMznjIcSNfVzlZILXwYPhyrkdPRJISoGUZ" ascii //weight: 1
+        $x_1_11 = "yijWjhXPOZJFdpZbYcJEcBMSEbqmrbUKKwHiqVZzgu" ascii //weight: 1
+        $x_1_12 = "eiegIaJjiQENryrszwsgCmujqRzAWvyeMvV" ascii //weight: 1
+        $x_1_13 = "NJEVRWUOKAYRVmLfwFrmsuNmGyiI" ascii //weight: 1
+        $x_1_14 = "iRzTEYDEGDlCXixoVRKdTzhQeqvxXSPwxb" ascii //weight: 1
+        $x_1_15 = "nxzAqxBAydWjWAXNlDhVpzXVPEcQDJtpjiudtuQztL" ascii //weight: 1
+        $x_1_16 = "VtXsscJrLfsBJuohLtAKeEVyUgjGpdIAgD" ascii //weight: 1
+        $x_1_17 = "OZSuRpJvOliamVUZqxKTzYDWjhEQAm" ascii //weight: 1
+        $x_1_18 = "GOOKjiPwEqpxfswyIGkOdaNWzLTWDoOaUz" ascii //weight: 1
+        $x_1_19 = "YoueDBllAEQZCYanrepQoaqDhzFttIoNSGLHq" ascii //weight: 1
+        $x_1_20 = "bESGkGqlRQMSTkqHNWLUFtsZvNLYlDZJPUzIZgg" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (4 of ($x*))
+}
+
