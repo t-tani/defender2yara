@@ -2476,3 +2476,24 @@ rule Trojan_Win32_StealC_GNM_2147919465_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_StealC_GNM_2147919465_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/StealC.GNM!MTB"
+        threat_id = "2147919465"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "StealC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {8b c3 c1 e8 ?? 89 44 24 ?? 8b 44 24 ?? 01 44 24 ?? 8b f3 c1 e6 ?? 03 74 24 ?? 8d 0c 1f 33 f1 81 3d ?? ?? ?? ?? 03 0b 00 00}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

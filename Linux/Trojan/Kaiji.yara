@@ -88,19 +88,19 @@ rule Trojan_Linux_Kaiji_C_2147832060_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_ELFHSTR_EXT"
-        threshold = "23"
+        threshold = "32"
         strings_accuracy = "High"
     strings:
         $x_10_1 = "main.CVE" ascii //weight: 10
-        $x_10_2 = "poll.splicepipe" ascii //weight: 10
-        $x_1_3 = "syscall.socket" ascii //weight: 1
+        $x_10_2 = ".rng" ascii //weight: 10
+        $x_10_3 = "forceattempthttp" ascii //weight: 10
         $x_1_4 = "syscall.accept" ascii //weight: 1
         $x_1_5 = "syscall.connect" ascii //weight: 1
         $x_1_6 = "syscall.sendfile" ascii //weight: 1
     condition:
         (filesize < 20MB) and
         (
-            ((2 of ($x_10_*) and 3 of ($x_1_*))) or
+            ((3 of ($x_10_*) and 2 of ($x_1_*))) or
             (all of ($x*))
         )
 }

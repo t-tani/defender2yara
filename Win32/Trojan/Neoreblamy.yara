@@ -1453,3 +1453,27 @@ rule Trojan_Win32_Neoreblamy_ASO_2147919710_0
         (4 of ($x*))
 }
 
+rule Trojan_Win32_Neoreblamy_GPC_2147919741_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Neoreblamy.GPC!MTB"
+        threat_id = "2147919741"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Neoreblamy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "16"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "VrgcifQlZtruzgMnM" ascii //weight: 1
+        $x_3_2 = "KjdcbCqcaSTusNSJWecwpJu" ascii //weight: 3
+        $x_5_3 = "IWiwjYkoJvQnzeWAz" ascii //weight: 5
+        $x_7_4 = "dTiHdTJvPxdLYR" ascii //weight: 7
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

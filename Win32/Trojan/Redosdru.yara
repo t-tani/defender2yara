@@ -655,3 +655,24 @@ rule Trojan_Win32_Redosdru_E_2147722532_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Redosdru_ARU_2147919739_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Redosdru.ARU!MTB"
+        threat_id = "2147919739"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Redosdru"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {8b 55 f8 83 c2 01 89 55 f8 8b 45 f8 3b 45 f4 7d 30 8b 4d fc 03 4d f8 0f be 11 0f be 45 f0 2b d0 8b 4d fc 03 4d f8 88 11 8b 55 fc 03 55 f8 0f be 02 0f be 4d ec 33 c1 8b 55 fc 03 55 f8 88 02}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
