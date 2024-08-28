@@ -1473,3 +1473,30 @@ rule Trojan_Win64_Lazy_GBN_2147919382_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Lazy_TZ_2147919801_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Lazy.TZ!MTB"
+        threat_id = "2147919801"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Lazy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "12"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "Go build ID:" ascii //weight: 2
+        $x_2_2 = "ThunderKitty-Grabber" ascii //weight: 2
+        $x_2_3 = "tokengrabber.SetTelegramCredentials" ascii //weight: 2
+        $x_2_4 = "tokengrabber.init" ascii //weight: 2
+        $x_2_5 = "tokengrabber.SendDMViaAPI" ascii //weight: 2
+        $x_1_6 = "tokengrabber.sendMessage" ascii //weight: 1
+        $x_1_7 = "defender.Disable" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

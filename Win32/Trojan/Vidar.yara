@@ -5767,7 +5767,8 @@ rule Trojan_Win32_Vidar_ASGL_2147915151_0
         threshold = "5"
         strings_accuracy = "Low"
     strings:
-        $x_5_1 = {03 c2 8b 55 ?? 31 02 83 45 ec 04 6a 00 e8 ?? ?? fa ff 83 45 ?? 04 6a 00 e8 ?? ?? fa ff 8b 45 ec 3b 45 d4 72}  //weight: 5, accuracy: Low
+        $x_4_1 = {31 02 83 45 ec 04 6a 00 e8}  //weight: 4, accuracy: High
+        $x_1_2 = {8b 45 ec 3b 45 ?? 72}  //weight: 1, accuracy: Low
     condition:
         (filesize < 20MB) and
         (all of ($x*))
