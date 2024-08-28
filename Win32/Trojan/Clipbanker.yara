@@ -330,3 +330,25 @@ rule Trojan_Win32_Clipbanker_CCIB_2147907382_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Clipbanker_AMAG_2147919822_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Clipbanker.AMAG!MTB"
+        threat_id = "2147919822"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Clipbanker"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {43 6c 69 70 c7 45 ?? 62 6f 61 72 66 c7 45 ?? 64 00 c7 45 ?? 43 6c 6f 73 c7 45 ?? 65 43 6c 69 c7 45 ?? 70 62 6f 61 66 c7 45 ?? 72 64 c6 45 ?? 00 c6 45 ?? 00 c7 45 ?? 45 6d 70 74 c7 45 ?? 79 43 6c 69 c7 45 ?? 70 62 6f 61 66 c7 45 ?? 72 64}  //weight: 2, accuracy: Low
+        $x_1_2 = {80 01 fd 8d 49 01 42 3b d7 75}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
