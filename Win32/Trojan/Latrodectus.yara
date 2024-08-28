@@ -1,12 +1,12 @@
-rule Trojan_Win32_ShellCoExec_C_2147918848_0
+rule Trojan_Win32_Latrodectus_C_2147919790_0
 {
     meta:
         author = "defender2yara"
-        detection_name = "Trojan:Win32/ShellCoExec.C!MTB"
-        threat_id = "2147918848"
+        detection_name = "Trojan:Win32/Latrodectus.C!MTB"
+        threat_id = "2147919790"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
-        family = "ShellCoExec"
+        family = "Latrodectus"
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR"
