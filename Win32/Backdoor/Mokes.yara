@@ -296,3 +296,24 @@ rule Backdoor_Win32_Mokes_GNT_2147919601_0
         (all of ($x*))
 }
 
+rule Backdoor_Win32_Mokes_GTT_2147919832_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Backdoor:Win32/Mokes.GTT!MTB"
+        threat_id = "2147919832"
+        type = "Backdoor"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Mokes"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {8b 45 f8 40 89 45 f8 83 7d f8 0d ?? ?? 8b 45 f8 0f be 44 05 cc 83 f0 ?? 8b 4d f8 88 44 0d cc}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

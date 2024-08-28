@@ -4062,6 +4062,27 @@ rule Trojan_MSIL_Redline_GTT_2147896361_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {11 24 11 47 5b 13 29 16 13 4c 2b 39 11 38 11 30 58 13 32 16 13 4d 2b 1e 11 45 11 44 61 13 1d 11 22 11 41 5a 13 37 11 30 6e 11 20 6a 61 6d 13 27 11 4d 17 58 13 4d 11 4d 20 ?? ?? ?? ?? 32 d9}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Redline_GTT_2147896361_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Redline.GTT!MTB"
+        threat_id = "2147896361"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Redline"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "12"
         strings_accuracy = "Low"
     strings:

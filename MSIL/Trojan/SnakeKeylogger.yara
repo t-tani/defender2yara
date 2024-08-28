@@ -5932,3 +5932,39 @@ rule Trojan_MSIL_SnakeKeylogger_SLDF_2147919546_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_SnakeKeylogger_CZ_2147919845_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/SnakeKeylogger.CZ!MTB"
+        threat_id = "2147919845"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "SnakeKeylogger"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "20"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = "\\SnakeKeylogger\\" ascii //weight: 5
+        $x_3_2 = "- Snake Tracker -" ascii //weight: 3
+        $x_2_3 = "$%TelegramDv$" ascii //weight: 2
+        $x_2_4 = "KeyLoggerEventArgs" ascii //weight: 2
+        $x_2_5 = "\\discord\\Local Storage\\leveldb\\" ascii //weight: 2
+        $x_2_6 = "wlan show profile" ascii //weight: 2
+        $x_1_7 = "\\Kinza\\User Data\\Default\\Login Data" ascii //weight: 1
+        $x_1_8 = "\\Sputnik\\Sputnik\\User Data\\Default\\Login Data" ascii //weight: 1
+        $x_1_9 = "\\BlackHawk\\User Data\\Default\\Login Data" ascii //weight: 1
+        $x_1_10 = "get_encryptedPassword" ascii //weight: 1
+        $x_1_11 = "get_encryptedUsername" ascii //weight: 1
+        $x_1_12 = "get_timePasswordChanged" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_5_*) and 1 of ($x_3_*) and 3 of ($x_2_*) and 6 of ($x_1_*))) or
+            ((1 of ($x_5_*) and 1 of ($x_3_*) and 4 of ($x_2_*) and 4 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+
