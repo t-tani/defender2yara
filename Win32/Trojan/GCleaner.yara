@@ -557,3 +557,24 @@ rule Trojan_Win32_GCleaner_MFC_2147919821_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_GCleaner_UFF_2147919912_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/GCleaner.UFF!MTB"
+        threat_id = "2147919912"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "GCleaner"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {56 83 a5 f8 f7 ff ff 00 8d b5 f8 f7 ff ff e8 ?? ?? ?? ?? 8b 85 f4 f7 ff ff 8a 8d f8 f7 ff ff 30 0c 38 83 fb 0f 75}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
