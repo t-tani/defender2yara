@@ -94,3 +94,26 @@ rule TrojanDownloader_Win64_AsyncRAT_D_2147890063_0
         )
 }
 
+rule TrojanDownloader_Win64_AsyncRAT_E_2147919849_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:Win64/AsyncRAT.E!MTB"
+        threat_id = "2147919849"
+        type = "TrojanDownloader"
+        platform = "Win64: Windows 64-bit platform"
+        family = "AsyncRAT"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_4_1 = "RatDownload\\x64\\Release\\RatLoader.pdb" ascii //weight: 4
+        $x_2_2 = "download/Realease" ascii //weight: 2
+        $x_2_3 = "APPDATA" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
