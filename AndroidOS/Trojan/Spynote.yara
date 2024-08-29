@@ -378,6 +378,27 @@ rule Trojan_AndroidOS_Spynote_PH_2147853125_0
         family = "Spynote"
         severity = "Critical"
         signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "acercreatingj59727" ascii //weight: 1
+        $x_1_2 = "cvsacercreatingj59722" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_AndroidOS_Spynote_PH_2147853125_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:AndroidOS/Spynote.PH"
+        threat_id = "2147853125"
+        type = "Trojan"
+        platform = "AndroidOS: Android operating system"
+        family = "Spynote"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
         threshold = "3"
         strings_accuracy = "High"
     strings:
@@ -491,6 +512,27 @@ rule Trojan_AndroidOS_Spynote_C_2147894953_0
     strings:
         $x_1_1 = "MY_VPN_NOTIFICATION_ID" ascii //weight: 1
         $x_1_2 = "to Block app, disable firewall first" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_AndroidOS_Spynote_RH_2147919905_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:AndroidOS/Spynote.RH"
+        threat_id = "2147919905"
+        type = "Trojan"
+        platform = "AndroidOS: Android operating system"
+        family = "Spynote"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "mmarddarmjttjxekirjtsuhcczdhdbdqgrnxmtsoxmsexjmdro6lbmNu18" ascii //weight: 1
+        $x_1_2 = "pdbafmdoec1020" ascii //weight: 1
     condition:
         (filesize < 20MB) and
         (all of ($x*))
