@@ -1662,6 +1662,27 @@ rule Trojan_MSIL_AsyncRAT_ARA_2147847940_3
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {02 07 02 07 91 8c ?? ?? ?? 01 03 07 8c ?? ?? ?? 01 03 8e b7 8c ?? ?? ?? 01 28 ?? ?? ?? 06 28 ?? ?? ?? 0a 91 8c ?? ?? ?? 01 28 ?? ?? ?? 06 28 ?? ?? ?? 0a 9c 07 17 d6 0b 07 08 31 c4}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_AsyncRAT_ARA_2147847940_4
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AsyncRAT.ARA!MTB"
+        threat_id = "2147847940"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AsyncRAT"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "4"
         strings_accuracy = "Low"
     strings:
@@ -1672,7 +1693,7 @@ rule Trojan_MSIL_AsyncRAT_ARA_2147847940_3
         (all of ($x*))
 }
 
-rule Trojan_MSIL_AsyncRAT_ARA_2147847940_4
+rule Trojan_MSIL_AsyncRAT_ARA_2147847940_5
 {
     meta:
         author = "defender2yara"
@@ -1695,7 +1716,7 @@ rule Trojan_MSIL_AsyncRAT_ARA_2147847940_4
         (all of ($x*))
 }
 
-rule Trojan_MSIL_AsyncRAT_ARA_2147847940_5
+rule Trojan_MSIL_AsyncRAT_ARA_2147847940_6
 {
     meta:
         author = "defender2yara"
@@ -1716,7 +1737,7 @@ rule Trojan_MSIL_AsyncRAT_ARA_2147847940_5
         (all of ($x*))
 }
 
-rule Trojan_MSIL_AsyncRAT_ARA_2147847940_6
+rule Trojan_MSIL_AsyncRAT_ARA_2147847940_7
 {
     meta:
         author = "defender2yara"
@@ -1739,7 +1760,7 @@ rule Trojan_MSIL_AsyncRAT_ARA_2147847940_6
         (all of ($x*))
 }
 
-rule Trojan_MSIL_AsyncRAT_ARA_2147847940_7
+rule Trojan_MSIL_AsyncRAT_ARA_2147847940_8
 {
     meta:
         author = "defender2yara"
@@ -1762,7 +1783,7 @@ rule Trojan_MSIL_AsyncRAT_ARA_2147847940_7
         (all of ($x*))
 }
 
-rule Trojan_MSIL_AsyncRAT_ARA_2147847940_8
+rule Trojan_MSIL_AsyncRAT_ARA_2147847940_9
 {
     meta:
         author = "defender2yara"
@@ -1783,7 +1804,7 @@ rule Trojan_MSIL_AsyncRAT_ARA_2147847940_8
         (all of ($x*))
 }
 
-rule Trojan_MSIL_AsyncRAT_ARA_2147847940_9
+rule Trojan_MSIL_AsyncRAT_ARA_2147847940_10
 {
     meta:
         author = "defender2yara"
@@ -1810,7 +1831,7 @@ rule Trojan_MSIL_AsyncRAT_ARA_2147847940_9
         )
 }
 
-rule Trojan_MSIL_AsyncRAT_ARA_2147847940_10
+rule Trojan_MSIL_AsyncRAT_ARA_2147847940_11
 {
     meta:
         author = "defender2yara"
@@ -1832,7 +1853,7 @@ rule Trojan_MSIL_AsyncRAT_ARA_2147847940_10
         (all of ($x*))
 }
 
-rule Trojan_MSIL_AsyncRAT_ARA_2147847940_11
+rule Trojan_MSIL_AsyncRAT_ARA_2147847940_12
 {
     meta:
         author = "defender2yara"
@@ -1857,7 +1878,7 @@ rule Trojan_MSIL_AsyncRAT_ARA_2147847940_11
         (all of ($x*))
 }
 
-rule Trojan_MSIL_AsyncRAT_ARA_2147847940_12
+rule Trojan_MSIL_AsyncRAT_ARA_2147847940_13
 {
     meta:
         author = "defender2yara"
@@ -1882,7 +1903,7 @@ rule Trojan_MSIL_AsyncRAT_ARA_2147847940_12
         (all of ($x*))
 }
 
-rule Trojan_MSIL_AsyncRAT_ARA_2147847940_13
+rule Trojan_MSIL_AsyncRAT_ARA_2147847940_14
 {
     meta:
         author = "defender2yara"
@@ -4790,6 +4811,27 @@ rule Trojan_MSIL_AsyncRAT_RDAC_2147919015_0
         strings_accuracy = "High"
     strings:
         $x_2_1 = {09 08 17 73 1f 00 00 0a 13 04 11 04 06 16 06 8e 69 6f 20 00 00 0a 09 6f 21 00 00 0a 0a}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_AsyncRAT_BO_2147919875_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AsyncRAT.BO!MTB"
+        threat_id = "2147919875"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AsyncRAT"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {11 06 94 d6 20 00 01 00 00 5d 94 13 10 02 06 17 da 17 6f ?? 00 00 0a 6f ?? 00 00 0a 16 93 13 0e 11 0e 28 ?? 00 00 0a 13 0f 11 0f 11 10 61 13 0d 08 11 0d 28 ?? 00 00 0a 6f ?? 00 00 0a 26 12 00 28 ?? 00 00 0a 06 17 da 28}  //weight: 2, accuracy: Low
     condition:
         (filesize < 20MB) and
         (all of ($x*))

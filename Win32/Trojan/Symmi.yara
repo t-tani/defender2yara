@@ -100,3 +100,24 @@ rule Trojan_Win32_Symmi_GNM_2147919600_0
         )
 }
 
+rule Trojan_Win32_Symmi_MBXS_2147919873_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Symmi.MBXS!MTB"
+        threat_id = "2147919873"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Symmi"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {62 2e 64 6c 6c 00 44 6c 6c 43 6d 64}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

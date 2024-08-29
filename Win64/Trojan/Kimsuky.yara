@@ -62,3 +62,34 @@ rule Trojan_Win64_Kimsuky_AH_2147911308_0
         (1 of ($x*))
 }
 
+rule Trojan_Win64_Kimsuky_ARA_2147919884_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Kimsuky.ARA!MTB"
+        threat_id = "2147919884"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Kimsuky"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "9"
+        strings_accuracy = "High"
+    strings:
+        $x_4_1 = "nidlogin.apollo-page." wide //weight: 4
+        $x_4_2 = "nid.apollo-blue7.kro.kr" wide //weight: 4
+        $x_3_3 = "/cmd/index.php?_idx_=7" wide //weight: 3
+        $x_3_4 = "/database/index.php?_apo_=27" wide //weight: 3
+        $x_2_5 = "Remote Desktop Users" wide //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_4_*) and 1 of ($x_3_*) and 1 of ($x_2_*))) or
+            ((1 of ($x_4_*) and 2 of ($x_3_*))) or
+            ((2 of ($x_4_*) and 1 of ($x_2_*))) or
+            ((2 of ($x_4_*) and 1 of ($x_3_*))) or
+            (all of ($x*))
+        )
+}
+
