@@ -823,3 +823,27 @@ rule Trojan_AndroidOS_FakeInst_X_2147908991_0
         (all of ($x*))
 }
 
+rule Trojan_AndroidOS_FakeInst_S_2147919945_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:AndroidOS/FakeInst.S"
+        threat_id = "2147919945"
+        type = "Trojan"
+        platform = "AndroidOS: Android operating system"
+        family = "FakeInst"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "samagonteam" ascii //weight: 2
+        $x_2_2 = "gruppaduna" ascii //weight: 2
+        $x_2_3 = "trirubaha" ascii //weight: 2
+        $x_2_4 = "sendSMS777" ascii //weight: 2
+        $x_2_5 = "getlinkconfig345" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (2 of ($x*))
+}
+

@@ -62,3 +62,24 @@ rule Trojan_Win64_Graftor_D_2147916541_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Graftor_E_2147919932_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Graftor.E!MTB"
+        threat_id = "2147919932"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Graftor"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {48 89 19 48 c1 c9 ?? 8b 40 ?? 66 0b cc 66 41 0f 45 c9 66 f7 d1 89 54 24 ?? f8 87 c9 8d 0c 07 b8 ?? ?? ?? ?? 41 3a f1 f8 89 7c 24 ?? 66 81 fc ?? ?? d3 e0 f5}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

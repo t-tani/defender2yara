@@ -20,3 +20,35 @@ rule DoS_Win32_SharpWipe_B_2147849476_0
         (1 of ($x*))
 }
 
+rule DoS_Win32_SharpWipe_C_2147919946_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "DoS:Win32/SharpWipe.C!dha"
+        threat_id = "2147919946"
+        type = "DoS"
+        platform = "Win32: Windows 32-bit platform"
+        family = "SharpWipe"
+        severity = "Critical"
+        info = "dha: an internal category used to refer to some threats"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "12"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "-r -q -accepteula C:\\myapp.exe" wide //weight: 1
+        $x_1_2 = "-r -s -q -accepteula C:\\*" wide //weight: 1
+        $x_1_3 = "\\\\.\\PhysicalDrive0" wide //weight: 1
+        $x_1_4 = "\\\\.\\PhysicalDrive1" wide //weight: 1
+        $x_1_5 = "\\\\.\\PhysicalDrive2" wide //weight: 1
+        $x_1_6 = "\\\\.\\PhysicalDrive3" wide //weight: 1
+        $x_1_7 = "\\\\.\\PhysicalDrive4" wide //weight: 1
+        $x_1_8 = "\\\\.\\PhysicalDrive5" wide //weight: 1
+        $x_1_9 = "\\\\.\\PhysicalDrive6" wide //weight: 1
+        $x_1_10 = "\\\\.\\PhysicalDrive7" wide //weight: 1
+        $x_1_11 = "\\\\.\\PhysicalDrive8" wide //weight: 1
+        $x_1_12 = "\\\\.\\PhysicalDrive9" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
