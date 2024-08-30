@@ -47,3 +47,25 @@ rule Trojan_MacOS_PassSteal_AB_2147897379_0
         )
 }
 
+rule Trojan_MacOS_PassSteal_A_2147920007_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MacOS/PassSteal.A!MTB"
+        threat_id = "2147920007"
+        type = "Trojan"
+        platform = "MacOS: "
+        family = "PassSteal"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_MACHOHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {e8 9d 16 00 00 48 83 c4 30 0f 0b 48 8b 85 50 ff ff ff 48 89 45 c8 31 c0 89 c7 e8 f3 fd ff ff}  //weight: 1, accuracy: High
+        $x_1_2 = {55 48 89 e5 48 83 ec 20 48 89 7d f8 48 83 ff 00 0f 9c c0 a8 01 75 ?? 48 8b 4d f8 31 c0 48 39 c8 7c ?? 48 8b 3d 8f 4d 00 00 e8 ea 34 00 00 48 8b 05 83 4d 00 00 48 89 45 f0}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

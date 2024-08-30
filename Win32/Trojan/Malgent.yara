@@ -272,3 +272,27 @@ rule Trojan_Win32_Malgent_RP_2147916496_1
         (all of ($x*))
 }
 
+rule Trojan_Win32_Malgent_AYA_2147920017_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Malgent.AYA!MTB"
+        threat_id = "2147920017"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Malgent"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {81 bd 24 fd ff ff ed ed a4 35 76 02 33 c9 b8 07 00 00 00 83 e8 01 83 f8 0a 74 05 83 c0 02 eb 08 8d 85 24 fd ff ff 33 c0 33 c0 ff 85 24 fd ff ff 85 c9 75 cc e8 87 f2 ff ff e8 02 f1 ff ff 33 c9 33 c0 3b c1}  //weight: 2, accuracy: High
+        $x_1_2 = "SitNow" wide //weight: 1
+        $x_1_3 = "sitcom.exe" wide //weight: 1
+        $x_1_4 = "IsDebuggerPresent" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

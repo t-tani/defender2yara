@@ -289,3 +289,47 @@ rule TrojanDownloader_MacOS_Adload_Q_2147919548_0
         (all of ($x*))
 }
 
+rule TrojanDownloader_MacOS_Adload_S_2147920005_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:MacOS/Adload.S!MTB"
+        threat_id = "2147920005"
+        type = "TrojanDownloader"
+        platform = "MacOS: "
+        family = "Adload"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_MACHOHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {4b 8b 7c f5 00 48 85 ff 74 ?? 48 89 de ff 15 a5 21 00 00 49 ff c6 45 39 f4 75 ?? 4c 03 7d c0 48 8b 45 b8 4e ?? ?? ?? ?? 48 8b 45 b0}  //weight: 1, accuracy: Low
+        $x_1_2 = {48 03 5d b8 41 bf 01 00 00 00 45 31 f6 49 c1 e6 04 48 8b 45 80 4a 8b 3c 30 48 89 de e8 d2 1c 00 00 85 c0 74 ?? 45 89 fe 41 ff c7 4d 39 ee}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule TrojanDownloader_MacOS_Adload_U_2147920006_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:MacOS/Adload.U!MTB"
+        threat_id = "2147920006"
+        type = "TrojanDownloader"
+        platform = "MacOS: "
+        family = "Adload"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_MACHOHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {55 48 89 e5 53 50 48 8b 35 66 24 00 00 48 8b 1d a7 20 00 00 ff d3 48 8b 35 66 24 00 00 48 89 c7 48 89 d8 48 83 c4 08 5b 5d ff e0}  //weight: 1, accuracy: High
+        $x_1_2 = {49 89 d7 ff 15 c0 24 00 00 41 89 c6 85 c0 74 ?? 45 89 f4 49 c1 e4 03 31 db 49 8b 3c 1f e8 a8 0e 00 00 48 83 c3 08 49 39 dc}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
