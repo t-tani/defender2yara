@@ -26,3 +26,24 @@ rule Trojan_AndroidOS_IOBot_A_2147914094_0
         )
 }
 
+rule Trojan_AndroidOS_IOBot_PH_2147919997_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:AndroidOS/IOBot.PH"
+        threat_id = "2147919997"
+        type = "Trojan"
+        platform = "AndroidOS: Android operating system"
+        family = "IOBot"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "/app/8c5e1489e530dd6cd39b" ascii //weight: 1
+        $x_1_2 = "wss://api.spacexmmobile.com/ws/mobile/" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
