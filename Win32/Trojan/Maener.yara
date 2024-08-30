@@ -51,3 +51,24 @@ rule Trojan_Win32_Maener_B_2147691522_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Maener_MKV_2147920052_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Maener.MKV!MTB"
+        threat_id = "2147920052"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Maener"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {8b c1 33 d2 f7 75 ec 41 8a 82 ?? ?? ?? ?? 30 44 31 ff 3b cf 72 ea 83 ec 0c 8d 8d 88 fe ff ff 53 e8}  //weight: 4, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

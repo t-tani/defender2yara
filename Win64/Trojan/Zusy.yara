@@ -726,3 +726,24 @@ rule Trojan_Win64_Zusy_HNE_2147919616_0
         )
 }
 
+rule Trojan_Win64_Zusy_GNM_2147920028_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Zusy.GNM!MTB"
+        threat_id = "2147920028"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = {80 32 f4 9a b2 ab 02 3e e4 97 12 1e 25 f4 65 8e ce 8a 56 40 f7 62 0c 95 5b 61 e1}  //weight: 10, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
