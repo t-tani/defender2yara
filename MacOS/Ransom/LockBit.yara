@@ -44,3 +44,25 @@ rule Ransom_MacOS_LockBit_F_2147916315_0
         (all of ($x*))
 }
 
+rule Ransom_MacOS_LockBit_A_2147920067_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:MacOS/LockBit.A!MTB"
+        threat_id = "2147920067"
+        type = "Ransom"
+        platform = "MacOS: "
+        family = "LockBit"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_MACHOHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {29 41 0d 4a 8d 1d 40 92 0d 69 6d 38 29 61 0d 4a 2d 01 00 52 0c b4 03 29 aa 01 0a 4a 6b 01 0a 4a 0a ac 04 29 6c 01 0c 4a ed 03 0c aa ae 3d 48 d3 0e 69 6e 38 29 01 0e 4a}  //weight: 1, accuracy: High
+        $x_1_2 = {aa 6a 6a 38 ab 02 08 8b 6c 41 40 39 8a 01 0a 4a 6a 41 00 39 08 05 00 91 1f 01 09 eb}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -739,3 +739,47 @@ rule Trojan_MacOS_Amos_AQ_2147919678_0
         (all of ($x*))
 }
 
+rule Trojan_MacOS_Amos_AC_2147920058_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MacOS/Amos.AC!MTB"
+        threat_id = "2147920058"
+        type = "Trojan"
+        platform = "MacOS: "
+        family = "Amos"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_MACHOHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {0f b6 d2 89 b4 94 60 01 00 00 41 0f b6 94 0c 4b 8f 00 00 8b b4 94 60 01 00 00 ff c6 ?? ?? 89 b4 94 60 01 00 00 41 0f b6 94 0c 4c 8f 00 00 8b b4 94 60 01 00 00 ff c6 ?? ?? 89 b4 94 60 01 00 00 48 81 f9 1d 01 00 00 ?? ?? 41 0f b6 94 0c 4d 8f 00 00 8b b4 94 60 01 00 00 48 83 c1 03 ff c6 ?? ?? 67 0f b9}  //weight: 1, accuracy: Low
+        $x_1_2 = {74 36 49 8b 45 f0 48 39 d8 ?? ?? 48 8d 68 e8 f6 40 e8 01 ?? ?? 48 8b 78 f8 e8 ed 03 00 00 48 89 e8 48 39 dd ?? ?? 49 8b 3c 24 ?? ?? 48 89 df 49 89 5d f0 e8 d3 03 00 00}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MacOS_Amos_AH_2147920060_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MacOS/Amos.AH!MTB"
+        threat_id = "2147920060"
+        type = "Trojan"
+        platform = "MacOS: "
+        family = "Amos"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_MACHOHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {5f 01 0b 6b a1 00 00 54 8a 00 00 b0 4a f1 43 79 2a 69 02 b9 1f 00 00 14 e9 2f 40 f9 6a 67 81 52 49 01 09 4b ea 2f 40 f9 eb 3f c1 39 29 7d 0a 1b ea 72 8a 52 2a 68 bd 72 29 29 0b 1b 8a 00 00 b0}  //weight: 1, accuracy: High
+        $x_1_2 = {ad 3d 10 53 bf c1 57 71 2d 02 00 54 2a 6d 1c 53 4a 01 09 4b 8a 29 08 39 ea 4b 40 b9 ec 4b 40 b9 4a 31 0e 1b ea 4b 00 b9 10 00 00 14 8a 00 00 b0 4a 99 44 79 aa 01 00 34 ea 43 40 b9 0a 01 00 34}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

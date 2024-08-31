@@ -3051,3 +3051,27 @@ rule Ransom_MSIL_Filecoder_OOL_2147919110_0
         (all of ($x*))
 }
 
+rule Ransom_MSIL_Filecoder_ARA_2147920066_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:MSIL/Filecoder.ARA!MTB"
+        threat_id = "2147920066"
+        type = "Ransom"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Filecoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "RansomwareHandler" ascii //weight: 2
+        $x_2_2 = "EncryptFilesInDrive" ascii //weight: 2
+        $x_2_3 = "EncryptFilesInDirectory" ascii //weight: 2
+        $x_2_4 = "Victim" wide //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
