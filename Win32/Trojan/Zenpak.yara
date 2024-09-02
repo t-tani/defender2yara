@@ -8563,3 +8563,24 @@ rule Trojan_Win32_Zenpak_AMAI_2147920086_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Zenpak_ASAQ_2147920184_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zenpak.ASAQ!MTB"
+        threat_id = "2147920184"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zenpak"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {0f b6 4d f6 0f b6 55 f7 31 d1 88 cb 88 5d f5 8b 0d ?? ?? ?? 10 81 e9 ?? ?? ?? 00 89 0d ?? ?? ?? 10 c7 05 [0-8] 0f b6 45 f5 83 c4 08 5e 5b 5d c3}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
