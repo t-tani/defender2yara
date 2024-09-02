@@ -4101,3 +4101,48 @@ rule Trojan_MSIL_Bladabindi_NT_2147918732_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Bladabindi_NQ_2147920138_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Bladabindi.NQ!MTB"
+        threat_id = "2147920138"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Bladabindi"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "http://167.71.14.135" ascii //weight: 2
+        $x_1_2 = "Add-MpPreference -ExclusionProcess" ascii //weight: 1
+        $x_1_3 = "powershell.exe" ascii //weight: 1
+        $x_1_4 = "Microsoft\\Windows\\Windows.exe" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Bladabindi_NS_2147920139_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Bladabindi.NS!MTB"
+        threat_id = "2147920139"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Bladabindi"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {02 03 02 4b 03 04 61 05 61 58 0e 07 0e 04 e0 95 58 7e 44 03 00 04 0e 06 17 59 e0 95 58 0e 05 28 3f 05 00 06 58 54 2a}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

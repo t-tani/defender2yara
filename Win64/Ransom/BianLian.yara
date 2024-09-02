@@ -123,3 +123,28 @@ rule Ransom_Win64_BianLian_OBS_2147917696_0
         (all of ($x*))
 }
 
+rule Ransom_Win64_BianLian_FEM_2147920134_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win64/BianLian.FEM!MTB"
+        threat_id = "2147920134"
+        type = "Ransom"
+        platform = "Win64: Windows 64-bit platform"
+        family = "BianLian"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "9"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {50 58 89 84 24 88 00 00 00 48 8b ac 24 a0 00 00 00 4c 0f be 7d 00 48 63 84 24 88 00 00 00 49 31 c7 4c 89 f8 50 48 8b ac 24 a8 00 00 00 58 88 45 00 4c 8b bc 24 a0 00 00 00 49 ff c7 4c 89 bc 24 a0 00 00 00 ff 44 24 78}  //weight: 5, accuracy: High
+        $x_1_2 = "bcdedit.exe /set loadoptions DDISABLE_INTEGRITY_CHECKS" ascii //weight: 1
+        $x_1_3 = "sc create winppx binPath" ascii //weight: 1
+        $x_1_4 = "revsoks.bat" ascii //weight: 1
+        $x_1_5 = "Zz158df@jniow45h@" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

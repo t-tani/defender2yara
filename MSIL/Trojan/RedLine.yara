@@ -3925,3 +3925,29 @@ rule Trojan_MSIL_RedLine_RDFH_2147919862_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_RedLine_VHAA_2147920133_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/RedLine.VHAA!MTB"
+        threat_id = "2147920133"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "RedLine"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "hfCplgsDCrEYPzHhMCLblsyZxtaq.dll" ascii //weight: 2
+        $x_1_2 = "VItYkEpoRfCNjDiQcJIMzxGTId" ascii //weight: 1
+        $x_1_3 = "qjTYpnwFdvcOwuIwCOHyQkUAmQk.dll" ascii //weight: 1
+        $x_1_4 = "UvwhmxSsrMXOXwZdjcQZVXik" ascii //weight: 1
+        $x_1_5 = "THkiFlhhlkJHcHrYCaPGyZVfH.dll" ascii //weight: 1
+        $x_1_6 = "MsbyFHwIWjnngFHPGYW" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -3221,3 +3221,24 @@ rule Trojan_MSIL_LokiBot_SML_2147917855_1
         (all of ($x*))
 }
 
+rule Trojan_MSIL_LokiBot_SJPF_2147920137_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/LokiBot.SJPF!MTB"
+        threat_id = "2147920137"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "LokiBot"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {06 11 05 11 06 6f ?? ?? ?? 0a 13 07 08 12 07 28 ?? ?? ?? 0a 6f ?? ?? ?? 0a 00 08 12 07 28 ?? ?? ?? 0a 6f ?? ?? ?? 0a 00 08 12 07 28 ?? ?? ?? 0a 6f ?? ?? ?? 0a 00 07 08 20 ?? ?? ?? 00 28 ?? ?? ?? 06 00 08 6f ?? ?? ?? 0a 00 00 11 06 17 58 13 06}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
