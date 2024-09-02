@@ -783,3 +783,47 @@ rule Trojan_MacOS_Amos_AH_2147920060_0
         (all of ($x*))
 }
 
+rule Trojan_MacOS_Amos_AR_2147920163_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MacOS/Amos.AR!MTB"
+        threat_id = "2147920163"
+        type = "Trojan"
+        platform = "MacOS: "
+        family = "Amos"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_MACHOHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {49 8b 56 40 49 8b be 80 00 00 00 49 8b 4e 60 48 01 d1 48 8b 07 4c 89 e6 ?? ?? ?? ?? ?? ?? ?? ff 50 28 89 c3 4c 8b ad 50 ff ff ff 49 8b 7e 40 49 8b 4e 78 49 29 fd 4c 89 fe 4c 89 ea e8 b4 2b 00 00 4c 39 e8 75 ?? 83 fb 01}  //weight: 1, accuracy: Low
+        $x_1_2 = {48 09 c8 f3 0f 5e c1 66 0f 3a 0a c0 0a f3 48 0f 2c c8 48 89 ca 48 c1 fa 3f f3 0f 5c 05 8b 3c 00 00 f3 48 0f 2c f0 48 21 d6 48 09 ce 48 39 f0 48 0f 47 f0 4c 89 e7}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MacOS_Amos_AU_2147920165_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MacOS/Amos.AU!MTB"
+        threat_id = "2147920165"
+        type = "Trojan"
+        platform = "MacOS: "
+        family = "Amos"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_MACHOHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {55 48 89 e5 48 83 ec 20 48 89 7d f8 48 89 75 f0 48 8b 7d f8 48 89 7d e8 48 8b 45 f0 88 45 e7 e8 fc ?? ?? ?? 8a 55 e7 48 8b 7d e8 8a 08 80 e2 7f c0 e2 01 80 e1 01 08 d1 88 08 e8 e1 ?? ?? ?? 8a 08 80 e1 fe 80 c9 00 88 08 48 83 c4 20}  //weight: 1, accuracy: Low
+        $x_1_2 = {48 8b 45 f0 48 3b 45 e8 0f 84 ?? ?? ?? ?? 48 8b 7d c0 48 8b 75 f0 e8 e5 ?? ?? ?? 48 8b 45 f0 48 83 c0 01 48 89 45 f0 48 8b 45 c0 48 83 c0 01 48 89 45 c0}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

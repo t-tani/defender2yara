@@ -614,3 +614,24 @@ rule Trojan_Win32_LummaC_ASN_2147919709_0
         )
 }
 
+rule Trojan_Win32_LummaC_CCJP_2147920161_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaC.CCJP!MTB"
+        threat_id = "2147920161"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {8b 45 ec 8b 4d ec 0f b6 0c 0f 05 ?? ?? ?? ?? 31 c8 89 45 e8 8b 45 e8 04 6e 8b 4d ec 88 04 0f ff 45 ec 8b 45 ec 83 f8}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

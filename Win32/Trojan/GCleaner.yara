@@ -599,3 +599,24 @@ rule Trojan_Win32_GCleaner_KGF_2147920084_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_GCleaner_KAA_2147920162_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/GCleaner.KAA!MTB"
+        threat_id = "2147920162"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "GCleaner"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {8a 8d f8 f7 ff ff 8b 85 f4 f7 ff ff 30 0c 38 83 fb 0f}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
