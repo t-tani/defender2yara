@@ -2411,3 +2411,25 @@ rule Trojan_Win32_OffLoader_SSBC_2147918988_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_OffLoader_SDWQ_2147920085_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/OffLoader.SDWQ!MTB"
+        threat_id = "2147920085"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "OffLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "/expertdirection.icu/sip.php" wide //weight: 2
+        $x_1_2 = "/silent" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
