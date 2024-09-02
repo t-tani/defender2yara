@@ -1894,3 +1894,24 @@ rule Trojan_MSIL_PureLogStealer_UHAA_2147919298_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_PureLogStealer_VFAA_2147920100_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/PureLogStealer.VFAA!MTB"
+        threat_id = "2147920100"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "PureLogStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {11 03 11 02 02 11 02 91 11 01 11 02 11 01 28 ?? 00 00 06 5d 28 ?? 00 00 06 61 d2 9c 20}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

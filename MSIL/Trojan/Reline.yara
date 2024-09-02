@@ -442,3 +442,24 @@ rule Trojan_MSIL_Reline_RDB_2147849150_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Reline_SSN_2147920104_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Reline.SSN!MTB"
+        threat_id = "2147920104"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Reline"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {02 11 20 02 11 20 91 66 d2 9c 02 11 20 8f 2b 00 00 01 25 71 2b 00 00 01 20 82 00 00 00 58 d2 81 2b 00 00 01 02 11 20 8f 2b 00 00 01 25 71 2b 00 00 01 1f 44 59 d2 81 2b 00 00 01 00 11 20 17 58 13 20 11 20 02 8e 69 fe 04 13 21 11 21 2d b0}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
