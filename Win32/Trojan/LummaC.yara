@@ -635,3 +635,24 @@ rule Trojan_Win32_LummaC_CCJP_2147920161_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_LummaC_AMAH_2147920215_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaC.AMAH!MTB"
+        threat_id = "2147920215"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {0f be 00 8b 4d ?? 83 c1 ?? 0f be c9 33 c1 8b 4d [0-4] 03 4d ?? 88 01}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

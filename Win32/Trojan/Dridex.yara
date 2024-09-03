@@ -9479,3 +9479,24 @@ rule Trojan_Win32_Dridex_SOZC_2147920101_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Dridex_AMAJ_2147920204_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Dridex.AMAJ!MTB"
+        threat_id = "2147920204"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Dridex"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {89 e5 8a 45 0c ?? 4d 08 8a 15 ?? ?? ?? ?? 88 c4 30 cc 00 c2 88 15 ?? ?? ?? ?? 88 0d 01 a2 ?? ?? ?? ?? c7 05 ?? ?? ?? ?? ?? ?? ?? ?? c7 05 ?? ?? ?? ?? ?? ?? ff ff 0f b6 c4 5d c3}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

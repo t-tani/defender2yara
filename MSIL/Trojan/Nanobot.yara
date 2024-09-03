@@ -198,3 +198,24 @@ rule Trojan_MSIL_Nanobot_SPZM_2147911374_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Nanobot_AMAI_2147920214_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Nanobot.AMAI!MTB"
+        threat_id = "2147920214"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Nanobot"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {11 04 11 05 11 04 11 05 91 20 ?? ?? ?? ?? 59 d2 9c 00 11 05 17 58 13 05 11 05 11 04 8e 69 fe 04 13 06 11 06}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
