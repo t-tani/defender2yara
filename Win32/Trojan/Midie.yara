@@ -729,3 +729,25 @@ rule Trojan_Win32_Midie_GNM_2147919721_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Midie_GNM_2147919721_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Midie.GNM!MTB"
+        threat_id = "2147919721"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Midie"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {8b 4d f8 8b 51 40 0f b7 0a 99 f7 f9 83 c2 01 89 55 fc 6a 00 8b 55 fc 69 d2 e8 03 00 00 81 c2 b8 0b 00 00 52}  //weight: 5, accuracy: High
+        $x_5_2 = {6a 00 6a 04 8b 4d 08 83 c1 0c 51 8b 55 d8 52 ff 15 ?? ?? ?? ?? 50 ff 15 ?? ?? ?? ?? eb}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

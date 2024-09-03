@@ -43,3 +43,24 @@ rule Trojan_Win32_Blister_MKZ_2147917192_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Blister_TWR_2147920256_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Blister.TWR!MTB"
+        threat_id = "2147920256"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Blister"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {ff d7 8b c6 83 e0 03 8a 44 05 e8 30 04 1e 46 81 fe 50 7a 01 00 72 eb}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

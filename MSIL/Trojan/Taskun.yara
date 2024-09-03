@@ -3753,3 +3753,24 @@ rule Trojan_MSIL_Taskun_NH_2147920140_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Taskun_KAU_2147920270_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Taskun.KAU!MTB"
+        threat_id = "2147920270"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Taskun"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {95 58 20 ff 00 00 00 5f 13 [0-80] 05 95 58 20 ff 00 00 00 5f 95 61 d2 9c}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
