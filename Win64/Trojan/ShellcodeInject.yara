@@ -85,3 +85,26 @@ rule Trojan_Win64_ShellcodeInject_ADG_2147918453_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_ShellcodeInject_FEM_2147920231_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/ShellcodeInject.FEM!MTB"
+        threat_id = "2147920231"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "ShellcodeInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {4c 89 6c 24 50 48 c7 44 24 58 0f 00 00 00 c6 44 24 40 00 49 8b 46 10 48 3b c6 0f 82 2f 01 00 00 48 2b c6 41 b8 02 00 00 00 49 3b c0 4c 0f 42 c0 49 8b c6 49 83 7e 18 10 72 03 49 8b 06}  //weight: 5, accuracy: High
+        $x_1_2 = "Usage: %s <process_name> <hex_string>" ascii //weight: 1
+        $x_1_3 = "inejct\\x64\\Release\\inejct.pdb" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

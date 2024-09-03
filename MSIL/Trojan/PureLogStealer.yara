@@ -1915,3 +1915,29 @@ rule Trojan_MSIL_PureLogStealer_VFAA_2147920100_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_PureLogStealer_VKAA_2147920230_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/PureLogStealer.VKAA!MTB"
+        threat_id = "2147920230"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "PureLogStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "GyMAbmOFFujFiehEPZOsbV.dll" ascii //weight: 2
+        $x_1_2 = "DXBQvWZPsoitAglyAqvF" ascii //weight: 1
+        $x_1_3 = "DkXBPNkrUIvokvAKWOOcKL.dll" ascii //weight: 1
+        $x_1_4 = "ujefeQtTSqQEitmguxXZXgF" ascii //weight: 1
+        $x_1_5 = "vysLTwxigwwMGJpcQbTPB.dll" ascii //weight: 1
+        $x_1_6 = "oVQNoeTvJrddFnuCjqBvwbCc" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

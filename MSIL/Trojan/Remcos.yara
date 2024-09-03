@@ -11340,3 +11340,24 @@ rule Trojan_MSIL_Remcos_AMAI_2147920114_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Remcos_KAAZ_2147920234_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Remcos.KAAZ!MTB"
+        threat_id = "2147920234"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Remcos"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {95 d7 20 ff 00 00 00 5f [0-50] 95 d7 20 ff 00 00 00 5f 95 61 86 9c}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
