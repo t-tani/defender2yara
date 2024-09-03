@@ -2018,3 +2018,24 @@ rule Trojan_Win32_Fauppod_SNUK_2147919835_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Fauppod_ASAQ_2147920295_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Fauppod.ASAQ!MTB"
+        threat_id = "2147920295"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Fauppod"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {55 89 e5 50 8a 45 0c 8a 4d 08 88 0d [0-4] a2 [0-4] 30 c8 a2 [0-4] 8b 15 [0-4] 81 c2 [0-4] 89 15 [0-4] 88 45 ff c7 05 [0-8] 8a 45 ff 0f b6 c0 83 c4 04 5d c3}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

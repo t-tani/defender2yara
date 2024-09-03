@@ -557,6 +557,28 @@ rule Trojan_Win64_Rozena_NR_2147890496_3
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {48 8b 35 7b e0 55 00 65 48 8b 04 25 30 00 00 00 48 8b 58 08 31 c0 f0 48 0f b1 5d 00 74 ?? 48 39 c3 74 ?? b9 e8 03 00 00}  //weight: 3, accuracy: Low
+        $x_2_2 = {8d 4b 01 48 63 c9 48 c1 e1 03 e8 ?? ?? ?? ?? 4c 8b 35 d0 bd 55 00 49 89 c5 44 39 e3}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_Rozena_NR_2147890496_4
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Rozena.NR!MTB"
+        threat_id = "2147890496"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Rozena"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "7"
         strings_accuracy = "Low"
     strings:
@@ -568,7 +590,7 @@ rule Trojan_Win64_Rozena_NR_2147890496_3
         (all of ($x*))
 }
 
-rule Trojan_Win64_Rozena_NR_2147890496_4
+rule Trojan_Win64_Rozena_NR_2147890496_5
 {
     meta:
         author = "defender2yara"
@@ -677,6 +699,28 @@ rule Trojan_Win64_Rozena_AMBE_2147900884_0
 }
 
 rule Trojan_Win64_Rozena_N_2147902657_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Rozena.N!MTB"
+        threat_id = "2147902657"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Rozena"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {4c 8b 4c 24 30 4c 89 4c ca 18 eb ?? 4c 8b 4c 24 30 e8 68 6e 04 00 4c 8b 4c 24 38}  //weight: 3, accuracy: Low
+        $x_1_2 = "Yihsiwei" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_Rozena_N_2147902657_1
 {
     meta:
         author = "defender2yara"

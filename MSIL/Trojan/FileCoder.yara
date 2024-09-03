@@ -614,3 +614,25 @@ rule Trojan_MSIL_FileCoder_SM_2147917678_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_FileCoder_NK_2147920280_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/FileCoder.NK!MTB"
+        threat_id = "2147920280"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "FileCoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {13 08 09 11 08 16 03 6f ?? 00 00 0a 26 07 08 11 08 28 ?? 00 00 06 13 09 09}  //weight: 4, accuracy: Low
+        $x_1_2 = "windows.old.old" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

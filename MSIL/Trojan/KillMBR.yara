@@ -660,6 +660,30 @@ rule Trojan_MSIL_KillMBR_NK_2147912384_1
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "MBR payload" wide //weight: 2
+        $x_2_2 = "keygroup777" ascii //weight: 2
+        $x_1_3 = "$f0071615-e287-46ef-a7bb-394c583e28b9" ascii //weight: 1
+        $x_1_4 = "MBR_Overwriter.Properties.Resources" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_KillMBR_NK_2147912384_2
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/KillMBR.NK!MTB"
+        threat_id = "2147912384"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "KillMBR"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "8"
         strings_accuracy = "High"
     strings:

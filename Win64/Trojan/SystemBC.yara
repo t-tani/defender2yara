@@ -85,3 +85,24 @@ rule Trojan_Win64_SystemBC_MKV_2147913413_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_SystemBC_F_2147920294_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/SystemBC.F"
+        threat_id = "2147920294"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "SystemBC"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {48 83 ec 20 48 c7 c1 20 bf 02 00}  //weight: 1, accuracy: High
+        $x_1_2 = {48 83 ec 20 48 c7 c1 02 00 00 00 48 8d 57 52 4c 8b c7 ff}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

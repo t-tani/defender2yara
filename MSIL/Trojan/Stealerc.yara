@@ -141,6 +141,28 @@ rule Trojan_MSIL_Stealerc_NC_2147894991_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {11 00 1c 13 01 12 01 1d 13 03 12 03 6f ?? 00 00 06 26}  //weight: 3, accuracy: Low
+        $x_2_2 = {02 8e 69 1f 11 da 17 d6 8d ?? 00 00 01 13 0b 20 ?? 00 00 00 28 ?? 00 00 06 3a}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Stealerc_NC_2147894991_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Stealerc.NC!MTB"
+        threat_id = "2147894991"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Stealerc"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "6"
         strings_accuracy = "Low"
     strings:
