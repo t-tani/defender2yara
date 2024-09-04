@@ -5488,3 +5488,25 @@ rule Trojan_MSIL_Heracles_VIAA_2147920202_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Heracles_VOAA_2147920343_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Heracles.VOAA!MTB"
+        threat_id = "2147920343"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Heracles"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {0a 06 04 6f ?? 01 00 0a 06 06 6f ?? 01 00 0a 06 6f ?? 01 00 0a 6f ?? 01 00 0a 0b 73 ?? 01 00 0a 0c 08 07 17 73 ?? 01 00 0a 0d 09 02 16 02 8e 69 6f ?? 01 00 0a 09 6f ?? 01 00 0a 08 6f ?? 01 00 0a 13 04 de 28}  //weight: 4, accuracy: Low
+        $x_1_2 = "CreateDecryptor" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
