@@ -43,3 +43,25 @@ rule TrojanDownloader_MSIL_CobaltStrike_AV_2147917012_0
         (all of ($x*))
 }
 
+rule TrojanDownloader_MSIL_CobaltStrike_KSAY_2147920339_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:MSIL/CobaltStrike.KSAY!MTB"
+        threat_id = "2147920339"
+        type = "TrojanDownloader"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "CobaltStrike"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "NLc0MDg9zP6VTvRMbffF0O23WgXbBZBl3PO9/14+ABQ=" ascii //weight: 1
+        $x_1_2 = "atks.exe" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
