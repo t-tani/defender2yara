@@ -2731,3 +2731,29 @@ rule Trojan_Win64_CryptInject_UZY_2147919935_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_CryptInject_RHAF_2147920324_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CryptInject.RHAF!MTB"
+        threat_id = "2147920324"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {50 45 00 00 64 86 06 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 0b 02 0b 00 00 36 01 00 00 06 02 00 00 00 00 00 24 59}  //weight: 2, accuracy: Low
+        $x_1_2 = "Key Guard" wide //weight: 1
+        $x_1_3 = "host unreachable" ascii //weight: 1
+        $x_1_4 = "CreateFile2" ascii //weight: 1
+        $x_1_5 = {43 00 6f 00 6d 00 70 00 61 00 6e 00 79 00 4e 00 61 00 6d 00 65 00 ?? ?? ?? ?? 4d 00 69 00 6e 00 64 00 73 00 6f 00 66 00 74 00 20 00 63 00 6f 00 72 00 70 00 6f 00 72 00 61 00 74 00 69 00 6f 00 6e 00}  //weight: 1, accuracy: Low
+        $x_1_6 = {4f 00 72 00 69 00 67 00 69 00 6e 00 61 00 6c 00 46 00 69 00 6c 00 65 00 6e 00 61 00 6d 00 65 00 ?? ?? 4c 00 73 00 61 00 6c 00 73 00 2e 00 64 00 6c 00 6c 00}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
