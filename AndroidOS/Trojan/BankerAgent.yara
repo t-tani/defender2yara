@@ -265,3 +265,26 @@ rule Trojan_AndroidOS_BankerAgent_AK_2147919636_0
         )
 }
 
+rule Trojan_AndroidOS_BankerAgent_AG_2147920427_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:AndroidOS/BankerAgent.AG"
+        threat_id = "2147920427"
+        type = "Trojan"
+        platform = "AndroidOS: Android operating system"
+        family = "BankerAgent"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "v1.apijson.xyz/app-store?id=" ascii //weight: 2
+        $x_2_2 = "Choosing subscription based SMSManager" ascii //weight: 2
+        $x_2_3 = "Sms forward on but numbers empty?" ascii //weight: 2
+        $x_2_4 = "Sms forward off or message contain empty?" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (2 of ($x*))
+}
+

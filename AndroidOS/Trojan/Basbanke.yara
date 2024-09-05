@@ -184,3 +184,26 @@ rule Trojan_AndroidOS_Basbanke_N_2147852337_0
         (all of ($x*))
 }
 
+rule Trojan_AndroidOS_Basbanke_M_2147920428_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:AndroidOS/Basbanke.M"
+        threat_id = "2147920428"
+        type = "Trojan"
+        platform = "AndroidOS: Android operating system"
+        family = "Basbanke"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "Connect_TO_Server_Broker" ascii //weight: 2
+        $x_2_2 = "commands_FromPC" ascii //weight: 2
+        $x_2_3 = "Send_Certain_SMS_To_Admin_From_Android" ascii //weight: 2
+        $x_2_4 = "_noti_replacement" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

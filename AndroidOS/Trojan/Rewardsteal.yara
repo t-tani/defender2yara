@@ -928,3 +928,25 @@ rule Trojan_AndroidOS_Rewardsteal_FH_2147919246_0
         (all of ($x*))
 }
 
+rule Trojan_AndroidOS_Rewardsteal_V_2147920429_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:AndroidOS/Rewardsteal.V"
+        threat_id = "2147920429"
+        type = "Trojan"
+        platform = "AndroidOS: Android operating system"
+        family = "Rewardsteal"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "atm 4 digit is required" ascii //weight: 2
+        $x_2_2 = "DebitCardInputMask" ascii //weight: 2
+        $x_2_3 = "CVV 3 digit required" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
