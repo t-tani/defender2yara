@@ -129,3 +129,45 @@ rule Trojan_Win32_ZLoader_MMC_2147919179_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_ZLoader_FLE_2147920449_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ZLoader.FLE!MTB"
+        threat_id = "2147920449"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ZLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {01 d9 0f b6 c1 8a 14 06 88 14 2e 88 1c 06 0f b6 04 2e 01 d8 0f b6 c0 8a 04 06 8b 74 24 08 30 07 47 4e 75 c4}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_ZLoader_BLG_2147920450_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ZLoader.BLG!MTB"
+        threat_id = "2147920450"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ZLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {89 f0 c1 e0 04 01 f0 b9 01 00 00 00 29 c1 03 0d ?? ?? ?? ?? 0f b6 5c 0f ff 8b 4d ec 41 8b 45 08 32 1c 38 8b 45 0c 88 1c 38 8d 7f 01 74}  //weight: 4, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

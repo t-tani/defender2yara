@@ -135,3 +135,27 @@ rule Trojan_MSIL_MassLogger_RDB_2147919302_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_MassLogger_AML_2147920453_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/MassLogger.AML!MTB"
+        threat_id = "2147920453"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "MassLogger"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "FroggSecurityChecker.FroggAbout.resources" ascii //weight: 1
+        $x_1_2 = "13f38eaa-447e-4059-8dbb-ab215d6a0eaa" ascii //weight: 1
+        $x_2_3 = "powered by admin@frogg.fr" wide //weight: 2
+        $x_2_4 = "Frogg Security Checker" wide //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -2018,3 +2018,24 @@ rule Trojan_MSIL_Stealer_PAFO_2147920356_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Stealer_PAFP_2147920432_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Stealer.PAFP!MTB"
+        threat_id = "2147920432"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Stealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {1e 63 d1 13 14 11 11 11 08 91 13 25 11 11 11 08 11 25 11 22 61 19 11 1b 58 61 11 30 61 d2 9c 11 08 17 58}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

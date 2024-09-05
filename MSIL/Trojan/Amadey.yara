@@ -600,3 +600,25 @@ rule Trojan_MSIL_Amadey_RDY_2147912267_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Amadey_B_2147920438_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Amadey.B!MTB"
+        threat_id = "2147920438"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Amadey"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_4_1 = {57 b5 a2 3d 09 0f 00 00 00 fa 25 33 00 16 00 00 01 00 00 00 33 00 00 00 42 00 00 00 50 00 00 00 7e}  //weight: 4, accuracy: High
+        $x_1_2 = "GetProcessById" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
