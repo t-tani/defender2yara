@@ -751,3 +751,24 @@ rule Trojan_Win32_Midie_GNM_2147919721_1
         (all of ($x*))
 }
 
+rule Trojan_Win32_Midie_VPAA_2147920355_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Midie.VPAA!MTB"
+        threat_id = "2147920355"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Midie"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {8b 44 24 0c 8b 15 e4 71 00 10 03 c1 8a 14 32 30 10 46 41 3b 0f 72 e2}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

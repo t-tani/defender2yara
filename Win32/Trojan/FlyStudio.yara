@@ -750,3 +750,34 @@ rule Trojan_Win32_FlyStudio_AT_2147919689_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_FlyStudio_ASDF_2147920384_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/FlyStudio.ASDF!MTB"
+        threat_id = "2147920384"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "FlyStudio"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = "Dear Cracker , Please immediately stop the anti compiler behavior" ascii //weight: 1
+        $x_1_2 = "Anti cracking service By" ascii //weight: 1
+        $x_1_3 = "www.you-m.com/do.aspx" ascii //weight: 1
+        $x_1_4 = "8d070bdf16538b4" ascii //weight: 1
+        $x_1_5 = "Don't try do it!" ascii //weight: 1
+        $x_2_6 = {6a 13 68 32 8a 01 16 68 01 00 01 52 e8 ?? ?? ?? 00 83 c4 10 68 01 03 00 80 6a 00 50 68 0e 00 01 00 68 32 8a 01 16 68 01 00 01 52 68 02 00 00 00 bb}  //weight: 2, accuracy: Low
+        $x_2_7 = {83 c4 04 6a 00 ff 75 f0 6a ff 6a 08 68 a6 05 02 16 68 01 00 01 52 e8 ?? ?? ?? 00 83 c4 18 8b 5d f0}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_2_*) and 5 of ($x_1_*))) or
+            ((2 of ($x_2_*) and 3 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+

@@ -13919,6 +13919,27 @@ rule Trojan_Win64_CobaltStrike_YBL_2147913680_0
         threshold = "1"
         strings_accuracy = "High"
     strings:
+        $x_1_1 = {8a 44 14 58 41 32 c7 88 04 0a 48 ff c2 84 c0}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_CobaltStrike_YBL_2147913680_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CobaltStrike.YBL!MTB"
+        threat_id = "2147913680"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CobaltStrike"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
         $x_1_1 = {33 d1 8b ca 81 c1 7c db 03 00 48 8b 94 24 98 00 00 00 8b 44 02 18 33 c1 b9 04 00 00 00 48 6b c9 01 48 8b 94 24 98 00 00 00 89 44 0a 18 8b 44 24 38 c1 e8 08}  //weight: 1, accuracy: High
     condition:
         (filesize < 20MB) and
@@ -14667,6 +14688,27 @@ rule Trojan_Win64_CobaltStrike_KGD_2147920232_0
         strings_accuracy = "High"
     strings:
         $x_5_1 = {49 8b c8 49 8b c1 49 f7 e0 48 c1 ea 04 48 6b c2 11 48 2b c8 8a 44 0c 40 42 30 44 05 80 49 ff c0 49 83 f8 0e 72 da}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_CobaltStrike_OKA_2147920385_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CobaltStrike.OKA!MTB"
+        threat_id = "2147920385"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CobaltStrike"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {80 31 aa 48 ff c1 48 8b c1 48 2b c7 48 3b c3}  //weight: 1, accuracy: High
     condition:
         (filesize < 20MB) and
         (all of ($x*))

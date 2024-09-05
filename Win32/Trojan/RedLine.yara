@@ -2710,6 +2710,33 @@ rule Trojan_Win32_RedLine_EC_2147892924_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_RedLine_EC_2147892924_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/RedLine.EC!MTB"
+        threat_id = "2147892924"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "RedLine"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "Daggerhashimoto 888" wide //weight: 1
+        $x_1_2 = "extendkey.dat" wide //weight: 1
+        $x_1_3 = "regkey.dat" wide //weight: 1
+        $x_1_4 = "@.vm_sec" ascii //weight: 1
+        $x_1_5 = ".winlice" ascii //weight: 1
+        $x_1_6 = ".boot" ascii //weight: 1
+        $x_1_7 = "CreateProcessA" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win32_RedLine_DB_2147894777_0
 {
     meta:

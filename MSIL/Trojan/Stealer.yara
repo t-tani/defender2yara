@@ -1997,3 +1997,24 @@ rule Trojan_MSIL_Stealer_LAS_2147920103_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Stealer_PAFO_2147920356_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Stealer.PAFO!MTB"
+        threat_id = "2147920356"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Stealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {1e 63 d1 13 14 11 11 11 0a 91 13 20 11 11 11 0a 11 20 11 26 61 11 1c 19 58 61 11 31 61 d2 9c 11 20 13 1c 17 11 0a 58}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

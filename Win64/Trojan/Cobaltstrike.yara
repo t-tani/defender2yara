@@ -912,6 +912,32 @@ rule Trojan_Win64_Cobaltstrike_EB_2147814887_3
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "UnhookingPatch\\PatchingAPI\\x64\\Release\\PatchingAPI.pdb" ascii //weight: 1
+        $x_1_2 = "NtWaitForSingleONtAllocateVirtuaNtProtectVirtualNtCreateThreadEx" ascii //weight: 1
+        $x_1_3 = "WriteProcessMemory" ascii //weight: 1
+        $x_1_4 = "VirtualProtect" ascii //weight: 1
+        $x_1_5 = "CryptCreateHash" ascii //weight: 1
+        $x_1_6 = "CryptDecrypt" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_Cobaltstrike_EB_2147814887_4
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Cobaltstrike.EB!MTB"
+        threat_id = "2147814887"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Cobaltstrike"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "15"
         strings_accuracy = "High"
     strings:

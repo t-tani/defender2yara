@@ -1080,9 +1080,9 @@ rule Trojan_Win32_Injuke_AMAI_2147920102_0
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "1"
-        strings_accuracy = "High"
+        strings_accuracy = "Low"
     strings:
-        $x_1_1 = {2b f8 31 3b 83 45 ec 04 6a 00 e8}  //weight: 1, accuracy: High
+        $x_1_1 = {31 3b 83 45 ec 04 6a 00 e8 [0-30] 8b 45 ec 3b 45 dc 72}  //weight: 1, accuracy: Low
     condition:
         (filesize < 20MB) and
         (all of ($x*))

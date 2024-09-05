@@ -349,3 +349,33 @@ rule Trojan_Win32_Rootkit_EA_2147888612_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Rootkit_EK_2147920391_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Rootkit.EK!MTB"
+        threat_id = "2147920391"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Rootkit"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "23"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = {6a 40 57 89 45 f8 8d 45 f8 50 53 8d 45 f4 50 ff 75 08}  //weight: 10, accuracy: High
+        $x_5_2 = "cnzz_url" ascii //weight: 5
+        $x_5_3 = "searching_magic_url" ascii //weight: 5
+        $x_1_4 = "8.8.8.8" ascii //weight: 1
+        $x_1_5 = "hpsafe.pdb" ascii //weight: 1
+        $x_1_6 = "Explorer.exe" ascii //weight: 1
+        $x_1_7 = "recount" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_10_*) and 2 of ($x_5_*) and 3 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+

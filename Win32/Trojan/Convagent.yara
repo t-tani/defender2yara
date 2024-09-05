@@ -1430,3 +1430,33 @@ rule Trojan_Win32_Convagent_AGT_2147919895_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Convagent_AGH_2147920402_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Convagent.AGH!MTB"
+        threat_id = "2147920402"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Convagent"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {8b d6 d1 ea 03 c2 33 d2 a3 ?? ?? ?? 00 83 e0 07 8a d1 68 ?? ?? ?? 00 0f af c2 03 f0 89 35 ?? ?? ?? 00 ff 15 ?? ?? ?? 00 85 c0 89 07 5e}  //weight: 2, accuracy: Low
+        $x_2_2 = {55 8b ec 83 ec 10 53 56 57 68 ?? ?? ?? 00 e8 ?? ?? ?? ff 83 c4 04 e9}  //weight: 2, accuracy: Low
+        $x_1_3 = {57 8d 0c 85 00 00 00 00 6a 00 0b ca 89 4c 24 08 df 6c 24 08}  //weight: 1, accuracy: High
+        $x_3_4 = {32 c8 8b 15 ?? ?? ?? 00 88 0d ?? ?? ?? 00 8a 0d ?? ?? ?? 00 80 c9 0c 53 c0 e9 02 81 e1 ff 00 00 00 52 89 4c 24 08 db 44 24 08 dc 3d}  //weight: 3, accuracy: Low
+        $x_2_5 = {83 ca 02 2b da 8b 15 ?? ?? ?? 00 89 1d ?? ?? ?? 00 33 db 8a 1d ?? ?? ?? 00 83 ca 01 0f af d3 33 ca 68 ?? ?? ?? 00 50 89 0d}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (
+            ((2 of ($x_2_*) and 1 of ($x_1_*))) or
+            ((3 of ($x_2_*))) or
+            ((1 of ($x_3_*) and 1 of ($x_2_*))) or
+            (all of ($x*))
+        )
+}
+

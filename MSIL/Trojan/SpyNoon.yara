@@ -2504,3 +2504,24 @@ rule Trojan_MSIL_SpyNoon_SCPF_2147918989_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_SpyNoon_SLFP_2147920360_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/SpyNoon.SLFP!MTB"
+        threat_id = "2147920360"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "SpyNoon"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {07 11 06 11 07 6f ?? ?? ?? 0a 13 08 09 12 08 28 ?? ?? ?? 0a 6f ?? ?? ?? 0a 09 12 08 28 ?? ?? ?? 0a 6f ?? ?? ?? 0a 09 12 08 28 ?? ?? ?? 0a 6f ?? ?? ?? 0a 20 00 1e 01 00 13 09 08 6f ?? ?? ?? 0a 09 6f ?? ?? ?? 0a 58 11 09 30 09 08 09 6f ?? ?? ?? 0a 2b 1f 11 09 08 6f ?? ?? ?? 0a 59 13 0a 11 0a 16 31 0f 08 09 16 11 0a 6f ?? ?? ?? 0a 6f ?? ?? ?? 0a 09 6f ?? ?? ?? 0a 11 07 17 58 13 07}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

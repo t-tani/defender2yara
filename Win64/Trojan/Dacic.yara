@@ -255,3 +255,24 @@ rule Trojan_Win64_Dacic_AMAK_2147915536_0
         (1 of ($x*))
 }
 
+rule Trojan_Win64_Dacic_ARZ_2147920366_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Dacic.ARZ!MTB"
+        threat_id = "2147920366"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Dacic"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {f7 eb d1 fa 8b c2 c1 e8 1f 03 d0 0f be c2 6b c8 37 0f b6 c3 2a c1 04 38 41 30 00 ff c3 4d 8d 40 01 83 fb 41 7c d5}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

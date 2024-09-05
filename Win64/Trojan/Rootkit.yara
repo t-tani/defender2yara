@@ -62,3 +62,26 @@ rule Trojan_Win64_Rootkit_MBXH_2147915634_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Rootkit_EH_2147920392_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Rootkit.EH!MTB"
+        threat_id = "2147920392"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Rootkit"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "12"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = {4c 8d 4c 24 38 48 8d 54 24 48 41 bc 00 d0 00 00 45 33 c0 48 8b cb c7 44 24 28 40 00 00 00 c7 44 24 20 00 10 00 00 4c 89 64 24 38}  //weight: 10, accuracy: High
+        $x_1_2 = "workspace4\\lock\\hpsafe\\src\\sys\\objfre_win7_amd64\\amd64\\hpsafe.pdb" ascii //weight: 1
+        $x_1_3 = "Registry\\Machine\\System\\CurrentControlSet\\Services\\MpDriver" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
