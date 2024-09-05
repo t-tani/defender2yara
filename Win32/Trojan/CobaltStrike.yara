@@ -4786,3 +4786,24 @@ rule Trojan_Win32_CobaltStrike_UFC_2147919877_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_CobaltStrike_AT_2147920417_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/CobaltStrike.AT!MTB"
+        threat_id = "2147920417"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "CobaltStrike"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {00 21 6d 01 35 65 0c 6f 66 65 0c 6f 66 65 0c 6f 66 b6 7e 6c 67 74 0c 6f 66 b6 7e 6a 67 c5 0c 6f 66 b6 7e 6b 67 72 0c 6f 66 71 73 6a 67 42 0c 6f 66 c1 72 6b 67 6a 0c 6f 66 c1 72 6c 67 7d 0c 6f 66 c1 72 6a 67 34 0c 6f 66 b6 7e 6e 67 60 0c 6f 66 65 0c 6e 66 e3 0c 6f 66 71 73 66 67 67 0c 6f 66 71 73 6f 67 64 0c 6f 66 71 73 90 66 64 0c 6f 66}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
