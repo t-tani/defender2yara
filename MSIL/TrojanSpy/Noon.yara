@@ -490,3 +490,25 @@ rule TrojanSpy_MSIL_Noon_SBK_2147918591_0
         (all of ($x*))
 }
 
+rule TrojanSpy_MSIL_Noon_SCK_2147920469_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanSpy:MSIL/Noon.SCK!MTB"
+        threat_id = "2147920469"
+        type = "TrojanSpy"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Noon"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {11 06 17 d6 13 06 11 06 06 6f 3b 00 00 0a fe 04 13 08 11 08 2d 9e}  //weight: 2, accuracy: High
+        $x_2_2 = "ComboBoxBind.MainForm.resources" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

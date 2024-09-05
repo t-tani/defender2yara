@@ -95876,6 +95876,29 @@ rule Trojan_MSIL_AgentTesla_AMAJ_2147896271_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AgentTesla_AMAJ_2147896271_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.AMAJ!MTB"
+        threat_id = "2147896271"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {07 03 17 8d ?? 00 00 01 25 16 09 20 ?? ?? 00 00 d6 8c ?? 00 00 01 a2 14 28 ?? 00 00 0a 28 ?? 00 00 0a 6f ?? 00 00 0a 00 09 17 d6 0d 09 08 31 d0}  //weight: 3, accuracy: Low
+        $x_1_2 = {03 08 04 08 1f 09 5d 9a 28 ?? 00 00 0a 03 08 91 28 ?? 00 00 06 28 ?? 00 00 0a 9c 08 17 d6 0c 08 07 31 dd}  //weight: 1, accuracy: Low
+        $x_1_3 = "Ljrorarjdr" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_AgentTesla_KAAQ_2147896281_0
 {
     meta:
@@ -104846,6 +104869,27 @@ rule Trojan_MSIL_AgentTesla_VG_2147919679_0
         $x_1_4 = "DebuggingModes" ascii //weight: 1
         $x_1_5 = "EvilProgram" ascii //weight: 1
         $x_1_6 = "c859aa88665be2148355b1794611631ff" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_AgentTesla_AYK_2147920468_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.AYK!MTB"
+        threat_id = "2147920468"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {06 03 33 06 07 04 fe 01 2b 01 16 0c 08 2c 03 00 2b 01 00 07 17 58 0b 07 02 7b 0f 00 00 04 6f ?? ?? ?? 06 fe 04 0d 09 2d d6}  //weight: 2, accuracy: Low
     condition:
         (filesize < 20MB) and
         (all of ($x*))

@@ -3713,27 +3713,3 @@ rule Trojan_Win32_FormBook_AFO_2147919711_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_FormBook_MBXT_2147920095_0
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "Trojan:Win32/FormBook.MBXT!MTB"
-        threat_id = "2147920095"
-        type = "Trojan"
-        platform = "Win32: Windows 32-bit platform"
-        family = "FormBook"
-        severity = "Critical"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "4"
-        strings_accuracy = "High"
-    strings:
-        $x_1_1 = "asdadsadsadsada" ascii //weight: 1
-        $x_1_2 = "cccccccccc2123123" ascii //weight: 1
-        $x_1_3 = "KoreanChess" wide //weight: 1
-        $x_1_4 = "GetMethods" ascii //weight: 1
-    condition:
-        (filesize < 20MB) and
-        (all of ($x*))
-}
-
