@@ -1181,3 +1181,25 @@ rule Trojan_Win64_Rozena_ASJ_2147919720_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Rozena_MBXR_2147920578_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Rozena.MBXR!MTB"
+        threat_id = "2147920578"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Rozena"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "Go build ID: \"5FejNZc9sALG2w-smL6-/SLLUnyv7xTUm1usY-jhL/bCEJJ9QwxQ_BNRCnEZ2x/-HlaRCRD5Jx" ascii //weight: 1
+        $x_1_2 = "Twjiwq9dn6R1fQcyiK+wQyHWfaz/BJB+YIpzU/Cv3X" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

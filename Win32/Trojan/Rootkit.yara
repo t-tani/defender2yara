@@ -349,6 +349,34 @@ rule Trojan_Win32_Rootkit_EA_2147888612_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Rootkit_GTL_2147919927_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Rootkit.GTL!MTB"
+        threat_id = "2147919927"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Rootkit"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {f0 d7 45 fb 86 4a fb f5 b0 c8 fd 29 a7 38 66 24 80 e2 31 59 a3 b2 e0 52 7e a2 40 6a 37 aa c8 c0 be b7 6c}  //weight: 5, accuracy: High
+        $x_5_2 = {45 c4 50 51 56 56 56 56 ff 75 e4 6a 03 ff 15 20 e2 01 00 8b f8 89 7d 0c 3b fe 75 08 53 e8 af 43 00 00 eb 93 8b 75 18 33 c9 3b f1 74 74 51 51 51 56 ff}  //weight: 5, accuracy: High
+        $x_1_3 = "\\httprdr\\tdxflt\\objfre_wxp_x86\\i386\\TdxFlt_i386.pdb" ascii //weight: 1
+        $x_1_4 = "ExAcquireFastMutex" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_5_*) and 1 of ($x_1_*))) or
+            ((2 of ($x_5_*))) or
+            (all of ($x*))
+        )
+}
+
 rule Trojan_Win32_Rootkit_EK_2147920391_0
 {
     meta:
@@ -375,32 +403,6 @@ rule Trojan_Win32_Rootkit_EK_2147920391_0
         (filesize < 20MB) and
         (
             ((1 of ($x_10_*) and 2 of ($x_5_*) and 3 of ($x_1_*))) or
-            (all of ($x*))
-        )
-}
-
-rule Trojan_Win32_Rootkit_GMN_2147920465_0
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "Trojan:Win32/Rootkit.GMN!MTB"
-        threat_id = "2147920465"
-        type = "Trojan"
-        platform = "Win32: Windows 32-bit platform"
-        family = "Rootkit"
-        severity = "Critical"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "6"
-        strings_accuracy = "High"
-    strings:
-        $x_5_1 = {f0 d7 45 fb 86 4a fb f5 b0 c8 fd 29 a7 38 66 24 80 e2 31 59 a3 b2 e0 52 7e a2 40 6a 37 aa c8 c0 be b7 6c}  //weight: 5, accuracy: High
-        $x_1_2 = "\\httprdr\\tdxflt\\objfre_wxp_x86\\i386\\TdxFlt_i386.pdb" ascii //weight: 1
-        $x_1_3 = "ExAcquireFastMutex" ascii //weight: 1
-    condition:
-        (filesize < 20MB) and
-        (
-            ((1 of ($x_5_*) and 1 of ($x_1_*))) or
             (all of ($x*))
         )
 }
