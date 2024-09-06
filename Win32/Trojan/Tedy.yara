@@ -308,3 +308,26 @@ rule Trojan_Win32_Tedy_SPDB_2147915067_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Tedy_MBXT_2147920545_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Tedy.MBXT!MTB"
+        threat_id = "2147920545"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Tedy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = {00 20 36 40 00 fc 31 40 00}  //weight: 3, accuracy: High
+        $x_2_2 = {40 1c 40 00 17 f8 b0 00 00 ff ff ff 08 00 00 00 01 00 00 00 03 00 01 00 e9 00 00 00 a0 18 40 00 90 1a 40 00 3c 11 40 00 78 00 00 00 80 00 00 00 87}  //weight: 2, accuracy: High
+        $x_1_3 = {76 79 69 6d 67 77 75 00 75 74 77 6f 6c 6f 00 00 b9 a4 b3 cc 31}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -635,3 +635,26 @@ rule Trojan_Win32_Keylogger_ARA_2147906067_0
         )
 }
 
+rule Trojan_Win32_Keylogger_AMAK_2147920547_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Keylogger.AMAK!MTB"
+        threat_id = "2147920547"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Keylogger"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = {46 6c 61 73 68 42 75 66 00 47 65 74 44 75 6d 70 65 72 44 4c 4c 4e 61 6d 65 00 47 65 74 44 75 6d 70 65 72 44 4c 4c 56 65 72 73 69 6f 6e 00 49 6e 73 74 61 6c 6c 44 75 6d 70 65 72 44 4c 4c 00 4c 61 73 74 4b 65 79 53 74 72 00 50 61 75 73 65 4c 6f 67 00 55 6e 69 6e 73 74 61 6c 6c 44 75 6d 70 65 72 44 4c 4c}  //weight: 3, accuracy: High
+        $x_1_2 = "DumperDLLMutex" ascii //weight: 1
+        $x_1_3 = "GetComputerName Failed" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

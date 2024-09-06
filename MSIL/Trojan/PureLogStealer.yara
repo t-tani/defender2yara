@@ -1964,3 +1964,26 @@ rule Trojan_MSIL_PureLogStealer_AMAK_2147920527_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_PureLogStealer_MBXT_2147920544_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/PureLogStealer.MBXT!MTB"
+        threat_id = "2147920544"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "PureLogStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = {71 52 44 77 41 4d 4f 39 00 64 51 45 76 61 6e 42 54 34 36 71 6a 66 55 48}  //weight: 3, accuracy: High
+        $x_2_2 = "MeshEkran.DataSetler.FirmaDBListD" ascii //weight: 2
+        $x_1_3 = "df5a2458cb35" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
