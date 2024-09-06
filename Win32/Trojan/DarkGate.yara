@@ -671,3 +671,27 @@ rule Trojan_Win32_DarkGate_NEQ_2147918309_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_DarkGate_ZX_2147920513_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/DarkGate.ZX"
+        threat_id = "2147920513"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "DarkGate"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "221"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {f1 d5 00 fa 4c 62 cc f4 0f 0b}  //weight: 1, accuracy: High
+        $x_100_2 = {80 e1 3f c1 e1 02 8a 5d ?? 80 e3 30 81 e3 ff 00 00 00 c1 eb 04 02 cb}  //weight: 100, accuracy: Low
+        $x_100_3 = {80 e1 0f c1 e1 04 8a 5d ?? 80 e3 3c 81 e3 ff 00 00 00 c1 eb 02 02 cb}  //weight: 100, accuracy: Low
+        $x_10_4 = "--_Binder_--" ascii //weight: 10
+        $x_10_5 = "||_Binder_||" ascii //weight: 10
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

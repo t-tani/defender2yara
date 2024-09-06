@@ -104860,15 +104860,15 @@ rule Trojan_MSIL_AgentTesla_VG_2147919679_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "6"
+        threshold = "8"
         strings_accuracy = "High"
     strings:
         $x_1_1 = "BlockCopy" ascii //weight: 1
-        $x_1_2 = "c94e540b48d2ff499c90c69f31e05f006" ascii //weight: 1
+        $x_2_2 = "c94e540b48d2ff499c90c69f31e05f006" ascii //weight: 2
         $x_1_3 = "GetFilePath" ascii //weight: 1
         $x_1_4 = "DebuggingModes" ascii //weight: 1
         $x_1_5 = "EvilProgram" ascii //weight: 1
-        $x_1_6 = "c859aa88665be2148355b1794611631ff" ascii //weight: 1
+        $x_2_6 = "c859aa88665be2148355b1794611631ff" ascii //weight: 2
     condition:
         (filesize < 20MB) and
         (all of ($x*))

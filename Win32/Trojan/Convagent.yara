@@ -1460,3 +1460,24 @@ rule Trojan_Win32_Convagent_AGH_2147920402_0
         )
 }
 
+rule Trojan_Win32_Convagent_RZ_2147920499_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Convagent.RZ!MTB"
+        threat_id = "2147920499"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Convagent"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {8b c3 c1 e8 05 89 45 ?? 8b 45 ?? 01 45 ?? 8b 4d ?? 03 4d ?? c1 ?? 04 03 5d ?? 33 d9}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
