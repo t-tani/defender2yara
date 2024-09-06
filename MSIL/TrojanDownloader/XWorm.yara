@@ -20,3 +20,27 @@ rule TrojanDownloader_MSIL_XWorm_CXIT_2147848490_0
         (all of ($x*))
 }
 
+rule TrojanDownloader_MSIL_XWorm_OKA_2147920555_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:MSIL/XWorm.OKA!MTB"
+        threat_id = "2147920555"
+        type = "TrojanDownloader"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "XWorm"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "obj\\Debug\\Bootstrapper1488.pdb" ascii //weight: 1
+        $x_1_2 = "https://s715sas.storage.yandex.net" ascii //weight: 1
+        $x_1_3 = "limit=0&content_type=application%2Fx-dosexec&owner_uid=1891002355&fsize=62464" ascii //weight: 1
+        $x_1_4 = "Loader.exe" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
