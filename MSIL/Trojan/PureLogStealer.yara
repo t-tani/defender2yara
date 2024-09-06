@@ -1941,3 +1941,26 @@ rule Trojan_MSIL_PureLogStealer_VKAA_2147920230_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_PureLogStealer_AMAK_2147920527_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/PureLogStealer.AMAK!MTB"
+        threat_id = "2147920527"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "PureLogStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {0a 25 17 6f ?? 00 00 0a 25 18 6f ?? 00 00 0a 28 ?? 00 00 06 28 ?? 00 00 2b 28 ?? 00 00 06 28 ?? 00 00 2b 6f ?? 00 00 0a 0a 06 02 16 02 8e 69 6f ?? 00 00 0a 0b de 0a}  //weight: 3, accuracy: Low
+        $x_1_2 = {0a 14 1a 8d ?? 00 00 01 25 16 02 a2 25 17 03 a2 25 18 06 8c ?? 00 00 01 a2 25 19 04 a2}  //weight: 1, accuracy: Low
+        $x_1_3 = "CreateDecryptor" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

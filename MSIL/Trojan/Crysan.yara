@@ -1952,3 +1952,24 @@ rule Trojan_MSIL_Crysan_RDB_2147917407_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Crysan_ARA_2147920531_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Crysan.ARA!MTB"
+        threat_id = "2147920531"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Crysan"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {08 1f 20 3c ?? ?? ?? 00 07 08 18 5b 03 08 18 6f ?? ?? ?? 0a 1f 10 28 ?? ?? ?? 0a 9c 38 ?? ?? ?? 00 08 18 5b 1f 10 59 0d 06 09 03 08 18 6f ?? ?? ?? 0a 1f 10 28 ?? ?? ?? 0a 07 09 07 8e 69 5d 91 61 d2 9c 08 18 58 0c 08 03 6f ?? ?? ?? 0a 3f}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
