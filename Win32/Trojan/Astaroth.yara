@@ -466,3 +466,33 @@ rule Trojan_Win32_Astaroth_2147844899_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Astaroth_ZZ_2147920516_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Astaroth.ZZ"
+        threat_id = "2147920516"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Astaroth"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "820"
+        strings_accuracy = "High"
+    strings:
+        $x_500_1 = {f1 d5 00 fa 4c 62 cc f4 0f 0b}  //weight: 500, accuracy: High
+        $x_100_2 = {0f b7 00 83 e8 41 8d 04 80 8d 04 80 8b 55 fc 0f b7 52 02 83 ea 41 03 c2}  //weight: 100, accuracy: High
+        $x_100_3 = {8a 54 0a ff 80 ea 0a f6 d2 b9 00 00 00 00 e8}  //weight: 100, accuracy: High
+        $x_100_4 = {0f b7 44 50 fe 33 45 dc 89 45 d8}  //weight: 100, accuracy: High
+        $x_10_5 = "xGERAL.AR" ascii //weight: 10
+        $x_10_6 = "xTRAVA" ascii //weight: 10
+        $x_10_7 = "auid.log" ascii //weight: 10
+        $x_10_8 = "Nome Memory:" ascii //weight: 10
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_500_*) and 3 of ($x_100_*) and 2 of ($x_10_*))) or
+            (all of ($x*))
+        )
+}
+
