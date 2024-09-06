@@ -129,3 +129,24 @@ rule Trojan_MSIL_SystemBC_SPRG_2147915833_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_SystemBC_SARA_2147920485_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/SystemBC.SARA!MTB"
+        threat_id = "2147920485"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "SystemBC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {0c 73 0d 00 00 0a 0d 09 08 17 73 0e 00 00 0a 13 04 11 04 06 16 06 8e 69 6f ?? ?? ?? 0a 09 6f ?? ?? ?? 0a 0a de 0c}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

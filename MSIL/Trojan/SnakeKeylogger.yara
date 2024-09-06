@@ -6010,3 +6010,27 @@ rule Trojan_MSIL_SnakeKeylogger_SPSG_2147920430_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_SnakeKeylogger_SIK_2147920481_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/SnakeKeylogger.SIK!MTB"
+        threat_id = "2147920481"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "SnakeKeylogger"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {00 16 13 07 38 9c 00 00 00 00 07 11 06 11 07 6f 5d 00 00 0a 13 08 09 12 08 28 5e 00 00 0a 6f 5f 00 00 0a 00 09 12 08 28 60 00 00 0a 6f 5f 00 00 0a 00 09 12 08 28 61 00 00 0a 6f 5f 00 00 0a 00 20 00 1e 01 00 13 09 08 6f 62 00 00 0a}  //weight: 1, accuracy: High
+        $x_1_2 = "DeleteTextbox.MainForms.resources" ascii //weight: 1
+        $x_1_3 = "GetTypes" ascii //weight: 1
+        $x_1_4 = "TextBoxMaskInput.Properties.Resources" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

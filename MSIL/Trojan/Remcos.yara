@@ -8300,6 +8300,30 @@ rule Trojan_MSIL_Remcos_ARE_2147848365_2
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {0a 0a 06 72 91 01 00 70 6f ?? 00 00 0a 26 06 6f ?? 00 00 0a 26 02 73 a7 00 00 0a 7d 16 00 00 04 02 73 a8 00 00 0a 7d 17 00 00 04}  //weight: 2, accuracy: Low
+        $x_1_2 = {16 0b 2b 0e 00 1f 19 28 ?? 00 00 0a 00 00 07 17 58 0b 07 20 96 00 00 00 fe 04 0c 08 2d e6}  //weight: 1, accuracy: Low
+        $x_1_3 = "3db23c45-14cc-45be-9c58-70c6738b59b7" ascii //weight: 1
+        $x_1_4 = "FileRenamer\\obj\\Debug\\FIco.pdb" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Remcos_ARE_2147848365_3
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Remcos.ARE!MTB"
+        threat_id = "2147848365"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Remcos"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "10"
         strings_accuracy = "Low"
     strings:
