@@ -2548,3 +2548,41 @@ rule Trojan_Win32_AutoitInject_SAI_2147920289_0
         (6 of ($x*))
 }
 
+rule Trojan_Win32_AutoitInject_NG_2147920622_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.NG!MTB"
+        threat_id = "2147920622"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {46 00 49 00 4c 00 45 00 49 00 4e 00 53 00 54 00 41 00 4c 00 4c 00 20 00 28 00 20 00 22 00 [0-47] 22 00 20 00 2c 00 20 00 40 00 54 00 45 00 4d 00 50 00 44 00 49 00 52 00 20 00 26 00 20 00 22 00 5c 00 00 22 00 20 00 2c 00 20 00 31 00 20 00 29 00}  //weight: 3, accuracy: Low
+        $x_3_2 = {46 49 4c 45 49 4e 53 54 41 4c 4c 20 28 20 22 [0-47] 22 20 2c 20 40 54 45 4d 50 44 49 52 20 26 20 22 5c 00 22 20 2c 20 31 20 29}  //weight: 3, accuracy: Low
+        $x_1_3 = "= EXECUTE ( \"ObjCreate(" ascii //weight: 1
+        $x_1_4 = {3d 00 20 00 45 00 58 00 45 00 43 00 55 00 54 00 45 00 20 00 28 00 20 00 22 00 24 00 [0-48] 2e 00 4f 00 70 00 65 00 6e 00 54 00 65 00 78 00 74 00 46 00 69 00 6c 00 65 00 28 00 40 00 54 00 65 00 6d 00 70 00 44 00 69 00 72 00}  //weight: 1, accuracy: Low
+        $x_1_5 = {3d 20 45 58 45 43 55 54 45 20 28 20 22 24 [0-48] 2e 4f 70 65 6e 54 65 78 74 46 69 6c 65 28 40 54 65 6d 70 44 69 72}  //weight: 1, accuracy: Low
+        $x_1_6 = {3d 00 20 00 45 00 58 00 45 00 43 00 55 00 54 00 45 00 20 00 28 00 20 00 22 00 24 00 [0-48] 2e 00 52 00 65 00 61 00 64 00 41 00 6c 00 6c 00 28 00 29 00 22 00 20 00 29 00}  //weight: 1, accuracy: Low
+        $x_1_7 = {3d 20 45 58 45 43 55 54 45 20 28 20 22 24 [0-48] 2e 52 65 61 64 41 6c 6c 28 29 22 20 29}  //weight: 1, accuracy: Low
+        $x_1_8 = {45 00 58 00 45 00 43 00 55 00 54 00 45 00 20 00 28 00 20 00 22 00 24 00 [0-48] 2e 00 43 00 6c 00 6f 00 73 00 65 00 28 00 29 00 22 00 20 00 29 00}  //weight: 1, accuracy: Low
+        $x_1_9 = {45 58 45 43 55 54 45 20 28 20 22 24 [0-48] 2e 43 6c 6f 73 65 28 29 22 20 29}  //weight: 1, accuracy: Low
+        $x_1_10 = {57 00 48 00 49 00 4c 00 45 00 20 00 24 00 [0-48] 20 00 3c 00 3d 00 20 00 53 00 54 00 52 00 49 00 4e 00 47 00 4c 00 45 00 4e 00 20 00 28 00}  //weight: 1, accuracy: Low
+        $x_1_11 = {57 48 49 4c 45 20 24 [0-48] 20 3c 3d 20 53 54 52 49 4e 47 4c 45 4e 20 28}  //weight: 1, accuracy: Low
+        $x_1_12 = "i6044B184n6044B184t6044B184" ascii //weight: 1
+        $x_1_13 = "S6044B184c6044B184r6044B184i6044B184p6044B184t6044B184i6044B184n6044B184g6044B184" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((10 of ($x_1_*))) or
+            ((1 of ($x_3_*) and 7 of ($x_1_*))) or
+            ((2 of ($x_3_*) and 4 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+
