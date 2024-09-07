@@ -384,3 +384,24 @@ rule Trojan_Win64_Convagent_TPAA_2147918098_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Convagent_ASJ_2147920617_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Convagent.ASJ!MTB"
+        threat_id = "2147920617"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Convagent"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {8b 54 24 08 03 14 24 33 54 24 04 89 54 24 ?? 8b 54 24 1c e9}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

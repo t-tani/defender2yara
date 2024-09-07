@@ -94,27 +94,6 @@ rule Ransom_MSIL_Blocker_AB_2147846813_0
         (all of ($x*))
 }
 
-rule Ransom_MSIL_Blocker_SPFV_2147908413_0
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "Ransom:MSIL/Blocker.SPFV!MTB"
-        threat_id = "2147908413"
-        type = "Ransom"
-        platform = "MSIL: .NET intermediate language scripts"
-        family = "Blocker"
-        severity = "Critical"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "5"
-        strings_accuracy = "Low"
-    strings:
-        $x_5_1 = {2b 1e 11 0a 6f ?? ?? ?? 0a 13 22 11 0d 11 22 11 11 59 61 13 0d 11 11 11 0d 19 58 1e 63 59 13 11 11 0a 6f ?? ?? ?? 06 2d d9 de 0c}  //weight: 5, accuracy: Low
-    condition:
-        (filesize < 20MB) and
-        (all of ($x*))
-}
-
 rule Ransom_MSIL_Blocker_PADX_2147911301_0
 {
     meta:
