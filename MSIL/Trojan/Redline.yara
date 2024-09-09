@@ -5036,3 +5036,24 @@ rule Trojan_MSIL_Redline_AMAJ_2147920386_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Redline_PWH_2147920669_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Redline.PWH!MTB"
+        threat_id = "2147920669"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Redline"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {06 08 9a 6f ?? ?? ?? 0a 72 ?? ?? ?? 70 28 ?? ?? ?? 0a 2c 3e 06 08 9a 6f ?? ?? ?? 0a 16 9a 6f ?? ?? ?? 0a 6f ?? ?? ?? 0a 72 fd 00 00 70 28 ?? ?? ?? 0a 2c 1e 06 08 9a 14 17 8d ?? ?? ?? 01 25 16 02 8c ?? ?? ?? 01 a2 6f ?? ?? ?? 0a 74 ?? ?? ?? 1b 0b 08 17 58 0c 08 06 8e 69 32 a4}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
