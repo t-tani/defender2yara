@@ -1547,3 +1547,26 @@ rule Trojan_Win64_Lazy_GXB_2147920185_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Lazy_IZ_2147920730_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Lazy.IZ!MTB"
+        threat_id = "2147920730"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Lazy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "Go build ID:" ascii //weight: 2
+        $x_2_2 = "eO9FjRExQ9G9I3RTzDAEYhuS5KFy5RYudrnCvKSr8Z0=" ascii //weight: 2
+        $x_1_3 = "ILa9j1onAAMadBsyyUJv5cack8Y1WT26yLj/V+ulKp8=" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

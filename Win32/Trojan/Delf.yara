@@ -2139,6 +2139,31 @@ rule Trojan_Win32_Delf_EC_2147841685_1
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "120.55.196.60" ascii //weight: 1
+        $x_1_2 = "QFNTU1NTU1NTU1NTU1NTU1NTU1NTQA==" ascii //weight: 1
+        $x_1_3 = "RunUrlKew" ascii //weight: 1
+        $x_1_4 = "QFdXV1dXV1dXQA==" ascii //weight: 1
+        $x_1_5 = "QDExMTExMTExQA==" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Delf_EC_2147841685_2
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Delf.EC!MTB"
+        threat_id = "2147841685"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Delf"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "7"
         strings_accuracy = "High"
     strings:

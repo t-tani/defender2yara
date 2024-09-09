@@ -222,3 +222,35 @@ rule Trojan_Win64_LummaStealer_NM_2147920281_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_LummaStealer_GV_2147920749_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/LummaStealer.GV!MTB"
+        threat_id = "2147920749"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "24"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "main.Md5Encode" ascii //weight: 1
+        $x_5_2 = "main.EUkcKYTIDb" ascii //weight: 5
+        $x_1_3 = "main.TerminateProcess" ascii //weight: 1
+        $x_5_4 = "main.nlZMziDMqv" ascii //weight: 5
+        $x_1_5 = "main.CreateSuspendedProcess" ascii //weight: 1
+        $x_1_6 = "main.ResumeThread" ascii //weight: 1
+        $x_1_7 = "main.WriteProcessMemory" ascii //weight: 1
+        $x_1_8 = "main.Wow64SetThreadContext" ascii //weight: 1
+        $x_1_9 = "main.GetThreadContext" ascii //weight: 1
+        $x_5_10 = "LwNOrAxUVY/main.go" ascii //weight: 5
+        $x_1_11 = "main.nwPXANdvbL" ascii //weight: 1
+        $x_1_12 = "main.qWwvfeKaCT" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
