@@ -1,3 +1,24 @@
+rule Trojan_MSIL_Stealerc_SK_2147846283_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Stealerc.SK!MTB"
+        threat_id = "2147846283"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Stealerc"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {09 06 08 91 58 07 08 91 58 20 00 01 00 00 5d 0d 06 08 91 13 12 06 08 06 09 91 9c 06 09 11 12 9c 08 17 58 0c 08 20 00 01 00 00 3f d1 ff ff ff}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_Stealerc_AAES_2147850709_0
 {
     meta:

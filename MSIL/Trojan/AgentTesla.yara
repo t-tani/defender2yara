@@ -73472,6 +73472,29 @@ rule Trojan_MSIL_AgentTesla_BAD_2147836767_0
         (1 of ($x*))
 }
 
+rule Trojan_MSIL_AgentTesla_AXK_2147836840_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.AXK!MTB"
+        threat_id = "2147836840"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "WinForMono.Properties.Resources" ascii //weight: 2
+        $x_2_2 = "Sachy_Obrazky" ascii //weight: 2
+        $x_2_3 = "$adc711a8-d61e-436a-b1c9-2aadd848ad74" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_AgentTesla_NZU_2147836851_0
 {
     meta:
@@ -104844,6 +104867,28 @@ rule Trojan_MSIL_AgentTesla_AWK_2147919082_0
         strings_accuracy = "Low"
     strings:
         $x_2_1 = {07 09 11 04 6f ?? ?? ?? 0a 13 08 08 12 08 28 ?? ?? ?? 0a 6f ?? ?? ?? 0a 00 11 04 17 58 13 04 00 11 04 07 6f ?? ?? ?? 0a fe 04 13 09 11 09 2d cf}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_AgentTesla_AWK_2147919082_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.AWK!MTB"
+        threat_id = "2147919082"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {11 07 17 d6 13 07 11 07 07 6f 66 00 00 0a fe 04 13 0d 11 0d 3a 51 ff ff ff}  //weight: 2, accuracy: High
+        $x_2_2 = "TextBoxMaskInput.Properties.Resources.resources" ascii //weight: 2
     condition:
         (filesize < 20MB) and
         (all of ($x*))

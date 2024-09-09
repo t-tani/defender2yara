@@ -777,3 +777,26 @@ rule Trojan_Win64_Zusy_GNM_2147920028_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Zusy_PA_2147920701_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Zusy.PA!MTB"
+        threat_id = "2147920701"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = "desktop.ini" ascii //weight: 1
+        $x_1_2 = "%s=!!! %s WILL NOT CONVERT !!!" ascii //weight: 1
+        $x_4_3 = {48 83 ec 28 48 8d 0d [0-4] e8 [0-4] 45 31 c0 31 d2 31 c9 e8 [0-4] 45 31 c0 31 d2 31 c9 e8 [0-4] 45 31 c0 31 d2 31 c9 e8}  //weight: 4, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -2586,3 +2586,35 @@ rule Trojan_Win32_AutoitInject_NG_2147920622_0
         )
 }
 
+rule Trojan_Win32_AutoitInject_NJ_2147920722_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.NJ!MTB"
+        threat_id = "2147920722"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {46 00 49 00 4c 00 45 00 49 00 4e 00 53 00 54 00 41 00 4c 00 4c 00 20 00 28 00 20 00 22 00 [0-47] 22 00 20 00 2c 00 20 00 40 00 54 00 45 00 4d 00 50 00 44 00 49 00 52 00 20 00 26 00 20 00 22 00 5c 00 00 22 00 20 00 2c 00 20 00 31 00 20 00 29 00}  //weight: 3, accuracy: Low
+        $x_3_2 = {46 49 4c 45 49 4e 53 54 41 4c 4c 20 28 20 22 [0-47] 22 20 2c 20 40 54 45 4d 50 44 49 52 20 26 20 22 5c 00 22 20 2c 20 31 20 29}  //weight: 3, accuracy: Low
+        $x_1_3 = {4f 00 70 00 65 00 6e 00 54 00 65 00 78 00 74 00 46 00 69 00 6c 00 65 00 20 00 28 00 20 00 40 00 54 00 45 00 4d 00 50 00 44 00 49 00 52 00 20 00 26 00 20 00 22 00 5c 00 [0-48] 22 00 20 00 2c 00 20 00 31 00 20 00 29 00}  //weight: 1, accuracy: Low
+        $x_1_4 = {4f 70 65 6e 54 65 78 74 46 69 6c 65 20 28 20 40 54 45 4d 50 44 49 52 20 26 20 22 5c [0-48] 22 20 2c 20 31 20 29}  //weight: 1, accuracy: Low
+        $x_1_5 = "EXECUTE ( \"Str\" & \"ingLen(" ascii //weight: 1
+        $x_1_6 = "&= EXECUTE ( \"Stri\" & \"ngMid(" ascii //weight: 1
+        $x_1_7 = "OBJCREATE ( \"Scripting.FileSystemObject\" )" ascii //weight: 1
+        $x_1_8 = "d.wuoMrfdx" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_3_*) and 5 of ($x_1_*))) or
+            ((2 of ($x_3_*) and 2 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+

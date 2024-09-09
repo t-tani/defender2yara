@@ -414,6 +414,27 @@ rule TrojanDownloader_MSIL_Heracles_VU_2147917685_0
         (all of ($x*))
 }
 
+rule TrojanDownloader_MSIL_Heracles_VU_2147917685_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:MSIL/Heracles.VU!MTB"
+        threat_id = "2147917685"
+        type = "TrojanDownloader"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Heracles"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {91 2b 3a 08 07 6f 19 00 00 0a 5d 6f 1a 00 00 0a 61 d2 9c 16 2d df 1a 2c dc}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule TrojanDownloader_MSIL_Heracles_SI_2147917731_0
 {
     meta:

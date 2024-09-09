@@ -684,3 +684,30 @@ rule Trojan_Win32_Doina_GPAX_2147915638_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Doina_YAA_2147920702_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Doina.YAA!MTB"
+        threat_id = "2147920702"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Doina"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "TnRDcmVhdGVUaHJlYWRFeA==" ascii //weight: 1
+        $x_1_2 = "TnRXcml0ZVZpcnR1YWxNZW1vcnk=" ascii //weight: 1
+        $x_1_3 = "TnRBbGxvY2F0ZVZpcnR1YWxNZW1vcnk=" ascii //weight: 1
+        $x_1_4 = "bnRkbGwuZGxs" ascii //weight: 1
+        $x_1_5 = "JVN5c3RlbVJvb3QlXFxzeXN0ZW0zMlxcbnRkbGwuZGxs" ascii //weight: 1
+        $x_1_6 = "SetTosBtKbdHook" ascii //weight: 1
+        $x_1_7 = "UnHookTosBtKbd" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
