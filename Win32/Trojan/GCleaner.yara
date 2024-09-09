@@ -725,3 +725,24 @@ rule Trojan_Win32_GCleaner_MKQ_2147920563_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_GCleaner_MKR_2147920635_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/GCleaner.MKR!MTB"
+        threat_id = "2147920635"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "GCleaner"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {8a 95 dc f7 ff ff 8b 85 d8 f7 ff ff 30 14 38 83 fb 0f 75 ?? 68 ?? ?? ?? ?? 6a 00 6a 00 6a 00 ff 15}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
