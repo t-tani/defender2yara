@@ -96,3 +96,30 @@ rule Ransom_MSIL_WormLocker_DD_2147787836_0
         (all of ($x*))
 }
 
+rule Ransom_MSIL_WormLocker_MX_2147920860_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:MSIL/WormLocker.MX!MTB"
+        threat_id = "2147920860"
+        type = "Ransom"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "WormLocker"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = "WormLocker" ascii //weight: 5
+        $x_1_2 = "worm_tool.sys" wide //weight: 1
+        $x_1_3 = "files have been encrypted" ascii //weight: 1
+        $x_1_4 = "DisableTaskMgr" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_5_*) and 2 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+

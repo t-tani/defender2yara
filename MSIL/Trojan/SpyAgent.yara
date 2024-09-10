@@ -136,3 +136,24 @@ rule Trojan_MSIL_SpyAgent_SPAZ_2147841673_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_SpyAgent_SB_2147920863_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/SpyAgent.SB!MTB"
+        threat_id = "2147920863"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "SpyAgent"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {07 08 9a 6f 4e 00 00 0a 72 db 07 00 70 28 3b 00 00 0a 2c 64 07 08 9a 6f 50 00 00 0a 0d 09 28 ?? ?? ?? 0a 72 5b 08 00 70}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

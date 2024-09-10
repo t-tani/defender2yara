@@ -463,3 +463,30 @@ rule Trojan_MSIL_Reline_SSN_2147920104_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Reline_EC_2147920858_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Reline.EC!MTB"
+        threat_id = "2147920858"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Reline"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "pimer.bbbcontents7.My.Resources" ascii //weight: 1
+        $x_1_2 = "pimer.bbbcontents7.pdb" ascii //weight: 1
+        $x_1_3 = "aBVIn5mUIYK4EYrhHd" ascii //weight: 1
+        $x_1_4 = "TaskSchedulerResumeWithAwaitable" ascii //weight: 1
+        $x_1_5 = "TaskResumeWithAwaitable" ascii //weight: 1
+        $x_1_6 = "TaskAwaiterWithOptions" ascii //weight: 1
+        $x_1_7 = "TaskSchedulerAwaiter" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

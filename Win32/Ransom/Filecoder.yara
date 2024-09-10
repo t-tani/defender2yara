@@ -1401,6 +1401,28 @@ rule Ransom_Win32_Filecoder_AA_2147774270_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "Run GlitchByte ransomware" ascii //weight: 2
+        $x_2_2 = "bcdedit /set {default} recoveryenabled no" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Ransom_Win32_Filecoder_AA_2147774270_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win32/Filecoder.AA!MTB"
+        threat_id = "2147774270"
+        type = "Ransom"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Filecoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
         threshold = "9"
         strings_accuracy = "High"
     strings:

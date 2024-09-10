@@ -809,3 +809,25 @@ rule Trojan_Win32_GCleaner_XCB_2147920764_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_GCleaner_ASGI_2147920859_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/GCleaner.ASGI!MTB"
+        threat_id = "2147920859"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "GCleaner"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {30 14 38 83 fb 0f 75}  //weight: 5, accuracy: High
+        $x_5_2 = {ff d7 c7 05 ?? ?? ?? 00 98 ac 58 ec 89 1d ?? ?? ?? 00 46 81 fe}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
