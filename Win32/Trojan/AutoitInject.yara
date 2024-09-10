@@ -2548,6 +2548,38 @@ rule Trojan_Win32_AutoitInject_SAI_2147920289_0
         (6 of ($x*))
 }
 
+rule Trojan_Win32_AutoitInject_SAI_2147920289_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.SAI!MTB"
+        threat_id = "2147920289"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {46 00 49 00 4c 00 45 00 49 00 4e 00 53 00 54 00 41 00 4c 00 4c 00 20 00 28 00 20 00 22 00 [0-47] 22 00 20 00 2c 00 20 00 40 00 54 00 45 00 4d 00 50 00 44 00 49 00 52 00 20 00 26 00 20 00 22 00 5c 00 00 22 00 20 00 2c 00 20 00 31 00 20 00 29 00}  //weight: 1, accuracy: Low
+        $x_1_2 = {46 49 4c 45 49 4e 53 54 41 4c 4c 20 28 20 22 [0-47] 22 20 2c 20 40 54 45 4d 50 44 49 52 20 26 20 22 5c 00 22 20 2c 20 31 20 29}  //weight: 1, accuracy: Low
+        $x_1_3 = {53 00 54 00 52 00 49 00 4e 00 47 00 52 00 45 00 47 00 45 00 58 00 50 00 52 00 45 00 50 00 4c 00 41 00 43 00 45 00 20 00 28 00 20 00 22 00 [0-47] 22 00 20 00 2c 00 20 00 22 00 34 00 37 00 22 00 20 00 2c 00 20 00 22 00 [0-47] 22 00 20 00 29 00}  //weight: 1, accuracy: Low
+        $x_1_4 = {53 54 52 49 4e 47 52 45 47 45 58 50 52 45 50 4c 41 43 45 20 28 20 22 [0-47] 22 20 2c 20 22 34 37 22 20 2c 20 22 [0-47] 22 20 29}  //weight: 1, accuracy: Low
+        $x_1_5 = {53 00 54 00 52 00 49 00 4e 00 47 00 53 00 50 00 4c 00 49 00 54 00 20 00 28 00 20 00 22 00 [0-42] 22 00 20 00 2c 00 20 00 22 00 [0-42] 22 00 20 00 2c 00 20 00 34 00 38 00 36 00 32 00 20 00 29 00}  //weight: 1, accuracy: Low
+        $x_1_6 = {53 54 52 49 4e 47 53 50 4c 49 54 20 28 20 22 [0-42] 22 20 2c 20 22 [0-42] 22 20 2c 20 34 38 36 32 20 29}  //weight: 1, accuracy: Low
+        $x_1_7 = {45 00 58 00 45 00 43 00 55 00 54 00 45 00 20 00 28 00 20 00 22 00 [0-42] 22 00 20 00 29 00}  //weight: 1, accuracy: Low
+        $x_1_8 = {45 58 45 43 55 54 45 20 28 20 22 [0-42] 22 20 29}  //weight: 1, accuracy: Low
+        $x_1_9 = {52 00 45 00 47 00 52 00 45 00 41 00 44 00 20 00 28 00 20 00 22 00 [0-42] 22 00 20 00 2c 00 20 00 22 00 [0-42] 22 00 20 00 29 00}  //weight: 1, accuracy: Low
+        $x_1_10 = {52 45 47 52 45 41 44 20 28 20 22 [0-42] 22 20 2c 20 22 [0-42] 22 20 29}  //weight: 1, accuracy: Low
+        $x_1_11 = {46 00 49 00 4c 00 45 00 44 00 45 00 4c 00 45 00 54 00 45 00 20 00 28 00 20 00 22 00 [0-42] 22 00 20 00 29 00}  //weight: 1, accuracy: Low
+        $x_1_12 = {46 49 4c 45 44 45 4c 45 54 45 20 28 20 22 [0-42] 22 20 29}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (6 of ($x*))
+}
+
 rule Trojan_Win32_AutoitInject_NG_2147920622_0
 {
     meta:
