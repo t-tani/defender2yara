@@ -4816,6 +4816,27 @@ rule Trojan_MSIL_AsyncRAT_RDAC_2147919015_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AsyncRAT_KAM_2147919423_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AsyncRAT.KAM!MTB"
+        threat_id = "2147919423"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AsyncRAT"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {8e 69 5d 91 61 d2 9c 00 fe 09 06 00 71 ?? 00 00 01 20 01 00 00 00 58}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_AsyncRAT_BO_2147919875_0
 {
     meta:
@@ -4880,6 +4901,28 @@ rule Trojan_MSIL_AsyncRAT_PHW_2147920668_0
         $x_2_1 = "xspymain.github.io" ascii //weight: 2
         $x_1_2 = "InvokeRandomMethod" ascii //weight: 1
         $x_1_3 = "CreatePayloadThread" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_AsyncRAT_KAN_2147920817_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AsyncRAT.KAN!MTB"
+        threat_id = "2147920817"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AsyncRAT"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {06 07 02 07 91 03 07 03 8e 69 5d 91 61 d2 9c 00 07 17 58 0b 07 02 8e 69 fe 04 0d 09 2d e1}  //weight: 1, accuracy: High
+        $x_1_2 = "encryptedShellcode" ascii //weight: 1
     condition:
         (filesize < 20MB) and
         (all of ($x*))

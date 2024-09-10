@@ -3023,3 +3023,24 @@ rule Trojan_MSIL_Injuke_SEAA_2147920719_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Injuke_KAAE_2147920820_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Injuke.KAAE!MTB"
+        threat_id = "2147920820"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Injuke"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {06 11 05 6f ?? 00 00 0a 07 33 1e 09 17 58 0d 09 08 17 58 33 0e 06 11 04 11 05 11 04 59 6f ?? 00 00 0a 2a 11 05 17 58 13 04 11 05 17 58 13 05}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -125,3 +125,26 @@ rule Trojan_MSIL_Snakelogger_KAF_2147913351_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Snakelogger_KAD_2147920815_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Snakelogger.KAD!MTB"
+        threat_id = "2147920815"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Snakelogger"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = "BlackHawk\\User Data\\Default\\Login Data" ascii //weight: 5
+        $x_1_2 = "SnakeKeylogger" ascii //weight: 1
+        $x_1_3 = "software\\microsoft\\windows\\currentversion\\run" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

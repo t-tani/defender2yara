@@ -4087,3 +4087,25 @@ rule Trojan_MSIL_DarkTortilla_VJAA_2147920212_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_DarkTortilla_WGAA_2147920812_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/DarkTortilla.WGAA!MTB"
+        threat_id = "2147920812"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "DarkTortilla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {0a 0a 02 74 15 00 00 01 06 28 ?? 00 00 0a 28 ?? 00 00 06 0b 07 74 ?? 00 00 1b 28 ?? 01 00 06 74 ?? 00 00 1b 0c 08 28 ?? 00 00 06 0d 09 28 ?? 00 00 0a 28 ?? 00 00 06 74 ?? 00 00 01 13 04 11 04 6f ?? 00 00 0a 13 05 11 05 fe 0b 00 00 02 74 ?? 00 00 1b 28 ?? 01 00 06 26 de 10}  //weight: 4, accuracy: Low
+        $x_1_2 = "CreateDecryptor" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
