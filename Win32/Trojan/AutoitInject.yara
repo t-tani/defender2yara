@@ -2650,3 +2650,28 @@ rule Trojan_Win32_AutoitInject_NJ_2147920722_0
         )
 }
 
+rule Trojan_Win32_AutoitInject_WEAA_2147920777_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.WEAA!MTB"
+        threat_id = "2147920777"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "PIGTJILCCRFX ( )" ascii //weight: 1
+        $x_1_2 = "NQMEXYMXKQ ( )" ascii //weight: 1
+        $x_1_3 = "CGRSLOXOCWMKA ( )" ascii //weight: 1
+        $x_2_4 = "$AJUVSZFDWJFJ [ 2 ] = [ \"LmwIJMGUM\\LmwIJMGUM.exe\" , \"LmwIJMGUM\\" ascii //weight: 2
+        $x_2_5 = "SHELLEXECUTE ( @WORKINGDIR & \"\\\" & $AJUVSZFDWJFJ [ $" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

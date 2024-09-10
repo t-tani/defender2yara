@@ -294,3 +294,24 @@ rule Trojan_Win32_Zegost_RDA_2147892996_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Zegost_ARA_2147920778_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zegost.ARA!MTB"
+        threat_id = "2147920778"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zegost"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {8a 04 0a 34 5b 88 01 41 4d 75 f5}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

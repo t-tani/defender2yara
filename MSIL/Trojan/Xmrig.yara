@@ -727,3 +727,31 @@ rule Trojan_MSIL_Xmrig_INAA_2147905685_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Xmrig_WDAA_2147920776_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Xmrig.WDAA!MTB"
+        threat_id = "2147920776"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Xmrig"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "D2BB470292B966943A6B3262AFA5F72E" ascii //weight: 1
+        $x_1_2 = "N6B8F48F79DFB560FB6774B85877E3DF" ascii //weight: 1
+        $x_1_3 = "NABA7E1CB7C72BBEE1EBF79N795C315C" ascii //weight: 1
+        $x_1_4 = "NABCEF040FBE65EDEN314C5NEE6FNDNF" ascii //weight: 1
+        $x_1_5 = "N2665NC04490D795B9AFCE9EB0596F11" ascii //weight: 1
+        $x_1_6 = "ND658475C841A6BN5A0C735A73NC7F74" ascii //weight: 1
+        $x_2_7 = "DB6E7B19ECF2B39238AC22F8CFB36FA8.resources" wide //weight: 2
+        $x_2_8 = "FakeMinerVirusExperiment.Resources" wide //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

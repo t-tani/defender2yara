@@ -1077,6 +1077,33 @@ rule Trojan_Win32_Guloader_RP_2147796695_1
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "16"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = "\\demigardebras\\ombrydningen.saa" ascii //weight: 10
+        $x_1_2 = "%haemostatic%\\Overfreedom\\ledsage" ascii //weight: 1
+        $x_1_3 = "styrketrningernes\\Uninstall\\subovarian" ascii //weight: 1
+        $x_1_4 = "%afregningspris%\\Trkkrfterne\\protorthoptera" ascii //weight: 1
+        $x_1_5 = "\\punktets.ini" ascii //weight: 1
+        $x_1_6 = "\\anglikanere\\Litteratursgningsprocessernes230.mac" ascii //weight: 1
+        $x_1_7 = "Udmugningsanlggene200\\hoverende\\stersskallens" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Guloader_RP_2147796695_2
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Guloader.RP!MTB"
+        threat_id = "2147796695"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Guloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "43"
         strings_accuracy = "High"
     strings:
@@ -1092,7 +1119,7 @@ rule Trojan_Win32_Guloader_RP_2147796695_1
         (all of ($x*))
 }
 
-rule Trojan_Win32_Guloader_RP_2147796695_2
+rule Trojan_Win32_Guloader_RP_2147796695_3
 {
     meta:
         author = "defender2yara"
