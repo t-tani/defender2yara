@@ -474,14 +474,20 @@ rule Trojan_Win64_ShellcodeRunner_RP_2147908480_3
         $x_1_2 = "InternetReadFile" ascii //weight: 1
         $x_1_3 = {2e 00 73 00 33 00 2e 00 61 00 70 00 2d 00 65 00 61 00 73 00 74 00 2d 00 31 00 2e 00 61 00 6d 00 61 00 7a 00 6f 00 6e 00 61 00 77 00 73 00 2e 00 63 00 6f 00 6d 00 2f 00 [0-16] 2f 00 [0-16] 2e 00 74 00 78 00 74 00}  //weight: 1, accuracy: Low
         $x_10_4 = "dick.exe" wide //weight: 10
-        $x_1_5 = "steam_api64.dll" wide //weight: 1
-        $x_1_6 = "afhost" wide //weight: 1
-        $x_10_7 = "C:\\users\\public\\music\\ttmnq\\vbox\\" wide //weight: 10
-        $x_1_8 = "C:\\users\\public\\pictures\\" wide //weight: 1
-        $x_1_9 = "Failed to download file: " wide //weight: 1
+        $x_10_5 = {63 6d 64 20 2f 63 20 73 74 61 72 74 20 2f 6d 69 6e 20 43 3a 5c 44 6f 63 75 6d 65 6e 74 73 20 61 6e 64 20 53 65 74 74 69 6e 67 73 5c ?? ?? ?? ?? ?? ?? ?? 5c [0-16] 5c 64 6f 77 6e 2e 65 78 65}  //weight: 10, accuracy: Low
+        $x_1_6 = "steam_api64.dll" wide //weight: 1
+        $x_1_7 = "afhost" wide //weight: 1
+        $x_10_8 = "C:\\users\\public\\music\\ttmnq\\vbox\\" wide //weight: 10
+        $x_1_9 = "C:\\users\\public\\pictures\\" wide //weight: 1
+        $x_1_10 = "File downloaded successfully to" wide //weight: 1
+        $x_1_11 = "Failed to download file: " wide //weight: 1
     condition:
         (filesize < 20MB) and
-        (all of ($x*))
+        (
+            ((2 of ($x_10_*) and 7 of ($x_1_*))) or
+            ((3 of ($x_10_*))) or
+            (all of ($x*))
+        )
 }
 
 rule Trojan_Win64_ShellcodeRunner_CCID_2147908511_0

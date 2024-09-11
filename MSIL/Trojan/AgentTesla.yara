@@ -57674,6 +57674,29 @@ rule Trojan_MSIL_AgentTesla_SIK_2147815927_2
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {20 00 1e 01 00 0d 16 13 06 2b 77 00 16 13 07 2b 5a 00 07 11 06 11 07 6f af 00 00 0a 13 08 08 6f b0 00 00 0a 19 58 09 fe 02 16 fe 01 13 09 11 09 2c 0d}  //weight: 1, accuracy: High
+        $x_1_2 = {00 00 2b 25 00 09 08 6f b0 00 00 0a 59 13 0a 11 0a 16 fe 02 13 0b 11 0b 2c 0d 00 08 11 08 11 0a 28 63 00 00 06 00 00 2b 17 00 11 07 17 58 13 07 11 07 07 6f b1 00 00 0a fe 04 13 0c 11 0c 2d 96}  //weight: 1, accuracy: High
+        $x_1_3 = "MineSweeper.Properties.Resources.resources" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_AgentTesla_SIK_2147815927_3
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.SIK!MTB"
+        threat_id = "2147815927"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "14"
         strings_accuracy = "Low"
     strings:

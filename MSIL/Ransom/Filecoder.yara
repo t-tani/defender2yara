@@ -3097,3 +3097,60 @@ rule Ransom_MSIL_Filecoder_PAFP_2147920768_0
         (all of ($x*))
 }
 
+rule Ransom_MSIL_Filecoder_NIT_2147920895_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:MSIL/Filecoder.NIT!MTB"
+        threat_id = "2147920895"
+        type = "Ransom"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Filecoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "encryptionAesRsa" ascii //weight: 2
+        $x_2_2 = "disableRecoveryMode" ascii //weight: 2
+        $x_2_3 = "All of your files have been encrypted" wide //weight: 2
+        $x_1_4 = "ransomware from your computer" wide //weight: 1
+        $x_1_5 = "vssadmin delete shadows //all //quiet & wmic shadowcopy delete" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((3 of ($x_2_*) and 1 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+
+rule Ransom_MSIL_Filecoder_NIT_2147920895_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:MSIL/Filecoder.NIT!MTB"
+        threat_id = "2147920895"
+        type = "Ransom"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Filecoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "9"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "\\source\\repos\\Morgan\\Morgan\\obj\\Release\\Morgan.pdb" ascii //weight: 2
+        $x_2_2 = ".morgan" wide //weight: 2
+        $x_2_3 = "FILE_EXTENSIONS" ascii //weight: 2
+        $x_2_4 = "Your files are encrypted using AES" wide //weight: 2
+        $x_1_5 = "SPIF_UPDATEINIFILE" wide //weight: 1
+        $x_1_6 = "\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((4 of ($x_2_*) and 1 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+

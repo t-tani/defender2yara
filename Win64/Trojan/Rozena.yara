@@ -1203,3 +1203,25 @@ rule Trojan_Win64_Rozena_MBXR_2147920578_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Rozena_ATZ_2147920881_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Rozena.ATZ!MTB"
+        threat_id = "2147920881"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Rozena"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {48 8b 45 d0 48 01 d0 8b 40 04 89 45 a4 8b 45 28 48 c1 e0 04 48 89 c2 48 8b 45 d0 48 01 d0 48 8b 40 08 48 89 45 a8 8b 45 28 83 c0 01 89 c0 48 c1 e0 04 48 89 c2 48 8b 45 d0 48 01 c2 8b 45 28 48 c1 e0 04 48 89 c1 48 8b 45 d0 48 01 c8 8b 12 89 10 8b 45 28 83 c0 01 89 c0 48 c1 e0 04 48 89 c2 48 8b 45 d0 48 01 c2}  //weight: 1, accuracy: High
+        $x_1_2 = {8b 45 28 48 c1 e0 04 48 89 c1 48 8b 45 d0 48 01 c8 8b 52 04 89 50 04 8b 45 28 83 c0 01 89 c0 48 c1 e0 04 48 89 c2 48 8b 45 d0 48 01 c2 8b 45 28 48 c1 e0 04 48 89 c1 48 8b 45 d0 48 01 c8 48 8b 52 08 48 89 50 08 8b 45 28 83 c0 01 89 c0 48 c1 e0 04 48 89 c2 48 8b 45 d0 48 01 d0 8b 55 a0 89 10 8b 45 28 83 c0 01 89 c0 48 c1 e0 04 48 89 c2 48 8b 45 d0 48 01 d0 8b 55 a4 89 50 04 8b 45 28 83 c0 01 89 c0 48 c1 e0 04 48 89 c2 48 8b 45 d0 48 01 d0 48 8b 55 a8 48 89 50 08}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

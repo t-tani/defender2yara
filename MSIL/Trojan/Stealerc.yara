@@ -417,3 +417,27 @@ rule Trojan_MSIL_Stealerc_GPAX_2147915660_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Stealerc_MBXT_2147920900_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Stealerc.MBXT!MTB"
+        threat_id = "2147920900"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Stealerc"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_4_1 = "AAMJIIJZNZJPRULUSLKBJZEPYTYUCJJJHILFUREYLF" ascii //weight: 4
+        $x_3_2 = "back7top_managment.Resources.resources" ascii //weight: 3
+        $x_2_3 = "FCPLWVWJACDQWLCPZEWWOTZFWDIDLPQCBASLPFYALLYSGJAQJAEMDMDLCKOTMTX" ascii //weight: 2
+        $x_1_4 = "cH8IXcwQY4Peh2qpAn" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
