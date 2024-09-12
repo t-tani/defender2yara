@@ -108,3 +108,24 @@ rule Trojan_Win64_ShellcodeInject_FEM_2147920231_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_ShellcodeInject_OKZ_2147920973_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/ShellcodeInject.OKZ!MTB"
+        threat_id = "2147920973"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "ShellcodeInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {49 63 ca 48 b8 f1 f0 f0 f0 f0 f0 f0 f0 45 03 d4 48 f7 e1 48 c1 ea 04 48 6b c2 11 48 2b c8 48 03 cb 8a 44 0c 20 43 32 04 0b 41 88 01 4d 03 cc 41 81 fa 00 7a 3c 00}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

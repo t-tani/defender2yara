@@ -6372,3 +6372,24 @@ rule Trojan_Win32_CryptInject_RHU_2147918398_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_CryptInject_KKV_2147920974_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/CryptInject.KKV!MTB"
+        threat_id = "2147920974"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {02 d1 0f b6 d2 89 55 08 8a 55 f0 02 55 08 02 55 f8 0f b6 d2 0f b6 5c ?? 04 8d 54 ?? 04 89 55 08 8b 55 0c 30 5c 16 ff 8b 55 08 8b 12 31 17 8b 7c 88 04 03 7d ec 8b 55 f4 31 3a 3b 75 10 0f 8c}  //weight: 4, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

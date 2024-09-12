@@ -73,3 +73,59 @@ rule Ransom_Win32_Mimic_ATZ_2147920882_0
         (all of ($x*))
 }
 
+rule Ransom_Win32_Mimic_YAB_2147920969_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win32/Mimic.YAB!MTB"
+        threat_id = "2147920969"
+        type = "Ransom"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Mimic"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "16"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "-ExecutionPolicy Bypass \"Get-VM | Stop-VM" wide //weight: 1
+        $x_1_2 = "Everything.exe" wide //weight: 1
+        $x_5_3 = "Del /f /q /a *.exe *.ini *.dll *.bat *.db" wide //weight: 5
+        $x_5_4 = "bcdedit.exe /set {default} recoveryenabled no" wide //weight: 5
+        $x_1_5 = "xdel.exe\" -accepteula -p 1 -c" wide //weight: 1
+        $x_1_6 = "-dir" wide //weight: 1
+        $x_1_7 = "-prot" wide //weight: 1
+        $x_1_8 = "-tail" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Ransom_Win32_Mimic_YAA_2147920971_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win32/Mimic.YAA!MTB"
+        threat_id = "2147920971"
+        type = "Ransom"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Mimic"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "17"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = "RunProgram=\"hidcon:7za.exe i" ascii //weight: 1
+        $x_10_2 = {52 75 6e 50 72 6f 67 72 61 6d 3d 22 68 69 64 63 6f 6e 3a 37 7a 61 2e 65 78 65 20 78 20 2d 79 20 2d 70 [0-20] 20 45 76 65 72 79 74 68 69 6e 67 36 34 2e 64 6c 6c}  //weight: 10, accuracy: Low
+        $x_1_3 = "RunProgram=\"hidcon:\\\"datastore@cyberfear.com_no gui.exe\\\" %SfxVarCmdLine0%" ascii //weight: 1
+        $x_1_4 = "GUIFlags=\"2+512+8192" ascii //weight: 1
+        $x_1_5 = "MiscFlags=\"1+2+16" ascii //weight: 1
+        $x_1_6 = "GUIMode=\"2" ascii //weight: 1
+        $x_1_7 = "SelfDelete=\"1" ascii //weight: 1
+        $x_1_8 = ";!@InstallEnd@" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
