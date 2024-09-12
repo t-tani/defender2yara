@@ -2183,3 +2183,24 @@ rule Trojan_MSIL_Vidar_DKQ_2147920648_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Vidar_WRA_2147920953_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Vidar.WRA!MTB"
+        threat_id = "2147920953"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Vidar"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {06 08 91 06 09 91 58 20 00 01 00 00 5d 13 1c 7e 03 00 00 04 11 1c 6f ?? ?? ?? ?? 7e 03 00 00 04 11 13 6f ?? ?? ?? ?? 03 7e 03 00 00 04 17 6f ?? ?? ?? ?? 8f 14 00 00 01 25 71 14 00 00 01 06 7e 03 00 00 04 16 6f 1a 00 00 0a 91 61 d2 81 14 00 00 01 28 1b 00 00 0a 7e 03 00 00 04 6f 1c 00 00 0a 11 13 17 58 13 13}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

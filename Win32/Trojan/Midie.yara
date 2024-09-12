@@ -772,3 +772,24 @@ rule Trojan_Win32_Midie_VPAA_2147920355_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Midie_WRX_2147920954_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Midie.WRX!MTB"
+        threat_id = "2147920954"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Midie"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {34 1e 30 1f 66 83 e8 10 66 03 ca 03 c1 66 03 44 24 ?? 66 8b c8 8b 7d fc 47 89 7d fc 8a 44 24 cc 66 33 4c 24 d4 b0 28 2a 4c 24 e0 03 4c 24 f5 83 6d f8 01 0f 85}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
