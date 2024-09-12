@@ -2675,3 +2675,28 @@ rule Trojan_Win32_AutoitInject_WEAA_2147920777_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_AutoitInject_KAE_2147920945_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.KAE!MTB"
+        threat_id = "2147920945"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "15"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "FILEINSTALL" ascii //weight: 1
+        $x_1_2 = "@TEMPDIR" ascii //weight: 1
+        $x_1_3 = "DLLCALL" ascii //weight: 1
+        $x_5_4 = "b30A022y30A022t30A022e30A022[30A022" ascii //weight: 5
+        $x_7_5 = "k30A022e30A022r30A022n30A022e30A022l30A022330A022230A022.30A022d30A022l30A022l30A022" ascii //weight: 7
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
