@@ -4092,6 +4092,29 @@ rule Trojan_Win32_Dridex_AR_2147779032_0
         (1 of ($x*))
 }
 
+rule Trojan_Win32_Dridex_PAC_2147779675_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Dridex.PAC!MTB"
+        threat_id = "2147779675"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Dridex"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "c:\\try\\Fair\\Did-miss\\Neigh\\Deep.pdb" ascii //weight: 1
+        $x_1_2 = "Deep.dll" ascii //weight: 1
+        $x_1_3 = {8b 0d 04 a0 05 01 56 57 bf 4e e6 40 bb be 00 00 ff ff 3b cf 74 04 85 ce 75 26}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win32_Dridex_OR_2147779870_0
 {
     meta:
