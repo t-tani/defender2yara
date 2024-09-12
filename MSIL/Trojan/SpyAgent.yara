@@ -157,3 +157,27 @@ rule Trojan_MSIL_SpyAgent_SB_2147920863_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_SpyAgent_CCJB_2147921007_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/SpyAgent.CCJB!MTB"
+        threat_id = "2147921007"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "SpyAgent"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {11 06 11 0c 9a 6f 4e 00 00 0a 72 ?? ?? 00 70 28 4f 00 00 0a 39 cc 00 00 00 11 06 11 0c 9a 6f 50 00 00 0a 13 0d 11 0d 28 51 00 00 0a 26 11 06 11 0c 9a 6f 52 00 00 0a 13 0e 28 53 00 00 0a}  //weight: 5, accuracy: Low
+        $x_1_2 = {13 18 12 18 fe 16 ?? 00 00 01 6f 18 00 00 0a 72 ?? ?? 00 70 72 ?? ?? 00 70 6f 54 00 00 0a 13 0f 11 07 72 ?? ?? 00 70 11 06 11 0c 9a 6f 55 00 00 0a 28 56 00 00 0a 13 10 11 10 73 57 00 00 0a}  //weight: 1, accuracy: Low
+        $x_1_3 = {13 11 11 11 6f 48 00 00 0a 2d 5d 11 06 11 0c 9a 6f 55 00 00 0a 72 ?? ?? 00 70 28 4f 00 00 0a 2c 47 11 0d 11 07 72 ?? ?? 00 70 11 06 11 0c 9a 6f 55 00 00 0a 28 56 00 00 0a}  //weight: 1, accuracy: Low
+        $x_1_4 = {28 58 00 00 0a 09 72 ?? ?? 00 70 28 39 00 00 0a 11 0e 72 ?? ?? 00 70 11 0f 72 ?? ?? 00 70 28 59 00 00 0a 28 5a 00 00 0a 11 0d 28 5b 00 00 0a de 10 13 12 11 12 6f 2f 00 00 0a 28 30 00 00 0a de 00 11 0c 17 58 13 0c 11 0c 11 06 8e 69 3f f8 fe ff ff}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
