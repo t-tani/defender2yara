@@ -4294,6 +4294,27 @@ rule Trojan_Win32_Zusy_SHZC_2147916917_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Zusy_SHZC_2147916917_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zusy.SHZC!MTB"
+        threat_id = "2147916917"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {88 c2 02 15 ?? ?? ?? ?? 88 15 ?? ?? ?? ?? 88 0d ?? ?? ?? ?? a2 ?? ?? ?? ?? 8b 35 ?? ?? ?? ?? 30 c8 89 f7 81 c7 ?? ?? ?? ?? 89 3d ?? ?? ?? ?? 81 c6 ?? ?? ?? ?? 89 35 ?? ?? ?? ?? 0f b6 c0 5e}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win32_Zusy_MBXO_2147917978_0
 {
     meta:
