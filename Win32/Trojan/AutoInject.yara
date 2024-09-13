@@ -144,3 +144,31 @@ rule Trojan_Win32_AutoInject_CCJB_2147921020_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_AutoInject_CCJC_2147921090_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoInject.CCJC!MTB"
+        threat_id = "2147921090"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "16"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "SLEEP ( 500 )" ascii //weight: 1
+        $x_5_2 = "--kiosk --edge-kiosk-type=fullscreen --no-first-run --disable-features=TranslateUI" ascii //weight: 5
+        $x_5_3 = "--kiosk --disable-features=TranslateUI --disable-infobars --no-first-run" ascii //weight: 5
+        $x_1_4 = "--disable-popup-blocking --disable-extensions --no-default-browser-check --app=" ascii //weight: 1
+        $x_1_5 = "$PRIMARYBROWSER = \"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe" ascii //weight: 1
+        $x_1_6 = "{ESC}\" , \"IgnoreKey" ascii //weight: 1
+        $x_1_7 = "{F11}\" , \"IgnoreKey" ascii //weight: 1
+        $x_1_8 = "SLEEP ( 100 )" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
