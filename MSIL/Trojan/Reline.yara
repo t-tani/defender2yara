@@ -490,3 +490,26 @@ rule Trojan_MSIL_Reline_EC_2147920858_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Reline_MBXT_2147921075_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Reline.MBXT!MTB"
+        threat_id = "2147921075"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Reline"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {6e 53 41 64 46 46 43 56 4d 65 4a 51 50 62 55 33 74 4d 00 77 68 36 65 37 55 66 57 70 43 6e 59}  //weight: 1, accuracy: High
+        $x_1_2 = {44 36 4b 56 00 4c 6f 61 64 4c}  //weight: 1, accuracy: High
+        $x_1_3 = "Ads_multysave.Resources.resource" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
