@@ -121,3 +121,26 @@ rule Trojan_Win32_AutoInject_SZ_2147909031_0
         (4 of ($x*))
 }
 
+rule Trojan_Win32_AutoInject_CCJB_2147921020_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoInject.CCJB!MTB"
+        threat_id = "2147921020"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "b60AB0CCCy60AB0CCCt60AB0CCCe60AB0CCC[60AB0CCC" ascii //weight: 1
+        $x_1_2 = "k60AB0CCCe60AB0CCCr60AB0CCCn60AB0CCCe60AB0CCCl60AB0CCC360AB0CCC260AB0CCC.60AB0CCCd60AB0CCCl60AB0CCCl60AB0CCC" ascii //weight: 1
+        $x_1_3 = "u60AB0CCCs60AB0CCCe60AB0CCCr60AB0CCC360AB0CCC260AB0CCC.60AB0CCCd60AB0CCCl60AB0CCCl60AB0CCC" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
