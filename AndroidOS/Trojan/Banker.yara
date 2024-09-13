@@ -754,3 +754,27 @@ rule Trojan_AndroidOS_Banker_U_2147911937_0
         (all of ($x*))
 }
 
+rule Trojan_AndroidOS_Banker_S_2147921055_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:AndroidOS/Banker.S!MTB"
+        threat_id = "2147921055"
+        type = "Trojan"
+        platform = "AndroidOS: Android operating system"
+        family = "Banker"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "SMSForwardService" ascii //weight: 1
+        $x_1_2 = "com/example/c2botnet" ascii //weight: 1
+        $x_1_3 = "SMSForwarder" ascii //weight: 1
+        $x_1_4 = "setRemoteInputHistory" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
