@@ -316,3 +316,28 @@ rule Backdoor_Win32_Simda_A_2147688203_0
         (3 of ($x*))
 }
 
+rule Backdoor_Win32_Simda_ASI_2147921099_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Backdoor:Win32/Simda.ASI!MTB"
+        threat_id = "2147921099"
+        type = "Backdoor"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Simda"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {8b 4d f4 0f b6 0c 31 88 4d ff 8a 88 00 01 00 00 0f b6 f9 0f b6 14 07 03 f8 88 55 0f 8a 90 01 01 00 00 02 55 0f 89 7d f0 0f b6 fa 8a 1c 07 03 f8 89 7d ec 8b 7d f0 88 1f 8b 7d ec 88 5d 0b 0f b6 5d 0f 88 1f 0f b6 5d 0f 0f b6 7d 0b 03 fb}  //weight: 2, accuracy: High
+        $x_1_2 = "DAN NLD NLB ENU ENG ENA ENC ENZ ENI FIN FRA FRB FRC FRS DEU DES DEA ISL ITA ITS NOR NON PTB PTG SVE ESP ESM ESN TRK PLK CSY SKY HUN RUS GRE ALL" ascii //weight: 1
+        $x_1_3 = "EAF799BF-8249-4fe1-9A0D-922D39D22014" ascii //weight: 1
+        $x_1_4 = "EAF799BF-8449-4fe1-9A0D-95CD39DC2014" ascii //weight: 1
+        $x_1_5 = "EAF799BF-8989-4fe1-9A0D-95CD39DC0214" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
