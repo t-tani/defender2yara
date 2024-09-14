@@ -19,3 +19,25 @@ rule Trojan_Win64_Malgentz_C_2147920878_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Malgentz_AB_2147921116_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Malgentz.AB!MTB"
+        threat_id = "2147921116"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Malgentz"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {c7 44 24 20 02 00 00 00 48 b8 02 01 25 1d 12 2c 16 5e 48 89 44 24 30 48 b8 06 f2 25 03 16 ff 7f 0f 48 89 44 24 38 48 8d 44 24 28 48 8b f8 33 c0 b9 08 00 00 00}  //weight: 1, accuracy: High
+        $x_1_2 = {89 44 24 30 8b 44 24 30 48 69 c0 20 04 00 00 48 63 4c 24 38 48 8b 94 24 d8 00 00 00 48 03 8c 02 10 04 00 00 48 8b c1 b9 04 00 00 00 48 6b c9 00 48 8b d0 48 8b 84 24 d0 00 00 00 8b 0c 08}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
