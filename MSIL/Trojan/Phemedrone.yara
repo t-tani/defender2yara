@@ -42,3 +42,26 @@ rule Trojan_MSIL_Phemedrone_APH_2147914788_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Phemedrone_APH_2147914788_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Phemedrone.APH!MTB"
+        threat_id = "2147914788"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Phemedrone"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {16 13 0b 2b 23 11 0a 11 0b 91 13 0c 00 11 09 12 0c 72 00 0e 00 70 28 ?? 00 00 0a 6f ?? 00 00 0a 26 00 11 0b 17 58 13 0b 11 0b 11 0a 8e 69}  //weight: 2, accuracy: Low
+        $x_1_2 = "murderousattack.xyz" wide //weight: 1
+        $x_1_3 = "Phemedrone-Stealer.exe" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
