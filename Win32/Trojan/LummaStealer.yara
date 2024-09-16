@@ -1906,3 +1906,28 @@ rule Trojan_Win32_LummaStealer_XCA_2147920797_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_LummaStealer_RP_2147921179_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaStealer.RP!MTB"
+        threat_id = "2147921179"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "32"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "main.UlhMFyDdoz" ascii //weight: 1
+        $x_1_2 = "main.AEKCihaLRV" ascii //weight: 1
+        $x_10_3 = "main.uydiOYgQCH.deferwrap2" ascii //weight: 10
+        $x_10_4 = "main.uydiOYgQCH.deferwrap1" ascii //weight: 10
+        $x_10_5 = "main.mOaSjsgDny.func1.Print.1" ascii //weight: 10
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

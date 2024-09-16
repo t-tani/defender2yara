@@ -3021,3 +3021,26 @@ rule Trojan_MSIL_CryptInject_RHQ_2147918334_0
         )
 }
 
+rule Trojan_MSIL_CryptInject_MBXT_2147921158_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/CryptInject.MBXT!MTB"
+        threat_id = "2147921158"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = {46 53 43 56 4c 41 42 41 51 47 48 55 47 57 55 00 41 42 56 50 53 4c 48 4e 4a}  //weight: 3, accuracy: High
+        $x_2_2 = {74 43 54 36 42 30 77 36 61 00 63 48 38 49 58 63 77}  //weight: 2, accuracy: High
+        $x_1_3 = "BotClient" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
