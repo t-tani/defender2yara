@@ -8593,6 +8593,27 @@ rule Trojan_MSIL_Remcos_ARM_2147849040_4
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {16 13 17 2b 63 00 11 06 17 58 20 ff 00 00 00 5f 13 06 11 05 11 04 11 06 95 58 20 ff 00 00 00 5f 13 05 02 11 04 11 06 8f 7d 00 00 01 11 04 11 05 8f 7d 00 00 01 28 ?? 00 00 06 00 11 04 11 06 95 11 04 11 05 95 58 20 ff 00 00 00 5f 13 18 09 11 17 07 11 17 91 11 04 11 18 95 61}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Remcos_ARM_2147849040_5
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Remcos.ARM!MTB"
+        threat_id = "2147849040"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Remcos"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "5"
         strings_accuracy = "Low"
     strings:
@@ -8604,7 +8625,7 @@ rule Trojan_MSIL_Remcos_ARM_2147849040_4
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Remcos_ARM_2147849040_5
+rule Trojan_MSIL_Remcos_ARM_2147849040_6
 {
     meta:
         author = "defender2yara"
@@ -8625,7 +8646,7 @@ rule Trojan_MSIL_Remcos_ARM_2147849040_5
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Remcos_ARM_2147849040_6
+rule Trojan_MSIL_Remcos_ARM_2147849040_7
 {
     meta:
         author = "defender2yara"
@@ -8647,7 +8668,7 @@ rule Trojan_MSIL_Remcos_ARM_2147849040_6
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Remcos_ARM_2147849040_7
+rule Trojan_MSIL_Remcos_ARM_2147849040_8
 {
     meta:
         author = "defender2yara"
@@ -8676,7 +8697,7 @@ rule Trojan_MSIL_Remcos_ARM_2147849040_7
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Remcos_ARM_2147849040_8
+rule Trojan_MSIL_Remcos_ARM_2147849040_9
 {
     meta:
         author = "defender2yara"
