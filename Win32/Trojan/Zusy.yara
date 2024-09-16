@@ -3697,6 +3697,31 @@ rule Trojan_Win32_Zusy_AZY_2147899007_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Zusy_AZY_2147899007_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zusy.AZY!MTB"
+        threat_id = "2147899007"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {8b 46 08 89 45 cc 8d 95 68 fe ff ff b8 64 89 4b 00 e8 2f f5 ff ff 8b 95 68 fe ff ff 8b 45 c4 e8 0d c3 f4 ff 75 02 b3 01 8d 95 64 fe ff ff b8 88 89 4b 00 e8 0d f5 ff ff 8b 95 64 fe ff ff 8b 45 c4 e8 eb c2 f4 ff 75 04 c6 45 fb 01 8d 95 60 fe ff ff b8 a4 89 4b 00 e8 e9 f4 ff ff 8b 95 60 fe ff ff 8b 45 c4 e8 c7 c2 f4 ff 75 04 c6 45 fa 01 8d 95 5c fe ff ff b8 c8 89 4b 00}  //weight: 2, accuracy: High
+        $x_1_2 = "019F9A277A51DE285787CF3C77" ascii //weight: 1
+        $x_1_3 = "54C0D821744CC96B57D1CF" ascii //weight: 1
+        $x_1_4 = "51C1D82B7F469F204ACC" ascii //weight: 1
+        $x_1_5 = "50C8C3206741C32A45DACF363C46C920" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win32_Zusy_AZS_2147899084_0
 {
     meta:

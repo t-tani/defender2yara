@@ -183,3 +183,28 @@ rule Trojan_MSIL_MassLogger_MBXU_2147920462_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_MassLogger_MBXT_2147921155_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/MassLogger.MBXT!MTB"
+        threat_id = "2147921155"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "MassLogger"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "15"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = "CSE101_Final_Prep" wide //weight: 5
+        $x_4_2 = {4c 00 6f 00 61 00 64}  //weight: 4, accuracy: High
+        $x_3_3 = "Calculadora" wide //weight: 3
+        $x_2_4 = "InvokeMember" ascii //weight: 2
+        $x_1_5 = "Split" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

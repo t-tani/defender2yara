@@ -8343,3 +8343,24 @@ rule Trojan_Win32_SmokeLoader_ASGI_2147918380_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_SmokeLoader_RDAC_2147921168_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/SmokeLoader.RDAC!MTB"
+        threat_id = "2147921168"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "SmokeLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {8a 95 dc f3 ff ff 8b 85 d8 f3 ff ff 8b 75 0c 30 14 38 83 fe 0f 75 5b}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

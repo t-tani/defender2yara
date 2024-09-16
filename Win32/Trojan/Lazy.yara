@@ -1213,3 +1213,24 @@ rule Trojan_Win32_Lazy_AMAZ_2147917719_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Lazy_OKZ_2147921164_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Lazy.OKZ!MTB"
+        threat_id = "2147921164"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Lazy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {6a 1c ff 50 10 8b 03 8b cb 6a 1c ff 50 18 8b 03 8b cb 6a 00 ff 50 18}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
