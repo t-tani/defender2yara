@@ -8752,12 +8752,12 @@ rule Trojan_Win32_Zenpak_GZT_2147921002_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Zenpak_PVH_2147921185_0
+rule Trojan_Win32_Zenpak_PVH_2147921206_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Zenpak.PVH!MTB"
-        threat_id = "2147921185"
+        threat_id = "2147921206"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Zenpak"

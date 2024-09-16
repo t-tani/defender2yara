@@ -2700,3 +2700,36 @@ rule Trojan_Win32_AutoitInject_KAE_2147920945_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_AutoitInject_NK_2147921199_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.NK!MTB"
+        threat_id = "2147921199"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {46 00 49 00 4c 00 45 00 49 00 4e 00 53 00 54 00 41 00 4c 00 4c 00 20 00 28 00 20 00 22 00 [0-47] 22 00 20 00 2c 00 20 00 40 00 54 00 45 00 4d 00 50 00 44 00 49 00 52 00 20 00 26 00 20 00 22 00 5c 00 00 22 00 20 00 2c 00 20 00 31 00 20 00 29 00}  //weight: 3, accuracy: Low
+        $x_3_2 = {46 49 4c 45 49 4e 53 54 41 4c 4c 20 28 20 22 [0-47] 22 20 2c 20 40 54 45 4d 50 44 49 52 20 26 20 22 5c 00 22 20 2c 20 31 20 29}  //weight: 3, accuracy: Low
+        $x_2_3 = {53 00 54 00 52 00 49 00 4e 00 47 00 52 00 45 00 50 00 4c 00 41 00 43 00 45 00 20 00 28 00 20 00 24 00 [0-48] 20 00 2c 00 20 00 22 00 39 00 35 00 30 00 30 00 31 00 35 00 37 00 38 00 39 00 22 00 20 00 2c 00 20 00 22 00 22 00 20 00 29 00}  //weight: 2, accuracy: Low
+        $x_2_4 = {53 54 52 49 4e 47 52 45 50 4c 41 43 45 20 28 20 24 [0-48] 20 2c 20 22 39 35 30 30 31 35 37 38 39 22 20 2c 20 22 22 20 29}  //weight: 2, accuracy: Low
+        $x_1_5 = "= DLLSTRUCTCREATE (" ascii //weight: 1
+        $x_1_6 = "p950015789t950015789r950015789" ascii //weight: 1
+        $x_1_7 = "k950015789e950015789r950015789n950015789e950015789l95001578939500157892950015789" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_3_*) and 1 of ($x_2_*) and 3 of ($x_1_*))) or
+            ((1 of ($x_3_*) and 2 of ($x_2_*) and 1 of ($x_1_*))) or
+            ((2 of ($x_3_*) and 2 of ($x_1_*))) or
+            ((2 of ($x_3_*) and 1 of ($x_2_*))) or
+            (all of ($x*))
+        )
+}
+
