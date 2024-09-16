@@ -492,3 +492,55 @@ rule Trojan_MSIL_LummaC_AMA_2147921040_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_LummaC_WQAA_2147921134_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/LummaC.WQAA!MTB"
+        threat_id = "2147921134"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "LummaC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "KRevolutionizing renewable energy with advanced solar and storage solutions." ascii //weight: 2
+        $x_2_2 = "HelioCore Energy Suite" ascii //weight: 2
+        $x_1_3 = "HelioCore Innovations Inc." ascii //weight: 1
+        $x_1_4 = "HelioCore Innovations Trademark" ascii //weight: 1
+        $x_1_5 = "$b7c8d9e0-f1a2-4324-bd5e-67890abcdef0" ascii //weight: 1
+        $x_1_6 = "FromBase64String" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_LummaC_WSAA_2147921135_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/LummaC.WSAA!MTB"
+        threat_id = "2147921135"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "LummaC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "LPioneering the future of technology with innovative and efficient solutions." ascii //weight: 2
+        $x_2_2 = "Element IO Innovations Inc." ascii //weight: 2
+        $x_1_3 = "Element IO Advanced Suite" ascii //weight: 1
+        $x_1_4 = "Element IO Innovations Trademark" ascii //weight: 1
+        $x_1_5 = "$0c784f02-e0f5-43a1-947a-aea218fd31df" ascii //weight: 1
+        $x_1_6 = "FromBase64String" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
