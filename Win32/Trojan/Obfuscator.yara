@@ -1846,27 +1846,6 @@ rule Trojan_Win32_Obfuscator_GL_2147758511_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Obfuscator_OB_2147758607_0
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "Trojan:Win32/Obfuscator.OB!MTB"
-        threat_id = "2147758607"
-        type = "Trojan"
-        platform = "Win32: Windows 32-bit platform"
-        family = "Obfuscator"
-        severity = "Critical"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "1"
-        strings_accuracy = "Low"
-    strings:
-        $x_1_1 = {99 f7 f9 42 8b 45 f8 0f b6 44 10 ff 32 c3 8b d8 8d 45 e4 8b d3 e8 ?? ?? ?? ?? 8b 55 e4 8b 45 f4 e8 ?? ?? ?? ?? 8b 45 f4 46 ff 4d f0 0f}  //weight: 1, accuracy: Low
-    condition:
-        (filesize < 20MB) and
-        (all of ($x*))
-}
-
 rule Trojan_Win32_Obfuscator_PQ_2147758655_0
 {
     meta:

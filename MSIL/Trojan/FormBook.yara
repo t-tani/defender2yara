@@ -5571,6 +5571,28 @@ rule Trojan_MSIL_FormBook_AFB_2147832252_10
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {02 91 1d 59 1f 09 59 d2 0b 07 06 02 07 9c 2a}  //weight: 1, accuracy: High
+        $x_2_2 = {17 59 0a 2b 1e 02 03 06 6f ?? 00 00 0a 93 0b 02 03 06 6f ?? 00 00 0a 02 06 93 9d 02 06 07 9d 06 17 59 0a 06 16 2f de}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_FormBook_AFB_2147832252_11
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/FormBook.AFB!MTB"
+        threat_id = "2147832252"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "FormBook"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "1"
         strings_accuracy = "Low"
     strings:
@@ -5580,7 +5602,7 @@ rule Trojan_MSIL_FormBook_AFB_2147832252_10
         (all of ($x*))
 }
 
-rule Trojan_MSIL_FormBook_AFB_2147832252_11
+rule Trojan_MSIL_FormBook_AFB_2147832252_12
 {
     meta:
         author = "defender2yara"
@@ -5602,7 +5624,7 @@ rule Trojan_MSIL_FormBook_AFB_2147832252_11
         (all of ($x*))
 }
 
-rule Trojan_MSIL_FormBook_AFB_2147832252_12
+rule Trojan_MSIL_FormBook_AFB_2147832252_13
 {
     meta:
         author = "defender2yara"
@@ -5623,7 +5645,7 @@ rule Trojan_MSIL_FormBook_AFB_2147832252_12
         (all of ($x*))
 }
 
-rule Trojan_MSIL_FormBook_AFB_2147832252_13
+rule Trojan_MSIL_FormBook_AFB_2147832252_14
 {
     meta:
         author = "defender2yara"
@@ -5645,7 +5667,7 @@ rule Trojan_MSIL_FormBook_AFB_2147832252_13
         (all of ($x*))
 }
 
-rule Trojan_MSIL_FormBook_AFB_2147832252_14
+rule Trojan_MSIL_FormBook_AFB_2147832252_15
 {
     meta:
         author = "defender2yara"
@@ -5666,7 +5688,7 @@ rule Trojan_MSIL_FormBook_AFB_2147832252_14
         (all of ($x*))
 }
 
-rule Trojan_MSIL_FormBook_AFB_2147832252_15
+rule Trojan_MSIL_FormBook_AFB_2147832252_16
 {
     meta:
         author = "defender2yara"
@@ -5688,7 +5710,7 @@ rule Trojan_MSIL_FormBook_AFB_2147832252_15
         (all of ($x*))
 }
 
-rule Trojan_MSIL_FormBook_AFB_2147832252_16
+rule Trojan_MSIL_FormBook_AFB_2147832252_17
 {
     meta:
         author = "defender2yara"
@@ -5710,7 +5732,7 @@ rule Trojan_MSIL_FormBook_AFB_2147832252_16
         (all of ($x*))
 }
 
-rule Trojan_MSIL_FormBook_AFB_2147832252_17
+rule Trojan_MSIL_FormBook_AFB_2147832252_18
 {
     meta:
         author = "defender2yara"
@@ -5735,7 +5757,7 @@ rule Trojan_MSIL_FormBook_AFB_2147832252_17
         (all of ($x*))
 }
 
-rule Trojan_MSIL_FormBook_AFB_2147832252_18
+rule Trojan_MSIL_FormBook_AFB_2147832252_19
 {
     meta:
         author = "defender2yara"
@@ -5757,7 +5779,7 @@ rule Trojan_MSIL_FormBook_AFB_2147832252_18
         (all of ($x*))
 }
 
-rule Trojan_MSIL_FormBook_AFB_2147832252_19
+rule Trojan_MSIL_FormBook_AFB_2147832252_20
 {
     meta:
         author = "defender2yara"
@@ -5779,7 +5801,7 @@ rule Trojan_MSIL_FormBook_AFB_2147832252_19
         (all of ($x*))
 }
 
-rule Trojan_MSIL_FormBook_AFB_2147832252_20
+rule Trojan_MSIL_FormBook_AFB_2147832252_21
 {
     meta:
         author = "defender2yara"
@@ -5801,7 +5823,7 @@ rule Trojan_MSIL_FormBook_AFB_2147832252_20
         (all of ($x*))
 }
 
-rule Trojan_MSIL_FormBook_AFB_2147832252_21
+rule Trojan_MSIL_FormBook_AFB_2147832252_22
 {
     meta:
         author = "defender2yara"
@@ -5823,7 +5845,7 @@ rule Trojan_MSIL_FormBook_AFB_2147832252_21
         (all of ($x*))
 }
 
-rule Trojan_MSIL_FormBook_AFB_2147832252_22
+rule Trojan_MSIL_FormBook_AFB_2147832252_23
 {
     meta:
         author = "defender2yara"
@@ -5848,7 +5870,7 @@ rule Trojan_MSIL_FormBook_AFB_2147832252_22
         (all of ($x*))
 }
 
-rule Trojan_MSIL_FormBook_AFB_2147832252_23
+rule Trojan_MSIL_FormBook_AFB_2147832252_24
 {
     meta:
         author = "defender2yara"
