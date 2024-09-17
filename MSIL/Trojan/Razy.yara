@@ -408,27 +408,6 @@ rule Trojan_MSIL_Razy_NL_2147900615_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Razy_PTFT_2147900783_0
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "Trojan:MSIL/Razy.PTFT!MTB"
-        threat_id = "2147900783"
-        type = "Trojan"
-        platform = "MSIL: .NET intermediate language scripts"
-        family = "Razy"
-        severity = "Critical"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "2"
-        strings_accuracy = "Low"
-    strings:
-        $x_2_1 = {6f 15 00 00 0a 73 16 00 00 0a 28 ?? 00 00 0a 6f 18 00 00 0a 6f 19 00 00 0a}  //weight: 2, accuracy: Low
-    condition:
-        (filesize < 20MB) and
-        (all of ($x*))
-}
-
 rule Trojan_MSIL_Razy_GPB_2147902605_0
 {
     meta:

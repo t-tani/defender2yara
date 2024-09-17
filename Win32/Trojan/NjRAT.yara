@@ -20,3 +20,37 @@ rule Trojan_Win32_NjRAT_A_2147917666_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_NjRAT_NK_2147921240_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/NjRAT.NK!MTB"
+        threat_id = "2147921240"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "NjRAT"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {46 00 49 00 4c 00 45 00 49 00 4e 00 53 00 54 00 41 00 4c 00 4c 00 20 00 28 00 20 00 22 00 [0-47] 2e 00 65 00 78 00 65 00 22 00 20 00 2c 00 20 00 24 00 50 00 54 00 20 00 26 00 20 00 22 00 2f 00 00 2e 00 65 00 78 00 65 00 22 00 20 00 29 00}  //weight: 3, accuracy: Low
+        $x_3_2 = {46 49 4c 45 49 4e 53 54 41 4c 4c 20 28 20 22 [0-47] 2e 65 78 65 22 20 2c 20 24 50 54 20 26 20 22 2f 00 2e 65 78 65 22 20 29}  //weight: 3, accuracy: Low
+        $x_1_3 = {52 00 55 00 4e 00 20 00 28 00 20 00 24 00 50 00 54 00 20 00 26 00 20 00 22 00 2f 00 [0-47] 2e 00 65 00 78 00 65 00 22 00 20 00 29 00}  //weight: 1, accuracy: Low
+        $x_1_4 = {52 55 4e 20 28 20 24 50 54 20 26 20 22 2f [0-47] 2e 65 78 65 22 20 29}  //weight: 1, accuracy: Low
+        $x_1_5 = "$PT = @TEMPDIR" ascii //weight: 1
+        $x_1_6 = {46 00 49 00 4c 00 45 00 49 00 4e 00 53 00 54 00 41 00 4c 00 4c 00 20 00 28 00 20 00 22 00 [0-47] 2e 00 70 00 68 00 70 00 22 00 20 00 2c 00 20 00 24 00 50 00 54 00 20 00 26 00 20 00 22 00 2f 00 00 2e 00 70 00 68 00 70 00 22 00 20 00 29 00}  //weight: 1, accuracy: Low
+        $x_1_7 = {46 49 4c 45 49 4e 53 54 41 4c 4c 20 28 20 22 [0-47] 2e 70 68 70 22 20 2c 20 24 50 54 20 26 20 22 2f 00 2e 70 68 70 22 20 29}  //weight: 1, accuracy: Low
+        $x_1_8 = {53 00 48 00 45 00 4c 00 4c 00 45 00 58 00 45 00 43 00 55 00 54 00 45 00 20 00 28 00 20 00 22 00 [0-47] 2e 00 70 00 68 00 70 00 22 00 20 00 2c 00 20 00 22 00 22 00 20 00 2c 00 20 00 24 00 50 00 54 00 20 00 2c 00 20 00 22 00 6f 00 70 00 65 00 6e 00 22 00 20 00 29 00}  //weight: 1, accuracy: Low
+        $x_1_9 = {53 48 45 4c 4c 45 58 45 43 55 54 45 20 28 20 22 [0-47] 2e 70 68 70 22 20 2c 20 22 22 20 2c 20 24 50 54 20 2c 20 22 6f 70 65 6e 22 20 29}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (
+            ((7 of ($x_1_*))) or
+            ((1 of ($x_3_*) and 4 of ($x_1_*))) or
+            ((2 of ($x_3_*) and 1 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+

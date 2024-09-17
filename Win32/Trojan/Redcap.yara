@@ -149,3 +149,30 @@ rule Trojan_Win32_Redcap_AMAA_2147890318_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Redcap_NDA_2147921239_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Redcap.NDA!MTB"
+        threat_id = "2147921239"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Redcap"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "$PRIMARYBROWSER = \"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\"" ascii //weight: 2
+        $x_2_2 = "--kiosk --edge-kiosk-type=fullscreen --no-first-run" ascii //weight: 2
+        $x_2_3 = "disable-popup-blocking --disable-extensions --no-default-browser-check --app=" ascii //weight: 2
+        $x_1_4 = "$PRIMARYCLASS = \"[CLASS:Chrome_WidgetWin_1]\"" ascii //weight: 1
+        $x_1_5 = "RUN ( $PRIMARYBROWSER &" ascii //weight: 1
+        $x_1_6 = "$HWND = WINGETHANDLE ( $PRIMARYCLASS )" ascii //weight: 1
+        $x_1_7 = "IF NOT WINACTIVE ( $HWND )" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

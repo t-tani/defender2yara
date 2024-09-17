@@ -1754,6 +1754,29 @@ rule Trojan_MSIL_Bladabindi_NV_2147820300_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {09 84 95 d7 6e 20 ff 00 00 00 6a 5f b7 95 61 86 9c}  //weight: 5, accuracy: High
+        $x_3_2 = {08 84 95 d7 6e 20 ff 00 00 00 6a 5f b8 0d 1b}  //weight: 3, accuracy: High
+        $x_2_3 = {08 6e 17 6a d6 20 ff 00 00 00 6a 5f b8}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Bladabindi_NV_2147820300_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Bladabindi.NV!MTB"
+        threat_id = "2147820300"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Bladabindi"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "3"
         strings_accuracy = "Low"
     strings:

@@ -2700,12 +2700,53 @@ rule Trojan_Win32_AutoitInject_KAE_2147920945_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_AutoitInject_NK_2147921227_0
+rule Trojan_Win32_AutoitInject_NF_2147921238_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.NF!MTB"
+        threat_id = "2147921238"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {46 00 49 00 4c 00 45 00 49 00 4e 00 53 00 54 00 41 00 4c 00 4c 00 20 00 28 00 20 00 22 00 [0-47] 22 00 20 00 2c 00 20 00 40 00 54 00 45 00 4d 00 50 00 44 00 49 00 52 00 20 00 26 00 20 00 22 00 5c 00 00 22 00 20 00 2c 00 20 00 31 00 20 00 29 00}  //weight: 3, accuracy: Low
+        $x_3_2 = {46 49 4c 45 49 4e 53 54 41 4c 4c 20 28 20 22 [0-47] 22 20 2c 20 40 54 45 4d 50 44 49 52 20 26 20 22 5c 00 22 20 2c 20 31 20 29}  //weight: 3, accuracy: Low
+        $x_1_3 = {57 00 48 00 49 00 4c 00 45 00 20 00 24 00 [0-48] 20 00 3c 00 3d 00 20 00 53 00 54 00 52 00 49 00 4e 00 47 00 4c 00 45 00 4e 00 20 00 28 00}  //weight: 1, accuracy: Low
+        $x_1_4 = {57 48 49 4c 45 20 24 [0-48] 20 3c 3d 20 53 54 52 49 4e 47 4c 45 4e 20 28}  //weight: 1, accuracy: Low
+        $x_1_5 = {4c 00 4f 00 43 00 41 00 4c 00 20 00 24 00 [0-48] 20 00 3d 00 20 00 53 00 54 00 52 00 49 00 4e 00 47 00 4c 00 45 00 4e 00 20 00 28 00}  //weight: 1, accuracy: Low
+        $x_1_6 = {4c 4f 43 41 4c 20 24 [0-48] 20 3d 20 53 54 52 49 4e 47 4c 45 4e 20 28}  //weight: 1, accuracy: Low
+        $x_1_7 = {4c 00 4f 00 43 00 41 00 4c 00 20 00 24 00 [0-48] 20 00 3d 00 20 00 45 00 58 00 45 00 43 00 55 00 54 00 45 00 20 00 28 00 20 00 22 00}  //weight: 1, accuracy: Low
+        $x_1_8 = {4c 4f 43 41 4c 20 24 [0-48] 20 3d 20 45 58 45 43 55 54 45 20 28 20 22}  //weight: 1, accuracy: Low
+        $x_1_9 = {3d 00 20 00 45 00 58 00 45 00 43 00 55 00 54 00 45 00 20 00 28 00 20 00 22 00 24 00 [0-48] 2e 00 4f 00 70 00 65 00 6e 00 54 00 65 00 78 00 74 00 46 00 69 00 6c 00 65 00 28 00 40 00 54 00 65 00 6d 00 70 00 44 00 69 00 72 00}  //weight: 1, accuracy: Low
+        $x_1_10 = {3d 20 45 58 45 43 55 54 45 20 28 20 22 24 [0-48] 2e 4f 70 65 6e 54 65 78 74 46 69 6c 65 28 40 54 65 6d 70 44 69 72}  //weight: 1, accuracy: Low
+        $x_1_11 = {3d 00 20 00 45 00 58 00 45 00 43 00 55 00 54 00 45 00 20 00 28 00 20 00 22 00 24 00 [0-48] 2e 00 52 00 65 00 61 00 64 00 41 00 6c 00 6c 00 28 00 29 00 22 00 20 00 29 00}  //weight: 1, accuracy: Low
+        $x_1_12 = {3d 20 45 58 45 43 55 54 45 20 28 20 22 24 [0-48] 2e 52 65 61 64 41 6c 6c 28 29 22 20 29}  //weight: 1, accuracy: Low
+        $x_1_13 = {45 00 58 00 45 00 43 00 55 00 54 00 45 00 20 00 28 00 20 00 22 00 24 00 [0-48] 2e 00 43 00 6c 00 6f 00 73 00 65 00 28 00 29 00 22 00 20 00 29 00}  //weight: 1, accuracy: Low
+        $x_1_14 = {45 58 45 43 55 54 45 20 28 20 22 24 [0-48] 2e 43 6c 6f 73 65 28 29 22 20 29}  //weight: 1, accuracy: Low
+        $x_1_15 = "= EXECUTE ( \"ObjCreate(" ascii //weight: 1
+        $x_1_16 = "&= STRINGMID" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((11 of ($x_1_*))) or
+            ((1 of ($x_3_*) and 8 of ($x_1_*))) or
+            ((2 of ($x_3_*) and 5 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+
+rule Trojan_Win32_AutoitInject_NK_2147921242_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/AutoitInject.NK!MTB"
-        threat_id = "2147921227"
+        threat_id = "2147921242"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "AutoitInject"

@@ -787,3 +787,28 @@ rule Trojan_MSIL_Barys_RPAA_2147916121_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Barys_NG_2147921241_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Barys.NG!MTB"
+        threat_id = "2147921241"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Barys"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {0b 06 07 03 61 d1 ?? ?? 00 00 0a 26 09 17 58 0d 09 08}  //weight: 2, accuracy: Low
+        $x_1_2 = {0a 06 18 5d 2d 06 06 18 5d 17 2e 0a 06 19}  //weight: 1, accuracy: High
+        $x_1_3 = "*K*E*R*N*E*L*3*2*.*D*L*L*" ascii //weight: 1
+        $x_1_4 = "Debugger.IsAttached || IsDebuggerPresent()" ascii //weight: 1
+        $x_1_5 = "DynamicAntiDebug" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
