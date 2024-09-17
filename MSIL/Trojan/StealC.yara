@@ -473,3 +473,29 @@ rule Trojan_MSIL_StealC_KAJ_2147919017_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_StealC_EZ_2147921196_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/StealC.EZ!MTB"
+        threat_id = "2147921196"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "StealC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "9"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "Gastraea Bouillons Redresses" ascii //weight: 2
+        $x_2_2 = "Siphonages Apomorphine Paraforms" ascii //weight: 2
+        $x_2_3 = "375c5eff-0650-4301-85ef-382cfefa9adf" ascii //weight: 2
+        $x_1_4 = "AIOsncoiuuA" ascii //weight: 1
+        $x_1_5 = "ioAHsiujxhbiAIkao" ascii //weight: 1
+        $x_1_6 = "VQP.exe" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
