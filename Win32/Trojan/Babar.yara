@@ -343,12 +343,12 @@ rule Trojan_Win32_Babar_WJAA_2147920934_0
         (1 of ($x*))
 }
 
-rule Trojan_Win32_Babar_MBXV_2147921213_0
+rule Trojan_Win32_Babar_MBXV_2147921215_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Babar.MBXV!MTB"
-        threat_id = "2147921213"
+        threat_id = "2147921215"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Babar"
@@ -364,12 +364,12 @@ rule Trojan_Win32_Babar_MBXV_2147921213_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Babar_MBXW_2147921215_0
+rule Trojan_Win32_Babar_MBXW_2147921217_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Babar.MBXW!MTB"
-        threat_id = "2147921215"
+        threat_id = "2147921217"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Babar"
@@ -380,6 +380,27 @@ rule Trojan_Win32_Babar_MBXW_2147921215_0
         strings_accuracy = "Low"
     strings:
         $x_1_1 = {55 8b ec 6a ff 68 ?? e2 65 00 68 ?? 7f 65 00 64 a1 00 00 00 00 50 64 89 25 00 00 00 00 83 ec 58 53 56 57 89 65 e8 ff 15 ?? e2 65 00 33 d2 8a d4}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Babar_WYAA_2147921230_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Babar.WYAA!MTB"
+        threat_id = "2147921230"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Babar"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {55 8b ec 6a ff 68 ?? ea 65 00 68 ?? 86 65 00 64 a1 00 00 00 00 50 64 89 25 00 00 00 00 83 ec 58 53 56 57 89 65 e8 ff 15 ?? ?? 65 00 33 d2 8a d4 89 15 ?? 7a a6 00 8b c8 81 e1 ff 00 00 00 89 0d ?? 7a a6 00 c1 e1 08 03 ca 89 0d ?? 7a a6 00 c1 e8 10 a3 ?? 7a a6 00 6a 01}  //weight: 5, accuracy: Low
     condition:
         (filesize < 20MB) and
         (all of ($x*))

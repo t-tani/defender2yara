@@ -1,9 +1,9 @@
-rule HackTool_Linux_SuspiciousUserCreate_A_2147921258_0
+rule HackTool_Linux_SuspiciousUserCreate_A_2147921262_0
 {
     meta:
         author = "defender2yara"
         detection_name = "HackTool:Linux/SuspiciousUserCreate.A"
-        threat_id = "2147921258"
+        threat_id = "2147921262"
         type = "HackTool"
         platform = "Linux: Linux platform"
         family = "SuspiciousUserCreate"

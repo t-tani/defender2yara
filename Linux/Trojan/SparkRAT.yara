@@ -1,9 +1,9 @@
-rule Trojan_Linux_SparkRAT_B_2147921252_0
+rule Trojan_Linux_SparkRAT_B_2147921255_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Linux/SparkRAT.B!MTB"
-        threat_id = "2147921252"
+        threat_id = "2147921255"
         type = "Trojan"
         platform = "Linux: Linux platform"
         family = "SparkRAT"
