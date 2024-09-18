@@ -950,3 +950,28 @@ rule Trojan_AndroidOS_Rewardsteal_V_2147920429_0
         (all of ($x*))
 }
 
+rule Trojan_AndroidOS_Rewardsteal_AG_2147921287_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:AndroidOS/Rewardsteal.AG"
+        threat_id = "2147921287"
+        type = "Trojan"
+        platform = "AndroidOS: Android operating system"
+        family = "Rewardsteal"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "thisaub/MyDeviceAdminReceiver" ascii //weight: 2
+        $x_2_2 = "Only 10 digit of phone number are allowed !" ascii //weight: 2
+        $x_2_3 = "Only 2 charectors are allowed !" ascii //weight: 2
+        $x_2_4 = "Attempting to hide app icon:" ascii //weight: 2
+        $x_2_5 = "complainsolutions.in/" ascii //weight: 2
+        $x_2_6 = "Android security service are running" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (2 of ($x*))
+}
+

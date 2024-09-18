@@ -538,3 +538,25 @@ rule Trojan_AndroidOS_Spynote_RH_2147919905_0
         (all of ($x*))
 }
 
+rule Trojan_AndroidOS_Spynote_OT_2147921290_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:AndroidOS/Spynote.OT"
+        threat_id = "2147921290"
+        type = "Trojan"
+        platform = "AndroidOS: Android operating system"
+        family = "Spynote"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "ddmzzxagqaksjgapeeuortvipvudlpcvjcuhhpuikesqmbylfj22Over" ascii //weight: 1
+        $x_1_2 = "itsdvqjkid1016" ascii //weight: 1
+        $x_1_3 = "jfjmohifgm1022" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (2 of ($x*))
+}
+

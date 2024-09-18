@@ -1154,3 +1154,24 @@ rule Trojan_MSIL_Injector_NN_2147901672_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Injector_NITA_2147921365_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Injector.NITA!MTB"
+        threat_id = "2147921365"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Injector"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {16 0c 2b 01 00 02 74 ?? 00 00 01 08 20 00 04 00 00 d6 17 da 17 d6 8d ?? 00 00 01 28 ?? ?? 00 0a 74 ?? 00 00 1b 10 00 07 02 08 20 00 04 00 00 6f ?? ?? 00 0a 0d 08 09 d6 0c 09 20 00 04 00 00}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

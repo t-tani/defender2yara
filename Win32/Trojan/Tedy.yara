@@ -353,3 +353,32 @@ rule Trojan_Win32_Tedy_GPB_2147920583_0
         (1 of ($x*))
 }
 
+rule Trojan_Win32_Tedy_EC_2147921277_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Tedy.EC!MTB"
+        threat_id = "2147921277"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Tedy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "9"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "/tuiguang/qudao" ascii //weight: 1
+        $x_1_2 = "taskmgr" ascii //weight: 1
+        $x_1_3 = "procmgrex" ascii //weight: 1
+        $x_1_4 = "proctree" ascii //weight: 1
+        $x_1_5 = "pos.baidu.com" ascii //weight: 1
+        $x_1_6 = "575495" ascii //weight: 1
+        $x_1_7 = "<a id=x href=/wzs/" ascii //weight: 1
+        $x_1_8 = ".html target=_self></a>" ascii //weight: 1
+        $x_1_9 = "innerhtml" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

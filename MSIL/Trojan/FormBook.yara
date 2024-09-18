@@ -12161,6 +12161,27 @@ rule Trojan_MSIL_FormBook_AMA_2147912163_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_FormBook_AMA_2147912163_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/FormBook.AMA!MTB"
+        threat_id = "2147912163"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "FormBook"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {0a 59 0b 07 16 31 33 07 17 32 0d 03 12 00 28 ?? 00 00 0a 6f ?? 00 00 0a 07 18 32 0d 03 12 00 28 ?? 00 00 0a 6f ?? 00 00 0a 07 19 33 0d}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_FormBook_AMO_2147912183_0
 {
     meta:

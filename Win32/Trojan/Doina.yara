@@ -711,3 +711,25 @@ rule Trojan_Win32_Doina_YAA_2147920702_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Doina_HNL_2147921344_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Doina.HNL!MTB"
+        threat_id = "2147921344"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Doina"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {61 75 74 6f 72 75 6e 2e 69 6e 66 [0-32] 5b 41 75 74 6f 52 75 6e 5d [0-16] 6f 70 65 6e 3d 2e 5c 4d 53 4f 43 61 63 68 65 5c ?? ?? ?? ?? ?? ?? ?? ?? 2d ?? ?? ?? ?? 2d ?? ?? ?? ?? 2d ?? ?? ?? ?? 2d ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 5c 6c 73 61 73 73 2e 65 78 65 [0-16] 73 68 65 6c 6c 65 78 65 63 75 74 65 3d 2e 5c 4d 53 4f 43 61 63 68 65 5c 02 2d 03 2d 04 2d 05 2d 06 5c 6c 73 61 73 73 2e 65 78 65}  //weight: 5, accuracy: Low
+        $x_1_2 = {5c 53 79 73 74 65 6d 5c 44 69 73 61 62 6c 65 54 61 73 6b 4d 67 72 [0-32] 45 78 70 6c 6f 72 65 72 2e 65 78 65 20 20 2f 6e}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

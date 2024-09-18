@@ -2799,12 +2799,12 @@ rule Trojan_Win64_CryptInject_OKZ_2147920725_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_CryptInject_VAS_2147921267_0
+rule Trojan_Win64_CryptInject_VAS_2147921315_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/CryptInject.VAS!MTB"
-        threat_id = "2147921267"
+        threat_id = "2147921315"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "CryptInject"
@@ -2815,6 +2815,27 @@ rule Trojan_Win64_CryptInject_VAS_2147921267_0
         strings_accuracy = "High"
     strings:
         $x_5_1 = {41 0f b6 c2 41 fe c2 03 c2 8a 0c 18 41 30 09 49 ff c1 41 80 fa 04 72 e8}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_CryptInject_KIY_2147921317_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CryptInject.KIY!MTB"
+        threat_id = "2147921317"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {44 03 de 48 f7 e1 48 c1 ea 03 48 6b c2 1a 48 2b c8 8a 44 0c 20 42 32 04 13 41 88 02 4c 03 d6 45 3b df 72 cf}  //weight: 5, accuracy: High
     condition:
         (filesize < 20MB) and
         (all of ($x*))

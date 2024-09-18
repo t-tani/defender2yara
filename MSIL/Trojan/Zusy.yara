@@ -1748,6 +1748,28 @@ rule Trojan_MSIL_Zusy_EC_2147914331_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {25 16 1f 2d 9d 6f a4 00 00 0a 0c 08 16 9a 28 16 00 00 0a 08 17 9a 08 18 9a}  //weight: 5, accuracy: High
+        $x_2_2 = "CensoIBGE.RemoveCadastro.resources" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Zusy_EC_2147914331_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Zusy.EC!MTB"
+        threat_id = "2147914331"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "14"
         strings_accuracy = "High"
     strings:
@@ -1925,12 +1947,12 @@ rule Trojan_MSIL_Zusy_HNK_2147920096_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Zusy_SLZ_2147921298_0
+rule Trojan_MSIL_Zusy_SLZ_2147921356_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Zusy.SLZ!MTB"
-        threat_id = "2147921298"
+        threat_id = "2147921356"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Zusy"

@@ -935,3 +935,47 @@ rule Trojan_AndroidOS_SpyAgent_AQ_2147919637_0
         (all of ($x*))
 }
 
+rule Trojan_AndroidOS_SpyAgent_AQ_2147919637_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:AndroidOS/SpyAgent.AQ"
+        threat_id = "2147919637"
+        type = "Trojan"
+        platform = "AndroidOS: Android operating system"
+        family = "SpyAgent"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "ScreenGetPicUse" ascii //weight: 2
+        $x_2_2 = "AllowPrims14-startX:" ascii //weight: 2
+        $x_2_3 = "ScreenRecorderEncodeUse" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_AndroidOS_SpyAgent_AL_2147921288_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:AndroidOS/SpyAgent.AL"
+        threat_id = "2147921288"
+        type = "Trojan"
+        platform = "AndroidOS: Android operating system"
+        family = "SpyAgent"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "WakeLockExampleAppTag1" ascii //weight: 2
+        $x_2_2 = "com.example.dat.a8andoserverx.SHUTDOWN" ascii //weight: 2
+        $x_2_3 = "Start Record kokokokoko" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

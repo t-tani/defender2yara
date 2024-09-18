@@ -69,3 +69,30 @@ rule Trojan_Win32_KillProc_DAL_2147849959_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_KillProc_MA_2147921299_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/KillProc.MA!MTB"
+        threat_id = "2147921299"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "KillProc"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {89 07 85 c0 74 03 89 78 04 89 3d 20 86 41 00 68 24 86 41 00 ff 15 14 75 41 00}  //weight: 5, accuracy: High
+        $x_1_2 = "DisableAntiSpyware" ascii //weight: 1
+        $x_1_3 = "DisableAntiVirus" ascii //weight: 1
+        $x_1_4 = "EnableLUA /t REG_DWORD /d 0" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_5_*) and 2 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+

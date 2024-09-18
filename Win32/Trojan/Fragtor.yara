@@ -1676,12 +1676,12 @@ rule Trojan_Win32_Fragtor_DA_2147919033_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Fragtor_BG_2147921251_0
+rule Trojan_Win32_Fragtor_BG_2147921291_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Fragtor.BG!MTB"
-        threat_id = "2147921251"
+        threat_id = "2147921291"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Fragtor"

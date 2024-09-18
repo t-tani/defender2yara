@@ -3150,3 +3150,30 @@ rule Trojan_MSIL_NjRat_PPD_2147917933_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_NjRat_PAFP_2147921307_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/NjRat.PAFP!MTB"
+        threat_id = "2147921307"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "NjRat"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "13"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "L2MgUG93ZXJTaGVsbC5leGUgLXdpbmRvd3N0eWxlIGhpZGRlbiBBZGQtTXBwcmVmZXJlbmNlIC1FeGNsdXNpb25QYXRoIA==" wide //weight: 2
+        $x_2_2 = "ZXhwbG9yZXIuZXhl" wide //weight: 2
+        $x_2_3 = "Q29ydGFuYS5leGU=" wide //weight: 2
+        $x_2_4 = "U3lzdGVtU2V0dGluZ3MuZXhl" wide //weight: 2
+        $x_2_5 = "VGFza21nci5leGU" wide //weight: 2
+        $x_1_6 = "\\Microsoft\\Windows\\" ascii //weight: 1
+        $x_2_7 = "/c PowerShell.exe -windowstyle hidden Add-Mppreference -ExclusionPath" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

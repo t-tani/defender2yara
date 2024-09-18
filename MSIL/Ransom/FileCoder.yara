@@ -1126,3 +1126,28 @@ rule Ransom_MSIL_FileCoder_AYC_2147920018_0
         (all of ($x*))
 }
 
+rule Ransom_MSIL_FileCoder_MX_2147921300_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:MSIL/FileCoder.MX!MTB"
+        threat_id = "2147921300"
+        type = "Ransom"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "FileCoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "vssadmin delete shadows" ascii //weight: 1
+        $x_1_2 = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run" ascii //weight: 1
+        $x_1_3 = "wmic shadowcopy delete" ascii //weight: 1
+        $x_1_4 = "wbadmin delete catalog -quiet" wide //weight: 1
+        $x_1_5 = "your files are encrypted" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (4 of ($x*))
+}
+

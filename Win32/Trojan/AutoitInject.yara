@@ -2700,12 +2700,37 @@ rule Trojan_Win32_AutoitInject_KAE_2147920945_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_AutoitInject_NF_2147921288_0
+rule Trojan_Win32_AutoitInject_WZAA_2147921306_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.WZAA!MTB"
+        threat_id = "2147921306"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "@TempDir" ascii //weight: 1
+        $x_1_2 = "DLLCALL" ascii //weight: 1
+        $x_2_3 = "kwqdfrowvewqdfrowvrwqdfrowvnwqdfrowvewqdfrowvlwqdfrowv3wqdfrowv2wqdfrowv" ascii //weight: 2
+        $x_2_4 = "VwqdfrowviwqdfrowvrwqdfrowvtwqdfrowvuwqdfrowvawqdfrowvlwqdfrowvPwqdfrowvrwqdfrowvowqdfrowvtwqdfrowvewqdfrowvcwqdfrowvtwqdfrowv" ascii //weight: 2
+        $x_2_5 = "uwqdfrowvswqdfrowvewqdfrowvrwqdfrowv3wqdfrowv2wqdfrowv" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_AutoitInject_NF_2147921346_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/AutoitInject.NF!MTB"
-        threat_id = "2147921288"
+        threat_id = "2147921346"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "AutoitInject"
@@ -2741,12 +2766,12 @@ rule Trojan_Win32_AutoitInject_NF_2147921288_0
         )
 }
 
-rule Trojan_Win32_AutoitInject_NK_2147921292_0
+rule Trojan_Win32_AutoitInject_NK_2147921350_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/AutoitInject.NK!MTB"
-        threat_id = "2147921292"
+        threat_id = "2147921350"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "AutoitInject"

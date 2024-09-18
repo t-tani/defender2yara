@@ -473,12 +473,12 @@ rule Trojan_MSIL_StealC_KAJ_2147919017_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_StealC_EZ_2147921238_0
+rule Trojan_MSIL_StealC_EZ_2147921271_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/StealC.EZ!MTB"
-        threat_id = "2147921238"
+        threat_id = "2147921271"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "StealC"
