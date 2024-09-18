@@ -1906,12 +1906,12 @@ rule Trojan_Win32_LummaStealer_XCA_2147920797_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_LummaStealer_RP_2147921265_0
+rule Trojan_Win32_LummaStealer_RP_2147921268_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/LummaStealer.RP!MTB"
-        threat_id = "2147921265"
+        threat_id = "2147921268"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "LummaStealer"

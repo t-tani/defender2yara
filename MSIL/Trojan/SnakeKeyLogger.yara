@@ -1743,12 +1743,12 @@ rule Trojan_MSIL_SnakeKeyLogger_PN_2147920783_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_SnakeKeyLogger_RDBW_2147921259_0
+rule Trojan_MSIL_SnakeKeyLogger_RDBW_2147921262_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/SnakeKeyLogger.RDBW!MTB"
-        threat_id = "2147921259"
+        threat_id = "2147921262"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "SnakeKeyLogger"
