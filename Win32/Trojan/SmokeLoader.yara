@@ -8343,12 +8343,12 @@ rule Trojan_Win32_SmokeLoader_ASGI_2147918380_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_SmokeLoader_RDAC_2147921319_0
+rule Trojan_Win32_SmokeLoader_RDAC_2147921332_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/SmokeLoader.RDAC!MTB"
-        threat_id = "2147921319"
+        threat_id = "2147921332"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "SmokeLoader"

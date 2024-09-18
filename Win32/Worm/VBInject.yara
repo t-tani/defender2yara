@@ -1,9 +1,9 @@
-rule Worm_Win32_VBInject_GXZ_2147921296_0
+rule Worm_Win32_VBInject_GXZ_2147921309_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Worm:Win32/VBInject.GXZ!MTB"
-        threat_id = "2147921296"
+        threat_id = "2147921309"
         type = "Worm"
         platform = "Win32: Windows 32-bit platform"
         family = "VBInject"

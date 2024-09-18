@@ -460,6 +460,31 @@ rule Trojan_MSIL_XWorm_GPB_2147906996_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_XWorm_AXW_2147908235_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/XWorm.AXW!MTB"
+        threat_id = "2147908235"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "XWorm"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "a88d60ed-a77a-4724-8158-78f38e7fb298" ascii //weight: 1
+        $x_2_2 = "ImmobiliWinForms.FormTipoImmobile.resources" ascii //weight: 2
+        $x_2_3 = "ImmobiliWinForms.NuovoImmobile.resources" ascii //weight: 2
+        $x_1_4 = "SELECT * FROM Proprietari" wide //weight: 1
+        $x_1_5 = "SELECT * FROM TipiImmobile" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_XWorm_RDI_2147911515_0
 {
     meta:

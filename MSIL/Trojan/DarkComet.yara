@@ -676,6 +676,28 @@ rule Trojan_MSIL_DarkComet_ADC_2147841420_8
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {16 02 50 8e b7 17 da 0c 0b 2b 37 02 50 07 02 50 8e b7 5d 02 50 07 02 50 8e b7 5d 91 03 07 03 8e b7 5d 91 61 02 50 07 17 d6 02 50 8e b7 5d 91 da 20 00 01 00 00 d6 20 00 01 00 00 5d b4 9c 07 17 d6 0b 07 08 31 c5}  //weight: 2, accuracy: High
+        $x_1_2 = "TheElevator.txt" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_DarkComet_ADC_2147841420_9
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/DarkComet.ADC!MTB"
+        threat_id = "2147841420"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "DarkComet"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
         strings_accuracy = "Low"
     strings:
         $x_2_1 = {02 06 17 da 17 6f ?? 00 00 0a 6f ?? 00 00 0a 16 93 13 0e 11 0e 28 ?? 00 00 0a 13 0f 11 0f 11 10 61 13 0d 38 6e 01 00 00 11 05 11 09 09 94 d6 20 00 01 00 00 5d 13 05}  //weight: 2, accuracy: Low
@@ -685,7 +707,7 @@ rule Trojan_MSIL_DarkComet_ADC_2147841420_8
         (all of ($x*))
 }
 
-rule Trojan_MSIL_DarkComet_ADC_2147841420_9
+rule Trojan_MSIL_DarkComet_ADC_2147841420_10
 {
     meta:
         author = "defender2yara"
