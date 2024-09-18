@@ -7224,13 +7224,34 @@ rule Trojan_MSIL_FormBook_AFK_2147835374_0
         threshold = "2"
         strings_accuracy = "High"
     strings:
-        $x_2_1 = {0a 16 0b 2b 1c 02 06 03 16 16 28 07 00 00 06 16 31 01 2a 20 e9 04 00 00 28 0d 00 00 0a 07 17 58 0b 07 1a 32 e0}  //weight: 2, accuracy: High
+        $x_2_1 = {02 03 02 03 91 1d 59 1f 09 59 d2 25 0a 9c 06 2a}  //weight: 2, accuracy: High
     condition:
         (filesize < 20MB) and
         (all of ($x*))
 }
 
 rule Trojan_MSIL_FormBook_AFK_2147835374_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/FormBook.AFK!MTB"
+        threat_id = "2147835374"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "FormBook"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {0a 16 0b 2b 1c 02 06 03 16 16 28 07 00 00 06 16 31 01 2a 20 e9 04 00 00 28 0d 00 00 0a 07 17 58 0b 07 1a 32 e0}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_FormBook_AFK_2147835374_2
 {
     meta:
         author = "defender2yara"
@@ -7251,7 +7272,7 @@ rule Trojan_MSIL_FormBook_AFK_2147835374_1
         (all of ($x*))
 }
 
-rule Trojan_MSIL_FormBook_AFK_2147835374_2
+rule Trojan_MSIL_FormBook_AFK_2147835374_3
 {
     meta:
         author = "defender2yara"
@@ -7273,7 +7294,7 @@ rule Trojan_MSIL_FormBook_AFK_2147835374_2
         (all of ($x*))
 }
 
-rule Trojan_MSIL_FormBook_AFK_2147835374_3
+rule Trojan_MSIL_FormBook_AFK_2147835374_4
 {
     meta:
         author = "defender2yara"
@@ -7294,7 +7315,7 @@ rule Trojan_MSIL_FormBook_AFK_2147835374_3
         (all of ($x*))
 }
 
-rule Trojan_MSIL_FormBook_AFK_2147835374_4
+rule Trojan_MSIL_FormBook_AFK_2147835374_5
 {
     meta:
         author = "defender2yara"
@@ -7316,7 +7337,7 @@ rule Trojan_MSIL_FormBook_AFK_2147835374_4
         (all of ($x*))
 }
 
-rule Trojan_MSIL_FormBook_AFK_2147835374_5
+rule Trojan_MSIL_FormBook_AFK_2147835374_6
 {
     meta:
         author = "defender2yara"
@@ -7337,7 +7358,7 @@ rule Trojan_MSIL_FormBook_AFK_2147835374_5
         (all of ($x*))
 }
 
-rule Trojan_MSIL_FormBook_AFK_2147835374_6
+rule Trojan_MSIL_FormBook_AFK_2147835374_7
 {
     meta:
         author = "defender2yara"
@@ -7358,7 +7379,7 @@ rule Trojan_MSIL_FormBook_AFK_2147835374_6
         (all of ($x*))
 }
 
-rule Trojan_MSIL_FormBook_AFK_2147835374_7
+rule Trojan_MSIL_FormBook_AFK_2147835374_8
 {
     meta:
         author = "defender2yara"
@@ -7379,7 +7400,7 @@ rule Trojan_MSIL_FormBook_AFK_2147835374_7
         (all of ($x*))
 }
 
-rule Trojan_MSIL_FormBook_AFK_2147835374_8
+rule Trojan_MSIL_FormBook_AFK_2147835374_9
 {
     meta:
         author = "defender2yara"
@@ -7403,7 +7424,7 @@ rule Trojan_MSIL_FormBook_AFK_2147835374_8
         (all of ($x*))
 }
 
-rule Trojan_MSIL_FormBook_AFK_2147835374_9
+rule Trojan_MSIL_FormBook_AFK_2147835374_10
 {
     meta:
         author = "defender2yara"
@@ -7426,7 +7447,7 @@ rule Trojan_MSIL_FormBook_AFK_2147835374_9
         (all of ($x*))
 }
 
-rule Trojan_MSIL_FormBook_AFK_2147835374_10
+rule Trojan_MSIL_FormBook_AFK_2147835374_11
 {
     meta:
         author = "defender2yara"
@@ -7448,7 +7469,7 @@ rule Trojan_MSIL_FormBook_AFK_2147835374_10
         (all of ($x*))
 }
 
-rule Trojan_MSIL_FormBook_AFK_2147835374_11
+rule Trojan_MSIL_FormBook_AFK_2147835374_12
 {
     meta:
         author = "defender2yara"
@@ -7472,7 +7493,7 @@ rule Trojan_MSIL_FormBook_AFK_2147835374_11
         (all of ($x*))
 }
 
-rule Trojan_MSIL_FormBook_AFK_2147835374_12
+rule Trojan_MSIL_FormBook_AFK_2147835374_13
 {
     meta:
         author = "defender2yara"
@@ -7495,7 +7516,7 @@ rule Trojan_MSIL_FormBook_AFK_2147835374_12
         (all of ($x*))
 }
 
-rule Trojan_MSIL_FormBook_AFK_2147835374_13
+rule Trojan_MSIL_FormBook_AFK_2147835374_14
 {
     meta:
         author = "defender2yara"

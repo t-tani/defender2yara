@@ -437,12 +437,12 @@ rule Ransom_Win64_FileCoder_ARA_2147917869_0
         (all of ($x*))
 }
 
-rule Ransom_Win64_FileCoder_OKZ_2147921234_0
+rule Ransom_Win64_FileCoder_OKZ_2147921251_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Ransom:Win64/FileCoder.OKZ!MTB"
-        threat_id = "2147921234"
+        threat_id = "2147921251"
         type = "Ransom"
         platform = "Win64: Windows 64-bit platform"
         family = "FileCoder"
@@ -453,6 +453,35 @@ rule Ransom_Win64_FileCoder_OKZ_2147921234_0
         strings_accuracy = "High"
     strings:
         $x_1_1 = {44 0f b6 1c 13 45 31 d8 45 88 04 39 48 ff c7 4c 89 c8 4c 89 d2 66 90 48 39 f9}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Ransom_Win64_FileCoder_RHX_2147921273_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win64/FileCoder.RHX!MTB"
+        threat_id = "2147921273"
+        type = "Ransom"
+        platform = "Win64: Windows 64-bit platform"
+        family = "FileCoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "14"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = "Select * from Win32_Process" wide //weight: 1
+        $x_1_2 = "dllcache\\rndll32.exe" wide //weight: 1
+        $x_1_3 = "\\Start Menu\\Programs\\Startup" wide //weight: 1
+        $x_1_4 = "WhatsThisHelpID" wide //weight: 1
+        $x_1_5 = "DisabledPicture" wide //weight: 1
+        $x_3_6 = "conf64.dat" ascii //weight: 3
+        $x_3_7 = ".Try2Cry" wide //weight: 3
+        $x_1_8 = {2e 5a 72 64 61 74 61 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 2e 62 73 73}  //weight: 1, accuracy: Low
+        $x_2_9 = {50 45 00 00 64 86 10 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 0b 02 0e 00 00 b0 a1 00 00 f0 61 00 00 00 00 00 c4 80 5f}  //weight: 2, accuracy: Low
     condition:
         (filesize < 20MB) and
         (all of ($x*))
