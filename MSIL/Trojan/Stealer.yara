@@ -2060,12 +2060,12 @@ rule Trojan_MSIL_Stealer_PAFP_2147920432_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Stealer_WXAA_2147921251_0
+rule Trojan_MSIL_Stealer_WXAA_2147921261_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Stealer.WXAA!MTB"
-        threat_id = "2147921251"
+        threat_id = "2147921261"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Stealer"
@@ -2082,12 +2082,12 @@ rule Trojan_MSIL_Stealer_WXAA_2147921251_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Stealer_SWH_2147921282_0
+rule Trojan_MSIL_Stealer_SWH_2147921299_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Stealer.SWH!MTB"
-        threat_id = "2147921282"
+        threat_id = "2147921299"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Stealer"

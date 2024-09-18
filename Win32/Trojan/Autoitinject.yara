@@ -48,12 +48,12 @@ rule Trojan_Win32_Autoitinject_PSH_2147920916_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Autoitinject_PPH_2147921284_0
+rule Trojan_Win32_Autoitinject_PPH_2147921301_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Autoitinject.PPH!MTB"
-        threat_id = "2147921284"
+        threat_id = "2147921301"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Autoitinject"
