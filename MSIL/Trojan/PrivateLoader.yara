@@ -108,3 +108,24 @@ rule Trojan_MSIL_PrivateLoader_MBXQ_2147918551_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_PrivateLoader_RDK_2147921379_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/PrivateLoader.RDK!MTB"
+        threat_id = "2147921379"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "PrivateLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {28 3d 00 00 0a 28 3e 00 00 0a 1a 8d 1e 00 00 01 25 16 28 3f 00 00 0a a2 25 17}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

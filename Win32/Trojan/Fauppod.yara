@@ -2102,12 +2102,12 @@ rule Trojan_Win32_Fauppod_SEZC_2147921058_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Fauppod_AMA_2147921389_0
+rule Trojan_Win32_Fauppod_AMA_2147921396_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Fauppod.AMA!MTB"
-        threat_id = "2147921389"
+        threat_id = "2147921396"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Fauppod"

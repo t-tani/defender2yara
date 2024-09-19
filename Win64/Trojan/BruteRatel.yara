@@ -164,3 +164,24 @@ rule Trojan_Win64_BruteRatel_OBS_2147917383_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_BruteRatel_RKB_2147921366_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/BruteRatel.RKB!MTB"
+        threat_id = "2147921366"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "BruteRatel"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {4d 63 c2 48 b8 93 24 49 92 24 49 92 24 45 03 d4 49 8b c8 49 f7 e0 48 2b ca 48 d1 e9 48 03 ca 48 c1 e9 04 48 6b c1 1c 4c 2b c0 42 8a 44 04 20 42 32 04 1b 41 88 03 4d 03 dc 41 81 fa 00 8c 04 00}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

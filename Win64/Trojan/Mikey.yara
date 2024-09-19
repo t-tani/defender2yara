@@ -210,12 +210,12 @@ rule Trojan_Win64_Mikey_NB_2147915263_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_Mikey_GMN_2147921343_0
+rule Trojan_Win64_Mikey_GMN_2147921348_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/Mikey.GMN!MTB"
-        threat_id = "2147921343"
+        threat_id = "2147921348"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "Mikey"

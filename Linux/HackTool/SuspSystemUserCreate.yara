@@ -1,9 +1,9 @@
-rule HackTool_Linux_SuspSystemUserCreate_A_2147921421_0
+rule HackTool_Linux_SuspSystemUserCreate_A_2147921428_0
 {
     meta:
         author = "defender2yara"
         detection_name = "HackTool:Linux/SuspSystemUserCreate.A"
-        threat_id = "2147921421"
+        threat_id = "2147921428"
         type = "HackTool"
         platform = "Linux: Linux platform"
         family = "SuspSystemUserCreate"

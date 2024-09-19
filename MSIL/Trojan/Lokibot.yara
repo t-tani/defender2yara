@@ -2544,12 +2544,36 @@ rule Trojan_MSIL_Lokibot_RUAA_2147916310_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Lokibot_XDAA_2147921354_0
+rule Trojan_MSIL_Lokibot_MBXU_2147921335_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Lokibot.MBXU!MTB"
+        threat_id = "2147921335"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Lokibot"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_4_1 = "GiauTM.CSharp.TikiRouter" wide //weight: 4
+        $x_3_2 = "Arvore" ascii //weight: 3
+        $x_2_3 = "Split" ascii //weight: 2
+        $x_1_4 = "GetPixel" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Lokibot_XDAA_2147921359_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Lokibot.XDAA!MTB"
-        threat_id = "2147921354"
+        threat_id = "2147921359"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Lokibot"

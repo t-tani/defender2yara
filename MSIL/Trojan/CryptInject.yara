@@ -3021,12 +3021,12 @@ rule Trojan_MSIL_CryptInject_RHQ_2147918334_0
         )
 }
 
-rule Trojan_MSIL_CryptInject_MBXT_2147921330_0
+rule Trojan_MSIL_CryptInject_MBXT_2147921333_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/CryptInject.MBXT!MTB"
-        threat_id = "2147921330"
+        threat_id = "2147921333"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "CryptInject"
@@ -3042,5 +3042,32 @@ rule Trojan_MSIL_CryptInject_MBXT_2147921330_0
     condition:
         (filesize < 20MB) and
         (all of ($x*))
+}
+
+rule Trojan_MSIL_CryptInject_MBXU_2147921334_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/CryptInject.MBXU!MTB"
+        threat_id = "2147921334"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {38 38 61 64 32 66 64 37 63 65 37 61 61 66 38 37 62 62 62 37 38 31 00 63 61 66 30 33 63 62 36 35 63 32 37 35 63 38}  //weight: 2, accuracy: High
+        $x_2_2 = {32 38 30 33 66 66 39 62 34 33 61 35 36 65 37 36 35 35 00 63 37 63 66 31 30 61 62 38 64 64 33 62 36 65 30 39 65}  //weight: 2, accuracy: High
+        $x_1_3 = "ProDRENALIN" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_2_*) and 1 of ($x_1_*))) or
+            ((2 of ($x_2_*))) or
+            (all of ($x*))
+        )
 }
 
