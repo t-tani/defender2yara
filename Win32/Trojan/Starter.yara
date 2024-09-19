@@ -153,3 +153,25 @@ rule Trojan_Win32_Starter_ARA_2147890086_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Starter_CCJK_2147921374_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Starter.CCJK!MTB"
+        threat_id = "2147921374"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Starter"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {8b 45 dc 89 44 24 04 8b 45 e0 89 04 24 e8 dc 94 01}  //weight: 5, accuracy: High
+        $x_6_2 = {c7 44 24 14 01 00 00 00 c7 44 24 10 00 00 00 00 c7 44 24 0c 00 00 00 00 89 44 24 08 c7 44 24 04 00 00 00 00 c7 04 24 00 00 00 00 e8 cc 91 01}  //weight: 6, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

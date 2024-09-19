@@ -20,12 +20,12 @@ rule Trojan_Win32_NjRAT_A_2147917666_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_NjRAT_NK_2147921378_0
+rule Trojan_Win32_NjRAT_NK_2147921386_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/NjRAT.NK!MTB"
-        threat_id = "2147921378"
+        threat_id = "2147921386"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "NjRAT"

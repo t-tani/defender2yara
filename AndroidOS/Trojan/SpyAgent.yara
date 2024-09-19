@@ -957,12 +957,12 @@ rule Trojan_AndroidOS_SpyAgent_AQ_2147919637_1
         (all of ($x*))
 }
 
-rule Trojan_AndroidOS_SpyAgent_AL_2147921316_0
+rule Trojan_AndroidOS_SpyAgent_AL_2147921322_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:AndroidOS/SpyAgent.AL"
-        threat_id = "2147921316"
+        threat_id = "2147921322"
         type = "Trojan"
         platform = "AndroidOS: Android operating system"
         family = "SpyAgent"

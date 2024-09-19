@@ -2651,12 +2651,12 @@ rule Trojan_Win32_Meterpreter_IG_2147911679_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Meterpreter_SZ_2147921300_0
+rule Trojan_Win32_Meterpreter_SZ_2147921306_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Meterpreter.SZ!MTB"
-        threat_id = "2147921300"
+        threat_id = "2147921306"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Meterpreter"

@@ -2700,12 +2700,12 @@ rule Trojan_Win32_AutoitInject_KAE_2147920945_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_AutoitInject_WZAA_2147921336_0
+rule Trojan_Win32_AutoitInject_WZAA_2147921342_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/AutoitInject.WZAA!MTB"
-        threat_id = "2147921336"
+        threat_id = "2147921342"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "AutoitInject"
@@ -2725,12 +2725,12 @@ rule Trojan_Win32_AutoitInject_WZAA_2147921336_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_AutoitInject_NF_2147921376_0
+rule Trojan_Win32_AutoitInject_NF_2147921384_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/AutoitInject.NF!MTB"
-        threat_id = "2147921376"
+        threat_id = "2147921384"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "AutoitInject"
@@ -2766,12 +2766,12 @@ rule Trojan_Win32_AutoitInject_NF_2147921376_0
         )
 }
 
-rule Trojan_Win32_AutoitInject_NK_2147921380_0
+rule Trojan_Win32_AutoitInject_NK_2147921388_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/AutoitInject.NK!MTB"
-        threat_id = "2147921380"
+        threat_id = "2147921388"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "AutoitInject"
