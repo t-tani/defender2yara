@@ -153,12 +153,12 @@ rule Trojan_Win32_Starter_ARA_2147890086_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Starter_CCJK_2147921418_0
+rule Trojan_Win32_Starter_CCJK_2147921422_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Starter.CCJK!MTB"
-        threat_id = "2147921418"
+        threat_id = "2147921422"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Starter"
