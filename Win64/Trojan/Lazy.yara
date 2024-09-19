@@ -1570,12 +1570,12 @@ rule Trojan_Win64_Lazy_IZ_2147920730_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_Lazy_ROW_2147921368_0
+rule Trojan_Win64_Lazy_ROW_2147921392_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/Lazy.ROW!MTB"
-        threat_id = "2147921368"
+        threat_id = "2147921392"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "Lazy"

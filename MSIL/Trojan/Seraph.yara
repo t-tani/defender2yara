@@ -5158,27 +5158,6 @@ rule Trojan_MSIL_Seraph_GUAA_2147904470_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Seraph_GYAA_2147904581_0
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "Trojan:MSIL/Seraph.GYAA!MTB"
-        threat_id = "2147904581"
-        type = "Trojan"
-        platform = "MSIL: .NET intermediate language scripts"
-        family = "Seraph"
-        severity = "Critical"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "5"
-        strings_accuracy = "Low"
-    strings:
-        $x_5_1 = {ff ff 11 03 28 ?? 00 00 0a 20 01 00 00 00 7e ?? 00 00 04 7b ?? 00 00 04 3a ?? ff ff ff 26 20 01 00 00 00 38}  //weight: 5, accuracy: Low
-    condition:
-        (filesize < 20MB) and
-        (all of ($x*))
-}
-
 rule Trojan_MSIL_Seraph_HEAA_2147904829_0
 {
     meta:

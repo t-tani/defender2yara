@@ -4123,3 +4123,30 @@ rule Trojan_Win32_Guloader_CT_2147919378_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Guloader_CU_2147921365_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Guloader.CU!MTB"
+        threat_id = "2147921365"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Guloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "Ovariocentesis183.inv" ascii //weight: 1
+        $x_1_2 = "Tnkeboksenes\\kjerstens\\soapbark" ascii //weight: 1
+        $x_1_3 = "Coexchangeable237.dll" ascii //weight: 1
+        $x_1_4 = "impious\\scabrous\\bazookamen" ascii //weight: 1
+        $x_1_5 = "cradlelike.bry" ascii //weight: 1
+        $x_1_6 = "Mescal246\\Uninstall\\projektopgavers\\iodhydric" ascii //weight: 1
+        $x_1_7 = "nonplussing.blo" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -1567,12 +1567,12 @@ rule Trojan_Win32_Neoreblamy_BG_2147920597_0
         (4 of ($x*))
 }
 
-rule Trojan_Win32_Neoreblamy_ASQ_2147921341_0
+rule Trojan_Win32_Neoreblamy_ASQ_2147921362_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Neoreblamy.ASQ!MTB"
-        threat_id = "2147921341"
+        threat_id = "2147921362"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Neoreblamy"
@@ -1598,6 +1598,42 @@ rule Trojan_Win32_Neoreblamy_ASQ_2147921341_0
         $x_1_14 = "qQWNJaVmfwVFZWutqsMwPGvtUkyf" ascii //weight: 1
         $x_1_15 = "OmtqQTRsSRNxdUZeKMduKXImSzCMcjDmrf" ascii //weight: 1
         $x_1_16 = "WcgVCQGuFUy.dll" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (4 of ($x*))
+}
+
+rule Trojan_Win32_Neoreblamy_ASR_2147921364_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Neoreblamy.ASR!MTB"
+        threat_id = "2147921364"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Neoreblamy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "fnWgrHpUOKSPNfRmqNmvtpIZpZOeVIjHaM" ascii //weight: 1
+        $x_1_2 = "FhsjawEjwUHblyZTtoVEGjNKpdmcSb" ascii //weight: 1
+        $x_1_3 = "hLowcrqMkGJBcftWGyPAyJMZyaQgGcPQgl" ascii //weight: 1
+        $x_1_4 = "ALofRioPzJWVIAmiSEWNnrgObJpdIK" ascii //weight: 1
+        $x_1_5 = "tkHhGIsAgPFjdRhvMWrKWUVPcOgtDm" ascii //weight: 1
+        $x_1_6 = "ARUgqdRXrdMpZkIzvRPUimEKsuBD" ascii //weight: 1
+        $x_1_7 = "cEtsVFmswEpBJJzunScRDSVtzHICONXtmA" ascii //weight: 1
+        $x_1_8 = "atDrQchkcxiWaaPZQhhxvWSXWfXlMSvXJJhiq" ascii //weight: 1
+        $x_1_9 = "SMNdFoXoRiKXKtvMSdPyHQzEqrsFQp" ascii //weight: 1
+        $x_1_10 = "RbQdEZctJSbTLppuBcWsIhEVQmddTUzHKu" ascii //weight: 1
+        $x_1_11 = "BsdmaJBzuWDgCqZzdxWujAFWluynJ" ascii //weight: 1
+        $x_1_12 = "vIbHXabjQgmwoHPibMwJVCDyaSMLhuHYXmTR" ascii //weight: 1
+        $x_1_13 = "lVvnXqVUDgAbYYHGxjpvNlKjhTVYrv" ascii //weight: 1
+        $x_1_14 = "lxKvGwMnZtGDUMThpxPxfdCOOcdZHjNyyc" ascii //weight: 1
+        $x_1_15 = "qjFtWCPlFEMUJAwxRjVBvlgBTJWnL" ascii //weight: 1
+        $x_1_16 = "HnGVdPUFoXGgjBQFjTreNaYSsgiOwEp" ascii //weight: 1
     condition:
         (filesize < 20MB) and
         (4 of ($x*))

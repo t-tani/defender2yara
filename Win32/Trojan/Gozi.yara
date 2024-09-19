@@ -3287,3 +3287,25 @@ rule Trojan_Win32_Gozi_RPZ_2147892276_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Gozi_KYY_2147921398_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Gozi.KYY!MTB"
+        threat_id = "2147921398"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Gozi"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "9"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {2b d1 89 54 24 60 8b 54 24 2c 8b de 8a 04 10 0f af d9 6b db 0f 88 44 24 2b 8d 84 24 ?? ?? ?? ?? 50 2b df e8}  //weight: 5, accuracy: Low
+        $x_4_2 = {03 d6 8b 74 24 68 0f b6 c9 03 ca 89 4c 24 3c 8b 54 24 3c 0f b6 c8 0f b7 05 ?? ?? ?? ?? 03 0d ?? ?? ?? ?? 3b c8 0f 4d 54 24 30 8d 46 04 3b f8 75}  //weight: 4, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
