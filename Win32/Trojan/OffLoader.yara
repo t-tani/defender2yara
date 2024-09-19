@@ -2456,12 +2456,12 @@ rule Trojan_Win32_OffLoader_ADP_2147920914_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_OffLoader_SHLQ_2147921337_0
+rule Trojan_Win32_OffLoader_SHLQ_2147921354_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/OffLoader.SHLQ!MTB"
-        threat_id = "2147921337"
+        threat_id = "2147921354"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "OffLoader"

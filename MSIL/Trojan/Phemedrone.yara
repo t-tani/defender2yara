@@ -65,12 +65,12 @@ rule Trojan_MSIL_Phemedrone_APH_2147914788_1
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Phemedrone_APD_2147921308_0
+rule Trojan_MSIL_Phemedrone_APD_2147921324_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Phemedrone.APD!MTB"
-        threat_id = "2147921308"
+        threat_id = "2147921324"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Phemedrone"

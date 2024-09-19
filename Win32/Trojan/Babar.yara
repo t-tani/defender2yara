@@ -343,12 +343,12 @@ rule Trojan_Win32_Babar_WJAA_2147920934_0
         (1 of ($x*))
 }
 
-rule Trojan_Win32_Babar_MBXV_2147921295_0
+rule Trojan_Win32_Babar_MBXV_2147921311_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Babar.MBXV!MTB"
-        threat_id = "2147921295"
+        threat_id = "2147921311"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Babar"
@@ -364,12 +364,12 @@ rule Trojan_Win32_Babar_MBXV_2147921295_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Babar_MBXW_2147921297_0
+rule Trojan_Win32_Babar_MBXW_2147921313_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Babar.MBXW!MTB"
-        threat_id = "2147921297"
+        threat_id = "2147921313"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Babar"
@@ -385,12 +385,12 @@ rule Trojan_Win32_Babar_MBXW_2147921297_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Babar_WYAA_2147921318_0
+rule Trojan_Win32_Babar_WYAA_2147921335_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Babar.WYAA!MTB"
-        threat_id = "2147921318"
+        threat_id = "2147921335"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Babar"
