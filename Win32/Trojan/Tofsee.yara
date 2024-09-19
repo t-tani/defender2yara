@@ -1187,3 +1187,24 @@ rule Trojan_Win32_Tofsee_JJK_2147920519_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Tofsee_KAB_2147921387_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Tofsee.KAB!MTB"
+        threat_id = "2147921387"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Tofsee"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {8b 08 83 e8 ?? f7 d9 83 e9 29 83 c1 ?? 8d 49 ?? 29 d1 31 d2 4a 21 ca c7 47 ?? ?? ?? ?? ?? 31 0f 83 c7 04 83 ee 04 83 fe 00}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

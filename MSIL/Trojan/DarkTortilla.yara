@@ -4178,12 +4178,12 @@ rule Trojan_MSIL_DarkTortilla_WKAA_2147920935_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_DarkTortilla_XCAA_2147921343_0
+rule Trojan_MSIL_DarkTortilla_XCAA_2147921349_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/DarkTortilla.XCAA!MTB"
-        threat_id = "2147921343"
+        threat_id = "2147921349"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "DarkTortilla"

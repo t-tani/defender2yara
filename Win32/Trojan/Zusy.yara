@@ -4469,12 +4469,12 @@ rule Trojan_Win32_Zusy_MBXU_2147921076_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Zusy_CCJK_2147921373_0
+rule Trojan_Win32_Zusy_CCJK_2147921379_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Zusy.CCJK!MTB"
-        threat_id = "2147921373"
+        threat_id = "2147921379"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Zusy"

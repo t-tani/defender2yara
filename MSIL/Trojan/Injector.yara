@@ -1154,12 +1154,12 @@ rule Trojan_MSIL_Injector_NN_2147901672_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Injector_NITA_2147921403_0
+rule Trojan_MSIL_Injector_NITA_2147921412_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Injector.NITA!MTB"
-        threat_id = "2147921403"
+        threat_id = "2147921412"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Injector"

@@ -3150,12 +3150,12 @@ rule Trojan_MSIL_NjRat_PPD_2147917933_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_NjRat_PAFP_2147921344_0
+rule Trojan_MSIL_NjRat_PAFP_2147921350_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/NjRat.PAFP!MTB"
-        threat_id = "2147921344"
+        threat_id = "2147921350"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "NjRat"
