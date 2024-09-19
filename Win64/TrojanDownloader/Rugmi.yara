@@ -248,12 +248,12 @@ rule TrojanDownloader_Win64_Rugmi_HNQ_2147914873_0
         (all of ($x*))
 }
 
-rule TrojanDownloader_Win64_Rugmi_AZ_2147921307_0
+rule TrojanDownloader_Win64_Rugmi_AZ_2147921311_0
 {
     meta:
         author = "defender2yara"
         detection_name = "TrojanDownloader:Win64/Rugmi.AZ!MTB"
-        threat_id = "2147921307"
+        threat_id = "2147921311"
         type = "TrojanDownloader"
         platform = "Win64: Windows 64-bit platform"
         family = "Rugmi"

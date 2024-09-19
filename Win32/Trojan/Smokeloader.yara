@@ -5477,12 +5477,12 @@ rule Trojan_Win32_Smokeloader_CZS_2147920029_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Smokeloader_KNO_2147921359_0
+rule Trojan_Win32_Smokeloader_KNO_2147921364_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Smokeloader.KNO!MTB"
-        threat_id = "2147921359"
+        threat_id = "2147921364"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Smokeloader"
@@ -5493,6 +5493,27 @@ rule Trojan_Win32_Smokeloader_KNO_2147921359_0
         strings_accuracy = "Low"
     strings:
         $x_5_1 = {c1 e8 05 89 45 f8 8b 45 f8 03 45 d4 33 ca 33 c1 81 3d ?? ?? ?? ?? 13 02 00 00 c7 05 ?? ?? ?? ?? ee 3d ea f4 89 45 f8 0f 85}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Smokeloader_KIZ_2147921367_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Smokeloader.KIZ!MTB"
+        threat_id = "2147921367"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Smokeloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {56 8d 49 00 8d b5 ?? f7 ff ff c7 85 ?? f7 ff ff 00 00 00 00 e8 ?? ?? ff ff 8a 95 ?? f7 ff ff 8b 85 ?? f7 ff ff 30 14 38 83 fb 0f 75}  //weight: 5, accuracy: Low
     condition:
         (filesize < 20MB) and
         (all of ($x*))

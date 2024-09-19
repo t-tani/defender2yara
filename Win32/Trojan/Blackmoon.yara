@@ -205,3 +205,28 @@ rule Trojan_Win32_Blackmoon_NC_2147917179_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Blackmoon_PPDW_2147921415_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Blackmoon.PPDW!MTB"
+        threat_id = "2147921415"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Blackmoon"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "cmd /c echo Y|schtasks /create /sc minute /mo " ascii //weight: 1
+        $x_2_2 = "YgtpXIhOOjrgrnEw.exe" ascii //weight: 2
+        $x_1_3 = "BMpZwFgLiInafedu.exe" ascii //weight: 1
+        $x_1_4 = "dVaaODoAqUaeWdcG.exe" ascii //weight: 1
+        $x_1_5 = "jqMfBieXoEUDXAzZ.exe" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
