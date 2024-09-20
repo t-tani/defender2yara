@@ -1947,12 +1947,12 @@ rule Trojan_MSIL_Zusy_HNK_2147920096_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Zusy_SLZ_2147921466_0
+rule Trojan_MSIL_Zusy_SLZ_2147921469_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Zusy.SLZ!MTB"
-        threat_id = "2147921466"
+        threat_id = "2147921469"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Zusy"

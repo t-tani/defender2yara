@@ -486,18 +486,39 @@ rule Trojan_MSIL_LummaC_AMA_2147921040_0
         threshold = "1"
         strings_accuracy = "Low"
     strings:
+        $x_1_1 = {6e 5b 26 11 ?? 6e 11 ?? 6a 5b 26 11 [0-50] 0a 26 03 11 ?? 8f ?? 00 00 01 25 71 ?? 00 00 01 06 11 ?? 91 61 d2 81 ?? 00 00 01 de 05}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_LummaC_AMA_2147921040_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/LummaC.AMA!MTB"
+        threat_id = "2147921040"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "LummaC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
         $x_1_1 = {9c 06 08 91 06 09 91 58 20 00 01 00 00 5d 13 [0-50] 03 11 ?? 28 ?? 00 00 0a 8f ?? 00 00 01 25 71 ?? 00 00 01 06 11 ?? 28 ?? 00 00 0a 91 61 d2 81 ?? 00 00 01 de}  //weight: 1, accuracy: Low
     condition:
         (filesize < 20MB) and
         (all of ($x*))
 }
 
-rule Trojan_MSIL_LummaC_WQAA_2147921399_0
+rule Trojan_MSIL_LummaC_WQAA_2147921402_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/LummaC.WQAA!MTB"
-        threat_id = "2147921399"
+        threat_id = "2147921402"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "LummaC"
@@ -518,12 +539,12 @@ rule Trojan_MSIL_LummaC_WQAA_2147921399_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_LummaC_WSAA_2147921400_0
+rule Trojan_MSIL_LummaC_WSAA_2147921403_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/LummaC.WSAA!MTB"
-        threat_id = "2147921400"
+        threat_id = "2147921403"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "LummaC"

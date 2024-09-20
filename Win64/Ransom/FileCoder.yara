@@ -437,12 +437,12 @@ rule Ransom_Win64_FileCoder_ARA_2147917869_0
         (all of ($x*))
 }
 
-rule Ransom_Win64_FileCoder_OKZ_2147921409_0
+rule Ransom_Win64_FileCoder_OKZ_2147921412_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Ransom:Win64/FileCoder.OKZ!MTB"
-        threat_id = "2147921409"
+        threat_id = "2147921412"
         type = "Ransom"
         platform = "Win64: Windows 64-bit platform"
         family = "FileCoder"
@@ -458,12 +458,12 @@ rule Ransom_Win64_FileCoder_OKZ_2147921409_0
         (all of ($x*))
 }
 
-rule Ransom_Win64_FileCoder_RHX_2147921461_0
+rule Ransom_Win64_FileCoder_RHX_2147921464_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Ransom:Win64/FileCoder.RHX!MTB"
-        threat_id = "2147921461"
+        threat_id = "2147921464"
         type = "Ransom"
         platform = "Win64: Windows 64-bit platform"
         family = "FileCoder"

@@ -577,12 +577,12 @@ rule Trojan_Win32_Rhadamanthys_RVE_2147911205_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Rhadamanthys_C_2147921396_0
+rule Trojan_Win32_Rhadamanthys_C_2147921399_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Rhadamanthys.C!MTB"
-        threat_id = "2147921396"
+        threat_id = "2147921399"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Rhadamanthys"

@@ -1014,12 +1014,12 @@ rule Trojan_Win32_Offloader_KAL_2147920528_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Offloader_KAM_2147921449_0
+rule Trojan_Win32_Offloader_KAM_2147921452_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Offloader.KAM!MTB"
-        threat_id = "2147921449"
+        threat_id = "2147921452"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Offloader"

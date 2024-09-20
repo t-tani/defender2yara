@@ -1,9 +1,9 @@
-rule Ransom_Win32_DithyRamb_A_2147921362_0
+rule Ransom_Win32_DithyRamb_A_2147921365_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Ransom:Win32/DithyRamb.A!MTB"
-        threat_id = "2147921362"
+        threat_id = "2147921365"
         type = "Ransom"
         platform = "Win32: Windows 32-bit platform"
         family = "DithyRamb"

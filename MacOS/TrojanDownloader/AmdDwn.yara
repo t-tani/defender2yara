@@ -1,9 +1,9 @@
-rule TrojanDownloader_MacOS_AmdDwn_A_2147921465_0
+rule TrojanDownloader_MacOS_AmdDwn_A_2147921468_0
 {
     meta:
         author = "defender2yara"
         detection_name = "TrojanDownloader:MacOS/AmdDwn.A!MTB"
-        threat_id = "2147921465"
+        threat_id = "2147921468"
         type = "TrojanDownloader"
         platform = "MacOS: "
         family = "AmdDwn"
