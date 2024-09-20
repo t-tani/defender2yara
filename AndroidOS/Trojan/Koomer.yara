@@ -1,9 +1,9 @@
-rule Trojan_AndroidOS_Koomer_RT_2147921391_0
+rule Trojan_AndroidOS_Koomer_RT_2147921423_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:AndroidOS/Koomer.RT"
-        threat_id = "2147921391"
+        threat_id = "2147921423"
         type = "Trojan"
         platform = "AndroidOS: Android operating system"
         family = "Koomer"

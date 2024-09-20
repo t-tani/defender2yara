@@ -3997,3 +3997,26 @@ rule Trojan_MSIL_RedLine_MBXT_2147920580_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_RedLine_RDFI_2147921479_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/RedLine.RDFI!MTB"
+        threat_id = "2147921479"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "RedLine"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "6c4eb187-d421-48d3-bd24-34c30b560a6d" ascii //weight: 2
+        $x_1_2 = "EuroSpar Inc OptiTech Suite" ascii //weight: 1
+        $x_1_3 = "Shaping immersive experiences through visionary optics and digital innovation" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

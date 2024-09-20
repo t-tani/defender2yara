@@ -1743,12 +1743,12 @@ rule Trojan_MSIL_SnakeKeyLogger_PN_2147920783_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_SnakeKeyLogger_RDBW_2147921439_0
+rule Trojan_MSIL_SnakeKeyLogger_RDBW_2147921475_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/SnakeKeyLogger.RDBW!MTB"
-        threat_id = "2147921439"
+        threat_id = "2147921475"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "SnakeKeyLogger"
@@ -1764,12 +1764,12 @@ rule Trojan_MSIL_SnakeKeyLogger_RDBW_2147921439_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_SnakeKeyLogger_RDBX_2147921440_0
+rule Trojan_MSIL_SnakeKeyLogger_RDBX_2147921476_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/SnakeKeyLogger.RDBX!MTB"
-        threat_id = "2147921440"
+        threat_id = "2147921476"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "SnakeKeyLogger"
@@ -1780,6 +1780,27 @@ rule Trojan_MSIL_SnakeKeyLogger_RDBX_2147921440_0
         strings_accuracy = "High"
     strings:
         $x_2_1 = {02 0f 01 28 68 00 00 0a 6f 69 00 00 0a 00 02 0f 01 28 6a 00 00 0a 6f 69 00 00 0a 00 02 0f 01 28 6b 00 00 0a 6f 69 00 00 0a 00 2a}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_SnakeKeyLogger_RDBZ_2147921478_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/SnakeKeyLogger.RDBZ!MTB"
+        threat_id = "2147921478"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "SnakeKeyLogger"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {0b 07 09 11 04 6f 7b 00 00 0a 13 05 73 7c 00 00 0a 0a 06 11 05}  //weight: 2, accuracy: High
     condition:
         (filesize < 20MB) and
         (all of ($x*))

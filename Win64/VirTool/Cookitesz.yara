@@ -1,9 +1,9 @@
-rule VirTool_Win64_Cookitesz_A_2147921450_0
+rule VirTool_Win64_Cookitesz_A_2147921489_0
 {
     meta:
         author = "defender2yara"
         detection_name = "VirTool:Win64/Cookitesz.A!MTB"
-        threat_id = "2147921450"
+        threat_id = "2147921489"
         type = "VirTool"
         platform = "Win64: Windows 64-bit platform"
         family = "Cookitesz"

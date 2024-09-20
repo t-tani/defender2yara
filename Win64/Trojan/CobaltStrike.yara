@@ -14840,12 +14840,12 @@ rule Trojan_Win64_CobaltStrike_CCJJ_2147921105_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_CobaltStrike_BOW_2147921427_0
+rule Trojan_Win64_CobaltStrike_BOW_2147921462_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/CobaltStrike.BOW!MTB"
-        threat_id = "2147921427"
+        threat_id = "2147921462"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "CobaltStrike"
@@ -14862,12 +14862,12 @@ rule Trojan_Win64_CobaltStrike_BOW_2147921427_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_CobaltStrike_CCJK_2147921453_0
+rule Trojan_Win64_CobaltStrike_CCJK_2147921492_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/CobaltStrike.CCJK!MTB"
-        threat_id = "2147921453"
+        threat_id = "2147921492"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "CobaltStrike"
@@ -14883,12 +14883,37 @@ rule Trojan_Win64_CobaltStrike_CCJK_2147921453_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_CobaltStrike_VV_2147921488_0
+rule Trojan_Win64_CobaltStrike_CCJL_2147921495_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CobaltStrike.CCJL!MTB"
+        threat_id = "2147921495"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CobaltStrike"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "9"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = "OOpWE8DD" ascii //weight: 5
+        $x_1_2 = "QtOf138M" ascii //weight: 1
+        $x_1_3 = "UPhKga" ascii //weight: 1
+        $x_1_4 = "WjYBl2410" ascii //weight: 1
+        $x_1_5 = "ZWj90Ez" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_CobaltStrike_VV_2147921530_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/CobaltStrike.VV!MTB"
-        threat_id = "2147921488"
+        threat_id = "2147921530"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "CobaltStrike"

@@ -1,9 +1,9 @@
-rule Trojan_MSIL_Zenpack_KAA_2147921463_0
+rule Trojan_MSIL_Zenpack_KAA_2147921503_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Zenpack.KAA!MTB"
-        threat_id = "2147921463"
+        threat_id = "2147921503"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Zenpack"

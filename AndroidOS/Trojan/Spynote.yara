@@ -538,12 +538,12 @@ rule Trojan_AndroidOS_Spynote_RH_2147919905_0
         (all of ($x*))
 }
 
-rule Trojan_AndroidOS_Spynote_OT_2147921392_0
+rule Trojan_AndroidOS_Spynote_OT_2147921424_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:AndroidOS/Spynote.OT"
-        threat_id = "2147921392"
+        threat_id = "2147921424"
         type = "Trojan"
         platform = "AndroidOS: Android operating system"
         family = "Spynote"

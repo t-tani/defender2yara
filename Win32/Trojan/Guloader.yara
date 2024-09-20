@@ -4123,12 +4123,12 @@ rule Trojan_Win32_Guloader_CT_2147919378_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Guloader_CU_2147921397_0
+rule Trojan_Win32_Guloader_CU_2147921429_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Guloader.CU!MTB"
-        threat_id = "2147921397"
+        threat_id = "2147921429"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Guloader"
@@ -4145,6 +4145,33 @@ rule Trojan_Win32_Guloader_CU_2147921397_0
         $x_1_5 = "cradlelike.bry" ascii //weight: 1
         $x_1_6 = "Mescal246\\Uninstall\\projektopgavers\\iodhydric" ascii //weight: 1
         $x_1_7 = "nonplussing.blo" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Guloader_CV_2147921430_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Guloader.CV!MTB"
+        threat_id = "2147921430"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Guloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "Slkningens147\\chaogenous.con" wide //weight: 1
+        $x_1_2 = "velvillighed\\koncentrere.Flo178" wide //weight: 1
+        $x_1_3 = "phytolithological\\ekskluderes.sad" wide //weight: 1
+        $x_1_4 = "Skotvingen\\sidekammerater.Cin" wide //weight: 1
+        $x_1_5 = "elffriend\\chemosmoic.ini" wide //weight: 1
+        $x_1_6 = "elektronikteknikernes.dll" wide //weight: 1
+        $x_1_7 = "nocktat\\Kartouchens.dll" wide //weight: 1
     condition:
         (filesize < 20MB) and
         (all of ($x*))

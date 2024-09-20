@@ -4469,12 +4469,12 @@ rule Trojan_Win32_Zusy_MBXU_2147921076_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Zusy_XEAA_2147921416_0
+rule Trojan_Win32_Zusy_XEAA_2147921450_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Zusy.XEAA!MTB"
-        threat_id = "2147921416"
+        threat_id = "2147921450"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Zusy"
@@ -4490,12 +4490,12 @@ rule Trojan_Win32_Zusy_XEAA_2147921416_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Zusy_CCJK_2147921454_0
+rule Trojan_Win32_Zusy_CCJK_2147921493_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Zusy.CCJK!MTB"
-        threat_id = "2147921454"
+        threat_id = "2147921493"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Zusy"
@@ -4506,6 +4506,28 @@ rule Trojan_Win32_Zusy_CCJK_2147921454_0
         strings_accuracy = "High"
     strings:
         $x_5_1 = {55 8b ec 6a ff 68 f8 d4 65 00 68 08 64 65 00 64 a1 00 00 00 00 50 64 89 25 00 00 00 00 83 ec 58 53 56 57 89 65 e8 ff 15 a0 d2 65 00 33 d2 8a d4 89 15 ac 5d a6 00 8b c8 81 e1 ff 00 00 00 89 0d a8 5d a6 00 c1 e1 08 03 ca 89 0d a4 5d a6 00 c1 e8 10 a3 a0 5d a6 00 6a 01}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Zusy_HNN_2147921508_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zusy.HNN!MTB"
+        threat_id = "2147921508"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {2b d9 8b c7 8d 8d ?? ?? ?? ?? 99 03 cf f7 fe 47 8a 82 ?? ?? ?? ?? 32 04 0b 88 01}  //weight: 2, accuracy: Low
+        $x_1_2 = {c1 f9 04 c0 e0 02 0a c8 88 0f}  //weight: 1, accuracy: High
     condition:
         (filesize < 20MB) and
         (all of ($x*))
