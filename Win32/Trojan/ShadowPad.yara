@@ -43,3 +43,69 @@ rule Trojan_Win32_ShadowPad_E_2147723170_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_ShadowPad_A_2147921366_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ShadowPad.A!MTB"
+        threat_id = "2147921366"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ShadowPad"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {c7 33 cf 7f a6 05 e2 a7 f7 b5 98 cc 48 42 1f cf 1e 2d 59 0a 62 b1 ed d6 64}  //weight: 1, accuracy: High
+        $x_1_2 = {83 60 03 00 80 60 1f 80 83 60 33 00 66 c7 40 ff 00 0a 66 c7 40 20 0a 0a c6 40 2f 00 8b 0f 83 c0 40 03 ce}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_ShadowPad_B_2147921367_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ShadowPad.B!MTB"
+        threat_id = "2147921367"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ShadowPad"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {19 51 00 00 0f 85 b0 0e 00 00 e8 60 29 00 00 3c 01}  //weight: 1, accuracy: High
+        $x_1_2 = {48 55 8b ec 8b 45 08 e8 b2 29 00 00 57 67 00 00 14 5f e8 a7 29 00 00 92 69 00 00 43 e8 6a 4e}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_ShadowPad_C_2147921368_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ShadowPad.C!MTB"
+        threat_id = "2147921368"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ShadowPad"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {89 5d e8 c7 45 ec 56 69 72 74 c7 45 f0 75 61 6c 50 c7 45 f4 72 6f 74 65 66 c7 45 f8 63 74 c6 45 fa 00}  //weight: 1, accuracy: High
+        $x_1_2 = {8b f9 8b f2 8b 5d 08 33 c0 40 89 45 e4 85 f6}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

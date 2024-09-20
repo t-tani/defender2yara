@@ -4123,12 +4123,12 @@ rule Trojan_Win32_Guloader_CT_2147919378_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Guloader_CU_2147921368_0
+rule Trojan_Win32_Guloader_CU_2147921389_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Guloader.CU!MTB"
-        threat_id = "2147921368"
+        threat_id = "2147921389"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Guloader"

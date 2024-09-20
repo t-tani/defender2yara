@@ -1,9 +1,9 @@
-rule TrojanDropper_MSIL_Marsilia_NIT_2147921455_0
+rule TrojanDropper_MSIL_Marsilia_NIT_2147921476_0
 {
     meta:
         author = "defender2yara"
         detection_name = "TrojanDropper:MSIL/Marsilia.NIT!MTB"
-        threat_id = "2147921455"
+        threat_id = "2147921476"
         type = "TrojanDropper"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Marsilia"
@@ -19,12 +19,12 @@ rule TrojanDropper_MSIL_Marsilia_NIT_2147921455_0
         (all of ($x*))
 }
 
-rule TrojanDropper_MSIL_Marsilia_NIT_2147921455_1
+rule TrojanDropper_MSIL_Marsilia_NIT_2147921476_1
 {
     meta:
         author = "defender2yara"
         detection_name = "TrojanDropper:MSIL/Marsilia.NIT!MTB"
-        threat_id = "2147921455"
+        threat_id = "2147921476"
         type = "TrojanDropper"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Marsilia"
