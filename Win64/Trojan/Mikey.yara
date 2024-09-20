@@ -210,12 +210,12 @@ rule Trojan_Win64_Mikey_NB_2147915263_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_Mikey_GMN_2147921398_0
+rule Trojan_Win64_Mikey_GMN_2147921403_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/Mikey.GMN!MTB"
-        threat_id = "2147921398"
+        threat_id = "2147921403"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "Mikey"
@@ -227,6 +227,27 @@ rule Trojan_Win64_Mikey_GMN_2147921398_0
     strings:
         $x_5_1 = {0a 59 b8 a4 42 30 f3 8a cb 5e 85 0a 24 a2 1a ef b7 20}  //weight: 5, accuracy: High
         $x_5_2 = {f6 03 1d 8f 41 5b 5a 91 33 50 10}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_Mikey_MKV_2147921435_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Mikey.MKV!MTB"
+        threat_id = "2147921435"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Mikey"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {41 89 f1 4c 6b d2 50 4c 01 d0 48 83 c0 40 44 33 18 44 89 de 89 f0 4c 03 8c 24 b0 00 00 00 89 4c 24 44 4c 89 c9 48 89 54 24 38 4c 89 c2 49 89 c0}  //weight: 5, accuracy: High
     condition:
         (filesize < 20MB) and
         (all of ($x*))

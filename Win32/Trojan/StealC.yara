@@ -2497,12 +2497,12 @@ rule Trojan_Win32_StealC_GNM_2147919465_1
         (all of ($x*))
 }
 
-rule Trojan_Win32_StealC_RZ_2147921360_0
+rule Trojan_Win32_StealC_RZ_2147921365_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/StealC.RZ!MTB"
-        threat_id = "2147921360"
+        threat_id = "2147921365"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "StealC"

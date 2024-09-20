@@ -2700,12 +2700,12 @@ rule Trojan_Win32_AutoitInject_KAE_2147920945_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_AutoitInject_WZAA_2147921407_0
+rule Trojan_Win32_AutoitInject_WZAA_2147921413_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/AutoitInject.WZAA!MTB"
-        threat_id = "2147921407"
+        threat_id = "2147921413"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "AutoitInject"
@@ -2725,12 +2725,41 @@ rule Trojan_Win32_AutoitInject_WZAA_2147921407_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_AutoitInject_NF_2147921459_0
+rule Trojan_Win32_AutoitInject_AMA_2147921460_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.AMA!MTB"
+        threat_id = "2147921460"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {44 00 4c 00 4c 00 43 00 41 00 4c 00 4c 00 20 00 28 00 20 00 [0-20] 20 00 28 00 20 00 22 00 6b 00 35 00 64 00 74 00 78 00 48 00 66 00 34 00 35 00 65 00 35 00 64 00 74 00 78 00 48 00 66 00 34 00 35 00 72 00 35 00 64 00 74 00 78 00 48 00 66 00 34 00 35 00 6e 00 35 00 64 00 74 00 78 00 48 00 66 00 34 00 35 00 65 00 35 00 64 00 74 00 78 00 48 00 66 00 34 00 35 00 6c 00 35 00 64 00 74 00 78 00 48 00 66 00 34 00 35 00 33 00 35 00 64 00 74 00 78 00 48 00 66 00 34 00 35 00 32 00 35 00 64 00 74 00 78 00 48 00 66 00 34 00 35 00 [0-80] 22 00 20 00 29 00 20 00 2c 00 20 00 00 20 00 28 00 20 00 22 00}  //weight: 2, accuracy: Low
+        $x_2_2 = {44 4c 4c 43 41 4c 4c 20 28 20 [0-20] 20 28 20 22 6b 35 64 74 78 48 66 34 35 65 35 64 74 78 48 66 34 35 72 35 64 74 78 48 66 34 35 6e 35 64 74 78 48 66 34 35 65 35 64 74 78 48 66 34 35 6c 35 64 74 78 48 66 34 35 33 35 64 74 78 48 66 34 35 32 35 64 74 78 48 66 34 35 [0-80] 22 20 29 20 2c 20 00 20 28 20 22}  //weight: 2, accuracy: Low
+        $x_1_3 = "u5dtxHf45s5dtxHf45e5dtxHf45r5dtxHf4535dtxHf4525dtxHf45" ascii //weight: 1
+        $x_1_4 = "\"\"5dtxHf45\"\", \"\"\"\")\" )" ascii //weight: 1
+        $x_1_5 = "@TEMPDIR" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_2_*) and 3 of ($x_1_*))) or
+            ((2 of ($x_2_*) and 1 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+
+rule Trojan_Win32_AutoitInject_NF_2147921469_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/AutoitInject.NF!MTB"
-        threat_id = "2147921459"
+        threat_id = "2147921469"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "AutoitInject"
@@ -2766,12 +2795,12 @@ rule Trojan_Win32_AutoitInject_NF_2147921459_0
         )
 }
 
-rule Trojan_Win32_AutoitInject_NK_2147921463_0
+rule Trojan_Win32_AutoitInject_NK_2147921473_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/AutoitInject.NK!MTB"
-        threat_id = "2147921463"
+        threat_id = "2147921473"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "AutoitInject"

@@ -265,12 +265,12 @@ rule Trojan_MSIL_Cerbu_KAAM_2147905847_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Cerbu_AMA_2147921447_0
+rule Trojan_MSIL_Cerbu_AMA_2147921456_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Cerbu.AMA!MTB"
-        threat_id = "2147921447"
+        threat_id = "2147921456"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Cerbu"

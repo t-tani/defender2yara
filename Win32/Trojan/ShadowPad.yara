@@ -43,12 +43,12 @@ rule Trojan_Win32_ShadowPad_E_2147723170_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_ShadowPad_A_2147921369_0
+rule Trojan_Win32_ShadowPad_A_2147921374_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/ShadowPad.A!MTB"
-        threat_id = "2147921369"
+        threat_id = "2147921374"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "ShadowPad"
@@ -65,12 +65,12 @@ rule Trojan_Win32_ShadowPad_A_2147921369_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_ShadowPad_B_2147921370_0
+rule Trojan_Win32_ShadowPad_B_2147921375_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/ShadowPad.B!MTB"
-        threat_id = "2147921370"
+        threat_id = "2147921375"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "ShadowPad"
@@ -87,12 +87,12 @@ rule Trojan_Win32_ShadowPad_B_2147921370_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_ShadowPad_C_2147921371_0
+rule Trojan_Win32_ShadowPad_C_2147921376_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/ShadowPad.C!MTB"
-        threat_id = "2147921371"
+        threat_id = "2147921376"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "ShadowPad"

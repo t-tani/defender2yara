@@ -5581,3 +5581,24 @@ rule Trojan_MSIL_Heracles_WNAA_2147921062_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Heracles_XIAA_2147921418_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Heracles.XIAA!MTB"
+        threat_id = "2147921418"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Heracles"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {03 07 18 5a 6f ?? 00 00 0a 28 ?? 00 00 0a 1a 7e ?? 00 00 04 1f 34 7e ?? 00 00 04 1f 34 91 7e ?? 00 00 04 1f 11 91 61 20 f5 00 00 00 5f 9c 62 72 3d 04 00 70 03 07 18 5a 17 58 6f ?? 00 00 0a 28 ?? 00 00 0a 60 d2 9c}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -108,12 +108,12 @@ rule Trojan_MSIL_PrivateLoader_MBXQ_2147918551_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_PrivateLoader_RDK_2147921432_0
+rule Trojan_MSIL_PrivateLoader_RDK_2147921441_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/PrivateLoader.RDK!MTB"
-        threat_id = "2147921432"
+        threat_id = "2147921441"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "PrivateLoader"

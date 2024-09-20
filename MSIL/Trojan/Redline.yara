@@ -5081,12 +5081,33 @@ rule Trojan_MSIL_Redline_AMAM_2147920814_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Redline_WVAA_2147921404_0
+rule Trojan_MSIL_Redline_GTL_2147921404_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Redline.GTL!MTB"
+        threat_id = "2147921404"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Redline"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {11 0a 17 58 20 ff 00 00 00 5f 13 0a 11 09 11 07 11 0a 95 58 20 ff 00 00 00 5f 13 09 02 11 07 11 0a 8f 52 00 00 01 11 07 11 09 8f 52 00 00 01 28 ?? ?? ?? 06 00 11 07 11 0a 95 11 07 11 09 95 58 20 ff 00 00 00 5f 13 10 11 06 11 08 11 04 11 08 91 11 07 11 10 95 61 28 ?? ?? ?? 0a 9c 11 08 17 58 13 08 00 11 08 6e 11 06 8e 69 6a fe 04 13 11 11 11 2d 8b}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Redline_WVAA_2147921410_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Redline.WVAA!MTB"
-        threat_id = "2147921404"
+        threat_id = "2147921410"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Redline"
