@@ -950,12 +950,12 @@ rule Trojan_AndroidOS_Rewardsteal_V_2147920429_0
         (all of ($x*))
 }
 
-rule Trojan_AndroidOS_Rewardsteal_AG_2147921421_0
+rule Trojan_AndroidOS_Rewardsteal_AG_2147921447_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:AndroidOS/Rewardsteal.AG"
-        threat_id = "2147921421"
+        threat_id = "2147921447"
         type = "Trojan"
         platform = "AndroidOS: Android operating system"
         family = "Rewardsteal"

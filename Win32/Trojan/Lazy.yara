@@ -1213,12 +1213,12 @@ rule Trojan_Win32_Lazy_AMAZ_2147917719_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Lazy_OKZ_2147921455_0
+rule Trojan_Win32_Lazy_OKZ_2147921482_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Lazy.OKZ!MTB"
-        threat_id = "2147921455"
+        threat_id = "2147921482"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Lazy"
@@ -1234,12 +1234,12 @@ rule Trojan_Win32_Lazy_OKZ_2147921455_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Lazy_GV_2147921529_0
+rule Trojan_Win32_Lazy_GV_2147921558_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Lazy.GV!MTB"
-        threat_id = "2147921529"
+        threat_id = "2147921558"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Lazy"

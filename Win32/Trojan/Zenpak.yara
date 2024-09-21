@@ -8752,12 +8752,12 @@ rule Trojan_Win32_Zenpak_GZT_2147921002_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Zenpak_GBZ_2147921435_0
+rule Trojan_Win32_Zenpak_GBZ_2147921461_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Zenpak.GBZ!MTB"
-        threat_id = "2147921435"
+        threat_id = "2147921461"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Zenpak"
@@ -8773,12 +8773,33 @@ rule Trojan_Win32_Zenpak_GBZ_2147921435_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Zenpak_PVH_2147921523_0
+rule Trojan_Win32_Zenpak_GXT_2147921465_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zenpak.GXT!MTB"
+        threat_id = "2147921465"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zenpak"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {83 ea 05 42 4a 40 ?? ?? 31 c2 8d 05 ?? ?? ?? ?? 01 30 e8 ?? ?? ?? ?? 4a 89 3d}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Zenpak_PVH_2147921552_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Zenpak.PVH!MTB"
-        threat_id = "2147921523"
+        threat_id = "2147921552"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Zenpak"

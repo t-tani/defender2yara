@@ -1,3 +1,25 @@
+rule Trojan_MSIL_Formbook_BA_2147753152_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Formbook.BA!MTB"
+        threat_id = "2147753152"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Formbook"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {95 58 20 ff 00 00 00 5f 13 0d 09 11 05 07 11 05 91 11 04 11 0d 95 61 28 ?? 00 00 0a 9c 11 05 17 58 13 05 00 11 05 6e 09 8e 69 6a fe 04}  //weight: 4, accuracy: Low
+        $x_1_2 = {0a 0c 07 8e 69 8d ?? 00 00 01 0d 20 00 01 00 00 8d ?? 00 00 01 13 04 16 13 05 2b 0f}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_Formbook_PD_2147754178_0
 {
     meta:
@@ -7234,12 +7256,12 @@ rule Trojan_MSIL_Formbook_OKA_2147920470_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Formbook_SPSG_2147921481_0
+rule Trojan_MSIL_Formbook_SPSG_2147921508_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Formbook.SPSG!MTB"
-        threat_id = "2147921481"
+        threat_id = "2147921508"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Formbook"
@@ -7255,12 +7277,12 @@ rule Trojan_MSIL_Formbook_SPSG_2147921481_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Formbook_KAQ_2147921501_0
+rule Trojan_MSIL_Formbook_KAQ_2147921529_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Formbook.KAQ!MTB"
-        threat_id = "2147921501"
+        threat_id = "2147921529"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Formbook"
