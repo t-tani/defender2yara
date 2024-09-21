@@ -4469,12 +4469,12 @@ rule Trojan_Win32_Zusy_MBXU_2147921076_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Zusy_XEAA_2147921477_0
+rule Trojan_Win32_Zusy_XEAA_2147921483_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Zusy.XEAA!MTB"
-        threat_id = "2147921477"
+        threat_id = "2147921483"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Zusy"
@@ -4490,12 +4490,12 @@ rule Trojan_Win32_Zusy_XEAA_2147921477_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Zusy_CCJK_2147921520_0
+rule Trojan_Win32_Zusy_CCJK_2147921526_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Zusy.CCJK!MTB"
-        threat_id = "2147921520"
+        threat_id = "2147921526"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Zusy"
@@ -4511,12 +4511,12 @@ rule Trojan_Win32_Zusy_CCJK_2147921520_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Zusy_HNN_2147921536_0
+rule Trojan_Win32_Zusy_HNN_2147921542_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Zusy.HNN!MTB"
-        threat_id = "2147921536"
+        threat_id = "2147921542"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Zusy"

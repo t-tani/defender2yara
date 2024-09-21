@@ -105096,12 +105096,12 @@ rule Trojan_MSIL_AgentTesla_MBXT_2147921001_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_AgentTesla_RDCD_2147921501_0
+rule Trojan_MSIL_AgentTesla_RDCD_2147921507_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/AgentTesla.RDCD!MTB"
-        threat_id = "2147921501"
+        threat_id = "2147921507"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "AgentTesla"

@@ -1906,12 +1906,12 @@ rule Trojan_Win32_LummaStealer_XCA_2147920797_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_LummaStealer_AQ_2147921453_0
+rule Trojan_Win32_LummaStealer_AQ_2147921459_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/LummaStealer.AQ!MTB"
-        threat_id = "2147921453"
+        threat_id = "2147921459"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "LummaStealer"
@@ -1928,12 +1928,12 @@ rule Trojan_Win32_LummaStealer_AQ_2147921453_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_LummaStealer_RP_2147921533_0
+rule Trojan_Win32_LummaStealer_RP_2147921539_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/LummaStealer.RP!MTB"
-        threat_id = "2147921533"
+        threat_id = "2147921539"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "LummaStealer"

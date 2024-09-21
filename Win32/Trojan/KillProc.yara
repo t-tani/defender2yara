@@ -69,12 +69,12 @@ rule Trojan_Win32_KillProc_DAL_2147849959_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_KillProc_MA_2147921467_0
+rule Trojan_Win32_KillProc_MA_2147921473_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/KillProc.MA!MTB"
-        threat_id = "2147921467"
+        threat_id = "2147921473"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "KillProc"

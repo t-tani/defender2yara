@@ -405,12 +405,12 @@ rule TrojanDownloader_Win32_Rugmi_HNU_2147918597_0
         (all of ($x*))
 }
 
-rule TrojanDownloader_Win32_Rugmi_DA_2147921415_0
+rule TrojanDownloader_Win32_Rugmi_DA_2147921421_0
 {
     meta:
         author = "defender2yara"
         detection_name = "TrojanDownloader:Win32/Rugmi.DA!MTB"
-        threat_id = "2147921415"
+        threat_id = "2147921421"
         type = "TrojanDownloader"
         platform = "Win32: Windows 32-bit platform"
         family = "Rugmi"

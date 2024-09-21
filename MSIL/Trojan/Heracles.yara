@@ -5581,12 +5581,12 @@ rule Trojan_MSIL_Heracles_WNAA_2147921062_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Heracles_XIAA_2147921479_0
+rule Trojan_MSIL_Heracles_XIAA_2147921485_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Heracles.XIAA!MTB"
-        threat_id = "2147921479"
+        threat_id = "2147921485"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Heracles"

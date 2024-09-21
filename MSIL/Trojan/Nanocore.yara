@@ -2998,12 +2998,12 @@ rule Trojan_MSIL_Nanocore_AMAM_2147915695_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Nanocore_AMA_2147921525_0
+rule Trojan_MSIL_Nanocore_AMA_2147921531_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Nanocore.AMA!MTB"
-        threat_id = "2147921525"
+        threat_id = "2147921531"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Nanocore"
