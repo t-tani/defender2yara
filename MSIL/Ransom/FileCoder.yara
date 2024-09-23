@@ -1116,6 +1116,30 @@ rule Ransom_MSIL_FileCoder_AYC_2147920018_0
         threshold = "6"
         strings_accuracy = "High"
     strings:
+        $x_2_1 = "Somnia.exe" wide //weight: 2
+        $x_2_2 = "$1cffa9e8-71bd-4ad1-b514-d02bed459f2b" ascii //weight: 2
+        $x_1_3 = "CreateEncryptor" ascii //weight: 1
+        $x_1_4 = "Users\\Admin\\source\\repos\\Somnia" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Ransom_MSIL_FileCoder_AYC_2147920018_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:MSIL/FileCoder.AYC!MTB"
+        threat_id = "2147920018"
+        type = "Ransom"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "FileCoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
         $x_2_1 = "HACKED BY PAPAZ" wide //weight: 2
         $x_1_2 = "papaz22@proton.me" wide //weight: 1
         $x_1_3 = "Benioku.txt" wide //weight: 1
@@ -1126,12 +1150,36 @@ rule Ransom_MSIL_FileCoder_AYC_2147920018_0
         (all of ($x*))
 }
 
-rule Ransom_MSIL_FileCoder_MX_2147921474_0
+rule Ransom_MSIL_FileCoder_AYD_2147921496_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:MSIL/FileCoder.AYD!MTB"
+        threat_id = "2147921496"
+        type = "Ransom"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "FileCoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "RanSomWare.exe" ascii //weight: 2
+        $x_2_2 = "RanSomWare.Properties" ascii //weight: 2
+        $x_1_3 = "$533e66fc-8b5c-4d67-8cbc-1cac8521de3b" ascii //weight: 1
+        $x_1_4 = "CreateEncryptor" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Ransom_MSIL_FileCoder_MX_2147921541_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Ransom:MSIL/FileCoder.MX!MTB"
-        threat_id = "2147921474"
+        threat_id = "2147921541"
         type = "Ransom"
         platform = "MSIL: .NET intermediate language scripts"
         family = "FileCoder"

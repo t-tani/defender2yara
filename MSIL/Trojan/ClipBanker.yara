@@ -3598,12 +3598,12 @@ rule Trojan_MSIL_ClipBanker_AYA_2147919626_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_ClipBanker_CCJB_2147921529_0
+rule Trojan_MSIL_ClipBanker_CCJB_2147921609_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/ClipBanker.CCJB!MTB"
-        threat_id = "2147921529"
+        threat_id = "2147921609"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "ClipBanker"

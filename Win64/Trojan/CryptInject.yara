@@ -2799,12 +2799,12 @@ rule Trojan_Win64_CryptInject_OKZ_2147920725_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_CryptInject_VAS_2147921497_0
+rule Trojan_Win64_CryptInject_VAS_2147921572_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/CryptInject.VAS!MTB"
-        threat_id = "2147921497"
+        threat_id = "2147921572"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "CryptInject"
@@ -2820,12 +2820,12 @@ rule Trojan_Win64_CryptInject_VAS_2147921497_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_CryptInject_KIY_2147921499_0
+rule Trojan_Win64_CryptInject_KIY_2147921574_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/CryptInject.KIY!MTB"
-        threat_id = "2147921499"
+        threat_id = "2147921574"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "CryptInject"
@@ -2836,6 +2836,27 @@ rule Trojan_Win64_CryptInject_KIY_2147921499_0
         strings_accuracy = "High"
     strings:
         $x_5_1 = {44 03 de 48 f7 e1 48 c1 ea 03 48 6b c2 1a 48 2b c8 8a 44 0c 20 42 32 04 13 41 88 02 4c 03 d6 45 3b df 72 cf}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_CryptInject_DXA_2147921580_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CryptInject.DXA!MTB"
+        threat_id = "2147921580"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {45 03 cc 48 f7 e1 48 8b c1 48 2b c2 48 d1 e8 48 03 c2 48 c1 e8 04 48 6b c0 1c 48 2b c8 8a 44 0c ?? 43 32 ?? ?? 41 88 02 4d 03 d4 44 3b ce 72}  //weight: 5, accuracy: Low
     condition:
         (filesize < 20MB) and
         (all of ($x*))

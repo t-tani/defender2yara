@@ -85,3 +85,24 @@ rule Trojan_Win64_Rootkit_EH_2147920392_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Rootkit_GZT_2147921535_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Rootkit.GZT!MTB"
+        threat_id = "2147921535"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Rootkit"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = {89 4c 24 08 48 83 ec 38 48 8b 4c 24 40 ff 15 e7 47 01 00 48 89 44 24 20 48 83 7c 24 20 00 74 17 48 8b 54 24}  //weight: 10, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

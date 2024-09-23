@@ -48,12 +48,12 @@ rule Trojan_Win32_Autoitinject_PSH_2147920916_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Autoitinject_PPH_2147921559_0
+rule Trojan_Win32_Autoitinject_PPH_2147921666_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Autoitinject.PPH!MTB"
-        threat_id = "2147921559"
+        threat_id = "2147921666"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Autoitinject"
@@ -72,12 +72,12 @@ rule Trojan_Win32_Autoitinject_PPH_2147921559_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Autoitinject_PPCH_2147921561_0
+rule Trojan_Win32_Autoitinject_PPCH_2147921668_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Autoitinject.PPCH!MTB"
-        threat_id = "2147921561"
+        threat_id = "2147921668"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Autoitinject"
@@ -96,12 +96,12 @@ rule Trojan_Win32_Autoitinject_PPCH_2147921561_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Autoitinject_PPEH_2147921563_0
+rule Trojan_Win32_Autoitinject_PPEH_2147921670_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Autoitinject.PPEH!MTB"
-        threat_id = "2147921563"
+        threat_id = "2147921670"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Autoitinject"
@@ -115,6 +115,30 @@ rule Trojan_Win32_Autoitinject_PPEH_2147921563_0
         $x_1_2 = "DLLCALL" ascii //weight: 1
         $x_5_3 = "k5s0ftwm6e5s0ftwm6r5s0ftwm6n5s0ftwm6e5s0ftwm6l5s0ftwm635s0ftwm625s0ftwm6" ascii //weight: 5
         $x_7_4 = "u5s0ftwm6s5s0ftwm6e5s0ftwm6r5s0ftwm635s0ftwm625s0ftwm6" ascii //weight: 7
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Autoitinject_PPFH_2147921671_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Autoitinject.PPFH!MTB"
+        threat_id = "2147921671"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Autoitinject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "14"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "@TEMPDIR" ascii //weight: 1
+        $x_1_2 = "DLLCALL" ascii //weight: 1
+        $x_5_3 = "k7IfgcdZxe7IfgcdZxr7IfgcdZxn7IfgcdZxe7IfgcdZxl7IfgcdZx37IfgcdZx27IfgcdZx" ascii //weight: 5
+        $x_7_4 = "u7IfgcdZxs7IfgcdZxe7IfgcdZxr7IfgcdZx37IfgcdZx27IfgcdZx" ascii //weight: 7
     condition:
         (filesize < 20MB) and
         (all of ($x*))

@@ -2052,3 +2052,71 @@ rule Trojan_MSIL_LummaStealer_AMAI_2147920676_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_LummaStealer_AYB_2147921493_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/LummaStealer.AYB!MTB"
+        threat_id = "2147921493"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "JustABackDoor\\obj\\Debug\\JustABackDoor.pdb" ascii //weight: 2
+        $x_1_2 = "$78abf6e4-a4da-4498-8eff-73869225ff27" ascii //weight: 1
+        $x_1_3 = "JustABackDoor.Executor" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_LummaStealer_AYC_2147921494_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/LummaStealer.AYC!MTB"
+        threat_id = "2147921494"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "psicologiaecultura.com.br" ascii //weight: 2
+        $x_1_2 = "function Hide-Console" ascii //weight: 1
+        $x_1_3 = "StartRvrShell" ascii //weight: 1
+        $x_1_4 = "if ($exeName -eq \"RSGame.exe\")" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_LummaStealer_GPD_2147921633_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/LummaStealer.GPD!MTB"
+        threat_id = "2147921633"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {91 61 d2 81 14 00 00 01 de 05 13 [0-32] 03 8e 69 3f}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

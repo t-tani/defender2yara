@@ -40,3 +40,26 @@ rule Trojan_MSIL_Ratx_SN_2147851332_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Ratx_SP_2147921560_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Ratx.SP!MTB"
+        threat_id = "2147921560"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Ratx"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "GiauTM.CSharp.TikiRouter.Properties" ascii //weight: 2
+        $x_2_2 = "$2709a7e2-d555-45df-a0fa-588f2abf8d0e" ascii //weight: 2
+        $x_1_3 = "RouterConfig.tsv" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

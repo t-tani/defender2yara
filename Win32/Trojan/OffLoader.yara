@@ -2456,12 +2456,12 @@ rule Trojan_Win32_OffLoader_ADP_2147920914_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_OffLoader_SHLQ_2147921513_0
+rule Trojan_Win32_OffLoader_SHLQ_2147921590_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/OffLoader.SHLQ!MTB"
-        threat_id = "2147921513"
+        threat_id = "2147921590"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "OffLoader"
@@ -2478,12 +2478,12 @@ rule Trojan_Win32_OffLoader_SHLQ_2147921513_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_OffLoader_SPHP_2147921517_0
+rule Trojan_Win32_OffLoader_SPHP_2147921594_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/OffLoader.SPHP!MTB"
-        threat_id = "2147921517"
+        threat_id = "2147921594"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "OffLoader"
@@ -2494,6 +2494,28 @@ rule Trojan_Win32_OffLoader_SPHP_2147921517_0
         strings_accuracy = "High"
     strings:
         $x_3_1 = "/buttoncamera.sbs/ark.php" wide //weight: 3
+        $x_1_2 = "/silent" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_OffLoader_SDDP_2147921595_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/OffLoader.SDDP!MTB"
+        threat_id = "2147921595"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "OffLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = "/personteam.cfd/mik.php?" wide //weight: 3
         $x_1_2 = "/silent" wide //weight: 1
     condition:
         (filesize < 20MB) and

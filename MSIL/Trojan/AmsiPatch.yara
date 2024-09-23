@@ -1,9 +1,9 @@
-rule Trojan_MSIL_AmsiPatch_DA_2147921423_0
+rule Trojan_MSIL_AmsiPatch_DA_2147921473_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/AmsiPatch.DA!MTB"
-        threat_id = "2147921423"
+        threat_id = "2147921473"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "AmsiPatch"

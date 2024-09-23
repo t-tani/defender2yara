@@ -20,3 +20,47 @@ rule Trojan_Win64_ClearFake_YAA_2147920970_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_ClearFake_NA_2147921647_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/ClearFake.NA!MTB"
+        threat_id = "2147921647"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "ClearFake"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {cc cc cc cc cc cc 48 83 fe 00 75 01 c3 44 30 27 48 8d 05 ?? ?? 00 00}  //weight: 5, accuracy: Low
+        $x_3_2 = {cc cc cc 48 ff c7 48 ff ce e9 ?? ?? ff ff}  //weight: 3, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_ClearFake_NB_2147921648_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/ClearFake.NB!MTB"
+        threat_id = "2147921648"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "ClearFake"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {48 83 fe 00 75 01 c3 44 30 27 48 8d 05 ?? ?? 00 00}  //weight: 5, accuracy: Low
+        $x_3_2 = {48 ff c7 48 ff ce e9 ?? ?? ff ff}  //weight: 3, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

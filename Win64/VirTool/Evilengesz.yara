@@ -1,9 +1,9 @@
-rule VirTool_Win64_Evilengesz_A_2147921518_0
+rule VirTool_Win64_Evilengesz_A_2147921598_0
 {
     meta:
         author = "defender2yara"
         detection_name = "VirTool:Win64/Evilengesz.A!MTB"
-        threat_id = "2147921518"
+        threat_id = "2147921598"
         type = "VirTool"
         platform = "Win64: Windows 64-bit platform"
         family = "Evilengesz"

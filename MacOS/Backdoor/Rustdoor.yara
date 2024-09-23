@@ -96,3 +96,26 @@ rule Backdoor_MacOS_Rustdoor_D_2147914720_0
         (all of ($x*))
 }
 
+rule Backdoor_MacOS_Rustdoor_E_2147921652_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Backdoor:MacOS/Rustdoor.E!MTB"
+        threat_id = "2147921652"
+        type = "Backdoor"
+        platform = "MacOS: "
+        family = "Rustdoor"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_MACHOHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "rc_remote_load_command" ascii //weight: 1
+        $x_1_2 = "launch_inject" ascii //weight: 1
+        $x_1_3 = "commandtaskkilldownload" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

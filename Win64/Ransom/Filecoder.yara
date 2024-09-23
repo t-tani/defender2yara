@@ -429,3 +429,29 @@ rule Ransom_Win64_Filecoder_CCJB_2147915676_0
         (all of ($x*))
 }
 
+rule Ransom_Win64_Filecoder_GV_2147920833_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win64/Filecoder.GV!MTB"
+        threat_id = "2147920833"
+        type = "Ransom"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Filecoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "14"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = "README.txt" ascii //weight: 5
+        $x_5_2 = ".onion" ascii //weight: 5
+        $x_1_3 = "main.erase" ascii //weight: 1
+        $x_1_4 = "main.doEncrypt" ascii //weight: 1
+        $x_1_5 = "os.(*Process).kill" ascii //weight: 1
+        $x_1_6 = "main.Run" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

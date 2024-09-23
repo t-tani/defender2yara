@@ -47,3 +47,31 @@ rule Trojan_AndroidOS_IOBot_PH_2147919997_0
         (all of ($x*))
 }
 
+rule Trojan_AndroidOS_IOBot_B_2147921654_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:AndroidOS/IOBot.B!MTB"
+        threat_id = "2147921654"
+        type = "Trojan"
+        platform = "AndroidOS: Android operating system"
+        family = "IOBot"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "com.kr.mt" ascii //weight: 2
+        $x_1_2 = "IOBot.getPhoneNumber" ascii //weight: 1
+        $x_1_3 = "IOBot.getPhoneModel" ascii //weight: 1
+        $x_1_4 = "IOBot.getScreenStatus" ascii //weight: 1
+        $x_1_5 = "services.AppAccessibilityService" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_2_*) and 3 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+

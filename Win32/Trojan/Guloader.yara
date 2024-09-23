@@ -4123,12 +4123,12 @@ rule Trojan_Win32_Guloader_CT_2147919378_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Guloader_CU_2147921461_0
+rule Trojan_Win32_Guloader_CU_2147921519_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Guloader.CU!MTB"
-        threat_id = "2147921461"
+        threat_id = "2147921519"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Guloader"
@@ -4150,12 +4150,12 @@ rule Trojan_Win32_Guloader_CU_2147921461_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Guloader_CV_2147921462_0
+rule Trojan_Win32_Guloader_CV_2147921520_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Guloader.CV!MTB"
-        threat_id = "2147921462"
+        threat_id = "2147921520"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Guloader"
@@ -4172,6 +4172,29 @@ rule Trojan_Win32_Guloader_CV_2147921462_0
         $x_1_5 = "elffriend\\chemosmoic.ini" wide //weight: 1
         $x_1_6 = "elektronikteknikernes.dll" wide //weight: 1
         $x_1_7 = "nocktat\\Kartouchens.dll" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Guloader_KAD_2147921620_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Guloader.KAD!MTB"
+        threat_id = "2147921620"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Guloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "militaristerne.smo" ascii //weight: 1
+        $x_1_2 = "momentvis.fin" ascii //weight: 1
+        $x_1_3 = "Antiderivative" ascii //weight: 1
     condition:
         (filesize < 20MB) and
         (all of ($x*))

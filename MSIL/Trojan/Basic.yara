@@ -20,3 +20,24 @@ rule Trojan_MSIL_Basic_SK_2147852032_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Basic_KAA_2147921617_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Basic.KAA!MTB"
+        threat_id = "2147921617"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Basic"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {28 32 01 00 06 fe 0e 01 00 28 33 01 00 06 28 34 01 00 06 28 35 01 00 06 61 28 36 01 00 06 40 10 00 00 00 28 37 01 00 06 fe 0e 01 00}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

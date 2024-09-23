@@ -2102,12 +2102,12 @@ rule Trojan_Win32_Fauppod_SEZC_2147921058_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Fauppod_AMA_2147921532_0
+rule Trojan_Win32_Fauppod_AMA_2147921612_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Fauppod.AMA!MTB"
-        threat_id = "2147921532"
+        threat_id = "2147921612"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Fauppod"
@@ -2118,6 +2118,27 @@ rule Trojan_Win32_Fauppod_AMA_2147921532_0
         strings_accuracy = "Low"
     strings:
         $x_1_1 = {55 89 e5 8a 45 0c 8a 4d 08 88 0d [0-40] 30 c8 [0-20] c7 05 [0-20] 0f b6 c0 5d c3}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Fauppod_AMB_2147921616_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Fauppod.AMB!MTB"
+        threat_id = "2147921616"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Fauppod"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {55 89 e5 56 50 8a 45 0c 8a 4d 08 88 45 fb 88 4d fa 0f b6 55 fa 0f b6 35 [0-50] 01 f2 88 d0 a2 [0-40] c7 05 ?? ?? ?? ?? ?? ?? ?? ?? 8a 45 [0-31] c7 05 ?? ?? ?? ?? ?? ?? ?? ?? 0f b6 15 ?? ?? ?? ?? 0f b6 35 ?? ?? ?? ?? 31 f2 88 d0 a2 [0-80] 83 c4 04 5e 5d c3}  //weight: 1, accuracy: Low
     condition:
         (filesize < 20MB) and
         (all of ($x*))

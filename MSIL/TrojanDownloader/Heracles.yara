@@ -477,3 +477,47 @@ rule TrojanDownloader_MSIL_Heracles_PAZ_2147917930_0
         (all of ($x*))
 }
 
+rule TrojanDownloader_MSIL_Heracles_VV_2147921556_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:MSIL/Heracles.VV!MTB"
+        threat_id = "2147921556"
+        type = "TrojanDownloader"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Heracles"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {07 72 15 00 00 70 6f 18 00 00 0a 0a dd 0d 00 00 00}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule TrojanDownloader_MSIL_Heracles_VV_2147921556_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:MSIL/Heracles.VV!MTB"
+        threat_id = "2147921556"
+        type = "TrojanDownloader"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Heracles"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {09 06 08 91 58 07 08 91 58 20 00 01 00 00 5d 0d 06 08 91 13 12 06 08 06 09 91 9c 06 09 11 12 9c 08 17 58 0c 08 20 00 01 00 00 32 d4}  //weight: 2, accuracy: High
+        $x_2_2 = "$375c5eff-0650-4301-85ef-382cfefa9adf" ascii //weight: 2
+        $x_2_3 = "VQP.exe" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

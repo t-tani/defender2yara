@@ -711,12 +711,12 @@ rule Trojan_Win32_Doina_YAA_2147920702_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Doina_HNL_2147921541_0
+rule Trojan_Win32_Doina_HNL_2147921636_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Doina.HNL!MTB"
-        threat_id = "2147921541"
+        threat_id = "2147921636"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Doina"

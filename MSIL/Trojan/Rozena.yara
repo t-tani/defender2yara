@@ -2327,3 +2327,25 @@ rule Trojan_MSIL_Rozena_SHPF_2147920488_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Rozena_KAI_2147921621_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Rozena.KAI!MTB"
+        threat_id = "2147921621"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Rozena"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {07 11 06 07 11 06 91 20 ?? 00 00 00 61 d2 9c 11 06 17 58 13 06 11 06 07 8e 69 32 e4}  //weight: 5, accuracy: Low
+        $x_1_2 = "VirtualAlloc" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -1906,12 +1906,34 @@ rule Trojan_Win32_LummaStealer_XCA_2147920797_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_LummaStealer_AQ_2147921459_0
+rule Trojan_Win32_LummaStealer_VG_2147921119_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaStealer.VG!MTB"
+        threat_id = "2147921119"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {f3 a5 8b 74 24 f8 8b 7c 24 f4 8d 54 24 04 ff 54 24 fc c3}  //weight: 2, accuracy: High
+        $x_1_2 = "Qkkbal" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_LummaStealer_AQ_2147921517_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/LummaStealer.AQ!MTB"
-        threat_id = "2147921459"
+        threat_id = "2147921517"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "LummaStealer"
@@ -1928,12 +1950,33 @@ rule Trojan_Win32_LummaStealer_AQ_2147921459_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_LummaStealer_RP_2147921539_0
+rule Trojan_Win32_LummaStealer_ALU_2147921525_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaStealer.ALU!MTB"
+        threat_id = "2147921525"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {81 c2 cf 66 de 19 89 d6 21 ce 89 d3 31 cb f7 d1 09 ca 29 d1 01 f1 8d 0c 4b 89 4d ec 8b 4d ec 80 c1 f5 8b 55 f0 88 4c 15 d0 ff 45 f0 8b 4d f0}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_LummaStealer_RP_2147921634_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/LummaStealer.RP!MTB"
-        threat_id = "2147921539"
+        threat_id = "2147921634"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "LummaStealer"

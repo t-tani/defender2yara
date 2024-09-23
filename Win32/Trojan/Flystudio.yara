@@ -135,3 +135,69 @@ rule Trojan_Win32_Flystudio_GPN_2147894387_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Flystudio_NF_2147899074_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Flystudio.NF!MTB"
+        threat_id = "2147899074"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Flystudio"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {33 db 39 1d ?? ?? ?? ?? 56 57 75 05 e8 44 fd ff ff be b0 f1 4d}  //weight: 5, accuracy: Low
+        $x_5_2 = {a1 64 08 4e 00 89 35 ?? ?? ?? ?? 8b fe 38 18 74 02 8b f8}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Flystudio_NF_2147899074_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Flystudio.NF!MTB"
+        threat_id = "2147899074"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Flystudio"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {eb de 8d 45 ?? 50 ff 15 9c 21 47 00 66 83 7d ea 00 0f 84 d1}  //weight: 5, accuracy: Low
+        $x_5_2 = {83 f9 ff 74 38 8a 03 a8 01 74 32 a8 ?? 75 0b 51 ff 15 50 23 47}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Flystudio_NF_2147899074_2
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Flystudio.NF!MTB"
+        threat_id = "2147899074"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Flystudio"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {3b f0 73 1e 80 66 04 00 83 0e ?? 83 66 08 00 c6 46 05 ?? a1 60 bc 61 00 83 c6 ?? 05 80 04 00 00 eb de}  //weight: 5, accuracy: Low
+        $x_1_2 = {eb de 8d 45 ?? 50 ff 15 94 51 49 00 66 83 7d ?? 00 0f 84 d1}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

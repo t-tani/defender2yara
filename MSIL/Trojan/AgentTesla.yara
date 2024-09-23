@@ -105096,12 +105096,36 @@ rule Trojan_MSIL_AgentTesla_MBXT_2147921001_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_AgentTesla_RDCD_2147921507_0
+rule Trojan_MSIL_AgentTesla_SMF_2147921474_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.SMF!MTB"
+        threat_id = "2147921474"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "$3bd14160-f0b7-47bf-83f9-b0a2e7ca628e" ascii //weight: 1
+        $x_1_2 = "Hadouken.Properties.Resources.resources" ascii //weight: 1
+        $x_1_3 = "InvokeMember" ascii //weight: 1
+        $x_1_4 = "GetTypes" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_AgentTesla_RDCD_2147921584_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/AgentTesla.RDCD!MTB"
-        threat_id = "2147921507"
+        threat_id = "2147921584"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "AgentTesla"
@@ -105112,6 +105136,30 @@ rule Trojan_MSIL_AgentTesla_RDCD_2147921507_0
         strings_accuracy = "High"
     strings:
         $x_2_1 = {04 6f 42 00 00 0a 8e 69 5d 91 61 d2 9c 00 06 17 58 0a}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_AgentTesla_PNE_2147921664_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.PNE!MTB"
+        threat_id = "2147921664"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "9"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = "EbvsOCcOBZhzqaH" wide //weight: 5
+        $x_2_2 = "$c4295815-fcc4-4307-95e2-f9691bc7fbe3" ascii //weight: 2
+        $x_1_3 = "CreateDecryptor" ascii //weight: 1
+        $x_1_4 = "RijndaelManaged" ascii //weight: 1
     condition:
         (filesize < 20MB) and
         (all of ($x*))

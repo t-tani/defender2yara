@@ -41,12 +41,12 @@ rule Trojan_Win64_ShellCodeRunner_NS_2147914182_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_ShellCodeRunner_AB_2147921435_0
+rule Trojan_Win64_ShellCodeRunner_AB_2147921487_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/ShellCodeRunner.AB!MTB"
-        threat_id = "2147921435"
+        threat_id = "2147921487"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "ShellCodeRunner"

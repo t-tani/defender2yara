@@ -5861,6 +5861,29 @@ rule Trojan_MSIL_SnakeKeylogger_SML_2147918329_0
         threshold = "3"
         strings_accuracy = "High"
     strings:
+        $x_1_1 = "Nflzptummq" ascii //weight: 1
+        $x_1_2 = "$a03f1576-8580-4ed5-9252-0b81728488e8" ascii //weight: 1
+        $x_1_3 = {06 07 a3 02 00 00 01 28 05 00 00 06 dd 06 00 00 00}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_SnakeKeylogger_SML_2147918329_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/SnakeKeylogger.SML!MTB"
+        threat_id = "2147918329"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "SnakeKeylogger"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
         $x_1_1 = "https://www.vascocorretora.com.br/PPI/" ascii //weight: 1
         $x_1_2 = "GetByteArrayAsync" ascii //weight: 1
         $x_1_3 = "FromBase64String" ascii //weight: 1
@@ -6118,12 +6141,12 @@ rule Trojan_MSIL_SnakeKeylogger_SJQA_2147920781_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_SnakeKeylogger_STSG_2147921515_0
+rule Trojan_MSIL_SnakeKeylogger_STSG_2147921592_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/SnakeKeylogger.STSG!MTB"
-        threat_id = "2147921515"
+        threat_id = "2147921592"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "SnakeKeylogger"
@@ -6139,12 +6162,12 @@ rule Trojan_MSIL_SnakeKeylogger_STSG_2147921515_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_SnakeKeylogger_PPBH_2147921560_0
+rule Trojan_MSIL_SnakeKeylogger_PPBH_2147921667_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/SnakeKeylogger.PPBH!MTB"
-        threat_id = "2147921560"
+        threat_id = "2147921667"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "SnakeKeylogger"

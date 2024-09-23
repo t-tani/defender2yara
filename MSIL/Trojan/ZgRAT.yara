@@ -1216,3 +1216,24 @@ rule Trojan_MSIL_ZgRAT_AD_2147917003_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_ZgRAT_KAO_2147921618_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/ZgRAT.KAO!MTB"
+        threat_id = "2147921618"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "ZgRAT"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {11 1d 11 09 11 21 11 22 61 19 11 42 58 61 11 34 61 d2 9c}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
