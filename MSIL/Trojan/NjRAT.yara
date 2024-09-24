@@ -1110,12 +1110,12 @@ rule Trojan_MSIL_NjRAT_KAAF_2147920823_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_NjRAT_KAAO_2147921691_0
+rule Trojan_MSIL_NjRAT_KAAO_2147921713_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/NjRAT.KAAO!MTB"
-        threat_id = "2147921691"
+        threat_id = "2147921713"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "NjRAT"
@@ -1131,12 +1131,12 @@ rule Trojan_MSIL_NjRAT_KAAO_2147921691_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_NjRAT_KAAR_2147921698_0
+rule Trojan_MSIL_NjRAT_KAAR_2147921720_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/NjRAT.KAAR!MTB"
-        threat_id = "2147921698"
+        threat_id = "2147921720"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "NjRAT"

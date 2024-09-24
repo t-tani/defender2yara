@@ -183,12 +183,12 @@ rule Trojan_MSIL_MassLogger_MBXU_2147920462_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_MassLogger_MBXT_2147921559_0
+rule Trojan_MSIL_MassLogger_MBXT_2147921574_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/MassLogger.MBXT!MTB"
-        threat_id = "2147921559"
+        threat_id = "2147921574"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "MassLogger"

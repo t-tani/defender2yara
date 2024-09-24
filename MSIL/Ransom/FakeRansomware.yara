@@ -1,9 +1,9 @@
-rule Ransom_MSIL_FakeRansomware_AFK_2147921582_0
+rule Ransom_MSIL_FakeRansomware_AFK_2147921599_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Ransom:MSIL/FakeRansomware.AFK!MTB"
-        threat_id = "2147921582"
+        threat_id = "2147921599"
         type = "Ransom"
         platform = "MSIL: .NET intermediate language scripts"
         family = "FakeRansomware"

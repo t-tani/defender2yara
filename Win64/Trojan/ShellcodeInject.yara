@@ -129,12 +129,12 @@ rule Trojan_Win64_ShellcodeInject_OKZ_2147920973_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_ShellcodeInject_OLE_2147921623_0
+rule Trojan_Win64_ShellcodeInject_OLE_2147921645_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/ShellcodeInject.OLE!MTB"
-        threat_id = "2147921623"
+        threat_id = "2147921645"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "ShellcodeInject"

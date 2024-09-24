@@ -1524,12 +1524,12 @@ rule Backdoor_MSIL_Remcos_KAAT_2147920821_0
         (all of ($x*))
 }
 
-rule Backdoor_MSIL_Remcos_XGAA_2147921609_0
+rule Backdoor_MSIL_Remcos_XGAA_2147921631_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Backdoor:MSIL/Remcos.XGAA!MTB"
-        threat_id = "2147921609"
+        threat_id = "2147921631"
         type = "Backdoor"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Remcos"

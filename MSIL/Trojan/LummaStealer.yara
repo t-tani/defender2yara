@@ -1828,6 +1828,28 @@ rule Trojan_MSIL_LummaStealer_CCJB_2147917223_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_LummaStealer_CCJB_2147917223_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/LummaStealer.CCJB!MTB"
+        threat_id = "2147917223"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {06 07 06 07 93 20 98 00 00 00 61 02 61 d1 9d 07 17 59 25 0b 16 2f e9}  //weight: 1, accuracy: High
+        $x_2_2 = {11 06 11 07 11 05 11 07 6f d9 00 00 0a 20 67 0f 00 00 61 d1 9d 1f 09 13 09}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_LummaStealer_LLO_2147917735_0
 {
     meta:
@@ -2052,12 +2074,12 @@ rule Trojan_MSIL_LummaStealer_AMAI_2147920676_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_LummaStealer_AYB_2147921548_0
+rule Trojan_MSIL_LummaStealer_AYB_2147921563_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/LummaStealer.AYB!MTB"
-        threat_id = "2147921548"
+        threat_id = "2147921563"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "LummaStealer"
@@ -2075,12 +2097,12 @@ rule Trojan_MSIL_LummaStealer_AYB_2147921548_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_LummaStealer_AYC_2147921549_0
+rule Trojan_MSIL_LummaStealer_AYC_2147921564_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/LummaStealer.AYC!MTB"
-        threat_id = "2147921549"
+        threat_id = "2147921564"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "LummaStealer"
@@ -2099,12 +2121,12 @@ rule Trojan_MSIL_LummaStealer_AYC_2147921549_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_LummaStealer_GPD_2147921724_0
+rule Trojan_MSIL_LummaStealer_GPD_2147921746_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/LummaStealer.GPD!MTB"
-        threat_id = "2147921724"
+        threat_id = "2147921746"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "LummaStealer"

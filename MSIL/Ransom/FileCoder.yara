@@ -1150,12 +1150,12 @@ rule Ransom_MSIL_FileCoder_AYC_2147920018_1
         (all of ($x*))
 }
 
-rule Ransom_MSIL_FileCoder_AYD_2147921551_0
+rule Ransom_MSIL_FileCoder_AYD_2147921566_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Ransom:MSIL/FileCoder.AYD!MTB"
-        threat_id = "2147921551"
+        threat_id = "2147921566"
         type = "Ransom"
         platform = "MSIL: .NET intermediate language scripts"
         family = "FileCoder"
@@ -1174,12 +1174,12 @@ rule Ransom_MSIL_FileCoder_AYD_2147921551_0
         (all of ($x*))
 }
 
-rule Ransom_MSIL_FileCoder_MX_2147921599_0
+rule Ransom_MSIL_FileCoder_MX_2147921621_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Ransom:MSIL/FileCoder.MX!MTB"
-        threat_id = "2147921599"
+        threat_id = "2147921621"
         type = "Ransom"
         platform = "MSIL: .NET intermediate language scripts"
         family = "FileCoder"

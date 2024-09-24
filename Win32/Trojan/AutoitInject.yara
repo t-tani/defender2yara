@@ -2700,12 +2700,12 @@ rule Trojan_Win32_AutoitInject_KAE_2147920945_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_AutoitInject_WZAA_2147921605_0
+rule Trojan_Win32_AutoitInject_WZAA_2147921627_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/AutoitInject.WZAA!MTB"
-        threat_id = "2147921605"
+        threat_id = "2147921627"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "AutoitInject"
@@ -2725,12 +2725,12 @@ rule Trojan_Win32_AutoitInject_WZAA_2147921605_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_AutoitInject_AMA_2147921679_0
+rule Trojan_Win32_AutoitInject_AMA_2147921701_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/AutoitInject.AMA!MTB"
-        threat_id = "2147921679"
+        threat_id = "2147921701"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "AutoitInject"
@@ -2754,12 +2754,12 @@ rule Trojan_Win32_AutoitInject_AMA_2147921679_0
         )
 }
 
-rule Trojan_Win32_AutoitInject_NF_2147921733_0
+rule Trojan_Win32_AutoitInject_NF_2147921755_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/AutoitInject.NF!MTB"
-        threat_id = "2147921733"
+        threat_id = "2147921755"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "AutoitInject"
@@ -2795,12 +2795,12 @@ rule Trojan_Win32_AutoitInject_NF_2147921733_0
         )
 }
 
-rule Trojan_Win32_AutoitInject_NK_2147921737_0
+rule Trojan_Win32_AutoitInject_NK_2147921759_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/AutoitInject.NK!MTB"
-        threat_id = "2147921737"
+        threat_id = "2147921759"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "AutoitInject"
@@ -2824,6 +2824,44 @@ rule Trojan_Win32_AutoitInject_NK_2147921737_0
             ((1 of ($x_3_*) and 2 of ($x_2_*) and 1 of ($x_1_*))) or
             ((2 of ($x_3_*) and 2 of ($x_1_*))) or
             ((2 of ($x_3_*) and 1 of ($x_2_*))) or
+            (all of ($x*))
+        )
+}
+
+rule Trojan_Win32_AutoitInject_NM_2147921762_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.NM!MTB"
+        threat_id = "2147921762"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {53 00 61 00 76 00 65 00 54 00 6f 00 46 00 69 00 6c 00 65 00 20 00 28 00 20 00 40 00 54 00 45 00 4d 00 50 00 44 00 49 00 52 00 20 00 26 00 20 00 22 00 5c 00 [0-47] 22 00 20 00 2c 00 20 00 32 00 20 00 29 00}  //weight: 3, accuracy: Low
+        $x_3_2 = {53 61 76 65 54 6f 46 69 6c 65 20 28 20 40 54 45 4d 50 44 49 52 20 26 20 22 5c [0-47] 22 20 2c 20 32 20 29}  //weight: 3, accuracy: Low
+        $x_2_3 = {57 00 72 00 69 00 74 00 65 00 20 00 28 00 20 00 42 00 49 00 4e 00 41 00 52 00 59 00 20 00 28 00 20 00 24 00 [0-47] 20 00 29 00 20 00 29 00}  //weight: 2, accuracy: Low
+        $x_2_4 = {57 72 69 74 65 20 28 20 42 49 4e 41 52 59 20 28 20 24 [0-47] 20 29 20 29}  //weight: 2, accuracy: Low
+        $x_1_5 = {4c 00 4f 00 43 00 41 00 4c 00 20 00 24 00 [0-47] 20 00 3d 00 20 00 53 00 54 00 52 00 49 00 4e 00 47 00 4c 00 45 00 4e 00}  //weight: 1, accuracy: Low
+        $x_1_6 = {4c 4f 43 41 4c 20 24 [0-47] 20 3d 20 53 54 52 49 4e 47 4c 45 4e}  //weight: 1, accuracy: Low
+        $x_1_7 = "&= STRINGLEFT ( " ascii //weight: 1
+        $x_1_8 = "d9T0qwT5" ascii //weight: 1
+        $x_1_9 = "pd9T0qwT5td9T0qwT5rd9T0qwT5" ascii //weight: 1
+        $x_1_10 = "kd9T0qwT5ed9T0qwT5rd9T0qwT5nd9T0qwT5ed9T0qwT5ld9T0qwT53d9T0qwT52d9T0qwT5" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((2 of ($x_2_*) and 6 of ($x_1_*))) or
+            ((1 of ($x_3_*) and 1 of ($x_2_*) and 5 of ($x_1_*))) or
+            ((1 of ($x_3_*) and 2 of ($x_2_*) and 3 of ($x_1_*))) or
+            ((2 of ($x_3_*) and 4 of ($x_1_*))) or
+            ((2 of ($x_3_*) and 1 of ($x_2_*) and 2 of ($x_1_*))) or
+            ((2 of ($x_3_*) and 2 of ($x_2_*))) or
             (all of ($x*))
         )
 }

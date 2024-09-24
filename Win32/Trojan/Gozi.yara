@@ -3287,12 +3287,12 @@ rule Trojan_Win32_Gozi_RPZ_2147892276_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Gozi_KYY_2147921637_0
+rule Trojan_Win32_Gozi_KYY_2147921659_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Gozi.KYY!MTB"
-        threat_id = "2147921637"
+        threat_id = "2147921659"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Gozi"

@@ -625,12 +625,12 @@ rule Trojan_Win64_ShellcodeRunner_KGG_2147920136_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_ShellcodeRunner_EXP_2147921622_0
+rule Trojan_Win64_ShellcodeRunner_EXP_2147921644_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/ShellcodeRunner.EXP!MTB"
-        threat_id = "2147921622"
+        threat_id = "2147921644"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "ShellcodeRunner"
@@ -647,12 +647,12 @@ rule Trojan_Win64_ShellcodeRunner_EXP_2147921622_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_ShellcodeRunner_HMM_2147921629_0
+rule Trojan_Win64_ShellcodeRunner_HMM_2147921651_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/ShellcodeRunner.HMM!MTB"
-        threat_id = "2147921629"
+        threat_id = "2147921651"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "ShellcodeRunner"
@@ -668,33 +668,30 @@ rule Trojan_Win64_ShellcodeRunner_HMM_2147921629_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_ShellcodeRunner_HNB_2147921730_0
+rule Trojan_Win64_ShellcodeRunner_HNB_2147921752_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/ShellcodeRunner.HNB!MTB"
-        threat_id = "2147921730"
+        threat_id = "2147921752"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "ShellcodeRunner"
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "12"
+        threshold = "3"
         strings_accuracy = "Low"
     strings:
-        $x_10_1 = {46 61 69 6c 65 64 20 69 6e 20 63 68 61 6e 67 69 6e 67 20 70 72 6f 74 65 63 74 69 6f 6e 20 28 25 75 29 [0-16] 46 61 69 6c 65 64 20 69 6e 20 63 68 61 6e 67 69 6e 67 20 70 72 6f 74 65 63 74 69 6f 6e 20 62 61 63 6b 20 28 25 75 29}  //weight: 10, accuracy: Low
-        $x_10_2 = "FC-48-83-E4-F0-E8" ascii //weight: 10
-        $x_5_3 = "C0-00-00-00-41-51" ascii //weight: 5
-        $x_5_4 = "41-50-52-51-56-48" ascii //weight: 5
-        $x_2_5 = "NtCreateThreadEx Hooked" ascii //weight: 2
+        $x_2_1 = {46 61 69 6c 65 64 20 69 6e 20 63 68 61 6e 67 69 6e 67 20 70 72 6f 74 65 63 74 69 6f 6e 20 28 25 75 29 [0-16] 46 61 69 6c 65 64 20 69 6e 20 63 68 61 6e 67 69 6e 67 20 70 72 6f 74 65 63 74 69 6f 6e 20 62 61 63 6b 20 28 25 75 29}  //weight: 2, accuracy: Low
+        $x_1_2 = "FC-48-83-E4-F0-E8" ascii //weight: 1
+        $x_1_3 = "C0-00-00-00-41-51" ascii //weight: 1
+        $x_1_4 = "NtCreateThreadEx Hooked" ascii //weight: 1
     condition:
         (filesize < 20MB) and
         (
-            ((2 of ($x_5_*) and 1 of ($x_2_*))) or
-            ((1 of ($x_10_*) and 1 of ($x_2_*))) or
-            ((1 of ($x_10_*) and 1 of ($x_5_*))) or
-            ((2 of ($x_10_*))) or
+            ((3 of ($x_1_*))) or
+            ((1 of ($x_2_*) and 1 of ($x_1_*))) or
             (all of ($x*))
         )
 }

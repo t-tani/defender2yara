@@ -1064,12 +1064,12 @@ rule Trojan_MSIL_Marsilia_WPAA_2147921081_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Marsilia_KAU_2147921690_0
+rule Trojan_MSIL_Marsilia_KAU_2147921712_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Marsilia.KAU!MTB"
-        threat_id = "2147921690"
+        threat_id = "2147921712"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Marsilia"
