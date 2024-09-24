@@ -1,9 +1,9 @@
-rule TrojanDownloader_MacOS_AmdDwn_B_2147921658_0
+rule TrojanDownloader_MacOS_AmdDwn_B_2147921682_0
 {
     meta:
         author = "defender2yara"
         detection_name = "TrojanDownloader:MacOS/AmdDwn.B!MTB"
-        threat_id = "2147921658"
+        threat_id = "2147921682"
         type = "TrojanDownloader"
         platform = "MacOS: "
         family = "AmdDwn"
@@ -24,12 +24,12 @@ rule TrojanDownloader_MacOS_AmdDwn_B_2147921658_0
         )
 }
 
-rule TrojanDownloader_MacOS_AmdDwn_A_2147921666_0
+rule TrojanDownloader_MacOS_AmdDwn_A_2147921690_0
 {
     meta:
         author = "defender2yara"
         detection_name = "TrojanDownloader:MacOS/AmdDwn.A!MTB"
-        threat_id = "2147921666"
+        threat_id = "2147921690"
         type = "TrojanDownloader"
         platform = "MacOS: "
         family = "AmdDwn"

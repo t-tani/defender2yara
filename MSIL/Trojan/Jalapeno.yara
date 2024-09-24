@@ -414,12 +414,12 @@ rule Trojan_MSIL_Jalapeno_VEAA_2147920050_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Jalapeno_XMAA_2147921559_0
+rule Trojan_MSIL_Jalapeno_XMAA_2147921582_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Jalapeno.XMAA!MTB"
-        threat_id = "2147921559"
+        threat_id = "2147921582"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Jalapeno"
@@ -438,12 +438,12 @@ rule Trojan_MSIL_Jalapeno_XMAA_2147921559_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Jalapeno_SK_2147921563_0
+rule Trojan_MSIL_Jalapeno_SK_2147921586_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Jalapeno.SK!MTB"
-        threat_id = "2147921563"
+        threat_id = "2147921586"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Jalapeno"
@@ -459,12 +459,12 @@ rule Trojan_MSIL_Jalapeno_SK_2147921563_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Jalapeno_SARA_2147921602_0
+rule Trojan_MSIL_Jalapeno_SARA_2147921625_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Jalapeno.SARA!MTB"
-        threat_id = "2147921602"
+        threat_id = "2147921625"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Jalapeno"
@@ -480,12 +480,12 @@ rule Trojan_MSIL_Jalapeno_SARA_2147921602_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Jalapeno_AMB_2147921620_0
+rule Trojan_MSIL_Jalapeno_AMB_2147921644_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Jalapeno.AMB!MTB"
-        threat_id = "2147921620"
+        threat_id = "2147921644"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Jalapeno"
@@ -502,12 +502,12 @@ rule Trojan_MSIL_Jalapeno_AMB_2147921620_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Jalapeno_VV_2147921681_0
+rule Trojan_MSIL_Jalapeno_VV_2147921705_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Jalapeno.VV!MTB"
-        threat_id = "2147921681"
+        threat_id = "2147921705"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Jalapeno"

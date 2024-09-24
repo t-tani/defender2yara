@@ -1,9 +1,9 @@
-rule VirTool_Win64_Chromekatz_A_2147921507_0
+rule VirTool_Win64_Chromekatz_A_2147921530_0
 {
     meta:
         author = "defender2yara"
         detection_name = "VirTool:Win64/Chromekatz.A"
-        threat_id = "2147921507"
+        threat_id = "2147921530"
         type = "VirTool"
         platform = "Win64: Windows 64-bit platform"
         family = "Chromekatz"

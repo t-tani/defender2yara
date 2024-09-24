@@ -172,3 +172,26 @@ rule Trojan_Win32_AutoInject_CCJC_2147921090_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_AutoInject_CCJD_2147921638_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoInject.CCJD!MTB"
+        threat_id = "2147921638"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "d9T0qwT5Ad9T0qwT5Dd9T0qwT5Od9T0qwT5Dd9T0qwT5Bd9T0qwT5.d9T0qwT5Sd9T0qwT5td9T0qwT5rd9T0qwT5ed9T0qwT5ad9T0qwT5md9T0qwT5" ascii //weight: 2
+        $x_1_2 = "kd9T0qwT5ed9T0qwT5rd9T0qwT5nd9T0qwT5ed9T0qwT5ld9T0qwT53d9T0qwT52d9T0qwT5" ascii //weight: 1
+        $x_1_3 = "Vd9T0qwT5id9T0qwT5rd9T0qwT5td9T0qwT5ud9T0qwT5ad9T0qwT5ld9T0qwT5Pd9T0qwT5rd9T0qwT5od9T0qwT5td9T0qwT5ed9T0qwT5cd9T0qwT5td9T0qwT5" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -47,12 +47,12 @@ rule Trojan_AndroidOS_IOBot_PH_2147919997_0
         (all of ($x*))
 }
 
-rule Trojan_AndroidOS_IOBot_B_2147921659_0
+rule Trojan_AndroidOS_IOBot_B_2147921683_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:AndroidOS/IOBot.B!MTB"
-        threat_id = "2147921659"
+        threat_id = "2147921683"
         type = "Trojan"
         platform = "AndroidOS: Android operating system"
         family = "IOBot"
