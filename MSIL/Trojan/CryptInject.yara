@@ -3021,12 +3021,12 @@ rule Trojan_MSIL_CryptInject_RHQ_2147918334_0
         )
 }
 
-rule Trojan_MSIL_CryptInject_MBXT_2147921506_0
+rule Trojan_MSIL_CryptInject_MBXT_2147921511_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/CryptInject.MBXT!MTB"
-        threat_id = "2147921506"
+        threat_id = "2147921511"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "CryptInject"
@@ -3044,12 +3044,12 @@ rule Trojan_MSIL_CryptInject_MBXT_2147921506_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_CryptInject_MBXU_2147921507_0
+rule Trojan_MSIL_CryptInject_MBXU_2147921512_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/CryptInject.MBXU!MTB"
-        threat_id = "2147921507"
+        threat_id = "2147921512"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "CryptInject"

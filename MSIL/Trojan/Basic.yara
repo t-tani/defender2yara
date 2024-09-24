@@ -20,12 +20,12 @@ rule Trojan_MSIL_Basic_SK_2147852032_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Basic_KAA_2147921617_0
+rule Trojan_MSIL_Basic_KAA_2147921622_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Basic.KAA!MTB"
-        threat_id = "2147921617"
+        threat_id = "2147921622"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Basic"

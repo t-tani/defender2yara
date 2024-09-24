@@ -1,9 +1,9 @@
-rule Trojan_Win64_RedCapGo_AB_2147921488_0
+rule Trojan_Win64_RedCapGo_AB_2147921493_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/RedCapGo.AB!MTB"
-        threat_id = "2147921488"
+        threat_id = "2147921493"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "RedCapGo"

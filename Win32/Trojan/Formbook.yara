@@ -1578,12 +1578,12 @@ rule Trojan_Win32_Formbook_AMAT_2147916813_0
         )
 }
 
-rule Trojan_Win32_Formbook_AMA_2147921613_0
+rule Trojan_Win32_Formbook_AMA_2147921618_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Formbook.AMA!MTB"
-        threat_id = "2147921613"
+        threat_id = "2147921618"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Formbook"

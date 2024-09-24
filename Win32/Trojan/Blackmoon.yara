@@ -205,12 +205,12 @@ rule Trojan_Win32_Blackmoon_NC_2147917179_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Blackmoon_PPDW_2147921669_0
+rule Trojan_Win32_Blackmoon_PPDW_2147921674_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Blackmoon.PPDW!MTB"
-        threat_id = "2147921669"
+        threat_id = "2147921674"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Blackmoon"

@@ -625,12 +625,12 @@ rule Trojan_Win64_ShellcodeRunner_KGG_2147920136_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_ShellcodeRunner_EXP_2147921563_0
+rule Trojan_Win64_ShellcodeRunner_EXP_2147921568_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/ShellcodeRunner.EXP!MTB"
-        threat_id = "2147921563"
+        threat_id = "2147921568"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "ShellcodeRunner"
@@ -647,12 +647,12 @@ rule Trojan_Win64_ShellcodeRunner_EXP_2147921563_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_ShellcodeRunner_HNB_2147921639_0
+rule Trojan_Win64_ShellcodeRunner_HNB_2147921644_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/ShellcodeRunner.HNB!MTB"
-        threat_id = "2147921639"
+        threat_id = "2147921644"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "ShellcodeRunner"

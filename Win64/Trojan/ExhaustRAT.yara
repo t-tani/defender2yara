@@ -1,9 +1,9 @@
-rule Trojan_Win64_ExhaustRAT_AB_2147921489_0
+rule Trojan_Win64_ExhaustRAT_AB_2147921494_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/ExhaustRAT.AB!MTB"
-        threat_id = "2147921489"
+        threat_id = "2147921494"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "ExhaustRAT"

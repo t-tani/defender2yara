@@ -1,9 +1,9 @@
-rule VirTool_Win64_Ghostrikesz_A_2147921601_0
+rule VirTool_Win64_Ghostrikesz_A_2147921606_0
 {
     meta:
         author = "defender2yara"
         detection_name = "VirTool:Win64/Ghostrikesz.A!MTB"
-        threat_id = "2147921601"
+        threat_id = "2147921606"
         type = "VirTool"
         platform = "Win64: Windows 64-bit platform"
         family = "Ghostrikesz"
