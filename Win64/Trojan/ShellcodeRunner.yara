@@ -625,12 +625,12 @@ rule Trojan_Win64_ShellcodeRunner_KGG_2147920136_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_ShellcodeRunner_EXP_2147921603_0
+rule Trojan_Win64_ShellcodeRunner_EXP_2147921622_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/ShellcodeRunner.EXP!MTB"
-        threat_id = "2147921603"
+        threat_id = "2147921622"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "ShellcodeRunner"
@@ -647,12 +647,33 @@ rule Trojan_Win64_ShellcodeRunner_EXP_2147921603_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_ShellcodeRunner_HNB_2147921709_0
+rule Trojan_Win64_ShellcodeRunner_HMM_2147921629_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/ShellcodeRunner.HMM!MTB"
+        threat_id = "2147921629"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "ShellcodeRunner"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {0f b6 08 80 f1 03 88 08 44 0f b6 c1 f6 c2 01 75 07 41 80 f0 02 44 88 00 ff c2 48 ff c0 3b d7}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_ShellcodeRunner_HNB_2147921730_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/ShellcodeRunner.HNB!MTB"
-        threat_id = "2147921709"
+        threat_id = "2147921730"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "ShellcodeRunner"

@@ -223,12 +223,12 @@ rule Trojan_MSIL_PureCrypter_VZAA_2147920643_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_PureCrypter_APC_2147921563_0
+rule Trojan_MSIL_PureCrypter_APC_2147921581_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/PureCrypter.APC!MTB"
-        threat_id = "2147921563"
+        threat_id = "2147921581"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "PureCrypter"

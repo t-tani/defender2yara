@@ -20,12 +20,12 @@ rule Trojan_Win64_ClearFake_YAA_2147920970_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_ClearFake_NA_2147921717_0
+rule Trojan_Win64_ClearFake_NA_2147921738_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/ClearFake.NA!MTB"
-        threat_id = "2147921717"
+        threat_id = "2147921738"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "ClearFake"
@@ -42,12 +42,12 @@ rule Trojan_Win64_ClearFake_NA_2147921717_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_ClearFake_NB_2147921718_0
+rule Trojan_Win64_ClearFake_NB_2147921739_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/ClearFake.NB!MTB"
-        threat_id = "2147921718"
+        threat_id = "2147921739"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "ClearFake"

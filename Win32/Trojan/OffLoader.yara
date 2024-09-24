@@ -2456,12 +2456,12 @@ rule Trojan_Win32_OffLoader_ADP_2147920914_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_OffLoader_SHLQ_2147921630_0
+rule Trojan_Win32_OffLoader_SHLQ_2147921650_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/OffLoader.SHLQ!MTB"
-        threat_id = "2147921630"
+        threat_id = "2147921650"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "OffLoader"
@@ -2478,12 +2478,12 @@ rule Trojan_Win32_OffLoader_SHLQ_2147921630_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_OffLoader_SDQB_2147921634_0
+rule Trojan_Win32_OffLoader_SDQB_2147921654_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/OffLoader.SDQB!MTB"
-        threat_id = "2147921634"
+        threat_id = "2147921654"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "OffLoader"
@@ -2500,12 +2500,12 @@ rule Trojan_Win32_OffLoader_SDQB_2147921634_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_OffLoader_SPHP_2147921636_0
+rule Trojan_Win32_OffLoader_SPHP_2147921656_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/OffLoader.SPHP!MTB"
-        threat_id = "2147921636"
+        threat_id = "2147921656"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "OffLoader"
@@ -2522,12 +2522,12 @@ rule Trojan_Win32_OffLoader_SPHP_2147921636_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_OffLoader_SDDP_2147921637_0
+rule Trojan_Win32_OffLoader_SDDP_2147921657_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/OffLoader.SDDP!MTB"
-        threat_id = "2147921637"
+        threat_id = "2147921657"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "OffLoader"

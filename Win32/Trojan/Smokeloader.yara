@@ -5477,12 +5477,12 @@ rule Trojan_Win32_Smokeloader_CZS_2147920029_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Smokeloader_RKB_2147921608_0
+rule Trojan_Win32_Smokeloader_RKB_2147921627_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Smokeloader.RKB!MTB"
-        threat_id = "2147921608"
+        threat_id = "2147921627"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Smokeloader"
@@ -5498,12 +5498,12 @@ rule Trojan_Win32_Smokeloader_RKB_2147921608_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Smokeloader_KNO_2147921613_0
+rule Trojan_Win32_Smokeloader_KNO_2147921633_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Smokeloader.KNO!MTB"
-        threat_id = "2147921613"
+        threat_id = "2147921633"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Smokeloader"
@@ -5519,12 +5519,12 @@ rule Trojan_Win32_Smokeloader_KNO_2147921613_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Smokeloader_KIZ_2147921616_0
+rule Trojan_Win32_Smokeloader_KIZ_2147921636_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Smokeloader.KIZ!MTB"
-        threat_id = "2147921616"
+        threat_id = "2147921636"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Smokeloader"

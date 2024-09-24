@@ -533,12 +533,12 @@ rule TrojanSpy_MSIL_Noon_SCK_2147920469_1
         (all of ($x*))
 }
 
-rule TrojanSpy_MSIL_Noon_SDK_2147921597_0
+rule TrojanSpy_MSIL_Noon_SDK_2147921616_0
 {
     meta:
         author = "defender2yara"
         detection_name = "TrojanSpy:MSIL/Noon.SDK!MTB"
-        threat_id = "2147921597"
+        threat_id = "2147921616"
         type = "TrojanSpy"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Noon"

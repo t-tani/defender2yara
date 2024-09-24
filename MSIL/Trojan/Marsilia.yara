@@ -454,6 +454,28 @@ rule Trojan_MSIL_Marsilia_AMR_2147899662_1
         threshold = "3"
         strings_accuracy = "Low"
     strings:
+        $x_2_1 = {0a 00 02 0b 16 0c 2b 1a 07 08 91 0d 06 72 70 0a 00 70 09 8c 6f 00 00 01 6f ?? 00 00 0a 26 08 17 58 0c 08 07 8e 69}  //weight: 2, accuracy: Low
+        $x_1_2 = "test_aimbot.Properties.Resources" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Marsilia_AMR_2147899662_2
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Marsilia.AMR!MTB"
+        threat_id = "2147899662"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Marsilia"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
         $x_2_1 = {16 13 09 2b 20 11 08 11 09 9a 13 0a 00 00 00 de 0d 26 00 11 0a 6f ?? 00 00 0a 00 00 de 00 00 11 09 17 58 13 09 11 09 11 08 8e 69 32 d8}  //weight: 2, accuracy: Low
         $x_1_2 = "HypixelSkyblockDupe.exe" wide //weight: 1
     condition:
@@ -1042,12 +1064,12 @@ rule Trojan_MSIL_Marsilia_WPAA_2147921081_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Marsilia_KAU_2147921669_0
+rule Trojan_MSIL_Marsilia_KAU_2147921690_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Marsilia.KAU!MTB"
-        threat_id = "2147921669"
+        threat_id = "2147921690"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Marsilia"

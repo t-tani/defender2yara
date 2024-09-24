@@ -2327,12 +2327,12 @@ rule Trojan_MSIL_Rozena_SHPF_2147920488_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Rozena_SPRA_2147921635_0
+rule Trojan_MSIL_Rozena_SPRA_2147921655_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Rozena.SPRA!MTB"
-        threat_id = "2147921635"
+        threat_id = "2147921655"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Rozena"
@@ -2348,12 +2348,12 @@ rule Trojan_MSIL_Rozena_SPRA_2147921635_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Rozena_KAI_2147921666_0
+rule Trojan_MSIL_Rozena_KAI_2147921687_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Rozena.KAI!MTB"
-        threat_id = "2147921666"
+        threat_id = "2147921687"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Rozena"

@@ -1,9 +1,9 @@
-rule Trojan_Win64_Destroysom_MBXW_2147921546_0
+rule Trojan_Win64_Destroysom_MBXW_2147921564_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/Destroysom.MBXW!MTB"
-        threat_id = "2147921546"
+        threat_id = "2147921564"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "Destroysom"

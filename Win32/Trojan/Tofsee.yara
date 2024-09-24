@@ -1187,12 +1187,12 @@ rule Trojan_Win32_Tofsee_JJK_2147920519_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Tofsee_KAB_2147921674_0
+rule Trojan_Win32_Tofsee_KAB_2147921695_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Tofsee.KAB!MTB"
-        threat_id = "2147921674"
+        threat_id = "2147921695"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Tofsee"

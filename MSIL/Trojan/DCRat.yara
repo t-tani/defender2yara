@@ -2171,12 +2171,12 @@ rule Trojan_MSIL_DCRat_SPAG_2147920487_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_DCRat_SJKG_2147921638_0
+rule Trojan_MSIL_DCRat_SJKG_2147921658_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/DCRat.SJKG!MTB"
-        threat_id = "2147921638"
+        threat_id = "2147921658"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "DCRat"

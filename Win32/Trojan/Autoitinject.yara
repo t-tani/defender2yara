@@ -48,12 +48,12 @@ rule Trojan_Win32_Autoitinject_PSH_2147920916_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Autoitinject_PPH_2147921736_0
+rule Trojan_Win32_Autoitinject_PPH_2147921757_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Autoitinject.PPH!MTB"
-        threat_id = "2147921736"
+        threat_id = "2147921757"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Autoitinject"
@@ -72,12 +72,12 @@ rule Trojan_Win32_Autoitinject_PPH_2147921736_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Autoitinject_PPCH_2147921738_0
+rule Trojan_Win32_Autoitinject_PPCH_2147921759_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Autoitinject.PPCH!MTB"
-        threat_id = "2147921738"
+        threat_id = "2147921759"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Autoitinject"
@@ -96,12 +96,12 @@ rule Trojan_Win32_Autoitinject_PPCH_2147921738_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Autoitinject_PPEH_2147921740_0
+rule Trojan_Win32_Autoitinject_PPEH_2147921761_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Autoitinject.PPEH!MTB"
-        threat_id = "2147921740"
+        threat_id = "2147921761"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Autoitinject"
@@ -120,12 +120,12 @@ rule Trojan_Win32_Autoitinject_PPEH_2147921740_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Autoitinject_PPFH_2147921741_0
+rule Trojan_Win32_Autoitinject_PPFH_2147921762_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Autoitinject.PPFH!MTB"
-        threat_id = "2147921741"
+        threat_id = "2147921762"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Autoitinject"

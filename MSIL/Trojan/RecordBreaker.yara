@@ -138,12 +138,12 @@ rule Trojan_MSIL_RecordBreaker_TWAA_2147918430_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_RecordBreaker_RDM_2147921623_0
+rule Trojan_MSIL_RecordBreaker_RDM_2147921643_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/RecordBreaker.RDM!MTB"
-        threat_id = "2147921623"
+        threat_id = "2147921643"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "RecordBreaker"

@@ -149,12 +149,12 @@ rule Trojan_Win32_Redcap_AMAA_2147890318_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Redcap_NDA_2147921713_0
+rule Trojan_Win32_Redcap_NDA_2147921734_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Redcap.NDA!MTB"
-        threat_id = "2147921713"
+        threat_id = "2147921734"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Redcap"

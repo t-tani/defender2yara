@@ -13737,12 +13737,12 @@ rule VirTool_Win32_CeeInject_BEE_2147740312_0
         (all of ($x*))
 }
 
-rule VirTool_Win32_CeeInject_ACE_2147921560_0
+rule VirTool_Win32_CeeInject_ACE_2147921578_0
 {
     meta:
         author = "defender2yara"
         detection_name = "VirTool:Win32/CeeInject.ACE!MTB"
-        threat_id = "2147921560"
+        threat_id = "2147921578"
         type = "VirTool"
         platform = "Win32: Windows 32-bit platform"
         family = "CeeInject"

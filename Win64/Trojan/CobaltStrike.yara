@@ -14840,12 +14840,12 @@ rule Trojan_Win64_CobaltStrike_CCJJ_2147921105_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_CobaltStrike_BOW_2147921610_0
+rule Trojan_Win64_CobaltStrike_BOW_2147921630_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/CobaltStrike.BOW!MTB"
-        threat_id = "2147921610"
+        threat_id = "2147921630"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "CobaltStrike"
@@ -14862,12 +14862,12 @@ rule Trojan_Win64_CobaltStrike_BOW_2147921610_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_CobaltStrike_CCJK_2147921648_0
+rule Trojan_Win64_CobaltStrike_CCJK_2147921668_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/CobaltStrike.CCJK!MTB"
-        threat_id = "2147921648"
+        threat_id = "2147921668"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "CobaltStrike"
@@ -14883,12 +14883,12 @@ rule Trojan_Win64_CobaltStrike_CCJK_2147921648_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_CobaltStrike_CCJL_2147921651_0
+rule Trojan_Win64_CobaltStrike_CCJL_2147921671_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/CobaltStrike.CCJL!MTB"
-        threat_id = "2147921651"
+        threat_id = "2147921671"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "CobaltStrike"
@@ -14908,12 +14908,12 @@ rule Trojan_Win64_CobaltStrike_CCJL_2147921651_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_CobaltStrike_VV_2147921744_0
+rule Trojan_Win64_CobaltStrike_VV_2147921765_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/CobaltStrike.VV!MTB"
-        threat_id = "2147921744"
+        threat_id = "2147921765"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "CobaltStrike"
