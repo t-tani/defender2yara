@@ -172,12 +172,35 @@ rule Trojan_Win32_AutoInject_CCJC_2147921090_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_AutoInject_CCJD_2147921638_0
+rule Trojan_Win32_AutoInject_SPJD_2147921631_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoInject.SPJD!MTB"
+        threat_id = "2147921631"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "k7IfgcdZxe7IfgcdZxr7IfgcdZxn7IfgcdZxe7IfgcdZxl7IfgcdZx37IfgcdZx27IfgcdZx.7IfgcdZxd7IfgcdZxl7IfgcdZxl7IfgcdZx" ascii //weight: 2
+        $x_1_2 = "V7IfgcdZxi7IfgcdZxr7IfgcdZxt7IfgcdZxu7IfgcdZxa7IfgcdZxl7IfgcdZxP7IfgcdZxr7IfgcdZxo7IfgcdZxt7IfgcdZxe7IfgcdZxc7IfgcdZxt7IfgcdZx" ascii //weight: 1
+        $x_1_3 = "u7IfgcdZxs7IfgcdZxe7IfgcdZxr7IfgcdZx37IfgcdZx27IfgcdZx.7IfgcdZxd7IfgcdZxl7IfgcdZxl7IfgcdZx" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_AutoInject_CCJD_2147921644_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/AutoInject.CCJD!MTB"
-        threat_id = "2147921638"
+        threat_id = "2147921644"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "AutoInject"

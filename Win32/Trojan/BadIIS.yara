@@ -1,9 +1,9 @@
-rule Trojan_Win32_BadIIS_EC_2147921526_0
+rule Trojan_Win32_BadIIS_EC_2147921531_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/BadIIS.EC!MTB"
-        threat_id = "2147921526"
+        threat_id = "2147921531"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "BadIIS"

@@ -1,9 +1,9 @@
-rule Ransom_Linux_Fog_A_2147921684_0
+rule Ransom_Linux_Fog_A_2147921715_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Ransom:Linux/Fog.A!MTB"
-        threat_id = "2147921684"
+        threat_id = "2147921715"
         type = "Ransom"
         platform = "Linux: Linux platform"
         family = "Fog"

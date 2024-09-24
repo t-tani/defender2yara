@@ -1,9 +1,9 @@
-rule Trojan_Win32_DisableRemoteReg_A_2147921712_0
+rule Trojan_Win32_DisableRemoteReg_A_2147921743_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/DisableRemoteReg.A"
-        threat_id = "2147921712"
+        threat_id = "2147921743"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "DisableRemoteReg"

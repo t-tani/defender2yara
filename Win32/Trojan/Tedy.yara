@@ -353,12 +353,12 @@ rule Trojan_Win32_Tedy_GPB_2147920583_0
         (1 of ($x*))
 }
 
-rule Trojan_Win32_Tedy_EC_2147921525_0
+rule Trojan_Win32_Tedy_EC_2147921530_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Tedy.EC!MTB"
-        threat_id = "2147921525"
+        threat_id = "2147921530"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Tedy"

@@ -2544,12 +2544,12 @@ rule Trojan_MSIL_Lokibot_RUAA_2147916310_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Lokibot_MBXU_2147921536_0
+rule Trojan_MSIL_Lokibot_MBXU_2147921541_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Lokibot.MBXU!MTB"
-        threat_id = "2147921536"
+        threat_id = "2147921541"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Lokibot"
@@ -2568,12 +2568,12 @@ rule Trojan_MSIL_Lokibot_MBXU_2147921536_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Lokibot_XDAA_2147921577_0
+rule Trojan_MSIL_Lokibot_XDAA_2147921582_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Lokibot.XDAA!MTB"
-        threat_id = "2147921577"
+        threat_id = "2147921582"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Lokibot"
@@ -2585,6 +2585,27 @@ rule Trojan_MSIL_Lokibot_XDAA_2147921577_0
     strings:
         $x_3_1 = {02 05 0e 04 6f ?? 00 00 0a 0a 03 6f ?? 00 00 0a 19 58 04 fe 02 16 fe 01 0b}  //weight: 3, accuracy: Low
         $x_2_2 = {02 0f 01 28 ?? 00 00 0a 6f ?? 00 00 0a 00 02 0f 01 28 ?? 00 00 0a 6f ?? 00 00 0a 16 0b 2b c6}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Lokibot_AMC_2147921652_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Lokibot.AMC!MTB"
+        threat_id = "2147921652"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Lokibot"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {03 12 01 28 ?? 00 00 0a 6f ?? 00 00 0a 00 09 18 fe 04 16 fe 01 13 06 11 06 2c 0e 03 12 01 28 ?? 00 00 0a 6f ?? 00 00 0a 00 09 19 fe 01 13 07 11 07 2c 0e 03 12 01 28 ?? 00 00 0a 6f ?? 00 00 0a 00}  //weight: 1, accuracy: Low
     condition:
         (filesize < 20MB) and
         (all of ($x*))

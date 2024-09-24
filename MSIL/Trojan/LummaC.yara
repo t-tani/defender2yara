@@ -513,12 +513,12 @@ rule Trojan_MSIL_LummaC_AMA_2147921040_1
         (all of ($x*))
 }
 
-rule Trojan_MSIL_LummaC_WQAA_2147921570_0
+rule Trojan_MSIL_LummaC_WQAA_2147921575_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/LummaC.WQAA!MTB"
-        threat_id = "2147921570"
+        threat_id = "2147921575"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "LummaC"
@@ -539,12 +539,12 @@ rule Trojan_MSIL_LummaC_WQAA_2147921570_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_LummaC_WSAA_2147921571_0
+rule Trojan_MSIL_LummaC_WSAA_2147921576_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/LummaC.WSAA!MTB"
-        threat_id = "2147921571"
+        threat_id = "2147921576"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "LummaC"

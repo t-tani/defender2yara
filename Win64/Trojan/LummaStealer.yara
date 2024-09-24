@@ -254,12 +254,12 @@ rule Trojan_Win64_LummaStealer_GV_2147920749_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_LummaStealer_DB_2147921500_0
+rule Trojan_Win64_LummaStealer_DB_2147921505_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/LummaStealer.DB!MTB"
-        threat_id = "2147921500"
+        threat_id = "2147921505"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "LummaStealer"
@@ -276,12 +276,12 @@ rule Trojan_Win64_LummaStealer_DB_2147921500_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_LummaStealer_VV_2147921704_0
+rule Trojan_Win64_LummaStealer_VV_2147921735_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/LummaStealer.VV!MTB"
-        threat_id = "2147921704"
+        threat_id = "2147921735"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "LummaStealer"

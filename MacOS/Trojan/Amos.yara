@@ -827,12 +827,12 @@ rule Trojan_MacOS_Amos_AU_2147920165_0
         (all of ($x*))
 }
 
-rule Trojan_MacOS_Amos_AV_2147921669_0
+rule Trojan_MacOS_Amos_AV_2147921700_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MacOS/Amos.AV!MTB"
-        threat_id = "2147921669"
+        threat_id = "2147921700"
         type = "Trojan"
         platform = "MacOS: "
         family = "Amos"

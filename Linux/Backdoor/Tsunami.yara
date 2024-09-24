@@ -794,12 +794,12 @@ rule Backdoor_Linux_Tsunami_H_2147846450_0
         (5 of ($x*))
 }
 
-rule Backdoor_Linux_Tsunami_DO_2147921680_0
+rule Backdoor_Linux_Tsunami_DO_2147921711_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Backdoor:Linux/Tsunami.DO!MTB"
-        threat_id = "2147921680"
+        threat_id = "2147921711"
         type = "Backdoor"
         platform = "Linux: Linux platform"
         family = "Tsunami"
