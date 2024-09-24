@@ -40,12 +40,12 @@ rule Trojan_MSIL_Ratx_SN_2147851332_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Ratx_SP_2147921593_0
+rule Trojan_MSIL_Ratx_SP_2147921600_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Ratx.SP!MTB"
-        threat_id = "2147921593"
+        threat_id = "2147921600"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Ratx"

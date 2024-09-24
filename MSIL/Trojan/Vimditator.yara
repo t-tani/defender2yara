@@ -47,12 +47,12 @@ rule Trojan_MSIL_Vimditator_AVM_2147841225_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Vimditator_SL_2147921592_0
+rule Trojan_MSIL_Vimditator_SL_2147921599_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Vimditator.SL!MTB"
-        threat_id = "2147921592"
+        threat_id = "2147921599"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Vimditator"

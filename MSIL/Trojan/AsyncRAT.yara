@@ -4928,12 +4928,12 @@ rule Trojan_MSIL_AsyncRAT_KAN_2147920817_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_AsyncRAT_KAT_2147921658_0
+rule Trojan_MSIL_AsyncRAT_KAT_2147921667_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/AsyncRAT.KAT!MTB"
-        threat_id = "2147921658"
+        threat_id = "2147921667"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "AsyncRAT"
@@ -4944,6 +4944,27 @@ rule Trojan_MSIL_AsyncRAT_KAT_2147921658_0
         strings_accuracy = "Low"
     strings:
         $x_1_1 = {11 05 11 06 8f ?? 00 00 01 25 71 ?? 00 00 01 11 06 0e 04 58 20 ff 00 00 00 5f d2 61 d2 81 ?? 00 00 01 1f 0e 13 12}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_AsyncRAT_KAW_2147921678_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AsyncRAT.KAW!MTB"
+        threat_id = "2147921678"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AsyncRAT"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {1a 5d 16 fe 01 13 05 11 05 2c 12 08 07 11 04 91 1f 5b 61 b4 6f ?? 00 00 0a 00 00 2b 0d}  //weight: 1, accuracy: Low
     condition:
         (filesize < 20MB) and
         (all of ($x*))

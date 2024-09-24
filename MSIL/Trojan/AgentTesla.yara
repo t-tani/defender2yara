@@ -105096,12 +105096,12 @@ rule Trojan_MSIL_AgentTesla_MBXT_2147921001_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_AgentTesla_SMF_2147921506_0
+rule Trojan_MSIL_AgentTesla_SMF_2147921510_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/AgentTesla.SMF!MTB"
-        threat_id = "2147921506"
+        threat_id = "2147921510"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "AgentTesla"
@@ -105120,12 +105120,12 @@ rule Trojan_MSIL_AgentTesla_SMF_2147921506_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_AgentTesla_RDCD_2147921617_0
+rule Trojan_MSIL_AgentTesla_RDCD_2147921624_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/AgentTesla.RDCD!MTB"
-        threat_id = "2147921617"
+        threat_id = "2147921624"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "AgentTesla"
@@ -105141,12 +105141,12 @@ rule Trojan_MSIL_AgentTesla_RDCD_2147921617_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_AgentTesla_PNE_2147921724_0
+rule Trojan_MSIL_AgentTesla_PNE_2147921734_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/AgentTesla.PNE!MTB"
-        threat_id = "2147921724"
+        threat_id = "2147921734"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "AgentTesla"

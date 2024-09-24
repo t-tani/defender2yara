@@ -2456,12 +2456,12 @@ rule Trojan_Win32_OffLoader_ADP_2147920914_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_OffLoader_SHLQ_2147921623_0
+rule Trojan_Win32_OffLoader_SHLQ_2147921630_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/OffLoader.SHLQ!MTB"
-        threat_id = "2147921623"
+        threat_id = "2147921630"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "OffLoader"
@@ -2478,12 +2478,34 @@ rule Trojan_Win32_OffLoader_SHLQ_2147921623_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_OffLoader_SPHP_2147921627_0
+rule Trojan_Win32_OffLoader_SDQB_2147921634_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/OffLoader.SDQB!MTB"
+        threat_id = "2147921634"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "OffLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "/connect.vasebox.art/pe/start/index.php" ascii //weight: 2
+        $x_1_2 = "/silent" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_OffLoader_SPHP_2147921636_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/OffLoader.SPHP!MTB"
-        threat_id = "2147921627"
+        threat_id = "2147921636"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "OffLoader"
@@ -2500,12 +2522,12 @@ rule Trojan_Win32_OffLoader_SPHP_2147921627_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_OffLoader_SDDP_2147921628_0
+rule Trojan_Win32_OffLoader_SDDP_2147921637_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/OffLoader.SDDP!MTB"
-        threat_id = "2147921628"
+        threat_id = "2147921637"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "OffLoader"

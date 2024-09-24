@@ -1,9 +1,9 @@
-rule Backdoor_MacOS_Hermes_A_2147921710_0
+rule Backdoor_MacOS_Hermes_A_2147921720_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Backdoor:MacOS/Hermes.A!MTB"
-        threat_id = "2147921710"
+        threat_id = "2147921720"
         type = "Backdoor"
         platform = "MacOS: "
         family = "Hermes"

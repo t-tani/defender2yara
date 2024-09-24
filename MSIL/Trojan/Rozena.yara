@@ -2327,12 +2327,33 @@ rule Trojan_MSIL_Rozena_SHPF_2147920488_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Rozena_KAI_2147921657_0
+rule Trojan_MSIL_Rozena_SPRA_2147921635_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Rozena.SPRA!MTB"
+        threat_id = "2147921635"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Rozena"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {09 1d 59 0d 07 11 0a 91 13 0b 11 0b 11 05 61 13 0c 11 04 09 58 13 04 07 11 0a 11 0c d2 9c 00 11 0a 17 58 13 0a}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Rozena_KAI_2147921666_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Rozena.KAI!MTB"
-        threat_id = "2147921657"
+        threat_id = "2147921666"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Rozena"

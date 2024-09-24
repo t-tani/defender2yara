@@ -1,9 +1,9 @@
-rule TrojanDownloader_MSIL_Disfa_NIT_2147921739_0
+rule TrojanDownloader_MSIL_Disfa_NIT_2147921749_0
 {
     meta:
         author = "defender2yara"
         detection_name = "TrojanDownloader:MSIL/Disfa.NIT!MTB"
-        threat_id = "2147921739"
+        threat_id = "2147921749"
         type = "TrojanDownloader"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Disfa"

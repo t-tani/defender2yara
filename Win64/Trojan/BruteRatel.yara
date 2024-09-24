@@ -164,12 +164,12 @@ rule Trojan_Win64_BruteRatel_OBS_2147917383_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_BruteRatel_RKB_2147921599_0
+rule Trojan_Win64_BruteRatel_RKB_2147921606_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/BruteRatel.RKB!MTB"
-        threat_id = "2147921599"
+        threat_id = "2147921606"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "BruteRatel"
@@ -185,12 +185,12 @@ rule Trojan_Win64_BruteRatel_RKB_2147921599_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_BruteRatel_MKV_2147921614_0
+rule Trojan_Win64_BruteRatel_MKV_2147921621_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/BruteRatel.MKV!MTB"
-        threat_id = "2147921614"
+        threat_id = "2147921621"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "BruteRatel"

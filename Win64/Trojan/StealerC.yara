@@ -1,9 +1,9 @@
-rule Trojan_Win64_StealerC_RZ_2147921508_0
+rule Trojan_Win64_StealerC_RZ_2147921512_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/StealerC.RZ!MTB"
-        threat_id = "2147921508"
+        threat_id = "2147921512"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "StealerC"

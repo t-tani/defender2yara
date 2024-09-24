@@ -65,12 +65,12 @@ rule TrojanDownloader_MSIL_CobaltStrike_KSAY_2147920339_0
         (all of ($x*))
 }
 
-rule TrojanDownloader_MSIL_CobaltStrike_RKB_2147921602_0
+rule TrojanDownloader_MSIL_CobaltStrike_RKB_2147921609_0
 {
     meta:
         author = "defender2yara"
         detection_name = "TrojanDownloader:MSIL/CobaltStrike.RKB!MTB"
-        threat_id = "2147921602"
+        threat_id = "2147921609"
         type = "TrojanDownloader"
         platform = "MSIL: .NET intermediate language scripts"
         family = "CobaltStrike"

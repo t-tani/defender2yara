@@ -1,9 +1,9 @@
-rule VirTool_Win64_Smbtkovr_A_2147921532_0
+rule VirTool_Win64_Smbtkovr_A_2147921536_0
 {
     meta:
         author = "defender2yara"
         detection_name = "VirTool:Win64/Smbtkovr.A"
-        threat_id = "2147921532"
+        threat_id = "2147921536"
         type = "VirTool"
         platform = "Win64: Windows 64-bit platform"
         family = "Smbtkovr"
