@@ -1,9 +1,9 @@
-rule VirTool_Win64_Leakwall_A_2147921573_0
+rule VirTool_Win64_Leakwall_A_2147921585_0
 {
     meta:
         author = "defender2yara"
         detection_name = "VirTool:Win64/Leakwall.A"
-        threat_id = "2147921573"
+        threat_id = "2147921585"
         type = "VirTool"
         platform = "Win64: Windows 64-bit platform"
         family = "Leakwall"

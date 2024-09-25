@@ -4469,12 +4469,12 @@ rule Trojan_Win32_Zusy_MBXU_2147921076_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Zusy_MBXW_2147921583_0
+rule Trojan_Win32_Zusy_MBXW_2147921595_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Zusy.MBXW!MTB"
-        threat_id = "2147921583"
+        threat_id = "2147921595"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Zusy"
@@ -4490,12 +4490,12 @@ rule Trojan_Win32_Zusy_MBXW_2147921583_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Zusy_XEAA_2147921633_0
+rule Trojan_Win32_Zusy_XEAA_2147921645_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Zusy.XEAA!MTB"
-        threat_id = "2147921633"
+        threat_id = "2147921645"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Zusy"
@@ -4511,12 +4511,12 @@ rule Trojan_Win32_Zusy_XEAA_2147921633_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Zusy_CCJK_2147921695_0
+rule Trojan_Win32_Zusy_CCJK_2147921707_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Zusy.CCJK!MTB"
-        threat_id = "2147921695"
+        threat_id = "2147921707"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Zusy"
@@ -4532,12 +4532,12 @@ rule Trojan_Win32_Zusy_CCJK_2147921695_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Zusy_HNM_2147921754_0
+rule Trojan_Win32_Zusy_HNM_2147921767_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Zusy.HNM!MTB"
-        threat_id = "2147921754"
+        threat_id = "2147921767"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Zusy"
@@ -4564,12 +4564,12 @@ rule Trojan_Win32_Zusy_HNM_2147921754_0
         )
 }
 
-rule Trojan_Win32_Zusy_HNN_2147921755_0
+rule Trojan_Win32_Zusy_HNN_2147921768_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Zusy.HNN!MTB"
-        threat_id = "2147921755"
+        threat_id = "2147921768"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Zusy"

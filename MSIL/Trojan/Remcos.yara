@@ -11469,12 +11469,12 @@ rule Trojan_MSIL_Remcos_PWH_2147920670_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Remcos_MBXW_2147921584_0
+rule Trojan_MSIL_Remcos_MBXW_2147921596_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Remcos.MBXW!MTB"
-        threat_id = "2147921584"
+        threat_id = "2147921596"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Remcos"

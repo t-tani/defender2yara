@@ -2712,12 +2712,12 @@ rule Trojan_MSIL_Lazy_MX_2147918780_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Lazy_SPRA_2147921679_0
+rule Trojan_MSIL_Lazy_SPRA_2147921691_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Lazy.SPRA!MTB"
-        threat_id = "2147921679"
+        threat_id = "2147921691"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Lazy"

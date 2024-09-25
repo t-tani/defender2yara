@@ -1216,12 +1216,12 @@ rule Trojan_MSIL_ZgRAT_AD_2147917003_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_ZgRAT_KAO_2147921710_0
+rule Trojan_MSIL_ZgRAT_KAO_2147921723_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/ZgRAT.KAO!MTB"
-        threat_id = "2147921710"
+        threat_id = "2147921723"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "ZgRAT"

@@ -317,12 +317,12 @@ rule Backdoor_Win32_Mokes_GTT_2147919832_0
         (all of ($x*))
 }
 
-rule Backdoor_Win32_Mokes_GTN_2147921612_0
+rule Backdoor_Win32_Mokes_GTN_2147921624_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Backdoor:Win32/Mokes.GTN!MTB"
-        threat_id = "2147921612"
+        threat_id = "2147921624"
         type = "Backdoor"
         platform = "Win32: Windows 32-bit platform"
         family = "Mokes"

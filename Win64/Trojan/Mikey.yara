@@ -210,12 +210,12 @@ rule Trojan_Win64_Mikey_NB_2147915263_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_Mikey_GMN_2147921606_0
+rule Trojan_Win64_Mikey_GMN_2147921618_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/Mikey.GMN!MTB"
-        threat_id = "2147921606"
+        threat_id = "2147921618"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "Mikey"
@@ -232,12 +232,12 @@ rule Trojan_Win64_Mikey_GMN_2147921606_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_Mikey_GMT_2147921608_0
+rule Trojan_Win64_Mikey_GMT_2147921620_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/Mikey.GMT!MTB"
-        threat_id = "2147921608"
+        threat_id = "2147921620"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "Mikey"
@@ -254,12 +254,12 @@ rule Trojan_Win64_Mikey_GMT_2147921608_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_Mikey_MKV_2147921663_0
+rule Trojan_Win64_Mikey_MKV_2147921675_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/Mikey.MKV!MTB"
-        threat_id = "2147921663"
+        threat_id = "2147921675"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "Mikey"

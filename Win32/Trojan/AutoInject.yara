@@ -172,12 +172,12 @@ rule Trojan_Win32_AutoInject_CCJC_2147921090_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_AutoInject_SPJD_2147921686_0
+rule Trojan_Win32_AutoInject_SPJD_2147921698_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/AutoInject.SPJD!MTB"
-        threat_id = "2147921686"
+        threat_id = "2147921698"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "AutoInject"
@@ -195,12 +195,12 @@ rule Trojan_Win32_AutoInject_SPJD_2147921686_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_AutoInject_CCJD_2147921699_0
+rule Trojan_Win32_AutoInject_CCJD_2147921711_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/AutoInject.CCJD!MTB"
-        threat_id = "2147921699"
+        threat_id = "2147921711"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "AutoInject"

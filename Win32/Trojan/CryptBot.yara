@@ -343,3 +343,46 @@ rule Trojan_Win32_CryptBot_CCJD_2147916056_0
         )
 }
 
+rule Trojan_Win32_CryptBot_CCJE_2147921712_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/CryptBot.CCJE!MTB"
+        threat_id = "2147921712"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "CryptBot"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "35"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = "UserName (ComputerName):" wide //weight: 5
+        $x_5_2 = "OS:" wide //weight: 5
+        $x_5_3 = "Keyboard Languages:" wide //weight: 5
+        $x_5_4 = "CPU:" wide //weight: 5
+        $x_5_5 = "GPU:" wide //weight: 5
+        $x_5_6 = "VirtualBox" wide //weight: 5
+        $x_1_7 = "Opera Software\\Opera Developer" wide //weight: 1
+        $x_1_8 = "atomic\\Local Storage\\leveldb" wide //weight: 1
+        $x_1_9 = "\\User Data" wide //weight: 1
+        $x_1_10 = "McAfee_Inc" wide //weight: 1
+        $x_1_11 = "binance" wide //weight: 1
+        $x_1_12 = "Electrum" wide //weight: 1
+        $x_1_13 = "wallet.dat" wide //weight: 1
+        $x_1_14 = "\\exodus.wallet" wide //weight: 1
+        $x_1_15 = "Oxygen - Atomic Crypto Wallet" wide //weight: 1
+        $x_1_16 = "Enkrypt - Multichain Crypto Wallet" wide //weight: 1
+        $x_1_17 = "Rabby Wallet" wide //weight: 1
+        $x_1_18 = "Xverse Wallet" wide //weight: 1
+        $x_1_19 = "UniSat Wallet" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((5 of ($x_5_*) and 10 of ($x_1_*))) or
+            ((6 of ($x_5_*) and 5 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+

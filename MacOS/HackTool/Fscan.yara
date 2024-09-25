@@ -1,9 +1,9 @@
-rule HackTool_MacOS_Fscan_A_2147921776_0
+rule HackTool_MacOS_Fscan_A_2147921789_0
 {
     meta:
         author = "defender2yara"
         detection_name = "HackTool:MacOS/Fscan.A!MTB"
-        threat_id = "2147921776"
+        threat_id = "2147921789"
         type = "HackTool"
         platform = "MacOS: "
         family = "Fscan"

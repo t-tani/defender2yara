@@ -2544,12 +2544,12 @@ rule Trojan_MSIL_Lokibot_RUAA_2147916310_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Lokibot_MBXU_2147921581_0
+rule Trojan_MSIL_Lokibot_MBXU_2147921593_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Lokibot.MBXU!MTB"
-        threat_id = "2147921581"
+        threat_id = "2147921593"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Lokibot"
@@ -2568,12 +2568,12 @@ rule Trojan_MSIL_Lokibot_MBXU_2147921581_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Lokibot_XDAA_2147921632_0
+rule Trojan_MSIL_Lokibot_XDAA_2147921644_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Lokibot.XDAA!MTB"
-        threat_id = "2147921632"
+        threat_id = "2147921644"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Lokibot"
@@ -2590,12 +2590,12 @@ rule Trojan_MSIL_Lokibot_XDAA_2147921632_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Lokibot_AMC_2147921708_0
+rule Trojan_MSIL_Lokibot_AMC_2147921721_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Lokibot.AMC!MTB"
-        threat_id = "2147921708"
+        threat_id = "2147921721"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Lokibot"
