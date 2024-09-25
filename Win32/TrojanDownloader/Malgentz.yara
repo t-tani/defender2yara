@@ -1,9 +1,9 @@
-rule TrojanDownloader_Win32_Malgentz_ATZ_2147921569_0
+rule TrojanDownloader_Win32_Malgentz_ATZ_2147921573_0
 {
     meta:
         author = "defender2yara"
         detection_name = "TrojanDownloader:Win32/Malgentz.ATZ!MTB"
-        threat_id = "2147921569"
+        threat_id = "2147921573"
         type = "TrojanDownloader"
         platform = "Win32: Windows 32-bit platform"
         family = "Malgentz"

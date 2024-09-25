@@ -4134,12 +4134,12 @@ rule Trojan_Win64_AbuseCommBack_EV_2147920491_0
         (1 of ($x*))
 }
 
-rule Trojan_Win64_AbuseCommBack_GG_2147921741_0
+rule Trojan_Win64_AbuseCommBack_GG_2147921747_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/AbuseCommBack.GG"
-        threat_id = "2147921741"
+        threat_id = "2147921747"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "AbuseCommBack"
@@ -4156,12 +4156,12 @@ rule Trojan_Win64_AbuseCommBack_GG_2147921741_0
         (1 of ($x*))
 }
 
-rule Trojan_Win64_AbuseCommBack_GH_2147921745_0
+rule Trojan_Win64_AbuseCommBack_GH_2147921751_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/AbuseCommBack.GH"
-        threat_id = "2147921745"
+        threat_id = "2147921751"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "AbuseCommBack"
@@ -4178,12 +4178,12 @@ rule Trojan_Win64_AbuseCommBack_GH_2147921745_0
         (1 of ($x*))
 }
 
-rule Trojan_Win64_AbuseCommBack_GI_2147921749_0
+rule Trojan_Win64_AbuseCommBack_GI_2147921755_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/AbuseCommBack.GI"
-        threat_id = "2147921749"
+        threat_id = "2147921755"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "AbuseCommBack"
@@ -4200,12 +4200,12 @@ rule Trojan_Win64_AbuseCommBack_GI_2147921749_0
         (1 of ($x*))
 }
 
-rule Trojan_Win64_AbuseCommBack_GJ_2147921753_0
+rule Trojan_Win64_AbuseCommBack_GJ_2147921759_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/AbuseCommBack.GJ"
-        threat_id = "2147921753"
+        threat_id = "2147921759"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "AbuseCommBack"
@@ -4222,12 +4222,12 @@ rule Trojan_Win64_AbuseCommBack_GJ_2147921753_0
         (1 of ($x*))
 }
 
-rule Trojan_Win64_AbuseCommBack_GK_2147921757_0
+rule Trojan_Win64_AbuseCommBack_GK_2147921763_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/AbuseCommBack.GK"
-        threat_id = "2147921757"
+        threat_id = "2147921763"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "AbuseCommBack"
@@ -4244,12 +4244,12 @@ rule Trojan_Win64_AbuseCommBack_GK_2147921757_0
         (1 of ($x*))
 }
 
-rule Trojan_Win64_AbuseCommBack_GL_2147921761_0
+rule Trojan_Win64_AbuseCommBack_GL_2147921767_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/AbuseCommBack.GL"
-        threat_id = "2147921761"
+        threat_id = "2147921767"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "AbuseCommBack"

@@ -1,9 +1,9 @@
-rule Trojan_MacOS_Beavertail_B_2147921788_0
+rule Trojan_MacOS_Beavertail_B_2147921794_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MacOS/Beavertail.B!MTB"
-        threat_id = "2147921788"
+        threat_id = "2147921794"
         type = "Trojan"
         platform = "MacOS: "
         family = "Beavertail"

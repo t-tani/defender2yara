@@ -510,12 +510,12 @@ rule Trojan_AndroidOS_FakeApp_WR_2147919237_0
         (all of ($x*))
 }
 
-rule Trojan_AndroidOS_FakeApp_V_2147921632_0
+rule Trojan_AndroidOS_FakeApp_V_2147921637_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:AndroidOS/FakeApp.V!MTB"
-        threat_id = "2147921632"
+        threat_id = "2147921637"
         type = "Trojan"
         platform = "AndroidOS: Android operating system"
         family = "FakeApp"

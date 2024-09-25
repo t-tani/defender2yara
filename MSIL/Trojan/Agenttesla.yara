@@ -421,12 +421,12 @@ rule Trojan_MSIL_Agenttesla_ARAQ_2147900889_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Agenttesla_PPGH_2147921803_0
+rule Trojan_MSIL_Agenttesla_PPGH_2147921809_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Agenttesla.PPGH!MTB"
-        threat_id = "2147921803"
+        threat_id = "2147921809"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Agenttesla"

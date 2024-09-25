@@ -270,3 +270,26 @@ rule Trojan_MSIL_Stealc_RPX_2147900690_1
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Stealc_MBXX_2147921601_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Stealc.MBXX!MTB"
+        threat_id = "2147921601"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Stealc"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = {5a 41 7a 73 61 72 75 69 6b 00 51 41 77 74 79 6b 75 69 6c 00 44 53 73 64 73 41 73 73 73 51}  //weight: 3, accuracy: High
+        $x_2_2 = {65 41 6e 67 6c 65 73 00 47 43 4d 00 43 6f 6e}  //weight: 2, accuracy: High
+        $x_1_3 = "382cfefa9adf" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
