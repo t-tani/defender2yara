@@ -823,12 +823,12 @@ rule Trojan_Win64_Zusy_PA_2147920701_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_Zusy_HNL_2147921771_0
+rule Trojan_Win64_Zusy_HNL_2147921809_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/Zusy.HNL!MTB"
-        threat_id = "2147921771"
+        threat_id = "2147921809"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "Zusy"

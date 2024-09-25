@@ -715,12 +715,12 @@ rule Trojan_Win32_FlyStudio_ASDF_2147920384_0
         )
 }
 
-rule Trojan_Win32_FlyStudio_CZ_2147921565_0
+rule Trojan_Win32_FlyStudio_CZ_2147921581_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/FlyStudio.CZ!MTB"
-        threat_id = "2147921565"
+        threat_id = "2147921581"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "FlyStudio"

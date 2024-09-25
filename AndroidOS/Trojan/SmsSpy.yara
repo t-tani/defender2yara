@@ -509,3 +509,25 @@ rule Trojan_AndroidOS_SmsSpy_O_2147847742_0
         (all of ($x*))
 }
 
+rule Trojan_AndroidOS_SmsSpy_AH_2147921623_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:AndroidOS/SmsSpy.AH"
+        threat_id = "2147921623"
+        type = "Trojan"
+        platform = "AndroidOS: Android operating system"
+        family = "SmsSpy"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "secondpageofgreed" ascii //weight: 2
+        $x_2_2 = "checkSmsPermissionOnClick" ascii //weight: 2
+        $x_2_3 = "deep84Mob021ile78Reg6ister895ed054Suc89cess9fully2024" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (2 of ($x*))
+}
+

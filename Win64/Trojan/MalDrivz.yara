@@ -1,9 +1,9 @@
-rule Trojan_Win64_MalDrivz_A_2147921574_0
+rule Trojan_Win64_MalDrivz_A_2147921590_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/MalDrivz.A!MTB"
-        threat_id = "2147921574"
+        threat_id = "2147921590"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "MalDrivz"

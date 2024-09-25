@@ -238,12 +238,12 @@ rule Trojan_MSIL_Hawkeye_AHK_2147919712_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Hawkeye_AHA_2147921614_0
+rule Trojan_MSIL_Hawkeye_AHA_2147921637_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Hawkeye.AHA!MTB"
-        threat_id = "2147921614"
+        threat_id = "2147921637"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Hawkeye"

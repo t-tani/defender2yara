@@ -4322,12 +4322,12 @@ rule Trojan_Win64_AbuseCommMain_EV_2147920489_0
         (1 of ($x*))
 }
 
-rule Trojan_Win64_AbuseCommMain_GG_2147921745_0
+rule Trojan_Win64_AbuseCommMain_GG_2147921783_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/AbuseCommMain.GG"
-        threat_id = "2147921745"
+        threat_id = "2147921783"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "AbuseCommMain"
@@ -4345,12 +4345,12 @@ rule Trojan_Win64_AbuseCommMain_GG_2147921745_0
         (1 of ($x*))
 }
 
-rule Trojan_Win64_AbuseCommMain_GH_2147921749_0
+rule Trojan_Win64_AbuseCommMain_GH_2147921787_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/AbuseCommMain.GH"
-        threat_id = "2147921749"
+        threat_id = "2147921787"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "AbuseCommMain"
@@ -4368,12 +4368,12 @@ rule Trojan_Win64_AbuseCommMain_GH_2147921749_0
         (1 of ($x*))
 }
 
-rule Trojan_Win64_AbuseCommMain_GI_2147921753_0
+rule Trojan_Win64_AbuseCommMain_GI_2147921791_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/AbuseCommMain.GI"
-        threat_id = "2147921753"
+        threat_id = "2147921791"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "AbuseCommMain"
@@ -4391,12 +4391,12 @@ rule Trojan_Win64_AbuseCommMain_GI_2147921753_0
         (1 of ($x*))
 }
 
-rule Trojan_Win64_AbuseCommMain_GJ_2147921757_0
+rule Trojan_Win64_AbuseCommMain_GJ_2147921795_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/AbuseCommMain.GJ"
-        threat_id = "2147921757"
+        threat_id = "2147921795"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "AbuseCommMain"
@@ -4414,12 +4414,12 @@ rule Trojan_Win64_AbuseCommMain_GJ_2147921757_0
         (1 of ($x*))
 }
 
-rule Trojan_Win64_AbuseCommMain_GK_2147921761_0
+rule Trojan_Win64_AbuseCommMain_GK_2147921799_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/AbuseCommMain.GK"
-        threat_id = "2147921761"
+        threat_id = "2147921799"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "AbuseCommMain"
@@ -4437,12 +4437,12 @@ rule Trojan_Win64_AbuseCommMain_GK_2147921761_0
         (1 of ($x*))
 }
 
-rule Trojan_Win64_AbuseCommMain_GL_2147921765_0
+rule Trojan_Win64_AbuseCommMain_GL_2147921803_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/AbuseCommMain.GL"
-        threat_id = "2147921765"
+        threat_id = "2147921803"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "AbuseCommMain"

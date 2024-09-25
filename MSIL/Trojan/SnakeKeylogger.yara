@@ -6141,12 +6141,12 @@ rule Trojan_MSIL_SnakeKeylogger_SJQA_2147920781_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_SnakeKeylogger_STSG_2147921696_0
+rule Trojan_MSIL_SnakeKeylogger_STSG_2147921723_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/SnakeKeylogger.STSG!MTB"
-        threat_id = "2147921696"
+        threat_id = "2147921723"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "SnakeKeylogger"
@@ -6162,12 +6162,56 @@ rule Trojan_MSIL_SnakeKeylogger_STSG_2147921696_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_SnakeKeylogger_PPBH_2147921804_0
+rule Trojan_MSIL_SnakeKeylogger_SYRA_2147921732_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/SnakeKeylogger.SYRA!MTB"
+        threat_id = "2147921732"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "SnakeKeylogger"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {63 d1 13 11 11 1d 11 09 91 13 27 11 1d 11 09 11 27 11 22 61 19 11 1a 58 61 11 2f 61 d2 9c}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_SnakeKeylogger_AMD_2147921765_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/SnakeKeylogger.AMD!MTB"
+        threat_id = "2147921765"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "SnakeKeylogger"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {0a 0b 07 09 11 04 6f ?? 00 00 0a 13 05 73 ?? 00 00 0a 0a 06 11 05 17 73 ?? 00 00 0a 0c 08 02 16 02 8e 69 6f ?? 00 00 0a 06 6f ?? 00 00 0a 10 00 de 0e}  //weight: 3, accuracy: Low
+        $x_1_2 = "FromBase64String" ascii //weight: 1
+        $x_1_3 = "CreateDecryptor" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_SnakeKeylogger_PPBH_2147921842_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/SnakeKeylogger.PPBH!MTB"
-        threat_id = "2147921804"
+        threat_id = "2147921842"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "SnakeKeylogger"

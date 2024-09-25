@@ -4123,12 +4123,12 @@ rule Trojan_Win32_Guloader_CT_2147919378_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Guloader_CU_2147921610_0
+rule Trojan_Win32_Guloader_CU_2147921633_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Guloader.CU!MTB"
-        threat_id = "2147921610"
+        threat_id = "2147921633"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Guloader"
@@ -4150,12 +4150,12 @@ rule Trojan_Win32_Guloader_CU_2147921610_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Guloader_CV_2147921611_0
+rule Trojan_Win32_Guloader_CV_2147921634_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Guloader.CV!MTB"
-        threat_id = "2147921611"
+        threat_id = "2147921634"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Guloader"
@@ -4177,12 +4177,12 @@ rule Trojan_Win32_Guloader_CV_2147921611_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Guloader_KAD_2147921731_0
+rule Trojan_Win32_Guloader_KAD_2147921769_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Guloader.KAD!MTB"
-        threat_id = "2147921731"
+        threat_id = "2147921769"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Guloader"

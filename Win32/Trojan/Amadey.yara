@@ -3086,12 +3086,12 @@ rule Trojan_Win32_Amadey_KAB_2147920782_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Amadey_RZ_2147921570_0
+rule Trojan_Win32_Amadey_RZ_2147921586_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Amadey.RZ!MTB"
-        threat_id = "2147921570"
+        threat_id = "2147921586"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Amadey"

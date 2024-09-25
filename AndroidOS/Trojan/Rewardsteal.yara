@@ -950,12 +950,12 @@ rule Trojan_AndroidOS_Rewardsteal_V_2147920429_0
         (all of ($x*))
 }
 
-rule Trojan_AndroidOS_Rewardsteal_AG_2147921602_0
+rule Trojan_AndroidOS_Rewardsteal_AG_2147921620_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:AndroidOS/Rewardsteal.AG"
-        threat_id = "2147921602"
+        threat_id = "2147921620"
         type = "Trojan"
         platform = "AndroidOS: Android operating system"
         family = "Rewardsteal"
@@ -973,5 +973,48 @@ rule Trojan_AndroidOS_Rewardsteal_AG_2147921602_0
     condition:
         (filesize < 20MB) and
         (2 of ($x*))
+}
+
+rule Trojan_AndroidOS_Rewardsteal_AM_2147921625_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:AndroidOS/Rewardsteal.AM"
+        threat_id = "2147921625"
+        type = "Trojan"
+        platform = "AndroidOS: Android operating system"
+        family = "Rewardsteal"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "onrender.com/dataC" ascii //weight: 2
+        $x_2_2 = "PostDataNodeCard" ascii //weight: 2
+        $x_2_3 = "Check_if_internet_simple" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_AndroidOS_Rewardsteal_AE_2147921626_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:AndroidOS/Rewardsteal.AE"
+        threat_id = "2147921626"
+        type = "Trojan"
+        platform = "AndroidOS: Android operating system"
+        family = "Rewardsteal"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "Please enter both mobile number and MPIN" ascii //weight: 2
+        $x_2_2 = "SMS permissions already granted" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
 }
 

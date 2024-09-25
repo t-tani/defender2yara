@@ -270,12 +270,12 @@ rule Trojan_MSIL_Stealc_RPX_2147900690_1
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Stealc_MBXX_2147921601_0
+rule Trojan_MSIL_Stealc_MBXX_2147921617_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Stealc.MBXX!MTB"
-        threat_id = "2147921601"
+        threat_id = "2147921617"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Stealc"

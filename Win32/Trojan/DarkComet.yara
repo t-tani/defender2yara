@@ -292,3 +292,24 @@ rule Trojan_Win32_DarkComet_AKM_2147912711_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_DarkComet_MBXX_2147921619_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/DarkComet.MBXX!MTB"
+        threat_id = "2147921619"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "DarkComet"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = {30 25 40 00 98 12 40 00 00 f0 30 00 00 ff ff ff 08 00 00 00 01 00 00 00 00 00 00 00 e9 00 00 00 28 11 40 00 28 11 40 00 ec 10 40 00 78 00 00 00 80}  //weight: 10, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

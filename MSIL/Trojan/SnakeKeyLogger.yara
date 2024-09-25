@@ -1743,12 +1743,12 @@ rule Trojan_MSIL_SnakeKeyLogger_PN_2147920783_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_SnakeKeyLogger_RDBW_2147921689_0
+rule Trojan_MSIL_SnakeKeyLogger_RDBW_2147921716_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/SnakeKeyLogger.RDBW!MTB"
-        threat_id = "2147921689"
+        threat_id = "2147921716"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "SnakeKeyLogger"
@@ -1764,12 +1764,12 @@ rule Trojan_MSIL_SnakeKeyLogger_RDBW_2147921689_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_SnakeKeyLogger_RDBX_2147921690_0
+rule Trojan_MSIL_SnakeKeyLogger_RDBX_2147921717_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/SnakeKeyLogger.RDBX!MTB"
-        threat_id = "2147921690"
+        threat_id = "2147921717"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "SnakeKeyLogger"
@@ -1785,12 +1785,12 @@ rule Trojan_MSIL_SnakeKeyLogger_RDBX_2147921690_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_SnakeKeyLogger_RDBZ_2147921692_0
+rule Trojan_MSIL_SnakeKeyLogger_RDBZ_2147921719_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/SnakeKeyLogger.RDBZ!MTB"
-        threat_id = "2147921692"
+        threat_id = "2147921719"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "SnakeKeyLogger"

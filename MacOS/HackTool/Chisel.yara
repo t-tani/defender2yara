@@ -45,12 +45,12 @@ rule HackTool_MacOS_Chisel_B_2147893467_0
         (all of ($x*))
 }
 
-rule HackTool_MacOS_Chisel_C_2147921796_0
+rule HackTool_MacOS_Chisel_C_2147921834_0
 {
     meta:
         author = "defender2yara"
         detection_name = "HackTool:MacOS/Chisel.C!MTB"
-        threat_id = "2147921796"
+        threat_id = "2147921834"
         type = "HackTool"
         platform = "MacOS: "
         family = "Chisel"

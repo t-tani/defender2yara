@@ -1,9 +1,9 @@
-rule VirTool_Win64_Stedebypesz_A_2147921707_0
+rule VirTool_Win64_Stedebypesz_A_2147921735_0
 {
     meta:
         author = "defender2yara"
         detection_name = "VirTool:Win64/Stedebypesz.A!MTB"
-        threat_id = "2147921707"
+        threat_id = "2147921735"
         type = "VirTool"
         platform = "Win64: Windows 64-bit platform"
         family = "Stedebypesz"

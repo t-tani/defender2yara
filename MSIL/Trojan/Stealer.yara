@@ -2060,12 +2060,12 @@ rule Trojan_MSIL_Stealer_PAFP_2147920432_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Stealer_AYA_2147921584_0
+rule Trojan_MSIL_Stealer_AYA_2147921600_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Stealer.AYA!MTB"
-        threat_id = "2147921584"
+        threat_id = "2147921600"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Stealer"
@@ -2083,12 +2083,12 @@ rule Trojan_MSIL_Stealer_AYA_2147921584_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Stealer_WXAA_2147921645_0
+rule Trojan_MSIL_Stealer_WXAA_2147921669_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Stealer.WXAA!MTB"
-        threat_id = "2147921645"
+        threat_id = "2147921669"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Stealer"
@@ -2105,12 +2105,34 @@ rule Trojan_MSIL_Stealer_WXAA_2147921645_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Stealer_SWH_2147921800_0
+rule Trojan_MSIL_Stealer_XTAA_2147921681_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Stealer.XTAA!MTB"
+        threat_id = "2147921681"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Stealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = {fe 0c 0c 00 fe 0c 0b 00 fe 0c 0c 00 fe 0c 0b 00 91 fe 0c 11 00 fe 0c 0b 00 fe 0c 11 00 8e 69 5d 91 61 d2 9c fe 0c 0b 00 20 ea f1 00 00 20 eb f1 00 00 61 58 fe 0e 0b 00}  //weight: 3, accuracy: High
+        $x_2_2 = {20 1d 53 ff ff 20 e4 ac 00 00 58 8d 10 00 00 01 fe 0e 00 00 fe 0c 00 00 20 00 00 00 00 20 0f 71 d7 13 20 17 da 00 00 61 20 22 38 ff ff 20 fd c7 00 00 58 5f 62 20 aa 58 ff ff 20 56 a7 00 00 58 20 bf 36 ff ff 20 61 c9 00 00 58 20 70 1b d7 13 20 68 b0 00 00 61 59 20 1f 00 00 00 5f 64 60 fe 09 00 00 a2 fe 0c 00 00}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Stealer_SWH_2147921838_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Stealer.SWH!MTB"
-        threat_id = "2147921800"
+        threat_id = "2147921838"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Stealer"

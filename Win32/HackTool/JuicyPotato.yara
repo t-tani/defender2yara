@@ -1,9 +1,9 @@
-rule HackTool_Win32_JuicyPotato_F_2147921555_0
+rule HackTool_Win32_JuicyPotato_F_2147921571_0
 {
     meta:
         author = "defender2yara"
         detection_name = "HackTool:Win32/JuicyPotato.F!dha"
-        threat_id = "2147921555"
+        threat_id = "2147921571"
         type = "HackTool"
         platform = "Win32: Windows 32-bit platform"
         family = "JuicyPotato"

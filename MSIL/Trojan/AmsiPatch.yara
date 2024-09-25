@@ -1,9 +1,9 @@
-rule Trojan_MSIL_AmsiPatch_DA_2147921559_0
+rule Trojan_MSIL_AmsiPatch_DA_2147921575_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/AmsiPatch.DA!MTB"
-        threat_id = "2147921559"
+        threat_id = "2147921575"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "AmsiPatch"
@@ -23,12 +23,12 @@ rule Trojan_MSIL_AmsiPatch_DA_2147921559_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_AmsiPatch_DB_2147921560_0
+rule Trojan_MSIL_AmsiPatch_DB_2147921576_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/AmsiPatch.DB!MTB"
-        threat_id = "2147921560"
+        threat_id = "2147921576"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "AmsiPatch"

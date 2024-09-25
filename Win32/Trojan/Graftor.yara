@@ -336,12 +336,12 @@ rule Trojan_Win32_Graftor_ARA_2147913513_1
         (all of ($x*))
 }
 
-rule Trojan_Win32_Graftor_C_2147921633_0
+rule Trojan_Win32_Graftor_C_2147921657_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Graftor.C!MTB"
-        threat_id = "2147921633"
+        threat_id = "2147921657"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Graftor"

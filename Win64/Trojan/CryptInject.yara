@@ -2820,12 +2820,12 @@ rule Trojan_Win64_CryptInject_OKZ_2147920725_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_CryptInject_VAS_2147921675_0
+rule Trojan_Win64_CryptInject_VAS_2147921701_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/CryptInject.VAS!MTB"
-        threat_id = "2147921675"
+        threat_id = "2147921701"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "CryptInject"
@@ -2841,12 +2841,12 @@ rule Trojan_Win64_CryptInject_VAS_2147921675_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_CryptInject_KIY_2147921677_0
+rule Trojan_Win64_CryptInject_KIY_2147921703_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/CryptInject.KIY!MTB"
-        threat_id = "2147921677"
+        threat_id = "2147921703"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "CryptInject"
@@ -2862,12 +2862,12 @@ rule Trojan_Win64_CryptInject_KIY_2147921677_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_CryptInject_DXA_2147921683_0
+rule Trojan_Win64_CryptInject_DXA_2147921709_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/CryptInject.DXA!MTB"
-        threat_id = "2147921683"
+        threat_id = "2147921709"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "CryptInject"

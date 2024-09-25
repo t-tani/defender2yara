@@ -612,3 +612,27 @@ rule Trojan_MSIL_Zilla_SLB_2147920864_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Zilla_AZL_2147921643_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Zilla.AZL!MTB"
+        threat_id = "2147921643"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Zilla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {0a 00 25 16 6f ?? 00 00 0a 00 0a 06 28 ?? 00 00 0a 0b 07 6f ?? 00 00 0a 00 72 59 00 00 70 28 ?? 00 00 06 26 28 ?? 00 00 06 0c 08 1b 28 ?? 00 00 06 26 08 28 ?? 00 00 06 00 1f 32 1f 14 28}  //weight: 2, accuracy: Low
+        $x_1_2 = "Welcome to DynX Corporation" wide //weight: 1
+        $x_1_3 = "Emulator Detected" wide //weight: 1
+        $x_1_4 = "VAZAAD CMD SECURE\\Downloader\\obj\\Debug" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -171,12 +171,12 @@ rule Trojan_Win32_ZLoader_BLG_2147920450_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_ZLoader_MJJ_2147921682_0
+rule Trojan_Win32_ZLoader_MJJ_2147921708_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/ZLoader.MJJ!MTB"
-        threat_id = "2147921682"
+        threat_id = "2147921708"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "ZLoader"

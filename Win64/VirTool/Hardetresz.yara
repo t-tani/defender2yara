@@ -1,9 +1,9 @@
-rule VirTool_Win64_Hardetresz_A_2147921706_0
+rule VirTool_Win64_Hardetresz_A_2147921734_0
 {
     meta:
         author = "defender2yara"
         detection_name = "VirTool:Win64/Hardetresz.A!MTB"
-        threat_id = "2147921706"
+        threat_id = "2147921734"
         type = "VirTool"
         platform = "Win64: Windows 64-bit platform"
         family = "Hardetresz"

@@ -45,12 +45,12 @@ rule TrojanDownloader_MSIL_Lazy_RP_2147915041_0
         (all of ($x*))
 }
 
-rule TrojanDownloader_MSIL_Lazy_NITA_2147921818_0
+rule TrojanDownloader_MSIL_Lazy_NITA_2147921856_0
 {
     meta:
         author = "defender2yara"
         detection_name = "TrojanDownloader:MSIL/Lazy.NITA!MTB"
-        threat_id = "2147921818"
+        threat_id = "2147921856"
         type = "TrojanDownloader"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Lazy"
