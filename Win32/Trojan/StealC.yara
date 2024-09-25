@@ -2497,12 +2497,12 @@ rule Trojan_Win32_StealC_GNM_2147919465_1
         (all of ($x*))
 }
 
-rule Trojan_Win32_StealC_RZ_2147921549_0
+rule Trojan_Win32_StealC_RZ_2147921552_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/StealC.RZ!MTB"
-        threat_id = "2147921549"
+        threat_id = "2147921552"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "StealC"
@@ -2518,12 +2518,12 @@ rule Trojan_Win32_StealC_RZ_2147921549_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_StealC_TZ_2147921552_0
+rule Trojan_Win32_StealC_TZ_2147921555_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/StealC.TZ!MTB"
-        threat_id = "2147921552"
+        threat_id = "2147921555"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "StealC"
@@ -2539,12 +2539,12 @@ rule Trojan_Win32_StealC_TZ_2147921552_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_StealC_EZ_2147921553_0
+rule Trojan_Win32_StealC_EZ_2147921556_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/StealC.EZ!MTB"
-        threat_id = "2147921553"
+        threat_id = "2147921556"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "StealC"
@@ -2560,12 +2560,12 @@ rule Trojan_Win32_StealC_EZ_2147921553_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_StealC_D_2147921612_0
+rule Trojan_Win32_StealC_D_2147921615_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/StealC.D!MTB"
-        threat_id = "2147921612"
+        threat_id = "2147921615"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "StealC"
@@ -2581,12 +2581,12 @@ rule Trojan_Win32_StealC_D_2147921612_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_StealC_E_2147921614_0
+rule Trojan_Win32_StealC_E_2147921617_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/StealC.E!MTB"
-        threat_id = "2147921614"
+        threat_id = "2147921617"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "StealC"
@@ -2602,12 +2602,12 @@ rule Trojan_Win32_StealC_E_2147921614_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_StealC_F_2147921615_0
+rule Trojan_Win32_StealC_F_2147921618_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/StealC.F!MTB"
-        threat_id = "2147921615"
+        threat_id = "2147921618"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "StealC"
@@ -2625,12 +2625,12 @@ rule Trojan_Win32_StealC_F_2147921615_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_StealC_G_2147921616_0
+rule Trojan_Win32_StealC_G_2147921619_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/StealC.G!MTB"
-        threat_id = "2147921616"
+        threat_id = "2147921619"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "StealC"

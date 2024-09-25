@@ -894,12 +894,12 @@ rule Trojan_Win32_GCleaner_EEE_2147921031_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_GCleaner_KAB_2147921719_0
+rule Trojan_Win32_GCleaner_KAB_2147921723_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/GCleaner.KAB!MTB"
-        threat_id = "2147921719"
+        threat_id = "2147921723"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "GCleaner"

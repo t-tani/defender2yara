@@ -1,9 +1,9 @@
-rule HackTool_MacOS_Gost_A_2147921770_0
+rule HackTool_MacOS_Gost_A_2147921774_0
 {
     meta:
         author = "defender2yara"
         detection_name = "HackTool:MacOS/Gost.A!MTB"
-        threat_id = "2147921770"
+        threat_id = "2147921774"
         type = "HackTool"
         platform = "MacOS: "
         family = "Gost"

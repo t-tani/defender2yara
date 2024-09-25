@@ -1928,12 +1928,12 @@ rule Trojan_Win32_LummaStealer_VG_2147921119_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_LummaStealer_AQ_2147921588_0
+rule Trojan_Win32_LummaStealer_AQ_2147921591_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/LummaStealer.AQ!MTB"
-        threat_id = "2147921588"
+        threat_id = "2147921591"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "LummaStealer"
@@ -1950,12 +1950,12 @@ rule Trojan_Win32_LummaStealer_AQ_2147921588_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_LummaStealer_ALU_2147921597_0
+rule Trojan_Win32_LummaStealer_ALU_2147921600_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/LummaStealer.ALU!MTB"
-        threat_id = "2147921597"
+        threat_id = "2147921600"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "LummaStealer"
@@ -1971,12 +1971,33 @@ rule Trojan_Win32_LummaStealer_ALU_2147921597_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_LummaStealer_RP_2147921747_0
+rule Trojan_Win32_LummaStealer_MIP_2147921667_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaStealer.MIP!MTB"
+        threat_id = "2147921667"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {8b 0c 24 8b 14 24 0f b6 54 14 28 81 c1 92 ea fe 52 31 d1 89 4c 24 ?? 8b 4c 24 ?? 80 c1 26 8b 14 24 88 4c 14 ?? ff 04 24 8b 0c 24 83 f9 67 72}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_LummaStealer_RP_2147921751_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/LummaStealer.RP!MTB"
-        threat_id = "2147921747"
+        threat_id = "2147921751"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "LummaStealer"

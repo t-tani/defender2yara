@@ -4928,12 +4928,12 @@ rule Trojan_MSIL_AsyncRAT_KAN_2147920817_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_AsyncRAT_KAT_2147921710_0
+rule Trojan_MSIL_AsyncRAT_KAT_2147921714_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/AsyncRAT.KAT!MTB"
-        threat_id = "2147921710"
+        threat_id = "2147921714"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "AsyncRAT"
@@ -4949,12 +4949,12 @@ rule Trojan_MSIL_AsyncRAT_KAT_2147921710_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_AsyncRAT_KAW_2147921721_0
+rule Trojan_MSIL_AsyncRAT_KAW_2147921725_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/AsyncRAT.KAW!MTB"
-        threat_id = "2147921721"
+        threat_id = "2147921725"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "AsyncRAT"

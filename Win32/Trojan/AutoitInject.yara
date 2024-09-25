@@ -2700,12 +2700,12 @@ rule Trojan_Win32_AutoitInject_KAE_2147920945_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_AutoitInject_WZAA_2147921627_0
+rule Trojan_Win32_AutoitInject_WZAA_2147921630_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/AutoitInject.WZAA!MTB"
-        threat_id = "2147921627"
+        threat_id = "2147921630"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "AutoitInject"
@@ -2725,12 +2725,12 @@ rule Trojan_Win32_AutoitInject_WZAA_2147921627_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_AutoitInject_AMA_2147921701_0
+rule Trojan_Win32_AutoitInject_AMA_2147921705_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/AutoitInject.AMA!MTB"
-        threat_id = "2147921701"
+        threat_id = "2147921705"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "AutoitInject"
@@ -2754,12 +2754,12 @@ rule Trojan_Win32_AutoitInject_AMA_2147921701_0
         )
 }
 
-rule Trojan_Win32_AutoitInject_NF_2147921755_0
+rule Trojan_Win32_AutoitInject_NF_2147921759_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/AutoitInject.NF!MTB"
-        threat_id = "2147921755"
+        threat_id = "2147921759"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "AutoitInject"
@@ -2795,12 +2795,12 @@ rule Trojan_Win32_AutoitInject_NF_2147921755_0
         )
 }
 
-rule Trojan_Win32_AutoitInject_NK_2147921759_0
+rule Trojan_Win32_AutoitInject_NK_2147921763_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/AutoitInject.NK!MTB"
-        threat_id = "2147921759"
+        threat_id = "2147921763"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "AutoitInject"
@@ -2828,12 +2828,12 @@ rule Trojan_Win32_AutoitInject_NK_2147921759_0
         )
 }
 
-rule Trojan_Win32_AutoitInject_NM_2147921762_0
+rule Trojan_Win32_AutoitInject_NM_2147921766_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/AutoitInject.NM!MTB"
-        threat_id = "2147921762"
+        threat_id = "2147921766"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "AutoitInject"
