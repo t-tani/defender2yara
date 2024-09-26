@@ -1,9 +1,9 @@
-rule VirTool_Win64_Threalesz_A_2147921748_0
+rule VirTool_Win64_Threalesz_A_2147921774_0
 {
     meta:
         author = "defender2yara"
         detection_name = "VirTool:Win64/Threalesz.A!MTB"
-        threat_id = "2147921748"
+        threat_id = "2147921774"
         type = "VirTool"
         platform = "Win64: Windows 64-bit platform"
         family = "Threalesz"

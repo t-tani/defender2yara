@@ -343,12 +343,12 @@ rule Trojan_Win32_CryptBot_CCJD_2147916056_0
         )
 }
 
-rule Trojan_Win32_CryptBot_CCJE_2147921755_0
+rule Trojan_Win32_CryptBot_CCJE_2147921781_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/CryptBot.CCJE!MTB"
-        threat_id = "2147921755"
+        threat_id = "2147921781"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "CryptBot"

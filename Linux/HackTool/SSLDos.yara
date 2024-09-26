@@ -1,9 +1,9 @@
-rule HackTool_Linux_SSLDos_A_2147921663_0
+rule HackTool_Linux_SSLDos_A_2147921688_0
 {
     meta:
         author = "defender2yara"
         detection_name = "HackTool:Linux/SSLDos.A!MTB"
-        threat_id = "2147921663"
+        threat_id = "2147921688"
         type = "HackTool"
         platform = "Linux: Linux platform"
         family = "SSLDos"

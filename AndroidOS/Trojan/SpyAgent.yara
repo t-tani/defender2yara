@@ -935,12 +935,12 @@ rule Trojan_AndroidOS_SpyAgent_AQ_2147919637_0
         (all of ($x*))
 }
 
-rule Trojan_AndroidOS_SpyAgent_AL_2147921621_0
+rule Trojan_AndroidOS_SpyAgent_AL_2147921645_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:AndroidOS/SpyAgent.AL"
-        threat_id = "2147921621"
+        threat_id = "2147921645"
         type = "Trojan"
         platform = "AndroidOS: Android operating system"
         family = "SpyAgent"
@@ -957,12 +957,12 @@ rule Trojan_AndroidOS_SpyAgent_AL_2147921621_0
         (all of ($x*))
 }
 
-rule Trojan_AndroidOS_SpyAgent_AI_2147921622_0
+rule Trojan_AndroidOS_SpyAgent_AI_2147921646_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:AndroidOS/SpyAgent.AI"
-        threat_id = "2147921622"
+        threat_id = "2147921646"
         type = "Trojan"
         platform = "AndroidOS: Android operating system"
         family = "SpyAgent"

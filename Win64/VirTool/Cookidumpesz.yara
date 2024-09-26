@@ -1,9 +1,9 @@
-rule VirTool_Win64_Cookidumpesz_2147921738_0
+rule VirTool_Win64_Cookidumpesz_2147921764_0
 {
     meta:
         author = "defender2yara"
         detection_name = "VirTool:Win64/Cookidumpesz!MTB"
-        threat_id = "2147921738"
+        threat_id = "2147921764"
         type = "VirTool"
         platform = "Win64: Windows 64-bit platform"
         family = "Cookidumpesz"

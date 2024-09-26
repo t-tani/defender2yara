@@ -1,9 +1,9 @@
-rule HackTool_Linux_InviteFlood_B_2147921662_0
+rule HackTool_Linux_InviteFlood_B_2147921687_0
 {
     meta:
         author = "defender2yara"
         detection_name = "HackTool:Linux/InviteFlood.B!MTB"
-        threat_id = "2147921662"
+        threat_id = "2147921687"
         type = "HackTool"
         platform = "Linux: Linux platform"
         family = "InviteFlood"

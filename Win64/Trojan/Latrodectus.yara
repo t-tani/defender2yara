@@ -360,12 +360,12 @@ rule Trojan_Win64_Latrodectus_DD_2147919789_0
         (1 of ($x*))
 }
 
-rule Trojan_Win64_Latrodectus_PH_2147921572_0
+rule Trojan_Win64_Latrodectus_PH_2147921595_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/Latrodectus.PH!MTB"
-        threat_id = "2147921572"
+        threat_id = "2147921595"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "Latrodectus"

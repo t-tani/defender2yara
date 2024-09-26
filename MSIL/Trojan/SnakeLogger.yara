@@ -646,12 +646,12 @@ rule Trojan_MSIL_SnakeLogger_AZ_2147920915_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_SnakeLogger_BA_2147921636_0
+rule Trojan_MSIL_SnakeLogger_BA_2147921660_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/SnakeLogger.BA!MTB"
-        threat_id = "2147921636"
+        threat_id = "2147921660"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "SnakeLogger"

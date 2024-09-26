@@ -96,12 +96,12 @@ rule Backdoor_MacOS_Rustdoor_D_2147914720_0
         (all of ($x*))
 }
 
-rule Backdoor_MacOS_Rustdoor_E_2147921827_0
+rule Backdoor_MacOS_Rustdoor_E_2147921853_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Backdoor:MacOS/Rustdoor.E!MTB"
-        threat_id = "2147921827"
+        threat_id = "2147921853"
         type = "Backdoor"
         platform = "MacOS: "
         family = "Rustdoor"

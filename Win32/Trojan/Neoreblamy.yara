@@ -1567,12 +1567,12 @@ rule Trojan_Win32_Neoreblamy_BG_2147920597_0
         (4 of ($x*))
 }
 
-rule Trojan_Win32_Neoreblamy_ASQ_2147921630_0
+rule Trojan_Win32_Neoreblamy_ASQ_2147921654_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Neoreblamy.ASQ!MTB"
-        threat_id = "2147921630"
+        threat_id = "2147921654"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Neoreblamy"
@@ -1603,12 +1603,12 @@ rule Trojan_Win32_Neoreblamy_ASQ_2147921630_0
         (4 of ($x*))
 }
 
-rule Trojan_Win32_Neoreblamy_ASR_2147921632_0
+rule Trojan_Win32_Neoreblamy_ASR_2147921656_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Neoreblamy.ASR!MTB"
-        threat_id = "2147921632"
+        threat_id = "2147921656"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Neoreblamy"
@@ -1639,12 +1639,12 @@ rule Trojan_Win32_Neoreblamy_ASR_2147921632_0
         (4 of ($x*))
 }
 
-rule Trojan_Win32_Neoreblamy_AST_2147921635_0
+rule Trojan_Win32_Neoreblamy_AST_2147921659_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Neoreblamy.AST!MTB"
-        threat_id = "2147921635"
+        threat_id = "2147921659"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Neoreblamy"

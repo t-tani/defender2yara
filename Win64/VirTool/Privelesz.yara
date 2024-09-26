@@ -1,9 +1,9 @@
-rule VirTool_Win64_Privelesz_A_2147921747_0
+rule VirTool_Win64_Privelesz_A_2147921773_0
 {
     meta:
         author = "defender2yara"
         detection_name = "VirTool:Win64/Privelesz.A!MTB"
-        threat_id = "2147921747"
+        threat_id = "2147921773"
         type = "VirTool"
         platform = "Win64: Windows 64-bit platform"
         family = "Privelesz"

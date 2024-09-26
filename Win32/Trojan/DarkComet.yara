@@ -292,12 +292,12 @@ rule Trojan_Win32_DarkComet_AKM_2147912711_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_DarkComet_MBXX_2147921619_0
+rule Trojan_Win32_DarkComet_MBXX_2147921643_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/DarkComet.MBXX!MTB"
-        threat_id = "2147921619"
+        threat_id = "2147921643"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "DarkComet"

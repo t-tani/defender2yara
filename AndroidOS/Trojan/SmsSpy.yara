@@ -509,12 +509,12 @@ rule Trojan_AndroidOS_SmsSpy_O_2147847742_0
         (all of ($x*))
 }
 
-rule Trojan_AndroidOS_SmsSpy_AH_2147921623_0
+rule Trojan_AndroidOS_SmsSpy_AH_2147921647_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:AndroidOS/SmsSpy.AH"
-        threat_id = "2147921623"
+        threat_id = "2147921647"
         type = "Trojan"
         platform = "AndroidOS: Android operating system"
         family = "SmsSpy"

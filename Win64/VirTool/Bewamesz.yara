@@ -1,9 +1,9 @@
-rule VirTool_Win64_Bewamesz_A_2147921745_0
+rule VirTool_Win64_Bewamesz_A_2147921771_0
 {
     meta:
         author = "defender2yara"
         detection_name = "VirTool:Win64/Bewamesz.A!MTB"
-        threat_id = "2147921745"
+        threat_id = "2147921771"
         type = "VirTool"
         platform = "Win64: Windows 64-bit platform"
         family = "Bewamesz"

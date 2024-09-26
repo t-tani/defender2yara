@@ -1,9 +1,9 @@
-rule VirTool_Win64_Bekepesz_A_2147921743_0
+rule VirTool_Win64_Bekepesz_A_2147921769_0
 {
     meta:
         author = "defender2yara"
         detection_name = "VirTool:Win64/Bekepesz.A!MTB"
-        threat_id = "2147921743"
+        threat_id = "2147921769"
         type = "VirTool"
         platform = "Win64: Windows 64-bit platform"
         family = "Bekepesz"

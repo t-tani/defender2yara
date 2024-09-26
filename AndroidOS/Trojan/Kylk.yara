@@ -1,9 +1,9 @@
-rule Trojan_AndroidOS_Kylk_J_2147921624_0
+rule Trojan_AndroidOS_Kylk_J_2147921648_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:AndroidOS/Kylk.J"
-        threat_id = "2147921624"
+        threat_id = "2147921648"
         type = "Trojan"
         platform = "AndroidOS: Android operating system"
         family = "Kylk"

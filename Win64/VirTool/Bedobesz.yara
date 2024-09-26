@@ -1,9 +1,9 @@
-rule VirTool_Win64_Bedobesz_A_2147921742_0
+rule VirTool_Win64_Bedobesz_A_2147921768_0
 {
     meta:
         author = "defender2yara"
         detection_name = "VirTool:Win64/Bedobesz.A!MTB"
-        threat_id = "2147921742"
+        threat_id = "2147921768"
         type = "VirTool"
         platform = "Win64: Windows 64-bit platform"
         family = "Bedobesz"

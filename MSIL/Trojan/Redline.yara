@@ -5081,12 +5081,12 @@ rule Trojan_MSIL_Redline_AMAM_2147920814_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Redline_GTL_2147921648_0
+rule Trojan_MSIL_Redline_GTL_2147921672_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Redline.GTL!MTB"
-        threat_id = "2147921648"
+        threat_id = "2147921672"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Redline"
@@ -5102,12 +5102,12 @@ rule Trojan_MSIL_Redline_GTL_2147921648_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Redline_WVAA_2147921668_0
+rule Trojan_MSIL_Redline_WVAA_2147921693_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Redline.WVAA!MTB"
-        threat_id = "2147921668"
+        threat_id = "2147921693"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Redline"

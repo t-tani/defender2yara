@@ -85,12 +85,12 @@ rule Trojan_Win64_Rootkit_EH_2147920392_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_Rootkit_GZT_2147921651_0
+rule Trojan_Win64_Rootkit_GZT_2147921675_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/Rootkit.GZT!MTB"
-        threat_id = "2147921651"
+        threat_id = "2147921675"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "Rootkit"

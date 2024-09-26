@@ -612,12 +612,12 @@ rule Trojan_MSIL_Zilla_SLB_2147920864_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Zilla_AZL_2147921643_0
+rule Trojan_MSIL_Zilla_AZL_2147921667_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Zilla.AZL!MTB"
-        threat_id = "2147921643"
+        threat_id = "2147921667"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Zilla"

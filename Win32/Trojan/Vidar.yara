@@ -5881,12 +5881,12 @@ rule Trojan_Win32_Vidar_PAFQ_2147920663_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Vidar_MBXX_2147921618_0
+rule Trojan_Win32_Vidar_MBXX_2147921642_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Vidar.MBXX!MTB"
-        threat_id = "2147921618"
+        threat_id = "2147921642"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Vidar"

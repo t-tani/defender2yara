@@ -1,9 +1,9 @@
-rule VirTool_Win64_Beondresz_A_2147921741_0
+rule VirTool_Win64_Beondresz_A_2147921767_0
 {
     meta:
         author = "defender2yara"
         detection_name = "VirTool:Win64/Beondresz.A!MTB"
-        threat_id = "2147921741"
+        threat_id = "2147921767"
         type = "VirTool"
         platform = "Win64: Windows 64-bit platform"
         family = "Beondresz"

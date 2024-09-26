@@ -950,12 +950,12 @@ rule Trojan_AndroidOS_Rewardsteal_V_2147920429_0
         (all of ($x*))
 }
 
-rule Trojan_AndroidOS_Rewardsteal_AG_2147921620_0
+rule Trojan_AndroidOS_Rewardsteal_AG_2147921644_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:AndroidOS/Rewardsteal.AG"
-        threat_id = "2147921620"
+        threat_id = "2147921644"
         type = "Trojan"
         platform = "AndroidOS: Android operating system"
         family = "Rewardsteal"
@@ -975,12 +975,12 @@ rule Trojan_AndroidOS_Rewardsteal_AG_2147921620_0
         (2 of ($x*))
 }
 
-rule Trojan_AndroidOS_Rewardsteal_AM_2147921625_0
+rule Trojan_AndroidOS_Rewardsteal_AM_2147921649_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:AndroidOS/Rewardsteal.AM"
-        threat_id = "2147921625"
+        threat_id = "2147921649"
         type = "Trojan"
         platform = "AndroidOS: Android operating system"
         family = "Rewardsteal"
@@ -997,12 +997,12 @@ rule Trojan_AndroidOS_Rewardsteal_AM_2147921625_0
         (all of ($x*))
 }
 
-rule Trojan_AndroidOS_Rewardsteal_AE_2147921626_0
+rule Trojan_AndroidOS_Rewardsteal_AE_2147921650_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:AndroidOS/Rewardsteal.AE"
-        threat_id = "2147921626"
+        threat_id = "2147921650"
         type = "Trojan"
         platform = "AndroidOS: Android operating system"
         family = "Rewardsteal"

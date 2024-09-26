@@ -513,12 +513,12 @@ rule Trojan_MSIL_LummaC_AMA_2147921040_1
         (all of ($x*))
 }
 
-rule Trojan_MSIL_LummaC_WQAA_2147921666_0
+rule Trojan_MSIL_LummaC_WQAA_2147921691_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/LummaC.WQAA!MTB"
-        threat_id = "2147921666"
+        threat_id = "2147921691"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "LummaC"
@@ -539,12 +539,12 @@ rule Trojan_MSIL_LummaC_WQAA_2147921666_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_LummaC_WSAA_2147921667_0
+rule Trojan_MSIL_LummaC_WSAA_2147921692_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/LummaC.WSAA!MTB"
-        threat_id = "2147921667"
+        threat_id = "2147921692"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "LummaC"
@@ -560,6 +560,27 @@ rule Trojan_MSIL_LummaC_WSAA_2147921667_0
         $x_1_4 = "Element IO Innovations Trademark" ascii //weight: 1
         $x_1_5 = "$0c784f02-e0f5-43a1-947a-aea218fd31df" ascii //weight: 1
         $x_1_6 = "FromBase64String" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_LummaC_ZAA_2147921738_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/LummaC.ZAA!MTB"
+        threat_id = "2147921738"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "LummaC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {01 25 16 07 a2 25 17 72 27 03 00 70 28 ?? ?? 00 0a 72 2f 03 00 70 72 a9 03 00 70 7e 42 00 00 0a 28 ?? ?? 00 0a 28 ?? ?? 00 0a a2 25 18 17 8c 71 00 00 01 a2 25 19 17 8d 20 00 00 01 25 16 72 b7 03 00 70 a2 a2 14 0d 12 03 28 ?? ?? 00 06 28 34 00 00 0a 0c}  //weight: 5, accuracy: Low
     condition:
         (filesize < 20MB) and
         (all of ($x*))

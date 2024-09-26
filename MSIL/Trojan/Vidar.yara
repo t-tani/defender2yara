@@ -2204,12 +2204,12 @@ rule Trojan_MSIL_Vidar_WRA_2147920953_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Vidar_DF_2147921574_0
+rule Trojan_MSIL_Vidar_DF_2147921597_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Vidar.DF!MTB"
-        threat_id = "2147921574"
+        threat_id = "2147921597"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Vidar"
