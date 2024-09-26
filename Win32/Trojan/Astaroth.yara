@@ -485,9 +485,9 @@ rule Trojan_Win32_Astaroth_ZZ_2147920516_0
         $x_100_3 = {8a 54 0a ff 80 ea 0a f6 d2 b9 00 00 00 00 e8}  //weight: 100, accuracy: High
         $x_100_4 = {0f b7 44 50 fe 33 45}  //weight: 100, accuracy: High
         $x_10_5 = "xGERAL.AR" ascii //weight: 10
-        $x_10_6 = "xTRAVA" ascii //weight: 10
-        $x_10_7 = "auid.log" ascii //weight: 10
-        $x_10_8 = "Nome Memory:" ascii //weight: 10
+        $x_10_6 = "BuildAvBanks" ascii //weight: 10
+        $x_10_7 = "DeleteVerificaOFFx" ascii //weight: 10
+        $x_10_8 = "verificaBloqsPrev" ascii //weight: 10
     condition:
         (filesize < 20MB) and
         (

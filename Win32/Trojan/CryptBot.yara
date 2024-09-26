@@ -386,3 +386,25 @@ rule Trojan_Win32_CryptBot_CCJE_2147921781_0
         )
 }
 
+rule Trojan_Win32_CryptBot_GPA_2147922168_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/CryptBot.GPA!MTB"
+        threat_id = "2147922168"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "CryptBot"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_4_1 = "//update-ledger.net/update" ascii //weight: 4
+        $x_1_2 = "UseBasicParsing -UserAgent" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

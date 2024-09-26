@@ -168,3 +168,27 @@ rule Trojan_Win32_Autoitinject_PHIH_2147921874_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Autoitinject_SPIH_2147922126_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Autoitinject.SPIH!MTB"
+        threat_id = "2147922126"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Autoitinject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "@TEMPDIR" ascii //weight: 1
+        $x_1_2 = "DLLCALL" ascii //weight: 1
+        $x_5_3 = "k6wcRq90de6wcRq90dr6wcRq90dn6wcRq90de6wcRq90dl6wcRq90d36wcRq90d26wcRq90d.6wcRq90dd6wcRq90dl6wcRq90dl6wcRq90d" ascii //weight: 5
+        $x_3_4 = "u6wcRq90ds6wcRq90de6wcRq90dr6wcRq90d36wcRq90d26wcRq90d.6wcRq90dd6wcRq90dl6wcRq90dl6wcRq90d" ascii //weight: 3
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

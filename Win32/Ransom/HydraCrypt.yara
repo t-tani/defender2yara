@@ -181,3 +181,24 @@ rule Ransom_Win32_HydraCrypt_YAA_2147900193_0
         (all of ($x*))
 }
 
+rule Ransom_Win32_HydraCrypt_YAB_2147922134_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win32/HydraCrypt.YAB!MTB"
+        threat_id = "2147922134"
+        type = "Ransom"
+        platform = "Win32: Windows 32-bit platform"
+        family = "HydraCrypt"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {f7 e1 c1 ea 03 8d 14 92 03 d2 8b c1 2b c2 8a 54 04 10 30 14 39 41}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

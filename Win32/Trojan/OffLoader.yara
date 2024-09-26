@@ -2544,3 +2544,25 @@ rule Trojan_Win32_OffLoader_SDDP_2147921754_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_OffLoader_SHSP_2147922125_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/OffLoader.SHSP!MTB"
+        threat_id = "2147922125"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "OffLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = "/shapework.cfd/srp.php" wide //weight: 3
+        $x_2_2 = "/silent" wide //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

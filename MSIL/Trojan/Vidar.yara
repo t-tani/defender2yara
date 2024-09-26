@@ -2225,3 +2225,25 @@ rule Trojan_MSIL_Vidar_DF_2147921597_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Vidar_ZMO_2147922136_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Vidar.ZMO!MTB"
+        threat_id = "2147922136"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Vidar"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "9"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {61 69 13 26 08 17 58 20 ?? ?? ?? 00 5d 0c 09 06 08 91 58 20 ?? ?? ?? 00 5d 0d 06 08 91 13 27 06 08 06 09 91 9c 06 09 11 27 9c 06 08 91 06 09 91 58}  //weight: 5, accuracy: Low
+        $x_4_2 = {13 35 03 11 34 91 13 36 06 11 35 91 13 ?? 11 36 11 37 61 d2 13 36 03 11 34 11 36 9c de 05}  //weight: 4, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
