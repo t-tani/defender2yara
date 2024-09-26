@@ -42,3 +42,23 @@ rule Backdoor_Win64_BianDoor_D_2147903395_0
         (all of ($x*))
 }
 
+rule Backdoor_Win64_BianDoor_H_2147922181_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Backdoor:Win64/BianDoor.H"
+        threat_id = "2147922181"
+        type = "Backdoor"
+        platform = "Win64: Windows 64-bit platform"
+        family = "BianDoor"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {00 36 34 2e 64 6c 6c 00 45 6e 74 72 79 00 5f 63 67 6f 5f 64 75 ?? 6d 79 5f 65 78 ?? 6f 72 74 00}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -341,3 +341,33 @@ rule Backdoor_Win32_Simda_ASI_2147921099_0
         (all of ($x*))
 }
 
+rule Backdoor_Win32_Simda_CCJE_2147922178_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Backdoor:Win32/Simda.CCJE!MTB"
+        threat_id = "2147922178"
+        type = "Backdoor"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Simda"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "60"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = "iexplore.exe|opera.exe|java.exe|javaw.exe|explorer.exe|isclient.exe|intpro.exe" ascii //weight: 10
+        $x_10_2 = "{BotVer:" ascii //weight: 10
+        $x_5_3 = "{Username:" ascii //weight: 5
+        $x_5_4 = "{Processor:" ascii //weight: 5
+        $x_5_5 = "{Language:" ascii //weight: 5
+        $x_5_6 = "{Screen:" ascii //weight: 5
+        $x_5_7 = "kaspersky" ascii //weight: 5
+        $x_5_8 = "eset.com" ascii //weight: 5
+        $x_5_9 = "anti-malware" ascii //weight: 5
+        $x_5_10 = "software\\microsoft\\windows nt\\currentversion\\winlogon" ascii //weight: 5
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
