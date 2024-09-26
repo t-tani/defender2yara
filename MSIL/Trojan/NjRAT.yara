@@ -1152,3 +1152,25 @@ rule Trojan_MSIL_NjRAT_KAAR_2147921807_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_NjRAT_SARA_2147922106_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/NjRAT.SARA!MTB"
+        threat_id = "2147922106"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "NjRAT"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {13 04 11 04 08 6f ?? ?? ?? 0a 00 11 04 04 6f ?? ?? ?? 0a 00 11 04 05 6f ?? ?? ?? 0a 00 11 04 6f ?? ?? ?? 0a 0a 06 02 16 02 8e b7 6f ?? ?? ?? 0a 0d 11 04 6f ?? ?? ?? 0a 00 09 13 05}  //weight: 2, accuracy: Low
+        $x_1_2 = "CreateDecryptor" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

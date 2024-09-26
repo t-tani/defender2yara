@@ -105165,3 +105165,27 @@ rule Trojan_MSIL_AgentTesla_PNE_2147921865_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AgentTesla_XVAA_2147922105_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.XVAA!MTB"
+        threat_id = "2147922105"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {09 17 2f 03 16 2b 07 12 01 28 ?? 00 00 0a 13 07 09 18 2f 03 16 2b 07 12 01 28 ?? 00 00 0a 13 08 09 19 2e 03 16 2b 07 12 01 28 ?? 00 00 0a 13 09 09}  //weight: 3, accuracy: Low
+        $x_2_2 = {03 11 09 d2 6f ?? 00 00 0a 00 00 00 06 17 58 0a 06 02 6f ?? 00 00 0a fe 04 13 0d 11 0d}  //weight: 2, accuracy: Low
+        $x_2_3 = {02 05 06 6f ?? 00 00 0a 0b 03 6f ?? 00 00 0a 0c 04 08 59 0d 09 16 30 03 16 2b 01 17}  //weight: 2, accuracy: Low
+        $x_1_4 = {02 0f 01 28 ?? 00 00 0a 6f ?? 00 00 0a 00 2a}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

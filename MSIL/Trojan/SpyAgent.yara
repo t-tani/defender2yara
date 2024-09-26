@@ -181,3 +181,27 @@ rule Trojan_MSIL_SpyAgent_CCJB_2147921007_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_SpyAgent_NIT_2147922108_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/SpyAgent.NIT!MTB"
+        threat_id = "2147922108"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "SpyAgent"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {13 06 02 1f 0a 28 ?? 00 00 06 13 07 28 ?? 00 00 06 72 c0 04 00 70 11 07 6f ?? 00 00 0a 13 08 11 04 11 07 11 06 74 64 00 00 01 28 ?? 00 00 0a 6f ?? 00 00 0a 11 08 72 de 04 00 70 02 1d 28 ?? 00 00 06 11 06 74 64 00 00 01 28 ?? 00 00 0a 28 ?? 00 00 0a 6f ?? 00 00 0a 13 08 09 11 08 28 ?? 00 00 0a 0d 11 05 6f ?? 00 00 0a 2d 8d}  //weight: 2, accuracy: Low
+        $x_1_2 = "Falcon_Keylogger" ascii //weight: 1
+        $x_1_3 = "Send logs interval" wide //weight: 1
+        $x_1_4 = "chkUACExploit" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
