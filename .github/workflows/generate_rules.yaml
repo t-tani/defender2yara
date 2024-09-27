@@ -65,7 +65,7 @@ jobs:
 
     - name: Deploy on yara-rules branch
       if: steps.cached-vdm.outputs.cache-hit != 'true' || (github.event_name == 'push' && github.ref == 'refs/heads/main')
-      uses: JamesIves/github-pages-deploy-action@v4
+      uses: JamesIves/github-pages-deploy-action@v4.6.4
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         branch: yara-rules
