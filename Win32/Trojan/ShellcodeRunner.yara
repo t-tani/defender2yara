@@ -134,3 +134,25 @@ rule Trojan_Win32_ShellcodeRunner_AI_2147913707_0
         )
 }
 
+rule Trojan_Win32_ShellcodeRunner_HNC_2147922231_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ShellcodeRunner.HNC!MTB"
+        threat_id = "2147922231"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ShellcodeRunner"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {02 c2 42 30 01 3b d6}  //weight: 2, accuracy: High
+        $x_1_2 = {2a d0 80 c2 ?? 30 54 0d ?? 41 83 f9}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
