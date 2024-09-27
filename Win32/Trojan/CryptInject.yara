@@ -6393,3 +6393,24 @@ rule Trojan_Win32_CryptInject_KKV_2147920974_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_CryptInject_YTB_2147922251_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/CryptInject.YTB!MTB"
+        threat_id = "2147922251"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {11 10 8b c8 e8 ?? ?? ff ff 6a 1e ff d7 83 ee 01 75 ea}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

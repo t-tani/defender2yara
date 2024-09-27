@@ -545,3 +545,26 @@ rule Trojan_MSIL_Jalapeno_VV_2147921878_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Jalapeno_MBXT_2147922236_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Jalapeno.MBXT!MTB"
+        threat_id = "2147922236"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Jalapeno"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {32 31 37 44 31 35 00 34 35 42 37 37 43 31 38 00 46 30 33 46 35 30}  //weight: 2, accuracy: High
+        $x_1_2 = "16B7C39A.resources" ascii //weight: 1
+        $x_1_3 = "unknownspf_loader" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

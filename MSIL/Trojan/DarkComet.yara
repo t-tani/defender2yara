@@ -1174,13 +1174,34 @@ rule Trojan_MSIL_DarkComet_ADA_2147899784_1
         threshold = "1"
         strings_accuracy = "Low"
     strings:
-        $x_1_1 = {0b 02 8e 69 0d 02 8e 69 18 5a 06 8e 69 58 13 04 38 2f 00 00 00 11 04 17 58 0c 02 11 04 09 5d 02 11 04 09 5d 91 06 11 04 06 8e 69 5d 91 61 02 08 09 5d 91 28 ?? 00 00 06 07 58 07 5d d2 9c 11 04 15 58 13 04 11 04}  //weight: 1, accuracy: Low
+        $x_1_1 = {0a 17 59 32 02 2b 2d 07 08 8e b7 32 02 16 0b 11 06 11 07 93 13 0a 08 07 93 13 08 11 0a 09 59 11 08 59 13 09 11 05 11 07 11 09 28 ?? 00 00 0a 9d 07 17 58}  //weight: 1, accuracy: Low
     condition:
         (filesize < 20MB) and
         (all of ($x*))
 }
 
 rule Trojan_MSIL_DarkComet_ADA_2147899784_2
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/DarkComet.ADA!MTB"
+        threat_id = "2147899784"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "DarkComet"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {0b 02 8e 69 0d 02 8e 69 18 5a 06 8e 69 58 13 04 38 2f 00 00 00 11 04 17 58 0c 02 11 04 09 5d 02 11 04 09 5d 91 06 11 04 06 8e 69 5d 91 61 02 08 09 5d 91 28 ?? 00 00 06 07 58 07 5d d2 9c 11 04 15 58 13 04 11 04}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_DarkComet_ADA_2147899784_3
 {
     meta:
         author = "defender2yara"

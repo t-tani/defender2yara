@@ -40,3 +40,48 @@ rule Trojan_Win32_Oyster_MKV_2147912849_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Oyster_OYS_2147922268_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Oyster.OYS!MTB"
+        threat_id = "2147922268"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Oyster"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {50 6a 54 57 c7 45 a0 ?? ?? ?? ?? ff d6 85 c0 0f 84 ?? ?? ?? ?? 85 ff 0f 84 ?? ?? ?? ?? 83 7d 98 08 8d 45 84 6a 00 ff 75 10 0f 43 45 84 50 57 ff 15}  //weight: 2, accuracy: Low
+        $x_1_2 = "Loader\\CleanUp\\Release\\CleanUp.pdb" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Oyster_OYT_2147922269_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Oyster.OYT!MTB"
+        threat_id = "2147922269"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Oyster"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {0f b6 02 8d 52 ff 8a 0c 3e 0f b6 80 ?? ?? ?? ?? 88 04 3e 47 0f b6 c1 0f b6 80}  //weight: 2, accuracy: Low
+        $x_2_2 = {8d 4b 0c 6a 00 0f 47 4b 0c 6a 00 6a 03 6a 00 6a 00 68 bb 01 00 00 51 57 ff 15}  //weight: 2, accuracy: High
+        $x_1_3 = "NZT\\ProjectD_WinInet\\CleanUp\\Release\\CleanUp.pdb" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

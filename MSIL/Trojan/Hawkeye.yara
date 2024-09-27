@@ -259,3 +259,24 @@ rule Trojan_MSIL_Hawkeye_AHA_2147921661_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Hawkeye_AHM_2147922267_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Hawkeye.AHM!MTB"
+        threat_id = "2147922267"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Hawkeye"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {16 2d 02 2b 39 02 09 02 8e b7 5d 91 07 09 07 8e b7 5d 91 61 18 2d 40 26 02 09 02 8e b7 5d 08 02 09 17 d6 02 8e b7 5d 91 da 20 00 01 00 00 d6 20 00 01 00 00 5d b4 9c 09 15 d6 16}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

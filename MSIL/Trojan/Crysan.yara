@@ -1581,13 +1581,34 @@ rule Trojan_MSIL_Crysan_ACR_2147892018_1
         threshold = "1"
         strings_accuracy = "Low"
     strings:
-        $x_1_1 = {0c 08 06 73 12 00 00 0a 07 6f ?? 00 00 0a 00 73 14 00 00 0a 0d 09 20 e8 03 00 00 20 b8 0b 00 00 6f ?? 00 00 0a 13 04 11 04 28}  //weight: 1, accuracy: Low
+        $x_1_1 = {16 2d 16 00 06 16 6f ?? 00 00 0a 0c 16 0d 2b 1a 16 2d b5 08 09 91 13 04 00 07 11 04 6f ?? 00 00 0a 00 00 09 19 2c 04 17 58}  //weight: 1, accuracy: Low
     condition:
         (filesize < 20MB) and
         (all of ($x*))
 }
 
 rule Trojan_MSIL_Crysan_ACR_2147892018_2
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Crysan.ACR!MTB"
+        threat_id = "2147892018"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Crysan"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {0c 08 06 73 12 00 00 0a 07 6f ?? 00 00 0a 00 73 14 00 00 0a 0d 09 20 e8 03 00 00 20 b8 0b 00 00 6f ?? 00 00 0a 13 04 11 04 28}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Crysan_ACR_2147892018_3
 {
     meta:
         author = "defender2yara"
