@@ -2812,6 +2812,27 @@ rule Trojan_Win32_CoinMiner_CB_2147817137_0
         (1 of ($x*))
 }
 
+rule Trojan_Win32_CoinMiner_DF_2147821124_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/CoinMiner.DF!MTB"
+        threat_id = "2147821124"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "CoinMiner"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {33 d0 8b 4d f0 c1 e9 05 03 4d d8 33 d1 8b 45 d4 2b c2 89 45 d4 8b 4d e8 2b 4d dc 89 4d e8 e9}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win32_CoinMiner_RDE_2147841307_0
 {
     meta:
