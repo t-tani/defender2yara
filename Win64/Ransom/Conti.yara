@@ -19,27 +19,6 @@ rule Ransom_Win64_Conti_ZA_2147814691_0
         (all of ($x*))
 }
 
-rule Ransom_Win64_Conti_IIP_2147816261_0
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "Ransom:Win64/Conti.IIP!MTB"
-        threat_id = "2147816261"
-        type = "Ransom"
-        platform = "Win64: Windows 64-bit platform"
-        family = "Conti"
-        severity = "Critical"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "1"
-        strings_accuracy = "High"
-    strings:
-        $x_1_1 = {41 03 d0 c1 fa 06 8b c2 c1 e8 1f 03 d0 6b c2 7f 44 2b c0 46 88 44 0d b8}  //weight: 1, accuracy: High
-    condition:
-        (filesize < 20MB) and
-        (all of ($x*))
-}
-
 rule Ransom_Win64_Conti_GHJ_2147817051_0
 {
     meta:
