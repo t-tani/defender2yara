@@ -69,3 +69,27 @@ rule Backdoor_MSIL_Webshell_MBXH_2147916534_0
         (all of ($x*))
 }
 
+rule Backdoor_MSIL_Webshell_MBXT_2147922341_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Backdoor:MSIL/Webshell.MBXT!MTB"
+        threat_id = "2147922341"
+        type = "Backdoor"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Webshell"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {41 00 70 00 70 00 5f 00 57 00 65 00 62 00 5f 00 [0-32] 2e 00 64 00 6c 00 6c}  //weight: 2, accuracy: Low
+        $x_1_2 = {70 00 61 00 79 00 6c 00 6f 00 61 00 64 00 53 00 74 00 6f 00 72 00 65 00 4e 00 61 00 6d 00 65 00 7d 00 00 09 4c 00 6f 00 61 00 64 00 00 05 4c 00 59}  //weight: 1, accuracy: High
+        $x_1_3 = "3c6e0b8a9c15224a" wide //weight: 1
+        $x_1_4 = "FastObjectFactory_app_web_" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

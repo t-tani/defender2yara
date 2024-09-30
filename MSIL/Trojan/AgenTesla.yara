@@ -92,3 +92,26 @@ rule Trojan_MSIL_AgenTesla_MBXN_2147917866_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AgenTesla_MBXT_2147922342_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgenTesla.MBXT!MTB"
+        threat_id = "2147922342"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgenTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {06 08 06 09 91 9c 06 09 11 [0-1] 9c 06 08 91 06 09 91 58 20 00 01 00 00 5d}  //weight: 3, accuracy: Low
+        $x_1_2 = {47 43 4d 2e 65 78 65 00 4d 6f 76 65 41 6e 67 6c 65 73 00 47 43 4d 00 52 65 73 6f 6c 76 65 72 00 56 69 72 74}  //weight: 1, accuracy: High
+        $x_1_3 = "uiOAshyuxgYUA" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
