@@ -496,6 +496,27 @@ rule Trojan_MSIL_Marsilia_AMI_2147900185_0
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {0a 00 06 0b 16 0c 2b 27 07 08 9a 0d 00 09 6f 36 00 00 0a 72 01 00 00 70 1b 6f 37 00 00 0a 13 04 11 04 2c 06 00 17 13 05 2b 10 00 08 17 58 0c 08 07 8e 69}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Marsilia_AMI_2147900185_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Marsilia.AMI!MTB"
+        threat_id = "2147900185"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Marsilia"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
         strings_accuracy = "Low"
     strings:
         $x_1_1 = {06 08 9a 16 9a 7e ?? 00 00 04 20 ?? bd 66 06 28 ?? 00 00 06 28 ?? 00 00 0a 2d 11 06 08 9a 16 9a 28 ?? 00 00 06 28 ?? 00 00 0a 2b 05 28 ?? 00 00 0a 06 08 9a 17 9a 28 ?? 00 00 06 28}  //weight: 1, accuracy: Low

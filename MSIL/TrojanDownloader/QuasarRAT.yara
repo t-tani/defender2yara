@@ -246,3 +246,25 @@ rule TrojanDownloader_MSIL_QuasarRAT_ARA_2147916082_0
         (all of ($x*))
 }
 
+rule TrojanDownloader_MSIL_QuasarRAT_RP_2147922556_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:MSIL/QuasarRAT.RP!MTB"
+        threat_id = "2147922556"
+        type = "TrojanDownloader"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "QuasarRAT"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {28 0d 00 00 06 28 02 00 00 06 0a 06 6f 04 00 00 06 2a}  //weight: 1, accuracy: High
+        $x_10_2 = {09 11 04 a3 ?? ?? 00 01 13 05 11 05 6f ?? ?? 00 0a 72 ?? ?? 00 70 28 ?? ?? 00 0a 39 ?? ?? 00 00 02 11 05 08 28 ?? ?? 00 06 11 04 17 58 13 04 11 04 09 8e 69 32 ca}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

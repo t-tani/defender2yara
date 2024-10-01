@@ -2121,6 +2121,27 @@ rule Trojan_MSIL_Vidar_AVD_2147918731_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {16 13 34 12 1f 28 ?? 00 00 0a 12 34 28 ?? 00 00 0a 26 16 13 35 12 28 28 ?? 00 00 0a 28 ?? 00 00 0a 13 35 03 11 34 91 13 36 06 11 35 91 13 37 11 36 11 37 61 d2 13 36 03 11 34 11 36 9c}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Vidar_AVD_2147918731_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Vidar.AVD!MTB"
+        threat_id = "2147918731"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Vidar"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "11"
         strings_accuracy = "High"
     strings:

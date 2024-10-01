@@ -453,3 +453,25 @@ rule Trojan_MSIL_RedlineStealer_AMAI_2147920021_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_RedlineStealer_AMH_2147922555_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/RedlineStealer.AMH!MTB"
+        threat_id = "2147922555"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "RedlineStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {6e 5b 26 11 ?? 6e 11 ?? 6a 5b 26 11}  //weight: 1, accuracy: Low
+        $x_4_2 = {0a 26 16 13 ?? 12 ?? 28 ?? 00 00 0a 28 ?? 00 00 0a 13 ?? 03 11 ?? 91 13 ?? 06 11 ?? 91 13 ?? 11 ?? 11 ?? 61 d2 13}  //weight: 4, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
