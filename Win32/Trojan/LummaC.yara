@@ -806,3 +806,39 @@ rule Trojan_Win32_LummaC_RZ_2147920731_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_LummaC_CCJE_2147922438_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaC.CCJE!MTB"
+        threat_id = "2147922438"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "64"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = "aflkmfhebedbjioipglgcbcmnbpgliof" wide //weight: 5
+        $x_5_2 = "bfnaelmomeimhlpmgjnjophhpkkoljpa" wide //weight: 5
+        $x_5_3 = "fhilaheimglignddkjgofkcbgekhenbh" wide //weight: 5
+        $x_5_4 = "ffnbelfdoeiohenkjibnmadjiehjhajb" wide //weight: 5
+        $x_5_5 = "nkbihfbeogaeaoehlefnkodbefgpgknn" wide //weight: 5
+        $x_5_6 = "dmkamcknogkgcdfhhbddcghachkejeap" wide //weight: 5
+        $x_5_7 = "ookjlbkiijinhpmnjffcofjonbfbgaoc" wide //weight: 5
+        $x_5_8 = "omaabbefbmiijedngplfjmnooppbclkk" wide //weight: 5
+        $x_5_9 = "lgmpcpglpngdoalbgeoldeajfclnhafa" wide //weight: 5
+        $x_1_10 = "Electrum" wide //weight: 1
+        $x_1_11 = "Exodus\\" wide //weight: 1
+        $x_1_12 = "discord\\" wide //weight: 1
+        $x_1_13 = "wallet" wide //weight: 1
+        $x_5_14 = "RAV Endpoint Protection" wide //weight: 5
+        $x_5_15 = "Process Hacker 2" wide //weight: 5
+        $x_5_16 = "signons.sqlite" wide //weight: 5
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -12900,3 +12900,52 @@ rule Trojan_MSIL_FormBook_OKZ_2147920796_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_FormBook_SMW_2147922411_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/FormBook.SMW!MTB"
+        threat_id = "2147922411"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "FormBook"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "Bitmap" ascii //weight: 1
+        $x_1_2 = "TicTacToe" ascii //weight: 1
+        $x_1_3 = "AppSistemaGaragem.Properties.Resources" ascii //weight: 1
+        $x_1_4 = {00 02 0f 01 28 64 00 00 0a 6f 62 00 00 0a 00 02 0f 01 28 63 00 00 0a 6f 62 00 00 0a 19 0b 2b c6}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_FormBook_SMI_2147922412_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/FormBook.SMI!MTB"
+        threat_id = "2147922412"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "FormBook"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "$c20844fd-dd7c-4f38-a79c-09894ef20963" ascii //weight: 1
+        $x_1_2 = "cmd.exe /c timeout 2 & start" ascii //weight: 1
+        $x_1_3 = "ZT_RAT_Loader.Properties.Resources" ascii //weight: 1
+        $x_1_4 = "Decrypt" ascii //weight: 1
+        $x_1_5 = "FromBase64String" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

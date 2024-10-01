@@ -133,27 +133,6 @@ rule Trojan_Win64_Cobaltstrike_HGF_2147795822_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_Cobaltstrike_UYT_2147797780_0
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "Trojan:Win64/Cobaltstrike.UYT!MTB"
-        threat_id = "2147797780"
-        type = "Trojan"
-        platform = "Win64: Windows 64-bit platform"
-        family = "Cobaltstrike"
-        severity = "Critical"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "1"
-        strings_accuracy = "High"
-    strings:
-        $x_1_1 = {48 8b 3d 94 60 02 00 8b c7 83 e0 3f 2b c8 49 8b c4 48 d3 c8 48 8b cb 49 2b c8 48 33 c7 48 83 c1 07 48 c1 e9 03 4c 3b c3 49 0f 47 cc}  //weight: 1, accuracy: High
-    condition:
-        (filesize < 20MB) and
-        (all of ($x*))
-}
-
 rule Trojan_Win64_Cobaltstrike_DG_2147798750_0
 {
     meta:

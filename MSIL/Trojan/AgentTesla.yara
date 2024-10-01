@@ -105189,3 +105189,27 @@ rule Trojan_MSIL_AgentTesla_XVAA_2147922105_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AgentTesla_SMX_2147922410_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.SMX!MTB"
+        threat_id = "2147922410"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {00 03 12 02 28 47 00 00 0a 6f 48 00 00 0a 00 03 12 02 28 49 00 00 0a 6f 48 00 00 0a 00 03 12 02 28 4a 00 00 0a 6f 48 00 00 0a 00 2b 15 03 6f 4b 00 00 0a 19 58 04 31 03 16 2b 01 17 13 04 11 04 2d be}  //weight: 1, accuracy: High
+        $x_1_2 = "GetPixel" ascii //weight: 1
+        $x_1_3 = "Bitmap" ascii //weight: 1
+        $x_1_4 = "ConnectFour.Kassa.NieuweKlant.resources" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

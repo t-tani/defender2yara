@@ -51,3 +51,25 @@ rule Worm_Win32_Mofksys_NA_2147743070_0
         (all of ($x*))
 }
 
+rule Worm_Win32_Mofksys_GTN_2147922423_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Worm:Win32/Mofksys.GTN!MTB"
+        threat_id = "2147922423"
+        type = "Worm"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Mofksys"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {c5 24 5f 33 57 cd b9 d5 63 ef a8 b6 0e b2 f8 95 93}  //weight: 5, accuracy: High
+        $x_5_2 = {06 36 4d 14 f4 34 41 b4 71 a2 ?? ?? ?? ?? 95 e4 c4}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -61,3 +61,26 @@ rule Trojan_Win64_AsyncRat_CCHU_2147903527_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_AsyncRat_ASC_2147922422_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/AsyncRat.ASC!MTB"
+        threat_id = "2147922422"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "AsyncRat"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {48 83 ec 28 48 8d 15 f5 44 00 00 48 8d 0d f6 78 00 00 e8 ?? ?? ?? ?? 48 8d 0d 32 34 00 00 48 83 c4 28}  //weight: 5, accuracy: Low
+        $x_2_2 = "seftali\\x64\\Release\\seftali.pdb" ascii //weight: 2
+        $x_3_3 = "https://github.com/errias/XWorm-Rat-Remote-Administration-Tool-/raw/main/XWormUI.exe" wide //weight: 3
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

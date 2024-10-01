@@ -62,3 +62,26 @@ rule Trojan_Win64_DllHijack_AG_2147913606_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_DllHijack_GZT_2147922425_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/DllHijack.GZT!MTB"
+        threat_id = "2147922425"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "DllHijack"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {5b 5d 9c 31 66 ab b6 2a 8b 64 ac 4a}  //weight: 5, accuracy: High
+        $x_5_2 = {b0 02 6b 28 d4 2a 0e 31 d0}  //weight: 5, accuracy: High
+        $x_1_3 = "eqf.dll" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
