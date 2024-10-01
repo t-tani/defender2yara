@@ -194,3 +194,61 @@ rule Trojan_MSIL_Webshell_SPDO_2147908218_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Webshell_VG_2147922486_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Webshell.VG!MTB"
+        threat_id = "2147922486"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Webshell"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "DownLoadPage.aspx" wide //weight: 1
+        $x_1_2 = "ShowSQL.aspx" wide //weight: 1
+        $x_1_3 = "ShowLog.aspx" wide //weight: 1
+        $x_1_4 = "Index.aspx" wide //weight: 1
+        $x_1_5 = "CallPage.aspx" wide //weight: 1
+        $x_1_6 = "payloadStoreName" wide //weight: 1
+        $x_1_7 = "d0079d9c035490ee" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Webshell_GV_2147922487_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Webshell.GV!MTB"
+        threat_id = "2147922487"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Webshell"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "App_global.asax.pzw_bvxi" ascii //weight: 1
+        $x_1_2 = "Create_ASP_async_aspx" ascii //weight: 1
+        $x_4_3 = "3c6e0b8a9c15224a" wide //weight: 4
+        $x_4_4 = "{payloadStoreName}" wide //weight: 4
+        $x_1_5 = "SSO.aspx" wide //weight: 1
+        $x_1_6 = "API.aspx" wide //weight: 1
+        $x_1_7 = "async.aspx" wide //weight: 1
+        $x_1_8 = "Login.aspx" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((2 of ($x_4_*) and 3 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+

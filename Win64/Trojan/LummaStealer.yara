@@ -328,3 +328,65 @@ rule Trojan_Win64_LummaStealer_VV_2147921877_0
         )
 }
 
+rule Trojan_Win64_LummaStealer_GM_2147921911_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/LummaStealer.GM!MTB"
+        threat_id = "2147921911"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_4_1 = "main.cFVvJaclpr" ascii //weight: 4
+        $x_1_2 = "main.oepNeSmKgT" ascii //weight: 1
+        $x_1_3 = "main.Md5Encode" ascii //weight: 1
+        $x_4_4 = "main.cQPubDNZNj" ascii //weight: 4
+        $x_1_5 = "main.RDF" ascii //weight: 1
+        $x_1_6 = "main.neJDPbLRWD" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_4_*) and 1 of ($x_1_*))) or
+            ((2 of ($x_4_*))) or
+            (all of ($x*))
+        )
+}
+
+rule Trojan_Win64_LummaStealer_VM_2147921951_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/LummaStealer.VM!MTB"
+        threat_id = "2147921951"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "main.RDF" ascii //weight: 1
+        $x_2_2 = "main.VZCOQzehCp" ascii //weight: 2
+        $x_1_3 = "main.WjLRMuNaor" ascii //weight: 1
+        $x_2_4 = "main.EFTcmUgEtT" ascii //weight: 2
+        $x_1_5 = "main.faqLSRWRlV" ascii //weight: 1
+        $x_2_6 = "main.lnejYwfZkm" ascii //weight: 2
+        $x_1_7 = "main.iiQhNBnnfo" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_2_*) and 3 of ($x_1_*))) or
+            ((2 of ($x_2_*) and 1 of ($x_1_*))) or
+            ((3 of ($x_2_*))) or
+            (all of ($x*))
+        )
+}
+
