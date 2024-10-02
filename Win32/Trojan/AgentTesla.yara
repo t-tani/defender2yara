@@ -982,6 +982,34 @@ rule Trojan_Win32_AgentTesla_ZBA_2147799630_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_AgentTesla_RVA_2147811250_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AgentTesla.RVA!MTB"
+        threat_id = "2147811250"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {3d 00 20 00 44 00 4c 00 4c 00 53 00 54 00 52 00 55 00 43 00 54 00 43 00 52 00 45 00 41 00 54 00 45 00 20 00 28 00 20 00 56 00 47 00 4a 00 5a 00 4b 00 5a 00 59 00 4e 00 56 00 20 00 28 00 20 00 22 00 [0-50] 22 00 20 00 2c 00 20 00 22 00 39 00 22 00 20 00 29 00 20 00 26 00 20 00 42 00 49 00 4e 00 41 00 52 00 59 00 4c 00 45 00 4e 00 20 00 28 00 20 00 24 00 48 00 54 00 47 00 59 00 45 00 45 00 50 00 20 00 29 00 20 00 26 00 20 00 56 00 47 00 4a 00 5a 00 4b 00 5a 00 59 00 4e 00 56 00 20 00 28 00 20 00 22 00 5d 00 22 00 20 00 2c 00 20 00 22 00 39 00 22 00 20 00 29 00 20 00 29 00}  //weight: 1, accuracy: Low
+        $x_1_2 = {3d 20 44 4c 4c 53 54 52 55 43 54 43 52 45 41 54 45 20 28 20 56 47 4a 5a 4b 5a 59 4e 56 20 28 20 22 [0-50] 22 20 2c 20 22 39 22 20 29 20 26 20 42 49 4e 41 52 59 4c 45 4e 20 28 20 24 48 54 47 59 45 45 50 20 29 20 26 20 56 47 4a 5a 4b 5a 59 4e 56 20 28 20 22 5d 22 20 2c 20 22 39 22 20 29 20 29}  //weight: 1, accuracy: Low
+        $x_1_3 = "DLLSTRUCTSETDATA ( $VPKFKWETLN , 1 , $HTGYEEP )" ascii //weight: 1
+        $x_1_4 = "FILEINSTALL ( \"Okeghem\" , @TEMPDIR & \"\\Okeghem\" , 1 )" ascii //weight: 1
+        $x_1_5 = "LOCAL $PKGSLRQVWF = EXECUTE ( \"Asc(StringMid($ksequmr, $kwgzlsui, 1))\" )" ascii //weight: 1
+        $x_1_6 = "$HTGYEEP = VGJZKZYNV ( $HTGYEEP , \"3\" )" ascii //weight: 1
+        $x_1_7 = "$VWQMCPA &= CHR ( BITXOR ( ASC ( CHR ( $IDVPENFXUB ) ) , $AYTADBJI ) )" ascii //weight: 1
+        $x_1_8 = "LOCAL $AYTADBJI = MOD ( $GKEVDTOUJL , 256 )" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (7 of ($x*))
+}
+
 rule Trojan_Win32_AgentTesla_CE_2147813931_0
 {
     meta:
