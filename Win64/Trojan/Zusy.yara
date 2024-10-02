@@ -416,6 +416,32 @@ rule Trojan_Win64_Zusy_EC_2147905565_3
         (all of ($x*))
 }
 
+rule Trojan_Win64_Zusy_EC_2147905565_4
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Zusy.EC!MTB"
+        threat_id = "2147905565"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "powershell.exe-Command" ascii //weight: 1
+        $x_1_2 = "$tasks = Get-ScheduledTask | Where-Object {" ascii //weight: 1
+        $x_1_3 = "foreach ($task in $tasks) {" ascii //weight: 1
+        $x_1_4 = "Clear-RecycleBin -Force -ErrorAction SilentlyContinueC:\\Users\\Public" ascii //weight: 1
+        $x_1_5 = "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\StartupUSERPROFILEFailed to get USERPROFILE" ascii //weight: 1
+        $x_1_6 = "$buffer[$count] = [byte]($tempFiles[$i])" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win64_Zusy_NC_2147908386_0
 {
     meta:
