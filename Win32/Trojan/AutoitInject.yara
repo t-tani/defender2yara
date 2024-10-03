@@ -2896,3 +2896,28 @@ rule Trojan_Win32_AutoitInject_SKAL_2147922243_0
         (5 of ($x*))
 }
 
+rule Trojan_Win32_AutoitInject_YSAA_2147922653_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.YSAA!MTB"
+        threat_id = "2147922653"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "@TempDir" ascii //weight: 1
+        $x_1_2 = "DllCall" ascii //weight: 1
+        $x_2_3 = "k8se0e8se0r8se0n8se0e8se0l8se038se028se0.8se0d8se0l8se0l8se0" ascii //weight: 2
+        $x_2_4 = "V8se0i8se0r8se0t8se0u8se0a8se0l8se0P8se0r8se0o8se0t8se0e8se0c8se0t8se0" ascii //weight: 2
+        $x_2_5 = "u8se0s8se0e8se0r8se038se028se0.8se0d8se0l8se0l8se0" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

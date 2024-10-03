@@ -244,3 +244,24 @@ rule Trojan_MSIL_PureCrypter_APC_2147921665_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_PureCrypter_ARAX_2147922654_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/PureCrypter.ARAX!MTB"
+        threat_id = "2147922654"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "PureCrypter"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {13 05 12 02 28 ?? ?? ?? 0a 13 06 12 02 28 ?? ?? ?? 0a 13 07 03 11 05 16 61 d2 6f ?? ?? ?? 0a 00 03 11 06 16 61 d2 6f ?? ?? ?? 0a 00 03 11 07 16 61 d2 6f ?? ?? ?? 0a 00 2b 15 03 6f ?? ?? ?? 0a 19 58 04 31 03 16 2b 01 17 13 08 11 08 2d a9}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

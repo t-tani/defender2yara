@@ -1678,3 +1678,24 @@ rule Trojan_Win64_Lazy_MBXY_2147922343_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Lazy_AMZ_2147922650_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Lazy.AMZ!MTB"
+        threat_id = "2147922650"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Lazy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {48 8b 04 24 48 8b 4c 24 10 8a 54 24 0f 32 14 01 88 14 01 48 83 c0 01 48 89 44 24 18}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -1208,3 +1208,25 @@ rule Trojan_Win32_Tofsee_KAB_2147921804_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Tofsee_AMI_2147922656_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Tofsee.AMI!MTB"
+        threat_id = "2147922656"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Tofsee"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {8b c3 c1 e8 05 03 cb 89 44 24 ?? 8b 44 24 ?? 01 44 24 ?? 8b 44 24 ?? 33 c1 31 44 24}  //weight: 4, accuracy: Low
+        $x_1_2 = {c1 e8 05 89 44 24 ?? 8b 44 24 ?? 03 c7 c7 05 ?? ?? ?? ?? ?? ?? ?? ?? 33 c1 33 44 24 ?? 2b d8 89 44 24 ?? 8b c3 c1 e0 04}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

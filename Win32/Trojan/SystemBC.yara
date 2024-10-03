@@ -465,3 +465,24 @@ rule Trojan_Win32_SystemBC_KAA_2147912484_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_SystemBC_CCJR_2147922655_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/SystemBC.CCJR!MTB"
+        threat_id = "2147922655"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "SystemBC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {8b 04 1f 33 45 f0 89 04 1e e8 ?? ?? ?? ?? 3b 45 e0 0f}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
