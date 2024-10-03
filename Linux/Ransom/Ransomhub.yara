@@ -20,3 +20,26 @@ rule Ransom_Linux_Ransomhub_A_2147910974_0
         (all of ($x*))
 }
 
+rule Ransom_Linux_Ransomhub_D_2147922788_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Linux/Ransomhub.D"
+        threat_id = "2147922788"
+        type = "Ransom"
+        platform = "Linux: Linux platform"
+        family = "Ransomhub"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_ELFHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {4e 6f 74 65 46 69 6c 65 4e 61 6d 65 15 6a 73 6f 6e 3a 22 6e 6f 74 65 5f 66 69 6c 65 5f 6e 61 6d 65 22 03 0c 4e 6f 74 65 46 75 6c 6c 54 65 78 74}  //weight: 1, accuracy: High
+        $x_1_2 = {53 65 6c 66 44 65 6c 65 74 65 12 6a 73 ?? 6e 3a 22 73 65 6c 66 5f 64 65 6c 65 74 65 22}  //weight: 1, accuracy: Low
+        $x_1_3 = "*main.BuildConfig" ascii //weight: 1
+        $x_1_4 = {57 68 69 74 65 46 6f 6c 64 65 72 73 14 6a 73 6f 6e 3a 22 77 68 69 74 65 5f 66 6f 6c 64 65 72 73 22}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
