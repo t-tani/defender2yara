@@ -105027,6 +105027,29 @@ rule Trojan_MSIL_AgentTesla_AYK_2147920468_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AgentTesla_AYK_2147920468_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.AYK!MTB"
+        threat_id = "2147920468"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "HN.Product.resources" ascii //weight: 2
+        $x_2_2 = "$c4295815-fcc4-4307-95e2-f9691bc7fbe3" ascii //weight: 2
+        $x_2_3 = "EbvsOCcOBZhzqaH" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_AgentTesla_KABS_2147920818_0
 {
     meta:

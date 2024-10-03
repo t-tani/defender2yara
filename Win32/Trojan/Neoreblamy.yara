@@ -1679,3 +1679,24 @@ rule Trojan_Win32_Neoreblamy_AST_2147921659_0
         (4 of ($x*))
 }
 
+rule Trojan_Win32_Neoreblamy_ANEO_2147922779_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Neoreblamy.ANEO!MTB"
+        threat_id = "2147922779"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Neoreblamy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {c6 45 b9 6b c6 45 ba b7 c6 45 bb c3 c6 45 bc 36 c6 45 bd 12 c6 45 be b7 c6 45 bf d9 c6 45 c0 45 c6 45 c1 2e c6 45 c2 e0 c6 45 c3 f6 c6 45 c4 89 c6 45 c5 7c c6 45 c6 55 c6 45 c7 db c6 45 c8 ee c6 45 c9 72}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

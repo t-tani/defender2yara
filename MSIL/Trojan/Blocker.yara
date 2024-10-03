@@ -256,3 +256,24 @@ rule Trojan_MSIL_Blocker_SK_2147915519_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Blocker_SM_2147922692_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Blocker.SM!MTB"
+        threat_id = "2147922692"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Blocker"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {07 09 18 6f 88 01 00 0a 1f 10 28 1b 03 00 0a 13 04 11 04 16 32 08 08 11 04 6f 1c 03 00 0a 09 18 58 0d 09 07 6f 08 01 00 0a 32 d5}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

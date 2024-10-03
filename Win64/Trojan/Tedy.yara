@@ -821,3 +821,28 @@ rule Trojan_Win64_Tedy_DKZ_2147920721_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Tedy_RZ_2147922688_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Tedy.RZ!MTB"
+        threat_id = "2147922688"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Tedy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = "start cmd /C \"color b && title Error && echo" ascii //weight: 1
+        $x_1_2 = "certutil -hashfile" ascii //weight: 1
+        $x_1_3 = "&& timeout /t 5" ascii //weight: 1
+        $x_1_4 = "%s %02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x" ascii //weight: 1
+        $x_2_5 = {8d 50 7f 30 14 08 48 ff c0 48 83 f8 ?? 72}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -589,3 +589,70 @@ rule Trojan_MSIL_Jalapeno_YJAA_2147922431_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Jalapeno_SL_2147922694_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Jalapeno.SL!MTB"
+        threat_id = "2147922694"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Jalapeno"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "$675282ac-a345-491b-9292-f1e54d17c1cc" ascii //weight: 2
+        $x_2_2 = "Lab06_Bai01" ascii //weight: 2
+        $x_2_3 = "Control_Viewer.Properties.Resources" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Jalapeno_SM_2147922696_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Jalapeno.SM!MTB"
+        threat_id = "2147922696"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Jalapeno"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {00 06 07 07 18 5a 9e 00 07 17 58 0b 07 20 e8 03 00 00 fe 04 0c 08 2d e8}  //weight: 2, accuracy: High
+        $x_1_2 = "$5ec208b3-0188-4bc1-9cc3-0bfa6e6f2c39" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Jalapeno_NG_2147922727_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Jalapeno.NG!MTB"
+        threat_id = "2147922727"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Jalapeno"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {11 07 11 0c 25 17 58 13 0c 11 0b 1e 64 d2 9c}  //weight: 2, accuracy: High
+        $x_1_2 = {11 03 11 07 d2 6e 1e 11 06 5a 1f 3f 5f 62 60}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

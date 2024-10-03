@@ -68,3 +68,24 @@ rule Trojan_MSIL_Vimditator_SL_2147921711_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Vimditator_SL_2147921711_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Vimditator.SL!MTB"
+        threat_id = "2147921711"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Vimditator"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {16 2d 0b 2b 0b 72 61 00 00 70 2b 07 2b 0c de 1a 07 2b f2 6f 1f 00 00 0a 2b f2 0a 2b f1}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

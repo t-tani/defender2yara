@@ -3154,3 +3154,117 @@ rule Ransom_MSIL_Filecoder_NIT_2147920895_1
         )
 }
 
+rule Ransom_MSIL_Filecoder_SUW_2147922722_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:MSIL/Filecoder.SUW!MTB"
+        threat_id = "2147922722"
+        type = "Ransom"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Filecoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "Jasmin_Encrypter" ascii //weight: 2
+        $x_2_2 = "$78c76961-8249-4efe-9de2-b6ef15a187f7" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Ransom_MSIL_Filecoder_SUA_2147922723_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:MSIL/Filecoder.SUA!MTB"
+        threat_id = "2147922723"
+        type = "Ransom"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Filecoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "Bazek Ransomware.pdb" ascii //weight: 2
+        $x_2_2 = "Bazek Ransomware.exe" ascii //weight: 2
+        $x_2_3 = "BazekGroup" ascii //weight: 2
+        $x_1_4 = "Encrypts files and holds users for ransom" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Ransom_MSIL_Filecoder_SUR_2147922724_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:MSIL/Filecoder.SUR!MTB"
+        threat_id = "2147922724"
+        type = "Ransom"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Filecoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "CashCat.pdb" ascii //weight: 2
+        $x_2_2 = "CashCat.exe" ascii //weight: 2
+        $x_1_3 = "txtbox_Bitcoingaddess" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Ransom_MSIL_Filecoder_SWA_2147922725_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:MSIL/Filecoder.SWA!MTB"
+        threat_id = "2147922725"
+        type = "Ransom"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Filecoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "NOSU.pdb" ascii //weight: 2
+        $x_1_2 = "NOSU.Resources.resources" ascii //weight: 1
+        $x_1_3 = "The system was infected with the NOSU virus" wide //weight: 1
+        $x_1_4 = "DisableAntiSpyware" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Ransom_MSIL_Filecoder_SWB_2147922726_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:MSIL/Filecoder.SWB!MTB"
+        threat_id = "2147922726"
+        type = "Ransom"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Filecoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {11 04 06 16 06 8e 69 6f ?? 00 00 0a 13 09 11 09 2c 0b 11 08 06 16 11 09 6f ?? 00 00 0a 11 09 2d df}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

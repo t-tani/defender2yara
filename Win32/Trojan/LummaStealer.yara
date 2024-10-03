@@ -2039,3 +2039,29 @@ rule Trojan_Win32_LummaStealer_CCJR_2147922167_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_LummaStealer_EC_2147922744_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaStealer.EC!MTB"
+        threat_id = "2147922744"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "main.opWGippTfg.deferwrap2" ascii //weight: 1
+        $x_1_2 = "main.opWGippTfg.deferwrap1" ascii //weight: 1
+        $x_1_3 = "main.KqqAVmjanJ" ascii //weight: 1
+        $x_1_4 = "main.fQyfTGPUtq" ascii //weight: 1
+        $x_1_5 = "exithook/hooks.go" ascii //weight: 1
+        $x_1_6 = "go-telegram-bot-api" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

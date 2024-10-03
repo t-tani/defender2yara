@@ -89,3 +89,25 @@ rule Trojan_Win64_ReverseShell_YAB_2147916451_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_ReverseShell_HNB_2147922784_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/ReverseShell.HNB!MTB"
+        threat_id = "2147922784"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "ReverseShell"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {00 72 65 70 72 5f 5f 72 65 76 39 35 73 68 65 6c 6c 5f 75}  //weight: 2, accuracy: High
+        $x_1_2 = {00 54 4d 5f 5f 62 51 38 39 62 61 74 33 68 55 6b 6d 4a 42 34 68 56 68 37 39 62 66 34 77 5f}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

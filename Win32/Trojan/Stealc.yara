@@ -636,6 +636,27 @@ rule Trojan_Win32_Stealc_GNT_2147895324_0
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {8a 4d fc 8b 45 08 30 0c 07 47 3b fb ?? ?? 5e 5f 83 fb}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Stealc_GNT_2147895324_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Stealc.GNT!MTB"
+        threat_id = "2147895324"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Stealc"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
         strings_accuracy = "High"
     strings:
         $x_10_1 = {8b c8 b8 4f ec c4 4e f7 e1 c1 ea 03 6b c2 e6 03 c8 0f be 4c 0c 40 66 89 4c 75 00 46 3b 74 24 74}  //weight: 10, accuracy: High

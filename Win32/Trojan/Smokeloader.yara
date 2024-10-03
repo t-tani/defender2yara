@@ -5645,3 +5645,24 @@ rule Trojan_Win32_Smokeloader_TSM_2147922510_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Smokeloader_KAG_2147922748_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Smokeloader.KAG!MTB"
+        threat_id = "2147922748"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Smokeloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {8b c1 c1 e0 ?? 03 45 ?? 03 d1 33 c2 81 3d ?? ?? ?? ?? 03 0b 00 00 89 45}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

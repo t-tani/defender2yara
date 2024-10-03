@@ -1968,3 +1968,31 @@ rule Trojan_MSIL_Zusy_SLZ_2147921863_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Zusy_BB_2147922681_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Zusy.BB!MTB"
+        threat_id = "2147922681"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {13 09 1e 38 ?? ff ff ff 11 09 72 ?? 01 00 70 28 ?? 00 00 0a 28 ?? 00 00 0a 13 09 1f 09 38 ?? ff ff ff 28 ?? 00 00 0a 11 07 28 ?? 00 00 0a 6f ?? 00 00 0a 72 ?? 01 00 70 6f ?? 00 00 0a 72 ?? 01 00 70 6f ?? 00 00 0a 14 18 8d}  //weight: 4, accuracy: Low
+        $x_4_2 = {13 1a 11 1a 28 ?? 00 00 0a 13 1a 00 72 ?? 06 00 70 28 ?? 00 00 0a 13 1b 11 1b 72 ?? 06 00 70 28 ?? 00 00 0a 28 ?? 00 00 0a 13 1b 28 ?? 00 00 0a 11 17 28 ?? 00 00 0a 6f ?? 00 00 0a 72}  //weight: 4, accuracy: Low
+        $x_1_3 = "krowemarF\\TEN.tfosorciM\\swodniW\\:C" wide //weight: 1
+        $x_1_4 = "91303.0.4v" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_4_*) and 2 of ($x_1_*))) or
+            ((2 of ($x_4_*))) or
+            (all of ($x*))
+        )
+}
+

@@ -2560,6 +2560,32 @@ rule Trojan_Win32_StealC_EZ_2147921611_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_StealC_EZ_2147921611_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/StealC.EZ!MTB"
+        threat_id = "2147921611"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "StealC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "USER32.dql" ascii //weight: 1
+        $x_1_2 = "<description>Windows XP Visual Styles</description>" ascii //weight: 1
+        $x_1_3 = "%userappdata%\\RestartApp.exe" ascii //weight: 1
+        $x_2_4 = ".taggant" ascii //weight: 2
+        $x_2_5 = "Themida" ascii //weight: 2
+        $x_1_6 = "HARDWARE\\ACPI\\DSDT\\VBOX__" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win32_StealC_D_2147921681_0
 {
     meta:
