@@ -170,31 +170,6 @@ rule TrojanDownloader_MSIL_Seraph_MR_2147783313_0
         )
 }
 
-rule TrojanDownloader_MSIL_Seraph_BPQ_2147783368_0
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "TrojanDownloader:MSIL/Seraph.BPQ!MTB"
-        threat_id = "2147783368"
-        type = "TrojanDownloader"
-        platform = "MSIL: .NET intermediate language scripts"
-        family = "Seraph"
-        severity = "Critical"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "5"
-        strings_accuracy = "Low"
-    strings:
-        $x_1_1 = {06 02 07 6f ?? ?? ?? 0a 03 07 03 6f ?? ?? ?? 0a 5d 6f ?? ?? ?? 0a 61 d1 6f ?? ?? ?? 0a 26 00 07 17 58 0b 07 02 6f ?? ?? ?? 0a fe 04 0c 08 2d}  //weight: 1, accuracy: Low
-        $x_1_2 = "FromBase64" ascii //weight: 1
-        $x_1_3 = "DownloadString" ascii //weight: 1
-        $x_1_4 = "ToCharArray" ascii //weight: 1
-        $x_1_5 = "Replace" ascii //weight: 1
-    condition:
-        (filesize < 20MB) and
-        (all of ($x*))
-}
-
 rule TrojanDownloader_MSIL_Seraph_SIB_2147798222_0
 {
     meta:

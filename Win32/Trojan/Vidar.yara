@@ -5930,3 +5930,25 @@ rule Trojan_Win32_Vidar_ND_2147922733_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Vidar_ASJ_2147922815_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Vidar.ASJ!MTB"
+        threat_id = "2147922815"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Vidar"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_4_1 = {03 c6 59 8b 4c 24 24 0f b6 c0 8a 44 04 30 30 04 0a 41 89 4c 24 24 3b 0f 7c}  //weight: 4, accuracy: High
+        $x_1_2 = {23 c9 66 f7 e2 33 f2 46 42}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

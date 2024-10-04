@@ -275,3 +275,25 @@ rule Trojan_Win64_Mikey_MKV_2147921732_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Mikey_ASJ_2147922823_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Mikey.ASJ!MTB"
+        threat_id = "2147922823"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Mikey"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {48 8b c8 ff 15 ?? ?? ?? ?? 45 33 c9 4c 89 64 24 28 4c 8d 05 ?? ?? ?? ?? 44 89 64 24 20 33 d2 33 c9 ff 15 ?? ?? ?? ?? 48 85 c0 75 1d 48 8d ?? ?? ?? ?? 00 4c 8b a4 24 a8 00 00 00 48 83 c4 70 41 5f 41 5e 5d e9 ?? ?? ?? ?? ba ff ff ff ff 48 8b c8 ff 15}  //weight: 4, accuracy: Low
+        $x_1_2 = "ServiceMain" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

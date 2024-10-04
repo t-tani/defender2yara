@@ -2165,3 +2165,25 @@ rule Trojan_Win32_Fauppod_GCN_2147922472_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Fauppod_SFDB_2147922824_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Fauppod.SFDB!MTB"
+        threat_id = "2147922824"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Fauppod"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "SkeiOeitxnese" ascii //weight: 2
+        $x_1_2 = "tedsrtamol30.dll" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

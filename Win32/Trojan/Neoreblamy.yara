@@ -1700,3 +1700,27 @@ rule Trojan_Win32_Neoreblamy_ANEO_2147922779_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Neoreblamy_GPD_2147922816_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Neoreblamy.GPD!MTB"
+        threat_id = "2147922816"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Neoreblamy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = "ysGxHtqtZZiVkTmSs" ascii //weight: 3
+        $x_2_2 = "oEuXZWLniTe" ascii //weight: 2
+        $x_1_3 = "XTJsGFDoJtnNEF" ascii //weight: 1
+        $x_1_4 = "MKjUfstdbmkWSxhwa" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

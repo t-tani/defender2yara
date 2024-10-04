@@ -794,6 +794,28 @@ rule Backdoor_Linux_Tsunami_H_2147846450_0
         (5 of ($x*))
 }
 
+rule Backdoor_Linux_Tsunami_N_2147846766_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Backdoor:Linux/Tsunami.N!MTB"
+        threat_id = "2147846766"
+        type = "Backdoor"
+        platform = "Linux: Linux platform"
+        family = "Tsunami"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_ELFHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {e8 d5 8e ff ff 85 c0 75 27 48 8b 33 48 8b 7d 00 e8 c5 8e ff ff 85 c0 75 17 48 8b 73 10 48 8b 7d 10 e8 b4 8e ff ff 85 c0 75 06 8b 45 08 2b 43 08}  //weight: 1, accuracy: High
+        $x_1_2 = {41 8b 7e 18 48 d1 eb 49 8b 36 8b 44 d8 04 85 ff 74 04 0f c8 89 c0 48 01 c6 4c 89 ef e8 a2 8c ff ff 85 c0 78 3e 85 c0 74 64}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Backdoor_Linux_Tsunami_DO_2147921852_0
 {
     meta:
