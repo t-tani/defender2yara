@@ -1079,6 +1079,27 @@ rule Trojan_Win32_Stealc_YZ_2147912196_0
         threshold = "2"
         strings_accuracy = "Low"
     strings:
+        $x_2_1 = {8a 4d fc 30 0c 1f 47 3b 7d ?? 7c}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Stealc_YZ_2147912196_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Stealc.YZ!MTB"
+        threat_id = "2147912196"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Stealc"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
         $x_2_1 = {d3 e8 89 44 24 ?? 8b 44 24 ?? 01 44 24 ?? 8b 44 24 ?? 33 44 24 ?? 31 44 24 ?? 8b 44 24 ?? 29 44 24}  //weight: 2, accuracy: Low
     condition:
         (filesize < 20MB) and

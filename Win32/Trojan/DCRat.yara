@@ -288,3 +288,24 @@ rule Trojan_Win32_DCRat_D_2147907981_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_DCRat_SOL_2147922847_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/DCRat.SOL!MTB"
+        threat_id = "2147922847"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "DCRat"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {e8 11 09 00 00 83 c4 04 eb 02 33 c0 57 ff 75 f8 89 45 fc 50 89 7e 10 89 5e 14 e8 6a 16 00 00 8b 5d fc 83 c4 0c 8b 45 f4 c6 04 1f 00 83 f8 10 72 29 8d 48 01 8b 06}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

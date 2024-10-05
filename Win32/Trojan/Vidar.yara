@@ -5871,11 +5871,13 @@ rule Trojan_Win32_Vidar_PAFQ_2147920663_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "4"
+        threshold = "7"
         strings_accuracy = "Low"
     strings:
         $x_2_1 = {8b 75 fc ff 75 0c 03 f7 ff 15 ?? ?? ?? ?? 8b c8 8b 45 fc 33 d2 f7 f1 8b 45 0c 8b 4d f8 8a 04 02 32 04 31 ff 45 fc 88 06 39 5d fc 72 d3}  //weight: 2, accuracy: Low
         $x_2_2 = "Select * From AntiVirusProduct" wide //weight: 2
+        $x_1_3 = "\\Discord\\tokens.txt" ascii //weight: 1
+        $x_2_4 = "loginusers.vdf" ascii //weight: 2
     condition:
         (filesize < 20MB) and
         (all of ($x*))

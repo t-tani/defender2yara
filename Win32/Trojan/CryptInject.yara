@@ -6414,3 +6414,36 @@ rule Trojan_Win32_CryptInject_YTB_2147922251_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_CryptInject_RHAI_2147922833_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/CryptInject.RHAI!MTB"
+        threat_id = "2147922833"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "15"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {50 45 00 00 4c 01 05 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 0b 01 0a 00 00 c0 1a 00 00 5c 12 00 00 00 00 00 ce e9 08}  //weight: 2, accuracy: Low
+        $x_3_2 = "GOST" ascii //weight: 3
+        $x_1_3 = "userPassword" ascii //weight: 1
+        $x_3_4 = "Software\\Microsoft\\Windows\\CurrentVersion\\Run" wide //weight: 3
+        $x_1_5 = "ad04.png" wide //weight: 1
+        $x_1_6 = "logic_sevice_id" wide //weight: 1
+        $x_1_7 = "login_ip" wide //weight: 1
+        $x_1_8 = "gtestnetwork" wide //weight: 1
+        $x_1_9 = "T0R:" ascii //weight: 1
+        $x_2_10 = {50 4b 03 04 14 00 00 00 08 00 27 8b 7e 4c b7 04 0e da 83 02 00 00 e3 03 00 00 06 00 00 00 30 31 2e 70 6e 67}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (
+            ((2 of ($x_3_*) and 2 of ($x_2_*) and 5 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+

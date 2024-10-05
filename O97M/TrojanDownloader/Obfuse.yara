@@ -13856,27 +13856,6 @@ rule TrojanDownloader_O97M_Obfuse_SS_2147754484_2
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_MACROHSTR_EXT"
-        threshold = "1"
-        strings_accuracy = "High"
-    strings:
-        $x_1_1 = "URLDownloadToFile 0&, \"https://figesoyuzo.com/usda29ksagh12/15.dll\", \"C:\\\\Users\\\\Public\\\\45148.exe" ascii //weight: 1
-    condition:
-        (filesize < 20MB) and
-        (all of ($x*))
-}
-
-rule TrojanDownloader_O97M_Obfuse_SS_2147754484_3
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "TrojanDownloader:O97M/Obfuse.SS!MTB"
-        threat_id = "2147754484"
-        type = "TrojanDownloader"
-        platform = "O97M: Office 97, 2000, XP, 2003, 2007, and 2010 macros - those that affect Word, Excel, and PowerPoint"
-        family = "Obfuse"
-        severity = "Critical"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_MACROHSTR_EXT"
         threshold = "3"
         strings_accuracy = "Low"
     strings:
@@ -13888,7 +13867,7 @@ rule TrojanDownloader_O97M_Obfuse_SS_2147754484_3
         (all of ($x*))
 }
 
-rule TrojanDownloader_O97M_Obfuse_SS_2147754484_4
+rule TrojanDownloader_O97M_Obfuse_SS_2147754484_3
 {
     meta:
         author = "defender2yara"
@@ -13910,7 +13889,7 @@ rule TrojanDownloader_O97M_Obfuse_SS_2147754484_4
         (all of ($x*))
 }
 
-rule TrojanDownloader_O97M_Obfuse_SS_2147754484_5
+rule TrojanDownloader_O97M_Obfuse_SS_2147754484_4
 {
     meta:
         author = "defender2yara"
@@ -13933,7 +13912,7 @@ rule TrojanDownloader_O97M_Obfuse_SS_2147754484_5
         (all of ($x*))
 }
 
-rule TrojanDownloader_O97M_Obfuse_SS_2147754484_6
+rule TrojanDownloader_O97M_Obfuse_SS_2147754484_5
 {
     meta:
         author = "defender2yara"
@@ -13956,7 +13935,7 @@ rule TrojanDownloader_O97M_Obfuse_SS_2147754484_6
         (all of ($x*))
 }
 
-rule TrojanDownloader_O97M_Obfuse_SS_2147754484_7
+rule TrojanDownloader_O97M_Obfuse_SS_2147754484_6
 {
     meta:
         author = "defender2yara"
@@ -13979,7 +13958,7 @@ rule TrojanDownloader_O97M_Obfuse_SS_2147754484_7
         (2 of ($x*))
 }
 
-rule TrojanDownloader_O97M_Obfuse_SS_2147754484_8
+rule TrojanDownloader_O97M_Obfuse_SS_2147754484_7
 {
     meta:
         author = "defender2yara"
@@ -14001,7 +13980,7 @@ rule TrojanDownloader_O97M_Obfuse_SS_2147754484_8
         (all of ($x*))
 }
 
-rule TrojanDownloader_O97M_Obfuse_SS_2147754484_9
+rule TrojanDownloader_O97M_Obfuse_SS_2147754484_8
 {
     meta:
         author = "defender2yara"
@@ -14025,7 +14004,7 @@ rule TrojanDownloader_O97M_Obfuse_SS_2147754484_9
         (all of ($x*))
 }
 
-rule TrojanDownloader_O97M_Obfuse_SS_2147754484_10
+rule TrojanDownloader_O97M_Obfuse_SS_2147754484_9
 {
     meta:
         author = "defender2yara"
@@ -14050,7 +14029,7 @@ rule TrojanDownloader_O97M_Obfuse_SS_2147754484_10
         (all of ($x*))
 }
 
-rule TrojanDownloader_O97M_Obfuse_SS_2147754484_11
+rule TrojanDownloader_O97M_Obfuse_SS_2147754484_10
 {
     meta:
         author = "defender2yara"
@@ -14073,7 +14052,7 @@ rule TrojanDownloader_O97M_Obfuse_SS_2147754484_11
         (all of ($x*))
 }
 
-rule TrojanDownloader_O97M_Obfuse_SS_2147754484_12
+rule TrojanDownloader_O97M_Obfuse_SS_2147754484_11
 {
     meta:
         author = "defender2yara"
@@ -14098,7 +14077,7 @@ rule TrojanDownloader_O97M_Obfuse_SS_2147754484_12
         (all of ($x*))
 }
 
-rule TrojanDownloader_O97M_Obfuse_SS_2147754484_13
+rule TrojanDownloader_O97M_Obfuse_SS_2147754484_12
 {
     meta:
         author = "defender2yara"
@@ -14121,7 +14100,7 @@ rule TrojanDownloader_O97M_Obfuse_SS_2147754484_13
         (all of ($x*))
 }
 
-rule TrojanDownloader_O97M_Obfuse_SS_2147754484_14
+rule TrojanDownloader_O97M_Obfuse_SS_2147754484_13
 {
     meta:
         author = "defender2yara"
@@ -14146,7 +14125,7 @@ rule TrojanDownloader_O97M_Obfuse_SS_2147754484_14
         (all of ($x*))
 }
 
-rule TrojanDownloader_O97M_Obfuse_SS_2147754484_15
+rule TrojanDownloader_O97M_Obfuse_SS_2147754484_14
 {
     meta:
         author = "defender2yara"
@@ -14172,7 +14151,7 @@ rule TrojanDownloader_O97M_Obfuse_SS_2147754484_15
         (all of ($x*))
 }
 
-rule TrojanDownloader_O97M_Obfuse_SS_2147754484_16
+rule TrojanDownloader_O97M_Obfuse_SS_2147754484_15
 {
     meta:
         author = "defender2yara"
@@ -14196,7 +14175,7 @@ rule TrojanDownloader_O97M_Obfuse_SS_2147754484_16
         (all of ($x*))
 }
 
-rule TrojanDownloader_O97M_Obfuse_SS_2147754484_17
+rule TrojanDownloader_O97M_Obfuse_SS_2147754484_16
 {
     meta:
         author = "defender2yara"
@@ -14225,7 +14204,7 @@ rule TrojanDownloader_O97M_Obfuse_SS_2147754484_17
         )
 }
 
-rule TrojanDownloader_O97M_Obfuse_SS_2147754484_18
+rule TrojanDownloader_O97M_Obfuse_SS_2147754484_17
 {
     meta:
         author = "defender2yara"
@@ -14249,7 +14228,7 @@ rule TrojanDownloader_O97M_Obfuse_SS_2147754484_18
         (all of ($x*))
 }
 
-rule TrojanDownloader_O97M_Obfuse_SS_2147754484_19
+rule TrojanDownloader_O97M_Obfuse_SS_2147754484_18
 {
     meta:
         author = "defender2yara"
@@ -14276,7 +14255,7 @@ rule TrojanDownloader_O97M_Obfuse_SS_2147754484_19
         (5 of ($x*))
 }
 
-rule TrojanDownloader_O97M_Obfuse_SS_2147754484_20
+rule TrojanDownloader_O97M_Obfuse_SS_2147754484_19
 {
     meta:
         author = "defender2yara"
@@ -14304,7 +14283,7 @@ rule TrojanDownloader_O97M_Obfuse_SS_2147754484_20
         (all of ($x*))
 }
 
-rule TrojanDownloader_O97M_Obfuse_SS_2147754484_21
+rule TrojanDownloader_O97M_Obfuse_SS_2147754484_20
 {
     meta:
         author = "defender2yara"
@@ -14328,7 +14307,7 @@ rule TrojanDownloader_O97M_Obfuse_SS_2147754484_21
         (all of ($x*))
 }
 
-rule TrojanDownloader_O97M_Obfuse_SS_2147754484_22
+rule TrojanDownloader_O97M_Obfuse_SS_2147754484_21
 {
     meta:
         author = "defender2yara"
@@ -14354,7 +14333,7 @@ rule TrojanDownloader_O97M_Obfuse_SS_2147754484_22
         (all of ($x*))
 }
 
-rule TrojanDownloader_O97M_Obfuse_SS_2147754484_23
+rule TrojanDownloader_O97M_Obfuse_SS_2147754484_22
 {
     meta:
         author = "defender2yara"
@@ -14377,7 +14356,7 @@ rule TrojanDownloader_O97M_Obfuse_SS_2147754484_23
         (1 of ($x*))
 }
 
-rule TrojanDownloader_O97M_Obfuse_SS_2147754484_24
+rule TrojanDownloader_O97M_Obfuse_SS_2147754484_23
 {
     meta:
         author = "defender2yara"
@@ -14405,7 +14384,7 @@ rule TrojanDownloader_O97M_Obfuse_SS_2147754484_24
         (all of ($x*))
 }
 
-rule TrojanDownloader_O97M_Obfuse_SS_2147754484_25
+rule TrojanDownloader_O97M_Obfuse_SS_2147754484_24
 {
     meta:
         author = "defender2yara"
