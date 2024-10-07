@@ -2687,3 +2687,26 @@ rule Trojan_Win32_ClipBanker_CE_2147917282_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_ClipBanker_GNT_2147922879_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ClipBanker.GNT!MTB"
+        threat_id = "2147922879"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ClipBanker"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "89.119.67.154/" ascii //weight: 2
+        $x_2_2 = "kukutrustnet777.info" ascii //weight: 2
+        $x_1_3 = "MZtiByGWi" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
