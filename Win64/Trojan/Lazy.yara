@@ -1657,6 +1657,28 @@ rule Trojan_Win64_Lazy_ROW_2147921725_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Lazy_GM_2147922335_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Lazy.GM!MTB"
+        threat_id = "2147922335"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Lazy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "ChromeFuckNewCookies" ascii //weight: 2
+        $x_2_2 = "/c timeout /t 10 & del /f /q" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win64_Lazy_MBXY_2147922343_0
 {
     meta:

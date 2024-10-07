@@ -499,3 +499,28 @@ rule Trojan_MSIL_StealC_EZ_2147921605_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_StealC_AYA_2147922987_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/StealC.AYA!MTB"
+        threat_id = "2147922987"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "StealC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "BazaidBOtNet" wide //weight: 2
+        $x_1_2 = "$cb2aae6e-4e03-41f7-b9d1-1b89e8b1cf22" ascii //weight: 1
+        $x_1_3 = "CryptoObfuscator_Output" ascii //weight: 1
+        $x_1_4 = "U3R1YlN0dWI=" wide //weight: 1
+        $x_1_5 = "Stub.Resources" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

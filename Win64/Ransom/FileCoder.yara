@@ -487,3 +487,27 @@ rule Ransom_Win64_FileCoder_RHX_2147921850_0
         (all of ($x*))
 }
 
+rule Ransom_Win64_FileCoder_AYE_2147922975_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win64/FileCoder.AYE!MTB"
+        threat_id = "2147922975"
+        type = "Ransom"
+        platform = "Win64: Windows 64-bit platform"
+        family = "FileCoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "How to restore your files.txt" ascii //weight: 2
+        $x_2_2 = "Your files have been encrypted due to unauthorized use of our item." ascii //weight: 2
+        $x_1_3 = "To restore your files, you must buy a special program, this program belong to us alone." ascii //weight: 1
+        $x_1_4 = "tongfake.dll" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

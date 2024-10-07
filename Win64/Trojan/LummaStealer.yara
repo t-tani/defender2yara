@@ -390,3 +390,35 @@ rule Trojan_Win64_LummaStealer_VM_2147921951_0
         )
 }
 
+rule Trojan_Win64_LummaStealer_VVG_2147922956_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/LummaStealer.VVG!MTB"
+        threat_id = "2147922956"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "12"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "main.Md5Encode" ascii //weight: 1
+        $x_1_2 = "main.RDF" ascii //weight: 1
+        $x_1_3 = "main.randSeq" ascii //weight: 1
+        $x_8_4 = "main.KwPMHzDibl" ascii //weight: 8
+        $x_1_5 = "main._Cfunc_wrf" ascii //weight: 1
+        $x_1_6 = "main.TerminateProcess" ascii //weight: 1
+        $x_1_7 = "main.CreateSuspendedProcess" ascii //weight: 1
+        $x_1_8 = "main.WriteProcessMemory" ascii //weight: 1
+        $x_1_9 = "main._RunPE" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_8_*) and 4 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+

@@ -2247,3 +2247,25 @@ rule Ransom_Win32_Filecoder_SUR_2147922721_0
         (all of ($x*))
 }
 
+rule Ransom_Win32_Filecoder_PAFR_2147922991_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win32/Filecoder.PAFR!MTB"
+        threat_id = "2147922991"
+        type = "Ransom"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Filecoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {8b ce 8b 55 ?? 83 e1 07 c1 e1 03 e8 ?? ?? ?? ?? 8b 4d ?? 30 04 0e 83 c6 01 83 d3 00 3b 5d ?? 72 ?? 77 ?? 3b f7 72}  //weight: 2, accuracy: Low
+        $x_2_2 = {99 b9 34 00 00 00 f7 f9 b8 41 00 00 00 b9 47 00 00 00 80 fa 1a 0f 4d c1 02 c2 8b e5 5d c3}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

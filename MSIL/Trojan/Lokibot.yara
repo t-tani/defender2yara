@@ -2611,3 +2611,30 @@ rule Trojan_MSIL_Lokibot_AMC_2147921790_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Lokibot_GM_2147922101_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Lokibot.GM!MTB"
+        threat_id = "2147922101"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Lokibot"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "9"
+        strings_accuracy = "High"
+    strings:
+        $x_8_1 = {00 00 01 25 16 03 16 9a a2 25 17 03 17 9a a2 25 18 04 a2 0a}  //weight: 8, accuracy: High
+        $x_1_2 = "sgtatham/putty/0" ascii //weight: 1
+        $x_1_3 = "Trif32" ascii //weight: 1
+        $x_1_4 = "190316123152Z0" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_8_*) and 1 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+

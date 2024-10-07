@@ -104991,6 +104991,35 @@ rule Trojan_MSIL_AgentTesla_VG_2147919679_0
         family = "AgentTesla"
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = "EbvsOCcOBZhzqaH" wide //weight: 5
+        $x_4_2 = "^^^^^M^^^^^^^^^^^^a^^^^^^^^^^^^^^i^^^^^^^^^^^^^n^^^^^^^^^" wide //weight: 4
+        $x_1_3 = "Credit Card" wide //weight: 1
+        $x_1_4 = "Debit Card" wide //weight: 1
+        $x_1_5 = "PayPal" wide //weight: 1
+        $x_1_6 = "Bank Transfer" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_5_*) and 1 of ($x_4_*) and 1 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+
+rule Trojan_MSIL_AgentTesla_VG_2147919679_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.VG!MTB"
+        threat_id = "2147919679"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "8"
         strings_accuracy = "High"

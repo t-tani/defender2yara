@@ -3177,3 +3177,28 @@ rule Trojan_MSIL_NjRat_PAFP_2147921707_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_NjRat_AYA_2147922982_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/NjRat.AYA!MTB"
+        threat_id = "2147922982"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "NjRat"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "$e1ae280a-f0b2-43ae-9cc4-3e4a4e9c76a7" ascii //weight: 2
+        $x_1_2 = "casa 54" ascii //weight: 1
+        $x_1_3 = "obj\\Release\\Software.pdb" ascii //weight: 1
+        $x_1_4 = "Software.Resources" ascii //weight: 1
+        $x_1_5 = "Property can only be set to Nothing" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

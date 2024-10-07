@@ -1199,3 +1199,53 @@ rule Ransom_MSIL_FileCoder_MX_2147921690_0
         (4 of ($x*))
 }
 
+rule Ransom_MSIL_FileCoder_AYF_2147922976_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:MSIL/FileCoder.AYF!MTB"
+        threat_id = "2147922976"
+        type = "Ransom"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "FileCoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "Winlocker.Properties.Resources" wide //weight: 2
+        $x_1_2 = "$8a3531d2-cb95-495c-ac17-327b37c5d0af" ascii //weight: 1
+        $x_1_3 = "DisableTaskMgr" wide //weight: 1
+        $x_1_4 = "DisableRegistryTools" wide //weight: 1
+        $x_1_5 = "Windows\\kvoop.exe" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Ransom_MSIL_FileCoder_AYG_2147922977_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:MSIL/FileCoder.AYG!MTB"
+        threat_id = "2147922977"
+        type = "Ransom"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "FileCoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "xmb.pythonanywhere.com" ascii //weight: 2
+        $x_1_2 = "You became victim of the razrusheniye ransomware!" ascii //weight: 1
+        $x_1_3 = "If you report us AFTER restoration, we WILL attack you again!!!" ascii //weight: 1
+        $x_1_4 = "%s.raz" ascii //weight: 1
+        $x_1_5 = "AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

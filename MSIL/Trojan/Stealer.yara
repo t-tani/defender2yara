@@ -2171,3 +2171,71 @@ rule Trojan_MSIL_Stealer_YCAA_2147922221_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Stealer_AYB_2147922978_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Stealer.AYB!MTB"
+        threat_id = "2147922978"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Stealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {11 18 6a 11 15 6e 5a 6d 13 16 11 16 6e 11 1a 6a 61 69 13 18 11 19 6e 11 1a 6a 61 69 13 1a 08 17 58 20 00 01 00 00 5d 0c 09 06 08 91 58 20 00 01 00 00 5d 0d}  //weight: 2, accuracy: High
+        $x_1_2 = "VirtualProtect" ascii //weight: 1
+        $x_1_3 = "$375c5eff-0650-4301-85ef-382cfefa9adf" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Stealer_AYC_2147922979_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Stealer.AYC!MTB"
+        threat_id = "2147922979"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Stealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {11 30 11 30 1f 19 62 61 13 30 11 30 11 30 1f 1b 64 61 13 30 11 39 20 48 3c f0 25 5a 20 05 c9 1d 02 61}  //weight: 2, accuracy: High
+        $x_1_2 = "VirtualProtect" ascii //weight: 1
+        $x_1_3 = "CreateEncryptor" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Stealer_AYD_2147922980_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Stealer.AYD!MTB"
+        threat_id = "2147922980"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Stealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {07 03 17 8d 06 00 00 01 25 16 09 20 bf 24 0a 00 d6 8c 4c 00 00 01 a2 14 28 6c 00 00 0a 28 6d 00 00 0a 6f 6e 00 00 0a 00 09 17 d6 0d 09 08 31 d0}  //weight: 2, accuracy: High
+        $x_1_2 = "DebuggerHidden" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

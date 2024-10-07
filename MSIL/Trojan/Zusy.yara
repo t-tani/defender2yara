@@ -2048,3 +2048,59 @@ rule Trojan_MSIL_Zusy_HNR_2147922896_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Zusy_VG_2147922957_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Zusy.VG!MTB"
+        threat_id = "2147922957"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "14"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = "91303.0.4v\\" wide //weight: 5
+        $x_8_2 = "krowemarF\\TEN.tfosorciM\\swodniW\\:C" wide //weight: 8
+        $x_8_3 = "//:ptth" wide //weight: 8
+        $x_8_4 = "//:sptth" wide //weight: 8
+        $x_1_5 = "FromBase64String" ascii //weight: 1
+        $x_1_6 = "DownloadString" ascii //weight: 1
+        $x_1_7 = "StrReverse" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_8_*) and 1 of ($x_5_*) and 1 of ($x_1_*))) or
+            ((2 of ($x_8_*))) or
+            (all of ($x*))
+        )
+}
+
+rule Trojan_MSIL_Zusy_AYA_2147922984_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Zusy.AYA!MTB"
+        threat_id = "2147922984"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "unknownspf_loader" ascii //weight: 2
+        $x_1_2 = "$19f13a16-99c6-439d-aa8e-e404e5f2447a" ascii //weight: 1
+        $x_1_3 = "activation.php?code=" wide //weight: 1
+        $x_1_4 = "deactivation.php?hash=" wide //weight: 1
+        $x_1_5 = "Program will be terminated" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

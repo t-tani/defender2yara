@@ -3416,3 +3416,28 @@ rule Ransom_MSIL_Cryptolocker_DX_2147899389_0
         )
 }
 
+rule Ransom_MSIL_Cryptolocker_AYA_2147922983_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:MSIL/Cryptolocker.AYA!MTB"
+        threat_id = "2147922983"
+        type = "Ransom"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Cryptolocker"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "Payload.LockForm.resources" ascii //weight: 2
+        $x_1_2 = "Crypto Locker\\Payload\\obj\\Release\\Payload.pdb" ascii //weight: 1
+        $x_1_3 = "KillAllProcesses" ascii //weight: 1
+        $x_1_4 = "$644fc53e-14b9-4dad-9097-73637c4f7b4d" ascii //weight: 1
+        $x_1_5 = "RemoveFromStartup.bat" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -3268,3 +3268,26 @@ rule Ransom_MSIL_Filecoder_SWB_2147922726_0
         (all of ($x*))
 }
 
+rule Ransom_MSIL_Filecoder_PAFT_2147922993_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:MSIL/Filecoder.PAFT!MTB"
+        threat_id = "2147922993"
+        type = "Ransom"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Filecoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "XerinFuscator" ascii //weight: 2
+        $x_2_2 = "K.G.B - Burhan Alassad" ascii //weight: 2
+        $x_2_3 = "$32241ffd-bfa6-4501-98b1-a818b30c3de7" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

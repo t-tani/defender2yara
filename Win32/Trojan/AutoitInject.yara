@@ -2921,3 +2921,28 @@ rule Trojan_Win32_AutoitInject_YSAA_2147922653_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_AutoitInject_YYAA_2147922990_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.YYAA!MTB"
+        threat_id = "2147922990"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "@TempDir" ascii //weight: 1
+        $x_1_2 = "DllCall" ascii //weight: 1
+        $x_2_3 = "kwq90ewq90rwq90nwq90ewq90lwq903wq902wq90.wq90dwq90lwq90lwq90" ascii //weight: 2
+        $x_2_4 = "Vwq90iwq90rwq90twq90uwq90awq90lwq90Pwq90rwq90owq90twq90ewq90cwq90twq90" ascii //weight: 2
+        $x_2_5 = "uwq90swq90ewq90rwq903wq902wq90.wq90dwq90lwq90lwq90" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

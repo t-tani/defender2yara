@@ -13041,3 +13041,27 @@ rule Trojan_MSIL_FormBook_NZI_2147922729_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_FormBook_MBXU_2147922936_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/FormBook.MBXU!MTB"
+        threat_id = "2147922936"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "FormBook"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "9"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {fe 04 16 fe 01 13 09 11 09 2c 2b 00 72 0f 06 00 70}  //weight: 1, accuracy: High
+        $x_2_2 = "rpgAssist.Properties.Resources.resource" ascii //weight: 2
+        $x_3_3 = "TZINOU ANTONIA" wide //weight: 3
+        $x_3_4 = {33 00 49 00 2d 00 54 00 45 00 50 00 30 00 31}  //weight: 3, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

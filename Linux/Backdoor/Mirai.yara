@@ -8550,3 +8550,28 @@ rule Backdoor_Linux_Mirai_JQ_2147919523_0
         (all of ($x*))
 }
 
+rule Backdoor_Linux_Mirai_JU_2147922951_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Backdoor:Linux/Mirai.JU!MTB"
+        threat_id = "2147922951"
+        type = "Backdoor"
+        platform = "Linux: Linux platform"
+        family = "Mirai"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_ELFHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = "rm -f rondo.mipsel" ascii //weight: 1
+        $x_1_2 = {77 67 65 74 20 68 74 74 70 3a 2f 2f [0-18] 2e 64 64 6e 73 2e 6e 65 74 2f 72 6f 6e 64 6f 2e [0-7] 3b 63 68 6d 6f 64 20 37 37 37 20 72 6f 6e 64 6f 2e [0-7] 3b 2e 2f 72 6f 6e 64 6f 2e [0-7] 20 73 65 6c 66 72 65 70 2e 6c 62 6c 69 6e 6b 2e 6d 69 70 73 65 6c}  //weight: 1, accuracy: Low
+        $x_1_3 = "./rondo.pid" ascii //weight: 1
+        $x_1_4 = "openvpncrypttcp" ascii //weight: 1
+        $x_1_5 = "openvpncrypt" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
