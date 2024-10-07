@@ -2456,6 +2456,30 @@ rule Trojan_Win32_OffLoader_ADP_2147920914_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_OffLoader_ADP_2147920914_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/OffLoader.ADP!MTB"
+        threat_id = "2147920914"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "OffLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = "berryfog.xyz/doi.php?pe=" wide //weight: 3
+        $x_3_2 = "rainroad.icu/dio.php?pe" wide //weight: 3
+        $x_1_3 = "/nocookies" wide //weight: 1
+        $x_1_4 = "/silent" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win32_OffLoader_SHLQ_2147921747_0
 {
     meta:
