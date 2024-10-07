@@ -223,3 +223,25 @@ rule Virus_Win32_Viking_SA_2147779444_0
         (all of ($x*))
 }
 
+rule Virus_Win32_Viking_AVK_2147922892_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Virus:Win32/Viking.AVK!MTB"
+        threat_id = "2147922892"
+        type = "Virus"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Viking"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {50 8d 95 60 fd ff ff 33 c0 e8 a0 a7 ff ff 8b 95 60 fd ff ff 8d 45 ec 59 e8 c9 b3 ff ff 8b 45 ec e8 75 b5 ff ff 50 e8 e3 c2 ff ff}  //weight: 5, accuracy: High
+        $x_3_2 = {68 b4 83 40 00 8d 95 44 fd ff ff 33 c0 e8 ?? ?? ?? ?? ff b5 44 fd ff ff 68 cc 83 40 00 68 d8 83 40 00 8d 95 40 fd ff ff 33 c0 e8 ?? ?? ?? ?? ff b5 40 fd ff ff 68 ec 83 40 00 68 f8 83 40 00 68 10 84 40 00 ff 75 ec 68 20 84 40 00 8d 95 38 fd ff ff 33 c0}  //weight: 3, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

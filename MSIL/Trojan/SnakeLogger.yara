@@ -690,3 +690,25 @@ rule Trojan_MSIL_SnakeLogger_BB_2147922421_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_SnakeLogger_BC_2147922890_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/SnakeLogger.BC!MTB"
+        threat_id = "2147922890"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "SnakeLogger"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {02 06 07 6f ?? 00 00 0a 0c 2b 2d 00 03 12 02 28 ?? 00 00 0a 6f ?? 00 00 0a 00 03 12 02 28 ?? 00 00 0a 6f ?? 00 00 0a 00 03 12 02 28 ?? 00 00 0a 6f ?? 00 00 0a 00 2b 14 03 6f ?? 00 00 0a 19 58 04 fe 02 16 fe 01 13 04 11 04 2d}  //weight: 2, accuracy: Low
+        $x_2_2 = {03 12 02 28 ?? 00 00 0a 6f ?? 00 00 0a 00 03 12 02 28 ?? 00 00 0a 6f ?? 00 00 0a 00 00 2b 1a 09 17 fe 01 13 08 11 08 2c 10 00 03 12 02 28 ?? 00 00 0a 6f ?? 00 00 0a 00 00 00 07 17 58 0b 00 07 02}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

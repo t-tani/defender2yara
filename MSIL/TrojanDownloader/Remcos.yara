@@ -221,3 +221,25 @@ rule TrojanDownloader_MSIL_Remcos_CCGV_2147900873_0
         (all of ($x*))
 }
 
+rule TrojanDownloader_MSIL_Remcos_ARM_2147922893_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:MSIL/Remcos.ARM!MTB"
+        threat_id = "2147922893"
+        type = "TrojanDownloader"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Remcos"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {2b 07 2b 0c de 17 07 2b f2 6f ?? 00 00 0a 2b f2 0a 2b f1 07 2c 06 07 6f ?? 00 00 0a dc 2b 7c}  //weight: 2, accuracy: Low
+        $x_1_2 = "files.catbox.moe" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

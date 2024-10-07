@@ -1996,3 +1996,55 @@ rule Trojan_MSIL_Zusy_BB_2147922681_0
         )
 }
 
+rule Trojan_MSIL_Zusy_HNM_2147922895_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Zusy.HNM!MTB"
+        threat_id = "2147922895"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "15"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = {53 79 73 74 65 6d 00 4f 62 6a 65 63 74 00 56 69 72 74 75 61 6c 41 6c 6c 6f 63 00 43 72 65 61 74 65 54 68 72 65 61 64 00 57 61 69 74 46 6f 72 53 69 6e 67 6c 65 4f 62 6a 65 63}  //weight: 10, accuracy: High
+        $x_5_2 = {00 64 77 43 72 65 61 74 69 6f 6e 46 6c 61 67 73}  //weight: 5, accuracy: High
+        $x_5_3 = {00 62 79 70 61 73 73 00 53 79 73 74 65 6d 2e 52 75 6e 74 69 6d 65 00}  //weight: 5, accuracy: High
+        $x_5_4 = {52 75 6e 74 69 6d 65 43 6f 6d 70 61 74 69 62 69 6c 69 74 79 41 74 74 72 69 62 75 74 65 00 62 79 70 61 73 73 00}  //weight: 5, accuracy: High
+        $x_15_5 = {34 44 61 69 6e 00 2e 63 74 6f 72 00 6c 70 41 64 64 72 65 73 73 00 64 77 53 69 7a 65 00 66 6c 41 6c 6c 6f 63 61 74 69 6f 6e 54 79 70 65 00 66 6c 50 72 6f 74 65 63 74 00 6c 70 54 68 72 65 61 64 41 74 74 72 69 62 75 74 65 73 00 64 77 53 74 61 63 6b 53 69 7a 65 00 6c 70 53 74 61 72 74 41 64 64 72 65 73 73}  //weight: 15, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (
+            ((3 of ($x_5_*))) or
+            ((1 of ($x_10_*) and 1 of ($x_5_*))) or
+            ((1 of ($x_15_*))) or
+            (all of ($x*))
+        )
+}
+
+rule Trojan_MSIL_Zusy_HNR_2147922896_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Zusy.HNR!MTB"
+        threat_id = "2147922896"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {2e 00 70 00 68 00 70 00 00 0d 76 00 61 00 6c 00 75 00 65 00 31 00 00 0d 76 00 61 00 6c 00 75 00 65 00 32 00 00 ?? 68 00 74 00 74 00 70 00 3a 00 2f 00 2f 00}  //weight: 1, accuracy: Low
+        $x_2_2 = {2e 53 65 63 75 72 69 74 79 2e 43 72 79 70 74 6f 67 72 61 70 68 79 00}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
