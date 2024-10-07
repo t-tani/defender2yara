@@ -402,3 +402,24 @@ rule Trojan_Win64_Latrodectus_DE_2147922315_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Latrodectus_KLA_2147922913_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Latrodectus.KLA!MTB"
+        threat_id = "2147922913"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Latrodectus"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {4c 89 c0 4c 89 c1 4c 89 c7 49 f7 e1 48 29 d1 48 d1 e9 48 01 ca 48 c1 ea 04 48 8d 04 52 48 c1 e0 ?? 48 29 d0 48 29 c7 0f b6 44 3c ?? 43 32 04 10 48 8b 54 24 ?? 42 88 04 02 49 83 c0 01 4c 39 44 24 40 77}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
