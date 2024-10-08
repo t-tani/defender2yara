@@ -2142,6 +2142,29 @@ rule Trojan_MSIL_Vidar_AVD_2147918731_1
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "RDPCreator\\obj\\Release\\RDPCreator.pdb" ascii //weight: 2
+        $x_5_2 = "http://147.45.44.104" ascii //weight: 5
+        $x_3_3 = "CurrentVersion\\Policies\\System\" /v \"AllowRemoteRPC\" /t REG_DWORD /d 1 /f" ascii //weight: 3
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Vidar_AVD_2147918731_2
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Vidar.AVD!MTB"
+        threat_id = "2147918731"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Vidar"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "11"
         strings_accuracy = "High"
     strings:

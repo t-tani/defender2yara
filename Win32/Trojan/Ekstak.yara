@@ -8441,3 +8441,24 @@ rule Trojan_Win32_Ekstak_UQAA_2147919756_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Ekstak_GNZ_2147923047_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Ekstak.GNZ!MTB"
+        threat_id = "2147923047"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Ekstak"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = {2a 01 00 00 00 69 bf 6b 00 f7 2d 68 00 00 a2 0a 00 06 15 a8 0e 36 d5 67 00 00}  //weight: 10, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
