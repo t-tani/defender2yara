@@ -156,3 +156,27 @@ rule Trojan_Win64_Ulise_AI_2147917654_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Ulise_NS_2147923057_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Ulise.NS!MTB"
+        threat_id = "2147923057"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Ulise"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {48 8b 08 48 89 4a 18 48 8b 00 48 89 45 f8 48 83 f8 00 0f 84 ?? ?? ?? ?? 48 8b 45 f8 48 8b 4d d8 48 89 48 20 48 8b 45 d0}  //weight: 3, accuracy: Low
+        $x_2_2 = {48 8b 45 d0 48 8b 55 d8 48 83 c4 20 4c 8b 01 4c 89 45 e0 48 8b 49 08 48 89 4d e8 48 c7 42 20 00 00 00 00 48 05 68 08 00 00 49 c1 e0 08 4c 01 c0 48 c1 e1 03 48 01 c8}  //weight: 2, accuracy: High
+        $x_1_3 = "RegQueryInfoKeyW" ascii //weight: 1
+        $x_1_4 = "SleepConditionVariable" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

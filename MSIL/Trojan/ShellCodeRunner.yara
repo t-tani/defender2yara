@@ -100,3 +100,26 @@ rule Trojan_MSIL_ShellCodeRunner_RP_2147917846_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_ShellCodeRunner_NS_2147923058_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/ShellCodeRunner.NS!MTB"
+        threat_id = "2147923058"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "ShellCodeRunner"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {ff 16 fe 0e ?? ?? ?? ?? 2b 25 00 09 fe 0c ?? ?? ?? 00 07 fe 0c ?? ?? ?? ?? 93 28 15 00 00 0a 9c 00 fe 0c ?? ?? ?? ?? 17 58 fe 0e}  //weight: 3, accuracy: Low
+        $x_2_2 = "CalistirmaFonksiyonu" ascii //weight: 2
+        $x_1_3 = "Spotifys.exe" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
