@@ -43,3 +43,25 @@ rule Trojan_Win32_Pincav_NPC_2147901788_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Pincav_AML_2147923108_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Pincav.AML!MTB"
+        threat_id = "2147923108"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Pincav"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_4_1 = {8a 82 60 12 40 00 83 f0 d8 88 06 46 42 83 fa 26 75 ee}  //weight: 4, accuracy: High
+        $x_1_2 = {30 58 ff 40 39 d0 75 f8}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

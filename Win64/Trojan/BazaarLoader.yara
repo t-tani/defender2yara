@@ -130,3 +130,24 @@ rule Trojan_Win64_BazaarLoader_TSP_2147922553_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_BazaarLoader_FOR_2147923105_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/BazaarLoader.FOR!MTB"
+        threat_id = "2147923105"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "BazaarLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {48 89 74 24 10 48 89 7c 24 18 48 63 41 3c 8b f2 33 d2 44 8b 84 08 88 00 00 00 4c 8b c9 4c 03 c1}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -539,3 +539,27 @@ rule Trojan_MSIL_Mardom_SQ_2147917683_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Mardom_YZAA_2147923082_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Mardom.YZAA!MTB"
+        threat_id = "2147923082"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Mardom"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {02 25 17 58 10 00 91 7e 64 02 00 04 02 25 17 58 10 00 91 1e 62 60 7e 64 02 00 04 02 25 17 58 10 00 91 1f 10 62 60 7e 64 02 00 04 02 25 17 58 10 00 91 1f 18 62 60 13 04 7e 64 02 00 04 02 25 17 58 10 00 91 7e 64 02 00 04 02 25 17 58 10 00 91 1e 62 60 7e 64 02 00 04 02 25 17 58 10 00 91 1f 10 62 60 7e 64 02 00 04 02 25 17 58 10 00 91 1f 18 62 60 13 05 d0 07 00 00 1b 28 ?? 00 00 0a 6f e7 02 00 0a 11 05 28 ?? 02 00 0a 13 06 7e 64 02 00 04 02 11 06 16 11 04 1a 59 28 ?? 00 00 0a 11 06 a5 07 00 00 1b 0b 0f 00 28 ?? 02 00 0a 10 02 07 2a}  //weight: 3, accuracy: Low
+        $x_1_2 = "vQUnpzyUdRyZdxxBTmFpzZTzGDjdiYqHXJCFsEwliolSkMZGRwSwasFWwVhlQVmFbrBUus" ascii //weight: 1
+        $x_1_3 = "LTXTVvWXwYQtfMCFqSXiEtWlgYMPLKXoIt" ascii //weight: 1
+        $x_1_4 = "QzILOMHiwEIXJPbnfjuqYJPXrmfQELrJWYMUcLztEbZifnpxdtAIfJrGjkUchqdlMyBkCHLUkBmxjhsEwhnLKjeMgFkr" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -8941,3 +8941,45 @@ rule Trojan_Win32_Zenpak_AMK_2147923006_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Zenpak_CCIM_2147923091_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zenpak.CCIM!MTB"
+        threat_id = "2147923091"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zenpak"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {31 d0 31 25 ?? ?? ?? 00 89 d0 e8 15 00 00 00 b8 06 00 00 00 8d 05 10 10 ?? 00 01 30 8d 05 f5 11 ?? 00 50 c3 8d 05 1c ?? ?? 00 89 28 83 c0 09 83 f0 05 89 1d 18 10 ?? 00 89 c2 31 3d 14 10 ?? 00 eb cd}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Zenpak_AML_2147923107_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zenpak.AML!MTB"
+        threat_id = "2147923107"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zenpak"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {55 89 e5 57 56 8a 45 0c 8a 4d 08 88 c2 02 15 ?? ?? ?? ?? 88 15 ?? ?? ?? ?? 8b 35 ?? ?? ?? ?? 88 0d 00 a2 ?? ?? ?? ?? 89 f7 81 c7 ?? ?? ?? ?? 89 3d ?? ?? ?? ?? 81 c6 ?? ?? ?? ?? 89 35 ?? ?? ?? ?? 0f b6 c2 5e 5f 5d c3}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

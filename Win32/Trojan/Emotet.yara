@@ -21720,3 +21720,25 @@ rule Trojan_Win32_Emotet_MFF_2147919545_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Emotet_CCIM_2147923092_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Emotet.CCIM!MTB"
+        threat_id = "2147923092"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Emotet"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {89 c6 01 d6 81 c6 ?? ?? ?? ?? 8b 16 69 f1 ?? ?? ?? 00 01 f0 05 ?? ?? ?? ?? 33 10 03 54 24 6c 89 54 24 74 8b 44 24 74}  //weight: 2, accuracy: Low
+        $x_1_2 = {8b 16 89 54 24 3c 69 54 24 2c ?? ?? ?? ?? 01 d0 05 b8 00 00 00 8b 00 89 c2 31 ca 8b 74 24}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
