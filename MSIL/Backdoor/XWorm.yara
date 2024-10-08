@@ -110,3 +110,29 @@ rule Backdoor_MSIL_XWorm_GNK_2147917814_0
         (all of ($x*))
 }
 
+rule Backdoor_MSIL_XWorm_PAFS_2147923128_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Backdoor:MSIL/XWorm.PAFS!MTB"
+        threat_id = "2147923128"
+        type = "Backdoor"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "XWorm"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "11"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "OfflineKeylogger" wide //weight: 2
+        $x_1_2 = "/create /f /RL HIGHEST /sc minute /mo 1 /tn" wide //weight: 1
+        $x_1_3 = "WScript.Shell" wide //weight: 1
+        $x_2_4 = "/sendMessage?chat_id=" wide //weight: 2
+        $x_3_5 = "WizWorm" wide //weight: 3
+        $x_2_6 = "shutdown.exe /f /s /t 0" wide //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
