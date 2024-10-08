@@ -687,6 +687,30 @@ rule Trojan_Win64_Tedy_DA_2147914003_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Tedy_DA_2147914003_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Tedy.DA!MTB"
+        threat_id = "2147914003"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Tedy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "22"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = "\\\\.\\VBoxMiniRdrDN" ascii //weight: 10
+        $x_10_2 = "FortniteClient-Win64-Shipping.exe" ascii //weight: 10
+        $x_1_3 = "D3D11CreateDeviceAndSwapChain" ascii //weight: 1
+        $x_1_4 = "d3d11.dll" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win64_Tedy_GP_2147914911_0
 {
     meta:
