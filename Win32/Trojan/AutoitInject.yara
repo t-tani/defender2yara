@@ -2946,3 +2946,31 @@ rule Trojan_Win32_AutoitInject_YYAA_2147922990_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_AutoitInject_SKAG_2147923005_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.SKAG!MTB"
+        threat_id = "2147923005"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {47 00 4c 00 4f 00 42 00 41 00 4c 00 20 00 24 00 [0-31] 20 00 3d 00 20 00 46 00 49 00 4c 00 45 00 4f 00 50 00 45 00 4e 00 20 00 28 00 20 00 40 00 54 00 45 00 4d 00 50 00 44 00 49 00 52 00 20 00 26 00 20 00 22 00 5c 00 [0-31] 22 00 20 00 2c 00 20 00 [0-31] 20 00 29 00}  //weight: 1, accuracy: Low
+        $x_1_2 = {47 4c 4f 42 41 4c 20 24 [0-31] 20 3d 20 46 49 4c 45 4f 50 45 4e 20 28 20 40 54 45 4d 50 44 49 52 20 26 20 22 5c [0-31] 22 20 2c 20 [0-31] 20 29}  //weight: 1, accuracy: Low
+        $x_1_3 = {46 00 49 00 4c 00 45 00 43 00 4f 00 50 00 59 00 20 00 28 00 20 00 22 00 [0-31] 22 00 20 00 2c 00 20 00 24 00 [0-31] 20 00 2c 00 20 00 [0-31] 20 00}  //weight: 1, accuracy: Low
+        $x_1_4 = {46 49 4c 45 43 4f 50 59 20 28 20 22 [0-31] 22 20 2c 20 24 [0-31] 20 2c 20 [0-31] 20}  //weight: 1, accuracy: Low
+        $x_1_5 = {20 00 46 00 49 00 4c 00 45 00 44 00 45 00 4c 00 45 00 54 00 45 00 20 00 28 00 20 00 22 00 [0-31] 22 00 20 00 29 00}  //weight: 1, accuracy: Low
+        $x_1_6 = {20 46 49 4c 45 44 45 4c 45 54 45 20 28 20 22 [0-31] 22 20 29}  //weight: 1, accuracy: Low
+        $x_1_7 = {44 00 49 00 52 00 52 00 45 00 4d 00 4f 00 56 00 45 00 20 00 28 00 20 00 22 00 [0-31] 22 00 20 00 2c 00 20 00 [0-15] 20 00 29 00}  //weight: 1, accuracy: Low
+        $x_1_8 = {44 49 52 52 45 4d 4f 56 45 20 28 20 22 [0-31] 22 20 2c 20 [0-15] 20 29}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (4 of ($x*))
+}
+

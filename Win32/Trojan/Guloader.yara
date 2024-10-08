@@ -4200,3 +4200,29 @@ rule Trojan_Win32_Guloader_KAD_2147921795_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Guloader_SX_2147922997_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Guloader.SX!MTB"
+        threat_id = "2147922997"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Guloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "bladkrigen.exe" ascii //weight: 1
+        $x_1_2 = "Fradrage\\rabarbergrd\\jengene" ascii //weight: 1
+        $x_1_3 = "mugged\\augmenters" ascii //weight: 1
+        $x_1_4 = "%urethrogenital%\\medlem\\haandtagets.vel" ascii //weight: 1
+        $x_1_5 = "affladningens\\automekanikeres\\foragteliges" ascii //weight: 1
+        $x_1_6 = "busybodyness.hje" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -2065,3 +2065,24 @@ rule Trojan_Win32_LummaStealer_EC_2147922744_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_LummaStealer_DMP_2147923015_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaStealer.DMP!MTB"
+        threat_id = "2147923015"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {0f b6 c3 89 de 83 e6 01 89 f1 f7 d9 81 f6 01 01 01 01 89 df 81 e7 fe 00 00 00 0f af fe}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
