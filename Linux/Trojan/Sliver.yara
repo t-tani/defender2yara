@@ -115,3 +115,37 @@ rule Trojan_Linux_Sliver_D_2147920059_0
         (all of ($x*))
 }
 
+rule Trojan_Linux_Sliver_B_2147923153_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Linux/Sliver.B"
+        threat_id = "2147923153"
+        type = "Trojan"
+        platform = "Linux: Linux platform"
+        family = "Sliver"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_ELFHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "DllUnregisterServer" ascii //weight: 2
+        $x_1_2 = "DllRegisterServer" ascii //weight: 1
+        $x_1_3 = "DllInstall" ascii //weight: 1
+        $x_1_4 = "GetJitter" ascii //weight: 1
+        $x_2_5 = "VoidFunc" ascii //weight: 2
+        $x_2_6 = "GetKill" ascii //weight: 2
+        $x_2_7 = "AddTunnel" ascii //weight: 2
+        $x_1_8 = "GetIsIOC" ascii //weight: 1
+        $x_1_9 = "Go buildinf:" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_2_*) and 5 of ($x_1_*))) or
+            ((2 of ($x_2_*) and 3 of ($x_1_*))) or
+            ((3 of ($x_2_*) and 1 of ($x_1_*))) or
+            ((4 of ($x_2_*))) or
+            (all of ($x*))
+        )
+}
+
