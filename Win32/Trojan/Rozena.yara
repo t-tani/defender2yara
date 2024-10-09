@@ -854,3 +854,31 @@ rule Trojan_Win32_Rozena_YAD_2147913540_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Rozena_ASJ_2147923174_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Rozena.ASJ!MTB"
+        threat_id = "2147923174"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Rozena"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {8b 5c 24 18 31 ed eb ?? 0f b6 34 ?? 31 ?? 83 f6 ?? 87 de 88 1c 28 87 de 45}  //weight: 2, accuracy: Low
+        $x_2_2 = {8b 5c 24 1c 31 ed eb ?? 0f b6 34 ?? 31 ?? 83 f6 ?? 87 de 88 1c 28 87 de 45}  //weight: 2, accuracy: Low
+        $x_3_3 = {83 ec 18 8b 05 ?? ?? ?? 00 8b 0d ?? ?? ?? 00 8b 15 ?? ?? ?? 00 89 04 24 89 4c 24 04 89 54 24 08 e8 ?? ?? ?? 00 8b 44 24 0c 8b 4c 24 10 8b 54 24 14 89 0d ?? ?? ?? 00 89 15 ?? ?? ?? 00 8b 0d ?? ?? ?? 00 85 c9 75}  //weight: 3, accuracy: Low
+        $x_1_4 = "main.DecryptXor" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_3_*) and 1 of ($x_2_*) and 1 of ($x_1_*))) or
+            ((1 of ($x_3_*) and 2 of ($x_2_*))) or
+            (all of ($x*))
+        )
+}
+

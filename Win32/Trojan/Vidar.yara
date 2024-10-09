@@ -5975,3 +5975,24 @@ rule Trojan_Win32_Vidar_AMK_2147922947_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Vidar_SPOB_2147923185_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Vidar.SPOB!MTB"
+        threat_id = "2147923185"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Vidar"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_4_1 = {8b 54 24 30 8a 44 34 34 59 8b 4c 24 24 30 04 0a 41 89 4c 24 24 3b 0f 7c 8e}  //weight: 4, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
