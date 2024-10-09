@@ -231,3 +231,48 @@ rule TrojanDownloader_MSIL_Pwsx_SZ_2147922698_0
         (all of ($x*))
 }
 
+rule TrojanDownloader_MSIL_Pwsx_SA_2147923165_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:MSIL/Pwsx.SA!MTB"
+        threat_id = "2147923165"
+        type = "TrojanDownloader"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Pwsx"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {12 02 28 75 00 00 0a 13 07 03 11 05 16 61 d2 6f 76 00 00 0a 00 03 11 06 16 61 d2}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule TrojanDownloader_MSIL_Pwsx_SB_2147923167_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:MSIL/Pwsx.SB!MTB"
+        threat_id = "2147923167"
+        type = "TrojanDownloader"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Pwsx"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "stinkards planula subindexes" ascii //weight: 1
+        $x_1_2 = "poppa tangles ritualizations" ascii //weight: 1
+        $x_1_3 = "stemsons unshipped outsmokes" ascii //weight: 1
+        $x_2_4 = "$375c5eff-0650-4301-85ef-382cfefa9adf" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

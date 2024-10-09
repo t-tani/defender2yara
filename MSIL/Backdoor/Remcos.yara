@@ -1631,3 +1631,24 @@ rule Backdoor_MSIL_Remcos_SMK_2147922699_0
         (all of ($x*))
 }
 
+rule Backdoor_MSIL_Remcos_SMK_2147922699_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Backdoor:MSIL/Remcos.SMK!MTB"
+        threat_id = "2147922699"
+        type = "Backdoor"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Remcos"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {03 12 02 28 7f 00 00 0a 6f 80 00 00 0a 03 12 02 28 81 00 00 0a 6f 80 00 00 0a 03 12 02 28 82 00 00 0a 6f 80 00 00 0a 2b 0b 03 6f 83 00 00 0a 19 58 04 31 cc}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

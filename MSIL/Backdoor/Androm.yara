@@ -350,3 +350,24 @@ rule Backdoor_MSIL_Androm_E_2147920482_0
         (all of ($x*))
 }
 
+rule Backdoor_MSIL_Androm_SK_2147923168_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Backdoor:MSIL/Androm.SK!MTB"
+        threat_id = "2147923168"
+        type = "Backdoor"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Androm"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {00 08 6f 5a 00 00 0a 11 07 18 6f 5b 00 00 0a 1f 10 28 5c 00 00 0a 28 5d 00 00 0a 16 91 13 08 09 11 08 6f 5e 00 00 0a 00 00 11 07 18 58 13 07 11 07 08 6f 5a 00 00 0a 6f 56 00 00 0a fe 04 13 09 11 09 2d bc}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

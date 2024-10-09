@@ -2206,3 +2206,24 @@ rule Trojan_MSIL_LummaStealer_RDI_2147923018_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_LummaStealer_SN_2147923164_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/LummaStealer.SN!MTB"
+        threat_id = "2147923164"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {02 7b 03 00 00 04 06 06 9e 02 7b 03 00 00 04 06 94 28 14 00 00 0a 06 17 58 0a 06 02 7b 03 00 00 04 8e 69 32 db}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
