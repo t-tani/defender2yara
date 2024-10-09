@@ -1279,3 +1279,30 @@ rule Ransom_Win32_FileCoder_GPAB_2147916283_0
         (all of ($x*))
 }
 
+rule Ransom_Win32_FileCoder_RHZ_2147923133_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win32/FileCoder.RHZ!MTB"
+        threat_id = "2147923133"
+        type = "Ransom"
+        platform = "Win32: Windows 32-bit platform"
+        family = "FileCoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {50 45 00 00 4c 01 04 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 0b 01 0e 27 00 1a 02 00 00 92 42 01}  //weight: 2, accuracy: Low
+        $x_3_2 = "DxxAlien_ReadMe.txt" wide //weight: 3
+        $x_1_3 = "Are you sure this is right decription key" wide //weight: 1
+        $x_1_4 = "Wallpaper set successfully" wide //weight: 1
+        $x_1_5 = "Your PC is under my control and all your files are encrypted" ascii //weight: 1
+        $x_1_6 = "Copy Ether Address" wide //weight: 1
+        $x_1_7 = "Encrypting File" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
