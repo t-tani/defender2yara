@@ -1256,3 +1256,25 @@ rule Trojan_Win32_Lazy_GV_2147921875_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Lazy_GXT_2147923282_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Lazy.GXT!MTB"
+        threat_id = "2147923282"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Lazy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = {c1 66 b9 a5 40 86 c9 66 f7 d1 66 89 45 04 f6 d5 9c 66 1b cf 12 ea 8f 44 25 00}  //weight: 10, accuracy: High
+        $x_1_2 = "d3.largesder.com" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -463,3 +463,25 @@ rule Trojan_MSIL_Stealerc_SL_2147923084_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Stealerc_SM_2147923284_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Stealerc.SM!MTB"
+        threat_id = "2147923284"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Stealerc"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {03 19 8d 8f 00 00 01 25 16 12 02 28 bd 00 00 0a 9c 25 17 12 02 28 be 00 00 0a 9c 25 18 12 02 28 bf 00 00 0a 9c}  //weight: 2, accuracy: High
+        $x_2_2 = "AgroFarm.Properties.Resources" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

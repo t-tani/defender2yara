@@ -538,3 +538,28 @@ rule Ransom_Win64_FileCoder_RHAA_2147923193_0
         (all of ($x*))
 }
 
+rule Ransom_Win64_FileCoder_SO_2147923283_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win64/FileCoder.SO!MTB"
+        threat_id = "2147923283"
+        type = "Ransom"
+        platform = "Win64: Windows 64-bit platform"
+        family = "FileCoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "%s.smert" ascii //weight: 2
+        $x_2_2 = "%s\\README.txt" ascii //weight: 2
+        $x_2_3 = "Your files have been fucked. There's no way back" ascii //weight: 2
+        $x_2_4 = "What can you do about it" ascii //weight: 2
+        $x_2_5 = "Start all over again" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

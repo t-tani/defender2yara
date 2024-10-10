@@ -1752,3 +1752,43 @@ rule Trojan_Win32_Neoreblamy_ASU_2147922889_0
         (4 of ($x*))
 }
 
+rule Trojan_Win32_Neoreblamy_ASV_2147923269_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Neoreblamy.ASV!MTB"
+        threat_id = "2147923269"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Neoreblamy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "PJtFQCgQdKYfUPwyylcqLncWROww" ascii //weight: 1
+        $x_1_2 = "oKEXLQpSOApgdiGDyxRtAiXJUObJPMaBhW" ascii //weight: 1
+        $x_1_3 = "ngJZtIKHgdRabvfIXctsYmIpsZEdB" ascii //weight: 1
+        $x_1_4 = "GKXAYemnMnJEpCEvirDnZKkhjyxjjwfRXvPeelVaPLHoFBAbAdHajxLVsBhAzRtlHDAolnKoYkHbZMNuvKhUpTvDS" ascii //weight: 1
+        $x_1_5 = "MZvNPSBvFBSbJWPJRHsCOFkkmLJC" ascii //weight: 1
+        $x_1_6 = "fTHiMpQoUzMnTbRPjbcScKwiuDpnth" ascii //weight: 1
+        $x_1_7 = "ufXHWKQwmvMHESAlOOTFkiftRkFZWbzAnP" ascii //weight: 1
+        $x_1_8 = "fQVUtWYwScpenyYFJjvhqnENraVFcqgSQIdMwROCyDESWHIJoSKGONpTFqHjjVWyGdYevAYHYgZwjWqbWkFqrSSPc" ascii //weight: 1
+        $x_1_9 = "NOeoSkUybhRqBiodllARDNlcSnHOfh" ascii //weight: 1
+        $x_1_10 = "KIZHaXIVhrXUPXrFwWmNxXRicLlQEg" ascii //weight: 1
+        $x_1_11 = "hGYRIfPkeQnISTvdZdHfToKpQyAedc" ascii //weight: 1
+        $x_1_12 = "kgqUZGtYkcfegGylNzaXBAbTifjLqXzxzEKJczBcATpwRCWBznHDgVXgkodMlKikPCXqFjgpPbfczLvPCzMBSdmwk" ascii //weight: 1
+        $x_1_13 = "RNiKSZcAMMgVgpKJglqkxyBqJyoIog" ascii //weight: 1
+        $x_1_14 = "mVNIDwLbVgzVjhUimCPnCecVdNGulteSwa" ascii //weight: 1
+        $x_1_15 = "PTROGTWUAhjrkcZmMEyQbYUFoIXBz" ascii //weight: 1
+        $x_1_16 = "XovhOsMfsYBtLbBrByAyJUQqvnPyTUqljXGTDABFbOVPCRuvyXEuycRaPhAIAzUFzegRNplMZMrGuYhgjdHgExzBL" ascii //weight: 1
+        $x_1_17 = "IqmTKcaTUTLGpuXnTlnwXmWLakZGvE" ascii //weight: 1
+        $x_1_18 = "RAYBngsQnCCukqGpXwKcdnhOEuRsBcEqrk" ascii //weight: 1
+        $x_1_19 = "xqdEAMRndUJquFTZTJNOXzkVcHYCP" ascii //weight: 1
+        $x_1_20 = "SINWFUypXuVqGBpZumEIvHyyAEnhEMJNzNCzKPiIZNUnjTQtWKKJKBOrZCzngmMqsAiAalfxXUlTBIiuXGQUVyQzm" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (4 of ($x*))
+}
+
