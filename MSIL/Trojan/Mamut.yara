@@ -482,3 +482,26 @@ rule Trojan_MSIL_Mamut_LL_2147901186_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Mamut_ARA_2147923216_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Mamut.ARA!MTB"
+        threat_id = "2147923216"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Mamut"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "Anti Virus Detected" wide //weight: 2
+        $x_2_2 = "\\Windows\\INF\\Windows Operating System Boot Enabler.exe" wide //weight: 2
+        $x_2_3 = "\\System Files\\Backup\\Windows Backup.exe" wide //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

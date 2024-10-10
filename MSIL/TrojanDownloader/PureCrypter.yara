@@ -153,3 +153,24 @@ rule TrojanDownloader_MSIL_PureCrypter_I_2147911964_0
         (all of ($x*))
 }
 
+rule TrojanDownloader_MSIL_PureCrypter_ARA_2147923214_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:MSIL/PureCrypter.ARA!MTB"
+        threat_id = "2147923214"
+        type = "TrojanDownloader"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "PureCrypter"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {07 11 05 11 04 6f ?? ?? ?? 0a 13 06 08 09 25 17 58 0d 12 06 28 ?? ?? ?? 0a 9c 11 05 17 58 13 05 11 05 07 6f ?? ?? ?? 0a 32 d6}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

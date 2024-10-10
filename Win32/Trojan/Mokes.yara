@@ -479,3 +479,24 @@ rule Trojan_Win32_Mokes_AMCC_2147901497_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Mokes_SPSB_2147923219_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Mokes.SPSB!MTB"
+        threat_id = "2147923219"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Mokes"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {8d b5 f8 fb ff ff c7 85 f8 fb ff ff 00 00 00 00 e8 ?? ?? ?? ?? 8a 95 f8 fb ff ff 8b 85 f4 fb ff ff 30 14 38 83 fb 0f 75}  //weight: 4, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

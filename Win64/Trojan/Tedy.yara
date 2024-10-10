@@ -870,3 +870,70 @@ rule Trojan_Win64_Tedy_RZ_2147922688_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Tedy_ARA_2147923215_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Tedy.ARA!MTB"
+        threat_id = "2147923215"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Tedy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "curl -F \"image=@" ascii //weight: 2
+        $x_2_2 = "\\Microsoft\\Windows\\.winSession" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_Tedy_ARA_2147923215_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Tedy.ARA!MTB"
+        threat_id = "2147923215"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Tedy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "\\Startup\\NVIDIAGraphics.lnk" ascii //weight: 2
+        $x_2_2 = "\\Startup\\MicrosoftDefender.lnk" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_Tedy_ARA_2147923215_2
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Tedy.ARA!MTB"
+        threat_id = "2147923215"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Tedy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "Set-MpPreference -DisableRealtimeMonitoring $true -DisableScriptScanning $true" ascii //weight: 1
+        $x_1_2 = "-DisableBehaviorMonitoring $true -DisableIOAVProtection $true -DisableIntrusionPreventionSystem $true" ascii //weight: 1
+        $x_1_3 = "Add-MpPreference -ExclusionPath" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

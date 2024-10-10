@@ -1,3 +1,29 @@
+rule TrojanDropper_AndroidOS_SAgent_B_2147831277_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDropper:AndroidOS/SAgent.B!MTB"
+        threat_id = "2147831277"
+        type = "TrojanDropper"
+        platform = "AndroidOS: Android operating system"
+        family = "SAgent"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {00 0c 00 6e 10 ?? 00 ?? 00 0c ?? 71 20 ?? 00 ?? 00 54 ?? ?? 00 72 20 ?? 00 ?? 00}  //weight: 2, accuracy: Low
+        $x_1_2 = {35 32 12 00 34 40 03 00 01 10 48 05 07 02 48 06 08 00 b7 65 8d 55 4f 05 07 02 d8 02 02 01 d8 00 00 01 28 ef}  //weight: 1, accuracy: High
+        $x_1_3 = {35 20 12 00 34 31 03 00 12 01 48 04 06 00 48 05 07 01 b7 54 8d 44 4f 04 06 00 d8 00 00 01 d8 01 01 01 28 ef}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_2_*) and 1 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+
 rule TrojanDropper_AndroidOS_SAgent_C_2147832795_0
 {
     meta:

@@ -2225,6 +2225,28 @@ rule Ransom_Win32_Filecoder_PAEL_2147912753_0
         (all of ($x*))
 }
 
+rule Ransom_Win32_Filecoder_ARA_2147919170_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win32/Filecoder.ARA!MTB"
+        threat_id = "2147919170"
+        type = "Ransom"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Filecoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {8b ce 8b 55 ?? 83 e1 07 c1 e1 03 e8 ?? ?? ?? ?? 8b 4d 08 30 04 0e 83 c6 01 83 d3 00 3b 5d}  //weight: 2, accuracy: Low
+        $x_2_2 = {8a 44 0d ec 88 81 ?? ?? ?? ?? 83 c1 01 83 d2 00 75 07 83 f9 0e 72 e9}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Ransom_Win32_Filecoder_SUR_2147922721_0
 {
     meta:
