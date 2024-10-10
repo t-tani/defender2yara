@@ -511,3 +511,30 @@ rule Ransom_Win64_FileCoder_AYE_2147922975_0
         (all of ($x*))
 }
 
+rule Ransom_Win64_FileCoder_RHAA_2147923193_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win64/FileCoder.RHAA!MTB"
+        threat_id = "2147923193"
+        type = "Ransom"
+        platform = "Win64: Windows 64-bit platform"
+        family = "FileCoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "12"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = "HideSelection" wide //weight: 1
+        $x_1_2 = "WhatsThisHelpID" wide //weight: 1
+        $x_1_3 = "DisabledPicture" wide //weight: 1
+        $x_3_4 = "Locked" wide //weight: 3
+        $x_3_5 = "system32\\dllcache\\tskmgr.exe" wide //weight: 3
+        $x_1_6 = {2e 5a 72 64 61 74 61 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 2e 62 73 73}  //weight: 1, accuracy: Low
+        $x_2_7 = {50 45 00 00 64 86 10 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 0b 02 0e 00 00 f8 a1 00 00 14 62 00 00 00 00 00 c4 a0 5f}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
