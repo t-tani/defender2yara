@@ -442,3 +442,24 @@ rule Trojan_MSIL_Agenttesla_PPGH_2147921873_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Agenttesla_PPMH_2147923244_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Agenttesla.PPMH!MTB"
+        threat_id = "2147923244"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Agenttesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {03 12 02 28 ?? 00 00 0a 6f ?? 00 00 0a 00 2b 00 03 12 02 28 ?? 00 00 0a 6f ?? 00 00 0a 00 2b 00 03 12 02 28 ?? 00 00 0a 6f ?? 00 00 0a 00 2b 00}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

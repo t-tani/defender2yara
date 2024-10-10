@@ -5128,3 +5128,25 @@ rule Trojan_MSIL_Redline_WVAA_2147921693_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Redline_PAH_2147923240_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Redline.PAH!MTB"
+        threat_id = "2147923240"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Redline"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {03 08 04 08 1f 09 5d 9a 28 ?? 00 00 0a 03 08 91 28 ?? 00 00 06 28 ?? 00 00 0a 9c 08 17 d6 0c 08 07 31 dd}  //weight: 10, accuracy: Low
+        $x_1_2 = "Ljrorarjdr" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

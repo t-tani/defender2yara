@@ -98448,6 +98448,27 @@ rule Trojan_MSIL_AgentTesla_KABR_2147899132_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AgentTesla_PRH_2147899174_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.PRH!MTB"
+        threat_id = "2147899174"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {00 11 06 17 58 20 ff 00 00 00 5f 13 06 11 05 11 04 11 06 95 58 20 ff 00 00 00 5f 13 05 02 11 04 11 06 8f 78 00 00 01 11 04 11 05 8f 78 00 00 01 28 ?? 00 00 06 00 11 04 11 06 95 11 04 11 05 95 58 20 ff 00 00 00 5f 13 0f 09 11 0e 07 11 0e 91 11 04 11 0f 95 61 d2 9c 00 11 0e 17 58 13 0e 11 0e 09 8e 69 fe 04 13 10 11 10 2d 94}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_AgentTesla_PTEG_2147899210_0
 {
     meta:
@@ -105303,6 +105324,27 @@ rule Trojan_MSIL_AgentTesla_RDCE_2147923232_0
         strings_accuracy = "High"
     strings:
         $x_2_1 = {28 0e 00 00 0a 02 28 0b 00 00 0a 75 01 00 00 1b 6f 0f 00 00 0a 2a}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_AgentTesla_PPPW_2147923246_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.PPPW!MTB"
+        threat_id = "2147923246"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {11 04 08 09 6f ?? 00 00 0a 13 05 73 63 00 00 0a 13 06 11 06 11 05 17 73 64 00 00 0a 13 07 11 07 06 16 06 8e 69 6f ?? 00 00 0a 11 06 6f ?? 00 00 0a 0a dd 0f 00 00 00 11 07 39 07 00 00 00 11 07}  //weight: 10, accuracy: Low
     condition:
         (filesize < 20MB) and
         (all of ($x*))

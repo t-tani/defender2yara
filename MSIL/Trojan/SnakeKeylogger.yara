@@ -6382,3 +6382,45 @@ rule Trojan_MSIL_SnakeKeylogger_SMJ_2147923231_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_SnakeKeylogger_PHJH_2147923243_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/SnakeKeylogger.PHJH!MTB"
+        threat_id = "2147923243"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "SnakeKeylogger"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = {11 1d 11 09 11 22 11 27 61 19 11 1a 58 61 11 2f 61 d2 9c 17 11 09 58 13 09 11 27 13 1a}  //weight: 10, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_SnakeKeylogger_PPPV_2147923245_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/SnakeKeylogger.PPPV!MTB"
+        threat_id = "2147923245"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "SnakeKeylogger"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {16 0c 2b 19 00 02 08 7e ?? ?? ?? ?? 08 91 03 08 06 8e 69 5d 91 61 d2 9c 00 08 17 58 0c 08 7e ?? ?? ?? ?? 8e 69 fe 04}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

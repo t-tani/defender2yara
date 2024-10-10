@@ -230,3 +230,35 @@ rule Trojan_Win32_Blackmoon_PPDW_2147921870_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Blackmoon_PUW_2147923242_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Blackmoon.PUW!MTB"
+        threat_id = "2147923242"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Blackmoon"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "12"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "blackmoon" ascii //weight: 1
+        $x_1_2 = "3a5c9f27ba02ae2f01188f27a5296d5d" ascii //weight: 1
+        $x_1_3 = "BcnTp1h0dnMFdLlm" ascii //weight: 1
+        $x_1_4 = "eb9adc27469a4175f740f632d79e6ccd" ascii //weight: 1
+        $x_1_5 = "//YJWJ.com/?type=start" ascii //weight: 1
+        $x_1_6 = "//yjwj_record.guanliyuangong.com:6002" ascii //weight: 1
+        $x_1_7 = "/api100.php?fun=port&name=tcp" ascii //weight: 1
+        $x_1_8 = "/api100.php?fun=port&name=http" ascii //weight: 1
+        $x_1_9 = "/api100.php?fun=port&name=cash" ascii //weight: 1
+        $x_1_10 = "/api100.php?fun=port&name=cashweb" ascii //weight: 1
+        $x_1_11 = "/api100.php?fun=port&name=ssl" ascii //weight: 1
+        $x_1_12 = "//api.bar.163.com/netbar-api/api/open/gameDataV2/queryMatchResult" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
