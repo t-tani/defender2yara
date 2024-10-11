@@ -201,3 +201,76 @@ rule TrojanSpy_AndroidOS_SmsSpy_K_2147829703_1
         (all of ($x*))
 }
 
+rule TrojanSpy_AndroidOS_SmsSpy_N_2147923343_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanSpy:AndroidOS/SmsSpy.N!MTB"
+        threat_id = "2147923343"
+        type = "TrojanSpy"
+        platform = "AndroidOS: Android operating system"
+        family = "SmsSpy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "com/Dragon/convert" ascii //weight: 1
+        $x_1_2 = "smsfaory" ascii //weight: 1
+        $x_1_3 = "ArabWareSMS" ascii //weight: 1
+        $x_1_4 = "smsfawry" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule TrojanSpy_AndroidOS_SmsSpy_P_2147923345_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanSpy:AndroidOS/SmsSpy.P!MTB"
+        threat_id = "2147923345"
+        type = "TrojanSpy"
+        platform = "AndroidOS: Android operating system"
+        family = "SmsSpy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "com/ariashirazi/instabrowser" ascii //weight: 1
+        $x_1_2 = "?device-info=" ascii //weight: 1
+        $x_1_3 = "NurAlam4" ascii //weight: 1
+        $x_1_4 = "url opened :" ascii //weight: 1
+        $x_1_5 = "sendSmsToServer" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (4 of ($x*))
+}
+
+rule TrojanSpy_AndroidOS_SmsSpy_Q_2147923347_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanSpy:AndroidOS/SmsSpy.Q!MTB"
+        threat_id = "2147923347"
+        type = "TrojanSpy"
+        platform = "AndroidOS: Android operating system"
+        family = "SmsSpy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "com/dhruv/smsrecevier" ascii //weight: 1
+        $x_1_2 = "Exception smsReceiver" ascii //weight: 1
+        $x_1_3 = "senderNum:" ascii //weight: 1
+        $x_1_4 = "startupOnBootUpReceiver" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

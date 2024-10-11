@@ -1771,3 +1771,28 @@ rule TrojanSpy_AndroidOS_SmsThief_BK_2147919019_0
         )
 }
 
+rule TrojanSpy_AndroidOS_SmsThief_BH_2147923346_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanSpy:AndroidOS/SmsThief.BH!MTB"
+        threat_id = "2147923346"
+        type = "TrojanSpy"
+        platform = "AndroidOS: Android operating system"
+        family = "SmsThief"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "isDestinationAllowed" ascii //weight: 1
+        $x_1_2 = "com/asdfintoasdf/agoogleplayservicesrinrole" ascii //weight: 1
+        $x_1_3 = "RESULT_UNSUPPORTED_ART_VERSION" ascii //weight: 1
+        $x_1_4 = "ContentInfoCompat" ascii //weight: 1
+        $x_1_5 = "RESULT_INSTALL_SKIP_FILE_SUCCESS" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (4 of ($x*))
+}
+

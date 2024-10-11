@@ -4307,3 +4307,46 @@ rule Trojan_MSIL_DarkTortilla_YXAA_2147922937_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_DarkTortilla_ZFAA_2147923317_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/DarkTortilla.ZFAA!MTB"
+        threat_id = "2147923317"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "DarkTortilla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {04 1d 5d 2c 03 03 2b 04 03 1f 4f 61 b4 0a 2b 00 06 2a}  //weight: 3, accuracy: High
+        $x_2_2 = {08 14 72 79 23 00 70 16 8d 06 00 00 01 14 14 14 28 ?? 00 00 0a 74 ?? 00 00 01 6f ?? 00 00 0a 13 08 2b 41 11 08 6f ?? 00 00 0a 28 ?? 00 00 0a 13 09 00 11 09 14 72 8f 23 00 70 18 8d 06 00 00 01 25 17 16 8d 06 00 00 01 a2 14 14 14 17 28 ?? 00 00 0a 26 de 1c}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_DarkTortilla_SPDA_2147923337_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/DarkTortilla.SPDA!MTB"
+        threat_id = "2147923337"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "DarkTortilla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {0c 14 0d 14 13 04 14 13 05 14 13 06 00 28 ?? 00 00 0a 13 04 11 04 14 fe 03 13 07 11 07 2c 2a 11 04 08 6f ?? 00 00 0a 00 11 04 08 6f ?? 00 00 0a 00 11 04 6f ?? 00 00 0a 13 08 11 08 02 16 02 8e 69 6f ?? 00 00 0a 0a de 53 00 de 4b}  //weight: 3, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

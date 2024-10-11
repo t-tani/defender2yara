@@ -222,3 +222,27 @@ rule Trojan_Win32_StealerC_GXN_2147909451_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_StealerC_EC_2147923303_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/StealerC.EC!MTB"
+        threat_id = "2147923303"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "StealerC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = ".taggant" ascii //weight: 1
+        $x_1_2 = "wallet_path" ascii //weight: 1
+        $x_1_3 = "\\Monero\\wallet.keys" ascii //weight: 1
+        $x_1_4 = "SOFTWARE\\monero-project\\monero-core" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

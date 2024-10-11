@@ -719,3 +719,26 @@ rule Trojan_MSIL_Dcstl_OUAA_2147912483_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Dcstl_ZHAA_2147923325_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Dcstl.ZHAA!MTB"
+        threat_id = "2147923325"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Dcstl"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {0a 00 09 07 6f ?? 00 00 0a 00 09 6f ?? 00 00 0a 13 07 73 ?? 00 00 0a 13 04 11 04 11 07 17 73 ?? 00 00 0a 13 05 11 05 02 16 02 8e 69 6f ?? 00 00 0a 00 11 05 6f ?? 00 00 0a 00 11 04 6f ?? 00 00 0a 0c 00 00 de 39}  //weight: 3, accuracy: Low
+        $x_1_2 = "L o a d" wide //weight: 1
+        $x_1_3 = "CreateDecryptor" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

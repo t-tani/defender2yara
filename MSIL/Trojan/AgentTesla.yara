@@ -105350,3 +105350,24 @@ rule Trojan_MSIL_AgentTesla_PPPW_2147923246_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AgentTesla_RDCF_2147923341_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.RDCF!MTB"
+        threat_id = "2147923341"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {11 04 6f 87 00 00 0a 13 08 11 08 02 16 02 8e 69 6f 88 00 00 0a 0a}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

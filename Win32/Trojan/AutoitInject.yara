@@ -3029,3 +3029,29 @@ rule Trojan_Win32_AutoitInject_ZAAA_2147923083_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_AutoitInject_ZEAA_2147923305_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.ZEAA!MTB"
+        threat_id = "2147923305"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "@TempDir" ascii //weight: 1
+        $x_1_2 = "DllCall" ascii //weight: 1
+        $x_2_3 = "krqhverqhvrrqhvnrqhverqhvlrqhv3rqhv2rqhv.rqhvdrqhvlrqhvlrqhv" ascii //weight: 2
+        $x_2_4 = "VrqhvirqhvrrqhvtrqhvurqhvarqhvlrqhvPrqhvrrqhvorqhvtrqhverqhvcrqhvtrqhv" ascii //weight: 2
+        $x_2_5 = "urqhvsrqhverqhvrrqhv3rqhv2rqhv.rqhvdrqhvlrqhvlrqhv" ascii //weight: 2
+        $x_2_6 = "CrqhvarqhvlrqhvlrqhvWrqhvirqhvnrqhvdrqhvorqhvwrqhvPrqhvrrqhvorqhvcrqhv" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

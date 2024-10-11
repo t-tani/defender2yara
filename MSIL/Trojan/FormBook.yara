@@ -13053,6 +13053,30 @@ rule Trojan_MSIL_FormBook_MBXU_2147922936_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "12"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = "4-2cb40949d72e" ascii //weight: 5
+        $x_4_2 = "redist.exe" ascii //weight: 4
+        $x_2_3 = "Redist.Background.png" ascii //weight: 2
+        $x_1_4 = "$574c8cb7" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_FormBook_MBXU_2147922936_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/FormBook.MBXU!MTB"
+        threat_id = "2147922936"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "FormBook"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "9"
         strings_accuracy = "High"
     strings:

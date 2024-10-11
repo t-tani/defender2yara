@@ -7319,3 +7319,24 @@ rule Trojan_MSIL_Formbook_KAR_2147922120_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Formbook_AMN_2147923306_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Formbook.AMN!MTB"
+        threat_id = "2147923306"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Formbook"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {95 58 20 ff 00 00 00 5f 13 [0-30] 95 61 28 ?? 00 00 0a 9c 11 ?? 17 58 13 [0-15] 6e 09 8e 69 6a fe}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

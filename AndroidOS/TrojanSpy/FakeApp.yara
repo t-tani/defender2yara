@@ -182,3 +182,30 @@ rule TrojanSpy_AndroidOS_FakeApp_K_2147903502_0
         )
 }
 
+rule TrojanSpy_AndroidOS_FakeApp_G_2147923348_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanSpy:AndroidOS/FakeApp.G!MTB"
+        threat_id = "2147923348"
+        type = "TrojanSpy"
+        platform = "AndroidOS: Android operating system"
+        family = "FakeApp"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "chests/strap/graph" ascii //weight: 2
+        $x_2_2 = "NewsContent" ascii //weight: 2
+        $x_1_3 = "contact_id =" ascii //weight: 1
+        $x_1_4 = "mNextServedView" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((2 of ($x_2_*) and 1 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+
