@@ -25,3 +25,26 @@ rule Trojan_MSIL_Gamarue_A_2147781322_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Gamarue_MBXU_2147923387_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Gamarue.MBXU!MTB"
+        threat_id = "2147923387"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Gamarue"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = {07 17 28 0a 00 00 06 07 1b 28 0a 00 00 06 61 8d 39 00 00 01 0c 07 08 16 08 8e}  //weight: 3, accuracy: High
+        $x_2_2 = "set_Transport.resources" ascii //weight: 2
+        $x_1_3 = {5a 65 6e 4d 61 70 2e 65 78 65 00 6d 73 63 6f}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

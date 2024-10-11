@@ -43,3 +43,27 @@ rule Trojan_MSIL_SelfDel_SGA_2147907025_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_SelfDel_ND_2147923390_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/SelfDel.ND!MTB"
+        threat_id = "2147923390"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "SelfDel"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {72 3d 00 00 70 72 4c 01 00 70 1a 1f 30 28 5e 00 00 0a 1c 33 18 04 17 6f ?? 00 00 0a 02 28 ?? 00 00 0a 73 ?? 00 00 06 6f ?? 00 00 06 2a 04 17 6f ?? 00 00 0a 2a}  //weight: 3, accuracy: Low
+        $x_1_2 = "Software\\Microsoft\\Windows\\CurrentVersion\\Run" ascii //weight: 1
+        $x_1_3 = "/C timeout /T 2 /nobreak >nul & del" ascii //weight: 1
+        $x_1_4 = "msinfo32.g.resources" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

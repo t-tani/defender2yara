@@ -839,6 +839,29 @@ rule Trojan_MSIL_Zusy_NZ_2147899461_1
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Zusy_NZ_2147899461_2
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Zusy.NZ!MTB"
+        threat_id = "2147899461"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = {8d 1b 00 00 01 25 16 72 01 00 00 70 a2 25 17 72 41 00 00 70 a2 25 18 72 7d 00 00 70 a2 13 04 00 11 04 13 0a 16}  //weight: 3, accuracy: High
+        $x_2_2 = {28 26 00 00 0a 7e 07 00 00 04 6f 27 00 00 0a 0a 28 26 00 00 0a 7e 06 00 00 04 6f 27 00 00 0a 0b 02 28 28 00 00 0a 0c 16 13 04}  //weight: 2, accuracy: High
+        $x_1_3 = "Piano_In[sta/ler64bit@gmail#" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_Zusy_AMBH_2147899966_0
 {
     meta:

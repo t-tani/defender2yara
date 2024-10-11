@@ -31,6 +31,29 @@ rule Trojan_Win32_Shelma_NS_2147901793_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {89 4d e8 64 a3 00 00 00 00 8b 1e 6a 18 e8 ?? ?? ?? ?? 83 c4 04 8d 78 10 8b 4d 0c f2 0f 10 01}  //weight: 3, accuracy: Low
+        $x_1_2 = "identifier removed" ascii //weight: 1
+        $x_1_3 = "host unreachable" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Shelma_NS_2147901793_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Shelma.NS!MTB"
+        threat_id = "2147901793"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Shelma"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "4"
         strings_accuracy = "High"
     strings:
