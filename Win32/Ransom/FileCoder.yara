@@ -1306,3 +1306,30 @@ rule Ransom_Win32_FileCoder_RHZ_2147923133_0
         (all of ($x*))
 }
 
+rule Ransom_Win32_FileCoder_RHAB_2147923421_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win32/FileCoder.RHAB!MTB"
+        threat_id = "2147923421"
+        type = "Ransom"
+        platform = "Win32: Windows 32-bit platform"
+        family = "FileCoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {50 45 00 00 4c 01 04 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 0b 01 0e 27 00 fe 01 00 00 f0 63 00 00 00 00 00 67 13}  //weight: 2, accuracy: Low
+        $x_3_2 = "If not, you can't recover your files forever" wide //weight: 3
+        $x_1_3 = "Is this right key" wide //weight: 1
+        $x_1_4 = "Wallpaper set successfully" wide //weight: 1
+        $x_1_5 = "All your files have been encrypted by our Invisible Ransomware" ascii //weight: 1
+        $x_1_6 = "Copy My BTC Address" wide //weight: 1
+        $x_1_7 = "Copy My USDT TRC20" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

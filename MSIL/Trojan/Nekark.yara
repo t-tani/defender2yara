@@ -154,3 +154,26 @@ rule Trojan_MSIL_Nekark_NK_2147911680_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Nekark_ZKAA_2147923420_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Nekark.ZKAA!MTB"
+        threat_id = "2147923420"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Nekark"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {02 06 07 20 cf 00 00 00 20 b8 00 00 00 28 ?? 00 00 2b 0c 04 03 6f ?? 00 00 0a 59 0d}  //weight: 2, accuracy: Low
+        $x_3_2 = {03 19 8d 01 00 00 01 25 16 12 02 20 99 03 00 00 20 b5 03 00 00 28 ?? 00 00 06 9c 25 17 12 02 20 82 00 00 00 20 af 00 00 00 28 ?? 00 00 06 9c 25 18 12 02 20 1f 02 00 00 20 69 02 00 00 28 ?? 01 00 06 9c 6f ?? 00 00 0a 11 0f}  //weight: 3, accuracy: Low
+        $x_2_3 = {03 11 06 75 03 00 00 1b 11 07 74 04 00 00 1b 11 08 94 91 6f ?? 00 00 0a 1e 13 0e}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -9,6 +9,29 @@ rule Ransom_Win32_Mimic_MA_2147847147_0
         family = "Mimic"
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "SelfDelete" ascii //weight: 1
+        $x_1_2 = "hidcon" ascii //weight: 1
+        $x_2_3 = "Everything64.dll" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Ransom_Win32_Mimic_MA_2147847147_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win32/Mimic.MA!MTB"
+        threat_id = "2147847147"
+        type = "Ransom"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Mimic"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "16"
         strings_accuracy = "Low"
