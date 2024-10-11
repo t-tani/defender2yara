@@ -136,3 +136,28 @@ rule Backdoor_MSIL_XWorm_PAFS_2147923128_0
         (all of ($x*))
 }
 
+rule Backdoor_MSIL_XWorm_PAFT_2147923398_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Backdoor:MSIL/XWorm.PAFT!MTB"
+        threat_id = "2147923398"
+        type = "Backdoor"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "XWorm"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "\\worms\\." wide //weight: 2
+        $x_1_2 = "SELECT * FROM AntiVirusProduct" wide //weight: 1
+        $x_1_3 = "No Antivirus" wide //weight: 1
+        $x_2_4 = "Black Hat Worm" wide //weight: 2
+        $x_2_5 = "SETDESKWALLPAPER" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

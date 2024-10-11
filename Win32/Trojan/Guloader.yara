@@ -4226,3 +4226,28 @@ rule Trojan_Win32_Guloader_SX_2147922997_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Guloader_SLA_2147923394_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Guloader.SLA!MTB"
+        threat_id = "2147923394"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Guloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "Understatementens" ascii //weight: 1
+        $x_1_2 = "radiolitic thionines" ascii //weight: 1
+        $x_1_3 = "fjernkontrollers.hid" ascii //weight: 1
+        $x_1_4 = "irresolubleness.hje" ascii //weight: 1
+        $x_1_5 = "paasknnende applegrower" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
