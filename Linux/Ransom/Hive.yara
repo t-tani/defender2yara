@@ -133,3 +133,25 @@ rule Ransom_Linux_Hive_L_2147913717_0
         (all of ($x*))
 }
 
+rule Ransom_Linux_Hive_M_2147923441_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Linux/Hive.M!MTB"
+        threat_id = "2147923441"
+        type = "Ransom"
+        platform = "Linux: Linux platform"
+        family = "Hive"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_ELFHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {48 8b 07 48 83 f8 05 72 ?? 48 8b 47 18 48 85 c0 74 ?? 48 8b 4f 10 48 8d 0c c1 48 83 c1 f8}  //weight: 1, accuracy: Low
+        $x_1_2 = {48 8b 5c 24 10 49 89 ef ?? ?? 6c 24 18 48 89 df ff 55 00 48 83 7d 08 00 4c 89 fd 74 ?? 48 89 df}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
