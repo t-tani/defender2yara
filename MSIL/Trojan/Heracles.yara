@@ -5736,3 +5736,28 @@ rule Trojan_MSIL_Heracles_PPPZ_2147923248_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Heracles_Z_2147923448_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Heracles.Z!MTB"
+        threat_id = "2147923448"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Heracles"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "https://getsolara.dev" ascii //weight: 1
+        $x_1_2 = "https://gist.githubusercontent.com/furryman12" ascii //weight: 1
+        $x_1_3 = "DownloadString" ascii //weight: 1
+        $x_1_4 = "DISCORD" ascii //weight: 1
+        $x_1_5 = "UploadData" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (4 of ($x*))
+}
+
