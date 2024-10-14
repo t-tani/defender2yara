@@ -571,3 +571,24 @@ rule Virus_Win32_Expiro_RPY_2147908372_0
         (all of ($x*))
 }
 
+rule Virus_Win32_Expiro_AEX_2147923468_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Virus:Win32/Expiro.AEX!MTB"
+        threat_id = "2147923468"
+        type = "Virus"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Expiro"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {81 83 24 02 00 00 74 7a 35 0c f7 93 24 01 00 00 81 83 8c 03 00 00 ff 74 aa 09 81 b3 e0 01 00 00 9a 6b aa 32 81 b3 38 02 00 00 cd 41 5a 63 81 ab e4 00 00 00 ce 46 82 1f 81 ab fc 00 00 00 91 44 39 28 81 b3 d8 03 00 00 0a 13 e7 57 81 ab 7c 02 00 00 cf 4b 75 30 81 b3 b4 00 00 00 51 0c 29 32 81 83 dc 03 00 00 6b 7b d8 1f 81 83 c4 00 00 00 f1 59 98 77}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
