@@ -382,3 +382,27 @@ rule Trojan_Win32_Tedy_EC_2147921625_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Tedy_PGGH_2147923567_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Tedy.PGGH!MTB"
+        threat_id = "2147923567"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Tedy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "https://xiamo.dasiqueiros.info/fuiwfbjksd/stetdsvj" ascii //weight: 2
+        $x_1_2 = "zc9k4OMihkyxpJIGR8CjxVgoBvv9PB" ascii //weight: 1
+        $x_1_3 = "Keet96vUkMdJThac" ascii //weight: 1
+        $x_1_4 = "ivnpFrICQCEKklCi" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

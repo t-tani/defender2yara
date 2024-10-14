@@ -752,7 +752,7 @@ rule Trojan_Win32_DarkGate_MRM_2147923551_0
         threshold = "5"
         strings_accuracy = "Low"
     strings:
-        $x_5_1 = {33 d2 8b c6 6a 19 59 f7 f1 8b 44 24 18 8a 4c 14 1c 32 8e ?? ?? ?? ?? 88 0c 06 46 3b 74 24 38 72}  //weight: 5, accuracy: Low
+        $x_5_1 = {33 d2 8b c6 6a ?? 59 f7 f1 8b 44 24 18 8a 4c 14 1c 32 8e ?? ?? ?? ?? 88 0c 06 46 3b 74 24 ?? 72}  //weight: 5, accuracy: Low
     condition:
         (filesize < 20MB) and
         (all of ($x*))
