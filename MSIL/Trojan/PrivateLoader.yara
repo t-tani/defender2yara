@@ -152,3 +152,34 @@ rule Trojan_MSIL_PrivateLoader_YOAA_2147922589_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_PrivateLoader_NV_2147923481_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/PrivateLoader.NV!MTB"
+        threat_id = "2147923481"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "PrivateLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "12"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "QXNzZW1ibHlMb2FkZXJB" ascii //weight: 2
+        $x_1_2 = "U3lzdGVtSW5mb0FB" ascii //weight: 1
+        $x_1_3 = "UkRQSW5zdGFsbGVyQUFB" ascii //weight: 1
+        $x_1_4 = "UkRQQ3JlYXRvcl9Qcm9jZXNzZWRCeUZvZHlB" ascii //weight: 1
+        $x_1_5 = "0xb11a1" ascii //weight: 1
+        $x_1_6 = "UploadValues" ascii //weight: 1
+        $x_1_7 = "DownloadFileTaskAsync" ascii //weight: 1
+        $x_1_8 = "IsPortOpen" ascii //weight: 1
+        $x_1_9 = "SendCredentials" ascii //weight: 1
+        $x_1_10 = "GenerateRandomPassword" ascii //weight: 1
+        $x_1_11 = "AddUserToRemoteDesktopGroup" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

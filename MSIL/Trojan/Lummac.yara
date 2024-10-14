@@ -61,3 +61,24 @@ rule Trojan_MSIL_Lummac_PPD_2147919713_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Lummac_PPE_2147923505_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Lummac.PPE!MTB"
+        threat_id = "2147923505"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Lummac"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {13 35 12 1f 28 ?? 00 00 0a 12 35 28 ?? 00 00 0a 26 16 13 36 12 29 28 ?? 00 00 0a 28 ?? 00 00 0a 13 36 03 11 35 91 13 37 06 11 36 91 13 38 11 37 11 38 61 d2 13 37}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

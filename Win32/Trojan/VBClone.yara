@@ -65,3 +65,25 @@ rule Trojan_Win32_VBClone_TAAA_2147917520_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_VBClone_GZT_2147923495_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/VBClone.GZT!MTB"
+        threat_id = "2147923495"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "VBClone"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = {6b 4d 4e 94 b2 59 59 34 b1 66 2a 1a 96 c9 80 53 01 2f eb}  //weight: 10, accuracy: High
+        $x_1_2 = "Kawaii-Unicorn" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -1848,6 +1848,27 @@ rule Trojan_Win32_StealC_SZ_2147908345_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {30 14 38 83 ?? 0f 75 ?? 6a 00 6a 00 ff 15 ?? ?? ?? ?? 8d 85 f0 ?? ff ff 50 8d 8d fc ?? ff ff 51}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_StealC_SZ_2147908345_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/StealC.SZ!MTB"
+        threat_id = "2147908345"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "StealC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "9"
         strings_accuracy = "High"
     strings:
@@ -2772,6 +2793,59 @@ rule Trojan_Win32_StealC_GNZ_2147923054_0
         strings_accuracy = "Low"
     strings:
         $x_10_1 = {33 f9 33 c7 81 3d ?? ?? ?? ?? ?? ?? ?? ?? c7 05 ?? ?? ?? ?? ee 3d ea f4 89 45 ?? 0f 85}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_StealC_NE_2147923479_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/StealC.NE!MTB"
+        threat_id = "2147923479"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "StealC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "potinalixamumuxolozay" ascii //weight: 2
+        $x_1_2 = "sibepeyedupucis" ascii //weight: 1
+        $x_1_3 = "jutusenavocibiyaxunokubiyefet" ascii //weight: 1
+        $x_1_4 = "nemagutimebonefotekoneb" ascii //weight: 1
+        $x_1_5 = "bahujijudunogikawatihohelujof" ascii //weight: 1
+        $x_1_6 = "mufolomeragakowubicigero" ascii //weight: 1
+        $x_1_7 = "msimg32.dll" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_StealC_NF_2147923480_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/StealC.NF!MTB"
+        threat_id = "2147923480"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "StealC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "guzugicijixifehapazi" ascii //weight: 2
+        $x_1_2 = "biretoduta" ascii //weight: 1
+        $x_1_3 = "kiwijelitoxij" ascii //weight: 1
+        $x_1_4 = "yumehehegikedojotogorekosusu" ascii //weight: 1
+        $x_1_5 = "mikulamujusinutewavoyi" ascii //weight: 1
+        $x_1_6 = "msimg32.dll" ascii //weight: 1
     condition:
         (filesize < 20MB) and
         (all of ($x*))

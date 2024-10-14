@@ -2172,3 +2172,25 @@ rule Trojan_MSIL_Zusy_SK_2147923162_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Zusy_NM_2147923478_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Zusy.NM!MTB"
+        threat_id = "2147923478"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {11 06 11 03 11 02 ?? ?? 00 00 0a 11 04 fe 04 13 0d}  //weight: 2, accuracy: Low
+        $x_1_2 = {11 04 11 00 17 59 99 11 04 11 00 99}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

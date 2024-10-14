@@ -297,3 +297,33 @@ rule Trojan_Win64_Mikey_ASJ_2147922823_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Mikey_NE_2147923487_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Mikey.NE!MTB"
+        threat_id = "2147923487"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Mikey"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "start cmd /C \"COLOR C && echo. Outdated version, contact fael#2081 && TIMEOUT 10 > nul" ascii //weight: 2
+        $x_1_2 = "xxxx?xxxx????xxx" ascii //weight: 1
+        $x_1_3 = "----------------%ld%s" ascii //weight: 1
+        $x_1_4 = "security.dll" ascii //weight: 1
+        $x_1_5 = "DecryptMessage" ascii //weight: 1
+        $x_1_6 = "C:\\Windows\\KsDumperDriver.sys" ascii //weight: 1
+        $x_1_7 = "AppData\\Local\\dnSpy" ascii //weight: 1
+        $x_1_8 = "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs" ascii //weight: 1
+        $x_1_9 = "\\examples\\Exe\\" ascii //weight: 1
+        $x_1_10 = "netsh advfirewall firewall add rule name" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

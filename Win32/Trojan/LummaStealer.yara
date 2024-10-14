@@ -2151,3 +2151,24 @@ rule Trojan_Win32_LummaStealer_DDI_2147923326_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_LummaStealer_CZ_2147923538_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaStealer.CZ!MTB"
+        threat_id = "2147923538"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {89 c2 f7 d2 21 ca f7 d1 21 c8 29 d0 89 44 24 08 8b 44 24 08 05 35 2e 1f fe 89 c1 83 e1 01 d1 e1 83 f0 01 01 c8}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

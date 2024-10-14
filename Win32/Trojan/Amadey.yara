@@ -3128,3 +3128,30 @@ rule Trojan_Win32_Amadey_BKC_2147923106_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Amadey_EZ_2147923539_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Amadey.EZ!MTB"
+        threat_id = "2147923539"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Amadey"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "bgplyofn" ascii //weight: 2
+        $x_2_2 = "pdwvfcxw" ascii //weight: 2
+        $x_2_3 = "NzAzMTAyMzU5NTlaMDIxEjAQBgNVBAMMCU9SX0syRDlLTzEcMBoGA1UECgwTT3Jl" ascii //weight: 2
+        $x_1_4 = "Y2FsIGFuZCBFbGVjdHJvbmljcyBFbmdpbmVlcnMsIEluYy4xDTALBgNVBAsTBElF" ascii //weight: 1
+        $x_1_5 = "bGVjdHJpY2FsYW5kRWxlY3Ryb25pY3NFbmdpbmVlcnNJbmNJRUVFUm9vdENBLmNy" ascii //weight: 1
+        $x_1_6 = "Oi8vcGtpLWNybC5zeW1hdXRoLmNvbS9vZmZsaW5lY2EvVGhlSW5zdGl0dXRlb2ZF" ascii //weight: 1
+        $x_1_7 = "KgI8WCsKbA0ZGeThc1GC7WN3kYdWRXtU2S+auJHMpA17DJMyNmsn7DAC2QKBgDb3" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
