@@ -19,3 +19,24 @@ rule Trojan_Win32_GhostSocks_MKV_2147909376_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_GhostSocks_GZT_2147923548_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/GhostSocks.GZT!MTB"
+        threat_id = "2147923548"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "GhostSocks"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {14 5f 45 31 46 e0 32 d7 68 ?? ?? ?? ?? a8 44 03 58 06}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

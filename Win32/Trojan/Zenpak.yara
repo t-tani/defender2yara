@@ -9025,3 +9025,24 @@ rule Trojan_Win32_Zenpak_SPPW_2147923469_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Zenpak_GDN_2147923549_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zenpak.GDN!MTB"
+        threat_id = "2147923549"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zenpak"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {29 d0 8d 05 ?? ?? ?? ?? 89 20 ba ?? ?? ?? ?? e8 ?? ?? ?? ?? c3 48 31 d0 48 31 1d ?? ?? ?? ?? 01 35}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

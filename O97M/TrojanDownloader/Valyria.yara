@@ -130,3 +130,27 @@ rule TrojanDownloader_O97M_Valyria_RHAA_2147915708_0
         (all of ($x*))
 }
 
+rule TrojanDownloader_O97M_Valyria_AMA_2147923545_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:O97M/Valyria.AMA!MTB"
+        threat_id = "2147923545"
+        type = "TrojanDownloader"
+        platform = "O97M: Office 97, 2000, XP, 2003, 2007, and 2010 macros - those that affect Word, Excel, and PowerPoint"
+        family = "Valyria"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_MACROHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_6_1 = "Set jbxinstr = CreateObject(\"Scripting.FileSystemObject\").CreateTextFile(\"Z:\\syscalls\\0_\" & Int(Rnd * 10000 + 10000) & \".vba.csv\", True, True)" ascii //weight: 6
+        $x_2_2 = "Set jbxXmlNodeOb = jbxXmlOb.createElement(\"b64\")" ascii //weight: 2
+        $x_1_3 = "jbxXmlNodeOb.dataType = \"bin.base64\"" ascii //weight: 1
+        $x_1_4 = "JbxB64Encode = Replace(jbxXmlNodeOb.Text, vbLf, \"\")" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -716,3 +716,45 @@ rule Trojan_Win32_DarkGate_BKC_2147923085_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_DarkGate_MRT_2147923550_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/DarkGate.MRT!MTB"
+        threat_id = "2147923550"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "DarkGate"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {83 c4 08 8b 55 e4 8b 4d dc 8b 45 d8 03 ca 42 89 55 ?? 8a 04 08 32 45 ef 88 01 3b 55 08 0f 82}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_DarkGate_MRM_2147923551_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/DarkGate.MRM!MTB"
+        threat_id = "2147923551"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "DarkGate"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {33 d2 8b c6 6a 19 59 f7 f1 8b 44 24 18 8a 4c 14 1c 32 8e ?? ?? ?? ?? 88 0c 06 46 3b 74 24 38 72}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
