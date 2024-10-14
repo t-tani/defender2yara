@@ -48724,29 +48724,6 @@ rule Trojan_MSIL_AgentTesla_EEG_2147811673_0
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "3"
-        strings_accuracy = "Low"
-    strings:
-        $x_1_1 = {08 07 16 73 ?? ?? ?? 0a 0d 03 8e 69 8d ?? ?? ?? 01 13 04 09 11 04 16 03 8e 69 6f ?? ?? ?? 0a 13 05 11 04 11 05 28 ?? ?? ?? 2b 28 ?? ?? ?? 2b 13 06 de 28}  //weight: 1, accuracy: Low
-        $x_1_2 = {00 46 72 6f 6d 42 61 73 65 36 34 53 74 72 69 6e 67 00}  //weight: 1, accuracy: High
-        $x_1_3 = {00 43 72 65 61 74 65 44 65 63 72 79 70 74 6f 72 00}  //weight: 1, accuracy: High
-    condition:
-        (filesize < 20MB) and
-        (all of ($x*))
-}
-
-rule Trojan_MSIL_AgentTesla_EEG_2147811673_1
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "Trojan:MSIL/AgentTesla.EEG!MTB"
-        threat_id = "2147811673"
-        type = "Trojan"
-        platform = "MSIL: .NET intermediate language scripts"
-        family = "AgentTesla"
-        severity = "Critical"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "3"
         strings_accuracy = "High"
     strings:
         $x_1_1 = {e3 02 e3 02 e1 02 04 03 d2 02 e1 02 e4 02 14 03 d2 02 e0 02 e3 02 15 03 01 03 f0 02 e0 02 17 03 ce 02 e7 02 e5 02 f0 02 eb 02 ea 02 ed 02 e2 02 ea 02 c9 02 cd 02 cd 02 d6 02 03 03 e9 02 cd 02 f7 02}  //weight: 1, accuracy: High
