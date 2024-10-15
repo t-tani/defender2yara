@@ -5057,3 +5057,45 @@ rule Trojan_MSIL_AsyncRAT_KAZ_2147923514_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AsyncRAT_RDAD_2147923575_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AsyncRAT.RDAD!MTB"
+        threat_id = "2147923575"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AsyncRAT"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {11 17 11 17 11 15 28 1e 00 00 0a 6f 1f 00 00 0a 6f 1f 00 00 0a 13 16}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_AsyncRAT_RDAE_2147923614_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AsyncRAT.RDAE!MTB"
+        threat_id = "2147923614"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AsyncRAT"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {11 04 11 0c 95 13 0f 11 0e 11 0f 61 13 10 09 11 0d 11 10 d2 9c 11 05 17 58 13 05}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

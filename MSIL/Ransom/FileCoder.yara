@@ -1249,3 +1249,29 @@ rule Ransom_MSIL_FileCoder_AYG_2147922977_0
         (all of ($x*))
 }
 
+rule Ransom_MSIL_FileCoder_RHAC_2147923578_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:MSIL/FileCoder.RHAC!MTB"
+        threat_id = "2147923578"
+        type = "Ransom"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "FileCoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = "Contact Me On Telegram: @doglovers3" wide //weight: 3
+        $x_1_2 = "You Just Have 24 Hours To Unlock Your Computer" wide //weight: 1
+        $x_1_3 = "All Files Will Be Deleted And Can't Be Recovered" wide //weight: 1
+        $x_1_4 = ".docx" wide //weight: 1
+        $x_2_5 = "Send Me 100 USDT To Unlock Your Computer" wide //weight: 2
+        $x_2_6 = {50 45 00 00 4c 01 03 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 0b 01 30 00 00 20 0c 00 00 08 00 00 00 00 00 00 7e 3f 0c}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

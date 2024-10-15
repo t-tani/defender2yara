@@ -26,3 +26,27 @@ rule Backdoor_MacOS_Hermes_A_2147921851_0
         )
 }
 
+rule Backdoor_MacOS_Hermes_B_2147923579_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Backdoor:MacOS/Hermes.B"
+        threat_id = "2147923579"
+        type = "Backdoor"
+        platform = "MacOS: "
+        family = "Hermes"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_MACHOHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "MYTHIC_POST_RESPONSE" ascii //weight: 1
+        $x_1_2 = "downloadIsScreenshot" ascii //weight: 1
+        $x_1_3 = "uploadTotalChunks" ascii //weight: 1
+        $x_1_4 = "HERMES_POST_RESPONSE" ascii //weight: 1
+        $x_1_5 = "screenshotTotalDisplays" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

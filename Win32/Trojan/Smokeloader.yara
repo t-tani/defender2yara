@@ -5750,3 +5750,24 @@ rule Trojan_Win32_Smokeloader_MGV_2147923388_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Smokeloader_YIO_2147923574_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Smokeloader.YIO!MTB"
+        threat_id = "2147923574"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Smokeloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {99 69 c9 94 0b 00 00 f7 7c 24 28 8b 54 24 24 30 0a 8b 74 24 34 03 f2 0f af c1 69 c0 ?? ?? ?? ?? 01 44 24 18 ff 44 24 18 8b c1 0f af 44 24 18 83 c0 48 99 f7 fe 29 44 24 1c 3b 4c 24 18 7e}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
