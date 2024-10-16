@@ -499,3 +499,46 @@ rule TrojanDownloader_MSIL_Small_SLE_2147917732_0
         (all of ($x*))
 }
 
+rule TrojanDownloader_MSIL_Small_ABR_2147923698_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:MSIL/Small.ABR!MTB"
+        threat_id = "2147923698"
+        type = "TrojanDownloader"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Small"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {72 01 00 00 70 0a 28 02 00 00 06 00 28 04 00 00 0a 72 04 01 00 70 28 05 00 00 0a 0b 07 28 06 00 00 0a 26 72 9f 01 00 70 07 72 4c 02 00 70 28 05 00 00 0a 28 03 00 00 06 00 72 68 02 00 70 07 72 15 03 00 70 28 05 00 00 0a 28 03 00 00 06 00 72 31 03 00 70 07 28 07 00 00 0a 0c 72 d2 03 00 70 08 28 08 00 00 0a 26 20 60 ea 00 00}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule TrojanDownloader_MSIL_Small_CCJC_2147923754_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:MSIL/Small.CCJC!MTB"
+        threat_id = "2147923754"
+        type = "TrojanDownloader"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Small"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {06 07 06 07 93 20 ?? ?? ?? ?? 65 20 ?? ?? ?? ?? 61 66 20 ?? ?? ?? ?? 58 61 d1 9d 07 20 ?? ?? ?? ?? 65 20 ?? ?? ?? ?? 58 59 25 0b 20 ?? ?? ?? ?? 20 ?? ?? ?? ?? 58 1d 63 2f c6}  //weight: 2, accuracy: Low
+        $x_1_2 = {07 06 07 06 93 02 7b ?? ?? ?? ?? 04 20 ?? ?? ?? ?? 20 ?? ?? ?? ?? 61 66 5f 91 04 60 61 d1 9d 06 1d 66 18 63 66 59 25 0a 20 ?? ?? ?? ?? 65 20 ?? ?? ?? ?? 61 65 66 1c 62 2f c6}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

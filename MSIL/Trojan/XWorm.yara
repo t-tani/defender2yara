@@ -768,3 +768,26 @@ rule Trojan_MSIL_XWorm_AMMI_2147920213_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_XWorm_DG_2147923702_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/XWorm.DG!MTB"
+        threat_id = "2147923702"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "XWorm"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = {11 04 11 13 95 d2 13 14 09 11 12 07 11 12 91 11 14 61 d2}  //weight: 3, accuracy: High
+        $x_1_2 = {00 11 04 11 0c 11 0c 9e 00 11 0c 17 58 13 0c}  //weight: 1, accuracy: High
+        $x_1_3 = "E4ZDFA4U8X5579G4VFS95G" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

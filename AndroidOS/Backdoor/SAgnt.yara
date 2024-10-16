@@ -25,3 +25,26 @@ rule Backdoor_AndroidOS_SAgnt_A_2147832910_0
         (all of ($x*))
 }
 
+rule Backdoor_AndroidOS_SAgnt_B_2147923683_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Backdoor:AndroidOS/SAgnt.B!MTB"
+        threat_id = "2147923683"
+        type = "Backdoor"
+        platform = "AndroidOS: Android operating system"
+        family = "SAgnt"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "com/smartns/easycomp/MainActivity" ascii //weight: 1
+        $x_1_2 = "FILE_SENDING_URL_FILE_NAME" ascii //weight: 1
+        $x_1_3 = "/sdcard/MyRepUrlSms" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -81,6 +81,39 @@ rule Trojan_Win32_Guloader_GM_2147753014_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "18"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "GetTempFileNameW" ascii //weight: 1
+        $x_1_2 = "SendMessageW" ascii //weight: 1
+        $x_1_3 = "SHBrowseForFolderW" ascii //weight: 1
+        $x_1_4 = "SHGetSpecialFolderLocation" ascii //weight: 1
+        $x_1_5 = "InitiateShutdownW" ascii //weight: 1
+        $x_1_6 = "SetDefaultDllDirectories" ascii //weight: 1
+        $x_5_7 = "SeShutdownPrivilege" wide //weight: 5
+        $x_1_8 = "\\Temp" wide //weight: 1
+        $x_5_9 = "loyaliteters radierne.exe" wide //weight: 5
+        $x_5_10 = "Malwarebytes Corporation" wide //weight: 5
+    condition:
+        (filesize < 20MB) and
+        (
+            ((3 of ($x_5_*) and 3 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+
+rule Trojan_Win32_Guloader_GM_2147753014_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Guloader.GM!MTB"
+        threat_id = "2147753014"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Guloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "8"
         strings_accuracy = "High"
     strings:

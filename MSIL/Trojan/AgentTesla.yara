@@ -7717,6 +7717,39 @@ rule Trojan_MSIL_AgentTesla_GE_2147770484_0
         )
 }
 
+rule Trojan_MSIL_AgentTesla_GI_2147771289_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.GI!MTB"
+        threat_id = "2147771289"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "RFEQRB26X3PDEDFWVBNNz7Z5LqvJaYhBqzMPIQb93YplgNHPM4189lIZcVRUKIkvpDx6XyTyImBe2JWqGmPJYOGZruKd4cPHwDCng3w" ascii //weight: 2
+        $x_2_2 = "ytj59d27m747ndlu4lvj2zex5nufaljv" ascii //weight: 2
+        $x_2_3 = "47juruc42l6q8vtle8qaflzeue4snpe8" ascii //weight: 2
+        $x_2_4 = "q9gcjs5cdzu8afy5yun73g7sbu286um" ascii //weight: 2
+        $x_1_5 = "GetManifestResourceStream" ascii //weight: 1
+        $x_1_6 = "GetFolderPath" ascii //weight: 1
+        $x_1_7 = "Get_UserDomainName" ascii //weight: 1
+        $x_1_8 = "FromBase64String" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_2_*) and 3 of ($x_1_*))) or
+            ((2 of ($x_2_*) and 1 of ($x_1_*))) or
+            ((3 of ($x_2_*))) or
+            (all of ($x*))
+        )
+}
+
 rule Trojan_MSIL_AgentTesla_GF_2147771292_0
 {
     meta:
@@ -105452,6 +105485,28 @@ rule Trojan_MSIL_AgentTesla_MBXU_2147923611_0
         $x_3_1 = "SqlrDY4QZCf51NjTiw" ascii //weight: 3
         $x_2_2 = "GB-lesson-forms.g.resource" ascii //weight: 2
         $x_1_3 = "lD7NR7KGwKf9iMaTfy" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_AgentTesla_SYI_2147923749_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.SYI!MTB"
+        threat_id = "2147923749"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {11 06 17 58 20 ff 00 00 00 5f 13 06 11 07 09 11 06 95 58 20 ff 00 00 00 5f 13 07 02 09 11 06 8f 62 00 00 01 09 11 07 8f 62 00 00 01 28 80 00 00 06 09 11 06 95 09 11 07 95 58 20 ff 00 00 00 5f 13 0a 11 04 13 0b 06 11 0b 91 09 11 0a 95 13 0c 11 0c 61 13 0d 08 11 0b 11 0d d2 9c 11 04 17 58 13 04 11 04 6e 08 8e 69 6a 32 95}  //weight: 1, accuracy: High
+        $x_1_2 = "8KAJ4CCOHA7F5A8YG785RO" ascii //weight: 1
     condition:
         (filesize < 20MB) and
         (all of ($x*))

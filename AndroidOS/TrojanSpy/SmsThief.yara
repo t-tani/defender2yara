@@ -1796,3 +1796,27 @@ rule TrojanSpy_AndroidOS_SmsThief_BH_2147923346_0
         (4 of ($x*))
 }
 
+rule TrojanSpy_AndroidOS_SmsThief_BL_2147923679_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanSpy:AndroidOS/SmsThief.BL!MTB"
+        threat_id = "2147923679"
+        type = "TrojanSpy"
+        platform = "AndroidOS: Android operating system"
+        family = "SmsThief"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "com/senter/autocamera" ascii //weight: 1
+        $x_1_2 = "DrawCaptureRect" ascii //weight: 1
+        $x_1_3 = "MPUEntity" ascii //weight: 1
+        $x_1_4 = "KEY_DBM_LEVEL" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

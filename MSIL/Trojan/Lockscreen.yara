@@ -46,3 +46,24 @@ rule Trojan_MSIL_Lockscreen_2147731668_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Lockscreen_SOP_2147923708_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Lockscreen.SOP!MTB"
+        threat_id = "2147923708"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Lockscreen"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {7e 13 00 00 04 6f 87 00 00 0a 1d 28 88 00 00 0a 72 ?? ?? ?? 70 28 89 00 00 0a 17 28 8a 00 00 0a 00 1d 28 88 00 00 0a 72 ?? ?? ?? 70 28 89 00 00 0a 19 73 8b 00 00 0a 80 15 00 00 04}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

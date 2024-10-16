@@ -104,3 +104,24 @@ rule Trojan_Win64_MeduzaStealer_SIN_2147923613_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_MeduzaStealer_AIN_2147923696_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/MeduzaStealer.AIN!MTB"
+        threat_id = "2147923696"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "MeduzaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {4c 89 c0 31 d2 49 f7 f2 49 8b 03 0f b6 04 10 43 30 04 01 49 83 c0 01 4c 8b 09 48 8b 41 ?? 4c 29 c8 49 39 c0 72}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

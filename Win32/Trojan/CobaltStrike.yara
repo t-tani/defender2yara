@@ -4836,3 +4836,25 @@ rule Trojan_Win32_CobaltStrike_AT_2147920417_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_CobaltStrike_AMK_2147923694_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/CobaltStrike.AMK!MTB"
+        threat_id = "2147923694"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "CobaltStrike"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {66 0f ef c8 0f 11 88 28 40 00 10 0f 10 80 38 40 00 10 0f 28 ca 66 0f ef c2 0f 11 80 38 40 00 10 0f 10 80 48 40 00 10 66 0f ef c8 0f 11 88 48 40 00 10 0f 10 80 58 40 00 10}  //weight: 1, accuracy: High
+        $x_1_2 = {80 b0 28 40 00 10 e2 40 3d 10 38 03 00}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

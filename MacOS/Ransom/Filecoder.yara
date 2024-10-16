@@ -96,3 +96,25 @@ rule Ransom_MacOS_Filecoder_A_2147817558_0
         (all of ($x*))
 }
 
+rule Ransom_MacOS_Filecoder_YD_2147923773_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:MacOS/Filecoder.YD!MTB"
+        threat_id = "2147923773"
+        type = "Ransom"
+        platform = "MacOS: "
+        family = "Filecoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_MACHOHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {48 8b 05 bb f1 88 00 48 85 c0 74 60 48 8d 35 df f3 ff ff 48 c7 c2 00 00 00 00 48 c7 c1 00 00 00 00 ff d0 48 8d 0d 08 56 8d 00 48 8b 01 48 05 a0 03 00 00 48 89 41 10 48 89 41 18}  //weight: 1, accuracy: High
+        $x_1_2 = {48 89 f8 48 89 f3 48 83 ec 28 48 83 e4 f0 48 89 44 24 18 48 89 5c 24 20 48 8d 3d 81 56 8d 00 48 8d 9c 24 00 00 ff ff 48 89 5f 10 48 89 5f 18 48 89 1f 48 89 67 08 b8 00 00 00 00 0f a2 83 f8 00 74 2c 81 fb 47 65 6e 75}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -248,3 +248,24 @@ rule Trojan_Win64_BruteRatel_BKK_2147923228_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_BruteRatel_MMZ_2147923752_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/BruteRatel.MMZ!MTB"
+        threat_id = "2147923752"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "BruteRatel"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {48 63 c8 49 8b c7 48 f7 e1 48 8b c1 48 2b c2 48 d1 e8 48 03 c2 48 c1 e8 04 48 6b c0 1c 48 2b c8 49 0f af cc 0f b6 44 0c ?? 42 32 44 0e ?? 41 88 41 ff 49 ff c8 0f 85}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -76,3 +76,27 @@ rule MonitoringTool_AndroidOS_SpyPhone_D_346021_0
         (5 of ($x*))
 }
 
+rule MonitoringTool_AndroidOS_SpyPhone_E_440042_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "MonitoringTool:AndroidOS/SpyPhone.E!MTB"
+        threat_id = "440042"
+        type = "MonitoringTool"
+        platform = "AndroidOS: Android operating system"
+        family = "SpyPhone"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "bGetSpyPhoneFull" ascii //weight: 1
+        $x_1_2 = "/SpyPhone/" ascii //weight: 1
+        $x_1_3 = "HideSavedMedia" ascii //weight: 1
+        $x_1_4 = "spyphone_widget" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

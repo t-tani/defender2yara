@@ -159,3 +159,25 @@ rule Trojan_MSIL_RecordBreaker_RDM_2147921740_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_RecordBreaker_NIT_2147923669_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/RecordBreaker.NIT!MTB"
+        threat_id = "2147923669"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "RecordBreaker"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {13 9f 72 ee 2e 01 70 72 35 31 01 70 72 3b 31 01 70 28 ?? 00 00 0a 72 3d 31 01 70 72 a5 31 01 70 14 28 ?? 00 00 0a 28 ?? 00 00 0a 7e 31 00 00 0a 6f 32 00 00 0a 13 a0 1c 11 6c 28 ?? 00 00 0a 72 a9 31 01 70 28 ?? 00 00 0a 28 ?? 00 00 0a 12 a0 28 ?? 00 00 06 26 2a}  //weight: 2, accuracy: Low
+        $x_2_2 = {72 0b 21 01 70 7e 31 00 00 0a 28 ?? 00 00 0a 72 13 21 01 70 72 19 21 01 70 72 1d 21 01 70 28 ?? 00 00 0a 72 21 21 01 70 72 25 21 01 70 6f ?? 00 00 0a 72 29 21 01 70 72 3d 21 01 70 72 4f 21 01 70 28 ?? 00 00 0a 28 ?? 00 00 0a 28 ?? 00 00 0a 13 a1 12 a1}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

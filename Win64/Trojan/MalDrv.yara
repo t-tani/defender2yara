@@ -24,30 +24,6 @@ rule Trojan_Win64_MalDrv_B_2147923640_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_MalDrv_C_2147923641_0
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "Trojan:Win64/MalDrv.C!MTB"
-        threat_id = "2147923641"
-        type = "Trojan"
-        platform = "Win64: Windows 64-bit platform"
-        family = "MalDrv"
-        severity = "Critical"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_PEHSTR"
-        threshold = "4"
-        strings_accuracy = "High"
-    strings:
-        $x_1_1 = "103.117.121.160" ascii //weight: 1
-        $x_1_2 = "Hello DriverUnLoad" ascii //weight: 1
-        $x_1_3 = "Hello DriverEntry" ascii //weight: 1
-        $x_1_4 = "\\??\\C:\\CardKey.txt" wide //weight: 1
-    condition:
-        (filesize < 20MB) and
-        (all of ($x*))
-}
-
 rule Trojan_Win64_MalDrv_D_2147923642_0
 {
     meta:

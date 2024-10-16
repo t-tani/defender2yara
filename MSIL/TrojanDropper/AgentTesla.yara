@@ -68,3 +68,24 @@ rule TrojanDropper_MSIL_AgentTesla_NGT_2147892260_0
         (all of ($x*))
 }
 
+rule TrojanDropper_MSIL_AgentTesla_AAT_2147923704_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDropper:MSIL/AgentTesla.AAT!MTB"
+        threat_id = "2147923704"
+        type = "TrojanDropper"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {11 04 11 07 02 17 8d 03 00 00 01 13 0a 11 0a 16 11 07 8c 16 00 00 01 a2 11 0a 14 28 ?? 00 00 0a 28 ?? 00 00 0a 09 b4 28 ?? 00 00 06 28 ?? 00 00 0a 9c 11 07 17 d6 13 07 11 07 11 0b 3e 48 ff ff ff}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

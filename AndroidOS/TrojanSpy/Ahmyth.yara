@@ -227,3 +227,49 @@ rule TrojanSpy_AndroidOS_Ahmyth_E_2147839110_0
         (all of ($x*))
 }
 
+rule TrojanSpy_AndroidOS_Ahmyth_M_2147923684_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanSpy:AndroidOS/Ahmyth.M!MTB"
+        threat_id = "2147923684"
+        type = "TrojanSpy"
+        platform = "AndroidOS: Android operating system"
+        family = "Ahmyth"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "PermisScreen" ascii //weight: 1
+        $x_1_2 = "FKPinScreen" ascii //weight: 1
+        $x_1_3 = "AMSUnstopablle" ascii //weight: 1
+        $x_1_4 = "DuckDuck.kt" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule TrojanSpy_AndroidOS_Ahmyth_K_2147923686_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanSpy:AndroidOS/Ahmyth.K!MTB"
+        threat_id = "2147923686"
+        type = "TrojanSpy"
+        platform = "AndroidOS: Android operating system"
+        family = "Ahmyth"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = "filemanager/search/oth/dir/MainActivity" ascii //weight: 1
+        $x_1_2 = {01 40 01 71 20 ?? 07 04 00 6e 10 ?? 01 05 00 0c 01 1a 02 ?? 15 6e 20 ?? 19 12 00 0a 01 38 01 05 00 71 10 ?? 15 04 00 0e 00}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

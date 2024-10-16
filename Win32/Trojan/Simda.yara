@@ -252,3 +252,24 @@ rule Trojan_Win32_Simda_ASM_2147922891_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Simda_SOK_2147923707_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Simda.SOK!MTB"
+        threat_id = "2147923707"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Simda"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {ff 15 bc 20 41 00 33 c0 a3 ?? ?? ?? 00 ba 41 0c 00 00 c1 ea 06 03 d3 4a 8b c2 40 81 e8 f0 04 00 00 2b ?? ?? ?? 40 00 c1 c0 07 03 c0 29 05 ?? ?? ?? 00 68 1f a2 40}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

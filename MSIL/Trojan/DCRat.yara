@@ -2195,3 +2195,26 @@ rule Trojan_MSIL_DCRat_SJKG_2147921755_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_DCRat_DF_2147923700_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/DCRat.DF!MTB"
+        threat_id = "2147923700"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "DCRat"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "9"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = {11 0f 11 21 19 58 e0 91 1f 18 62 11 0f 11 21 18 58 e0 91 1f 10 62 60 11 0f 11 21 17 58 e0 91 1e 62 60 11 0f 11 21 e0 91 60 13 06 20 42 00 00 00 fe 0e 32 00 38 47 f4 ff ff}  //weight: 3, accuracy: High
+        $x_3_2 = "Y3rxMnsPgYSWN7oILC" ascii //weight: 3
+        $x_3_3 = "yt9ZjJ88BDZQbPA3Qa" ascii //weight: 3
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -54,3 +54,30 @@ rule Trojan_Win32_FakeIE_GNH_2147893924_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_FakeIE_ASW_2147923674_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/FakeIE.ASW!MTB"
+        threat_id = "2147923674"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "FakeIE"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "RTv1iKtmhBfKumssK.dll" ascii //weight: 1
+        $x_1_2 = "3E53_1F19.dll" ascii //weight: 1
+        $x_1_3 = "www.1290.me" ascii //weight: 1
+        $x_1_4 = "www.qvod456.com" ascii //weight: 1
+        $x_1_5 = "pro.52icafe.com/quickpage/bookmark.js" wide //weight: 1
+        $x_1_6 = "EyooSechelper2.dll" wide //weight: 1
+        $x_1_7 = {68 67 02 00 00 68 b6 03 00 00 68 00 01 00 00 68 00 00 cf 10 53 53 e8}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

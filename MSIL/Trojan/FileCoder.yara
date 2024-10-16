@@ -636,3 +636,26 @@ rule Trojan_MSIL_FileCoder_NK_2147920280_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_FileCoder_DF_2147923701_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/FileCoder.DF!MTB"
+        threat_id = "2147923701"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "FileCoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_4_1 = {28 2e 00 00 0a 11 07 6f 2f 00 00 0a 13 08 73 13 00 00 06 13 09}  //weight: 4, accuracy: High
+        $x_3_2 = "Votre Cle pour payment" wide //weight: 3
+        $x_3_3 = "C:\\Users\\Yannis\\Desktop\\majordom\\client\\major\\majordom\\obj\\Debug\\major.pdb" ascii //weight: 3
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

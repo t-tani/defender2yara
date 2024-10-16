@@ -699,3 +699,70 @@ rule Trojan_MSIL_Jalapeno_VGV_2147922955_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Jalapeno_AS_2147923705_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Jalapeno.AS!MTB"
+        threat_id = "2147923705"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Jalapeno"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {06 72 c9 00 00 70 15 16 28 5b 00 00 0a 0b 19 08 72 ef 00 00 70 07 19 9a 28 ?? 00 00 0a 1f 20 19 15 15 28 ?? 00 00 0a 19 07 17 9a 21 ff ff ff ff ff ff ff ff 16 28 ?? 00 00 0a 17 8d 26 00 00 01 0d 09 16 19 9e 09 28 ?? 00 00 0a 19 08 72 ef 00 00 70 07 1a 9a 28 ?? 00 00 0a 1f 20 19 15 15 28 ?? 00 00 0a 19 07 18 9a 21 ff ff ff ff ff ff ff ff 16 28 ?? 00 00 0a 17 8d 26 00 00 01 0d 09 16 19 9e 09 28 ?? 00 00 0a 08 07 19 9a 28 ?? 00 00 0a 28 ?? 00 00 0a 26 08}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Jalapeno_SN_2147923794_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Jalapeno.SN!MTB"
+        threat_id = "2147923794"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Jalapeno"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "8ae50c39.Resources.resources" ascii //weight: 1
+        $x_1_2 = "$d2d22a78-cd4e-4d99-a9de-306d662558b5" ascii //weight: 1
+        $x_1_3 = "ProDRENALIN.exe" ascii //weight: 1
+        $x_1_4 = "proDAD 2013-2017" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Jalapeno_GM_2147923800_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Jalapeno.GM!MTB"
+        threat_id = "2147923800"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Jalapeno"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {02 28 11 00 00 0a 20 00 f2 2b 00}  //weight: 1, accuracy: High
+        $x_1_2 = {80 01 00 00 04 73 36 00 00 0a 80 02 00 00 04 73 37 00 00 0a 80 03 00 00 04 73 37 00 00 0a 80 04 00 00 04}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

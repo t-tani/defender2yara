@@ -209,3 +209,27 @@ rule Trojan_MSIL_Filecoder_PTBG_2147895561_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Filecoder_AWA_2147923697_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Filecoder.AWA!MTB"
+        threat_id = "2147923697"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Filecoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "VoidCrypt encrypted all of your files." ascii //weight: 2
+        $x_2_2 = "There is no way to recover any files." ascii //weight: 2
+        $x_2_3 = "Each file has been encrypted using RSA." ascii //weight: 2
+        $x_2_4 = "There is nothing left on your system except the OS." ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

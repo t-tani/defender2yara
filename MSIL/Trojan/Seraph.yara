@@ -767,6 +767,30 @@ rule Trojan_MSIL_Seraph_AS_2147846436_0
         family = "Seraph"
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "del C:\\Windows\\Temp\\ /f /s /q" wide //weight: 2
+        $x_2_2 = "del C:\\Windows\\Prefetch\\ /f /s /q" wide //weight: 2
+        $x_2_3 = "del C:\\Users\\%username%\\AppData\\Local\\Microsoft\\Windows\\INetCookies\\ /f /s /q" wide //weight: 2
+        $x_2_4 = "del C:\\Users\\%username%\\AppData\\Local\\Microsoft\\Windows\\History\\ /f /s /q" wide //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Seraph_AS_2147846436_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Seraph.AS!MTB"
+        threat_id = "2147846436"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Seraph"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "2"
         strings_accuracy = "Low"

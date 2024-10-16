@@ -172,3 +172,28 @@ rule Trojan_MSIL_WebShell_HNB_2147911050_0
         )
 }
 
+rule Trojan_MSIL_WebShell_AQ_2147923791_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/WebShell.AQ!MTB"
+        threat_id = "2147923791"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "WebShell"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {0a 16 0b 38 ?? 00 00 00 00 02 1d 8d ?? 00 00 01 13 05 11 05 16 72 ?? ?? 00 70 a2 11 05 17 02 06 07 9a 28 ?? 00 00 06 a2 11 05 18 72 ?? ?? 00 70 a2 11 05 19 07 8c ?? 00 00 01 a2 11 05 1a 72 ?? ?? 00 70 a2 11 05 1b 06 07 9a a2 11 05 1c 72 ?? ?? 00 70 a2 11}  //weight: 3, accuracy: Low
+        $x_1_2 = "Clear All Thread ...." wide //weight: 1
+        $x_1_3 = "8f34b0861bce1e0536a2a3d33c7a0f39" wide //weight: 1
+        $x_1_4 = "File time clone success!" wide //weight: 1
+        $x_1_5 = "siyuanceshi@163.com" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
