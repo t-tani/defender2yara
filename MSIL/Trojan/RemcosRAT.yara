@@ -597,3 +597,25 @@ rule Trojan_MSIL_RemcosRAT_SCPF_2147919024_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_RemcosRAT_SPRT_2147923820_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/RemcosRAT.SPRT!MTB"
+        threat_id = "2147923820"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "RemcosRAT"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {25 16 12 02 28 ?? 00 00 0a 9c 25 17 12 02 28 ?? 00 00 0a 9c 25 18 12 02 28 ?? 00 00 0a 9c 13 06}  //weight: 3, accuracy: Low
+        $x_3_2 = {03 11 06 11 07 11 08 94 91 6f ?? 00 00 0a 00 00 11 08 17 58 13 08 11 08 09 19 28 ?? 00 00 0a fe 04 13 09 11 09}  //weight: 3, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

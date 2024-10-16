@@ -189,3 +189,24 @@ rule Trojan_AndroidOS_Hiddad_B_2147889032_0
         (all of ($x*))
 }
 
+rule Trojan_AndroidOS_Hiddad_H_2147903914_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:AndroidOS/Hiddad.H"
+        threat_id = "2147903914"
+        type = "Trojan"
+        platform = "AndroidOS: Android operating system"
+        family = "Hiddad"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_ELFHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {00 26 8d 19 85 42 09 d2 9d 5d 03 2e 94 5d 85 ea 04 05 9d 55 06 f1 01 05 2e 46 f2 d3 da f8 00 00 01 31 01 33 81 42 eb d3 99 f8 04 10 4d 1d a8 42}  //weight: 1, accuracy: High
+        $x_1_2 = {20 68 d0 f8 90 13 20 46 88 47 90 b9 20 68 29 46 32 46 43 46 d0 f8 78 c1 20 46 e0 47 05 46 20 68 d0 f8 90 13 20 46 88 47 20 b1 20 68 41 6c 20 46 88 47}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -486,3 +486,25 @@ rule Trojan_Win32_SystemBC_CCJR_2147922655_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_SystemBC_CCIM_2147923822_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/SystemBC.CCIM!MTB"
+        threat_id = "2147923822"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "SystemBC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {0f b6 32 69 f6 ?? ?? ?? ?? 0f b6 85 ?? ?? ?? ?? 99 bf ?? ?? ?? ?? f7 ff 03 f0 03 ce 81 f1 ?? ?? ?? ?? 88 8d}  //weight: 2, accuracy: Low
+        $x_1_2 = {33 d0 88 55 ?? 0f b6 45 ?? 6b c0 ?? 0f b6 4d ?? 0f b6 55 ?? 0b ca 33 c1}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

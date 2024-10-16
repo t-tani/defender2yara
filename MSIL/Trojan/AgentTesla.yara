@@ -103353,6 +103353,28 @@ rule Trojan_MSIL_AgentTesla_ACK_2147908944_0
         threshold = "4"
         strings_accuracy = "High"
     strings:
+        $x_2_1 = {00 19 8d 5e 00 00 01 25 16 12 02 28 59 00 00 0a 9c 25 17 12 02 28 5a 00 00 0a 9c 25 18 12 02 28 5b 00 00 0a 9c 13 06 19}  //weight: 2, accuracy: High
+        $x_2_2 = "CrudApplication.Properties.Resources" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_AgentTesla_ACK_2147908944_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.ACK!MTB"
+        threat_id = "2147908944"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
         $x_1_1 = "C:\\logs\\RecolectorDocumentos" ascii //weight: 1
         $x_1_2 = "SaxSettings" ascii //weight: 1
         $x_1_3 = "Regimen-Tipo-Operacion-CvePedimento Inv" ascii //weight: 1
