@@ -1278,3 +1278,25 @@ rule Trojan_Win32_Lazy_GXT_2147923282_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Lazy_AMR_2147923872_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Lazy.AMR!MTB"
+        threat_id = "2147923872"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Lazy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {8b 0c 10 8b 86 ?? ?? ?? ?? 33 0d ?? ?? ?? ?? 89 0c 02 83 c2 04 8b 46 ?? 2b 46 ?? 01 05 ?? ?? ?? ?? a1 ?? ?? ?? ?? 05 84 e7 fb ff 01 86 ?? ?? ?? ?? a1 ?? ?? ?? ?? 01 05 01 81 fa ?? ?? ?? ?? 7c}  //weight: 4, accuracy: Low
+        $x_1_2 = {88 14 01 ff 86 [0-20] 88 1c 08 ff 05}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
