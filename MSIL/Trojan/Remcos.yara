@@ -11664,3 +11664,25 @@ rule Trojan_MSIL_Remcos_BE_2147923656_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Remcos_ZVAA_2147923903_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Remcos.ZVAA!MTB"
+        threat_id = "2147923903"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Remcos"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {02 06 07 6f ?? 00 00 0a 0c 04 03 6f ?? 00 00 0a 59 0d 09 1f fd 5f 09 fe 01 13 04 11 04 2c 37 00 03 19 8d ?? 00 00 01 25 16}  //weight: 3, accuracy: Low
+        $x_2_2 = {01 25 16 12 02 28 ?? 00 00 0a 9c 25 17 12 02 28 ?? 00 00 0a 9c 25 18 12 02 28 ?? 00 00 0a 9c 13 06 19 8d ?? 00 00 01 25 17 17 9e 25 18 18 9e 13 07 16 13 08}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
