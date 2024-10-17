@@ -417,3 +417,24 @@ rule Trojan_Win32_Coroxy_YBN_2147923081_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Coroxy_MKW_2147923893_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Coroxy.MKW!MTB"
+        threat_id = "2147923893"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Coroxy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {8a 04 3b 30 06 46 43 49 3b 5d 0c 75 02}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
