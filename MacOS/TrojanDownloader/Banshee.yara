@@ -1,13 +1,14 @@
-rule TrojanDownloader_MacOS_Banshee_A_2147923837_0
+rule TrojanDownloader_MacOS_Banshee_A_2147923948_0
 {
     meta:
         author = "defender2yara"
-        detection_name = "TrojanDownloader:MacOS/Banshee.A"
-        threat_id = "2147923837"
+        detection_name = "TrojanDownloader:MacOS/Banshee.A!MTB"
+        threat_id = "2147923948"
         type = "TrojanDownloader"
         platform = "MacOS: "
         family = "Banshee"
         severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_MACHOHSTR_EXT"
         threshold = "2"
         strings_accuracy = "High"

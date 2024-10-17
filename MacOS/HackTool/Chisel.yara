@@ -72,29 +72,6 @@ rule HackTool_MacOS_Chisel_C_2147921860_0
         )
 }
 
-rule HackTool_MacOS_Chisel_F_2147923675_0
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "HackTool:MacOS/Chisel.F"
-        threat_id = "2147923675"
-        type = "HackTool"
-        platform = "MacOS: "
-        family = "Chisel"
-        severity = "High"
-        signature_type = "SIGNATURE_TYPE_MACHOHSTR_EXT"
-        threshold = "3"
-        strings_accuracy = "High"
-    strings:
-        $x_1_1 = "chisel-v30." ascii //weight: 1
-        $x_1_2 = "jpillora/chisel/share/tunnel" ascii //weight: 1
-        $x_1_3 = "chisel/share/ccrypto.FingerprintKey" ascii //weight: 1
-        $x_1_4 = "client.NewClient.Password.func1" ascii //weight: 1
-    condition:
-        (filesize < 20MB) and
-        (3 of ($x*))
-}
-
 rule HackTool_MacOS_Chisel_E_2147923774_0
 {
     meta:
@@ -115,5 +92,29 @@ rule HackTool_MacOS_Chisel_E_2147923774_0
     condition:
         (filesize < 20MB) and
         (all of ($x*))
+}
+
+rule HackTool_MacOS_Chisel_F_2147923944_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "HackTool:MacOS/Chisel.F!MTB"
+        threat_id = "2147923944"
+        type = "HackTool"
+        platform = "MacOS: "
+        family = "Chisel"
+        severity = "High"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_MACHOHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "chisel-v30." ascii //weight: 1
+        $x_1_2 = "jpillora/chisel/share/tunnel" ascii //weight: 1
+        $x_1_3 = "chisel/share/ccrypto.FingerprintKey" ascii //weight: 1
+        $x_1_4 = "client.NewClient.Password.func1" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (3 of ($x*))
 }
 

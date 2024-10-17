@@ -22,16 +22,17 @@ rule Trojan_AndroidOS_BlankBot_A_2147922768_0
         (all of ($x*))
 }
 
-rule Trojan_AndroidOS_BlankBot_B_2147923816_0
+rule Trojan_AndroidOS_BlankBot_B_2147923939_0
 {
     meta:
         author = "defender2yara"
-        detection_name = "Trojan:AndroidOS/BlankBot.B"
-        threat_id = "2147923816"
+        detection_name = "Trojan:AndroidOS/BlankBot.B!MTB"
+        threat_id = "2147923939"
         type = "Trojan"
         platform = "AndroidOS: Android operating system"
         family = "BlankBot"
         severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
         threshold = "4"
         strings_accuracy = "High"

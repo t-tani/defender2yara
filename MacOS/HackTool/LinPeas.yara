@@ -1,13 +1,14 @@
-rule HackTool_MacOS_LinPeas_A_2147923836_0
+rule HackTool_MacOS_LinPeas_A_2147923947_0
 {
     meta:
         author = "defender2yara"
-        detection_name = "HackTool:MacOS/LinPeas.A"
-        threat_id = "2147923836"
+        detection_name = "HackTool:MacOS/LinPeas.A!MTB"
+        threat_id = "2147923947"
         type = "HackTool"
         platform = "MacOS: "
         family = "LinPeas"
         severity = "High"
+        info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_MACHOHSTR_EXT"
         threshold = "2"
         strings_accuracy = "High"

@@ -26,16 +26,17 @@ rule Trojan_MacOS_Lador_B_2147828865_0
         )
 }
 
-rule Trojan_MacOS_Lador_C_2147923777_0
+rule Trojan_MacOS_Lador_C_2147923950_0
 {
     meta:
         author = "defender2yara"
-        detection_name = "Trojan:MacOS/Lador.C"
-        threat_id = "2147923777"
+        detection_name = "Trojan:MacOS/Lador.C!MTB"
+        threat_id = "2147923950"
         type = "Trojan"
         platform = "MacOS: "
         family = "Lador"
         severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_MACHOHSTR_EXT"
         threshold = "2"
         strings_accuracy = "High"

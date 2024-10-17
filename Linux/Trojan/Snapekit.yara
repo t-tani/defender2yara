@@ -1,13 +1,14 @@
-rule Trojan_Linux_Snapekit_A_2147923186_0
+rule Trojan_Linux_Snapekit_A_2147923937_0
 {
     meta:
         author = "defender2yara"
-        detection_name = "Trojan:Linux/Snapekit.A"
-        threat_id = "2147923186"
+        detection_name = "Trojan:Linux/Snapekit.A!MTB"
+        threat_id = "2147923937"
         type = "Trojan"
         platform = "Linux: Linux platform"
         family = "Snapekit"
         severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_ELFHSTR_EXT"
         threshold = "3"
         strings_accuracy = "High"

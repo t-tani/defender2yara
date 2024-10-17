@@ -26,16 +26,17 @@ rule Backdoor_MacOS_Hermes_A_2147921851_0
         )
 }
 
-rule Backdoor_MacOS_Hermes_B_2147923579_0
+rule Backdoor_MacOS_Hermes_B_2147923942_0
 {
     meta:
         author = "defender2yara"
-        detection_name = "Backdoor:MacOS/Hermes.B"
-        threat_id = "2147923579"
+        detection_name = "Backdoor:MacOS/Hermes.B!MTB"
+        threat_id = "2147923942"
         type = "Backdoor"
         platform = "MacOS: "
         family = "Hermes"
         severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_MACHOHSTR_EXT"
         threshold = "5"
         strings_accuracy = "High"

@@ -189,16 +189,17 @@ rule Trojan_AndroidOS_Hiddad_B_2147889032_0
         (all of ($x*))
 }
 
-rule Trojan_AndroidOS_Hiddad_H_2147903914_0
+rule Trojan_AndroidOS_Hiddad_H_2147923946_0
 {
     meta:
         author = "defender2yara"
-        detection_name = "Trojan:AndroidOS/Hiddad.H"
-        threat_id = "2147903914"
+        detection_name = "Trojan:AndroidOS/Hiddad.H!MTB"
+        threat_id = "2147923946"
         type = "Trojan"
         platform = "AndroidOS: Android operating system"
         family = "Hiddad"
         severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_ELFHSTR_EXT"
         threshold = "2"
         strings_accuracy = "High"

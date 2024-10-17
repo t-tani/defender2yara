@@ -1,13 +1,14 @@
-rule Ransom_MacOS_Ransomwhere_A_2147923812_0
+rule Ransom_MacOS_Ransomwhere_A_2147923936_0
 {
     meta:
         author = "defender2yara"
-        detection_name = "Ransom:MacOS/Ransomwhere.A"
-        threat_id = "2147923812"
+        detection_name = "Ransom:MacOS/Ransomwhere.A!MTB"
+        threat_id = "2147923936"
         type = "Ransom"
         platform = "MacOS: "
         family = "Ransomwhere"
         severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_MACHOHSTR_EXT"
         threshold = "6"
         strings_accuracy = "High"

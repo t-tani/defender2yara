@@ -1,13 +1,14 @@
-rule Trojan_Linux_Disgomoji_A_2147922954_0
+rule Trojan_Linux_Disgomoji_A_2147923941_0
 {
     meta:
         author = "defender2yara"
-        detection_name = "Trojan:Linux/Disgomoji.A"
-        threat_id = "2147922954"
+        detection_name = "Trojan:Linux/Disgomoji.A!MTB"
+        threat_id = "2147923941"
         type = "Trojan"
         platform = "Linux: Linux platform"
         family = "Disgomoji"
         severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_ELFHSTR_EXT"
         threshold = "4"
         strings_accuracy = "High"

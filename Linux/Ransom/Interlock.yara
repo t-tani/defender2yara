@@ -1,13 +1,14 @@
-rule Ransom_Linux_Interlock_A_2147923316_0
+rule Ransom_Linux_Interlock_A_2147923935_0
 {
     meta:
         author = "defender2yara"
-        detection_name = "Ransom:Linux/Interlock.A"
-        threat_id = "2147923316"
+        detection_name = "Ransom:Linux/Interlock.A!MTB"
+        threat_id = "2147923935"
         type = "Ransom"
         platform = "Linux: Linux platform"
         family = "Interlock"
         severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_ELFHSTR_EXT"
         threshold = "5"
         strings_accuracy = "Low"

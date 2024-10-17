@@ -19,16 +19,17 @@ rule Trojan_Linux_Getshell_G_2147794533_0
         (all of ($x*))
 }
 
-rule Trojan_Linux_Getshell_D_2147923442_0
+rule Trojan_Linux_Getshell_D_2147923943_0
 {
     meta:
         author = "defender2yara"
-        detection_name = "Trojan:Linux/Getshell.D"
-        threat_id = "2147923442"
+        detection_name = "Trojan:Linux/Getshell.D!MTB"
+        threat_id = "2147923943"
         type = "Trojan"
         platform = "Linux: Linux platform"
         family = "Getshell"
         severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_ELFHSTR_EXT"
         threshold = "2"
         strings_accuracy = "High"
