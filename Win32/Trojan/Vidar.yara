@@ -3202,6 +3202,27 @@ rule Trojan_Win32_Vidar_AMS_2147851296_0
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {33 c0 89 44 24 [0-40] 30 04 29 45 3b 6b 04 0f 8c}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Vidar_AMS_2147851296_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Vidar.AMS!MTB"
+        threat_id = "2147851296"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Vidar"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
         strings_accuracy = "High"
     strings:
         $x_1_1 = {8b 55 a4 2b d0 8b 45 d4 31 10 83 45 ec 04 83 45 d4 04 8b 45 ec 3b 45 d0 72}  //weight: 1, accuracy: High

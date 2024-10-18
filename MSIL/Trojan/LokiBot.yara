@@ -3184,6 +3184,27 @@ rule Trojan_MSIL_LokiBot_SML_2147917855_0
         family = "LokiBot"
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {07 11 09 91 11 06 61 11 08 59 20 00 02 00 00 58 13 0a 02 11 0a 28 55 00 00 06 13 0b 02 11 0b 28 56 00 00 06 13 0c 02 11 0c 28 57 00 00 06 13 0d 02 11 0d 28 58 00 00 06 13 0e 07 11 05 11 0e d2 9c 11 05 17 58 13 05 11 05 08 32 88}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_LokiBot_SML_2147917855_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/LokiBot.SML!MTB"
+        threat_id = "2147917855"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "LokiBot"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "4"
         strings_accuracy = "High"
@@ -3197,7 +3218,7 @@ rule Trojan_MSIL_LokiBot_SML_2147917855_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_LokiBot_SML_2147917855_1
+rule Trojan_MSIL_LokiBot_SML_2147917855_2
 {
     meta:
         author = "defender2yara"

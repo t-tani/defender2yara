@@ -2914,3 +2914,24 @@ rule Trojan_Win32_StealC_GZ_2147923828_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_StealC_KYI_2147924045_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/StealC.KYI!MTB"
+        threat_id = "2147924045"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "StealC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {8a 44 0c 3c 8b 4c 24 38 30 04 29 45 3b 6b 04}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
