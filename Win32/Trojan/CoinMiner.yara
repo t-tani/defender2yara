@@ -3101,3 +3101,26 @@ rule Trojan_Win32_CoinMiner_MC_2147914353_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_CoinMiner_GXT_2147924062_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/CoinMiner.GXT!MTB"
+        threat_id = "2147924062"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "CoinMiner"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "15"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {8b f4 6a 40 68 00 30 00 00 8b 45 dc 8b 48 50 51 8b 55 dc 8b 42 34 50 8b 8d ?? ?? ?? ?? 51 ff 15}  //weight: 5, accuracy: Low
+        $x_5_2 = {8b f4 6a 00 8b 45 dc 8b 48 54 51 8b 55 48 52 8b 85 ?? ?? ?? ?? 50 8b 8d ?? ?? ?? ?? 51 ff 15}  //weight: 5, accuracy: Low
+        $x_5_3 = {8b f4 8b 85 ?? ?? ?? ?? 50 8b 8d ?? ?? ?? ?? 51 ff 15 ?? ?? ?? ?? 3b f4 e8 ?? ?? ?? ?? 8b f4 8b 85 ?? ?? ?? ?? 50 ff 15}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
