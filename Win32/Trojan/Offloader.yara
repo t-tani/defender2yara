@@ -1058,3 +1058,25 @@ rule Trojan_Win32_Offloader_KAO_2147922349_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Offloader_AMS_2147924126_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Offloader.AMS!MTB"
+        threat_id = "2147924126"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Offloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_4_1 = "http://voicecarriage.website/kam.php" ascii //weight: 4
+        $x_1_2 = "/silent" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
