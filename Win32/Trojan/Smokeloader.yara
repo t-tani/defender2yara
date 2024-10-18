@@ -5813,3 +5813,24 @@ rule Trojan_Win32_Smokeloader_ZAZ_2147924046_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Smokeloader_ZAT_2147924091_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Smokeloader.ZAT!MTB"
+        threat_id = "2147924091"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Smokeloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {8b d7 c1 ea 05 03 cf 89 55 ?? 8b 45 e0 01 45 ?? c1 e7 04 03 7d dc 33 f9 81 3d ?? ?? ?? ?? 03 0b 00 00 75}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

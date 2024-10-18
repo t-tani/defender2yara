@@ -105597,3 +105597,26 @@ rule Trojan_MSIL_AgentTesla_PHPH_2147924033_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AgentTesla_SIU_2147924087_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.SIU!MTB"
+        threat_id = "2147924087"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "$0dec1f88-67e1-4b9c-a4cf-06a910412ed2" ascii //weight: 1
+        $x_1_2 = "https://playstoremeta.com/wp-includes/Lwsgu.dat" ascii //weight: 1
+        $x_1_3 = "Fyqcteret.exe" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

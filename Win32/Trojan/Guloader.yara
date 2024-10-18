@@ -4311,3 +4311,51 @@ rule Trojan_Win32_Guloader_SPBI_2147923433_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Guloader_SLB_2147924086_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Guloader.SLB!MTB"
+        threat_id = "2147924086"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Guloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "Isbrydende.afr" ascii //weight: 1
+        $x_1_2 = "Crystalizer.Syn" ascii //weight: 1
+        $x_1_3 = "metabasis.ste" ascii //weight: 1
+        $x_1_4 = "plasmolyzable.dem" ascii //weight: 1
+        $x_1_5 = "vindspiller.cys" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Guloader_SLB_2147924086_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Guloader.SLB!MTB"
+        threat_id = "2147924086"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Guloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "tilslutningstoges vigtende entusiast" ascii //weight: 1
+        $x_1_2 = "tildngede entomotomist trinskifterne" ascii //weight: 1
+        $x_1_3 = "multifiler shendful.exe" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

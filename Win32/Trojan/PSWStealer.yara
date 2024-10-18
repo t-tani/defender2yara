@@ -524,3 +524,29 @@ rule Trojan_Win32_PSWStealer_PAAA_2147888533_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_PSWStealer_RP_2147924104_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/PSWStealer.RP!MTB"
+        threat_id = "2147924104"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "PSWStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "123"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "\\vbame.dll" wide //weight: 1
+        $x_1_2 = "Can't run file!" wide //weight: 1
+        $x_10_3 = "winmgmts:\\\\.\\root\\cimv2" wide //weight: 10
+        $x_10_4 = "Select * from Win32_ComputerSystem" wide //weight: 10
+        $x_1_5 = "Model" wide //weight: 1
+        $x_100_6 = "wecaws7eafrgsf2mfcvnr" wide //weight: 100
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
