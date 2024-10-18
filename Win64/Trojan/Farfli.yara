@@ -141,3 +141,26 @@ rule Trojan_Win64_Farfli_AFL_2147913099_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Farfli_AFA_2147924071_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Farfli.AFA!MTB"
+        threat_id = "2147924071"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Farfli"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {48 8b 0b 41 b9 00 30 00 00 4c 8b c7 33 d2 48 89 b4 24 d0 06 00 00 c7 44 24 20 40 00 00 00 48 8b f7 ff 15 41 13 01 00 48 8b f8 48 85 c0 74 5a 48 8b 0b 4c 8b ce 4c 8b c5 48 8b d0 4c 89 64 24 20 ff 15 2a 13 01 00}  //weight: 2, accuracy: High
+        $x_2_2 = {49 ff c1 b8 ef 23 b8 8f f7 e9 03 d1 c1 fa 08 8b c2 c1 e8 1f 03 d0 b8 cd cc cc cc 69 d2 c8 01 00 00 2b ca 41 f7 e2 80 c1 36 43 30 0c 03 c1 ea 03 8d 0c 92 03 c9 44 3b d1 4d 0f 44 cf 41 ff c2 49 ff c3 44 3b d7}  //weight: 2, accuracy: High
+        $x_1_3 = "d33f351a4aeea5e608853d1a56661059" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
