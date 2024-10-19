@@ -3071,3 +3071,26 @@ rule Trojan_MSIL_CryptInject_MBXU_2147921636_0
         )
 }
 
+rule Trojan_MSIL_CryptInject_RHAK_2147924166_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/CryptInject.RHAK!MTB"
+        threat_id = "2147924166"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {50 45 00 00 4c 01 03 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 0b 01 08 00 00 52 03 00 00 08 00 00 00 00 00 00 fe 70 03}  //weight: 2, accuracy: Low
+        $x_3_2 = "rubberpartsmanufacturers.com/hunziq/Eodnuiwio.mp4" wide //weight: 3
+        $x_2_3 = "Zmkwrra.exe" wide //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
