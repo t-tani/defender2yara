@@ -592,3 +592,30 @@ rule Trojan_Win32_Grandoreiro_PAFD_2147918101_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Grandoreiro_AB_2147924172_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Grandoreiro.AB!MTB"
+        threat_id = "2147924172"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Grandoreiro"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {56 57 8b f2 8d 7d f6 a5 66 a5 89 45 fc 8b 45 fc e8 ?? ?? ?? ?? 89 45 fc 66 83 7d f6 00 74 2a 8d 45 f0 50 6a 06 8d 45 f6 50 8b 45 fc 50 e8 ?? ?? ?? ?? 50 e8 ?? ?? ?? ?? 83 f8 01 1b c0 40 88 45 f5 66 c7 45 f6 00 00 eb 04 c6 45 f5 00 8a 45 f5 5f 5e 8b e5 5d c3}  //weight: 1, accuracy: Low
+        $x_1_2 = {b0 04 02 00 ff ff ff ff 01 00 00 00 24 00 00 00}  //weight: 1, accuracy: High
+        $x_1_3 = "shellexecutew" ascii //weight: 1
+        $x_1_4 = {5b c3 8b c3 ba ?? ?? ?? ?? e8 ?? ?? ?? ?? 5b c3 8b c3 ba ?? ?? ?? ?? e8 ?? ?? ?? ?? 5b c3 8b c3 ba ?? ?? ?? ?? e8 ?? ?? ?? ?? 5b c3 8b c3 ba ?? ?? ?? ?? e8 ?? ?? ?? ?? 5b c3 8b c3 ba ?? ?? ?? ?? e8 ?? ?? ?? ?? 5b c3 8b c3 ba ?? ?? ?? ?? e8 ?? ?? ?? ?? 5b c3 8b c3 ba ?? ?? ?? ?? e8 ?? ?? ?? ?? 5b c3 8b c3 ba ?? ?? ?? ?? e8 ?? ?? ?? ?? 5b c3 8b c3 ba ?? ?? ?? ?? e8 ?? ?? ?? ?? 5b c3 8b c3 ba ?? ?? ?? ?? e8 ?? ?? ?? ?? 5b c3}  //weight: 1, accuracy: Low
+        $x_1_5 = {85 c0 0f 84 dd 00 00 00 f6 45 89 0d 0f 85 d3 00 00 00 8a 45 88 24 08 3c 08 0f 84 c6 00 00 00 8d 45 c8 50 6a 04 8d 45 f8 50 8b 45 8c 50 8b 45 e4 50}  //weight: 1, accuracy: High
+        $x_1_6 = {89 45 e4 83 7d e4 00 0f 84 85 01 00 00 6a 40 68 00 10 00 00 68 00 10 00 00 6a 00 8b 45 e4 50}  //weight: 1, accuracy: High
+        $x_1_7 = {8b 0a 83 f9 40 7d 06 89 44 8a 04 ff 02}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
