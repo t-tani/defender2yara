@@ -13,10 +13,10 @@ rule Trojan_Win32_MasqProcessLaunchLolbins_B_2147778155_0
         threshold = "1"
         strings_accuracy = "High"
     strings:
-        $x_1_1 = {73 00 63 00 68 00 74 00 61 00 73 00 6b 00 73 00 2e 00 65 00 78 00 65 00 00 00}  //weight: 1, accuracy: High
-        $x_1_2 = {72 00 65 00 67 00 2e 00 65 00 78 00 65 00 00 00}  //weight: 1, accuracy: High
-        $x_1_3 = {73 00 63 00 2e 00 65 00 78 00 65 00 00 00}  //weight: 1, accuracy: High
-        $x_1_4 = {6d 00 73 00 69 00 65 00 78 00 65 00 63 00 2e 00 65 00 78 00 65 00 00 00}  //weight: 1, accuracy: High
+        $x_1_1 = {5c 00 73 00 63 00 68 00 74 00 61 00 73 00 6b 00 73 00 2e 00 65 00 78 00 65 00 00 00}  //weight: 1, accuracy: High
+        $x_1_2 = {5c 00 72 00 65 00 67 00 2e 00 65 00 78 00 65 00 00 00}  //weight: 1, accuracy: High
+        $x_1_3 = {5c 00 73 00 63 00 2e 00 65 00 78 00 65 00 00 00}  //weight: 1, accuracy: High
+        $x_1_4 = {5c 00 6d 00 73 00 69 00 65 00 78 00 65 00 63 00 2e 00 65 00 78 00 65 00 00 00}  //weight: 1, accuracy: High
     condition:
         (filesize < 20MB) and
         (1 of ($x*))

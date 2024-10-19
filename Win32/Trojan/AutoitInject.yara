@@ -3055,6 +3055,28 @@ rule Trojan_Win32_AutoitInject_ZEAA_2147923305_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_AutoitInject_HNA_2147923318_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.HNA!MTB"
+        threat_id = "2147923318"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {44 00 6c 00 6c 00 43 00 61 00 6c 00 6c 00 [0-240] 6b 00 ?? ?? [0-6] 65 00 01 02 72 00 01 02 6e 00 01 02 65 00 01 02 6c 00 01 02 33 00 01 02 32 00 01 02 2e 00 01 02 64 00 01 02 6c 00 01 02 6c 00 01 02}  //weight: 1, accuracy: Low
+        $x_1_2 = {44 6c 6c 43 61 6c 6c [0-240] 6b ?? ?? [0-6] 65 01 02 72 01 02 6e 01 02 65 01 02 6c 01 02 33 01 02 32 01 02 2e 01 02 64 01 02 6c 01 02 6c 01 02}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (1 of ($x*))
+}
+
 rule Trojan_Win32_AutoitInject_ZOAA_2147923541_0
 {
     meta:
