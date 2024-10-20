@@ -4607,3 +4607,24 @@ rule Trojan_Win32_Zusy_MBXY_2147922935_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Zusy_GPB_2147924198_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zusy.GPB!MTB"
+        threat_id = "2147924198"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {60 7d 5f 00 d4 75 5f 00 98 7d 5f 00 bc 7d 5f 00 20 7d 5f 00 48 7d 5f 00 88 7d 5f 00 aa 7d 5f 00 cc 7d 5f 00 74 7d 5f 00 36 7d 5f}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

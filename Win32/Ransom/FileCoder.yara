@@ -1333,3 +1333,27 @@ rule Ransom_Win32_FileCoder_RHAB_2147923421_0
         (all of ($x*))
 }
 
+rule Ransom_Win32_FileCoder_GPAC_2147924197_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win32/FileCoder.GPAC!MTB"
+        threat_id = "2147924197"
+        type = "Ransom"
+        platform = "Win32: Windows 32-bit platform"
+        family = "FileCoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "vssadmin.exe delete shadows /all /quiet" ascii //weight: 2
+        $x_2_2 = "wmic shadowcopy delete" ascii //weight: 2
+        $x_1_3 = "bcdedit /set {default} recoveryenabled no" ascii //weight: 1
+        $x_1_4 = "wbadmin delete catalog -quiet" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
