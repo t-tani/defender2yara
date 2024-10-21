@@ -192,3 +192,29 @@ rule Trojan_AndroidOS_Wroba_K_2147911610_0
         (all of ($x*))
 }
 
+rule Trojan_AndroidOS_Wroba_AZ_2147924223_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:AndroidOS/Wroba.AZ"
+        threat_id = "2147924223"
+        type = "Trojan"
+        platform = "AndroidOS: Android operating system"
+        family = "Wroba"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "last outgoing calllog number=" ascii //weight: 2
+        $x_2_2 = "CF_PhoneStateListener" ascii //weight: 2
+        $x_2_3 = "TBL_NAME_NUMBERS" ascii //weight: 2
+        $x_2_4 = "lockedWhenComing" ascii //weight: 2
+        $x_2_5 = "seC/qdtheyt/ydjuhdqB/juBufxedO/YJuBufxedO" ascii //weight: 2
+        $x_2_6 = "p3 succeed, Send ForceCallData view=" ascii //weight: 2
+        $x_2_7 = "PC_CallRvProc" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (2 of ($x*))
+}
+

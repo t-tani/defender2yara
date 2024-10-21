@@ -6438,3 +6438,24 @@ rule Trojan_Win32_Azorult_EZ_2147923902_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Azorult_GNT_2147924213_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Azorult.GNT!MTB"
+        threat_id = "2147924213"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Azorult"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {03 ca 8b 45 ?? c1 e8 ?? 89 45 ?? 8b 45 ?? 01 45 ?? 33 f1 81 3d ?? ?? ?? ?? ?? ?? ?? ?? c7 05}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

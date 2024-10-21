@@ -201,3 +201,26 @@ rule Trojan_AndroidOS_Mamont_T_2147918895_0
         (all of ($x*))
 }
 
+rule Trojan_AndroidOS_Mamont_L_2147924225_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:AndroidOS/Mamont.L"
+        threat_id = "2147924225"
+        type = "Trojan"
+        platform = "AndroidOS: Android operating system"
+        family = "Mamont"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "avtovykup.autos/nopessmision" ascii //weight: 2
+        $x_2_2 = "readLast10Messages" ascii //weight: 2
+        $x_2_3 = "showPermissionAccesMessage" ascii //weight: 2
+        $x_2_4 = "checkServerResponseAndRequestPermissions" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (3 of ($x*))
+}
+

@@ -312,3 +312,27 @@ rule Trojan_Win32_Autoitinject_SPGH_2147924125_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Autoitinject_SPHJ_2147924214_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Autoitinject.SPHJ!MTB"
+        threat_id = "2147924214"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Autoitinject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = "u8zgbxs8zgbxe8zgbxr8zgbx38zgbx28zgbx.8zgbxd8zgbxl8zgbxl8zgbx" ascii //weight: 5
+        $x_3_2 = "k8zgbxe8zgbxr8zgbxn8zgbxe8zgbxl8zgbx38zgbx28zgbx.8zgbxd8zgbxl8zgbxl8zgbx" ascii //weight: 3
+        $x_1_3 = "DllCall" ascii //weight: 1
+        $x_1_4 = "@TEMPDIR" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

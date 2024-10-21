@@ -288,3 +288,24 @@ rule Trojan_AndroidOS_BankerAgent_AG_2147920427_0
         (2 of ($x*))
 }
 
+rule Trojan_AndroidOS_BankerAgent_AE_2147924226_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:AndroidOS/BankerAgent.AE"
+        threat_id = "2147924226"
+        type = "Trojan"
+        platform = "AndroidOS: Android operating system"
+        family = "BankerAgent"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "o1p2e3n4t5h6i7r8d9l0o1a2d3i4n5g6p7a8g9e0five" ascii //weight: 2
+        $x_2_2 = "URL_ATMac" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -752,3 +752,31 @@ rule Trojan_Win32_BlackMoon_GNT_2147924099_0
         )
 }
 
+rule Trojan_Win32_BlackMoon_AGN_2147924228_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/BlackMoon.AGN!MTB"
+        threat_id = "2147924228"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "BlackMoon"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "HMTxwNSQRySOGklFVJ1rKylO07Gk|H370JTItKU7TsaT5Mi0" ascii //weight: 1
+        $x_1_2 = "blackmoon" ascii //weight: 1
+        $x_2_3 = "QQ_Exit_Info_Mutex_" ascii //weight: 2
+        $x_2_4 = "5B3838F5-0C81-46D9-A4C0-6EA28CA3E942" ascii //weight: 2
+        $x_1_5 = "{E29FFD8F-0283-4772-834A-39F840A38C3E}" ascii //weight: 1
+        $x_1_6 = "OX4\\exlkiller.bat" ascii //weight: 1
+        $x_1_7 = "rd /s /q %windir%\\Temp & md %windir%\\Temp" ascii //weight: 1
+        $x_1_8 = "api=JUqYrgp|H370JWlhZKHiejE2lZA|MH171C|MH171C" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
