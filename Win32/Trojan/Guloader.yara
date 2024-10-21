@@ -4359,3 +4359,28 @@ rule Trojan_Win32_Guloader_SLB_2147924086_1
         (all of ($x*))
 }
 
+rule Trojan_Win32_Guloader_SLC_2147924280_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Guloader.SLC!MTB"
+        threat_id = "2147924280"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Guloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "discourteously.gam" ascii //weight: 1
+        $x_1_2 = "psychograph.rut" ascii //weight: 1
+        $x_1_3 = "strudsfjerenes.uns" ascii //weight: 1
+        $x_1_4 = "elia geomorfologi" ascii //weight: 1
+        $x_1_5 = "illustrator obstinateness nonfealties" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

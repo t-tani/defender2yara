@@ -105641,3 +105641,68 @@ rule Trojan_MSIL_AgentTesla_SIU_2147924087_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AgentTesla_RVGU01_2147924271_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.RVGU01!MTB"
+        threat_id = "2147924271"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "7822083e-8a04-4b77-8e23-cf6478ea2409" ascii //weight: 1
+        $x_1_2 = "MenuTry" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_AgentTesla_RVHR01_2147924272_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.RVHR01!MTB"
+        threat_id = "2147924272"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {11 0a 11 0e 59 20 00 02 00 00 58 20 00 01 00 00 5d 20 00 04 00 00 58 20 00 02 00 00 5d 20 00 01 00 00 59 20 00 04 00 00 58 20 ff 00 00 00 5f 20 ff 00 00 00 5f}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_AgentTesla_ADK_2147924275_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.ADK!MTB"
+        threat_id = "2147924275"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {03 19 8d 5b 00 00 01 25 16 12 02 28 72 00 00 0a 9c 25 17 12 02 28 73 00 00 0a 9c 25 18 12 02 28 74 00 00 0a 9c}  //weight: 2, accuracy: High
+        $x_2_2 = "ResumesApp.Properties.Resources.resources" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

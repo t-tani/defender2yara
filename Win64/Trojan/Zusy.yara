@@ -893,3 +893,28 @@ rule Trojan_Win64_Zusy_GZH_2147923365_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Zusy_AMS_2147924245_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Zusy.AMS!MTB"
+        threat_id = "2147924245"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_4_1 = "StealerDLL\\x64\\Release\\STEALERDLL.pdb" ascii //weight: 4
+        $x_2_2 = "Monero\\wallets" ascii //weight: 2
+        $x_2_3 = "Thunderbird\\Profiles" ascii //weight: 2
+        $x_1_4 = "9375CFF0413111d3B88A00104B2A6676" ascii //weight: 1
+        $x_1_5 = "netsh wlan show profiles" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

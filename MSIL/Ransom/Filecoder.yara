@@ -3291,3 +3291,28 @@ rule Ransom_MSIL_Filecoder_PAFT_2147922993_0
         (all of ($x*))
 }
 
+rule Ransom_MSIL_Filecoder_PAP_2147924246_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:MSIL/Filecoder.PAP!MTB"
+        threat_id = "2147924246"
+        type = "Ransom"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Filecoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_4_1 = "infected by Cryptic" wide //weight: 4
+        $x_2_2 = "Successfully encrypted" wide //weight: 2
+        $x_2_3 = "Enter password to decrypt the files" wide //weight: 2
+        $x_1_4 = "CreateEncryptor" ascii //weight: 1
+        $x_1_5 = "\\Downloads" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

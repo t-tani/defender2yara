@@ -1856,3 +1856,31 @@ rule Trojan_Win32_Neoreblamy_ASX_2147923792_0
         (4 of ($x*))
 }
 
+rule Trojan_Win32_Neoreblamy_ASY_2147924284_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Neoreblamy.ASY!MTB"
+        threat_id = "2147924284"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Neoreblamy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "TJCbwKupkuXuJaPjqARIozueCKLkKT" ascii //weight: 1
+        $x_1_2 = "isbtRBHtdIxLEfBpFpnNfanAJKdIcRyIwA" ascii //weight: 1
+        $x_1_3 = "GvEEhyyewRtcwkeRgZfUcpfUA" ascii //weight: 1
+        $x_1_4 = "xpBwtAIYgiJjBrQppcDkdAdhqTdnxn" ascii //weight: 1
+        $x_1_5 = "nnHQUqeDJNaFyRZfvPuqgCoYyDvU" ascii //weight: 1
+        $x_1_6 = "MWxPrcEOWUwAuUMLvzyJyFwBYBznymKLhk" ascii //weight: 1
+        $x_1_7 = "VXJQjflcmwqVSEendGSsqsdtzkUzLCHeAlOEE" ascii //weight: 1
+        $x_1_8 = "vjFMBIUQKFYpydysJqwUrdsPEZXGsfOjKPBLYfdnyjZUIuEyhAx" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (4 of ($x*))
+}
+

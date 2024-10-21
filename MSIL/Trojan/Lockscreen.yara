@@ -67,3 +67,27 @@ rule Trojan_MSIL_Lockscreen_SOP_2147923708_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Lockscreen_PAE_2147924247_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Lockscreen.PAE!MTB"
+        threat_id = "2147924247"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Lockscreen"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "Jenit_s_Screen_Locker" ascii //weight: 2
+        $x_2_2 = "https://pastebin.com/raw/v4ZN7mmj" wide //weight: 2
+        $x_1_3 = "infected with Trojan-type spyware" wide //weight: 1
+        $x_1_4 = "Microsoft\\Windows\\Start Menu\\Programs\\Startup" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

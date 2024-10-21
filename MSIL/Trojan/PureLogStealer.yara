@@ -2030,3 +2030,47 @@ rule Trojan_MSIL_PureLogStealer_ACBA_2147924100_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_PureLogStealer_SZZB_2147924276_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/PureLogStealer.SZZB!MTB"
+        threat_id = "2147924276"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "PureLogStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {07 1f 10 8d 1a 00 00 01 25 d0 50 00 00 04 28 ?? 00 00 0a 6f ?? 00 00 0a 06 07 6f ?? 00 00 0a 17 73 57 00 00 0a 25 02 16 02 8e 69 6f ?? 00 00 0a 6f}  //weight: 3, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_PureLogStealer_AGBA_2147924285_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/PureLogStealer.AGBA!MTB"
+        threat_id = "2147924285"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "PureLogStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {0a 0b 73 0b 00 00 0a 0c 08 06 07 6f ?? 00 00 0a 0d 73 0d 00 00 0a 13 04 11 04 09 17 73 0e 00 00 0a 13 05 11 05 7e 02 00 00 04 16 7e 02 00 00 04 8e 69 6f ?? 00 00 0a 11 04 6f ?? 00 00 0a 80 02 00 00 04 de 18}  //weight: 3, accuracy: Low
+        $x_1_2 = "FromBase64String" ascii //weight: 1
+        $x_1_3 = "CreateDecryptor" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -3019,3 +3019,24 @@ rule Trojan_MSIL_Nanocore_AMA_2147921784_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Nanocore_ZPAA_2147924274_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Nanocore.ZPAA!MTB"
+        threat_id = "2147924274"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Nanocore"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {08 18 5b 1f 10 59 0d 06 09 03 08 18 6f ?? 00 00 0a 1f 10 28 ?? 00 00 0a 25 26 07 09 07 8e 69 5d 91 61 d2 9c 08 18 58 0c 08 03 6f ?? 00 00 0a 32 b2}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
