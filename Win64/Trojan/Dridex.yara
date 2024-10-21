@@ -2843,25 +2843,3 @@ rule Trojan_Win64_Dridex_ASFS_2147906242_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_Dridex_ADR_2147924205_0
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "Trojan:Win64/Dridex.ADR!MTB"
-        threat_id = "2147924205"
-        type = "Trojan"
-        platform = "Win64: Windows 64-bit platform"
-        family = "Dridex"
-        severity = "Critical"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "3"
-        strings_accuracy = "Low"
-    strings:
-        $x_1_1 = {48 29 d1 66 44 8b 44 24 ?? 66 45 21 c0 66 44 89 84 24 ?? ?? ?? ?? 48 8b 94 24 ?? ?? ?? ?? 66 44 8b 44 24 ?? 66 41 83 f0 ff 66 44 89 84 24 ?? ?? ?? ?? 4c 8b 4c 24}  //weight: 1, accuracy: Low
-        $x_2_2 = {44 29 c2 44 8b 4c 24 28 89 54 24 3c 44 8a 54 24 39 66 44 8b 5c 24 22 66 44 89 5c 24 3a 41 80 f2 28 c6 44 24 4f 18 8a 5c 24 39 48 8b 44 24 18 48 83 f0 ff}  //weight: 2, accuracy: High
-    condition:
-        (filesize < 20MB) and
-        (all of ($x*))
-}
-
