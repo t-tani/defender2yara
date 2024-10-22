@@ -1528,6 +1528,35 @@ rule Trojan_Win32_AutoitInject_RH_2147901485_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_AutoitInject_AMB_2147902382_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.AMB!MTB"
+        threat_id = "2147902382"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {44 00 6c 00 6c 00 43 00 61 00 6c 00 6c 00 28 00 [0-20] 28 00 22 00 22 00 6b 00 73 00 35 00 35 00 73 00 63 00 65 00 73 00 35 00 35 00 73 00 63 00 72 00 73 00 35 00 35 00 73 00 63 00 6e 00 73 00 35 00 35 00 73 00 63 00 65 00 73 00 35 00 35 00 73 00 63 00 6c 00 73 00 35 00 35 00 73 00 63 00 33 00 73 00 35 00 35 00 73 00 63 00 32 00 73 00 35 00 35 00 73 00 63 00 2e 00 73 00 35 00 35 00 73 00 63 00 64 00 73 00 35 00 35 00 73 00 63 00 6c 00 73 00 35 00 35 00 73 00 63 00 6c 00 73 00 35 00 35 00 73 00 63 00 22 00 22 00 29 00 2c 00 20 00 00 28 00 22 00 22 00}  //weight: 2, accuracy: Low
+        $x_2_2 = {44 6c 6c 43 61 6c 6c 28 [0-20] 28 22 22 6b 73 35 35 73 63 65 73 35 35 73 63 72 73 35 35 73 63 6e 73 35 35 73 63 65 73 35 35 73 63 6c 73 35 35 73 63 33 73 35 35 73 63 32 73 35 35 73 63 2e 73 35 35 73 63 64 73 35 35 73 63 6c 73 35 35 73 63 6c 73 35 35 73 63 22 22 29 2c 20 00 28 22 22}  //weight: 2, accuracy: Low
+        $x_1_3 = "us55scss55sces55scrs55sc3s55sc2s55sc" ascii //weight: 1
+        $x_1_4 = "\"s55sc\" , \"\"" ascii //weight: 1
+        $x_1_5 = "@TEMPDIR" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_2_*) and 3 of ($x_1_*))) or
+            ((2 of ($x_2_*) and 1 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+
 rule Trojan_Win32_AutoitInject_KAA_2147902504_0
 {
     meta:
@@ -3223,5 +3252,30 @@ rule Trojan_Win32_AutoitInject_SOV_2147924060_0
     condition:
         (filesize < 20MB) and
         (5 of ($x*))
+}
+
+rule Trojan_Win32_AutoitInject_NS_2147924411_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.NS!MTB"
+        threat_id = "2147924411"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = "EXECUTE ( \"FileOpen(@TempDir &" ascii //weight: 3
+        $x_1_2 = "EXECUTE ( \"DllStructCreate(" ascii //weight: 1
+        $x_1_3 = "&= STRINGMID" ascii //weight: 1
+        $x_1_4 = "ks55sces55scrs55scns55sces55scls55sc3s55sc2s55sc" ascii //weight: 1
+        $x_1_5 = "Cs55scas55scls55scls55scWs55scis55scns55scds55scos55scws55scPs55scrs55scos55sccs55sc" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
 }
 

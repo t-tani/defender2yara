@@ -1480,3 +1480,25 @@ rule Worm_Win32_Vobfus_HNS_2147905903_0
         (all of ($x*))
 }
 
+rule Worm_Win32_Vobfus_G_2147924426_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Worm:Win32/Vobfus.G!MTB"
+        threat_id = "2147924426"
+        type = "Worm"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Vobfus"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = {02 00 32 08 00 28 ff 24 ff 20 ff 1c ff 1a e8 fe 00}  //weight: 10, accuracy: High
+        $x_1_2 = "Virus asli buatan Ambon Manise-Maluku" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
