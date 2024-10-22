@@ -42,3 +42,27 @@ rule Trojan_Win64_ZLoader_F_2147912096_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_ZLoader_DA_2147924369_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/ZLoader.DA!MTB"
+        threat_id = "2147924369"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "ZLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "EXCEPTION: Code=0x%08X" ascii //weight: 1
+        $x_1_2 = "rax=0x%p, rbx=0x%p, rdx=0x%p, rcx=0x%p, rsi=0x%p, rdi=0x%p, rbp=0x%p, rsp=0x%p, rip=0x%p" ascii //weight: 1
+        $x_1_3 = "[-] Request limit reached." ascii //weight: 1
+        $x_1_4 = "{INJECTDATA}" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -52,3 +52,24 @@ rule Trojan_Win32_KillFiles_RP_2147906276_0
         )
 }
 
+rule Trojan_Win32_KillFiles_CCIN_2147924340_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/KillFiles.CCIN!MTB"
+        threat_id = "2147924340"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "KillFiles"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {33 d2 8d 0c 3e 8b c6 46 f7 75 f4 8a 82 ?? ?? ?? ?? 8b 55 fc 32 04 0a 88 01 3b f3 7c}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

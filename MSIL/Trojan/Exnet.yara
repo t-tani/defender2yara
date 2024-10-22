@@ -159,3 +159,24 @@ rule Trojan_MSIL_Exnet_PSED_2147899360_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Exnet_KAA_2147924317_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Exnet.KAA!MTB"
+        threat_id = "2147924317"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Exnet"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {06 08 02 07 17 28 ?? 00 00 0a 28 ?? 00 00 0a 61 28 ?? 00 00 0a 28 ?? 00 00 0a 28 ?? 00 00 0a 0a 07 17 58 b5 0b 07 09}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

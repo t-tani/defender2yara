@@ -5834,3 +5834,24 @@ rule Trojan_Win32_Smokeloader_ZAT_2147924091_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Smokeloader_KAH_2147924325_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Smokeloader.KAH!MTB"
+        threat_id = "2147924325"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Smokeloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {74 06 75 04 a9 ?? ?? ?? ?? 30 75 ?? 74 03 f7 be ?? ?? ?? ?? 84 29 c0 eb}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

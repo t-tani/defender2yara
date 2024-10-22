@@ -9172,3 +9172,24 @@ rule Trojan_Win32_Zenpak_AZN_2147924072_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Zenpak_PNFH_2147924330_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zenpak.PNFH!MTB"
+        threat_id = "2147924330"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zenpak"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {89 e5 8a 45 0c 8a 4d 08 8b 15 ?? ?? ?? ?? 81 c2 ?? ?? ?? ?? 89 15 ?? ?? ?? ?? 88 c4 02 25 ?? ?? ?? ?? 88 25 ?? ?? ?? ?? 88 0d ?? ?? ?? ?? a2 ?? ?? ?? ?? 0f b6 c4}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -151,3 +151,30 @@ rule Trojan_Win64_ShellcodeInject_OLE_2147921716_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_ShellcodeInject_DA_2147924362_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/ShellcodeInject.DA!MTB"
+        threat_id = "2147924362"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "ShellcodeInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {0f b6 04 0b 40 30 f0 41 88 04 ?? 0f b6 44 0b 01 40 30 f0 41 88 44 ?? 01 0f b6 44 0b 02 40 30 f0 41 88 44 ?? 02 0f b6 44 0b 03 40 30 f0 41 88 44 ?? 03 48 83 c1 04 ?? 39 ?? 75}  //weight: 10, accuracy: Low
+        $x_10_2 = {41 0f b6 04 ?? 40 30 f0 41 88 04 ?? 41 0f b6 44 ?? 01 40 30 f0 41 88 44 ?? 01 41 0f b6 44 ?? 02 40 30 f0 41 88 44 ?? 02 41 0f b6 44 ?? 03 40 30 f0 41 88 44 ?? 03 48 83 c1 04 ?? 39 ?? 75}  //weight: 10, accuracy: Low
+        $x_1_3 = "shellcode.pdb" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_10_*) and 1 of ($x_1_*))) or
+            ((2 of ($x_10_*))) or
+            (all of ($x*))
+        )
+}
+

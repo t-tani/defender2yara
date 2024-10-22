@@ -313,3 +313,27 @@ rule TrojanDownloader_Win64_Rugmi_HNV_2147924299_0
         (all of ($x*))
 }
 
+rule TrojanDownloader_Win64_Rugmi_DA_2147924363_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:Win64/Rugmi.DA!MTB"
+        threat_id = "2147924363"
+        type = "TrojanDownloader"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Rugmi"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {48 63 44 24 24 48 8b 4c 24 40 0f b7 0c 41 e8 ?? ?? ?? ?? 66 89 44 24 20 69 44 24 28 3f 00 01 00 0f b7 4c 24 20 03 c1 89 44 24 28 eb}  //weight: 1, accuracy: Low
+        $x_1_2 = {0f b7 00 0f b7 c0 89 c1 e8 ?? ?? ?? ?? 66 89 45 f2 8b 45 fc 69 d0 3f 00 01 00 0f b7 45 f2 01 d0 89 45 fc 83 45 f8 01 eb}  //weight: 1, accuracy: Low
+        $x_1_3 = {41 0f b7 08 8d 41 bf 66 83 f8 19 77 ?? 66 83 c1 20 45 69 c9 3f 00 01 00 49 83 c0 02 0f b7 d1 44 03 ca 49 83 ea 01 75}  //weight: 1, accuracy: Low
+        $x_1_4 = {0f b7 02 8d 48 bf 66 83 f9 19 77 ?? 66 83 c0 20 45 69 c0 3f 00 01 00 48 83 c2 02 0f b7 c8 44 03 c1 49 83 e9 01 75}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (1 of ($x*))
+}
+

@@ -20,3 +20,24 @@ rule Backdoor_MSIL_Havoc_KA_2147892128_0
         (all of ($x*))
 }
 
+rule Backdoor_MSIL_Havoc_KAB_2147924320_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Backdoor:MSIL/Havoc.KAB!MTB"
+        threat_id = "2147924320"
+        type = "Backdoor"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Havoc"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {7e 04 00 00 0a 7e 01 00 00 04 8e 69 28 05 00 00 0a 20 00 10 00 00 1f 40 28 01 00 00 06 0a 7e 01 00 00 04 16 06 7e 01 00 00 04 8e 69}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -5826,3 +5826,24 @@ rule Trojan_MSIL_Heracles_ZSAA_2147923740_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Heracles_KAAB_2147924328_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Heracles.KAAB!MTB"
+        threat_id = "2147924328"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Heracles"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {11 18 11 09 11 27 11 22 61 19 11 1c 58 61 11 2a 61 d2 9c}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

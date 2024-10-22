@@ -2215,3 +2215,28 @@ rule Trojan_MSIL_Zusy_HNJ_2147923663_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Zusy_CCJC_2147924339_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Zusy.CCJC!MTB"
+        threat_id = "2147924339"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "13"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = "InfectAD" ascii //weight: 5
+        $x_5_2 = "InfectOutlook" ascii //weight: 5
+        $x_1_3 = "You can kill a people, but you can't kill an idea. Resistance will continue until the final liberation of all Palestinian lands, and it is only a matter of time." ascii //weight: 1
+        $x_1_4 = "KG9iamVjdENsYXNzPWNvbXB1dGVyKQ==" ascii //weight: 1
+        $x_1_5 = "TWljcm9zb2Z0RWRnZVVwZGF0ZVRhc2tNYWNoaW5lc1VB" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

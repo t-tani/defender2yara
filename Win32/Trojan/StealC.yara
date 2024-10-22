@@ -2935,3 +2935,25 @@ rule Trojan_Win32_StealC_KYI_2147924045_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_StealC_KAK_2147924321_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/StealC.KAK!MTB"
+        threat_id = "2147924321"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "StealC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {01 f3 81 c3 ac 4e 6e 7d 31 03 8b 1c 24 83 c4 04 51}  //weight: 1, accuracy: High
+        $x_1_2 = {51 50 c7 04 24 00 00 00 00 59 01 f1 31 01 59 50 53}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (1 of ($x*))
+}
+

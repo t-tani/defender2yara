@@ -620,3 +620,26 @@ rule Backdoor_Win32_Tofsee_AMAF_2147901103_0
         (all of ($x*))
 }
 
+rule Backdoor_Win32_Tofsee_KAD_2147924323_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Backdoor:Win32/Tofsee.KAD!MTB"
+        threat_id = "2147924323"
+        type = "Backdoor"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Tofsee"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "12"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = {14 83 f8 01 75 01 cc 83 7d ac 00 75 40 e8 5e 9e fe ff c7 00 16 00 00 00 6a 00 68 eb}  //weight: 3, accuracy: High
+        $x_4_2 = {01 cc 83 7d b0 00 75 40 e8 d3 9e fe ff c7 00 16 00 00 00 6a 00 68 ea 01 00 00 68 30 42 41}  //weight: 4, accuracy: High
+        $x_5_3 = {7d fc 00 74 21 8b 55 18 f7 da 1a d2 80 e2 e0 80 c2 70 8b 45 fc 88 10 8b 4d fc 83 c1}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
