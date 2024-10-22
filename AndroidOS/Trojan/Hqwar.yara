@@ -67,3 +67,25 @@ rule Trojan_AndroidOS_Hqwar_K_2147923685_0
         (all of ($x*))
 }
 
+rule Trojan_AndroidOS_Hqwar_L_2147924406_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:AndroidOS/Hqwar.L!MTB"
+        threat_id = "2147924406"
+        type = "Trojan"
+        platform = "AndroidOS: Android operating system"
+        family = "Hqwar"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = "com/mem/installdropsession" ascii //weight: 1
+        $x_1_2 = {05 00 0c 05 6e 10 ?? 02 05 00 0c 05 22 00 ?? ?? 12 11 70 20 ?? 02 10 00 6e 20 ?? 02 05 00 0a 00 6e 20 ?? 02 05 00 0c 04}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

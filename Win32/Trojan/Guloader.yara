@@ -4384,3 +4384,29 @@ rule Trojan_Win32_Guloader_SLC_2147924280_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Guloader_CCJC_2147924388_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Guloader.CCJC!MTB"
+        threat_id = "2147924388"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Guloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "europakontoret.Gal" ascii //weight: 1
+        $x_1_2 = "Slubbering.voc" ascii //weight: 1
+        $x_1_3 = "Emneomraader.beb" ascii //weight: 1
+        $x_1_4 = "Generation.txt" ascii //weight: 1
+        $x_1_5 = "cuttlefish.kic" ascii //weight: 1
+        $x_5_6 = "skosvrten.dll" ascii //weight: 5
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
