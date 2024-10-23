@@ -281,6 +281,30 @@ rule Trojan_MSIL_Jalapeno_NJ_2147917953_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Jalapeno_NJ_2147917953_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Jalapeno.NJ!MTB"
+        threat_id = "2147917953"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Jalapeno"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = {73 a3 00 00 0a 0a 28 e3 01 00 06 0b 07 1f 20 8d 58 00 00 01 25 d0 6a 02 00 04 28 8b 00 00 0a 6f c8 00 00 0a 07 1f 10 8d 58 00 00 01 25 d0 6c 02 00 04 28 8b 00 00 0a 6f c9 00 00 0a}  //weight: 3, accuracy: High
+        $x_2_2 = {6f ca 00 00 0a 17 73 a4 00 00 0a 25 02 16 02 8e 69 6f a5 00 00 0a 6f a8 00 00 0a 06 6f a7 00 00 0a}  //weight: 2, accuracy: High
+        $x_1_3 = "set_ClientCredential" ascii //weight: 1
+        $x_1_4 = "WindowsApplication11.pdb" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_Jalapeno_TMAA_2147917980_0
 {
     meta:
@@ -809,5 +833,28 @@ rule Trojan_MSIL_Jalapeno_ARAX_2147924449_0
     condition:
         (filesize < 20MB) and
         (1 of ($x*))
+}
+
+rule Trojan_MSIL_Jalapeno_NK_2147924509_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Jalapeno.NK!MTB"
+        threat_id = "2147924509"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Jalapeno"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = {28 21 00 00 0a 13 09 11 09 28 03 00 00 06 11 09 14 fe 06 09 00 00 06 73 29 00 00 0a 28 08 00 00 06}  //weight: 3, accuracy: High
+        $x_1_2 = "AfhostRandomFolder" ascii //weight: 1
+        $x_1_3 = "MicrosoftEdge.Properties.Resources.resources" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
 }
 
