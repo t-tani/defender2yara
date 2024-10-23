@@ -192,3 +192,24 @@ rule Trojan_MSIL_Cobaltstrike_PTIQ_2147902886_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Cobaltstrike_AFR_2147924450_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Cobaltstrike.AFR!MTB"
+        threat_id = "2147924450"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Cobaltstrike"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {16 fe 01 0a 06 2c 0e 00 72 e3 00 00 70 28 26 00 00 0a 0b 2b 0d 72 fd 00 00 70 28 26 00 00 0a 0b}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

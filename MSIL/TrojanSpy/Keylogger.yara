@@ -1043,3 +1043,26 @@ rule TrojanSpy_MSIL_Keylogger_HNA_2147908589_0
         (all of ($x*))
 }
 
+rule TrojanSpy_MSIL_Keylogger_SSD_2147924469_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanSpy:MSIL/Keylogger.SSD!MTB"
+        threat_id = "2147924469"
+        type = "TrojanSpy"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Keylogger"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "PinloggerHelpers" ascii //weight: 1
+        $x_1_2 = "Galaxy Logger V3 Stolen Passes" wide //weight: 1
+        $x_1_3 = "/c ping -n 3 127.0.0.1 > nul & del" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

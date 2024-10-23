@@ -336,3 +336,33 @@ rule Trojan_Win32_Autoitinject_SPHJ_2147924214_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Autoitinject_PNHH_2147924470_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Autoitinject.PNHH!MTB"
+        threat_id = "2147924470"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Autoitinject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {22 00 44 00 6c 00 22 00 20 00 26 00 20 00 22 00 6c 00 43 00 61 00 6c 00 6c 00 28 00 [0-20] 28 00 22 00 22 00 6c 00 66 00 73 00 6f 00 66 00 6d 00 34 00 33 00 22 00 22 00 29 00 2c 00 20 00 00 28 00 22 00 22 00 71 00 75 00 73 00 22 00 22 00 29 00}  //weight: 2, accuracy: Low
+        $x_2_2 = {22 44 6c 22 20 26 20 22 6c 43 61 6c 6c 28 [0-20] 28 22 22 6c 66 73 6f 66 6d 34 33 22 22 29 2c 20 00 28 22 22 71 75 73 22 22 29}  //weight: 2, accuracy: Low
+        $x_2_3 = {22 00 44 00 6c 00 6c 00 53 00 74 00 72 00 75 00 63 00 22 00 20 00 26 00 20 00 22 00 74 00 43 00 72 00 65 00 61 00 74 00 65 00 28 00 [0-20] 28 00 22 00 22 00 63 00 7a 00 75 00 66 00 21 00 5c 00 22 00 22 00 29 00 20 00 26 00 20 00 42 00 69 00 6e 00 61 00 72 00 22 00 20 00 26 00 20 00 22 00 79 00 4c 00 65 00 6e 00}  //weight: 2, accuracy: Low
+        $x_2_4 = {22 44 6c 6c 53 74 72 75 63 22 20 26 20 22 74 43 72 65 61 74 65 28 [0-20] 28 22 22 63 7a 75 66 21 5c 22 22 29 20 26 20 42 69 6e 61 72 22 20 26 20 22 79 4c 65 6e}  //weight: 2, accuracy: Low
+        $x_1_5 = {26 00 3d 00 20 00 43 00 48 00 52 00 20 00 28 00 20 00 24 00 [0-20] 20 00 2d 00 20 00 28 00 20 00 31 00 20 00 5e 00 20 00 24 00 [0-20] 20 00 29 00 20 00 29 00}  //weight: 1, accuracy: Low
+        $x_1_6 = {26 3d 20 43 48 52 20 28 20 24 [0-20] 20 2d 20 28 20 31 20 5e 20 24 [0-20] 20 29 20 29}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (
+            ((2 of ($x_2_*) and 1 of ($x_1_*))) or
+            ((3 of ($x_2_*))) or
+            (all of ($x*))
+        )
+}
+

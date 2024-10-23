@@ -789,3 +789,25 @@ rule Trojan_MSIL_Jalapeno_ADBA_2147924124_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Jalapeno_ARAX_2147924449_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Jalapeno.ARAX!MTB"
+        threat_id = "2147924449"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Jalapeno"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {07 11 18 07 11 18 93 66 d1 9d 11 18 17 58 13 18 11 18 07 8e 69 32 e9}  //weight: 2, accuracy: High
+        $x_2_2 = {07 11 12 07 11 12 93 66 d1 9d 11 12 17 58 13 12 11 12 07 8e 69 32 e9}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (1 of ($x*))
+}
+

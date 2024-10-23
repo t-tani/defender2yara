@@ -841,3 +841,24 @@ rule Trojan_Win32_Cobaltstrike_HI_2147907429_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Cobaltstrike_AJS_2147924457_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Cobaltstrike.AJS!MTB"
+        threat_id = "2147924457"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Cobaltstrike"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {0f b6 c9 03 ca 81 e1 ff 00 00 80 79 08 49 81 c9 00 ff ff ff 41 0f b6 4c 0c 0c 30 0c 28}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -7361,3 +7361,24 @@ rule Trojan_MSIL_Formbook_PNEH_2147924300_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Formbook_RDAX_2147924458_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Formbook.RDAX!MTB"
+        threat_id = "2147924458"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Formbook"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {07 02 6f 18 00 00 0a 16 02 6f 1a 00 00 0a 6f 1b 00 00 0a 28 05 00 00 2b 0c}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

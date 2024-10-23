@@ -2215,3 +2215,30 @@ rule Trojan_Win32_LummaStealer_YAD_2147923871_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_LummaStealer_RPA_2147924468_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaStealer.RPA!MTB"
+        threat_id = "2147924468"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "124"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {6d 61 69 6e 2e ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 2e 64 65 66 65 72 77 72 61 70 32}  //weight: 10, accuracy: Low
+        $x_1_2 = {6d 61 69 6e 2e ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 2e 64 65 66 65 72 77 72 61 70 31}  //weight: 1, accuracy: Low
+        $x_1_3 = {6d 61 69 6e 2e ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 2e 66 75 6e 63 31}  //weight: 1, accuracy: Low
+        $x_1_4 = {6d 61 69 6e 2e ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 2e 66 75 6e 63 32}  //weight: 1, accuracy: Low
+        $x_1_5 = {6d 61 69 6e 2e ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 2e 66 75 6e 63 33}  //weight: 1, accuracy: Low
+        $x_10_6 = {6d 61 69 6e 2e ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 2e 66 75 6e 63 34}  //weight: 10, accuracy: Low
+        $x_100_7 = {6d 61 69 6e 2e ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 2e 66 75 6e 63 31 2e 50 72 69 6e 74 2e 31}  //weight: 100, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

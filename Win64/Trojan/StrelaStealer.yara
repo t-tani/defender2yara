@@ -1066,3 +1066,26 @@ rule Trojan_Win64_StrelaStealer_GPAN_2147916981_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_StrelaStealer_GPX_2147924451_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/StrelaStealer.GPX!MTB"
+        threat_id = "2147924451"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "StrelaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {41 b8 00 30 00 00 41 b9 40 00 00 00 31 c9 ff d0 48 89 44 24}  //weight: 2, accuracy: High
+        $x_5_2 = {4c 01 e8 48 05 04 04 00 00 48 89}  //weight: 5, accuracy: High
+        $x_1_3 = {45 6e 74 72 79 00}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -508,3 +508,24 @@ rule Trojan_Win32_SystemBC_CCIM_2147923822_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_SystemBC_AJS_2147924466_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/SystemBC.AJS!MTB"
+        threat_id = "2147924466"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "SystemBC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {83 7d e4 0f 8d 4d d0 8b c2 0f 47 4d d0 83 e0 0f 8a 80 b8 5a 68 00 32 04 11 88 04 3a 42 8b 4d e0 3b d1}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

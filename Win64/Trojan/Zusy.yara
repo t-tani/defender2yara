@@ -918,3 +918,29 @@ rule Trojan_Win64_Zusy_AMS_2147924245_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Zusy_AMS_2147924245_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Zusy.AMS!MTB"
+        threat_id = "2147924245"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = "xSYEfJuEfwHwFm8ccglYY4fxpXYJTpqTqT3Rvr1W5640aab2" ascii //weight: 3
+        $x_3_2 = "\\Users\\Public\\webdata\\info.dat" ascii //weight: 3
+        $x_1_3 = "WebSvc ... RegisterMachine w_sUUID" ascii //weight: 1
+        $x_1_4 = "/C taskkill /IM %s /F" ascii //weight: 1
+        $x_1_5 = "\\Google\\Chrome\\Application\\chrome.exe\" --restore-last-session" ascii //weight: 1
+        $x_1_6 = "dash.zintrack.com" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

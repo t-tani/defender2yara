@@ -3279,3 +3279,26 @@ rule Trojan_Win32_AutoitInject_NS_2147924411_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_AutoitInject_ALBA_2147924447_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.ALBA!MTB"
+        threat_id = "2147924447"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = "SHELLEXECUTE ( @WORKINGDIR & \"\\vxQSYfert\\qWRpviqXj.exe\" )" ascii //weight: 3
+        $x_2_2 = "SHELLEXECUTE ( @WORKINGDIR & \"\\vxQSYfert\\MADUSANKA VIDEO MUSIC &" ascii //weight: 2
+        $x_2_3 = "MOBILE CENTER @ (PADIYAPELELLA ) SINHALA NEW  SONG & 076-877 25 32- 072 877 25 32" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
