@@ -456,3 +456,27 @@ rule Backdoor_MSIL_WebShell_AO_2147911769_0
         )
 }
 
+rule Backdoor_MSIL_WebShell_ASQ_2147924498_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Backdoor:MSIL/WebShell.ASQ!MTB"
+        threat_id = "2147924498"
+        type = "Backdoor"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "WebShell"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {0a 16 0b 38 ?? 00 00 00 00 02 1d 8d ?? 00 00 01 13 05 11 05 16 72 ?? ?? 00 70 a2 11 05 17 02 06 07 9a 28 ?? 00 00 06 a2 11 05 18 72 ?? ?? 00 70 a2 11 05 19 07 8c ?? 00 00 01 a2 11 05 1a 72 ?? ?? 00 70 a2 11 05 1b 06 07 9a a2 11 05 1c}  //weight: 2, accuracy: Low
+        $x_1_2 = "Clear All Thread ...." wide //weight: 1
+        $x_1_3 = "8f34b0861bce1e0536a2a3d33c7a0f39" wide //weight: 1
+        $x_1_4 = "Process Kill Success !" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

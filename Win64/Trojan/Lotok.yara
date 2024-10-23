@@ -63,3 +63,29 @@ rule Trojan_Win64_Lotok_RZ_2147912507_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Lotok_DA_2147924483_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Lotok.DA!MTB"
+        threat_id = "2147924483"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Lotok"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "24"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = "Potential sandbox environment detected" ascii //weight: 10
+        $x_1_2 = "Failed to get executable name" ascii //weight: 1
+        $x_10_3 = "MicrosoftEdgeUpdate.exe" ascii //weight: 10
+        $x_1_4 = "Software\\Microsoft\\Windows\\CurrentVersion\\Run" ascii //weight: 1
+        $x_1_5 = "PeLoaderErr" ascii //weight: 1
+        $x_1_6 = "PeParserErr" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
