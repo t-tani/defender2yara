@@ -20,3 +20,25 @@ rule Trojan_Win32_ProxyChanger_D_2147681402_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_ProxyChanger_GNE_2147924651_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ProxyChanger.GNE!MTB"
+        threat_id = "2147924651"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ProxyChanger"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {50 53 51 56 8b 75 ?? 8b 4d ?? c1 e9 ?? 8b 45 ?? 8b 5d ?? 85 c9 ?? ?? 31 06 01 1e 83 c6 ?? 49 eb ?? 5e 59 5b 58 c9 c2 ?? ?? 72 ?? cb 35 9d}  //weight: 5, accuracy: Low
+        $x_5_2 = {e5 ec bb e2 f8 35 f3 42 69 7b cb 41 7f 6b 36 1c 42 47 a3 4f ba 9e f5 8b 29 b5 95 b3 0d 12 e7 31 d2 78 4b ea}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
