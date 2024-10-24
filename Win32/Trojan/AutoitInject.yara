@@ -3331,3 +3331,26 @@ rule Trojan_Win32_AutoitInject_ALBA_2147924447_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_AutoitInject_ASE_2147924635_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.ASE!MTB"
+        threat_id = "2147924635"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {53 00 48 00 45 00 4c 00 4c 00 45 00 58 00 45 00 43 00 55 00 54 00 45 00 20 00 28 00 20 00 40 00 57 00 4f 00 52 00 4b 00 49 00 4e 00 47 00 44 00 49 00 52 00 20 00 26 00 20 00 22 00 5c 00 69 00 79 00 47 00 52 00 44 00 61 00 6e 00 79 00 62 00 [0-64] 2e 00 65 00 78 00 65 00 22 00 20 00 29 00}  //weight: 2, accuracy: Low
+        $x_2_2 = {53 48 45 4c 4c 45 58 45 43 55 54 45 20 28 20 40 57 4f 52 4b 49 4e 47 44 49 52 20 26 20 22 5c 69 79 47 52 44 61 6e 79 62 [0-64] 2e 65 78 65 22 20 29}  //weight: 2, accuracy: Low
+        $x_2_3 = "SHELLEXECUTE ( @WORKINGDIR & \"\\iyGRDanyb\\dYIoaczdR.exe\" )" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (2 of ($x*))
+}
+
