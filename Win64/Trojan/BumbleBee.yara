@@ -1632,6 +1632,27 @@ rule Trojan_Win64_BumbleBee_ZA_2147847159_0
         family = "BumbleBee"
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {89 a0 be a2 b6 7d 46 5d 95 4f 2e d5 ed 95 50 de b6 df dc 05 8a e5 95 cd d5 62 32 ec 19 80 be e8 d7 ba ce 96 38 c7 33 7d 83 4c f1 a5 b9 bb cb b5 35 8d d3 39 15 55 9d 94 c2 86 fb 1f 13 a1 77 28}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_BumbleBee_ZA_2147847159_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/BumbleBee.ZA!MTB"
+        threat_id = "2147847159"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "BumbleBee"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "1"
         strings_accuracy = "Low"
@@ -2225,6 +2246,28 @@ rule Trojan_Win64_BumbleBee_KYI_2147923886_0
         strings_accuracy = "High"
     strings:
         $x_1_1 = {44 0f af 41 54 48 63 4b 74 41 8b d0 c1 ea 10 88 14 01 41 8b d0 ff 43 74 48 63 4b 74 48 8b 05 00 79 18 00 c1 ea 08 88 14 01}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_BumbleBee_ZZ_2147924578_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/BumbleBee.ZZ!MTB"
+        threat_id = "2147924578"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "BumbleBee"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {60 00 10 a3 dc 81 00 10 83 3d d8 81 00 10 00 75 10 68 34 63 00 10 ff 15 34 60 00 10 a3 d8 81 00 10 68 48 63 00 10 8b 15 d8 81 00 10 52 ff 15 1c 60 00 10 a3 04 82 00 10 68 5c 63 00 10 a1 d8 81 00 10 50 ff 15 1c 60 00 10 a3 10 82 00 10 68 6c 63 00 10 8b 0d d8 81 00 10 51 ff 15 1c 60 00 10 a3 08 82 00 10 68 7c 63 00 10 8b 15 d8 81 00 10 52 ff 15 1c 60 00 10 a3 fc 81 00 10 68 88 63 00 10 a1 d8 81 00 10 50 ff 15 1c 60 00 10 a3 18 82 00 10 68 90 63 00 10 8b 0d d8 81 00 10 51}  //weight: 1, accuracy: High
+        $x_1_2 = {ff 15 1c 60 00 10 a3 1c 82 00 10 68 a8 63 00 10 8b 15 d8 81 00 10 52 ff 15 1c 60 00 10 a3 20 82 00 10 68 c0 63 00 10 a1 d8 81 00 10 50 ff 15 1c 60 00 10 a3 24 82 00 10 68 cc 63 00 10 8b 0d dc 81 00 10}  //weight: 1, accuracy: High
     condition:
         (filesize < 20MB) and
         (all of ($x*))

@@ -1863,6 +1863,29 @@ rule Trojan_MSIL_Zusy_NK_2147917445_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {11 00 17 64 13 00 ?? ?? 00 00 00 11 01 11 00 11 04 17 59 5f 59 13 01}  //weight: 2, accuracy: Low
+        $x_2_2 = {11 03 11 07 d2 6e 1e 11 06 5a 1f 3f 5f 62 60 13 03}  //weight: 2, accuracy: High
+        $x_1_3 = "Tyrone.dll" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Zusy_NK_2147917445_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Zusy.NK!MTB"
+        threat_id = "2147917445"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "6"
         strings_accuracy = "High"
     strings:
@@ -2235,6 +2258,30 @@ rule Trojan_MSIL_Zusy_CCJC_2147924339_0
         $x_1_3 = "You can kill a people, but you can't kill an idea. Resistance will continue until the final liberation of all Palestinian lands, and it is only a matter of time." ascii //weight: 1
         $x_1_4 = "KG9iamVjdENsYXNzPWNvbXB1dGVyKQ==" ascii //weight: 1
         $x_1_5 = "TWljcm9zb2Z0RWRnZVVwZGF0ZVRhc2tNYWNoaW5lc1VB" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Zusy_NP_2147924599_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Zusy.NP!MTB"
+        threat_id = "2147924599"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {e0 4a fe 0c 0f 00 fe 0c 0e 00 20 01 00 00 00 59 8f ?? 00 00 01 e0 4a 61 54 fe 0c}  //weight: 2, accuracy: Low
+        $x_1_2 = "DownloadData" ascii //weight: 1
+        $x_1_3 = "payload" ascii //weight: 1
+        $x_1_4 = "RegSetValueEx" ascii //weight: 1
     condition:
         (filesize < 20MB) and
         (all of ($x*))

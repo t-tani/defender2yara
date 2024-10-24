@@ -19,3 +19,26 @@ rule Trojan_Win32_Denes_GHM_2147844542_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Denes_GE_2147924610_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Denes.GE!MTB"
+        threat_id = "2147924610"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Denes"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {48 ff cf 31 79 b6 a2 ?? ?? ?? ?? 18 65 83 49}  //weight: 5, accuracy: Low
+        $x_5_2 = {50 ff b4 24 ?? ?? ?? ?? ff b4 24 ?? ?? ?? ?? ff 74 24 ?? ff 75 00 68 ?? ?? ?? ?? ff 35}  //weight: 5, accuracy: Low
+        $x_1_3 = "\\microsoft\\lsass.exe" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

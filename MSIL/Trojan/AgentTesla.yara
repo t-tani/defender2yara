@@ -103826,6 +103826,29 @@ rule Trojan_MSIL_AgentTesla_SKF_2147910376_0
         family = "AgentTesla"
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {00 02 06 07 28 f0 00 00 06 0c 04 03 6f f6 00 00 0a 59 0d 03 08 09 28 f2 00 00 06 00 03 08 09 28 f4 00 00 06 00 03 04 28 f5 00 00 06 00 00 07 17 58 0b 07 02 6f f7 00 00 0a fe 04 13 04 11 04 2d bf}  //weight: 1, accuracy: High
+        $x_1_2 = "ConBook.Properties.Resources" ascii //weight: 1
+        $x_1_3 = "ConBook.Properties.Resources.resources" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_AgentTesla_SKF_2147910376_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.SKF!MTB"
+        threat_id = "2147910376"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "3"
         strings_accuracy = "High"

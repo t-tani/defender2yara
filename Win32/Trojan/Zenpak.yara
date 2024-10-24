@@ -9193,3 +9193,24 @@ rule Trojan_Win32_Zenpak_PNFH_2147924330_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Zenpak_CCIO_2147924583_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zenpak.CCIO!MTB"
+        threat_id = "2147924583"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zenpak"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {01 d0 48 89 c2 42 8d 05 ?? ?? ?? ?? 01 38 e8 ?? ?? ?? ?? c3 40 8d 05 ?? ?? ?? ?? 89 28 4a ba 09 00 00 00 40 89 d8 50 8f 05 ?? ?? ?? ?? 48 40 89 f0 50 8f 05 ?? ?? ?? ?? b9 02 00 00 00 e2 c1}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

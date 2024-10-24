@@ -359,3 +359,82 @@ rule TrojanDownloader_Win64_Rugmi_HNX_2147924550_0
         (all of ($x*))
 }
 
+rule TrojanDownloader_Win64_Rugmi_HNW_2147924615_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:Win64/Rugmi.HNW!MTB"
+        threat_id = "2147924615"
+        type = "TrojanDownloader"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Rugmi"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {48 8d 6c 24 20 48 89 4d ?? 48 89 55 ?? ?? [0-5] 45 00 48 89 45 08 (8b|48 8b) 45 ?? (89|48 89) 45 [0-4] ff ff ff ff (03|48 03) 45 06 (89|48 89) 45 06 (8b|48 8b) 45 [0-2] 85 c0 [0-13] 48 8b [0-8] 88 [0-15] b8 01 00 00 00 48 03 45 ?? 48 89 45 12 eb}  //weight: 3, accuracy: Low
+        $x_3_2 = {48 8d 6c 24 20 48 89 4d ?? 48 89 55 ?? ?? [0-5] 45 00 48 89 45 10 (8b|48 8b) 45 ?? 48 (89|48 89) 45 [0-4] 6a ff 58 (03|48 03) 45 06 48 (89|48 89) 45 06 (8b|48 8b) 45 [0-2] 85 c0 [0-13] 48 8b [0-8] 88 [0-4] 6a 01 [0-15] 48 03 45 ?? 48 89 45 13 eb}  //weight: 3, accuracy: Low
+        $x_1_3 = {48 6b c0 02 48 03 45 20 0f b7 00 0f b7 c0 85 c0}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_3_*) and 1 of ($x_1_*))) or
+            ((2 of ($x_3_*))) or
+            (all of ($x*))
+        )
+}
+
+rule TrojanDownloader_Win64_Rugmi_HNAA_2147924616_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:Win64/Rugmi.HNAA!MTB"
+        threat_id = "2147924616"
+        type = "TrojanDownloader"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Rugmi"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {48 89 5c 24 08 48 89 6c 24 10 48 89 74 24 18 57 41 56 41 57 [0-64] 48 63 c7 49 8b cf 48 69 f0 8a 00 00 00}  //weight: 5, accuracy: Low
+        $x_5_2 = {48 89 5c 24 08 48 89 6c 24 10 48 89 74 24 18 57 41 56 41 57 [0-64] 4c 8b 44 24 60 49 8b cf 48 63 c3 48 69 d0 8a 00 00 00 48 03 d6 e8}  //weight: 5, accuracy: Low
+        $x_5_3 = {48 63 41 3c 4d 8b f8 44 8b e2 48 8b f9 44 8b 8c 08 88 00 00 00 41 8b 74 09 20 45 8b 74 09 1c 48 03 f1 41 8b 6c 09 24 4c 03 f1 48 03 e9 8b 1e 48 03 d9}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (1 of ($x*))
+}
+
+rule TrojanDownloader_Win64_Rugmi_HNAB_2147924617_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:Win64/Rugmi.HNAB!MTB"
+        threat_id = "2147924617"
+        type = "TrojanDownloader"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Rugmi"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {48 8b 44 24 10 8a 00 48 8b 4c 24 08 88 01 48 8b 44 24 08 48 83 c0 01 48 89 44 24 08 48 8b 44 24 10 48 83 c0 01 48 89 44 24 10}  //weight: 5, accuracy: High
+        $x_5_2 = {44 0f b6 4c 14 0c 44 30 09}  //weight: 5, accuracy: High
+        $x_5_3 = {89 c2 48 83 c1 01 44 0f b6 4c ?? ?? ?? ?? ?? 83 c0 01 83}  //weight: 5, accuracy: Low
+        $x_1_4 = {48 69 c0 8a 00 00 00}  //weight: 1, accuracy: High
+        $x_1_5 = {48 63 41 3c [0-48] 88 00 00 00 [0-48] 8b ?? ?? 1c}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_5_*) and 2 of ($x_1_*))) or
+            ((2 of ($x_5_*))) or
+            (all of ($x*))
+        )
+}
+

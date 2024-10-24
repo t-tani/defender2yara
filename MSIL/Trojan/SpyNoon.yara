@@ -1162,6 +1162,27 @@ rule Trojan_MSIL_SpyNoon_ASN_2147849824_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_SpyNoon_ASN_2147849824_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/SpyNoon.ASN!MTB"
+        threat_id = "2147849824"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "SpyNoon"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {0c 16 0d 2b 3d 17 13 08 16 13 09 2b 17 06 09 11 09 58 91 07 11 09 91 2e 05 16 13 08 2b 0d 11 09 17 58 13 09 11 09 07 8e 69 32 e2 11 08 2c 0f 08 09 6f ?? 00 00 0a 09 07 8e 69 58 0d 2b 04 09 17 58 0d}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_SpyNoon_ABS_2147850255_0
 {
     meta:

@@ -2967,3 +2967,25 @@ rule Trojan_Win64_CryptInject_MGG_2147924427_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_CryptInject_YAZ_2147924564_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CryptInject.YAZ!MTB"
+        threat_id = "2147924564"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {29 c1 8b 55 ea 0f b6 85 ?? ?? ?? ?? 48 89 9d ?? ?? ?? ?? 4c 29 fa 48 8d 75 ba 0b 85 ?? ?? ?? ?? 48 81 ca ?? ?? ?? ?? 49 89 ca}  //weight: 10, accuracy: Low
+        $x_1_2 = "D0'SAVAWVWU" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
