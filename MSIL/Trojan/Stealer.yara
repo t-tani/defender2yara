@@ -1299,6 +1299,30 @@ rule Trojan_MSIL_Stealer_LA_2147901676_0
         family = "Stealer"
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "\\Yandex\\YandexBrowser\\User Data\\Default\\Cookies" wide //weight: 2
+        $x_2_2 = "\\Google\\Chrome\\User Data\\Default\\Login Data" wide //weight: 2
+        $x_2_3 = "\\Opera Software\\Opera Stable\\Login Data" wide //weight: 2
+        $x_2_4 = "\\Yandex\\YandexBrowser\\User Data\\Default\\Login Data" wide //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Stealer_LA_2147901676_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Stealer.LA!MTB"
+        threat_id = "2147901676"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Stealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "5"
         strings_accuracy = "Low"

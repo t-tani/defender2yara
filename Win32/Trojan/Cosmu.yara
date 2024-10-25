@@ -280,3 +280,24 @@ rule Trojan_Win32_Cosmu_RB_2147913659_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Cosmu_GNE_2147924710_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Cosmu.GNE!MTB"
+        threat_id = "2147924710"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Cosmu"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {30 74 ea 2a 00 db 33 34 3a b1 94 ?? ?? 97 d2 60 13 f2 14 ?? 2a 2e}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

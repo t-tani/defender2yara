@@ -233,3 +233,28 @@ rule Trojan_MSIL_Filecoder_AWA_2147923697_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Filecoder_ASA_2147924725_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Filecoder.ASA!MTB"
+        threat_id = "2147924725"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Filecoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "DELETE THE BACKUP CATALOG" wide //weight: 2
+        $x_2_2 = "DELETE SHADOW COPIES" wide //weight: 2
+        $x_2_3 = "ECNRYPT NETWORK FOLDERS" wide //weight: 2
+        $x_2_4 = "DISABLE RECOVERY MODE" wide //weight: 2
+        $x_2_5 = "REMOVE BACKUP FILES" wide //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
