@@ -783,3 +783,24 @@ rule TrojanDropper_Win32_Cutwail_K_2147689799_0
         (all of ($x*))
 }
 
+rule TrojanDropper_Win32_Cutwail_CCIO_2147924733_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDropper:Win32/Cutwail.CCIO!MTB"
+        threat_id = "2147924733"
+        type = "TrojanDropper"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Cutwail"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {b8 ab aa aa aa f7 e6 8b c6 c1 ea 04 8d 0c 52 c1 e1 03 2b c1 8a 4c 04 14 8b 44 24 10 32 8e ?? ?? ?? ?? 88 0c 06 46 3b 74 24 2c 72}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

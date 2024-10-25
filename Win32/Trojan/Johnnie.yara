@@ -158,3 +158,26 @@ rule Trojan_Win32_Johnnie_B_2147758874_0
         )
 }
 
+rule Trojan_Win32_Johnnie_GNE_2147924731_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Johnnie.GNE!MTB"
+        threat_id = "2147924731"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Johnnie"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {40 00 f1 4f 40 00 00 50 40 00 17 50 40 00 57 ?? 40 00 66 ?? 40}  //weight: 5, accuracy: Low
+        $x_5_2 = {53 40 00 11 54 40 00 5c 54 ?? 00 e2 54 40 00 51 ?? 40 00 f4 55 40 00 04 56 40 00 06}  //weight: 5, accuracy: Low
+        $x_1_3 = "deinfecter" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
