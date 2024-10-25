@@ -2575,13 +2575,34 @@ rule Trojan_Win32_StealC_EZ_2147921611_0
         threshold = "2"
         strings_accuracy = "Low"
     strings:
-        $x_2_1 = {8b c3 c1 e8 05 03 cb 89 45 ?? 8b 45 ?? 01 45 ?? 8b fb c1 e7 ?? 03 7d ?? 33 f9}  //weight: 2, accuracy: Low
+        $x_2_1 = {8b c3 c1 e0 ?? 03 45 ?? 33 45 ?? 33 c1 89 45 ?? 8b 45 ?? 29 45 ?? 8b 45}  //weight: 2, accuracy: Low
     condition:
         (filesize < 20MB) and
         (all of ($x*))
 }
 
 rule Trojan_Win32_StealC_EZ_2147921611_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/StealC.EZ!MTB"
+        threat_id = "2147921611"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "StealC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {8b c3 c1 e8 05 03 cb 89 45 ?? 8b 45 ?? 01 45 ?? 8b fb c1 e7 ?? 03 7d ?? 33 f9}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_StealC_EZ_2147921611_2
 {
     meta:
         author = "defender2yara"
