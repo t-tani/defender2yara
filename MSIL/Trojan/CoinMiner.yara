@@ -2892,3 +2892,29 @@ rule Trojan_MSIL_CoinMiner_NCE_2147911278_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_CoinMiner_BG_2147924702_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/CoinMiner.BG!MTB"
+        threat_id = "2147924702"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "CoinMiner"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {de 0b 07 2c 07 07 6f ?? 00 00 0a 00 dc 00 06 7b 01 00 00 04 72 ?? ?? 00 70 28 ?? 00 00 0a 28 ?? 00 00 0a 00 06}  //weight: 2, accuracy: Low
+        $x_1_2 = {2b 0d 00 20 e8 03 00 00 28 ?? 00 00 0a 00 00 17 0c 2b}  //weight: 1, accuracy: Low
+        $x_1_3 = "By using You agree mining xmr by using xmrig.exe" wide //weight: 1
+        $x_1_4 = "xmrig/xmrig/releases/download/v6.22.0/xmrig-6.22.0-msvc-win64.zip" wide //weight: 1
+        $x_1_5 = "4A84Tohq5F8FADrQk3FLpWAm5YB7QJDkA4HQKBbDEU8eKnnw3s82VuJLNkvoFPzATAhEPBxj8pxTJcUXewaE5CxFEHkX9tf" wide //weight: 1
+        $x_1_6 = "420c7850e09b7c0bdcf748a7da9eb3647daf8515718f36d9ccfdd6b9ff834b14" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
