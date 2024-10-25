@@ -366,3 +366,32 @@ rule Trojan_Win32_Autoitinject_PNHH_2147924470_0
         )
 }
 
+rule Trojan_Win32_Autoitinject_PNPH_2147924760_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Autoitinject.PNPH!MTB"
+        threat_id = "2147924760"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Autoitinject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = "@Tem\" & \"pDir" ascii //weight: 2
+        $x_2_2 = {22 00 44 00 6c 00 6c 00 22 00 20 00 26 00 20 00 22 00 43 00 61 00 6c 00 6c 00 28 00 [0-20] 28 00 22 00 22 00 6b 00 70 00 77 00 71 00 6f 00 65 00 70 00 77 00 71 00 6f 00 72 00 70 00 77 00 71 00 6f 00 6e 00 70 00 77 00 71 00 6f 00 65 00 70 00 77 00 71 00 6f 00 6c 00 70 00 77 00 71 00 6f 00 33 00 70 00 77 00 71 00 6f 00 32 00 70 00 77 00 71 00 6f 00 2e 00 70 00 77 00 71 00 6f 00 64 00 70 00 77 00 71 00 6f 00 6c 00 70 00 77 00 71 00 6f 00 6c 00 70 00 77 00 71 00 6f 00 22 00 22 00 29 00}  //weight: 2, accuracy: Low
+        $x_2_3 = {22 44 6c 6c 22 20 26 20 22 43 61 6c 6c 28 [0-20] 28 22 22 6b 70 77 71 6f 65 70 77 71 6f 72 70 77 71 6f 6e 70 77 71 6f 65 70 77 71 6f 6c 70 77 71 6f 33 70 77 71 6f 32 70 77 71 6f 2e 70 77 71 6f 64 70 77 71 6f 6c 70 77 71 6f 6c 70 77 71 6f 22 22 29}  //weight: 2, accuracy: Low
+        $x_1_4 = {22 00 44 00 6c 00 6c 00 22 00 20 00 26 00 20 00 22 00 43 00 61 00 6c 00 6c 00 28 00 [0-20] 28 00 22 00 22 00 75 00 70 00 77 00 71 00 6f 00 73 00 70 00 77 00 71 00 6f 00 65 00 70 00 77 00 71 00 6f 00 72 00 70 00 77 00 71 00 6f 00 33 00 70 00 77 00 71 00 6f 00 32 00 70 00 77 00 71 00 6f 00 2e 00 70 00 77 00 71 00 6f 00 64 00 70 00 77 00 71 00 6f 00 6c 00 70 00 77 00 71 00 6f 00 6c 00 70 00 77 00 71 00 6f 00 22 00 22 00 29 00}  //weight: 1, accuracy: Low
+        $x_1_5 = {22 44 6c 6c 22 20 26 20 22 43 61 6c 6c 28 [0-20] 28 22 22 75 70 77 71 6f 73 70 77 71 6f 65 70 77 71 6f 72 70 77 71 6f 33 70 77 71 6f 32 70 77 71 6f 2e 70 77 71 6f 64 70 77 71 6f 6c 70 77 71 6f 6c 70 77 71 6f 22 22 29}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (
+            ((2 of ($x_2_*) and 1 of ($x_1_*))) or
+            ((3 of ($x_2_*))) or
+            (all of ($x*))
+        )
+}
+

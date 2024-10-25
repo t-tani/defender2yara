@@ -948,3 +948,24 @@ rule Trojan_Win32_LummaC_ASS_2147924614_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_LummaC_CCIP_2147924764_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaC.CCIP!MTB"
+        threat_id = "2147924764"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {31 61 37 35 c7 44 24 ?? 65 39 65 35 c7 44 24 ?? 31 37 66 63 c7 44 24 ?? 65 32 64 33 c7 44 ?? 24 61 62 66 33 c7 44 24 ?? 37 34 64 36 c7 44 24 ?? 66 63 32 32 c7 44 24 ?? 64 30 65 33}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

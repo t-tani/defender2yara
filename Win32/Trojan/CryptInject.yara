@@ -6447,3 +6447,25 @@ rule Trojan_Win32_CryptInject_RHAI_2147922833_0
         )
 }
 
+rule Trojan_Win32_CryptInject_AKX_2147924762_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/CryptInject.AKX!MTB"
+        threat_id = "2147924762"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {8b 55 b8 8b 45 f0 8d 1c 02 8b 55 ec 8b 45 f0 01 d0 0f b6 30 8b 4d f0 ba 4f ec c4 4e 89 c8 f7 e2 89 d0 c1 e8 03 6b c0 1a 29 c1 89 c8 0f b6 44 05 96 31 f0 88 03}  //weight: 2, accuracy: High
+        $x_1_2 = "JKH!xj+tv2<?VWE?+t6v?_rZ+" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
