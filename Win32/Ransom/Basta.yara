@@ -1049,3 +1049,24 @@ rule Ransom_Win32_Basta_YAG_2147914461_0
         (all of ($x*))
 }
 
+rule Ransom_Win32_Basta_YAH_2147924780_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win32/Basta.YAH!MTB"
+        threat_id = "2147924780"
+        type = "Ransom"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Basta"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {2b c8 81 c1 ?? ?? ?? ?? 33 c8 89 8e b4 00 00 00 8b 86 88 00 00 00 8b 1c 28 83 c5 04 a1 ?? ?? ?? ?? 0f af 58}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

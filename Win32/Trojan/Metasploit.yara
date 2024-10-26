@@ -66,3 +66,26 @@ rule Trojan_Win32_Metasploit_PAEV_2147913708_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Metasploit_PAFV_2147924782_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Metasploit.PAFV!MTB"
+        threat_id = "2147924782"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Metasploit"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "You seem to have active VMs running, please stop them before running this to prevent corruption of any saved data of the VMs." ascii //weight: 2
+        $x_1_2 = "VirtualBox process active" ascii //weight: 1
+        $x_2_3 = ".\\exploit.exe" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
