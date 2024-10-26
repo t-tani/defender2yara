@@ -6084,3 +6084,24 @@ rule Trojan_Win32_Vidar_MOZ_2147923830_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Vidar_IKV_2147924768_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Vidar.IKV!MTB"
+        threat_id = "2147924768"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Vidar"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {8d 64 24 00 8d 4c 24 08 c7 44 24 04 ?? ?? ?? ?? c7 44 24 08 ?? ?? ?? ?? e8 ?? ?? ?? ?? 8b 44 24 08 83 c0 46 89 44 24 04 83 6c 24 04 46 8a 4c 24 ?? 30 0c 33 83 ff 0f 75}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
