@@ -1216,3 +1216,25 @@ rule Trojan_Win32_Stealc_OKA_2147920951_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Stealc_ASGJ_2147924808_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Stealc.ASGJ!MTB"
+        threat_id = "2147924808"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Stealc"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_4_1 = {0f be 04 33 89 44 24 08 8b 44 24 04 31 44 24 08 8a 4c 24 08 88 0c 33 83 ff 0f 75}  //weight: 4, accuracy: High
+        $x_1_2 = {ff d7 6a 00 ff d3 81 fe 0f 4c 02 00 7f 09 46 81 fe d3 b6 0e 00 7c}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
