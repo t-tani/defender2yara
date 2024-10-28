@@ -395,3 +395,33 @@ rule Trojan_Win32_Autoitinject_PNPH_2147924760_0
         )
 }
 
+rule Trojan_Win32_Autoitinject_PNQH_2147924867_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Autoitinject.PNQH!MTB"
+        threat_id = "2147924867"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Autoitinject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {44 00 6c 00 6c 00 43 00 61 00 6c 00 6c 00 28 00 [0-20] 28 00 22 00 22 00 65 00 6b 00 6c 00 74 00 5f 00 72 00 2d 00 38 00 22 00 22 00 2c 00 20 00 36 00 29 00 2c 00 20 00 [0-20] 28 00 22 00 22 00 6a 00 7a 00 6c 00 22 00 22 00 2c 00 20 00 36 00 29 00}  //weight: 2, accuracy: Low
+        $x_2_2 = {44 6c 6c 43 61 6c 6c 28 [0-20] 28 22 22 65 6b 6c 74 5f 72 2d 38 22 22 2c 20 36 29 2c 20 [0-20] 28 22 22 6a 7a 6c 22 22 2c 20 36 29}  //weight: 2, accuracy: Low
+        $x_2_3 = {44 00 6c 00 6c 00 43 00 61 00 6c 00 6c 00 28 00 [0-20] 28 00 22 00 22 00 6f 00 79 00 5f 00 78 00 2d 00 38 00 22 00 22 00 2c 00 20 00 36 00 29 00 2c 00 20 00 [0-20] 28 00 22 00 22 00 66 00 78 00 5f 00 79 00 6f 00 72 00 6e 00 22 00 22 00 2c 00 20 00 36 00 29 00}  //weight: 2, accuracy: Low
+        $x_2_4 = {44 6c 6c 43 61 6c 6c 28 [0-20] 28 22 22 6f 79 5f 78 2d 38 22 22 2c 20 36 29 2c 20 [0-20] 28 22 22 66 78 5f 79 6f 72 6e 22 22 2c 20 36 29}  //weight: 2, accuracy: Low
+        $x_1_5 = {44 00 6c 00 6c 00 43 00 61 00 6c 00 6c 00 28 00 [0-20] 28 00 22 00 22 00 65 00 6b 00 6c 00 74 00 5f 00 72 00 2d 00 38 00 22 00 22 00 2c 00 20 00 36 00 29 00 2c 00 20 00 [0-20] 28 00 22 00 22 00 5e 00 7d 00 69 00 78 00 5e 00 22 00 22 00 2c 00 20 00 36 00 29 00}  //weight: 1, accuracy: Low
+        $x_1_6 = {44 6c 6c 43 61 6c 6c 28 [0-20] 28 22 22 65 6b 6c 74 5f 72 2d 38 22 22 2c 20 36 29 2c 20 [0-20] 28 22 22 5e 7d 69 78 5e 22 22 2c 20 36 29}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (
+            ((2 of ($x_2_*) and 1 of ($x_1_*))) or
+            ((3 of ($x_2_*))) or
+            (all of ($x*))
+        )
+}
+

@@ -174,6 +174,27 @@ rule Trojan_Win32_Mikey_ARA_2147911513_0
         threshold = "2"
         strings_accuracy = "High"
     strings:
+        $x_2_1 = {8b 45 08 8a 16 03 c1 30 10 41 3b 4d 0c 7c f1}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Mikey_ARA_2147911513_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Mikey.ARA!MTB"
+        threat_id = "2147911513"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Mikey"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
         $x_2_1 = {8b 54 24 0c 69 d2 d2 f8 62 7e 89 54 24 0c 8a 10 30 11 41 40 3b cf 75 e8}  //weight: 2, accuracy: High
     condition:
         (filesize < 20MB) and

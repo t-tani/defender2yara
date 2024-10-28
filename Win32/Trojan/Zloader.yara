@@ -705,3 +705,24 @@ rule Trojan_Win32_Zloader_MBHS_2147852861_1
         (all of ($x*))
 }
 
+rule Trojan_Win32_Zloader_MKD_2147924863_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zloader.MKD!MTB"
+        threat_id = "2147924863"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {0f b6 c8 a3 ?? ?? ?? ?? 8d ?? d1 1e 00 00 66 89 15 ?? ?? ?? ?? 80 ea 5e 02 d0 0f b6 d2 0f af d1 80 ea 27 88 15 ?? ?? ?? ?? 8b 44 24 0c}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

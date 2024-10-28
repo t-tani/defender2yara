@@ -2729,3 +2729,25 @@ rule Trojan_Win32_OffLoader_SPTJ_2147924624_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_OffLoader_SXTJ_2147924853_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/OffLoader.SXTJ!MTB"
+        threat_id = "2147924853"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "OffLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = "/treeskittens.cfd/arn.php" wide //weight: 3
+        $x_2_2 = "/silent" wide //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

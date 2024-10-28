@@ -3129,3 +3129,24 @@ rule Trojan_MSIL_Injuke_SCCF_2147924560_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Injuke_AACA_2147924862_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Injuke.AACA!MTB"
+        threat_id = "2147924862"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Injuke"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {02 06 02 06 91 66 d2 9c 02 06 8f ?? 00 00 01 25 71 ?? 00 00 01 1f 58 59 d2 81 ?? 00 00 01 02 06 8f ?? 00 00 01 25 71 ?? 00 00 01 1f 44 59 d2 81 ?? 00 00 01 00 06 17 58 0a 06 02 8e 69 fe 04 13 0b 11 0b 3a}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

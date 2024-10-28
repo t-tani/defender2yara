@@ -3414,3 +3414,28 @@ rule Trojan_Win32_AutoitInject_ASBA_2147924661_0
         )
 }
 
+rule Trojan_Win32_AutoitInject_AYBA_2147924860_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.AYBA!MTB"
+        threat_id = "2147924860"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "@TEMPDIR" ascii //weight: 1
+        $x_1_2 = "DllC\" & \"all" ascii //weight: 1
+        $x_2_3 = "kuvrgeuvrgruvrgnuvrgeuvrgluvrg3uvrg2uvrg.uvrgduvrgluvrgluvrg" ascii //weight: 2
+        $x_2_4 = "VuvrgiuvrgruvrgtuvrguuvrgauvrgluvrgPuvrgruvrgouvrgtuvrgeuvrgcuvrgtuvrg" ascii //weight: 2
+        $x_2_5 = "uuvrgsuvrgeuvrgruvrg3uvrg2uvrg.uvrgduvrgluvrgluvrg" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -83,3 +83,24 @@ rule Trojan_Win32_Lumma_ZZAA_2147924044_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Lumma_AZBA_2147924861_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Lumma.AZBA!MTB"
+        threat_id = "2147924861"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Lumma"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {2b c7 74 0f 8b 44 24 ?? 8b 4c 24 ?? 8a 44 04 ?? 30 04 29 85 f6 74}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

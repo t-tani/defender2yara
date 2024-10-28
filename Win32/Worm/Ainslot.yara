@@ -173,3 +173,25 @@ rule Worm_Win32_Ainslot_AI_2147663188_0
         (all of ($x*))
 }
 
+rule Worm_Win32_Ainslot_GNE_2147924852_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Worm:Win32/Ainslot.GNE!MTB"
+        threat_id = "2147924852"
+        type = "Worm"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Ainslot"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {3c 67 32 00 4c c0 4b ?? ?? 4f 40 00 10 4f 40 00 40 ?? 0a 00}  //weight: 5, accuracy: Low
+        $x_5_2 = {40 00 10 3e 32 00 30 4f ?? 00 03 00 03 00 d3 1d}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
