@@ -3155,3 +3155,33 @@ rule Trojan_Win32_Amadey_EZ_2147923539_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Amadey_CCJC_2147924800_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Amadey.CCJC!MTB"
+        threat_id = "2147924800"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Amadey"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "13"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "program files\\mozilla firefox" ascii //weight: 1
+        $x_1_2 = "program files\\mozilla thunderbird" ascii //weight: 1
+        $x_1_3 = "purple\\accounts.xml" ascii //weight: 1
+        $x_1_4 = "CentBrowser\\User Data\\Default\\Login Data" ascii //weight: 1
+        $x_1_5 = "Sputnik\\User Data\\Default\\Login Data" ascii //weight: 1
+        $x_1_6 = "powershell -Command Compress-Archive -Path" ascii //weight: 1
+        $x_2_7 = "encryptedUsername" ascii //weight: 2
+        $x_2_8 = "encryptedPassword" ascii //weight: 2
+        $x_1_9 = "FileZilla\\sitemanager.xml" ascii //weight: 1
+        $x_2_10 = "Monero\\wallets\\" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
