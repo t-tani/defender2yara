@@ -15142,3 +15142,27 @@ rule Trojan_Win64_CobaltStrike_CCIP_2147924799_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_CobaltStrike_GM_2147924832_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CobaltStrike.GM!MTB"
+        threat_id = "2147924832"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CobaltStrike"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = "main.xorDecrypt" ascii //weight: 5
+        $x_1_2 = "main.AesDecryptCFB" ascii //weight: 1
+        $x_1_3 = "main.refun" ascii //weight: 1
+        $x_1_4 = "main.run" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

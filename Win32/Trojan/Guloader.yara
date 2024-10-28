@@ -4437,3 +4437,63 @@ rule Trojan_Win32_Guloader_CW_2147924703_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Guloader_GB_2147924834_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Guloader.GB!MTB"
+        threat_id = "2147924834"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Guloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "GetPrivateProfileStringW" ascii //weight: 1
+        $x_1_2 = "WritePrivateProfileStringW" ascii //weight: 1
+        $x_1_3 = "SetDefaultDllDirectories" ascii //weight: 1
+        $x_2_4 = "SeShutdownPrivilege" wide //weight: 2
+        $x_1_5 = "\\Temp" wide //weight: 1
+        $x_4_6 = "andebryst reneglect.exe" wide //weight: 4
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_4_*) and 4 of ($x_1_*))) or
+            ((1 of ($x_4_*) and 1 of ($x_2_*) and 2 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+
+rule Trojan_Win32_Guloader_GD_2147924838_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Guloader.GD!MTB"
+        threat_id = "2147924838"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Guloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "9"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "GetTempFileNameW" ascii //weight: 1
+        $x_1_2 = "ShellExecuteExW" ascii //weight: 1
+        $x_1_3 = "SHGetSpecialFolderLocation" ascii //weight: 1
+        $x_1_4 = "SeShutdownPrivilege" wide //weight: 1
+        $x_1_5 = "\\Temp" wide //weight: 1
+        $x_1_6 = "Error writing temporary file. Make sure your temp folder is valid." wide //weight: 1
+        $x_5_7 = "udvalgsformnds produktansvar platitudinise" wide //weight: 5
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_5_*) and 4 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+

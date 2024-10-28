@@ -937,3 +937,33 @@ rule Trojan_Win64_Tedy_ARA_2147923215_2
         (all of ($x*))
 }
 
+rule Trojan_Win64_Tedy_GA_2147924836_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Tedy.GA!MTB"
+        threat_id = "2147924836"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Tedy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_8_1 = "eJuVBxglqjBknVHYaYdaupucmUyKFLeJuVBxglqjBknVHYaYdaupucmUyKFL" ascii //weight: 8
+        $x_1_2 = "GetFullPathNameW" ascii //weight: 1
+        $x_1_3 = "GetTempFileNameW" ascii //weight: 1
+        $x_1_4 = "InitializeSecurityDescriptor" ascii //weight: 1
+        $x_1_5 = "CryptCATAdminCalcHashFromFileHandle" ascii //weight: 1
+        $x_1_6 = "SetEndOfFile" ascii //weight: 1
+        $x_1_7 = "UnknownProduct" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_8_*) and 2 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+

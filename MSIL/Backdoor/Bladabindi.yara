@@ -4169,3 +4169,47 @@ rule Backdoor_MSIL_Bladabindi_SQ_2147923795_0
         (all of ($x*))
 }
 
+rule Backdoor_MSIL_Bladabindi_SS_2147924847_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Backdoor:MSIL/Bladabindi.SS!MTB"
+        threat_id = "2147924847"
+        type = "Backdoor"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Bladabindi"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {02 07 16 28 0e 00 00 06 0c 12 02 28 47 00 00 0a 0d 12 02 28 48 00 00 0a 13 04 12 02 28 49 00 00 0a 13 05 06 09}  //weight: 2, accuracy: High
+        $x_2_2 = "X.lugia.resources" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Backdoor_MSIL_Bladabindi_ST_2147924848_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Backdoor:MSIL/Bladabindi.ST!MTB"
+        threat_id = "2147924848"
+        type = "Backdoor"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Bladabindi"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {06 07 8f 1e 00 00 01 25 71 1e 00 00 01 02 07 1f 10 5d 91 61 d2 81 1e 00 00 01 07 17 58 0b 07 06 8e 69}  //weight: 2, accuracy: High
+        $x_2_2 = "MyImgur Programming Team" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
