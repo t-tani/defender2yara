@@ -6469,3 +6469,24 @@ rule Trojan_Win32_CryptInject_AKX_2147924762_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_CryptInject_CDD_2147924928_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/CryptInject.CDD!MTB"
+        threat_id = "2147924928"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {0f b6 d2 0f b6 5c 96 04 8d 54 96 04 89 95 ?? ?? fe ff 8b 95 ?? ?? fe ff 30 5c 3a ff 8b 95 ?? ?? fe ff 8b 1a 8b 95 ?? ?? fe ff 31 1a 8b 5c 86 04 03 9d ?? ?? fe ff 8b 95 ?? ?? fe ff 31 1a 3b 7d 10 0f 8c}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
