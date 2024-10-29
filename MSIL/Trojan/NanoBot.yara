@@ -401,3 +401,26 @@ rule Trojan_MSIL_NanoBot_ASCN_2147888507_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_NanoBot_BH_2147924952_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/NanoBot.BH!MTB"
+        threat_id = "2147924952"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "NanoBot"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {0d 09 20 00 01 00 00 6f ?? 00 00 0a 09 20 80 00 00 00 6f ?? 00 00 0a 03 07 20 30 75 00 00 73 ?? 00 00 0a 13 04 09 11 04 09 6f ?? 00 00 0a 1e 5b 6f ?? 00 00 0a 6f ?? 00 00 0a 09 11 04 09 6f ?? 00 00 0a 1e 5b 6f ?? 00 00 0a 6f ?? 00 00 0a 09 17 6f ?? 00 00 0a 08 09 6f ?? 00 00 0a 17 73 ?? 00 00 0a 13 05 11 05 02 16 02 8e 69 6f}  //weight: 3, accuracy: Low
+        $x_1_2 = {16 08 09 1a 28 ?? 00 00 0a 09 1a 58 0d 11 05 17 58 13 05 11 05 06 32}  //weight: 1, accuracy: Low
+        $x_1_3 = "BIPew524seeyzz.iAzcxenzuyu00w" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
