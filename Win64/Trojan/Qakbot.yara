@@ -332,3 +332,24 @@ rule Trojan_Win64_Qakbot_SA_2147902108_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Qakbot_YAT_2147925074_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Qakbot.YAT!MTB"
+        threat_id = "2147925074"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Qakbot"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {63 75 72 6c 20 68 74 74 70 3a 2f 2f 31 33 35 2e 31 32 35 2e 31 37 37 2e 39 34 2f [0-9] 2e 64 61 74 20 2d 6f}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

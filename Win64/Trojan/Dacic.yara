@@ -303,3 +303,34 @@ rule Trojan_Win64_Dacic_NE_2147922730_0
         )
 }
 
+rule Trojan_Win64_Dacic_DZ_2147925073_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Dacic.DZ!MTB"
+        threat_id = "2147925073"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Dacic"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "certutil -hashfile" ascii //weight: 2
+        $x_2_2 = "&& timeout /t 5" ascii //weight: 2
+        $x_2_3 = "start cmd /C \"color b && title Error && echo" ascii //weight: 2
+        $x_1_4 = "[ - ] LOADING HWID : WANNACRY" ascii //weight: 1
+        $x_1_5 = "WANNACRY.exe" ascii //weight: 1
+        $x_1_6 = "taskkill /f /im KsDumper.exe >nul 2>&1" ascii //weight: 1
+        $x_1_7 = "\\\\.\\kprocesshacker" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((2 of ($x_2_*) and 4 of ($x_1_*))) or
+            ((3 of ($x_2_*) and 2 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+
