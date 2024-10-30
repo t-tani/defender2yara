@@ -109,3 +109,24 @@ rule Trojan_Win32_DiskWriter_NEAA_2147910927_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_DiskWriter_ADW_2147925038_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/DiskWriter.ADW!MTB"
+        threat_id = "2147925038"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "DiskWriter"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {8b d7 c1 ea 05 8d 0c 38 89 55 fc 8b 45 d8 01 45 fc 8b c7 c1 e0 04 03 45 e4 33 45 fc 33 c1 89 45 d4 8b 45 d4 29 45 f4 8b 45 e8 29 45 f8}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
