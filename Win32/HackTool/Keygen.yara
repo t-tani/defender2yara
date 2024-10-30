@@ -461,6 +461,30 @@ rule HackTool_Win32_Keygen_2147751727_3
         threshold = "4"
         strings_accuracy = "High"
     strings:
+        $x_1_1 = "Generate" ascii //weight: 1
+        $x_1_2 = "keygenned by ice/BRD" ascii //weight: 1
+        $x_1_3 = "- Keygen by BRD" ascii //weight: 1
+        $x_1_4 = "black riders" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule HackTool_Win32_Keygen_2147751727_4
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "HackTool:Win32/Keygen!MTB"
+        threat_id = "2147751727"
+        type = "HackTool"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Keygen"
+        severity = "High"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
         $x_1_1 = "TEAM FFF" ascii //weight: 1
         $x_1_2 = "rarreg.key" ascii //weight: 1
         $x_1_3 = "keygen" ascii //weight: 1

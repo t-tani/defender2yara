@@ -10,6 +10,35 @@ rule HackTool_Win32_Crack_2147745913_0
         severity = "High"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "RarExtInstaller.pdb" ascii //weight: 2
+        $x_1_2 = "C:\\NeverShow.txt" ascii //weight: 1
+        $x_1_3 = "OnClick" ascii //weight: 1
+        $x_1_4 = "repacks.ddns.net" ascii //weight: 1
+        $x_1_5 = "repack.me" ascii //weight: 1
+        $x_1_6 = "Activation" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_2_*) and 4 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+
+rule HackTool_Win32_Crack_2147745913_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "HackTool:Win32/Crack!MTB"
+        threat_id = "2147745913"
+        type = "HackTool"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Crack"
+        severity = "High"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "7"
         strings_accuracy = "High"
     strings:
@@ -25,7 +54,7 @@ rule HackTool_Win32_Crack_2147745913_0
         (all of ($x*))
 }
 
-rule HackTool_Win32_Crack_2147745913_1
+rule HackTool_Win32_Crack_2147745913_2
 {
     meta:
         author = "defender2yara"
@@ -48,5 +77,35 @@ rule HackTool_Win32_Crack_2147745913_1
     condition:
         (filesize < 20MB) and
         (all of ($x*))
+}
+
+rule HackTool_Win32_Crack_2147745913_3
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "HackTool:Win32/Crack!MTB"
+        threat_id = "2147745913"
+        type = "HackTool"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Crack"
+        severity = "High"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "CCleaner.exe" ascii //weight: 2
+        $x_1_2 = "repack.me/ad.html" ascii //weight: 1
+        $x_1_3 = "PACK.EXE" ascii //weight: 1
+        $x_1_4 = "ccenhancer\\CCEnhancer\\obj\\Release\\CCEnhancer.pdb" ascii //weight: 1
+        $x_1_5 = "winapp2.ini" ascii //weight: 1
+        $x_1_6 = "Activation" ascii //weight: 1
+        $x_1_7 = "CCleanerReactivator.exe" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_2_*) and 5 of ($x_1_*))) or
+            (all of ($x*))
+        )
 }
 

@@ -9,6 +9,34 @@ rule BrowserModifier_MSIL_MediaArena_363871_0
         family = "MediaArena"
         severity = "High"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "PDFalcon" ascii //weight: 2
+        $x_1_2 = "OfferScreen" ascii //weight: 1
+        $x_1_3 = "offerWindow" ascii //weight: 1
+        $x_1_4 = "component/offerscreen.xaml" ascii //weight: 1
+        $x_1_5 = "PopupSleep5" ascii //weight: 1
+        $x_1_6 = "BLBeacon" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_2_*) and 4 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+
+rule BrowserModifier_MSIL_MediaArena_363871_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "BrowserModifier:MSIL/MediaArena"
+        threat_id = "363871"
+        type = "BrowserModifier"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "MediaArena"
+        severity = "High"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "10"
         strings_accuracy = "High"
     strings:
@@ -27,7 +55,7 @@ rule BrowserModifier_MSIL_MediaArena_363871_0
         (all of ($x*))
 }
 
-rule BrowserModifier_MSIL_MediaArena_363871_1
+rule BrowserModifier_MSIL_MediaArena_363871_2
 {
     meta:
         author = "defender2yara"
@@ -54,7 +82,7 @@ rule BrowserModifier_MSIL_MediaArena_363871_1
         (all of ($x*))
 }
 
-rule BrowserModifier_MSIL_MediaArena_363871_2
+rule BrowserModifier_MSIL_MediaArena_363871_3
 {
     meta:
         author = "defender2yara"
@@ -85,7 +113,7 @@ rule BrowserModifier_MSIL_MediaArena_363871_2
         (all of ($x*))
 }
 
-rule BrowserModifier_MSIL_MediaArena_363871_3
+rule BrowserModifier_MSIL_MediaArena_363871_4
 {
     meta:
         author = "defender2yara"
