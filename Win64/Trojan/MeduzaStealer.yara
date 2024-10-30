@@ -188,3 +188,24 @@ rule Trojan_Win64_MeduzaStealer_IKV_2147924759_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_MeduzaStealer_MJL_2147925064_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/MeduzaStealer.MJL!MTB"
+        threat_id = "2147925064"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "MeduzaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {8b c6 41 f7 e0 c1 ea ?? 0f be c2 6b c8 32 41 8a c0 44 03 c7 2a c1 04 34 41 30 01 4c 03 cf 41 83 f8 08 7c}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

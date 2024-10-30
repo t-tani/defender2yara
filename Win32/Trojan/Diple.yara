@@ -42,3 +42,25 @@ rule Trojan_Win32_Diple_GMA_2147900364_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Diple_GZT_2147925062_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Diple.GZT!MTB"
+        threat_id = "2147925062"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Diple"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = {53 56 57 68 00 82 40 00 33 f6 56 56 ff 15}  //weight: 10, accuracy: High
+        $x_1_2 = "iKjhzZrhvU)yqOkm2Ckm5ZvquRe" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
