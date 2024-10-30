@@ -470,6 +470,35 @@ rule Ransom_Win64_FileCoder_RHX_2147921850_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "12"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = "-----BEGIN PUBLIC KEY-----" ascii //weight: 3
+        $x_1_2 = "-----END PUBLIC KEY-----" ascii //weight: 1
+        $x_1_3 = "Go build ID:" ascii //weight: 1
+        $x_1_4 = "s3.dualstack.us" ascii //weight: 1
+        $x_1_5 = "bcryptprimitives" wide //weight: 1
+        $x_1_6 = "RESTORE-MY-FILES.txt" ascii //weight: 1
+        $x_1_7 = ".back" ascii //weight: 1
+        $x_1_8 = ".pptx" ascii //weight: 1
+        $x_2_9 = {50 45 00 00 64 86 08 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 0b 02 03 00 00 8e 3e 00 00 b2 04 00 00 00 00 00 80 8a 06}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Ransom_Win64_FileCoder_RHX_2147921850_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win64/FileCoder.RHX!MTB"
+        threat_id = "2147921850"
+        type = "Ransom"
+        platform = "Win64: Windows 64-bit platform"
+        family = "FileCoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "14"
         strings_accuracy = "Low"
     strings:
