@@ -6126,3 +6126,24 @@ rule Trojan_Win32_Vidar_AXBA_2147924781_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Vidar_CZ_2147925013_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Vidar.CZ!MTB"
+        threat_id = "2147925013"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Vidar"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {8b c8 8b 45 ?? 33 d2 f7 f1 8b 45 ?? 8b 4d ?? 8a 04 02 32 04 31 ff 45 ?? 88 06 39 5d ?? 72}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

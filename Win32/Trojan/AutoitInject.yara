@@ -3441,3 +3441,32 @@ rule Trojan_Win32_AutoitInject_AYBA_2147924860_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_AutoitInject_AMX_2147925018_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.AMX!MTB"
+        threat_id = "2147925018"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {44 00 6c 00 6c 00 43 00 22 00 20 00 26 00 20 00 22 00 61 00 6c 00 6c 00 28 00 [0-20] 28 00 22 00 22 00 6b 00 66 00 76 00 62 00 68 00 79 00 65 00 66 00 76 00 62 00 68 00 79 00 72 00 66 00 76 00 62 00 68 00 79 00 6e 00 66 00 76 00 62 00 68 00 79 00 65 00 66 00 76 00 62 00 68 00 79 00 6c 00 66 00 76 00 62 00 68 00 79 00 33 00 66 00 76 00 62 00 68 00 79 00 32 00 66 00 76 00 62 00 68 00 79 00 2e 00 66 00 76 00 62 00 68 00 79 00 64 00 66 00 76 00 62 00 68 00 79 00 6c 00 66 00 76 00 62 00 68 00 79 00 6c 00 66 00 76 00 62 00 68 00 79 00 22 00 22 00 29 00 2c 00 20 00 00 28 00 22 00 22 00}  //weight: 2, accuracy: Low
+        $x_2_2 = {44 6c 6c 43 22 20 26 20 22 61 6c 6c 28 [0-20] 28 22 22 6b 66 76 62 68 79 65 66 76 62 68 79 72 66 76 62 68 79 6e 66 76 62 68 79 65 66 76 62 68 79 6c 66 76 62 68 79 33 66 76 62 68 79 32 66 76 62 68 79 2e 66 76 62 68 79 64 66 76 62 68 79 6c 66 76 62 68 79 6c 66 76 62 68 79 22 22 29 2c 20 00 28 22 22}  //weight: 2, accuracy: Low
+        $x_1_3 = "ufvbhysfvbhyefvbhyrfvbhy3fvbhy2fvbhy.fvbhydfvbhylfvbhylfvbhy" ascii //weight: 1
+        $x_1_4 = "\"\"fvbhy\"\", \"\"\"\"" ascii //weight: 1
+        $x_1_5 = "@TEMPDIR" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_2_*) and 3 of ($x_1_*))) or
+            ((2 of ($x_2_*) and 1 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+

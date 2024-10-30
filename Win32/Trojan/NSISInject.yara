@@ -6696,3 +6696,28 @@ rule Trojan_Win32_NSISInject_VNE_2147924031_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_NSISInject_SLF_2147924993_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/NSISInject.SLF!MTB"
+        threat_id = "2147924993"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "NSISInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "overskuedes.cha" ascii //weight: 1
+        $x_1_2 = "twit.jen" ascii //weight: 1
+        $x_1_3 = "denotationen.unr" ascii //weight: 1
+        $x_1_4 = "\\rdbgens\\halifax.dll" ascii //weight: 1
+        $x_1_5 = "\\fetaens\\scaphiopus.Aan31" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
