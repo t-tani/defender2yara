@@ -702,3 +702,24 @@ rule Trojan_MSIL_Zilla_PFFH_2147923543_0
         (1 of ($x*))
 }
 
+rule Trojan_MSIL_Zilla_GPN_2147925159_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Zilla.GPN!MTB"
+        threat_id = "2147925159"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Zilla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {61 13 04 1d 13 05 00 11 05 19 fe 01 2c 0c 02 6f}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

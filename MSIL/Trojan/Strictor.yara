@@ -124,3 +124,28 @@ rule Trojan_MSIL_Strictor_PAQ_2147917929_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Strictor_GP_2147925157_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Strictor.GP!MTB"
+        threat_id = "2147925157"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Strictor"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "killMC" ascii //weight: 2
+        $x_2_2 = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run" ascii //weight: 2
+        $x_1_3 = "FlashSettings.txt" ascii //weight: 1
+        $x_4_4 = "Minecraft Stealer" ascii //weight: 4
+        $x_1_5 = "servers.dat" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

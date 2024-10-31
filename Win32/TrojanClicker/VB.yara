@@ -426,3 +426,27 @@ rule TrojanClicker_Win32_VB_ZK_2147733006_0
         (all of ($x*))
 }
 
+rule TrojanClicker_Win32_VB_EC_2147925139_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanClicker:Win32/VB.EC!MTB"
+        threat_id = "2147925139"
+        type = "TrojanClicker"
+        platform = "Win32: Windows 32-bit platform"
+        family = "VB"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "VB.Clipboard" ascii //weight: 1
+        $x_1_2 = "/tuiguang/qudao" ascii //weight: 1
+        $x_1_3 = "\\Snap.vbp" ascii //weight: 1
+        $x_1_4 = "taskmgr" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
