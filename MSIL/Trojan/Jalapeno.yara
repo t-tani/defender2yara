@@ -924,3 +924,26 @@ rule Trojan_MSIL_Jalapeno_ACCA_2147924914_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Jalapeno_AJCA_2147925102_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Jalapeno.AJCA!MTB"
+        threat_id = "2147925102"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Jalapeno"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {0a 26 06 72 f7 01 00 70 18 18 8d ?? 00 00 01 25 16 04 a2 25 17 05 a2 28 ?? 00 00 0a 0b 03 73 ?? 00 00 0a 0c 08 07 74 ?? 00 00 01 16 73 ?? 00 00 0a 0d 73 ?? 00 00 0a 13 04 00 09 11 04 6f ?? 00 00 0a 00 11 04 6f ?? 00 00 0a 13 05 de 23}  //weight: 3, accuracy: Low
+        $x_2_2 = {0a 26 06 72 d9 01 00 70 1e 17 8d ?? 00 00 01 25 16 04 a2 28 ?? 00 00 0a 26 06 72 e9 01 00 70 1e 17 8d ?? 00 00 01 25 16 05 a2}  //weight: 2, accuracy: Low
+        $x_1_3 = "CreateDecryptor" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
