@@ -184,3 +184,24 @@ rule Trojan_Win32_Vobfus_MBYK_2147915220_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Vobfus_MBXW_2147925117_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Vobfus.MBXW!MTB"
+        threat_id = "2147925117"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Vobfus"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {60 2f 41 00 2c 39 40 00 12 f0 30 00 00 ff ff ff 08 00 00 00 01 00 00 00 01 00 01 00 e9 00 00 00 00 37 40 00 e4 37 40 00 74 36 40 00 78 00 00 00 81 00 00 00 8a 00 00 00 8b}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

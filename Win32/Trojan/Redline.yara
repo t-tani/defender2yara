@@ -18971,3 +18971,24 @@ rule Trojan_Win32_Redline_ASCE_2147916972_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Redline_FZ_2147920044_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Redline.FZ!MTB"
+        threat_id = "2147920044"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Redline"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {f6 d0 08 d4 08 c1 24 eb 08 c6 f6 d1 30 e6 b8 [0-4] 08 f1 88 0c 2f 3d [0-4] 0f 8e}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
