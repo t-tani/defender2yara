@@ -1987,3 +1987,31 @@ rule Trojan_Win32_Neoreblamy_GPE_2147924953_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Neoreblamy_BAB_2147925133_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Neoreblamy.BAB!MTB"
+        threat_id = "2147925133"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Neoreblamy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "TNgTFyBpxcFepuaMoXlUxPiFGPejGnnEOp" ascii //weight: 1
+        $x_1_2 = "vGcUfGtYQvfspwzIEatPDQdBxKydRH" ascii //weight: 1
+        $x_1_3 = "ORbKcNfSPMeSJuvUvARBMTKXpbUXg" ascii //weight: 1
+        $x_1_4 = "gHFNuyDWikJVFIFfOKDOabkZPCdbQMUnzKdozdkwdCkNKbaNOxRDfdYDNLIFOaHfrYPRCPpkpKNpeAfBmgSTMEAXn" ascii //weight: 1
+        $x_1_5 = "bJzAZvkKbTYMxABLTNEUpNdRAJgtqw" ascii //weight: 1
+        $x_1_6 = "KbwGGzumKBTCARRakUAHEnuTdhlr" ascii //weight: 1
+        $x_1_7 = "OOQyhFECxSIRsCjcBqjgsBhwgVXObErWCb" ascii //weight: 1
+        $x_1_8 = "zgirpWUZACwVVcdJJNZmBcZUYLDxcIgQCHKG" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (4 of ($x*))
+}
+
