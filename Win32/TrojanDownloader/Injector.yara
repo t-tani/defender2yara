@@ -43,3 +43,24 @@ rule TrojanDownloader_Win32_Injector_C_2147624398_0
         (all of ($x*))
 }
 
+rule TrojanDownloader_Win32_Injector_ZA_2147925202_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:Win32/Injector.ZA!MTB"
+        threat_id = "2147925202"
+        type = "TrojanDownloader"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Injector"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {da 20 17 0d 6a cc 49 53 fe 54 b2 1f 52 79 08 71 59 b3 64 44 d0 5a 8b 19 95 6e 09 58 2e 4e 70 4d 9b 89 46 cf a4 5a 3c c5 74 5a ed c6 d3 bf 40 5c 79 9c bd 47 23 9b 5e}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
