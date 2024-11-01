@@ -46,3 +46,26 @@ rule Ransom_Win32_CyberVolk_YAA_2147915103_0
         (all of ($x*))
 }
 
+rule Ransom_Win32_CyberVolk_PAA_2147925168_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win32/CyberVolk.PAA!MTB"
+        threat_id = "2147925168"
+        type = "Ransom"
+        platform = "Win32: Windows 32-bit platform"
+        family = "CyberVolk"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = "CyberVolk ransomware" ascii //weight: 5
+        $x_1_2 = "CyberVolk_ReadMe.txt" ascii //weight: 1
+        $x_1_3 = "your files have been encrypted" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
