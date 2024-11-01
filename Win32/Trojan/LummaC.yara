@@ -990,3 +990,24 @@ rule Trojan_Win32_LummaC_CCIQ_2147925097_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_LummaC_WDD_2147925221_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaC.WDD!MTB"
+        threat_id = "2147925221"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {89 c8 04 28 32 04 0a 04 38 88 04 0a 41 83 f9 07 75 ee}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

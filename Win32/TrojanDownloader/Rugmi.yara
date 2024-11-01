@@ -448,3 +448,69 @@ rule TrojanDownloader_Win32_Rugmi_HNY_2147924551_0
         (1 of ($x*))
 }
 
+rule TrojanDownloader_Win32_Rugmi_HNAE_2147925224_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:Win32/Rugmi.HNAE!MTB"
+        threat_id = "2147925224"
+        type = "TrojanDownloader"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Rugmi"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {0f be 00 85 c0 74 24 8b 45 ?? 03 45 ?? 66 0f be 00 8b 4d ?? 8b 55 ?? 66 89 04 4a 8b 45 02 40 89 45 02 8b 45 01 40 89 45 01 eb}  //weight: 10, accuracy: Low
+        $x_1_2 = {ff 55 98 89 45 ?? 8b 45 ?? ?? ?? ?? 8b 45 fc ff 70 ?? 8b ?? fc ff 70}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule TrojanDownloader_Win32_Rugmi_HNAF_2147925225_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:Win32/Rugmi.HNAF!MTB"
+        threat_id = "2147925225"
+        type = "TrojanDownloader"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Rugmi"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {03 51 3c 89 55 ?? 8b 45 00 8b 4d ?? 03 48 2c 89 4d}  //weight: 10, accuracy: Low
+        $x_1_2 = {66 0f be 0c 02 8b 55 ?? 8b 45 ?? 66 89 0c 50}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule TrojanDownloader_Win32_Rugmi_HNAG_2147925226_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:Win32/Rugmi.HNAG!MTB"
+        threat_id = "2147925226"
+        type = "TrojanDownloader"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Rugmi"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = {8b d0 0f be 0b 03 d9 03 f3 8b 42 3c 8b 6b 04 8b 5b 08 8b 7c 10 2c 8d 44 24}  //weight: 10, accuracy: High
+        $x_1_2 = {8d 40 04 83 e9 01}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
