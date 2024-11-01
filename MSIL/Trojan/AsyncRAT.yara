@@ -5099,3 +5099,24 @@ rule Trojan_MSIL_AsyncRAT_RDAE_2147923614_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AsyncRAT_RDAF_2147925232_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AsyncRAT.RDAF!MTB"
+        threat_id = "2147925232"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AsyncRAT"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {d0 27 00 00 01 28 29 00 00 0a 11 0a 11 07 17 6f 2a 00 00 0a 28 2b 00 00 0a 28 01 00 00 2b 6f 2d 00 00 0a 26}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
