@@ -3031,3 +3031,25 @@ rule Trojan_Win64_CryptInject_MNO_2147924977_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_CryptInject_MEL_2147925209_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CryptInject.MEL!MTB"
+        threat_id = "2147925209"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {0f b6 d3 49 33 d6 48 0f af d6 0f b6 45 c0 48 33 d0 48 0f af d6 0f b6 45 c1 48 33 d0 48 0f af d6 0f b6 45 c2 48 33 d0 48 0f af d6}  //weight: 2, accuracy: High
+        $x_1_2 = "198.15.82.162" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
