@@ -3470,3 +3470,30 @@ rule Trojan_Win32_AutoitInject_AMX_2147925018_0
         )
 }
 
+rule Trojan_Win32_AutoitInject_AMY_2147925330_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.AMY!MTB"
+        threat_id = "2147925330"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {68 00 74 00 74 00 70 00 3a 00 2f 00 2f 00 22 00 20 00 26 00 20 00 59 00 49 00 48 00 55 00 4f 00 20 00 28 00 20 00 24 00 55 00 52 00 4c 00 20 00 2c 00 20 00 30 00 20 00 2c 00 20 00 30 00 20 00 29 00 20 00 26 00 20 00 22 00 2f 00 67 00 65 00 74 00 69 00 70 00 2e 00 61 00 73 00 70 00 22 00 20 00 2c 00 20 00 22 00 68 00 [0-5] 70 00 3a 00 2f 00 2f 00 77 00 77 00 77 00 [0-3] 61 00 61 00 6d 00 61 00 69 00 6c 00 73 00 6f 00 66 00 74 00 2e 00 63 00 6f 00 6d 00 2f 00 67 00 65 00 74 00 69 00 70 00 2e 00 70 00 68 00 70 00}  //weight: 4, accuracy: Low
+        $x_4_2 = {68 74 74 70 3a 2f 2f 22 20 26 20 59 49 48 55 4f 20 28 20 24 55 52 4c 20 2c 20 30 20 2c 20 30 20 29 20 26 20 22 2f 67 65 74 69 70 2e 61 73 70 22 20 2c 20 22 68 [0-5] 70 3a 2f 2f 77 77 77 [0-3] 61 61 6d 61 69 6c 73 6f 66 74 2e 63 6f 6d 2f 67 65 74 69 70 2e 70 68 70}  //weight: 4, accuracy: Low
+        $x_1_3 = "http://\" & YIHUO ( $URL , 0 , 0 ) & \"/zqzqs.txt\" )" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_4_*) and 1 of ($x_1_*))) or
+            ((2 of ($x_4_*))) or
+            (all of ($x*))
+        )
+}
+

@@ -407,3 +407,24 @@ rule Trojan_MSIL_Dnoper_PAFS_2147922992_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Dnoper_AMV_2147925328_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Dnoper.AMV!MTB"
+        threat_id = "2147925328"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Dnoper"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {01 0d 09 6f ?? 00 00 0a 72 ?? 00 00 70 28 ?? 00 00 0a 39 ?? 00 00 00 09 14 14 6f ?? 00 00 0a 26 08 17 58 0c 08 07 8e 69}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

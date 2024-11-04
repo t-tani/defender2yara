@@ -3195,3 +3195,24 @@ rule Trojan_MSIL_Injuke_AKCA_2147925207_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Injuke_AMX_2147925329_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Injuke.AMX!MTB"
+        threat_id = "2147925329"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Injuke"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {02 06 02 06 91 66 d2 9c [0-255] 02 06 8f ?? 00 00 01 25 71 ?? 00 00 01 1f ?? 59 d2 81}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
