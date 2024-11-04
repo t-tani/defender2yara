@@ -440,3 +440,24 @@ rule TrojanSpy_MSIL_Stealer_PQ_2147919303_0
         (all of ($x*))
 }
 
+rule TrojanSpy_MSIL_Stealer_SSF_2147925317_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanSpy:MSIL/Stealer.SSF!MTB"
+        threat_id = "2147925317"
+        type = "TrojanSpy"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Stealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {28 2c 00 00 0a 73 2d 00 00 0a 20 f4 01 00 00 28 ?? ?? ?? 06 25 26 28 2e 00 00 0a 25 26 6f 2f 00 00 0a 25 26 0a}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

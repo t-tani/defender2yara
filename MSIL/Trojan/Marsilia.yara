@@ -1148,3 +1148,53 @@ rule Trojan_MSIL_Marsilia_KAU_2147921799_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Marsilia_AYA_2147925308_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Marsilia.AYA!MTB"
+        threat_id = "2147925308"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Marsilia"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "$9f9f1272-892f-4127-ac93-6b385434b064" ascii //weight: 2
+        $x_1_2 = "Users\\ADMIN\\source\\repos\\fuddd2\\fuddd2\\obj\\Release" ascii //weight: 1
+        $x_1_3 = "/sc onlogon /rl highest" wide //weight: 1
+        $x_1_4 = "DownloadFile" ascii //weight: 1
+        $x_1_5 = "GetRandomFileName" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Marsilia_AYB_2147925310_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Marsilia.AYB!MTB"
+        threat_id = "2147925310"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Marsilia"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "miraculix.ru" wide //weight: 2
+        $x_1_2 = "obj\\x86\\Release\\WindowsFormsApplication4.pdb" ascii //weight: 1
+        $x_1_3 = "$4811c8a3-97ce-4ae8-8a76-751e18dbb8ab" ascii //weight: 1
+        $x_1_4 = "ds_apdate.exe" wide //weight: 1
+        $x_1_5 = "divsig_tasklist.txt" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -723,3 +723,28 @@ rule Trojan_MSIL_Zilla_GPN_2147925159_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Zilla_AYA_2147925313_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Zilla.AYA!MTB"
+        threat_id = "2147925313"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Zilla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "$4fd3cb20-0d77-4774-9551-edf09ae42314" ascii //weight: 2
+        $x_1_2 = "Toothless.exe" ascii //weight: 1
+        $x_1_3 = "/c wmic path win32_computersystemproduct get uuid" wide //weight: 1
+        $x_1_4 = "HKEY_LOCAL_MACHINE\\SOFTWARE\\WOW6432Node\\Microsoft\\Windows NT\\CurrentVersion" wide //weight: 1
+        $x_1_5 = "eOvstoxSBbZGWsTtknc" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -5938,3 +5938,28 @@ rule Trojan_MSIL_Heracles_MBXV_2147925165_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Heracles_AYA_2147925311_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Heracles.AYA!MTB"
+        threat_id = "2147925311"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Heracles"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "BypassETW.pdb" ascii //weight: 2
+        $x_1_2 = "$691e28a4-2c6f-4f81-b87c-773dc5d0434b" ascii //weight: 1
+        $x_1_3 = "StartPatch" ascii //weight: 1
+        $x_1_4 = "MemoryPatch" ascii //weight: 1
+        $x_1_5 = "VirtualProtect" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

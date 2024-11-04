@@ -2097,6 +2097,32 @@ rule Trojan_MSIL_LummaStealer_AYB_2147921621_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_LummaStealer_AYB_2147921621_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/LummaStealer.AYB!MTB"
+        threat_id = "2147921621"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "AFTER INSTALLATION, SOLARA WILL APPEAR ON YOUR DESKTOP" wide //weight: 2
+        $x_1_2 = "Add-MpPreference -ExclusionPath" wide //weight: 1
+        $x_1_3 = "properties/bla.jpg" wide //weight: 1
+        $x_1_4 = "debug.exe" wide //weight: 1
+        $x_1_5 = "RunPowerShellCommand" ascii //weight: 1
+        $x_1_6 = "debug.g.resources" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_LummaStealer_AYC_2147921622_0
 {
     meta:

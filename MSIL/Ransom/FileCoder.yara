@@ -1275,3 +1275,28 @@ rule Ransom_MSIL_FileCoder_RHAC_2147923578_0
         (all of ($x*))
 }
 
+rule Ransom_MSIL_FileCoder_AYI_2147925314_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:MSIL/FileCoder.AYI!MTB"
+        threat_id = "2147925314"
+        type = "Ransom"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "FileCoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "$3105a7da-42f3-45a4-8ba6-dc18159a7627" ascii //weight: 2
+        $x_1_2 = "EncryptionInfo.txt" wide //weight: 1
+        $x_1_3 = "All {0} files have been encrypted." wide //weight: 1
+        $x_1_4 = "To decrypt your files, please contact us." wide //weight: 1
+        $x_1_5 = "EncryptAllFiles" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
