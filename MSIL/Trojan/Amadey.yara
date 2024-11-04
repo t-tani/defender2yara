@@ -622,3 +622,24 @@ rule Trojan_MSIL_Amadey_B_2147920438_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Amadey_RDFN_2147925295_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Amadey.RDFN!MTB"
+        threat_id = "2147925295"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Amadey"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {28 02 00 00 2b 14 16 8d 13 00 00 01 6f 2b 00 00 0a 26}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

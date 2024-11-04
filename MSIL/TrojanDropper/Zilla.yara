@@ -45,3 +45,29 @@ rule TrojanDropper_MSIL_Zilla_SA_2147920861_0
         (all of ($x*))
 }
 
+rule TrojanDropper_MSIL_Zilla_NIT_2147925282_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDropper:MSIL/Zilla.NIT!MTB"
+        threat_id = "2147925282"
+        type = "TrojanDropper"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Zilla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {6f 3c 00 00 0a 6f 3d 00 00 0a 6f 3e 00 00 0a 06 18 6f 3f 00 00 0a 06 6f 40 00 00 0a 13 04 02 0d 11 04 09 16 09 8e b7 6f 41 00 00 0a 0b}  //weight: 2, accuracy: High
+        $x_1_2 = "cxrsldg" wide //weight: 1
+        $x_1_3 = "%AppData%" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_2_*) and 1 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+

@@ -2015,3 +2015,68 @@ rule Trojan_Win32_Neoreblamy_BAB_2147925133_0
         (4 of ($x*))
 }
 
+rule Trojan_Win32_Neoreblamy_GPF_2147925296_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Neoreblamy.GPF!MTB"
+        threat_id = "2147925296"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Neoreblamy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = {74 05 6a 07 59 cd 29 6a 01 68 15 00 00 40 6a 03 e8 cc 3b 00 00 83 c4 0c 6a 03 e8 d1 2b}  //weight: 3, accuracy: High
+        $x_1_2 = {49 73 44 65 62 75 67 67 65 72 50 72 65 73 65 6e 74 00 72}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Neoreblamy_GPG_2147925297_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Neoreblamy.GPG!MTB"
+        threat_id = "2147925297"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Neoreblamy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = {74 05 6a 07 59 cd 29 6a 01 68 15 00 00 40 6a 03 e8 cb 31 00 00 83 c4 0c 6a 03 e8}  //weight: 3, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Neoreblamy_GPG_2147925297_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Neoreblamy.GPG!MTB"
+        threat_id = "2147925297"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Neoreblamy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = {48 48 8b 4d e0 03 4d f4 88 41 01 0f b6 45 ff 03 45 f4 89 45 f4 eb 92}  //weight: 3, accuracy: High
+        $x_1_2 = {99 6a 0f 59 f7 f9 83 c2 0a 88 55 ff 0f b6 45 ff 03 45 f4 3b 45 ec 72 0b}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

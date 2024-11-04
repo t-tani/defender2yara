@@ -881,3 +881,25 @@ rule Trojan_MSIL_CobaltStrike_KAH_2147919574_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_CobaltStrike_NIT_2147925281_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/CobaltStrike.NIT!MTB"
+        threat_id = "2147925281"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "CobaltStrike"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {16 02 8e 69 20 00 10 00 00 1f 40 28 ?? 00 00 06 0a 02 16 06 6e 28 ?? 00 00 0a 02 8e 69 28 ?? 00 00 0a 7e 1c 00 00 0a 06 6e 28 ?? 00 00 0a 7e 1c 00 00 0a 28 ?? 00 00 06 26 2a}  //weight: 2, accuracy: Low
+        $x_2_2 = {18 5b 0b 07 8d 1b 00 00 01 0c 16 0d 2b 1d 02 09 18 5a 18 6f ?? 00 00 0a 1f 10 28 ?? 00 00 0a 13 04 08 09 11 04 d2 9c 09 17 58 0d 09 07 32 df}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
