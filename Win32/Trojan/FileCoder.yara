@@ -279,6 +279,28 @@ rule Trojan_Win32_FileCoder_NF_2147909824_1
         (all of ($x*))
 }
 
+rule Trojan_Win32_FileCoder_NF_2147909824_2
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/FileCoder.NF!MTB"
+        threat_id = "2147909824"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "FileCoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = {a1 8c 26 43 00 42 8a 44 10 ff 88 44 17 ff 8b 0d 88 26 43 00 8b 3d 90 26 43 00 3b d1 7c e2 a1 84 26 43 00}  //weight: 3, accuracy: High
+        $x_2_2 = {8b 3d 90 26 43 00 33 d2 f7 f1 8a 4c 37 ff 8a 04 17 88 0c 17 8b 0d 90 26 43 00 88 44 31 ff a1 84 26 43 00 8b 3d 14 26 43 00 8b c8 c1 e9 19 c1 e0 07}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win32_FileCoder_ARAX_2147910935_0
 {
     meta:

@@ -1323,3 +1323,26 @@ rule Trojan_Win32_Razy_NA_2147912532_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Razy_NE_2147925338_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Razy.NE!MTB"
+        threat_id = "2147925338"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Razy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {8b d9 8d 43 ?? 83 38 ?? 75 04 33 c0 eb 34 83 cf ff f0 0f c1 38 4f 75 28 ff 73 ?? 8d 4d ?? e8 cb ad ff ff 8b 03 83 65 fc ?? 8b 70 ?? 8b ce}  //weight: 3, accuracy: Low
+        $x_1_2 = "NxTch.exe" wide //weight: 1
+        $x_1_3 = "is.ooffs.xyz" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
