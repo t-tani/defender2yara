@@ -212,3 +212,27 @@ rule Trojan_Win64_DCRat_H_2147923750_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_DCRat_PD_2147925359_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/DCRat.PD!MTB"
+        threat_id = "2147925359"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "DCRat"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "Go build ID: " ascii //weight: 1
+        $x_1_2 = "portgetaddrinfowtransmitfile" ascii //weight: 1
+        $x_1_3 = "net/http.fakeLocker,sync.Locker" ascii //weight: 1
+        $x_3_4 = "github.com/MrBrounr/main/raw/main/naker.exe" ascii //weight: 3
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
