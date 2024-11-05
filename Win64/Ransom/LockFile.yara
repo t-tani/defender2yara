@@ -120,3 +120,79 @@ rule Ransom_Win64_LockFile_D_2147925127_0
         (all of ($x*))
 }
 
+rule Ransom_Win64_LockFile_E_2147925380_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win64/LockFile.E!MTB"
+        threat_id = "2147925380"
+        type = "Ransom"
+        platform = "Win64: Windows 64-bit platform"
+        family = "LockFile"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "wmic shadowcopy delete" ascii //weight: 1
+        $x_1_2 = "delete shadows /all /quiet" ascii //weight: 1
+        $x_1_3 = "bcdedit /set {default} recoveryenabled No" ascii //weight: 1
+        $x_1_4 = "bcdedit /set {default} bootstatuspolicy ignoreallfailures" ascii //weight: 1
+        $x_1_5 = ".encrypted" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Ransom_Win64_LockFile_DA_2147925384_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win64/LockFile.DA!MTB"
+        threat_id = "2147925384"
+        type = "Ransom"
+        platform = "Win64: Windows 64-bit platform"
+        family = "LockFile"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = "deleteshadows/quiet" ascii //weight: 1
+        $x_1_2 = "Your personal decryption code:" ascii //weight: 1
+        $x_1_3 = "your files are permanently deleted" ascii //weight: 1
+        $x_1_4 = {54 00 6f 00 20 00 64 00 65 00 63 00 72 00 79 00 70 00 74 00 20 00 79 00 6f 00 75 00 72 00 20 00 66 00 69 00 6c 00 65 00 73 00 2c 00 20 00 73 00 65 00 6e 00 64 00 [0-15] 42 00 54 00 43 00}  //weight: 1, accuracy: Low
+        $x_1_5 = {54 6f 20 64 65 63 72 79 70 74 20 79 6f 75 72 20 66 69 6c 65 73 2c 20 73 65 6e 64 [0-15] 42 54 43}  //weight: 1, accuracy: Low
+        $x_1_6 = "Your files have been encrypted" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (5 of ($x*))
+}
+
+rule Ransom_Win64_LockFile_DB_2147925385_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win64/LockFile.DB!MTB"
+        threat_id = "2147925385"
+        type = "Ransom"
+        platform = "Win64: Windows 64-bit platform"
+        family = "LockFile"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "cmdnetconfigstart=disabledFailed to wipe" ascii //weight: 1
+        $x_1_2 = "Windows Update system corrupted successfully" ascii //weight: 1
+        $x_1_3 = "/home/medusa/" ascii //weight: 1
+        $x_1_4 = "cmd.exe /e:ON /v:OFF /d /c" ascii //weight: 1
+        $x_1_5 = "Once instance has previously been poisoned" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -20,3 +20,25 @@ rule TrojanDownloader_MSIL_StealC_ASE_2147898574_0
         (all of ($x*))
 }
 
+rule TrojanDownloader_MSIL_StealC_RP_2147925381_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:MSIL/StealC.RP!MTB"
+        threat_id = "2147925381"
+        type = "TrojanDownloader"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "StealC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {00 73 03 00 00 06 0a 06 6f 01 00 00 06 00 06 6f 1c 00 00 0a 26 2a}  //weight: 1, accuracy: High
+        $x_10_2 = {7d 03 00 00 04 02 72 ?? ?? 00 70 7d ?? ?? 00 04 02 16 28 ?? ?? 00 0a 7d 05 00 00 04 02 72 ?? ?? 00 70 7d 06 00 00 04 02 28 ?? ?? 00 0a 00 00 02 28 ?? ?? 00 06 00 02 28 ?? ?? 00 06 16 fe 01 0a 06 2c 0b}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
