@@ -2338,3 +2338,26 @@ rule Trojan_MSIL_LummaStealer_GPE_2147925158_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_LummaStealer_RDK_2147925457_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/LummaStealer.RDK!MTB"
+        threat_id = "2147925457"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "a64ee66e-f604-483f-beee-080eadea5823" ascii //weight: 2
+        $x_1_2 = "design network them green innovate" ascii //weight: 1
+        $x_1_3 = "complex integrate build quick sun understand network power fast support" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

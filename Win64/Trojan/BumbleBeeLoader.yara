@@ -290,3 +290,25 @@ rule Trojan_Win64_BumbleBeeLoader_AG_2147819249_9
         (all of ($x*))
 }
 
+rule Trojan_Win64_BumbleBeeLoader_SFDB_2147925458_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/BumbleBeeLoader.SFDB!MTB"
+        threat_id = "2147925458"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "BumbleBeeLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "FbGIN678" ascii //weight: 2
+        $x_1_2 = "enmy555xo79.dll" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
