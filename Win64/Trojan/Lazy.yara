@@ -377,6 +377,27 @@ rule Trojan_Win64_Lazy_ARA_2147892878_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {8b 85 20 01 00 00 48 8b 4d 00 48 8b 49 ?? 0f b6 0c 41 e8 ?? ?? ?? ?? 8b 8d 20 01 00 00 88 44 0d 10 8b 85 20 01 00 00 ff c0 89 85 20 01 00 00 eb b9}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_Lazy_ARA_2147892878_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Lazy.ARA!MTB"
+        threat_id = "2147892878"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Lazy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "5"
         strings_accuracy = "Low"
     strings:
@@ -391,7 +412,7 @@ rule Trojan_Win64_Lazy_ARA_2147892878_0
         )
 }
 
-rule Trojan_Win64_Lazy_ARA_2147892878_1
+rule Trojan_Win64_Lazy_ARA_2147892878_2
 {
     meta:
         author = "defender2yara"

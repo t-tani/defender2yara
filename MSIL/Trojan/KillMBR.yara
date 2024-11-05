@@ -90,6 +90,29 @@ rule Trojan_MSIL_KillMBR_ARA_2147837128_0
         family = "KillMBR"
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "/k taskkill /f /im explorer.exe && timeout 30 && shutdown /s /t 10 /c" wide //weight: 2
+        $x_2_2 = "/k rd C:\\ /s /q" wide //weight: 2
+        $x_2_3 = "\\\\.\\PhysicalDrive0" wide //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_KillMBR_ARA_2147837128_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/KillMBR.ARA!MTB"
+        threat_id = "2147837128"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "KillMBR"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "7"
         strings_accuracy = "High"
@@ -103,7 +126,7 @@ rule Trojan_MSIL_KillMBR_ARA_2147837128_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_KillMBR_ARA_2147837128_1
+rule Trojan_MSIL_KillMBR_ARA_2147837128_2
 {
     meta:
         author = "defender2yara"
@@ -128,7 +151,7 @@ rule Trojan_MSIL_KillMBR_ARA_2147837128_1
         (all of ($x*))
 }
 
-rule Trojan_MSIL_KillMBR_ARA_2147837128_2
+rule Trojan_MSIL_KillMBR_ARA_2147837128_3
 {
     meta:
         author = "defender2yara"
@@ -150,7 +173,7 @@ rule Trojan_MSIL_KillMBR_ARA_2147837128_2
         (all of ($x*))
 }
 
-rule Trojan_MSIL_KillMBR_ARA_2147837128_3
+rule Trojan_MSIL_KillMBR_ARA_2147837128_4
 {
     meta:
         author = "defender2yara"
@@ -174,7 +197,7 @@ rule Trojan_MSIL_KillMBR_ARA_2147837128_3
         (all of ($x*))
 }
 
-rule Trojan_MSIL_KillMBR_ARA_2147837128_4
+rule Trojan_MSIL_KillMBR_ARA_2147837128_5
 {
     meta:
         author = "defender2yara"
@@ -198,7 +221,7 @@ rule Trojan_MSIL_KillMBR_ARA_2147837128_4
         (all of ($x*))
 }
 
-rule Trojan_MSIL_KillMBR_ARA_2147837128_5
+rule Trojan_MSIL_KillMBR_ARA_2147837128_6
 {
     meta:
         author = "defender2yara"

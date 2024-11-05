@@ -88,3 +88,25 @@ rule TrojanDownloader_MSIL_CobaltStrike_RKB_2147921721_0
         (all of ($x*))
 }
 
+rule TrojanDownloader_MSIL_CobaltStrike_MEL_2147925434_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:MSIL/CobaltStrike.MEL!MTB"
+        threat_id = "2147925434"
+        type = "TrojanDownloader"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "CobaltStrike"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "g('http://47.106.67.138:80/a'))" ascii //weight: 1
+        $x_1_2 = "System.Management.Automation.AmsiUtils" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

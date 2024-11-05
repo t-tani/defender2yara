@@ -1006,3 +1006,24 @@ rule Trojan_MSIL_njRAT_NJ_2147913057_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_njRAT_RDAC_2147925435_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/njRAT.RDAC!MTB"
+        threat_id = "2147925435"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "njRAT"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {25 80 02 01 00 04 28 0d 00 00 2b fe 0c 00 00 fe 06 fa 00 00 06 73 d0 00 00 0a 28 0e 00 00 2b 28 0f 00 00 2b fe 0e 02 00}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

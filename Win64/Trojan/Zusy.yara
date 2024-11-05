@@ -944,3 +944,24 @@ rule Trojan_Win64_Zusy_AMS_2147924245_1
         (all of ($x*))
 }
 
+rule Trojan_Win64_Zusy_ARA_2147925402_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Zusy.ARA!MTB"
+        threat_id = "2147925402"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {0f b6 c1 43 32 04 10 4d 8d 40 01 2a c2 ff c2 42 88 44 05 2e 83 fa 10 7c e7}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

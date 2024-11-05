@@ -2308,3 +2308,29 @@ rule Trojan_MSIL_Zusy_HNQ_2147925298_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Zusy_ARA_2147925403_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Zusy.ARA!MTB"
+        threat_id = "2147925403"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "12"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "\\Stealler.pdb" ascii //weight: 2
+        $x_2_2 = "://api.telegram.org/bot" wide //weight: 2
+        $x_2_3 = "/sendDocument?chat_id=" wide //weight: 2
+        $x_2_4 = "Screen({0}).png" wide //weight: 2
+        $x_2_5 = "web({0}).png" wide //weight: 2
+        $x_2_6 = "key_datas" wide //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

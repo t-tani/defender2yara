@@ -163,3 +163,28 @@ rule Trojan_Win64_Redcap_APC_2147918689_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Redcap_YAA_2147925420_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Redcap.YAA!MTB"
+        threat_id = "2147925420"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Redcap"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "14"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = "Fake RTL_BITMAP allocated at address = %" ascii //weight: 10
+        $x_1_2 = "leak_gadget_address failed" ascii //weight: 1
+        $x_1_3 = "KsOpenDefaultDevice at index %d failed with error = %x" ascii //weight: 1
+        $x_1_4 = "Calling Write64 wrapper to overwrite current EPROCESS->Token" ascii //weight: 1
+        $x_1_5 = "Leveraging DKOM to achieve LPE" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
