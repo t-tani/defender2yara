@@ -643,3 +643,25 @@ rule Trojan_MSIL_Amadey_RDFN_2147925295_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Amadey_AYA_2147925547_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Amadey.AYA!MTB"
+        threat_id = "2147925547"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Amadey"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = "$39a9277f-3cc8-4488-a5a2-f8f8f1422c75" ascii //weight: 3
+        $x_2_2 = "ovrflw.exe" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

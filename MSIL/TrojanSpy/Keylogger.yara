@@ -1066,3 +1066,29 @@ rule TrojanSpy_MSIL_Keylogger_SSD_2147924469_0
         (all of ($x*))
 }
 
+rule TrojanSpy_MSIL_Keylogger_AYA_2147925546_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanSpy:MSIL/Keylogger.AYA!MTB"
+        threat_id = "2147925546"
+        type = "TrojanSpy"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Keylogger"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "The logger has started, computer information:" wide //weight: 2
+        $x_1_2 = "i-Cue Login" wide //weight: 1
+        $x_1_3 = "KeyReaderr" ascii //weight: 1
+        $x_1_4 = "InstallPRG" ascii //weight: 1
+        $x_1_5 = "InfoSender_Tick" ascii //weight: 1
+        $x_1_6 = "hideEverything" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

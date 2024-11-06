@@ -3200,3 +3200,30 @@ rule Trojan_Win32_StealC_HZ_2147925498_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_StealC_NI_2147925557_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/StealC.NI!MTB"
+        threat_id = "2147925557"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "StealC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "ciwugukiyax dedolonemayotisorup gewuyayuposawetosesowelun kipukun" ascii //weight: 2
+        $x_1_2 = "tuzudinuyodawiz xivizevobikotuletife" ascii //weight: 1
+        $x_1_3 = "reteyudahecevoyacad" ascii //weight: 1
+        $x_1_4 = "yeginejiparatudefaf boluzicuzu vuvigowexafexepojomiba suhomoxine zuxagenelonugo" ascii //weight: 1
+        $x_1_5 = "zuxibanaxujamerapejifedisuheyuv lidudepayukig dekitafigajefe" ascii //weight: 1
+        $x_1_6 = "vuwemiso" ascii //weight: 1
+        $x_1_7 = "bidevilumopalozidepowayo" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

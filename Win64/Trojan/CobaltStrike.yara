@@ -15189,3 +15189,66 @@ rule Trojan_Win64_CobaltStrike_HZZ_2147925261_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_CobaltStrike_YMD_2147925551_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CobaltStrike.YMD!MTB"
+        threat_id = "2147925551"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CobaltStrike"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {4d 63 db 44 89 df 48 69 ff ?? ?? ?? ?? 48 c1 ef 23 8d 1c bf 8d 1c 9b 01 fb 44 89 df 29 df 0f b6 1c 3a 42 32 1c 1e 42 88 1c 19 41 ff c3 41 83 fb 0b 4c 89 d6 49 0f 44 f1 eb}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_CobaltStrike_MID_2147925552_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CobaltStrike.MID!MTB"
+        threat_id = "2147925552"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CobaltStrike"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {41 8b c2 4d 8d 5b 01 99 41 ff c2 41 f7 f8 48 63 c2 0f b6 4c 04 50 42 32 8c 1c ?? ?? 00 00 42 88 8c 1c ?? ?? 00 00 41 81 fa 7c 03 00 00 72}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_CobaltStrike_RZE_2147925553_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CobaltStrike.RZE!MTB"
+        threat_id = "2147925553"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CobaltStrike"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {41 f7 e9 d1 fa 8b c2 c1 e8 1f 03 d0 41 8b c1 41 ff c1 8d 0c 52 c1 e1 ?? 2b c1 48 63 c8 42 0f b6 04 11 41 30 00 49 ff c0 49 8b c0 48 2b c6 48 3b c5 7c}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

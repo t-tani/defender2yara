@@ -5984,3 +5984,34 @@ rule Trojan_MSIL_Heracles_SZCF_2147925528_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Heracles_NO_2147925560_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Heracles.NO!MTB"
+        threat_id = "2147925560"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Heracles"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "12"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "Koeken buizen sedert ton zes ons. Ik eigendom na verbruik algemeen speurzin de strooien" ascii //weight: 2
+        $x_1_2 = "Honderden afstanden ze bestreken diezelfde ik. Vijand hen kan invoer pompen" ascii //weight: 1
+        $x_1_3 = "Op voordat sneller er tinmijn tinerts ketting bijgang er. Trouwens zuiniger" ascii //weight: 1
+        $x_1_4 = "Initiatief verwijderd regelmatig tembunmijn ze hollanders uitgevoerd al" ascii //weight: 1
+        $x_1_5 = "Tunnel of zooals metaal gebied gerust is schors. Tot pogingen loopbaan mogelijk dit talrijke kapitaal mei zou" ascii //weight: 1
+        $x_1_6 = "Of de dergelijke primitieve in verzekeren onderwoeld.Men men opgebracht zes ten goudmijnen inspanning" ascii //weight: 1
+        $x_1_7 = "Generaal gesloten wij minerale verrezen upasboom vlijtige het met per" ascii //weight: 1
+        $x_1_8 = "Zoon mei meer weer zij wier zin drie. Nu omwonden af beroemde afkoopen in bordeaux" ascii //weight: 1
+        $x_1_9 = "Dit gayah far wordt rijst men tin goten wonde. Water are spijt zoo als zal stuit" ascii //weight: 1
+        $x_1_10 = "Nu voeren geheel dragen in dieper de bekend de. Koopers elk zou hiertoe haalden ver voordat zij wolfram bestuur" ascii //weight: 1
+        $x_1_11 = "Ontdaan bezocht planter schijnt na plantte moesten nu. Ingezameld zou dergelijke bergachtig woekeraars" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

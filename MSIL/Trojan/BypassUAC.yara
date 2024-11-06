@@ -139,3 +139,29 @@ rule Trojan_MSIL_BypassUAC_NC_2147918386_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_BypassUAC_NG_2147925555_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/BypassUAC.NG!MTB"
+        threat_id = "2147925555"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "BypassUAC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "e1ede26c-6645-49cc-9c1e-52d132f7a571" ascii //weight: 2
+        $x_1_2 = "Software\\Classes\\ms-settings\\shell\\open\\command" ascii //weight: 1
+        $x_1_3 = "System32\\fodhelper.exe" ascii //weight: 1
+        $x_1_4 = "VM DETECTED" ascii //weight: 1
+        $x_1_5 = "Sandbox DETECTED" ascii //weight: 1
+        $x_1_6 = "DOWNLOADFILE" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -2357,3 +2357,27 @@ rule Trojan_MSIL_Zusy_ARA_2147925403_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Zusy_AYB_2147925548_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Zusy.AYB!MTB"
+        threat_id = "2147925548"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "$a7805e28-c8db-482c-8b04-06c0ca884f7d" ascii //weight: 2
+        $x_1_2 = "activation.php?code=" wide //weight: 1
+        $x_1_3 = "deactivation.php?hash=" wide //weight: 1
+        $x_1_4 = "Program will be terminated" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
