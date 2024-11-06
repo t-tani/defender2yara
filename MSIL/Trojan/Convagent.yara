@@ -322,3 +322,24 @@ rule Trojan_MSIL_Convagent_KAC_2147914905_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Convagent_MX_2147925519_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Convagent.MX!MTB"
+        threat_id = "2147925519"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Convagent"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {72 1f 01 00 70 07 72 cc 01 00 70 28 05 00 00 0a 28 03 00 00 06 00 72 e8 01 00 70 07 72 95 02 00 70 28 05 00 00 0a 28 03 00 00 06 00}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -2473,3 +2473,30 @@ rule Trojan_Win64_Cobaltstrike_FD_2147920075_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Cobaltstrike_FH_2147925510_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Cobaltstrike.FH!MTB"
+        threat_id = "2147925510"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Cobaltstrike"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = {48 8b c7 48 f7 e1 48 8b c1 48 2b c2 48 d1 e8 48 03 c2 48 c1 e8 04 48 6b c0 17 48 2b c8 0f b6 44 0d a7 43 32 04 22 49 83 c2 06 43 88 44 0a fe 49 8d 42 ff 48 3d 00 6c 00 00 0f 82}  //weight: 10, accuracy: High
+        $x_10_2 = {0f b6 44 0c 20 42 32 44 0b fe 41 88 41 fe 41 8d 42 03 41 83 c2 06 48 63 c8 49 8b c5 48 f7 e1 48 c1 ea 04 48 6b c2 11 48 2b c8 49 0f af cb 0f b6 44 0c 20 42 32 44 0b ff 41 88 41 ff 48 ff cf 0f 85}  //weight: 10, accuracy: High
+        $x_1_3 = "xtart" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_10_*) and 1 of ($x_1_*))) or
+            ((2 of ($x_10_*))) or
+            (all of ($x*))
+        )
+}
+

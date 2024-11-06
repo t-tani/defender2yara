@@ -82,3 +82,28 @@ rule Trojan_Win64_Androm_CCHA_2147901149_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Androm_AMX_2147925514_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Androm.AMX!MTB"
+        threat_id = "2147925514"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Androm"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "20"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = "http://176.111.174.140/api/xloader.bin" ascii //weight: 10
+        $x_4_2 = "C:\\Documents and Settings\\JohnDo" ascii //weight: 4
+        $x_2_3 = "ProcessHacker" ascii //weight: 2
+        $x_2_4 = "x64dbg" ascii //weight: 2
+        $x_2_5 = "procmon.exe" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -425,3 +425,27 @@ rule Trojan_Win32_Autoitinject_PNQH_2147924867_0
         )
 }
 
+rule Trojan_Win32_Autoitinject_SZPJ_2147925513_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Autoitinject.SZPJ!MTB"
+        threat_id = "2147925513"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Autoitinject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "9"
+        strings_accuracy = "High"
+    strings:
+        $x_4_1 = "k550060e550060r550060n550060e550060l55006035500602550060.550060d550060l550060l550060" ascii //weight: 4
+        $x_3_2 = "u550060s550060e550060r55006035500602550060.550060d550060l550060l550060" ascii //weight: 3
+        $x_1_3 = "DllCall" ascii //weight: 1
+        $x_1_4 = "@TEMPDIR" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

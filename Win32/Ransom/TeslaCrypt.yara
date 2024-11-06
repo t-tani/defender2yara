@@ -192,6 +192,27 @@ rule Ransom_Win32_TeslaCrypt_ARA_2147913777_0
         (all of ($x*))
 }
 
+rule Ransom_Win32_TeslaCrypt_MA_2147916153_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win32/TeslaCrypt.MA!MTB"
+        threat_id = "2147916153"
+        type = "Ransom"
+        platform = "Win32: Windows 32-bit platform"
+        family = "TeslaCrypt"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {31 d2 be af c4 00 00 29 c6 89 d0 19 c8}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Ransom_Win32_TeslaCrypt_GW_2147916280_0
 {
     meta:
