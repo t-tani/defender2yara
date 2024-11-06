@@ -66,3 +66,39 @@ rule Trojan_Win64_ZLoader_DA_2147924369_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_ZLoader_DAA_2147925487_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/ZLoader.DAA!MTB"
+        threat_id = "2147925487"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "ZLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "41"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = "EXCEPTION: Code=0x%" ascii //weight: 10
+        $x_10_2 = "Flags=0x%" ascii //weight: 10
+        $x_10_3 = "Address=0x%" ascii //weight: 10
+        $x_10_4 = "expInfo=%" ascii //weight: 10
+        $x_1_5 = "rip=0x%" ascii //weight: 1
+        $x_1_6 = "rsp=0x%" ascii //weight: 1
+        $x_1_7 = "rbp=0x%" ascii //weight: 1
+        $x_1_8 = "rdi=0x%" ascii //weight: 1
+        $x_1_9 = "rsi=0x%" ascii //weight: 1
+        $x_1_10 = "rcx=0x%" ascii //weight: 1
+        $x_1_11 = "rdx=0x%" ascii //weight: 1
+        $x_1_12 = "rbx=0x%" ascii //weight: 1
+        $x_1_13 = "rax=0x%" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((4 of ($x_10_*) and 1 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+

@@ -2080,3 +2080,48 @@ rule Trojan_Win32_Neoreblamy_GPG_2147925297_1
         (all of ($x*))
 }
 
+rule Trojan_Win32_Neoreblamy_GPH_2147925489_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Neoreblamy.GPH!MTB"
+        threat_id = "2147925489"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Neoreblamy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = {03 4d f4 88 41 01 0f b6 45 ff 03 45 f4 89 45 f4 eb 92}  //weight: 3, accuracy: High
+        $x_1_2 = {99 6a 0f 59 f7 f9 83 c2 0a 88 55 ff 0f b6 45 ff 03 45 f4 3b 45}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Neoreblamy_GPJ_2147925499_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Neoreblamy.GPJ!MTB"
+        threat_id = "2147925499"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Neoreblamy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = "qZwWkFFnijnmgLqLLgrkcvH" ascii //weight: 3
+        $x_2_2 = "SKfCJxECbeEkVcR" ascii //weight: 2
+        $x_1_3 = "dUXHHoZetMeoCmjkvVusildeL" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

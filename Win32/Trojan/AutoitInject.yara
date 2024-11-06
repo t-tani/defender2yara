@@ -3250,6 +3250,38 @@ rule Trojan_Win32_AutoitInject_NQ_2147923995_0
         )
 }
 
+rule Trojan_Win32_AutoitInject_NQ_2147923995_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.NQ!MTB"
+        threat_id = "2147923995"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "13"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "WinDetectHiddenText" ascii //weight: 1
+        $x_2_2 = "http://w347302.s98.ufhosted.com/downaorb.txt" ascii //weight: 2
+        $x_1_3 = "FILEDELETE ( @SYSTEMDIR & \"\\netportz.txt\" )" ascii //weight: 1
+        $x_1_4 = "$URL , 0 , 0 ) & \"/Plxzz/dllzq.txt\" , @SCRIPTDIR" ascii //weight: 1
+        $x_1_5 = "LOCAL $TMP_DAT , $UTF_16 , $TMP1 , $TMP" ascii //weight: 1
+        $x_1_6 = "LOCAL $Y [ 16 ] = [ \"0\" , \"1\" , \"2\" , \"3\" , \"4\" , \"5\" , \"6\" , \"7\" , \"8\" , \"9\" , \"A\" , \"B\" , \"C\" , \"D\" , \"E\" , \"F\" ]" ascii //weight: 1
+        $x_1_7 = "LOCAL $H [ 16 ] = [ \"9\" , \"F\" , \"D\" , \"E\" , \"C\" , \"B\" , \"A\" , \"8\" , \"7\" , \"6\" , \"5\" , \"4\" , \"3\" , \"2\" , \"1\" , \"0\" ]" ascii //weight: 1
+        $x_1_8 = "FOR $S = 1 TO $LEN" ascii //weight: 1
+        $x_1_9 = "$TMP1 = STRINGMID ( $UTF_16 , $S , 1 )" ascii //weight: 1
+        $x_1_10 = "FOR $I = 0 TO 15" ascii //weight: 1
+        $x_1_11 = "$TMP = STRINGREPLACE ( $TMP1 , $H [ $I ] , $Y [ $I ] )" ascii //weight: 1
+        $x_1_12 = "TCPSEND ( $HCLIENT , $IP & \"%\" & @IPADDRESS1 & \"%\" & @COMPUTERNAME &" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win32_AutoitInject_NR_2147923996_0
 {
     meta:

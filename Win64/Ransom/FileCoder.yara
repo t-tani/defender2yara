@@ -644,3 +644,32 @@ rule Ransom_Win64_FileCoder_AYH_2147925312_0
         (all of ($x*))
 }
 
+rule Ransom_Win64_FileCoder_RHZ_2147925473_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win64/FileCoder.RHZ!MTB"
+        threat_id = "2147925473"
+        type = "Ransom"
+        platform = "Win64: Windows 64-bit platform"
+        family = "FileCoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "12"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = "-----BEGIN PUBLIC KEY-----" ascii //weight: 3
+        $x_1_2 = "-----END PUBLIC KEY-----" ascii //weight: 1
+        $x_1_3 = "Go build ID:" ascii //weight: 1
+        $x_1_4 = "s3.dualstack.us" ascii //weight: 1
+        $x_1_5 = "bcryptprimitives" wide //weight: 1
+        $x_1_6 = "vssadmin" ascii //weight: 1
+        $x_1_7 = ".back" ascii //weight: 1
+        $x_1_8 = ".pptx" ascii //weight: 1
+        $x_2_9 = {50 45 00 00 64 86 08 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 0b 02 03 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 06 00}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

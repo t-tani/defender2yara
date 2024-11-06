@@ -862,6 +862,29 @@ rule Trojan_MSIL_Zusy_NZ_2147899461_2
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Zusy_NZ_2147899461_3
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Zusy.NZ!MTB"
+        threat_id = "2147899461"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {03 0a 72 01 00 00 70 06 72 45 00 00 70 28 17 00 00 0a 0b 73 18 00 00 0a 25 72 49 00 00 70 6f ?? 00 00 0a 00 25 72 67 00 00 70 07 72 7d 00 00 70 28 17 00 00 0a 6f ?? 00 00 0a 00 25 17 6f ?? 00 00 0a 00 25 17 6f ?? 00 00 0a 00 25 16 6f ?? 00 00 0a 00 25 17}  //weight: 3, accuracy: Low
+        $x_2_2 = {20 10 27 00 00 28 ?? 00 00 0a 00 28 ?? 00 00 0a 02 7b 02 00 00 04 6f 2e 00 00 0a 0a 72 33 01 00 70 28 ?? 00 00 0a 0b 07}  //weight: 2, accuracy: Low
+        $x_1_3 = "WindowsFormsApp47.Properties.Resources.resources" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_Zusy_AMBH_2147899966_0
 {
     meta:
