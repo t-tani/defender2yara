@@ -61,3 +61,25 @@ rule TrojanDownloader_MSIL_Fsysna_SQ_2147893572_0
         (all of ($x*))
 }
 
+rule TrojanDownloader_MSIL_Fsysna_SR_2147925575_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:MSIL/Fsysna.SR!MTB"
+        threat_id = "2147925575"
+        type = "TrojanDownloader"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Fsysna"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {07 06 08 6f 17 00 00 0a 0d 12 03 28 18 00 00 0a 28 19 00 00 0a 0b 08 17 58 0c 08 06 6f 1a 00 00 0a 32 dd}  //weight: 2, accuracy: High
+        $x_2_2 = "Shiraza.Properties.Resources.resources" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

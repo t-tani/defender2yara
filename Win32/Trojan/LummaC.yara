@@ -1011,3 +1011,34 @@ rule Trojan_Win32_LummaC_WDD_2147925221_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_LummaC_HNAA_2147925579_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaC.HNAA!MTB"
+        threat_id = "2147925579"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {64 8b 12 51 50 6a 00 ff 72 ?? ff 15}  //weight: 1, accuracy: Low
+        $x_1_2 = {31 f2 89 54 24 ?? 8b 54 24}  //weight: 1, accuracy: Low
+        $x_1_3 = {31 c8 89 45 e4 8b 45 e4}  //weight: 1, accuracy: High
+        $x_10_4 = {f3 a5 8b 74 24 f8 8b 7c 24 f4 8d 54 24 04 ff 54 24 fc}  //weight: 10, accuracy: High
+        $x_11_5 = {8b 14 24 8b 34 24 0f b6 74 34 04 81 c2 ?? ?? ?? ?? 31 f2 89 54 24 0c 8b 54 24 0c 80 c2 ?? 8b 34 24 88 54}  //weight: 11, accuracy: Low
+        $x_11_6 = {c7 44 24 34 29 23 17 1d c7 44 24 38 15 1f 13 19 c7 44 24 3c 11 1b 1f 15 c7 44 24 40 1d 17 b2 11 c7 44 24 44 10 11 0e 0f c7 44 24 48 0c 0d 0a 0b c7 44 24 4c f6 09 fe 07 c7 44 24 50 09 08 0f 0e}  //weight: 11, accuracy: High
+        $x_11_7 = {5c 41 70 70 44 61 74 61 5c 52 6f 61 6d 69 6e 67 00 00 00 [0-16] 68 74 74 70 73 3a 2f 2f [0-16] 2e ?? ?? ?? 2f [0-21] 2e 65 78 65 00 00 [0-255] [0-240] 68 74 74 70 73 3a 2f 2f [0-21] 2e [0-4] 2f 61 70 69 00}  //weight: 11, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_10_*) and 1 of ($x_1_*))) or
+            ((1 of ($x_11_*))) or
+            (all of ($x*))
+        )
+}
+

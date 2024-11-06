@@ -812,3 +812,27 @@ rule Trojan_MSIL_Barys_NG_2147921845_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Barys_SK_2147925573_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Barys.SK!MTB"
+        threat_id = "2147925573"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Barys"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "$8b52ef8f-61b3-4ce3-8cee-6199efc29786" ascii //weight: 1
+        $x_1_2 = "ZeusCrypter\\obj\\Debug\\ZeusCrypter.pdb" ascii //weight: 1
+        $x_1_3 = "Write path to file to encrypt" ascii //weight: 1
+        $x_1_4 = "Crypted.exe" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -2463,3 +2463,46 @@ rule Trojan_Win32_LummaStealer_WND_2147925327_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_LummaStealer_ALE_2147925568_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaStealer.ALE!MTB"
+        threat_id = "2147925568"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {89 c7 83 e7 0d 89 c3 83 e3 02 89 de 83 f6 02 0f af f7 83 cf 02 0f af fb 89 c5 81 cd 50 65 c5 1d 89 cb 81 cb af 9a 3a e2 21 eb f7 d3 01 f3 01 fb 89 de 21 d6 01 d3 01 f6 29 f3 80 c3 95 88 5c 04 0c 40 49 83 f8 1b}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_LummaStealer_MEL_2147925577_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaStealer.MEL!MTB"
+        threat_id = "2147925577"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {33 c9 8b 85 e0 ef ff ff 30 0c 10 8b 95 ec ef ff ff 83 c7 04 42}  //weight: 2, accuracy: High
+        $x_1_2 = "database\\wirefr\\x64\\HTTP\\Intero.pdb" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

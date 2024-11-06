@@ -3316,3 +3316,26 @@ rule Ransom_MSIL_Filecoder_PAP_2147924246_0
         (all of ($x*))
 }
 
+rule Ransom_MSIL_Filecoder_SWF_2147925564_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:MSIL/Filecoder.SWF!MTB"
+        threat_id = "2147925564"
+        type = "Ransom"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Filecoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "$fe831e17-492b-4af2-b686-795c6fbcdf92" ascii //weight: 2
+        $x_2_2 = "majordom\\client\\majordom\\majordom\\obj\\Debug\\majordom.pdb" ascii //weight: 2
+        $x_1_3 = "CreateEncryptor" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

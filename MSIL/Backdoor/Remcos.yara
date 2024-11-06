@@ -1675,3 +1675,25 @@ rule Backdoor_MSIL_Remcos_AUBA_2147924732_0
         (all of ($x*))
 }
 
+rule Backdoor_MSIL_Remcos_SOK_2147925576_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Backdoor:MSIL/Remcos.SOK!MTB"
+        threat_id = "2147925576"
+        type = "Backdoor"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Remcos"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {09 11 14 07 11 14 91 11 04 11 15 95 61 d2 9c 00 11 14 17 58 13 14 11 14 07 8e 69 fe 04 13 18 11 18 3a 66 ff ff ff}  //weight: 2, accuracy: High
+        $x_2_2 = "CS50_Medical_App.Welcome.resources" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

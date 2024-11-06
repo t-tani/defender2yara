@@ -2269,6 +2269,29 @@ rule Ransom_Win32_Filecoder_SUR_2147922721_0
         (all of ($x*))
 }
 
+rule Ransom_Win32_Filecoder_SUR_2147922721_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win32/Filecoder.SUR!MTB"
+        threat_id = "2147922721"
+        type = "Ransom"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Filecoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "Your files have been encrypted!" ascii //weight: 2
+        $x_2_2 = "look at any file with .raz extension" ascii //weight: 2
+        $x_1_3 = "AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Ransom_Win32_Filecoder_PAFR_2147922991_0
 {
     meta:
