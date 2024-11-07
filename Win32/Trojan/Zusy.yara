@@ -4697,3 +4697,30 @@ rule Trojan_Win32_Zusy_NS_2147924816_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Zusy_HNC_2147925659_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zusy.HNC!MTB"
+        threat_id = "2147925659"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {9c 60 55 8b ec 48 58 53 4f 5f 4f 3f b8 02 00 00 01 61 9d}  //weight: 2, accuracy: High
+        $x_1_2 = {60 55 8b ec 53 33 db 57 68 01 80 00 00 53 6a 08 53 68 60 01 00 00 50 53 68 80 ec 41 00 68 80 91 40 00 68 c0 2e 42 00 50 53 81 c4 38 00 00 00 c9 61 9d}  //weight: 1, accuracy: High
+        $x_3_3 = {68 01 80 00 00 25 ff ff ff bf 66 3d 06 00 81 c4 0c 00 00 00 c9 61 9d}  //weight: 3, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_2_*) and 1 of ($x_1_*))) or
+            ((1 of ($x_3_*))) or
+            (all of ($x*))
+        )
+}
+

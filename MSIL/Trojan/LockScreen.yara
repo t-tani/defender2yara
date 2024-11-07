@@ -123,3 +123,30 @@ rule Trojan_MSIL_LockScreen_ALS_2147851890_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_LockScreen_ARA_2147925648_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/LockScreen.ARA!MTB"
+        threat_id = "2147925648"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "LockScreen"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = "\\CadillacLocker.pdb" ascii //weight: 3
+        $x_3_2 = "\\RobuxCodeGenerator.pdb" ascii //weight: 3
+        $x_2_3 = "DisableTaskMgr" wide //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_3_*) and 1 of ($x_2_*))) or
+            ((2 of ($x_3_*))) or
+            (all of ($x*))
+        )
+}
+

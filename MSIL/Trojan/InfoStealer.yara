@@ -95,6 +95,31 @@ rule Trojan_MSIL_InfoStealer_ARA_2147836264_0
         family = "InfoStealer"
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "AppDataGrabber" wide //weight: 2
+        $x_2_2 = "CreditCardGrabber" wide //weight: 2
+        $x_2_3 = "PasswordGrabber" wide //weight: 2
+        $x_2_4 = "HistoryGrabber" wide //weight: 2
+        $x_2_5 = "WalletGrabber" wide //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_InfoStealer_ARA_2147836264_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/InfoStealer.ARA!MTB"
+        threat_id = "2147836264"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "InfoStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "18"
         strings_accuracy = "High"

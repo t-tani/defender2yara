@@ -319,3 +319,26 @@ rule Virus_Win32_Virut_M_2147623619_0
         )
 }
 
+rule Virus_Win32_Virut_HNC_2147925661_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Virus:Win32/Virut.HNC!MTB"
+        threat_id = "2147925661"
+        type = "Virus"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Virut"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {77 62 00 00 72 62 00 00 5c 74 65 6d 70 32 2e 65 78 65 00 00 00 00 00 00 5c 74 65 6d 70 31 2e 65 78 65 00 00 00}  //weight: 2, accuracy: High
+        $x_1_2 = {8b 74 24 18 8b 44 24 14 d1 e8 46 89 44 24 14 83 fe 1a 89 74 24 18}  //weight: 1, accuracy: High
+        $x_1_3 = {f3 a4 eb 06 c7 06 00 00 00 00 8b 54 24 1c 8b 44 24 18 8b 74 24 10 33 c9 66 8b 4a 04 40 83 c6 0e 3b c1}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
