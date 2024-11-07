@@ -165,7 +165,7 @@ rule HackTool_Win32_DumpLsass_G_2147786202_0
         strings_accuracy = "High"
     strings:
         $n_20_1 = "\\ProgramData\\Microsoft\\AzureWatson\\0\\procdump" wide //weight: -20
-        $n_20_2 = {5c 00 50 00 72 00 6f 00 67 00 72 00 61 00 6d 00 44 00 61 00 74 00 61 00 5c 00 4d 00 69 00 63 00 72 00 6f 00 73 00 6f 00 66 00 74 00 5c 00 57 00 69 00 6e 00 64 00 6f 00 77 00 73 00 5c 00 57 00 45 00 52 00 5c 00 52 00 65 00 70 00 6f 00 72 00 74 00 51 00 75 00 65 00 75 00 65 00 90 00 00 00}  //weight: -20, accuracy: High
+        $n_20_2 = "\\ProgramData\\Microsoft\\Windows\\WER\\ReportQueue" wide //weight: -20
         $x_10_3 = "-accepteula" wide //weight: 10
         $x_5_4 = "-m" wide //weight: 5
         $x_5_5 = "/m" wide //weight: 5
