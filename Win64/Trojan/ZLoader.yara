@@ -187,3 +187,24 @@ rule Trojan_Win64_ZLoader_DD_2147925614_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_ZLoader_YAC_2147925629_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/ZLoader.YAC!MTB"
+        threat_id = "2147925629"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "ZLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "Low"
+    strings:
+        $x_11_1 = {48 2b c8 49 0f af ca 0f b6 44 0c ?? 42 32 44 03 fa 41 88 40 fa}  //weight: 11, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
