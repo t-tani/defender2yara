@@ -237,28 +237,6 @@ rule Trojan_MSIL_Barys_RDA_2147887427_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Barys_AALR_2147888291_0
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "Trojan:MSIL/Barys.AALR!MTB"
-        threat_id = "2147888291"
-        type = "Trojan"
-        platform = "MSIL: .NET intermediate language scripts"
-        family = "Barys"
-        severity = "Critical"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "5"
-        strings_accuracy = "Low"
-    strings:
-        $x_4_1 = {17 11 0a 11 09 28 ?? 00 00 06 13 0b 11 0b 02 1a 02 8e 69 1a 59 6f ?? 01 00 0a 28 ?? 00 00 06 0b de 2d 11 0b 2c 07 11 0b 6f ?? 00 00 0a dc}  //weight: 4, accuracy: Low
-        $x_1_2 = "CreateDecryptor" ascii //weight: 1
-    condition:
-        (filesize < 20MB) and
-        (all of ($x*))
-}
-
 rule Trojan_MSIL_Barys_AMAD_2147888788_0
 {
     meta:
