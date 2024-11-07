@@ -1423,3 +1423,28 @@ rule Ransom_MSIL_FileCoder_AYN_2147925550_0
         (all of ($x*))
 }
 
+rule Ransom_MSIL_FileCoder_RHAA_2147925678_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:MSIL/FileCoder.RHAA!MTB"
+        threat_id = "2147925678"
+        type = "Ransom"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "FileCoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = "NoCry.exe" ascii //weight: 2
+        $x_1_2 = "your important files are encrypted." ascii //weight: 1
+        $x_1_3 = "Ooooops All Your Files Are Encrypted ,NoCry" ascii //weight: 1
+        $x_1_4 = "Contact Me At Email To Get A Key" ascii //weight: 1
+        $x_2_5 = {50 45 00 00 4c 01 03 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 0b 01 08 00 00 5a 05 00 00 06 00 00 00 00 00 00 2e 78 05}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -2125,3 +2125,24 @@ rule Trojan_Win32_Neoreblamy_GPJ_2147925499_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Neoreblamy_BAD_2147925666_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Neoreblamy.BAD!MTB"
+        threat_id = "2147925666"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Neoreblamy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {ff ff 85 db 50 22 c7 85 ?? ?? ff ff 9d cd 00 b0 c7 85 ?? ?? ff ff fa f5 39 89 8b 85 ?? ?? ff ff f7 d8 83 f8 f7 77}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

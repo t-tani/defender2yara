@@ -3529,3 +3529,28 @@ rule Trojan_Win32_AutoitInject_AMY_2147925330_0
         )
 }
 
+rule Trojan_Win32_AutoitInject_NU_2147925668_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.NU!MTB"
+        threat_id = "2147925668"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "= STRINGSPLIT ( \"3,1,4,1,5,9,2,6,5,3,5,8,9,7,9\" , \",\" )" ascii //weight: 2
+        $x_1_2 = "&= EXECUTE ( \"Ch\" & \"r(BitA\" & \"ND(Asc(String\" & \"Mid" ascii //weight: 1
+        $x_1_3 = "= EXECUTE ( \"Fil\" & \"eO\" & \"pe\" & \"n(@Te\" & \"mpDir &" ascii //weight: 1
+        $x_1_4 = "YjvuzjnGqotk" ascii //weight: 1
+        $x_1_5 = "gxssi" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
