@@ -34,9 +34,9 @@ rule Trojan_Win32_MalDown_SB_2147916319_0
         severity = "Critical"
         signature_type = "SIGNATURE_TYPE_CMDHSTR_EXT"
         threshold = "4"
-        strings_accuracy = "High"
+        strings_accuracy = "Low"
     strings:
-        $x_1_1 = {63 00 6d 00 64 00 2e 00 65 00 78 00 65 00 90 00 02 00 ff 00 63 00 75 00 72 00 6c 00 90 00 02 00 ff 00 2d 00 6a 00 6b 00 6f 00 73 00 77 00}  //weight: 1, accuracy: High
+        $x_1_1 = {63 00 6d 00 64 00 2e 00 65 00 78 00 65 00 [0-255] 63 00 75 00 72 00 6c 00 [0-255] 2d 00 6a 00 6b 00 6f 00 73 00 77 00}  //weight: 1, accuracy: Low
         $x_1_2 = "%{filename_effective}" wide //weight: 1
         $x_1_3 = "\\appdata\\local\\temp" wide //weight: 1
         $x_1_4 = "-k http" wide //weight: 1

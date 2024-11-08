@@ -127,3 +127,24 @@ rule Trojan_Win64_Rootkit_CCIM_2147923916_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Rootkit_CCJN_2147925694_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Rootkit.CCJN!MTB"
+        threat_id = "2147925694"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Rootkit"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {48 83 64 24 40 00 48 8d 54 24 40 48 8b c8 ff 15 ?? ?? ?? ?? 8b f8 85 c0 78 ?? 8b 4b 04 48 83 64 24 48 00 48 89 4c 24 50 48 8b 4c 24 40 ff 15 ?? ?? ?? ?? 8b 4b 08 4c 8d 4c 24 50 89 4c 24 28 48 8d 54 24 48 48 83 c9 ff c7 44 24 20 00 30 00 00 45 33 c0 ff 15 ?? ?? ?? ?? ff 15}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

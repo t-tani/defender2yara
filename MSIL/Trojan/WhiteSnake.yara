@@ -309,3 +309,25 @@ rule Trojan_MSIL_WhiteSnake_KAA_2147910956_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_WhiteSnake_AWS_2147925686_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/WhiteSnake.AWS!MTB"
+        threat_id = "2147925686"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "WhiteSnake"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = {13 04 09 06 11 04 91 58 20 ff 00 00 00 5f 0d 06 11 04 91 13 0b 06 11 04 06 09 91 9c 06 09 11 0b 9c 06 11 04 91 06 09 91 58 20 ff 00 00 00 5f 13 0c 08 11 0a 02 11 0a 91 06 11 0c 91 61 d2 9c 00 11 0a 17 58}  //weight: 3, accuracy: High
+        $x_2_2 = {06 11 07 91 58 07 11 07 91 58 20 ff 00 00 00 5f 0d 06 11 07 91 13 08 06 11 07 06 09 91 9c 06 09 11 08 9c 00 11 07 17 58 13 07 11 07 20 00 01 00 00 fe 04 13 09}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

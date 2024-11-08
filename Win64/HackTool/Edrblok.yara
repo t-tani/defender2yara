@@ -33,3 +33,29 @@ rule HackTool_Win64_Edrblok_A_2147900151_0
         )
 }
 
+rule HackTool_Win64_Edrblok_YAA_2147925687_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "HackTool:Win64/Edrblok.YAA!MTB"
+        threat_id = "2147925687"
+        type = "HackTool"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Edrblok"
+        severity = "High"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "16"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = "FwpmEngineOpen0" ascii //weight: 1
+        $x_1_2 = "blockedr" ascii //weight: 1
+        $x_1_3 = "unblockall" ascii //weight: 1
+        $x_2_4 = "Added WFP filter for \"%S\" (Filter id: %d, IPv" ascii //weight: 2
+        $x_1_5 = "Deleted custom WFP provider" ascii //weight: 1
+        $x_10_6 = {01 10 00 00 c7 45 ?? 87 1e 8e d7 66 c7 45 ?? 44 86 66 c7 45 ?? a5 4e ?? ?? 94 37 d8 09 ec ef c9 71}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

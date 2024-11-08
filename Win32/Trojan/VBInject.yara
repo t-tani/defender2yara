@@ -715,3 +715,25 @@ rule Trojan_Win32_VBInject_MA_2147819640_1
         (all of ($x*))
 }
 
+rule Trojan_Win32_VBInject_BAD_2147925685_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/VBInject.BAD!MTB"
+        threat_id = "2147925685"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "VBInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = {b9 0c fe 19 5b 01 cb fe 48 a8 30 d9 47 15 7a 9d cc 43 72}  //weight: 3, accuracy: High
+        $x_2_2 = {25 66 f1 46 90 35 be f4 5a 4c 08 91 e7 e0 ee 57}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
