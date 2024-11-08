@@ -5120,3 +5120,26 @@ rule Trojan_MSIL_AsyncRAT_RDAF_2147925232_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AsyncRAT_RDAG_2147925746_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AsyncRAT.RDAG!MTB"
+        threat_id = "2147925746"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AsyncRAT"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "9cfad5b8-559c-4adf-8d9f-12d587e80427" ascii //weight: 2
+        $x_1_2 = "Chrome Installer" ascii //weight: 1
+        $x_1_3 = "Google LLC" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

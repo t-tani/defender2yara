@@ -3248,3 +3248,24 @@ rule Trojan_Win32_StealC_TGF_2147925633_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_StealC_JGM_2147925744_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/StealC.JGM!MTB"
+        threat_id = "2147925744"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "StealC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {8b d3 c1 ea 05 89 55 fc 8b 45 e8 01 45 fc 8b c3 c1 e0 04 03 45 e4 8d 0c 1f 33 c1 33 45 fc 89 45 ec}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -297,3 +297,45 @@ rule Trojan_Win64_ZLoader_DH_2147925726_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_ZLoader_YAD_2147925755_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/ZLoader.YAD!MTB"
+        threat_id = "2147925755"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "ZLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "Low"
+    strings:
+        $x_11_1 = {49 8b c4 48 f7 e1 48 c1 ea 04 48 ?? ?? ?? 48 03 c0 48 2b c8 0f b6 44 0c ?? 43 32 44 0f ?? 41 88 41}  //weight: 11, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_ZLoader_YAE_2147925756_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/ZLoader.YAE!MTB"
+        threat_id = "2147925756"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "ZLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "Low"
+    strings:
+        $x_11_1 = {48 6b c2 13 48 2b c8 49 0f af cb 0f b6 44 0c ?? 42 32 44 0b fb 41 88 41 fb 41 8d 42}  //weight: 11, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -1042,3 +1042,24 @@ rule Trojan_Win32_LummaC_HNAA_2147925579_0
         )
 }
 
+rule Trojan_Win32_LummaC_SKK_2147925757_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaC.SKK!MTB"
+        threat_id = "2147925757"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {89 d8 24 fc 00 c8 32 02 34 42 04 b6 88 02 42 83 c3 02 fe c1 83 fb 08 75 e7}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

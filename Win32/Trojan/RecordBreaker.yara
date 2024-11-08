@@ -273,3 +273,24 @@ rule Trojan_Win32_RecordBreaker_EM_2147900440_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_RecordBreaker_ARA_2147925743_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/RecordBreaker.ARA!MTB"
+        threat_id = "2147925743"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "RecordBreaker"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {8b 4f 08 8a 44 32 18 88 04 0a 42 3b 57 04 72 f0}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
