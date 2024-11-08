@@ -4483,3 +4483,25 @@ rule Trojan_MSIL_DarkTortilla_AHCA_2147925075_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_DarkTortilla_ARCA_2147925741_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/DarkTortilla.ARCA!MTB"
+        threat_id = "2147925741"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "DarkTortilla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {02 1f 18 5d 16 fe 01 0b 07 2c 04 14 0a 2b 2a 00 02 19 d8 10 00 02 1f 18 fe 02 0c 08 2c 11 1f 18 10 00 72 0e 3b 00 70 28 ?? 01 00 06 0a 2b 0a 00 02 28 ?? 02 00 06 0a 2b 00 06 2a}  //weight: 3, accuracy: Low
+        $x_2_2 = {0a 72 2d 21 00 70 17 8d ?? 00 00 01 25 16 02 a2 25 0c 14 14 17 8d ?? 00 00 01 25 16 17 9c 25 0d 28 ?? 00 00 0a 09 16 91 2d 02}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

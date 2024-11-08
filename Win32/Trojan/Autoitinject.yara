@@ -449,3 +449,27 @@ rule Trojan_Win32_Autoitinject_SZPJ_2147925513_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Autoitinject_PMFH_2147925742_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Autoitinject.PMFH!MTB"
+        threat_id = "2147925742"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Autoitinject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "14"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "@TEMPDIR" ascii //weight: 1
+        $x_1_2 = "DLLCALL" ascii //weight: 1
+        $x_5_3 = "k52110e52110r52110n52110e52110l52110352110252110" ascii //weight: 5
+        $x_7_4 = "u52110s52110e52110r52110352110252110" ascii //weight: 7
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

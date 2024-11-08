@@ -224,3 +224,25 @@ rule Trojan_AndroidOS_Mamont_L_2147924225_0
         (3 of ($x*))
 }
 
+rule Trojan_AndroidOS_Mamont_G_2147925740_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:AndroidOS/Mamont.G"
+        threat_id = "2147925740"
+        type = "Trojan"
+        platform = "AndroidOS: Android operating system"
+        family = "Mamont"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "PROWEL GET BAL" ascii //weight: 2
+        $x_2_2 = "sendsms/TFActivity" ascii //weight: 2
+        $x_2_3 = "CARD2SIMSBER" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

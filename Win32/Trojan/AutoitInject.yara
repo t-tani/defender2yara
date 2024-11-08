@@ -3554,3 +3554,61 @@ rule Trojan_Win32_AutoitInject_NU_2147925668_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_AutoitInject_AQCA_2147925732_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.AQCA!MTB"
+        threat_id = "2147925732"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "@TEMPDIR" ascii //weight: 1
+        $x_1_2 = "DLLCALL" ascii //weight: 1
+        $x_2_3 = "k622005e622005r622005n622005e622005l62200536220052622005.622005d622005l622005l622005" ascii //weight: 2
+        $x_2_4 = "V622005i622005r622005t622005u622005a622005l622005P622005r622005o622005t622005e622005c622005t622005" ascii //weight: 2
+        $x_2_5 = "u622005s622005e622005r62200536220052622005.622005d622005l622005l622005" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_AutoitInject_AMAA_2147925736_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.AMAA!MTB"
+        threat_id = "2147925736"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "15"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {45 00 58 00 45 00 43 00 55 00 54 00 45 00 20 00 28 00 20 00 22 00 44 00 6c 00 6c 00 43 00 22 00 20 00 26 00 20 00 22 00 61 00 6c 00 6c 00 28 00 [0-20] 28 00 22 00 22 00 68 00 68 00 6f 00 71 00 62 00 22 00 20 00 26 00 20 00 [0-30] 2c 00 20 00 33 00 29 00 2c 00 20 00 00 28 00 22 00 22 00 6d 00 77 00 6f 00 22 00 22 00 2c 00 20 00 33 00 29 00 2c 00 20 00 00 28 00 22 00 22 00 53 00 6c 00 6f 00 77 00 72 00 64 00 69 00 44 00 69 00 6f 00 6c 00 66 00 22 00 22 00 2c 00 20 00 33 00 29 00 2c 00 20 00 00 28 00 22 00 22 00}  //weight: 5, accuracy: Low
+        $x_5_2 = {45 58 45 43 55 54 45 20 28 20 22 44 6c 6c 43 22 20 26 20 22 61 6c 6c 28 [0-20] 28 22 22 68 68 6f 71 62 22 20 26 20 [0-30] 2c 20 33 29 2c 20 00 28 22 22 6d 77 6f 22 22 2c 20 33 29 2c 20 00 28 22 22 53 6c 6f 77 72 64 69 44 69 6f 6c 66 22 22 2c 20 33 29 2c 20 00 28 22 22}  //weight: 5, accuracy: Low
+        $x_5_3 = "DllC\" & \"all(\"\"use\" & \"r3\" & \"2.d\" & \"ll\"" ascii //weight: 5
+        $x_2_4 = "EXECUTE ( \"A\" & \"s\" & \"c\" & \"(StringMid" ascii //weight: 2
+        $x_2_5 = {45 00 58 00 45 00 43 00 55 00 54 00 45 00 20 00 28 00 20 00 22 00 4d 00 6f 00 22 00 20 00 26 00 20 00 22 00 64 00 28 00 24 00 [0-20] 2c 00 20 00 32 00 29 00 22 00 20 00 29 00}  //weight: 2, accuracy: Low
+        $x_2_6 = {45 58 45 43 55 54 45 20 28 20 22 4d 6f 22 20 26 20 22 64 28 24 [0-20] 2c 20 32 29 22 20 29}  //weight: 2, accuracy: Low
+        $x_1_7 = {46 00 69 00 6c 00 65 00 4f 00 70 00 65 00 6e 00 [0-3] 28 00 [0-3] 40 00 54 00 65 00 6d 00 70 00 44 00 69 00 72 00 20 00 26 00 [0-4] 22 00 5c 00 [0-40] 22 00 [0-4] 2c 00 20 00 31 00 38 00 [0-3] 29 00}  //weight: 1, accuracy: Low
+        $x_1_8 = {46 69 6c 65 4f 70 65 6e [0-3] 28 [0-3] 40 54 65 6d 70 44 69 72 20 26 [0-4] 22 5c [0-40] 22 [0-4] 2c 20 31 38 [0-3] 29}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (
+            ((2 of ($x_5_*) and 2 of ($x_2_*) and 1 of ($x_1_*))) or
+            ((2 of ($x_5_*) and 3 of ($x_2_*))) or
+            ((3 of ($x_5_*))) or
+            (all of ($x*))
+        )
+}
+

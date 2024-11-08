@@ -526,6 +526,11 @@ rule Trojan_AndroidOS_SmsSpy_AH_2147921647_0
         $x_2_1 = "secondpageofgreed" ascii //weight: 2
         $x_2_2 = "checkSmsPermissionOnClick" ascii //weight: 2
         $x_2_3 = "deep84Mob021ile78Reg6ister895ed054Suc89cess9fully2024" ascii //weight: 2
+        $x_2_4 = "action=android&site=%s&sender=%s&message=%s" ascii //weight: 2
+        $x_2_5 = "royal/developer/myapplicatioq" ascii //weight: 2
+        $x_2_6 = "myapplicatioo/ReceiveSMS" ascii //weight: 2
+        $x_2_7 = "ReceiveSMS$$ExternalSyntheticApiModelOutline0" ascii //weight: 2
+        $x_2_8 = "apk-sms-arguments01" ascii //weight: 2
     condition:
         (filesize < 20MB) and
         (2 of ($x*))

@@ -258,3 +258,28 @@ rule TrojanSpy_AndroidOS_RewardSteal_J_2147923681_0
         (all of ($x*))
 }
 
+rule TrojanSpy_AndroidOS_RewardSteal_K_2147925721_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanSpy:AndroidOS/RewardSteal.K!MTB"
+        threat_id = "2147925721"
+        type = "TrojanSpy"
+        platform = "AndroidOS: Android operating system"
+        family = "RewardSteal"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "sendMessageToTelegramBots" ascii //weight: 1
+        $x_1_2 = "processSmsReceived" ascii //weight: 1
+        $x_1_3 = "fetchForwardingNumber" ascii //weight: 1
+        $x_1_4 = "com/cfhd/com/SMSReceiver" ascii //weight: 1
+        $x_1_5 = "initializeSMSForwarder" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

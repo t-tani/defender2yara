@@ -9451,6 +9451,27 @@ rule Trojan_MSIL_Remcos_AMAA_2147889487_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {95 58 20 ff 00 00 00 5f 13 [0-20] 61 20 ff 00 00 00 5f [0-20] 58 20 00 01 00 00 5e 26 09 11 [0-30] 95 61 d2 9c 11 ?? 17 58 13}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Remcos_AMAA_2147889487_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Remcos.AMAA!MTB"
+        threat_id = "2147889487"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Remcos"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "5"
         strings_accuracy = "Low"
     strings:
@@ -9460,7 +9481,7 @@ rule Trojan_MSIL_Remcos_AMAA_2147889487_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Remcos_AMAA_2147889487_1
+rule Trojan_MSIL_Remcos_AMAA_2147889487_2
 {
     meta:
         author = "defender2yara"
@@ -9482,7 +9503,7 @@ rule Trojan_MSIL_Remcos_AMAA_2147889487_1
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Remcos_AMAA_2147889487_2
+rule Trojan_MSIL_Remcos_AMAA_2147889487_3
 {
     meta:
         author = "defender2yara"

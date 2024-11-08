@@ -208,3 +208,92 @@ rule Trojan_Win64_ZLoader_YAC_2147925629_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_ZLoader_DE_2147925723_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/ZLoader.DE!MTB"
+        threat_id = "2147925723"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "ZLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {48 8b c3 48 f7 e1 48 c1 ea 02 48 6b c2 16 48 2b c8 0f b6 44 0d ?? 43 32 44 22 ?? 43 88 44 0a fe}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_ZLoader_DF_2147925724_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/ZLoader.DF!MTB"
+        threat_id = "2147925724"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "ZLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "12"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {33 c9 41 81 c0 b6 2f 00 00 44 8d 49 ?? ff 15 07 00 44 8b 83}  //weight: 10, accuracy: Low
+        $x_1_2 = "XVRGue" ascii //weight: 1
+        $x_1_3 = "rAJUeuNfNSCR" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_ZLoader_DG_2147925725_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/ZLoader.DG!MTB"
+        threat_id = "2147925725"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "ZLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "22"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = "[-] Request limit reached." ascii //weight: 10
+        $x_10_2 = "{INJECTDATA}" ascii //weight: 10
+        $x_1_3 = "DllRegisterServer" ascii //weight: 1
+        $x_1_4 = "LdrDll.dll" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_ZLoader_DH_2147925726_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/ZLoader.DH!MTB"
+        threat_id = "2147925726"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "ZLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = {b4 bd 0b 11 1d 63 0b 0c 6d 01 7d e9 5b 10 d9 39 58 20 15 5d 61 56 a0 b8 62 2b 21 56 03 0f 1d 47 8c 39 74 34 fd c1 3d}  //weight: 10, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
