@@ -10,7 +10,7 @@ rule Trojan_Win64_Merlin_A_2147925715_0
         severity = "Critical"
         info = "dha: an internal category used to refer to some threats"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "3"
+        threshold = "6"
         strings_accuracy = "High"
     strings:
         $x_1_1 = "merlin" ascii //weight: 1
@@ -22,6 +22,6 @@ rule Trojan_Win64_Merlin_A_2147925715_0
         $x_1_7 = "WaitTime" ascii //weight: 1
     condition:
         (filesize < 20MB) and
-        (3 of ($x*))
+        (6 of ($x*))
 }
 
