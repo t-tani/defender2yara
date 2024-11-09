@@ -334,8 +334,9 @@ rule Trojan_Win64_ZLoader_YAE_2147925756_0
         strings_accuracy = "Low"
     strings:
         $x_11_1 = {48 6b c2 13 48 2b c8 49 0f af cb 0f b6 44 0c ?? 42 32 44 0b fb 41 88 41 fb 41 8d 42}  //weight: 11, accuracy: Low
+        $x_11_2 = {48 03 c0 48 2b c8 49 0f af cb 0f b6 44 0c ?? 42 32 44 17 ff 41 88 42}  //weight: 11, accuracy: Low
     condition:
         (filesize < 20MB) and
-        (all of ($x*))
+        (1 of ($x*))
 }
 

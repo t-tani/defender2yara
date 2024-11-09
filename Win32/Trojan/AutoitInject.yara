@@ -3612,3 +3612,54 @@ rule Trojan_Win32_AutoitInject_AMAA_2147925736_0
         )
 }
 
+rule Trojan_Win32_AutoitInject_ASF_2147925760_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.ASF!MTB"
+        threat_id = "2147925760"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "GLOBAL $CHROMEPATHX64 = \"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe" ascii //weight: 1
+        $x_1_2 = "FUNC KILLOTHERPROCESSESFORCHROME ( )" ascii //weight: 1
+        $x_1_3 = "RUNWAIT ( \"taskkill /F /IM msedge.exe /T\" , \"\" , @SW_HIDE )" ascii //weight: 1
+        $x_1_4 = "RUNWAIT ( \"taskkill /F /IM chrome.exe /T\" , \"\" , @SW_HIDE )" ascii //weight: 1
+        $x_1_5 = "RUNWAIT ( \"taskkill /F /IM brave.exe /T\" , \"\" , @SW_HIDE )" ascii //weight: 1
+        $x_1_6 = "start-fullscreen --no-first-run --disable-session-crashed-bubble --disable-infobars\" , \"\" , @SW_HIDE )" ascii //weight: 1
+        $x_1_7 = "SLEEP ( 3000 )" ascii //weight: 1
+        $x_1_8 = "RUN ( \"\"\"\" & $EDGEPATH & \"\"\" --app=\"\"\" & $FIRSTURL & \"\"\" --start-fullscreen --disable-popup-blocking\" , \"\" , @SW_HIDE )" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_AutoitInject_AMZ_2147925767_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.AMZ!MTB"
+        threat_id = "2147925767"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = "http://173.201.233.47/yahoo.exe" ascii //weight: 3
+        $x_1_2 = "SLEEP ( 60000 )" ascii //weight: 1
+        $x_1_3 = "@STARTUPDIR" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

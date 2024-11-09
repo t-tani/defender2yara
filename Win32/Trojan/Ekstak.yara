@@ -8610,3 +8610,30 @@ rule Trojan_Win32_Ekstak_GE_2147924829_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Ekstak_BAD_2147925761_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Ekstak.BAD!MTB"
+        threat_id = "2147925761"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Ekstak"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {83 e2 08 c1 e1 04 23 f9 33 c9 8a 0d ?? ?? ?? ?? 6a 00 0f af d1 0b c2 89 3d ?? ?? ?? ?? a3 ?? ?? ?? ?? ff 15 ?? ?? ?? 00 8b f0 e8 ?? ?? ?? ?? 6a 5a 56 ff 15 ?? ?? ?? ?? 56 6a 00 8b f8 ff 15}  //weight: 4, accuracy: Low
+        $x_4_2 = {83 e2 08 81 e1 ff 00 00 00 0f af d1 0b c2 6a 00 a3 ?? ?? ?? 00 ff 15 ?? ?? ?? 00 8b f0 e8 ?? ?? ?? ff 6a 5a 56 ff 15 ?? ?? ?? 00 56 6a 00 8b f8 ff 15 ?? ?? ?? 00 8b c7 5f 5e c3}  //weight: 4, accuracy: Low
+        $x_1_3 = {55 8b ec 83 ec 18 53 56 57 e8 ?? ?? ?? ?? 89 45 fc e9}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_4_*) and 1 of ($x_1_*))) or
+            ((2 of ($x_4_*))) or
+            (all of ($x*))
+        )
+}
+

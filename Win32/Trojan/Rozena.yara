@@ -882,3 +882,24 @@ rule Trojan_Win32_Rozena_ASJ_2147923174_0
         )
 }
 
+rule Trojan_Win32_Rozena_AMX_2147925766_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Rozena.AMX!MTB"
+        threat_id = "2147925766"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Rozena"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {89 c8 f7 ea 89 d0 c1 f8 05 89 ca c1 fa 1f 29 d0 69 d0 2c 01 00 00 89 c8 29 d0 89 06}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

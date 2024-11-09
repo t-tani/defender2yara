@@ -343,3 +343,26 @@ rule TrojanDownloader_MSIL_Bladabindi_A_2147902679_0
         (all of ($x*))
 }
 
+rule TrojanDownloader_MSIL_Bladabindi_NITA_2147925786_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:MSIL/Bladabindi.NITA!MTB"
+        threat_id = "2147925786"
+        type = "TrojanDownloader"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Bladabindi"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {72 d9 01 00 70 28 ?? 00 00 06 72 ca 02 00 70 28 ?? 00 00 0a 28 ?? 00 00 0a 2c 07 16 28 ?? 00 00 0a 2a 72 d9 01 00 70 28 ?? 00 00 06 72 ca 02 00 70 28 ?? 00 00 0a 72 e4 02 00 70 28 ?? 00 00 0a 20 dc 05 00 00 28 ?? 00 00 0a 28 ?? 00 00 06 20 d0 07 00 00 28 ?? 00 00 0a 72 d9 01 00 70 28 ?? 00 00 06 72 b8 02 00 70 28 ?? 00 00 0a 28 ?? 00 00 0a 0a 06 72 f0 02 00 70 72 f4 02 00 70 6f 6a 00 00 0a 0b 07 28 ?? 00 00 0a 0c 20 78 05 00 00 28 ?? 00 00 0a 72 d9 01 00 70 28 ?? 00 00 06 72 f9 01 00 70 28 ?? 00 00 0a 08 28 ?? 00 00 0a 20 b8 0b 00 00 28 ?? 00 00 0a 28 ?? 00 00 06 20 78 05 00 00 28 ?? 00 00 0a 16 28 ?? 00 00 0a 2a}  //weight: 2, accuracy: Low
+        $x_1_2 = "DownloadFile" ascii //weight: 1
+        $x_1_3 = "WriteAllBytes" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
