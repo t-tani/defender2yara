@@ -2146,3 +2146,30 @@ rule Trojan_Win32_Neoreblamy_BAD_2147925666_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Neoreblamy_BAC_2147925870_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Neoreblamy.BAC!MTB"
+        threat_id = "2147925870"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Neoreblamy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {03 45 fc 33 d2 f7 35 ?? ?? ?? 00 8b 45 14 8b 40 04 0f b6 04 10 50 8b 45 10 03 45 fc 8b 4d 14 8b 09 0f b6 04 01 50 e8 ?? ?? ?? ff 59 59 8b 4d f4 03 4d f8 88 01 eb}  //weight: 3, accuracy: Low
+        $x_3_2 = {0f b6 45 fd 0f b6 4d fc 0b c1 89 45 ec 8a 45 ec 88 45 fb 8b 45 f0 d1 e0 89 45 f0 0f b6 45 fb 0b 45 f0 89 45 f0 eb}  //weight: 3, accuracy: High
+        $x_2_3 = {0f b6 04 0a 33 c6 69 f0 ?? ?? ?? 01 42 83 fa 04 72}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_3_*) and 1 of ($x_2_*))) or
+            ((2 of ($x_3_*))) or
+            (all of ($x*))
+        )
+}
+
