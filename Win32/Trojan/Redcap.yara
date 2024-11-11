@@ -176,3 +176,26 @@ rule Trojan_Win32_Redcap_NDA_2147921843_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Redcap_GNZ_2147925894_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Redcap.GNZ!MTB"
+        threat_id = "2147925894"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Redcap"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {32 0a 16 84 c6 5f 1d ?? ?? ?? ?? 31 1b e0}  //weight: 5, accuracy: Low
+        $x_5_2 = {b1 6c 82 32 ae b4 39 e5 04 3b 20 38 c2}  //weight: 5, accuracy: High
+        $x_1_3 = "MyUnregisterServer" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

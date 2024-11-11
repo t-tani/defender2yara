@@ -4724,3 +4724,32 @@ rule Trojan_Win32_Zusy_HNC_2147925659_0
         )
 }
 
+rule Trojan_Win32_Zusy_GA_2147925881_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zusy.GA!MTB"
+        threat_id = "2147925881"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "winmgmts:\\.\\root\\cimv2" wide //weight: 1
+        $x_1_2 = "WindDbg" wide //weight: 1
+        $x_1_3 = "CryptDeriveKey" wide //weight: 1
+        $x_1_4 = "GetTickCount" wide //weight: 1
+        $x_1_5 = "DqlqlqFquqnqcqtqiqoqnqCqaqlqlq" wide //weight: 1
+        $x_6_6 = "acvm7qw909e.exe" wide //weight: 6
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_6_*) and 4 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+

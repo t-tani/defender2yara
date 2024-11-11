@@ -7714,6 +7714,39 @@ rule Trojan_MSIL_AgentTesla_GE_2147770484_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "CreateToolhelp32Snapshot" ascii //weight: 1
+        $x_1_2 = "BlockCopy" ascii //weight: 1
+        $x_3_3 = "FuckingShit" ascii //weight: 3
+        $x_3_4 = "FuckingShit" wide //weight: 3
+        $x_4_5 = "pTccFnnCmlrCjDw6" wide //weight: 4
+        $x_3_6 = "Fastkroak.exe" wide //weight: 3
+        $x_3_7 = "Fastkroak" ascii //weight: 3
+    condition:
+        (filesize < 20MB) and
+        (
+            ((2 of ($x_3_*) and 2 of ($x_1_*))) or
+            ((3 of ($x_3_*))) or
+            ((1 of ($x_4_*) and 1 of ($x_3_*) and 1 of ($x_1_*))) or
+            ((1 of ($x_4_*) and 2 of ($x_3_*))) or
+            (all of ($x*))
+        )
+}
+
+rule Trojan_MSIL_AgentTesla_GE_2147770484_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.GE!MTB"
+        threat_id = "2147770484"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "23"
         strings_accuracy = "High"
     strings:

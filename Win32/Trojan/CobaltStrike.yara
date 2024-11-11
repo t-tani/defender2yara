@@ -4902,3 +4902,31 @@ rule Trojan_Win32_CobaltStrike_MNO_2147924900_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_CobaltStrike_GE_2147925880_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/CobaltStrike.GE!MTB"
+        threat_id = "2147925880"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "CobaltStrike"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "main.AesDecryptByECB" ascii //weight: 1
+        $x_1_2 = "main.PKCS7UNPadding" ascii //weight: 1
+        $x_1_3 = "main.closeWindows" ascii //weight: 1
+        $x_1_4 = "runtime.sysReserve" ascii //weight: 1
+        $x_1_5 = "runtime.badctxt" ascii //weight: 1
+        $x_1_6 = "runtime.allgadd" ascii //weight: 1
+        $x_1_7 = "runtime.traceShuttingDown" ascii //weight: 1
+        $x_1_8 = "runtime.traceLocker.GoSched" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

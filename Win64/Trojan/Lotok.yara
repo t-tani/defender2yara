@@ -89,3 +89,24 @@ rule Trojan_Win64_Lotok_DA_2147924483_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Lotok_D_2147925891_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Lotok.D!MTB"
+        threat_id = "2147925891"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Lotok"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {48 48 81 ec a0 00 00 00 48 c7 c1 00 00 00 00 48 c7 c2 ?? ac 00 00 49 c7 c0 00 10 00 00 4c 8d 49 40}  //weight: 4, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
