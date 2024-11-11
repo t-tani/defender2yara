@@ -43,3 +43,24 @@ rule Trojan_Win32_Banbra_RPX_2147847111_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Banbra_AMAB_2147925826_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Banbra.AMAB!MTB"
+        threat_id = "2147925826"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Banbra"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {0f b6 08 8b 45 f8 99 f7 7d f4 89 d0 89 c2 8b 45 10 01 d0 0f b6 00 31 c1 89 ca 8b 45 fc 88 10}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
