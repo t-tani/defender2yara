@@ -1935,3 +1935,25 @@ rule Trojan_MSIL_Spynoon_ALCA_2147925216_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Spynoon_AWCA_2147925859_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Spynoon.AWCA!MTB"
+        threat_id = "2147925859"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Spynoon"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {02 03 06 08 04 28 ?? 00 00 06 00 08 17 58 0c 00 08 02 6f ?? 00 00 0a 2f 0b 03 6f ?? 00 00 0a 04 fe 04 2b 01 16 0d 09 2d d6}  //weight: 3, accuracy: Low
+        $x_2_2 = {01 25 16 0f 01 28 ?? 00 00 0a 9c 25 17 0f 01 28 ?? 00 00 0a 9c 25 18 0f 01 28 ?? 00 00 0a 9c 13 05 00 11 05 13 06 16 13 07 2b 15}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

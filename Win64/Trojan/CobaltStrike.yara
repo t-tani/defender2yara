@@ -15273,3 +15273,25 @@ rule Trojan_Win64_CobaltStrike_SIK_2147925735_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_CobaltStrike_YAE_2147925849_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CobaltStrike.YAE!MTB"
+        threat_id = "2147925849"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CobaltStrike"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {49 8b c4 48 f7 e6 48 d1 ea 48 6b c2 0b 48 2b f0 32 5c 34 ?? 88 19 41 ff c6 49 63 f6}  //weight: 10, accuracy: Low
+        $x_1_2 = {4b 7a 55 59 c7 ?? ?? ?? 56 55 35 44 66 ?? ?? ?? ?? 59 32 c6 44}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -389,3 +389,25 @@ rule TrojanDownloader_MSIL_AveMariaRAT_AE_2147899404_0
         (all of ($x*))
 }
 
+rule TrojanDownloader_MSIL_AveMariaRAT_NIT_2147925864_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:MSIL/AveMariaRAT.NIT!MTB"
+        threat_id = "2147925864"
+        type = "TrojanDownloader"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AveMariaRAT"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {00 72 09 01 00 70 28 ?? 00 00 0a 00 02 28 ?? 00 00 06 0a 72 35 01 00 70 28 ?? 00 00 0a 00 06 28 ?? 00 00 06 0b 07 2c 07 07 8e 16 fe 03 2b 01 16 0c 08 2c 16 00 72 91 01 00 70 28 ?? 00 00 0a 00 07 28 ?? 00 00 06 00 00 2b 0d 00 72 fd 01 00 70 28 ?? 00 00 0a 00 00 fe 13 7e 01 00 00 04 0d 09 2c 0e 00 72 47 02 00 70 28 ?? 00 00 0a 00 2b 2a 72 7d 02 00 70 28 ?? 00 00 0a 00 20 e8 03 00 00 28 ?? 00 00 0a 00 00 fe 13 7e 01 00 00 04 16 fe 01 13 04 11 04 3a 66 ff ff ff}  //weight: 2, accuracy: Low
+        $x_2_2 = {00 28 23 00 00 0a 28 ?? 00 00 0a 72 af 05 00 70 28 ?? 00 00 0a 28 ?? 00 00 0a 0a 06 02 28 ?? 00 00 0a 00 06 73 27 00 00 0a 25 16 6f 28 ?? 00 0a 00 28 ?? 00 00 0a 26 00 de 1b}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (1 of ($x*))
+}
+

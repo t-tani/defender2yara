@@ -160,3 +160,24 @@ rule Ransom_MSIL_Blocker_SPGF_2147913751_0
         (all of ($x*))
 }
 
+rule Ransom_MSIL_Blocker_SM_2147925860_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:MSIL/Blocker.SM!MTB"
+        threat_id = "2147925860"
+        type = "Ransom"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Blocker"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {00 14 0a 73 03 00 00 0a 72 01 00 00 70 28 04 00 00 0a 6f 05 00 00 0a 0a 06 0b dd 0d 00 00 00}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
