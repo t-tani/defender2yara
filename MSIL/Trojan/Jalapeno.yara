@@ -1014,3 +1014,31 @@ rule Trojan_MSIL_Jalapeno_SZDF_2147925747_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Jalapeno_AUCA_2147925822_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Jalapeno.AUCA!MTB"
+        threat_id = "2147925822"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Jalapeno"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "12"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "Lwe understand understand galaxy support large communicate network teach grow" ascii //weight: 2
+        $x_2_2 = "quick vision slow white organize" ascii //weight: 2
+        $x_2_3 = "lead inspire change" ascii //weight: 2
+        $x_2_4 = "direct small direct" ascii //weight: 2
+        $x_1_5 = "us collaborate connect" ascii //weight: 1
+        $x_1_6 = "support green you" ascii //weight: 1
+        $x_1_7 = "$548acdbc-fce2-4d83-aa05-7b61ca75b9be" ascii //weight: 1
+        $x_1_8 = "FromBase64String" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -61,24 +61,3 @@ rule Trojan_Win32_SnakeKeylogger_RPY_2147845778_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_SnakeKeylogger_MBXZ_2147925618_0
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "Trojan:Win32/SnakeKeylogger.MBXZ!MTB"
-        threat_id = "2147925618"
-        type = "Trojan"
-        platform = "Win32: Windows 32-bit platform"
-        family = "SnakeKeylogger"
-        severity = "Critical"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "1"
-        strings_accuracy = "Low"
-    strings:
-        $x_1_1 = {02 06 07 28 ?? ?? ?? 06 0c 04 03 6f ?? ?? ?? 0a 59 0d 03 08 09 28 ?? ?? ?? 06 00 07 17 58 0b}  //weight: 1, accuracy: Low
-    condition:
-        (filesize < 20MB) and
-        (all of ($x*))
-}
-

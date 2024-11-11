@@ -105883,3 +105883,27 @@ rule Trojan_MSIL_AgentTesla_MBXW_2147925129_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AgentTesla_MBWA_2147925821_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.MBWA!MTB"
+        threat_id = "2147925821"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {4b 53 41 00 6b 65 79 00 73 74 61 74 65 41 72 72 61 79 00 55 49 6e 74 33 32 00 50 72 6f 63 65 73 73 53 74 61 74 65 00 69 00 6a 00 49 6e 69 74 69 61 6c 69 7a 65 53 74 61 74 65 41 72 72 61 79 00 53 77 61 70}  //weight: 2, accuracy: High
+        $x_1_2 = "8D1D-42EA-963D-48332A5643FC" ascii //weight: 1
+        $x_1_3 = "erpsys" ascii //weight: 1
+        $x_1_4 = "SmashOverlayGeneratorWebServiceLib" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

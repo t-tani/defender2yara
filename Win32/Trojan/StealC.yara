@@ -3269,3 +3269,29 @@ rule Trojan_Win32_StealC_JGM_2147925744_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_StealC_MBWA_2147925820_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/StealC.MBWA!MTB"
+        threat_id = "2147925820"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "StealC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "Gehebinuwejuw saxepabaliliwuwGFapajub" ascii //weight: 1
+        $x_1_2 = "Tobumotupikota sacesifahog tumihubovohej" ascii //weight: 1
+        $x_1_3 = "Jibu zec pugole/Kemo yacuciyofi pobideyusakaso" ascii //weight: 1
+        $x_1_4 = "Wohovofawamuj jurajakotirih juteveyomulihac kefitixekoz mozerecona gezu merijaj femej" ascii //weight: 1
+        $x_1_5 = "Tibiridovadeh kodoyupa sumabisemunaza koyitapire" ascii //weight: 1
+        $x_1_6 = "Rexitigayol zajahadenacawos funeluzeyucix" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (3 of ($x*))
+}
+
