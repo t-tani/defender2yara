@@ -170,3 +170,27 @@ rule Trojan_AndroidOS_Arsink_G_2147923677_0
         (all of ($x*))
 }
 
+rule Trojan_AndroidOS_Arsink_H_2147925839_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:AndroidOS/Arsink.H!MTB"
+        threat_id = "2147925839"
+        type = "Trojan"
+        platform = "AndroidOS: Android operating system"
+        family = "Arsink"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "getAllCallsHistoty" ascii //weight: 1
+        $x_2_2 = "Hacked By SisuryaOfficial" ascii //weight: 2
+        $x_2_3 = "calldmpp" ascii //weight: 2
+        $x_2_4 = "/storage/emulated/0/.HackedBySurya/" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

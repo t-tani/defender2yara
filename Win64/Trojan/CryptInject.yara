@@ -3137,3 +3137,25 @@ rule Trojan_Win64_CryptInject_SWK_2147925778_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_CryptInject_AW_2147925843_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CryptInject.AW!MTB"
+        threat_id = "2147925843"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {65 4c 8b 04 25 30 00 00 00 33 ff 45 32 f6 45 32 ed 44 8b ff 44 8d 4f 01 49 8b 50 60 48 8b 42 30 48 89 44 24 20}  //weight: 2, accuracy: High
+        $x_1_2 = "Disabler mem start" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
