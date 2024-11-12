@@ -4161,3 +4161,24 @@ rule Trojan_MSIL_AveMaria_RDG_2147925015_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AveMaria_RFAK_2147925963_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AveMaria.RFAK!MTB"
+        threat_id = "2147925963"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AveMaria"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {17 73 49 00 00 0a 0d 00 09 02 16 02 8e 69 6f 4a 00 00 0a 00 09 6f 4b 00 00 0a 00 08 6f 4c 00 00 0a 13 04}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

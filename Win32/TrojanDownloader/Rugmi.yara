@@ -470,6 +470,28 @@ rule TrojanDownloader_Win32_Rugmi_HNAE_2147925224_0
         (all of ($x*))
 }
 
+rule TrojanDownloader_Win32_Rugmi_HNAF_2147925225_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:Win32/Rugmi.HNAF!MTB"
+        threat_id = "2147925225"
+        type = "TrojanDownloader"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Rugmi"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {03 51 3c 89 55 ?? 8b 45 00 8b 4d ?? 03 48 2c 89 4d}  //weight: 10, accuracy: Low
+        $x_1_2 = {66 0f be 0c 02 8b 55 ?? 8b 45 ?? 66 89 0c 50}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule TrojanDownloader_Win32_Rugmi_HNAG_2147925226_0
 {
     meta:

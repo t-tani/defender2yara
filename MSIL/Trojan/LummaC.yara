@@ -672,3 +672,30 @@ rule Trojan_MSIL_LummaC_APCA_2147925647_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_LummaC_AZCA_2147925952_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/LummaC.AZCA!MTB"
+        threat_id = "2147925952"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "LummaC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "develop moon inspire energy it network banana develop black solution" ascii //weight: 2
+        $x_2_2 = "white improve support object dark" ascii //weight: 2
+        $x_2_3 = "integrate understand she" ascii //weight: 2
+        $x_1_4 = "power complex blue" ascii //weight: 1
+        $x_1_5 = "$0d6fc9e6-d8e9-406e-88c3-67ce86b38de5" ascii //weight: 1
+        $x_1_6 = "they complex she" ascii //weight: 1
+        $x_1_7 = "FromBase64String" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
