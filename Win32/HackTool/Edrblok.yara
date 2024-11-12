@@ -34,3 +34,29 @@ rule HackTool_Win32_Edrblok_B_2147923790_0
         )
 }
 
+rule HackTool_Win32_Edrblok_YAB_2147925937_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "HackTool:Win32/Edrblok.YAB!MTB"
+        threat_id = "2147925937"
+        type = "HackTool"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Edrblok"
+        severity = "High"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "FwpmEngineOpen0" ascii //weight: 1
+        $x_1_2 = "EDR process was detected. Please double check the edrProcess list or add the filter manually using 'block' command" ascii //weight: 1
+        $x_1_3 = "Unable to find any WFP filter created by this tool" ascii //weight: 1
+        $x_1_4 = "Detected running EDR process" ascii //weight: 1
+        $x_1_5 = "Added WFP filter for \"%S\" (Filter id: %llu, IPv4 layer" ascii //weight: 1
+        $x_1_6 = "blockedr/block/unblockall/unblock" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -555,3 +555,51 @@ rule TrojanDownloader_Win32_Rugmi_D_2147925588_1
         (all of ($x*))
 }
 
+rule TrojanDownloader_Win32_Rugmi_DB_2147925914_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:Win32/Rugmi.DB!MTB"
+        threat_id = "2147925914"
+        type = "TrojanDownloader"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Rugmi"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {8b f3 8b e8 0f af 7c 24 ?? 0f b6 04 16 03 f8 46 3b f5 72 04 00 8b 54 24}  //weight: 1, accuracy: Low
+        $x_1_2 = {8a 08 88 4d ?? 8b 55 ?? 0f af 55 ?? 0f b6 45 ?? 03 d0 89 55 ?? eb 06 00 8b 45 ?? 03 45}  //weight: 1, accuracy: Low
+        $x_1_3 = {8a 00 88 45 ?? 8b 45 ?? 0f af 45 ?? 0f b6 4d ?? 03 c1 89 45 ?? eb 06 00 8b 45 ?? 03 45}  //weight: 1, accuracy: Low
+        $x_1_4 = {0f 1f 40 00 0f af 54 24 ?? 0f b6 04 3e 46 03 d0 3b f1 72}  //weight: 1, accuracy: Low
+        $x_1_5 = {90 90 90 0f af d8 0f b6 4d 00 01 cb 45 4e 75 f3}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (1 of ($x*))
+}
+
+rule TrojanDownloader_Win32_Rugmi_DC_2147925915_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:Win32/Rugmi.DC!MTB"
+        threat_id = "2147925915"
+        type = "TrojanDownloader"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Rugmi"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {0f af c8 0f b6 14 73 03 ca 0f af c8 0f b6 54 73 ?? 46 03 ca 3b f7 72}  //weight: 1, accuracy: Low
+        $x_1_2 = {0f af 44 24 ?? 0f b6 0c 2a 03 c1 45 3b ee 72}  //weight: 1, accuracy: Low
+        $x_1_3 = {8b 44 24 04 8a 00 8b 0c 24 88 01 8b 04 24 83 c0 01 89 04 24 8b 44 24 04 83 c0 01 89 44 24 04 eb}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (1 of ($x*))
+}
+

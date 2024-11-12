@@ -59,3 +59,29 @@ rule HackTool_Win64_Edrblok_YAA_2147925687_0
         (all of ($x*))
 }
 
+rule HackTool_Win64_Edrblok_YAC_2147925938_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "HackTool:Win64/Edrblok.YAC!MTB"
+        threat_id = "2147925938"
+        type = "HackTool"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Edrblok"
+        severity = "High"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "24"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = "FwpmEngineOpen0" ascii //weight: 1
+        $x_1_2 = "blockedr" ascii //weight: 1
+        $x_1_3 = "unblockall" ascii //weight: 1
+        $x_1_4 = "unblock" ascii //weight: 1
+        $x_10_5 = {48 b8 3b 39 72 4a 9f 31 bc 44 4c 8b 4c 24 ?? 48 89 84 24 20 01 00 00 48 b8 84 c3 ba 54 dc b3 b6 b4}  //weight: 10, accuracy: Low
+        $x_10_6 = {d1 57 8d c3 a7 05 33 4c 48 89 84 24 ?? ?? ?? ?? 48 b8 90 4f 7f bc ee e6 0e 82}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
