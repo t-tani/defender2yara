@@ -123,3 +123,26 @@ rule Trojan_Win32_KillDisk_YA_2147731869_0
         )
 }
 
+rule Trojan_Win32_KillDisk_ARA_2147925942_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/KillDisk.ARA!MTB"
+        threat_id = "2147925942"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "KillDisk"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "\\SHOTHIRIUM.pdb" ascii //weight: 2
+        $x_2_2 = "\\\\.\\PhysicalDrive0" wide //weight: 2
+        $x_2_3 = "Run malware" wide //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
