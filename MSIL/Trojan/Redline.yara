@@ -5216,3 +5216,25 @@ rule Trojan_MSIL_Redline_GNE_2147925796_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Redline_GNT_2147925981_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Redline.GNT!MTB"
+        threat_id = "2147925981"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Redline"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {11 05 11 04 11 07 19 6f ?? ?? ?? 0a 11 08 11 09 6f ?? ?? ?? 0a 13 0a 11 05 11 04 11 07 1a 6f ?? ?? ?? 0a 11 08 11 09 6f ?? ?? ?? 0a 13 0b 11 0a 2c 07 11 0b 14 fe 01 2b 01 17 13 13 11 13 2c 05 dd ?? ?? ?? ?? 28 ?? ?? ?? 0a 11 0b 6f ?? ?? ?? 0a 17 8d ?? ?? ?? ?? 25 16 1f 24 9d 6f ?? ?? ?? 0a 13 0c 11 0c 2c 0a 11 0c 8e 69 1f 0d fe 04 2b 01 17 13 14 11 14 2c 05}  //weight: 10, accuracy: Low
+        $x_1_2 = "Hyderabad.exe" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

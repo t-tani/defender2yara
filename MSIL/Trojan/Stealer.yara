@@ -2329,3 +2329,24 @@ rule Trojan_MSIL_Stealer_ATCA_2147925763_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Stealer_PAFN_2147925989_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Stealer.PAFN!MTB"
+        threat_id = "2147925989"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Stealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {63 d1 13 12 11 ?? 11 ?? 91 13 ?? 11 ?? 11 ?? 11 ?? 11 ?? 61 11 1e 19 58 61 11 32 61 d2 9c 17 11 0a 58 13 0a}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
