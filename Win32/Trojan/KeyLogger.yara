@@ -582,3 +582,26 @@ rule Trojan_Win32_KeyLogger_AMAD_2147919142_0
         )
 }
 
+rule Trojan_Win32_KeyLogger_NK_2147925900_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/KeyLogger.NK!MTB"
+        threat_id = "2147925900"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "KeyLogger"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {33 c0 55 68 aa c1 49 00 64 ff 30 64 89 20 6a 00 8b 4d fc b2 01 a1 34 7c 41 00 e8 ?? ?? ?? ?? 8b d8 8b c3}  //weight: 3, accuracy: Low
+        $x_1_2 = "zippassword=damagelab" ascii //weight: 1
+        $x_1_3 = "ftp=xxxxxxxxxxxxxxx" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
