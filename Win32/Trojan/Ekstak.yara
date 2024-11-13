@@ -8637,3 +8637,24 @@ rule Trojan_Win32_Ekstak_BAD_2147925761_0
         )
 }
 
+rule Trojan_Win32_Ekstak_CCIP_2147926058_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Ekstak.CCIP!MTB"
+        threat_id = "2147926058"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Ekstak"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {55 8b ec 83 ec 0c 53 56 57 a0 34 ?? 7c 00 22 05 ?? ?? 7c 00 a2 34 ?? 7c 00 8a 0d 34 ?? 7c 00 80 c9 ?? 88 0d 34 ?? 7c 00 8b 15 2c ?? 7c 00 c1 e2 04 a1 28 ?? 7c 00 23 c2 a3 28 ?? 7c 00 33 c9 8a 0d 35 ?? 7c 00 8b 15 24 ?? 7c 00 83 e2 08 0f af ca a1 2c ?? 7c 00 0b c1 a3}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

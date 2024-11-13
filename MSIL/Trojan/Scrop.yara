@@ -43,3 +43,31 @@ rule Trojan_MSIL_Scrop_CCJC_2147923090_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Scrop_GTZ_2147926057_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Scrop.GTZ!MTB"
+        threat_id = "2147926057"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Scrop"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {06 17 1a 6f ?? ?? ?? 0a 0b 07 1f 3c 5a 1f 3c 5a 20 e8 03 00 00 5a 0c 08 28 ?? ?? ?? 0a 00 00 17 0d 2b d6}  //weight: 10, accuracy: Low
+        $x_10_2 = {06 17 1a 6f ?? ?? ?? 0a 0c 08 1f 3c 5a 1f 3c 5a 20 e8 03 00 00 5a 0d 09 28 ?? ?? ?? 0a 00 00 00 17 13 04 2b c7}  //weight: 10, accuracy: Low
+        $x_10_3 = {06 17 1a 6f ?? ?? ?? 0a 0b 07 1f 3c 5a 1f 3c 5a 20 e8 03 00 00 5a 0c 20 60 ea 00 00 28 ?? ?? ?? 0a 00 00 17 0d 2b d2}  //weight: 10, accuracy: Low
+        $x_1_4 = "userinfo.txt" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_10_*) and 1 of ($x_1_*))) or
+            ((2 of ($x_10_*))) or
+            (all of ($x*))
+        )
+}
+
