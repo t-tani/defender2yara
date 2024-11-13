@@ -121,3 +121,25 @@ rule Trojan_Win32_Symmi_MBXS_2147919873_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Symmi_GTZ_2147926003_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Symmi.GTZ!MTB"
+        threat_id = "2147926003"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Symmi"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {2e 33 2e 37 2e 30 00 9c 66 51 8d 64 24}  //weight: 5, accuracy: High
+        $x_5_2 = {54 33 ce 67 f7 83 ?? ?? ?? ?? ?? ?? 09 0f 31 8b ?? ?? ?? ?? 8f 44 24}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

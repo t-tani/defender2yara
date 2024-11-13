@@ -4497,3 +4497,30 @@ rule Trojan_Win32_Guloader_GD_2147924838_0
         )
 }
 
+rule Trojan_Win32_Guloader_GTZ_2147925997_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Guloader.GTZ!MTB"
+        threat_id = "2147925997"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Guloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "bruised\\calypsoerne\\drikkelaget" ascii //weight: 1
+        $x_1_2 = "patriotismen\\Aire.ini" ascii //weight: 1
+        $x_1_3 = "jenkrogs\\statsskatterne.ini" ascii //weight: 1
+        $x_1_4 = "trapper\\gennemtrawl.ini" ascii //weight: 1
+        $x_1_5 = "brnefdselsdagen" ascii //weight: 1
+        $x_1_6 = "erfaringer\\kalvekrsene.sab" ascii //weight: 1
+        $x_1_7 = "Tillidshvervs" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

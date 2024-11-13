@@ -140,3 +140,51 @@ rule Trojan_Win64_Midie_ASJ_2147922485_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Midie_AMI_2147925996_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Midie.AMI!MTB"
+        threat_id = "2147925996"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Midie"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_4_1 = "Westminster Performance Suite for optimized system analytics and efficiency" wide //weight: 4
+        $x_1_2 = "London Bridge Technologies" wide //weight: 1
+        $x_2_3 = "Manchester.dll" wide //weight: 2
+        $x_3_4 = "70.59.2345.6789" wide //weight: 3
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_Midie_AMD_2147926002_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Midie.AMD!MTB"
+        threat_id = "2147926002"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Midie"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_4_1 = "Kensington Data Shield for comprehensive data security and protection" wide //weight: 4
+        $x_3_2 = "Piccadilly Digital Labs" wide //weight: 3
+        $x_1_3 = "71.60.3456.7890" wide //weight: 1
+        $x_2_4 = "Stratford.dll" wide //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

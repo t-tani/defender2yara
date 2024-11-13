@@ -43,3 +43,23 @@ rule Ransom_Linux_Ransomhub_D_2147922788_0
         (all of ($x*))
 }
 
+rule Ransom_Linux_Ransomhub_E6_2147926022_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Linux/Ransomhub.E6"
+        threat_id = "2147926022"
+        type = "Ransom"
+        platform = "Linux: Linux platform"
+        family = "Ransomhub"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_CMDHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = "amd64 -fast -pass e685f9e5430ca23488b038991f023864fcb4a599dfbced95dff2ab4b4ded544a -path /" wide //weight: 10
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
