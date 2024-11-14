@@ -3116,3 +3116,25 @@ rule Trojan_MSIL_CryptInject_MBWA_2147926103_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_CryptInject_RHAM_2147926139_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/CryptInject.RHAM!MTB"
+        threat_id = "2147926139"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = "smithpropertysolutions.com/Crypto.exe" wide //weight: 3
+        $x_2_2 = {50 45 00 00 4c 01 03 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 0b 01 30 00 00 0a 00 00 00 08 00 00 00 00 00 00 5a 28}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

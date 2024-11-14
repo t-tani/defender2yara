@@ -1105,3 +1105,24 @@ rule Trojan_Win32_LummaC_AVCA_2147925831_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_LummaC_KKZ_2147926121_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaC.KKZ!MTB"
+        threat_id = "2147926121"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {89 d0 83 e0 16 89 f3 81 f3 ?? ?? ?? ?? 29 c3 fe c3 32 19 80 c3 37 88 19 41 4e 83 c2 fe 83 fe f0 75}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

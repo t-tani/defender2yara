@@ -391,3 +391,24 @@ rule Ransom_Win32_Cryptolocker_PAM_2147814504_0
         (all of ($x*))
 }
 
+rule Ransom_Win32_Cryptolocker_MKZ_2147926120_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win32/Cryptolocker.MKZ!MTB"
+        threat_id = "2147926120"
+        type = "Ransom"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Cryptolocker"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {33 c6 03 82 80 f4 00 00 8b 54 24 14 21 04 8a 8b 0b 83 eb 04 a1 ?? ?? ?? ?? 46 45 c7 04 88 23 10 00 00 a1 ?? ?? ?? ?? 0f b7 c0 3b 34 87 7e}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
