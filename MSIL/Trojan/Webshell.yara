@@ -273,3 +273,25 @@ rule Trojan_MSIL_Webshell_AMI_2147922623_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Webshell_MBWA_2147926109_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Webshell.MBWA!MTB"
+        threat_id = "2147926109"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Webshell"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {6c 00 6f 00 61 00 64 00 39 00 36 00 51 00 4a 00 00 09 4c 00 6f 00 61 00 64 00 00 05 4c 00 59}  //weight: 2, accuracy: High
+        $x_1_2 = "202cb962ac59075b" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -3094,3 +3094,25 @@ rule Trojan_MSIL_CryptInject_RHAK_2147924166_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_CryptInject_MBWA_2147926103_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/CryptInject.MBWA!MTB"
+        threat_id = "2147926103"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {02 04 05 28 ?? 00 00 06 0a 0e 04 03 6f ?? 00 00 0a 59 0b}  //weight: 2, accuracy: Low
+        $x_1_2 = "2154a4eea3ff" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

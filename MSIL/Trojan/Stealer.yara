@@ -2350,3 +2350,28 @@ rule Trojan_MSIL_Stealer_PAFN_2147925989_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Stealer_AEDA_2147926111_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Stealer.AEDA!MTB"
+        threat_id = "2147926111"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Stealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {04 16 7e 05 00 00 04 8e 69 6f ?? 00 00 0a 0b 2b 00 07 2a}  //weight: 3, accuracy: Low
+        $x_3_2 = {0a 00 7e 01 00 00 04 6f ?? 00 00 0a 0a 06 0b 2b 00 07 2a}  //weight: 3, accuracy: Low
+        $x_2_3 = "=====M============a==============i=============n=========" wide //weight: 2
+        $x_1_4 = "Pixie dust" wide //weight: 1
+        $x_1_5 = "Moonflower petals" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
