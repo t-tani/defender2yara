@@ -20,3 +20,25 @@ rule Trojan_Win64_DBadur_AMAA_2147920894_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_DBadur_GTZ_2147926092_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/DBadur.GTZ!MTB"
+        threat_id = "2147926092"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "DBadur"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {34 c8 0a 27 54 5b d2 21 54}  //weight: 5, accuracy: High
+        $x_5_2 = {2c 57 d0 87 ?? ?? ?? ?? d0 2f 95 10 32 ?? ?? 67 95 10 32}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

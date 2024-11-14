@@ -149,3 +149,25 @@ rule Trojan_MSIL_Strictor_GP_2147925157_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Strictor_ARS_2147926091_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Strictor.ARS!MTB"
+        threat_id = "2147926091"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Strictor"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {09 19 2f 02 2b 54 0f 01 28 ?? 00 00 0a 1f 10 62 0f 01 28 ?? 00 00 0a 1e 62 60 0f 01 28 ?? 00 00 0a 60 0a 19 8d ?? 00 00 01 25 16 06 1f 10 63 20 ff 00 00 00 5f d2 9c 25 17 06 1e 63}  //weight: 2, accuracy: Low
+        $x_1_2 = {02 04 05 28 ?? 00 00 06 0a 0e 04 03 6f ?? 00 00 0a 59 0b 03 06 07 28 ?? 00 00 06 00 2a}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

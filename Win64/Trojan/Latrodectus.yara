@@ -209,6 +209,27 @@ rule Trojan_Win64_Latrodectus_PG_2147914223_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Latrodectus_PG_2147914223_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Latrodectus.PG!MTB"
+        threat_id = "2147914223"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Latrodectus"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {4d 2b d1 4e 8d 04 0b 48 8b cb 48 b8 cd cc cc cc cc cc cc cc 48 f7 e3 48 c1 ea ?? 48 ff c3 48 8d ?? 92 48 c1 e0 ?? 48 2b c8 8a 44 0d ?? 43 32 04 02 41 88 00 48 81 fb [0-4] 72}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win64_Latrodectus_MA_2147914271_0
 {
     meta:
@@ -439,6 +460,27 @@ rule Trojan_Win64_Latrodectus_ZSS_2147924637_0
         strings_accuracy = "Low"
     strings:
         $x_5_1 = {4c 89 c7 49 f7 e1 48 29 d1 48 d1 e9 48 01 ca 48 c1 ea 04 48 8d 04 52 48 c1 e0 ?? 48 29 d0 48 29 c7 0f b6 44 3c ?? 43 32 04 10 48 8b 54 24 ?? 42 88 04 02 49 83 c0 01 4c 39 44 24 40 77}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_Latrodectus_DF_2147926100_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Latrodectus.DF!MTB"
+        threat_id = "2147926100"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Latrodectus"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {48 f7 e3 48 c1 ea 04 48 ff c3 48 8d 04 d2 48 03 c0 48 2b c8 8a 44 0d ?? 43 32 04 02 41 88 00 48 81 fb ?? ?? ?? ?? 72}  //weight: 1, accuracy: Low
     condition:
         (filesize < 20MB) and
         (all of ($x*))
