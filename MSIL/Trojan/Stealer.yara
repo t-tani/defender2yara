@@ -2375,3 +2375,53 @@ rule Trojan_MSIL_Stealer_AEDA_2147926111_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Stealer_NIT_2147926209_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Stealer.NIT!MTB"
+        threat_id = "2147926209"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Stealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "AppData\\Local\\Google\\Chrome\\User Data\\Default\\Network\\Cookies" wide //weight: 2
+        $x_2_2 = "AppData\\Local\\Google\\Chrome\\User Data\\Default\\Login Data" wide //weight: 2
+        $x_2_3 = "AppData\\Roaming\\Telegram Desktop\\tdata\\key_datas" wide //weight: 2
+        $x_1_4 = "Tel.zip" wide //weight: 1
+        $x_1_5 = "ree.bat" wide //weight: 1
+        $x_1_6 = "CreateAndRunRegistryBackupScript" ascii //weight: 1
+        $x_1_7 = "CreateAndExecuteStartupScript" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Stealer_NITA_2147926210_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Stealer.NITA!MTB"
+        threat_id = "2147926210"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Stealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {02 8e 69 8d 03 00 00 01 0a 16 0b 2b 13 06 07 02 07 91 03 07 03 8e 69 5d 91 61 d2 9c 07 17 58 0b 07 02 8e 69 32 e7 06 2a}  //weight: 2, accuracy: High
+        $x_1_2 = "GetClipboardText" ascii //weight: 1
+        $x_1_3 = "GetClipboardData" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
