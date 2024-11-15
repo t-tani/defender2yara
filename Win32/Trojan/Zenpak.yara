@@ -9466,3 +9466,24 @@ rule Trojan_Win32_Zenpak_PMMH_2147925925_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Zenpak_SPZK_2147926241_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zenpak.SPZK!MTB"
+        threat_id = "2147926241"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zenpak"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {89 e5 8a 45 0c 8a 4d 08 8b 15 ?? ?? ?? ?? 88 c4 02 25 ?? ?? ?? ?? 88 25 ?? ?? ?? ?? 88 0d ?? ?? ?? ?? a2 ?? ?? ?? ?? 81 c2 ?? ?? ?? ?? 89 15 ?? ?? ?? ?? c7 05 ?? ?? ?? ?? ?? ?? ?? ?? 0f b6 c4 5d}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

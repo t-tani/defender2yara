@@ -1720,3 +1720,24 @@ rule Trojan_Win32_Fragtor_RFAK_2147926045_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Fragtor_BSA_2147926248_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Fragtor.BSA!MTB"
+        threat_id = "2147926248"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Fragtor"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = {8b 95 2c ff ff ff 8b c1 2b d1 81 fa 00 10 00 00 72 14 8b 49 fc 83 c2 23 2b c1 83 c0 fc 83 f8 1f 0f 87 d8 06 00 00}  //weight: 10, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
