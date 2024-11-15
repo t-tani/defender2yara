@@ -43,3 +43,26 @@ rule Trojan_MSIL_KillProc_SWK_2147925454_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_KillProc_MA_2147926202_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/KillProc.MA!MTB"
+        threat_id = "2147926202"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "KillProc"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "MemoryDiagnostic.exe" wide //weight: 1
+        $x_1_2 = "$483eb30c-11bd-4335-b672-3e7a34a02ba7" ascii //weight: 1
+        $x_1_3 = "MinhaLiistaas" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

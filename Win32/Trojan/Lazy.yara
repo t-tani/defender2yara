@@ -45,6 +45,33 @@ rule Trojan_Win32_Lazy_MA_2147836831_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Lazy_MA_2147836831_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Lazy.MA!MTB"
+        threat_id = "2147836831"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Lazy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "libemb.dll" ascii //weight: 1
+        $x_1_2 = "wwlib.dll" ascii //weight: 1
+        $x_1_3 = "zlibwapi.dll" ascii //weight: 1
+        $x_5_4 = "FreeLibraryMemoryAndExitThread" ascii //weight: 5
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_5_*) and 1 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+
 rule Trojan_Win32_Lazy_NEAD_2147838653_0
 {
     meta:

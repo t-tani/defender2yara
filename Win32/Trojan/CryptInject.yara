@@ -6515,3 +6515,25 @@ rule Trojan_Win32_CryptInject_BSA_2147926177_0
         )
 }
 
+rule Trojan_Win32_CryptInject_PAFW_2147926204_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/CryptInject.PAFW!MTB"
+        threat_id = "2147926204"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {30 1f 41 8b 5d 0c 4f 3b 4d 08 0f}  //weight: 2, accuracy: High
+        $x_2_2 = {f7 e1 8b c1 c1 ea 04 8d 14 92 c1 e2 02 2b c2 8b 55 0c 0f b6 04 10 2b c1 03 d8 eb}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

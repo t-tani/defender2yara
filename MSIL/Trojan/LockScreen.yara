@@ -150,3 +150,38 @@ rule Trojan_MSIL_LockScreen_ARA_2147925648_0
         )
 }
 
+rule Trojan_MSIL_LockScreen_MA_2147926199_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/LockScreen.MA!MTB"
+        threat_id = "2147926199"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "LockScreen"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "Locker.exe" ascii //weight: 2
+        $x_1_2 = "DisableAntiSpyware" wide //weight: 1
+        $x_7_3 = "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon" wide //weight: 7
+        $x_1_4 = "!ScreenLock!" wide //weight: 1
+        $x_9_5 = "$b924ce3a-5084-4c6e-8ca8-d028ec657fb2" ascii //weight: 9
+        $x_1_6 = "Microsoft\\Windows\\Start Menu\\Programs\\Startup" wide //weight: 1
+        $x_9_7 = "$66f5aaad-111e-4f3b-b102-79aba497989b" ascii //weight: 9
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_7_*) and 3 of ($x_1_*))) or
+            ((1 of ($x_7_*) and 1 of ($x_2_*) and 1 of ($x_1_*))) or
+            ((1 of ($x_9_*) and 1 of ($x_1_*))) or
+            ((1 of ($x_9_*) and 1 of ($x_2_*))) or
+            ((1 of ($x_9_*) and 1 of ($x_7_*))) or
+            ((2 of ($x_9_*))) or
+            (all of ($x*))
+        )
+}
+

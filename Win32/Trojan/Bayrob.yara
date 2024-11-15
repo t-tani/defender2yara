@@ -317,3 +317,24 @@ rule Trojan_Win32_Bayrob_MX_2147925517_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Bayrob_MX_2147925517_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Bayrob.MX!MTB"
+        threat_id = "2147925517"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Bayrob"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {75 09 53 e8 6e 85 ff ff 59 33 db 57}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
