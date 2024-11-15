@@ -2775,3 +2775,25 @@ rule Trojan_Win32_OffLoader_ADR_2147925676_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_OffLoader_SPVJ_2147926175_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/OffLoader.SPVJ!MTB"
+        threat_id = "2147926175"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "OffLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = "/developmentmask.cfd/nod.php" wide //weight: 3
+        $x_2_2 = "/silent" wide //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

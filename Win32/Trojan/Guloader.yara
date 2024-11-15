@@ -4524,3 +4524,28 @@ rule Trojan_Win32_Guloader_GTZ_2147925997_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Guloader_GZZ_2147926174_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Guloader.GZZ!MTB"
+        threat_id = "2147926174"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Guloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "Upaavirkeliges5" ascii //weight: 2
+        $x_2_2 = "appeasableness.txt" ascii //weight: 2
+        $x_2_3 = "Basilikumernes.sys" ascii //weight: 2
+        $x_2_4 = "glamouriser\\vite.gyn" ascii //weight: 2
+        $x_2_5 = "zaffree\\taaens" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

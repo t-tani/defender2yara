@@ -2717,6 +2717,30 @@ rule Trojan_Win32_LummaStealer_RPI_2147926169_0
         strings_accuracy = "High"
     strings:
         $x_1_1 = {20 20 20 00 20 20 20 20 00 20 05 00 00 10 00 00 00 20 05 00 00 10 00 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 e0 2e 72 73 72 63 20 20 20 00 10 00 00 00 30 05 00 00 00 00 00 00 30 05 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 c0 2e 69 64 61 74 61 20 20 00 10 00 00 00 40 05 00 00 02 00 00 00 30 05 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 c0}  //weight: 1, accuracy: High
+        $x_1_2 = {20 20 20 00 20 20 20 20 00 90 24 00 00 10 00 00 00 62 01 00 00 10 00 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 e0 2e 72 73 72 63 20 20 20 00 10 00 00 00 a0 24 00 00 00 00 00 00 72 01 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 c0 2e 69 64 61 74 61 20 20 00 10 00 00 00 b0 24 00 00 02 00 00 00 72 01 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 c0}  //weight: 1, accuracy: High
+        $x_1_3 = {20 20 20 00 20 20 20 20 00 80 05 00 00 10 00 00 00 80 05 00 00 10 00 00 00 00 00 00 00 00 00 00 00 00 00 00 20 00 00 60 2e 72 73 72 63 00 00 00 40 03 00 00 00 90 05 00 00 04 00 00 00 90 05 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 c0 2e 69 64 61 74 61 20 20 00 10 00 00 00 a0 05 00 00 02 00 00 00 94 05 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 c0}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (1 of ($x*))
+}
+
+rule Trojan_Win32_LummaStealer_NDR_2147926178_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaStealer.NDR!MTB"
+        threat_id = "2147926178"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {08 df 30 f9 34 ff 88 cd 30 c5 20 cd 88 f0 34 ff 24 01 8a 4d e3 80 f1 01 88 f3 20 cb 8a 7d e3 80 f7 01 80 e7 ff 80 e1 01 08 d8 08 cf 30 f8}  //weight: 2, accuracy: High
+        $x_1_2 = {88 c2 80 f2 ff 80 e2 01 b4 01 88 e5 80 f5 01 88 c6 20 ee 08 f2 80 f2 ff 80 f2 01 80 e2 ff 88 e5 80 f5 01 80 e5 01 88 e6 80 f6 01 88 f3 80 e3 01 88 e7 80 f7 01 80 e7 ff}  //weight: 1, accuracy: High
     condition:
         (filesize < 20MB) and
         (all of ($x*))

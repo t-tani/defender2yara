@@ -6490,3 +6490,28 @@ rule Trojan_Win32_CryptInject_CDD_2147924928_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_CryptInject_BSA_2147926177_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/CryptInject.BSA!MTB"
+        threat_id = "2147926177"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = "nfhgbdxsvaglaxdmhekecaxahdfxqqdvgkcwwpektnyovmnjokbxwxcpptxpqbcwbrochvvmqueflgoevvwsxscr" ascii //weight: 10
+        $x_5_2 = "xhxonfcarppkaruywgmvjqevmfxsyykbeavrysuxkiluvqkqvwjgysdforqgkmmukvjrpeirngoxrotsscgwocoyxe" ascii //weight: 5
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_10_*))) or
+            (all of ($x*))
+        )
+}
+
