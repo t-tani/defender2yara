@@ -9487,3 +9487,24 @@ rule Trojan_Win32_Zenpak_SPZK_2147926241_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Zenpak_CCIQ_2147926272_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zenpak.CCIQ!MTB"
+        threat_id = "2147926272"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zenpak"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {48 48 01 c2 83 f0 07 8d 05 ?? ?? ?? ?? 89 20 eb 1a}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

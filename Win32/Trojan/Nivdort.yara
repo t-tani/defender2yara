@@ -48,3 +48,25 @@ rule Trojan_Win32_Nivdort_B_2147707847_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Nivdort_ND_2147913123_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Nivdort.ND!MTB"
+        threat_id = "2147913123"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Nivdort"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {83 c8 ff e9 c8 0a ?? ?? f6 46 0c 40 75 ?? 56 e8 55 0c ?? ?? 59 ba 28 67 ?? ?? 83 f8 ff 74}  //weight: 3, accuracy: Low
+        $x_3_2 = {c1 e1 06 03 0c b5 60 84 42 00 eb ?? 8b ca f6 41 24 7f}  //weight: 3, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
