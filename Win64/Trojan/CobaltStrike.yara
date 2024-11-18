@@ -15359,3 +15359,24 @@ rule Trojan_Win64_CobaltStrike_RFAK_2147926030_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_CobaltStrike_BCM_2147926296_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CobaltStrike.BCM!MTB"
+        threat_id = "2147926296"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CobaltStrike"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {49 8b c0 48 f7 35 ?? ?? ?? ?? 0f b6 04 0a 43 30 04 01 49 ff c0 48 8b 8d ?? ?? ?? ?? 48 8b c1 4c 8b 8d ?? ?? ?? ?? 49 2b c1 4c 3b c0 72}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

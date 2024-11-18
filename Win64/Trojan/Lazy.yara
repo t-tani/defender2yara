@@ -1296,6 +1296,27 @@ rule Trojan_Win64_Lazy_AMAD_2147912887_0
         threshold = "1"
         strings_accuracy = "Low"
     strings:
+        $x_1_1 = {0f b6 09 33 c8 8b c1 e9 [0-30] 88 01 8b 44 24 08}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_Lazy_AMAD_2147912887_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Lazy.AMAD!MTB"
+        threat_id = "2147912887"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Lazy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
         $x_1_1 = {41 0f b6 08 43 8d 14 10 0f b6 c1 4d 8d 40 ?? 34 ?? 80 e9 ?? f6 c2 ?? 0f b6 c0 0f b6 c9 0f 45 c8 4b 8d 04 02 43 88 4c 18 ?? 49 3b c1 72}  //weight: 1, accuracy: Low
     condition:
         (filesize < 20MB) and
