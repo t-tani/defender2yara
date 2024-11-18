@@ -201,3 +201,27 @@ rule Trojan_Win32_Mikey_ARA_2147911513_1
         (all of ($x*))
 }
 
+rule Trojan_Win32_Mikey_NG_2147926319_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Mikey.NG!MTB"
+        threat_id = "2147926319"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Mikey"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "R1dNXJMRXwK34kzheoRu 2Y17n0mX40PUEFpdsICbUueMTVlgHVbTmelTX07T2dDSFBJVKo0SMOHKYm=" ascii //weight: 2
+        $x_1_2 = "R01AXK5FUcSeKTbffn9q 2S1RG5jeoWka3EaVqIgQVSA4jLqgGZcanGq63V=" ascii //weight: 1
+        $x_1_3 = "IWNY11E5dyix3krreHlacSuzTXSpgI0o8W6o11HkLMWr3DKcLh==" ascii //weight: 1
+        $x_1_4 = "FisgLns4aOYn30LWLEE8HiRhTHMmLC==" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

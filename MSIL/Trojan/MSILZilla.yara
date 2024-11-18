@@ -109,3 +109,28 @@ rule Trojan_MSIL_MSILZilla_CCHZ_2147907446_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_MSILZilla_NITA_2147926332_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/MSILZilla.NITA!MTB"
+        threat_id = "2147926332"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "MSILZilla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "bypassing login" wide //weight: 2
+        $x_2_2 = "possible breach detected" wide //weight: 2
+        $x_2_3 = "Possible malicious activity detected" wide //weight: 2
+        $x_1_4 = "MaliciousCheck" ascii //weight: 1
+        $x_1_5 = "DNS redirecting has been detected" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

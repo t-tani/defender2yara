@@ -402,9 +402,9 @@ rule Ransom_Linux_Filecoder_Y_2147906079_0
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_ELFHSTR_EXT"
         threshold = "2"
-        strings_accuracy = "Low"
+        strings_accuracy = "High"
     strings:
-        $x_1_1 = {48 89 54 24 18 48 89 44 24 28 4b 8d 04 00 48 8d 40 02 48 c1 e0 03 31 db b9 01 00 00 00 ?? ?? ?? ?? ?? 48 89 44 24 20 48 8b 54 24 18 48 8b 32 48 d1 e6 48 89 30 44 0f 11 7c 24 30 ?? ?? ?? ?? ?? ?? ?? 48 89 74 24 30 48 89 44 24 38 ?? ?? ?? ?? ?? 0f 1f 40 00 ?? ?? ?? ?? ?? 48 8b 5c 24 20 48 8b 53 08 48 8b 74 24 18 48 39 56 08 75 46}  //weight: 1, accuracy: Low
+        $x_1_1 = {48 89 54 24 18 48 89 44 24 28 4b 8d 04 00 48 8d 40 02 48 c1 e0 03 31 db b9 01 00 00 00 e8 b3 27 00 00 48 89 44 24 20 48 8b 54 24 18 48 8b 32 48 d1 e6 48 89 30 44 0f 11 7c 24 30 48 8d 35 73 a6 05 00 48 89 74 24 30 48 89 44 24 38 48 8d 44 24 30 0f 1f 40 00 e8 fb 0e 00 00 48 8b 5c 24 20 48 8b 53 08 48 8b 74 24 18 48 39 56 08 75 46}  //weight: 1, accuracy: High
         $x_1_2 = {44 6f 01 02 44 70 01 02 44 71 01 02 46 64 01 02 47 78 01 02 47 79 01 02 48 69 01 02 49 44 01 02 49 50 01 02 49 64 01 02 49 6e 01 02 49 70 01 02 49 73 01 02 4c 6f 01 02 4f 70 01 02 4f 72 01 02 50 43 00}  //weight: 1, accuracy: High
     condition:
         (filesize < 20MB) and

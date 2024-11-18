@@ -106,3 +106,25 @@ rule Trojan_Win64_AsyncRat_ASC_2147922422_1
         (all of ($x*))
 }
 
+rule Trojan_Win64_AsyncRat_ASY_2147926329_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/AsyncRat.ASY!MTB"
+        threat_id = "2147926329"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "AsyncRat"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {33 d2 41 8b c5 f7 74 24 24 48 8b 45 a8 44 0f be 0c 02 45 33 c8 48 8b 4f 10 48 8b 57 18 48 3b ca}  //weight: 2, accuracy: High
+        $x_1_2 = "loader\\x64\\Release\\Espio.pdb" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
