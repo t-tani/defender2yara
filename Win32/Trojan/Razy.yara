@@ -1346,3 +1346,32 @@ rule Trojan_Win32_Razy_NE_2147925338_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Razy_BSA_2147926366_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Razy.BSA!MTB"
+        threat_id = "2147926366"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Razy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = "hHYour computer has been trashed by the MEMZ trojan. Now enjo_" ascii //weight: 10
+        $x_1_2 = "Nyan Cat..." ascii //weight: 1
+        $x_1_3 = "YOUR COMPUTER HAS BEEN FUCKED BY THE MEMZ TROJAN." ascii //weight: 1
+        $x_1_4 = "Your computer won't boot up again," ascii //weight: 1
+        $x_1_5 = "so use it as long as you can!" ascii //weight: 1
+        $x_1_6 = "Trying to kill MEMZ will cause your system to be" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_10_*))) or
+            (all of ($x*))
+        )
+}
+

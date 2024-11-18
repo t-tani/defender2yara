@@ -4658,3 +4658,25 @@ rule Trojan_Win64_Emotet_CCIK_2147912025_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Emotet_GB_2147926385_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Emotet.GB!MTB"
+        threat_id = "2147926385"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Emotet"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {8b cb 41 8b d0 d3 e2 41 8b cb d3 e0 03 d0 41 0f be ?? 03 d0 41 2b d0 49 ff c1 44 8b c2}  //weight: 1, accuracy: Low
+        $x_1_2 = {44 8b c0 44 8b ?? 41 8b cb 41 d3 ?? 8b cb d3 e0 8b c8 8d 42 ?? 66 83 f8 ?? 0f b7 c2 77 ?? 83 c0 ?? 41 2b ?? 41 03 ?? 03 c1 49 83 [0-2] 41 0f b7}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (1 of ($x*))
+}
+

@@ -66,3 +66,24 @@ rule Trojan_Win64_Coroxy_SPK_2147892395_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Coroxy_GZN_2147926382_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Coroxy.GZN!MTB"
+        threat_id = "2147926382"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Coroxy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {48 2b c8 49 0f af ?? 0f b6 44 0c ?? 49 63 cf 43 32 44 0b ?? 41 88 41 ?? 49 8b c5 48 f7 e1 48 8b c1 48 2b c2 48 d1 e8 48 03 c2}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

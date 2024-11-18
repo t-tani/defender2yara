@@ -4574,3 +4574,29 @@ rule Trojan_Win32_Guloader_CY_2147926240_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Guloader_GZN_2147926367_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Guloader.GZN!MTB"
+        threat_id = "2147926367"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Guloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "indklasseringer\\Pjerrot.dll" ascii //weight: 1
+        $x_1_2 = "Farisismen24.opt" ascii //weight: 1
+        $x_1_3 = "semiriddle.flg" ascii //weight: 1
+        $x_1_4 = "tekstilarbejderens.txt" ascii //weight: 1
+        $x_1_5 = "tegnesystemer\\selvmordsbaade.bar" ascii //weight: 1
+        $x_1_6 = "traveskoen.ini" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

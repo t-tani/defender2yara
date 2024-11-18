@@ -1967,3 +1967,33 @@ rule Trojan_Win32_AgentTesla_SUP_2147913140_0
         (5 of ($x*))
 }
 
+rule Trojan_Win32_AgentTesla_GH_2147926384_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AgentTesla.GH!MTB"
+        threat_id = "2147926384"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "SetEnvironmentVariableA" ascii //weight: 1
+        $x_1_2 = "GetWindowsDirectoryA" ascii //weight: 1
+        $x_1_3 = "GetTempPathA" ascii //weight: 1
+        $x_1_4 = "CreateThread" ascii //weight: 1
+        $x_1_5 = "SeShutdownPrivilege" ascii //weight: 1
+        $x_1_6 = "\\Temp" ascii //weight: 1
+        $x_1_7 = "InitiateShutdownA" ascii //weight: 1
+        $x_1_8 = "gadeteatrenes kemikalieaffaldsdepotet" wide //weight: 1
+        $x_1_9 = "sufflate carpentering" wide //weight: 1
+        $x_1_10 = "sletfilene" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
