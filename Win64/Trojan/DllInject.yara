@@ -197,3 +197,24 @@ rule Trojan_Win64_DllInject_RTS_2147926437_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_DllInject_HTS_2147926459_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/DllInject.HTS!MTB"
+        threat_id = "2147926459"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "DllInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {48 89 41 10 65 48 8b 04 25 30 00 00 00 48 8b 48 60 48 8b 05 ?? ?? ?? ?? 48 89 08 e8}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

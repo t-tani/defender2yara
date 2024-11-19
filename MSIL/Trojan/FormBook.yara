@@ -13591,3 +13591,28 @@ rule Trojan_MSIL_FormBook_BJ_2147925995_0
         )
 }
 
+rule Trojan_MSIL_FormBook_NOD_2147926463_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/FormBook.NOD!MTB"
+        threat_id = "2147926463"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "FormBook"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "db97782b-197a-4335-868a-51ae9ee87ebc" ascii //weight: 2
+        $x_1_2 = "Ubix.BlackJack" ascii //weight: 1
+        $x_1_3 = "ILogger" ascii //weight: 1
+        $x_1_4 = "ConsoleLogger" ascii //weight: 1
+        $x_1_5 = "SqlDbBackAndRestore" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
