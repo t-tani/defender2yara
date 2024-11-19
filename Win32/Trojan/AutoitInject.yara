@@ -3729,3 +3729,28 @@ rule Trojan_Win32_AutoitInject_AHDA_2147926203_0
         )
 }
 
+rule Trojan_Win32_AutoitInject_KAF_2147926422_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.KAF!MTB"
+        threat_id = "2147926422"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {22 00 44 00 6c 00 22 00 20 00 26 00 20 00 22 00 6c 00 43 00 61 00 22 00 20 00 26 00 20 00 22 00 6c 00 6c 00 28 00 [0-20] 28 00 22 00 22 00 6c 00 66 00 73 00 22 00 20 00 26 00 20 00 22 00 6f 00 66 00 6d 00 34 00 33 00 22 00 22 00 29 00}  //weight: 1, accuracy: Low
+        $x_1_2 = {22 44 6c 22 20 26 20 22 6c 43 61 22 20 26 20 22 6c 6c 28 [0-20] 28 22 22 6c 66 73 22 20 26 20 22 6f 66 6d 34 33 22 22 29}  //weight: 1, accuracy: Low
+        $x_1_3 = {22 00 44 00 6c 00 6c 00 53 00 22 00 20 00 26 00 20 00 22 00 74 00 72 00 75 00 63 00 22 00 20 00 26 00 20 00 22 00 74 00 43 00 72 00 65 00 61 00 74 00 65 00 28 00 [0-20] 28 00 22 00 22 00 63 00 7a 00 22 00 20 00 26 00 20 00 22 00 75 00 66 00 21 00 5c 00 22 00 22 00 29 00}  //weight: 1, accuracy: Low
+        $x_1_4 = {22 44 6c 6c 53 22 20 26 20 22 74 72 75 63 22 20 26 20 22 74 43 72 65 61 74 65 28 [0-20] 28 22 22 63 7a 22 20 26 20 22 75 66 21 5c 22 22 29}  //weight: 1, accuracy: Low
+        $x_1_5 = "\"Dll\" & \"Call(\"\"us\" & \"er32.dll\"\"" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (3 of ($x*))
+}
+
