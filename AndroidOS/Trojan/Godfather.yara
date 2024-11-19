@@ -120,3 +120,25 @@ rule Trojan_AndroidOS_Godfather_D_2147852547_1
         (5 of ($x*))
 }
 
+rule Trojan_AndroidOS_Godfather_L_2147926433_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:AndroidOS/Godfather.L"
+        threat_id = "2147926433"
+        type = "Trojan"
+        platform = "AndroidOS: Android operating system"
+        family = "Godfather"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "cHJvdGVjdDIwMjBfc3Ry" ascii //weight: 2
+        $x_2_2 = "Y29tLmNydXppZXJvLmJ1bWFyZWU=" ascii //weight: 2
+        $x_2_3 = "dm5jcmVzZXQ=" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (2 of ($x*))
+}
+

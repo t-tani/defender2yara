@@ -2423,3 +2423,47 @@ rule Trojan_MSIL_Zusy_SV_2147926021_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Zusy_HNE_2147926440_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Zusy.HNE!MTB"
+        threat_id = "2147926440"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {44 6c 6c 49 6d 70 6f 72 74 41 74 74 72 69 62 75 74 65 00 75 52 4c 6d 4f 4e 00 00 00 00}  //weight: 2, accuracy: High
+        $x_1_2 = {6d 73 63 6f 72 6c 69 62 00 53 79 73 74 65 6d 00 4f 62 6a 65 63 74 00 55 52 4c 44 6f 77 6e 6c 6f 61 64 54 6f 46 69 6c 65 00 2e 63 74 6f 72}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Zusy_HNL_2147926441_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Zusy.HNL!MTB"
+        threat_id = "2147926441"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {6c 70 4e 75 6d 62 65 72 4f 66 42 79 74 65 73 57 72 69 74 74 65 6e 00 74 68 72 65 61 64 48 61 6e 64 6c 65 00 73 75 73 70 65 6e 64 43 6f 75 6e 74 00 6c 70 53 74 61 72 74 41 64 64 72 00 66 6c 41 6c 6c 6f 63 61 74 69 6f 6e 54 79 70 65 00 66 6c 50 72 6f 74 65 63 74 00 6c 70 41 64 64 72 65 73 73 00 64 77 53 69 7a 65 00 66 6c 4e 65 77 50 72 6f 74 65 63 74 00 6c 70 66 6c 4f 6c 64 50 72 6f 74 65 63 74 00 68 50}  //weight: 2, accuracy: High
+        $x_1_2 = {0d 57 00 72 00 69 00 74 00 65 00 20 00 00 11 50 00 72 00 6f 00 63 00 65 00 73 00 73 00 20 00 00 0d 4d 00 65 00 6d 00 6f 00 72 00 79 00 00 0f 50 00 72 00 6f 00 74 00 65 00 63 00 74 00 00 0b 4f 00 70 00 65 00 6e 00 20 00 00 0f 50 00 72 00 6f 00 63 00 65 00 73 00 73 00 00 0d 43 00 6c 00 6f 00 73 00 65 00 20 00 00 0d 48 00 61 00 6e 00 64 00 6c 00 65 00 00 0f 6b 00 65 00 72 00 6e 00 65 00 6c 00 20 00 00 0d 33 00 32 00 2e 00 64 00 6c 00 6c 00 00 33}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

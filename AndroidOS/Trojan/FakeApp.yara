@@ -555,3 +555,25 @@ rule Trojan_AndroidOS_FakeApp_Z_2147923397_0
         (all of ($x*))
 }
 
+rule Trojan_AndroidOS_FakeApp_BY_2147926434_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:AndroidOS/FakeApp.BY"
+        threat_id = "2147926434"
+        type = "Trojan"
+        platform = "AndroidOS: Android operating system"
+        family = "FakeApp"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "104.233.167.116/prod-api/" ascii //weight: 2
+        $x_2_2 = "getSmsDataUpload" ascii //weight: 2
+        $x_2_3 = "sysncPermission" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
