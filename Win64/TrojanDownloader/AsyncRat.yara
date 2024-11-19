@@ -22,3 +22,24 @@ rule TrojanDownloader_Win64_AsyncRat_CEB_2147845754_0
         (all of ($x*))
 }
 
+rule TrojanDownloader_Win64_AsyncRat_CCIQ_2147926487_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:Win64/AsyncRat.CCIQ!MTB"
+        threat_id = "2147926487"
+        type = "TrojanDownloader"
+        platform = "Win64: Windows 64-bit platform"
+        family = "AsyncRat"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {48 81 c7 5d 7a 17 48 57 5f 49 31 38 eb 0b 56 5e}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

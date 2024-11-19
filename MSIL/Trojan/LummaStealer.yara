@@ -1354,6 +1354,30 @@ rule Trojan_MSIL_LummaStealer_NM_2147906801_1
         (all of ($x*))
 }
 
+rule Trojan_MSIL_LummaStealer_NM_2147906801_2
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/LummaStealer.NM!MTB"
+        threat_id = "2147906801"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "VioletRichPlayer364David.ZODvl" ascii //weight: 2
+        $x_2_2 = "teach we solution module i connect she i service she" ascii //weight: 2
+        $x_2_3 = "system rough connect explore project" ascii //weight: 2
+        $x_1_4 = "$b2a7142c-b5a4-416b-90bd-cf3632694be8" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_LummaStealer_RPZ_2147907580_0
 {
     meta:

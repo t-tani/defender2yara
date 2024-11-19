@@ -50,3 +50,30 @@ rule Trojan_Win64_XWorm_DA_2147922667_0
         )
 }
 
+rule Trojan_Win64_XWorm_AXM_2147926498_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/XWorm.AXM!MTB"
+        threat_id = "2147926498"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "XWorm"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "20"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "taskkill /IM EpicGamesLauncher.exe /F" ascii //weight: 2
+        $x_2_2 = "taskkill /IM FortniteClient-Win64-Shipping_BE.exe /F" ascii //weight: 2
+        $x_2_3 = "taskkill /IM FortniteClient-Win64-Shipping.exe /F" ascii //weight: 2
+        $x_2_4 = "taskkill /IM x64dbg.exe" ascii //weight: 2
+        $x_3_5 = "net stop winmgmt" ascii //weight: 3
+        $x_4_6 = "ipconfig /flushdnetsh winsock renetsh advfirewalnetsh int ipv4 rnetsh int ipv6 ripconfig /releasnetsh int ip res" ascii //weight: 4
+        $x_5_7 = "Permanent Spoofer\\x64\\Release\\Permanent Spoofer.pdb" ascii //weight: 5
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

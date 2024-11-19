@@ -103926,6 +103926,28 @@ rule Trojan_MSIL_AgentTesla_SKF_2147910376_1
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {08 11 04 07 11 04 91 09 11 04 09 6f 37 00 00 0a 5d 6f 38 00 00 0a 61 d2 9c 11 04 17 58 13 04 11 04 07 8e 69 32 da}  //weight: 1, accuracy: High
+        $x_1_2 = "https://inspirecollege.co.uk/trashss/" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_AgentTesla_SKF_2147910376_2
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.SKF!MTB"
+        threat_id = "2147910376"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "3"
         strings_accuracy = "High"
     strings:
@@ -103937,7 +103959,7 @@ rule Trojan_MSIL_AgentTesla_SKF_2147910376_1
         (all of ($x*))
 }
 
-rule Trojan_MSIL_AgentTesla_SKF_2147910376_2
+rule Trojan_MSIL_AgentTesla_SKF_2147910376_3
 {
     meta:
         author = "defender2yara"

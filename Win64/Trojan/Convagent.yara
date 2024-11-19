@@ -405,3 +405,26 @@ rule Trojan_Win64_Convagent_ASJ_2147920617_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Convagent_GZN_2147926485_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Convagent.GZN!MTB"
+        threat_id = "2147926485"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Convagent"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {41 8b f6 33 d2 b9 ?? ?? ?? ?? ff 15 ?? ?? ?? ?? 48 8b d8 48 83 f8 ?? ?? ?? c7 45 ?? 38 02 00 00 48 8d 55 ?? 48 8b c8 ff 15}  //weight: 4, accuracy: Low
+        $x_2_2 = {48 8b cb ff 15 ?? ?? ?? ?? 85 c0 75}  //weight: 2, accuracy: Low
+        $x_1_3 = "data\\zcrxdebug.txt" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
