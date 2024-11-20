@@ -362,3 +362,37 @@ rule HackTool_Linux_SuspUnixReShellCmd_A_2147767057_0
         (all of ($x*))
 }
 
+rule HackTool_Linux_SuspUnixReShellCmd_P_2147926566_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "HackTool:Linux/SuspUnixReShellCmd.P"
+        threat_id = "2147926566"
+        type = "HackTool"
+        platform = "Linux: Linux platform"
+        family = "SuspUnixReShellCmd"
+        severity = "High"
+        signature_type = "SIGNATURE_TYPE_CMDHSTR_EXT"
+        threshold = "24"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {70 00 79 00 74 00 68 00 6f 00 6e 00 [0-32] 2d 00 63 00 [0-32] 69 00 6d 00 70 00 6f 00 72 00 74 00}  //weight: 10, accuracy: Low
+        $x_10_2 = {70 00 74 00 79 00 2e 00 73 00 70 00 61 00 77 00 6e 00 [0-2] 28 00 [0-6] 62 00 61 00 73 00 68 00}  //weight: 10, accuracy: Low
+        $x_10_3 = {70 00 74 00 79 00 2e 00 73 00 70 00 61 00 77 00 6e 00 [0-2] 28 00 [0-6] 73 00 68 00}  //weight: 10, accuracy: Low
+        $x_1_4 = "af_inet" wide //weight: 1
+        $x_1_5 = "sock_stream" wide //weight: 1
+        $x_1_6 = {63 00 6f 00 6e 00 6e 00 65 00 63 00 74 00 [0-1] 28 00 [0-1] 28 00 [0-80] 29 00}  //weight: 1, accuracy: Low
+        $x_1_7 = "os.dup2" wide //weight: 1
+        $n_80_8 = "127.0.0.1" wide //weight: -80
+        $n_80_9 = "localhost" wide //weight: -80
+        $n_80_10 = "0.0.0.0" wide //weight: -80
+    condition:
+        (filesize < 20MB) and
+        (not (any of ($n*))) and
+        (
+            ((2 of ($x_10_*) and 4 of ($x_1_*))) or
+            ((3 of ($x_10_*))) or
+            (all of ($x*))
+        )
+}
+

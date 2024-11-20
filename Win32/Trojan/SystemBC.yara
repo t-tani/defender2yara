@@ -529,3 +529,25 @@ rule Trojan_Win32_SystemBC_AJS_2147924466_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_SystemBC_YAH_2147926565_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/SystemBC.YAH!MTB"
+        threat_id = "2147926565"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "SystemBC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {ba 40 e5 6d 00 89 44 24 ?? 8b ce e8 ?? ?? ?? ?? ba 40 84 75 03 89 44 24}  //weight: 1, accuracy: Low
+        $x_10_2 = {8b 44 24 18 8a 4c 14 1c 32 8e ?? ?? ?? ?? 88 0c 06}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
