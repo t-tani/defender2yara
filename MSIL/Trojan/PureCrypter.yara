@@ -308,3 +308,25 @@ rule Trojan_MSIL_PureCrypter_ARAX_2147922654_1
         (all of ($x*))
 }
 
+rule Trojan_MSIL_PureCrypter_APR_2147926660_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/PureCrypter.APR!MTB"
+        threat_id = "2147926660"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "PureCrypter"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {11 04 07 11 04 91 09 11 04 09 6f ?? 00 00 0a 5d 6f ?? 00 00 0a 61 d2 9c 11 04 17 58 13 04 11 04 07 8e 69 32 da 06 08 6f ?? 00 00 0a 06 16 6f}  //weight: 3, accuracy: Low
+        $x_1_2 = "103.228.37.51/HOST1/Vyigyafn.wav" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

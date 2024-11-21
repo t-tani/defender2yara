@@ -4795,3 +4795,25 @@ rule Trojan_Win32_Zusy_E_2147926605_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Zusy_YAA_2147926652_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zusy.YAA!MTB"
+        threat_id = "2147926652"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {33 02 3b 42 cc 75 ?? 8b 84 24 ?? ?? ?? ?? 0f af 84 24 ?? ?? ?? ?? 8b 94 24 ?? ?? ?? ?? 2b d0 33 da}  //weight: 4, accuracy: Low
+        $x_1_2 = {8a 00 8b 8c 24 54 03 00 00 34 9a 89 8c 24 08 03 00 00 04 69 88 02}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

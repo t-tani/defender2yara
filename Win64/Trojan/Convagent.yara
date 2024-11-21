@@ -428,3 +428,34 @@ rule Trojan_Win64_Convagent_GZN_2147926485_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Convagent_NAC_2147926643_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Convagent.NAC!MTB"
+        threat_id = "2147926643"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Convagent"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = "/C sc create XblGame binPath=\"C:\\Users\\Public\\data\\mdwslp.exe\" start= auto" ascii //weight: 2
+        $x_1_2 = "/C sc start XblGame" ascii //weight: 1
+        $x_1_3 = "C:\\Users\\Public\\data\\zcrxdebug.txt" ascii //weight: 1
+        $x_1_4 = "C:\\Windows\\System32\\signtool.exe" ascii //weight: 1
+        $x_1_5 = "C:\\Users\\Public\\data\\mdwslp.exe" ascii //weight: 1
+        $x_1_6 = {44 00 3a 00 5c 00 77 00 6f 00 72 00 6b 00 5c 00 5f 00 5f 00 63 00 68 00 72 00 6f 00 6d 00 65 00 5f 00 65 00 78 00 5f 00 69 00 6e 00 73 00 74 00 61 00 6c 00 6c 00 5c 00 5f 00 5f 00 6d 00 79 00 5f 00 73 00 72 00 63 00 5c 00 73 00 72 00 63 00 5c 00 5f 00 52 00 65 00 6c 00 65 00 61 00 73 00 65 00 5c 00 [0-31] 2e 00 70 00 64 00 62 00}  //weight: 1, accuracy: Low
+        $x_1_7 = {44 3a 5c 77 6f 72 6b 5c 5f 5f 63 68 72 6f 6d 65 5f 65 78 5f 69 6e 73 74 61 6c 6c 5c 5f 5f 6d 79 5f 73 72 63 5c 73 72 63 5c 5f 52 65 6c 65 61 73 65 5c [0-31] 2e 70 64 62}  //weight: 1, accuracy: Low
+        $x_1_8 = "powershell -Command \"New-SelfSignedCertificate -Type CodeSigning -Subject 'CN=aaa' -KeyUsage DigitalSignature" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_2_*) and 6 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+

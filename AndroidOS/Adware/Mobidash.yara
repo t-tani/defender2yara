@@ -133,3 +133,26 @@ rule Adware_AndroidOS_Mobidash_W_357923_0
         (all of ($x*))
 }
 
+rule Adware_AndroidOS_Mobidash_AE_443018_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Adware:AndroidOS/Mobidash.AE!MTB"
+        threat_id = "443018"
+        type = "Adware"
+        platform = "AndroidOS: Android operating system"
+        family = "Mobidash"
+        severity = "High"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "com/AppyTech/appytech/MainActivity" ascii //weight: 1
+        $x_1_2 = "DEMANDE_STORAGE_TO_DATA" ascii //weight: 1
+        $x_1_3 = "NOM_LISTE_GRID_COPY" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
