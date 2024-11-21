@@ -1459,6 +1459,27 @@ rule Trojan_Win32_Zusy_EM_2147842976_2
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {88 84 34 e0 00 00 00 88 94 3c e0 00 00 00 0f b6 b4 34 e0 00 00 00 03 f2 8b 7d 08 81 e6 ff 00 00 00 8b 94 24 30 02 00 00 8a 04 0f 32 84 34 e0 00 00 00 88 04 0a}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Zusy_EM_2147842976_3
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zusy.EM!MTB"
+        threat_id = "2147842976"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "10"
         strings_accuracy = "High"
     strings:
@@ -1477,7 +1498,7 @@ rule Trojan_Win32_Zusy_EM_2147842976_2
         (all of ($x*))
 }
 
-rule Trojan_Win32_Zusy_EM_2147842976_3
+rule Trojan_Win32_Zusy_EM_2147842976_4
 {
     meta:
         author = "defender2yara"
