@@ -107,6 +107,28 @@ rule Trojan_MSIL_PureCrypter_APU_2147900865_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_PureCrypter_APU_2147900865_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/PureCrypter.APU!MTB"
+        threat_id = "2147900865"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "PureCrypter"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {08 11 04 07 11 04 91 09 11 04 09 6f ?? 00 00 0a 5d 6f ?? 00 00 0a 61 d2 9c 11 04 17 58 13 04 11 04 07 8e 69 32 da}  //weight: 4, accuracy: Low
+        $x_3_2 = "103.228.37.51/HOST1/Reytnpg.dat" wide //weight: 3
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_PureCrypter_OHAA_2147912064_0
 {
     meta:

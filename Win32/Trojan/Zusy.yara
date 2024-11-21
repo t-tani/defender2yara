@@ -4774,3 +4774,24 @@ rule Trojan_Win32_Zusy_GA_2147925881_0
         )
 }
 
+rule Trojan_Win32_Zusy_E_2147926605_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zusy.E!MTB"
+        threat_id = "2147926605"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {2b c1 88 04 14 42 0f be d2 83 fa 4d 7c e1}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -7418,6 +7418,28 @@ rule Trojan_MSIL_Remcos_ARO_2147841227_10
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Remcos_ARO_2147841227_11
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Remcos.ARO!MTB"
+        threat_id = "2147841227"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Remcos"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {08 11 04 07 11 04 91 09 11 04 09 6f ?? 00 00 0a 5d 6f ?? 00 00 0a 61 d2 9c 11 04 17 58 13 04 11 04 07 8e 69 32 da}  //weight: 3, accuracy: Low
+        $x_2_2 = "inspirecollege.co.uk/trashss/Jpmfwq.wav" wide //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_Remcos_AOS_2147841230_0
 {
     meta:

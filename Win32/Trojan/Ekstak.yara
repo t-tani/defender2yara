@@ -8728,3 +8728,25 @@ rule Trojan_Win32_Ekstak_GNN_2147926503_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Ekstak_CCJN_2147926601_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Ekstak.CCJN!MTB"
+        threat_id = "2147926601"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Ekstak"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {33 c8 8b c1 33 cf 5f 81 f9 ?? ?? ?? ?? 5e}  //weight: 3, accuracy: Low
+        $x_2_2 = {32 c8 8b 44 24 58 88 0d ?? ?? ?? ?? 8a 0d ?? ?? ?? ?? 80 c9 08 c0 e9 03 81 e1 ?? ?? ?? ?? 89 4c 24}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
