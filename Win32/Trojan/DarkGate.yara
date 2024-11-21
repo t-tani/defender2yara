@@ -779,3 +779,24 @@ rule Trojan_Win32_DarkGate_GGF_2147925632_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_DarkGate_MUV_2147926628_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/DarkGate.MUV!MTB"
+        threat_id = "2147926628"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "DarkGate"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {8b c1 f7 75 e4 8b 45 d0 8a 14 32 32 ?? 01 8b c7 83 7f 14 0f 76 ?? 8b 07 88 14 08 41 8b 45 d4 83 f9 2c 72}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

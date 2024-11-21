@@ -13616,3 +13616,25 @@ rule Trojan_MSIL_FormBook_NOD_2147926463_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_FormBook_AWDA_2147926625_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/FormBook.AWDA!MTB"
+        threat_id = "2147926625"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "FormBook"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_4_1 = {09 11 0b 07 11 0b 91 11 04 11 0f 95 61 d2 9c 11 11 11 0d 5a 11 0b 58 20 00 01 00 00 5d 13 12 11 0c 11 12 61 13 0c 00 11 0b 17 58 13 0b 11 0b 07 8e 69 fe 04 13 15 11 15}  //weight: 4, accuracy: High
+        $x_1_2 = "P848GOPEGY8Z4HEZ7C54CG" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

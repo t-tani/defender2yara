@@ -311,3 +311,24 @@ rule Trojan_Win64_BruteRatel_CMZ_2147924915_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_BruteRatel_MUV_2147926629_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/BruteRatel.MUV!MTB"
+        threat_id = "2147926629"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "BruteRatel"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {49 c7 c2 1b 00 00 00 49 c7 c4 31 a9 0f 00 4c 03 65 ?? 48 31 d2 41 f7 f2 45 8a 1c 14 44 30 1c 0f 48 ff c1 48 89 c8 48 81 f9 9d d3 03 00 76}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

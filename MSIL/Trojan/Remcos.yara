@@ -12163,3 +12163,25 @@ rule Trojan_MSIL_Remcos_SKM_2147926484_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Remcos_AYDA_2147926626_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Remcos.AYDA!MTB"
+        threat_id = "2147926626"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Remcos"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_4_1 = {0e 05 1f 7b 61 20 ff 00 00 00 5f 20 c8 01 00 00 58 20 00 01 00 00 5e 26 05 03 04 03 91 0e 04 0e 05 95 61 d2 9c 2a}  //weight: 4, accuracy: High
+        $x_1_2 = "HEHZ6G78G7B4GFD8EE8A79" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
