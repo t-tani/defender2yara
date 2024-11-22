@@ -2353,6 +2353,31 @@ rule Trojan_Win32_Amadey_EM_2147900695_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Amadey_EM_2147900695_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Amadey.EM!MTB"
+        threat_id = "2147900695"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Amadey"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "ISNmfV==" ascii //weight: 1
+        $x_1_2 = "V3Bf1HWobyt=" ascii //weight: 1
+        $x_1_3 = "JjsrPl==" ascii //weight: 1
+        $x_1_4 = "R3JbesI5cs==" ascii //weight: 1
+        $x_1_5 = "%userappdata%\\RestartApp.exe" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win32_Amadey_RDP_2147901218_0
 {
     meta:
@@ -3180,6 +3205,27 @@ rule Trojan_Win32_Amadey_CCJC_2147924800_0
         $x_2_8 = "encryptedPassword" ascii //weight: 2
         $x_1_9 = "FileZilla\\sitemanager.xml" ascii //weight: 1
         $x_2_10 = "Monero\\wallets\\" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Amadey_HZ_2147926766_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Amadey.HZ!MTB"
+        threat_id = "2147926766"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Amadey"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {20 20 20 00 20 20 20 20 00 80 06 00 00 10 00 00 00 de 02 00 00 10 00 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 e0 2e 72 73 72 63 00 00 00 48 04 00 00 00 90 06 00 00 06 00 00 00 ee 02 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 c0}  //weight: 2, accuracy: High
     condition:
         (filesize < 20MB) and
         (all of ($x*))
