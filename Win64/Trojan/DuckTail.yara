@@ -49,3 +49,25 @@ rule Trojan_Win64_DuckTail_ADT_2147903790_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_DuckTail_GTT_2147926754_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/DuckTail.GTT!MTB"
+        threat_id = "2147926754"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "DuckTail"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {b5 95 00 d9 95 28 41 8f 69 8f ?? ?? ?? ?? b5 92 1d 96 55 96 25 93 65 92 ed 92 8d 92}  //weight: 10, accuracy: Low
+        $x_1_2 = "APEX_TMHupdatingdisabledkey_not_ot_found" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

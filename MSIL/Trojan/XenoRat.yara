@@ -49,3 +49,32 @@ rule Trojan_MSIL_XenoRat_SG_2147900905_0
         (3 of ($x*))
 }
 
+rule Trojan_MSIL_XenoRat_RHB_2147926756_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/XenoRat.RHB!MTB"
+        threat_id = "2147926756"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "XenoRat"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "12"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = "Xeno-rat" wide //weight: 3
+        $x_1_2 = "Live Microphone" wide //weight: 1
+        $x_1_3 = "Key Logger" wide //weight: 1
+        $x_1_4 = "Screen Control" wide //weight: 1
+        $x_1_5 = "Uac Bypass" wide //weight: 1
+        $x_1_6 = "xeno rat client.exe" wide //weight: 1
+        $x_1_7 = "sent the kill command" wide //weight: 1
+        $x_1_8 = "InfoGrab.zip" wide //weight: 1
+        $x_2_9 = {50 45 00 00 4c 01 03 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 0b 01 30 00 00 78 1c 00 00 48 03 00 00 00 00 00 5e 97 1c}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -2331,6 +2331,33 @@ rule Trojan_MSIL_Zusy_HNQ_2147925298_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Zusy_HNQ_2147925298_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Zusy.HNQ!MTB"
+        threat_id = "2147925298"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {45 6e 63 6f 64 69 6e 67 00 46 72 6f 6d 42 61 73 65 36 34 53 74 72 69 6e 67 00 47 65 74 53 74 72 69 6e 67 00 67 65 74 5f 4c 65 6e 67 74 68}  //weight: 10, accuracy: High
+        $x_1_2 = {61 9a 0d 07 28 ?? ?? ?? ?? 13 ?? 7e ?? ?? ?? ?? 11 ?? 28 ?? ?? ?? ?? 7e ?? ?? ?? ?? 28 ?? ?? ?? ?? 13 ?? 11 ?? 72 ?? ?? ?? ?? 1f}  //weight: 1, accuracy: Low
+        $x_1_3 = {49 6e 69 74 69 61 6c 69 7a 65 41 72 72 61 79 00 41 73 73 65 6d 62 6c 79 00 [0-5] 19 ?? 00 [0-37] 00 3d 00 [0-37] 00 3d 00 [0-37] 00 05 00 02 0e 0e 08 08 b7 7a 5c 56 19 34 e0 89 03 06 1d 05}  //weight: 1, accuracy: Low
+        $x_1_4 = {54 6f 41 72 72 61 79 00 73 65 74 5f 4b 65 79 00 53 79 73 74 65 6d 2e 53 65 63 75 72 69 74 79 2e 43 72 79 70 74 6f 67 72 61 70 68 79 00 47 65 74 45 78 65 63 75 74 69 6e 67 41 73 73 65 6d 62 6c 79 00 42 6c 6f 63 6b 43 6f 70 79 00 52 65 61 64 50 72 6f 63 65 73 73 4d 65 6d 6f 72 79 00 57 72 69 74 65 50 72 6f 63 65 73 73 4d 65 6d 6f 72 79}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_10_*) and 1 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+
 rule Trojan_MSIL_Zusy_ARA_2147925403_0
 {
     meta:
