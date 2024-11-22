@@ -4600,3 +4600,31 @@ rule Trojan_Win32_Guloader_GZN_2147926367_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Guloader_CZ_2147926738_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Guloader.CZ!MTB"
+        threat_id = "2147926738"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Guloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "narrowness.ini" ascii //weight: 2
+        $x_2_2 = "befolkningsgrupper\\moras.zon" ascii //weight: 2
+        $x_1_3 = "Hyldebrret2.faj" ascii //weight: 1
+        $x_1_4 = "pelvetia.txt" ascii //weight: 1
+        $x_1_5 = "sakkende.dro" ascii //weight: 1
+        $x_1_6 = "Aftrkkes\\ramshorn\\lachrymaeform" ascii //weight: 1
+        $x_1_7 = "Glyphograph\\Malvaceae56\\altruisten" ascii //weight: 1
+        $x_1_8 = "energiudfoldelsers.Uku" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
