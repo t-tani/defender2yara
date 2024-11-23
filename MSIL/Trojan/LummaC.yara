@@ -747,3 +747,32 @@ rule Trojan_MSIL_LummaC_AVCA_2147926578_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_LummaC_DA_2147926785_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/LummaC.DA!MTB"
+        threat_id = "2147926785"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "LummaC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "13"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {2f 00 2f 00 31 00 39 00 33 00 2e 00 32 00 33 00 33 00 2e 00 32 00 35 00 34 00 2e 00 30 00 2f 00 [0-50] 2e 00 65 00 78 00 65 00}  //weight: 10, accuracy: Low
+        $x_10_2 = {2f 2f 31 39 33 2e 32 33 33 2e 32 35 34 2e 30 2f [0-50] 2e 65 78 65}  //weight: 10, accuracy: Low
+        $x_1_3 = "powershell.exe" ascii //weight: 1
+        $x_1_4 = "runas" ascii //weight: 1
+        $x_1_5 = "C:\\Windows\\Temp" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_10_*) and 3 of ($x_1_*))) or
+            ((2 of ($x_10_*))) or
+            (all of ($x*))
+        )
+}
+
