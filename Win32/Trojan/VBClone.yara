@@ -87,3 +87,25 @@ rule Trojan_Win32_VBClone_GZT_2147923495_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_VBClone_GTT_2147926847_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/VBClone.GTT!MTB"
+        threat_id = "2147926847"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "VBClone"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {48 33 d8 44 87 17 37 f3 5f}  //weight: 5, accuracy: High
+        $x_5_2 = {ff cc 31 00 04 8c 2d ?? ?? ?? ?? 56 43 99 ff}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

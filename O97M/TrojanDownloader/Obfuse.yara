@@ -17783,6 +17783,27 @@ rule TrojanDownloader_O97M_Obfuse_PBH_2147761673_1
         (all of ($x*))
 }
 
+rule TrojanDownloader_O97M_Obfuse_PBI_2147761678_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:O97M/Obfuse.PBI!MTB"
+        threat_id = "2147761678"
+        type = "TrojanDownloader"
+        platform = "O97M: Office 97, 2000, XP, 2003, 2007, and 2010 macros - those that affect Word, Excel, and PowerPoint"
+        family = "Obfuse"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_MACROHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {53 68 65 6c 6c 20 22 6d 73 68 74 61 2e 65 78 65 20 6a 61 76 61 73 63 72 69 70 74 3a [0-6] 3d 28 47 65 74 4f 62 6a 65 63 74 28 22 22 73 63 72 69 70 74 3a 68 74 74 70 73 3a 2f 2f 72 61 77 2e 67 69 74 68 75 62 75 73 65 72 63 6f 6e 74 65 6e 74 2e 63 6f 6d 2f 53 74 65 41 6d 65 52 2f 6d 61 6c 77 65 72 6a 6f 62 73 2f 6d 61 73 74 65 72 2f 73 63 72 69 70 74 6c 65 74 22 22 29 29 2e 45 78 65 63 28 29 3b 63 6c 6f 73 65 28 29 3b}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule TrojanDownloader_O97M_Obfuse_RSD_2147762279_0
 {
     meta:
