@@ -51,3 +51,25 @@ rule Trojan_Win64_RustStealer_DA_2147926526_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_RustStealer_GTT_2147926858_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/RustStealer.GTT!MTB"
+        threat_id = "2147926858"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "RustStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {33 20 3e 20 6e ?? 6c 0a 64 65 ?? 20 22 22 0a 64 65 6c 20 22 25 ?? ?? ?? ?? 0a 00}  //weight: 10, accuracy: Low
+        $x_1_2 = "vel criar o arquivo .bat" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

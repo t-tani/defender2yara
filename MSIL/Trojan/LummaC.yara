@@ -776,3 +776,26 @@ rule Trojan_MSIL_LummaC_DA_2147926785_0
         )
 }
 
+rule Trojan_MSIL_LummaC_ALN_2147926857_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/LummaC.ALN!MTB"
+        threat_id = "2147926857"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "LummaC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {d4 f6 e4 9c 38 10 77 6b b3 ce 36 30 ba a6 d0 92 53 36 59 62 0f 33 e3 f4 56 94 18 14 bb 04 e8 26 52 4f 29 92 e8 4f f1 18 82 9c a6}  //weight: 1, accuracy: High
+        $x_2_2 = "integrate network red idea you she solve inspire vision red" wide //weight: 2
+        $x_3_3 = "LiamBritainVioletNathan.exeROD" wide //weight: 3
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -6169,3 +6169,28 @@ rule Trojan_Win32_Vidar_NF_2147926461_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Vidar_ASU_2147926856_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Vidar.ASU!MTB"
+        threat_id = "2147926856"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Vidar"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {8b 45 f8 ff 75 0c 8d 34 3b 8a 04 30 88 45 ff ff 15 ?? ?? ?? ?? 8b c8 33 d2 8b c3 f7 f1 8b 45 0c 8a 04 02 32 45 ff 43 88 06 3b 5d 10 72}  //weight: 3, accuracy: Low
+        $x_1_2 = "65 79 41 69 64 48 6C 77 49 6A 6F 67 49 6B 70 58 56 43 49 73 49 43 4A 68 62 47 63 69 4F 69 41 69 52 57 52 45 55 30 45 69 49 48 30" ascii //weight: 1
+        $x_1_3 = "malware" ascii //weight: 1
+        $x_1_4 = "virus" ascii //weight: 1
+        $x_1_5 = "_key.txt" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
