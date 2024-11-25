@@ -10035,38 +10035,6 @@ rule Trojan_MSIL_AgentTesla_2147775175_0
         (15 of ($x*))
 }
 
-rule Trojan_MSIL_AgentTesla_2147775176_0
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "Trojan:MSIL/AgentTesla.MTM!MTB"
-        threat_id = "2147775176"
-        type = "Trojan"
-        platform = "MSIL: .NET intermediate language scripts"
-        family = "AgentTesla"
-        severity = "Critical"
-        info = "MTM: an internal category used to refer to some threats"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "11"
-        strings_accuracy = "High"
-    strings:
-        $x_1_1 = "Tokenizer" ascii //weight: 1
-        $x_1_2 = "Variant" ascii //weight: 1
-        $x_1_3 = "Data_1" ascii //weight: 1
-        $x_1_4 = "Round" ascii //weight: 1
-        $x_1_5 = "VirtualProtect" ascii //weight: 1
-        $x_1_6 = "kernel32.dll" ascii //weight: 1
-        $x_1_7 = "CheckRemoteDebuggerPresent" ascii //weight: 1
-        $x_1_8 = "XsdType" ascii //weight: 1
-        $x_1_9 = "get_Sync" ascii //weight: 1
-        $x_1_10 = "Bitmap" ascii //weight: 1
-        $x_1_11 = "BlockCopy" ascii //weight: 1
-    condition:
-        (filesize < 20MB) and
-        (all of ($x*))
-}
-
 rule Trojan_MSIL_AgentTesla_MUY_2147775177_0
 {
     meta:
