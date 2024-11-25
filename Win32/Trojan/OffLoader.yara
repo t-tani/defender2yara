@@ -2841,3 +2841,25 @@ rule Trojan_Win32_OffLoader_SCVC_2147926676_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_OffLoader_SCZC_2147926799_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/OffLoader.SCZC!MTB"
+        threat_id = "2147926799"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "OffLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = "/creatorbedroom.cfd/winn.php" wide //weight: 3
+        $x_2_2 = "/silent" wide //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

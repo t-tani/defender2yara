@@ -2526,3 +2526,24 @@ rule Trojan_MSIL_Zusy_HNO_2147926687_0
         )
 }
 
+rule Trojan_MSIL_Zusy_HNP_2147926803_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Zusy.HNP!MTB"
+        threat_id = "2147926803"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "RmFsc2V8RmFsc2V8" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
