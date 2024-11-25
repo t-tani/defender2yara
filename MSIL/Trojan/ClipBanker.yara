@@ -3598,6 +3598,32 @@ rule Trojan_MSIL_ClipBanker_AYA_2147919626_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_ClipBanker_AYA_2147919626_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/ClipBanker.AYA!MTB"
+        threat_id = "2147919626"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "ClipBanker"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = "$cb79da84-98cb-4d83-b315-032d3575881b" ascii //weight: 3
+        $x_1_2 = "/create /sc MINUTE /mo 1 /tn \"Windows Service\" /tr" wide //weight: 1
+        $x_1_3 = "taskhostmgr64.exe" wide //weight: 1
+        $x_1_4 = "DebuggingModes" ascii //weight: 1
+        $x_1_5 = "KMSAutoLite.Properties" ascii //weight: 1
+        $x_1_6 = "DebuggerNonUserCodeAttribute" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_ClipBanker_CCJB_2147921779_0
 {
     meta:

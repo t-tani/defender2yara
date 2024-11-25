@@ -12249,3 +12249,28 @@ rule Trojan_MSIL_Remcos_AMAE_2147926642_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Remcos_AYA_2147926811_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Remcos.AYA!MTB"
+        threat_id = "2147926811"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Remcos"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "2023CryptsDone\\drwk" ascii //weight: 2
+        $x_1_2 = "files will be deleted permanently. Proceed?" wide //weight: 1
+        $x_1_3 = "exporterWorker_RunWorkerCompleted" ascii //weight: 1
+        $x_1_4 = "lameExeDownloadSite" ascii //weight: 1
+        $x_1_5 = "dupeFinderWorker" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

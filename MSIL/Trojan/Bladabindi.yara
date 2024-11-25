@@ -4257,3 +4257,28 @@ rule Trojan_MSIL_Bladabindi_KAAG_2147924329_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Bladabindi_AYA_2147926817_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Bladabindi.AYA!MTB"
+        threat_id = "2147926817"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Bladabindi"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "$1F8B2271-7303-4F2F-8B4B-556A5FCB3C86" ascii //weight: 2
+        $x_1_2 = "MBR Overwritten, Victim rebooted." wide //weight: 1
+        $x_1_3 = "schtasks /create /sc minute /mo 1 /tn" wide //weight: 1
+        $x_1_4 = "Select * From AntiVirusProduct" wide //weight: 1
+        $x_1_5 = "WhyYouReverseMe" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

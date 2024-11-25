@@ -1086,3 +1086,28 @@ rule Trojan_MSIL_Jalapeno_PMOH_2147926033_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Jalapeno_AYA_2147926813_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Jalapeno.AYA!MTB"
+        threat_id = "2147926813"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Jalapeno"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "Thread_hijacking" ascii //weight: 2
+        $x_1_2 = "$009ab3ac-373b-4ddb-a8f3-5A50D13265EA" ascii //weight: 1
+        $x_1_3 = "TheAttack.exe" ascii //weight: 1
+        $x_1_4 = "ProcessInject" ascii //weight: 1
+        $x_1_5 = "Successfully created the process..." wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

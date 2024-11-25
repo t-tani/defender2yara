@@ -5190,3 +5190,30 @@ rule Trojan_MSIL_AsyncRAT_ARAF_2147926726_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AsyncRAT_AYA_2147926815_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AsyncRAT.AYA!MTB"
+        threat_id = "2147926815"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AsyncRAT"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "/c schtasks /create /f /sc onlogon /rl highest /tn" wide //weight: 2
+        $x_1_2 = "Select * from AntivirusProduct" wide //weight: 1
+        $x_1_3 = "DcRatByqwqdanchun" wide //weight: 1
+        $x_1_4 = "RemoteDebuggerPresent" wide //weight: 1
+        $x_1_5 = "masterKey can not be null or empty." wide //weight: 1
+        $x_1_6 = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run" wide //weight: 1
+        $x_1_7 = "Paste_bin" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

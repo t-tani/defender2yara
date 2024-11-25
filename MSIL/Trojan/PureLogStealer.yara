@@ -173,6 +173,27 @@ rule Trojan_MSIL_PureLogStealer_DUAA_2147902594_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_PureLogStealer_AMAG_2147902846_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/PureLogStealer.AMAG!MTB"
+        threat_id = "2147902846"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "PureLogStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {95 58 20 ff 00 00 00 5f 13 [0-20] 61 20 ff 00 00 00 5f 13 [0-20] 58 20 00 01 00 00 5e 13 [0-50] 95 61 28 ?? 00 00 0a 9c 11 ?? 17 58 13 ?? ?? ?? 07 8e 69 3f}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_PureLogStealer_EFAA_2147902854_0
 {
     meta:
