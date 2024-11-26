@@ -3370,3 +3370,26 @@ rule Trojan_Win64_CryptInject_BVV_2147926933_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_CryptInject_NAC_2147926944_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CryptInject.NAC!MTB"
+        threat_id = "2147926944"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "E:\\Code\\T2H\\CustomBuilds\\CreateCustomBuilds\\Release\\BootStrapper\\x64\\Release\\BootStrapper.pdb" ascii //weight: 2
+        $x_1_2 = {8b 45 18 48 8d 4d f0 48 c1 e0 20 48 33 45 18 48 33 45 f0 48 33 c1}  //weight: 1, accuracy: High
+        $x_1_3 = {45 0b d0 89 45 f0 41 81 f1 47 65 6e 75 89 5d f4 45 0b d1 89 4d f8 8b f9 89 55 fc}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

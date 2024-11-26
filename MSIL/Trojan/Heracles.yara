@@ -6125,3 +6125,25 @@ rule Trojan_MSIL_Heracles_AZDA_2147926627_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Heracles_PPKH_2147926945_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Heracles.PPKH!MTB"
+        threat_id = "2147926945"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Heracles"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {1f 10 62 0f ?? 28 ?? ?? ?? ?? 1e 62 60 0f 01 28 ?? ?? ?? ?? 60 0b 02 07 1f 10 63 20 ff 00 00 00 5f d2 6f ?? ?? ?? ?? 00 02 07 1e 63}  //weight: 5, accuracy: Low
+        $x_6_2 = {9c 25 18 0f 01 28 ?? ?? ?? ?? 9c 0d 02 09 04 28 ?? ?? ?? ?? 6f ?? ?? ?? ?? 00 09 16 91 09 17 91 60}  //weight: 6, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

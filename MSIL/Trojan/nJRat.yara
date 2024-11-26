@@ -32,6 +32,27 @@ rule Trojan_MSIL_nJRat_ANJ_2147841499_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {08 d2 61 d2 81 0d 00 00 01 11 0a 20 ff 00 00 00 5f 2d 0b 08 08 5a 20 b7 5c 8a 00 6a 5e 0c 11 0a 17 58 13 0a 11 0a 11 08 8e 69}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_nJRat_ANJ_2147841499_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/nJRat.ANJ!MTB"
+        threat_id = "2147841499"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "nJRat"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "1"
         strings_accuracy = "Low"
     strings:
@@ -41,7 +62,7 @@ rule Trojan_MSIL_nJRat_ANJ_2147841499_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_nJRat_ANJ_2147841499_1
+rule Trojan_MSIL_nJRat_ANJ_2147841499_2
 {
     meta:
         author = "defender2yara"
@@ -62,7 +83,7 @@ rule Trojan_MSIL_nJRat_ANJ_2147841499_1
         (all of ($x*))
 }
 
-rule Trojan_MSIL_nJRat_ANJ_2147841499_2
+rule Trojan_MSIL_nJRat_ANJ_2147841499_3
 {
     meta:
         author = "defender2yara"
@@ -84,7 +105,7 @@ rule Trojan_MSIL_nJRat_ANJ_2147841499_2
         (all of ($x*))
 }
 
-rule Trojan_MSIL_nJRat_ANJ_2147841499_3
+rule Trojan_MSIL_nJRat_ANJ_2147841499_4
 {
     meta:
         author = "defender2yara"
