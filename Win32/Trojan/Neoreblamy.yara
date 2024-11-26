@@ -2305,3 +2305,27 @@ rule Trojan_Win32_Neoreblamy_GPX_2147926818_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Neoreblamy_BAH_2147926888_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Neoreblamy.BAH!MTB"
+        threat_id = "2147926888"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Neoreblamy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "nyWUSKRQYNWPaKIztFbqMfoTLYqhlnnCWh" ascii //weight: 2
+        $x_1_2 = "FBjCFUXxrondhtaZbEoNGHZDDvxRg" ascii //weight: 1
+        $x_1_3 = "BZxrLtraipEnBtTNQofRIiwCgsARp" ascii //weight: 1
+        $x_1_4 = "BbABHeFHnFViGSJKeXyeFFlGJMOd" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

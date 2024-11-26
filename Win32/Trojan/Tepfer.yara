@@ -168,3 +168,27 @@ rule Trojan_Win32_Tepfer_GNN_2147919098_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Tepfer_EM_2147926886_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Tepfer.EM!MTB"
+        threat_id = "2147926886"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Tepfer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "aPmC12HFdIFY6yGJ-EnH/dvaKDi5ctyNIOUcEbYSI/X-6_aGGcoVUvfg3yINiE/147N6D7NvERkkLhbMxtu" ascii //weight: 1
+        $x_1_2 = "mickep76/encdec" ascii //weight: 1
+        $x_1_3 = "rasky/go-lzo" ascii //weight: 1
+        $x_1_4 = "chrispassas/silk@v1.3.0/file.go" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

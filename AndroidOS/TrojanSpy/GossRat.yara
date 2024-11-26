@@ -127,3 +127,27 @@ rule TrojanSpy_AndroidOS_GossRat_E_2147919060_0
         (all of ($x*))
 }
 
+rule TrojanSpy_AndroidOS_GossRat_F_2147926890_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanSpy:AndroidOS/GossRat.F!MTB"
+        threat_id = "2147926890"
+        type = "TrojanSpy"
+        platform = "AndroidOS: Android operating system"
+        family = "GossRat"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = "com/sadeer/mall" ascii //weight: 1
+        $x_1_2 = "getCallLogs" ascii //weight: 1
+        $x_1_3 = "saderat" ascii //weight: 1
+        $x_1_4 = {74 74 70 73 3a 2f 2f [0-16] 2e 62 69 67 6f 70 61 79 2e 77 6f 72 6b 65 72 73 2e 64 65 76 2f}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
