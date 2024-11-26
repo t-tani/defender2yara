@@ -3328,3 +3328,45 @@ rule Trojan_Win64_CryptInject_TZV_2147926797_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_CryptInject_ZZV_2147926932_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CryptInject.ZZV!MTB"
+        threat_id = "2147926932"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {45 02 d4 45 0f b6 c2 42 8a 54 04 ?? 44 02 da 41 0f b6 cb 8a 44 0c ?? 42 88 44 04 ?? 88 54 0c 50 42 02 54 04 50 0f b6 c2 8a 4c 04 ?? 41 30 09 4d 03 cc 49 2b dc 75}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_CryptInject_BVV_2147926933_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CryptInject.BVV!MTB"
+        threat_id = "2147926933"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {4d 2b d3 49 63 c8 48 8b c7 41 ff c0 48 f7 e1 48 c1 ea 04 48 8d 04 92 48 c1 e0 ?? 48 2b c8 49 0f af cf 8a 44 0d ?? 43 32 04 0a 41 88 01 49 ff c1 41 81 f8 00 ba 01 00 72}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -3546,3 +3546,28 @@ rule Trojan_MSIL_RedLineStealer_PPBH_2147926677_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_RedLineStealer_SKJ_2147926919_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/RedLineStealer.SKJ!MTB"
+        threat_id = "2147926919"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "RedLineStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {19 8d 4e 00 00 01 25 16 0f 01 28 26 00 00 0a 9c 25 17 0f 01 28 27 00 00 0a 9c 25 18 0f 01 28 28 00 00 0a 9c 0b 02 07 04 28 02 00 00 2b 6f 2b 00 00 0a 2a}  //weight: 1, accuracy: High
+        $x_1_2 = {16 0a 2b 0e 02 03 04 06 05 28 0b 00 00 06 06 17 58 0a 06 02 28 08 00 00 06 2f 09 03 6f 2e 00 00 0a 05 32 e0}  //weight: 1, accuracy: High
+        $x_1_3 = "lblBrojPogodaka" ascii //weight: 1
+        $x_1_4 = "FluentLog4Net.Properties.Resources" ascii //weight: 1
+        $x_1_5 = "LOTO_aplikacija.FrmLoto.resources" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

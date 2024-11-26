@@ -67278,6 +67278,28 @@ rule Trojan_MSIL_AgentTesla_NYP_2147828356_1
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AgentTesla_RTS_2147828420_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.RTS!MTB"
+        threat_id = "2147828420"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {19 8d 18 00 00 01 25 16 72 01 00 00 70 28 16 00 00 0a 73 17 00 00 0a a2 25 17 72 13 00 00 70 28 16 00 00 0a 73 17 00 00 0a a2 25 18 72 21 00 00 70}  //weight: 2, accuracy: High
+        $x_1_2 = "sEOq.exe" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_AgentTesla_THS_2147828532_0
 {
     meta:
