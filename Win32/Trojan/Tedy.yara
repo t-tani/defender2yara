@@ -428,3 +428,25 @@ rule Trojan_Win32_Tedy_AMX_2147925315_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Tedy_ARAF_2147926915_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Tedy.ARAF!MTB"
+        threat_id = "2147926915"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Tedy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "mail.mar-holidays.net" wide //weight: 2
+        $x_2_2 = "c:\\x\\xxx.txt" wide //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
