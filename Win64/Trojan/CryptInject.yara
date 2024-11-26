@@ -3393,3 +3393,30 @@ rule Trojan_Win64_CryptInject_NAC_2147926944_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_CryptInject_RHAN_2147926974_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CryptInject.RHAN!MTB"
+        threat_id = "2147926974"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = "File Downloader" wide //weight: 3
+        $x_1_2 = "ChainingModeGCM" wide //weight: 1
+        $x_1_3 = "autorun.inf" wide //weight: 1
+        $x_1_4 = "gdipfontcachev1.dat" wide //weight: 1
+        $x_1_5 = "bootsect.bak" wide //weight: 1
+        $x_1_6 = "grabber_max_size" ascii //weight: 1
+        $x_2_7 = {50 45 00 00 64 86 06 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 0b 02 0e 29 00 34 0d 00 00 a6 06 00 00 00 00 00 20 f2 0a}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

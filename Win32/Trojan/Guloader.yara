@@ -4628,3 +4628,31 @@ rule Trojan_Win32_Guloader_CZ_2147926738_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Guloader_ASB_2147926960_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Guloader.ASB!MTB"
+        threat_id = "2147926960"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Guloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "guidsire\\Anlgsgartneriet.lnk" ascii //weight: 2
+        $x_2_2 = "Xanthopsin8\\diamb.lit" ascii //weight: 2
+        $x_1_3 = "Jungmandens15\\fiskefartjer" ascii //weight: 1
+        $x_1_4 = "phytosociologically.txt" ascii //weight: 1
+        $x_1_5 = "Fredsvalget214\\nationalindkomsten" ascii //weight: 1
+        $x_1_6 = "hampton.ant" ascii //weight: 1
+        $x_1_7 = "konomiseret\\Uninstall\\gerontologic" ascii //weight: 1
+        $x_1_8 = "bjergkrystallen.sam" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
