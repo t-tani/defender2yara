@@ -1023,3 +1023,26 @@ rule Trojan_Win32_PonyStealer_GNK_2147916721_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_PonyStealer_GTT_2147926908_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/PonyStealer.GTT!MTB"
+        threat_id = "2147926908"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "PonyStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {21 fc 97 31 48 cf 0c ff 3c a2 6b bb}  //weight: 5, accuracy: High
+        $x_5_2 = {d0 31 33 07 d0 b4 68 ?? ?? ?? ?? c4 00}  //weight: 5, accuracy: Low
+        $x_1_3 = "Braggat0" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
