@@ -1156,3 +1156,29 @@ rule Trojan_Win64_StrelaStealer_ASQ_2147926889_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_StrelaStealer_GTT_2147926982_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/StrelaStealer.GTT!MTB"
+        threat_id = "2147926982"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "StrelaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "15"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {41 b8 00 30 00 00 41 b9 40 00 00 00 31 c9 [0-1] ff}  //weight: 10, accuracy: Low
+        $x_1_2 = "%s%s\\key4.db" ascii //weight: 1
+        $x_1_3 = "/up.php" ascii //weight: 1
+        $x_1_4 = "\\Thunderbird\\Profiles\\" ascii //weight: 1
+        $x_1_5 = "%s%s\\logins.json" ascii //weight: 1
+        $x_1_6 = "/c systeminfo >" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

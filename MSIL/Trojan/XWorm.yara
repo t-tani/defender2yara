@@ -254,6 +254,34 @@ rule Trojan_MSIL_XWorm_NW_2147891165_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_XWorm_NW_2147891165_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/XWorm.NW!MTB"
+        threat_id = "2147891165"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "XWorm"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "12"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "OfflineKeylogger Not Enabled" wide //weight: 2
+        $x_2_2 = "StopDDos" wide //weight: 2
+        $x_2_3 = "shutdown.exe /f /s /t 0" wide //weight: 2
+        $x_2_4 = "ExecutionPolicy Bypass -File" wide //weight: 2
+        $x_1_5 = "injRun" wide //weight: 1
+        $x_1_6 = "Modified successfully!" wide //weight: 1
+        $x_1_7 = "Select * from AntivirusProduct" wide //weight: 1
+        $x_1_8 = "Plugins Removed!" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_XWorm_MBJS_2147892681_0
 {
     meta:

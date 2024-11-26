@@ -258,6 +258,28 @@ rule Trojan_MSIL_Bulz_NB_2147896153_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Bulz_NB_2147896153_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Bulz.NB!MTB"
+        threat_id = "2147896153"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Bulz"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = {08 06 16 20 00 04 00 00 6f 9a 00 00 0a 25 13 07 16 fe 02 13 0b 11 0b 2d c6}  //weight: 3, accuracy: High
+        $x_1_2 = "$e4f7f555-8a23-4a9b-9a3c-065e44fc1244" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_Bulz_AMAC_2147896266_0
 {
     meta:

@@ -120,3 +120,25 @@ rule Trojan_MSIL_ZemsilF_AYB_2147920015_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_ZemsilF_NF_2147926989_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/ZemsilF.NF!MTB"
+        threat_id = "2147926989"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "ZemsilF"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {73 59 00 00 0a 0a 06 6f ?? 00 00 0a 16 6f ?? 00 00 0a 00 06 6f ?? 00 00 0a 72 31 01 00 70 6f ?? 00 00 0a 00 06 6f ?? 00 00 0a 17 6f ?? 00 00 0a 00 72 31 01 00 70 28 4d 00 00 0a 26 2a}  //weight: 3, accuracy: Low
+        $x_2_2 = {02 6f 37 00 00 06 6f 4e 00 00 0a 00 72 f7 00 00 70 0a 06 28 4d 00 00 0a}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

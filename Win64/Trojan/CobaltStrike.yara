@@ -6736,6 +6736,28 @@ rule Trojan_Win64_CobaltStrike_ASJ_2147845011_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_CobaltStrike_ASJ_2147845011_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CobaltStrike.ASJ!MTB"
+        threat_id = "2147845011"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CobaltStrike"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {48 89 df 48 89 ce 48 8b 5c 24 ?? 48 89 c1 48 8b 44 24 ?? e8 ?? ?? ?? ?? 48 89 44 24 48 48 89 5c 24 58 48 8b 4c 24 38 48 8d ?? ?? ?? ?? 00 48 89 cb e8 ?? ?? ?? ?? 48 89 44 24}  //weight: 4, accuracy: Low
+        $x_1_2 = "main.AesDecrypt" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win64_CobaltStrike_ZD_2147845126_0
 {
     meta:

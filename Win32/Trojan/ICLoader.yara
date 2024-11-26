@@ -287,6 +287,38 @@ rule Trojan_Win32_ICLoader_GMC_2147853180_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_ICLoader_EM_2147888905_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ICLoader.EM!MTB"
+        threat_id = "2147888905"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ICLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = "_rstefgh_6_11221_" ascii //weight: 5
+        $x_5_2 = "_qrsabcd_3_11201_" ascii //weight: 5
+        $x_5_3 = "_qrsabcd_2_11202_" ascii //weight: 5
+        $x_1_4 = "AlphaBlend" ascii //weight: 1
+        $x_1_5 = "CsrNewThread" ascii //weight: 1
+        $x_1_6 = "NtAccessCheckByTypeResultListAndAuditAlarm" ascii //weight: 1
+        $x_1_7 = "CsrClientCallServer" ascii //weight: 1
+        $x_1_8 = "DbgPrompt" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_5_*) and 5 of ($x_1_*))) or
+            ((2 of ($x_5_*))) or
+            (all of ($x*))
+        )
+}
+
 rule Trojan_Win32_ICLoader_RPX_2147897491_0
 {
     meta:

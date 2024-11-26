@@ -167,3 +167,28 @@ rule Trojan_Win32_QQPass_GZY_2147906303_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_QQPass_BSA_2147926887_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/QQPass.BSA!MTB"
+        threat_id = "2147926887"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "QQPass"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "14"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {85 c0 75 08 6a 1c e8 ?? ?? ?? ?? 59 e8 ?? ?? ?? ?? 85 c0 75 08 6a 10 e8 ?? ?? ?? ?? 59 33 f6 89 75 ?? e8 ?? ?? ?? ?? ff 15 ?? ?? ?? ?? a3 ?? ?? ?? ?? e8}  //weight: 10, accuracy: Low
+        $x_1_2 = "d09f2340818511d396f6aaf844c7e325" ascii //weight: 1
+        $x_1_3 = "707ca37322474f6ca841f0e224f4b620" ascii //weight: 1
+        $x_1_4 = "A512548E76954B6E92C21055517615B0" ascii //weight: 1
+        $x_1_5 = "xui.ptlogin2.qq.com/cgi-bin/qlogin" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
