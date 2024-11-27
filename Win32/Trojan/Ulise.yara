@@ -220,3 +220,25 @@ rule Trojan_Win32_Ulise_GXU_2147912618_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Ulise_AUL_2147927001_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Ulise.AUL!MTB"
+        threat_id = "2147927001"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Ulise"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {50 8b 17 52 e8 ?? ?? ?? ?? a3 7c 3d 45 00 8d 8b b4 01 00 00 51 8b 07 50 e8 ?? ?? ?? ?? a3 80 3d 45 00 8d 93 c3 01 00 00 52 8b 0f 51 e8 ?? ?? ?? ?? a3 84 3d 45 00 8d 83 d6 01 00 00 50 8b 17 52}  //weight: 1, accuracy: Low
+        $x_2_2 = {6a 08 6a 00 52 e8 ?? ?? ?? ?? 8b f0 89 37 85 f6 0f 84 2c 01 00 00 8d 83 09 01 00 00 50 56 e8 ?? ?? ?? ?? a3 5c 3d 45 00 8d 93 19 01 00 00 52 8b 0f 51 e8 ?? ?? ?? ?? a3 60 3d 45 00 8d 83 29 01 00 00 50 8b 17 52 e8 ?? ?? ?? ?? a3 64 3d 45 00 8d 8b 39 01 00 00 51 8b 07 50}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
