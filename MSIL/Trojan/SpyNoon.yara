@@ -2633,3 +2633,26 @@ rule Trojan_MSIL_SpyNoon_SOZA_2147926925_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_SpyNoon_KAY_2147927089_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/SpyNoon.KAY!MTB"
+        threat_id = "2147927089"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "SpyNoon"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "12"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = "_380BFEFFFF11_0" wide //weight: 3
+        $x_4_2 = "0638CAFFFFFF11017E0701" wide //weight: 4
+        $x_5_3 = "__112B05285EB11555380A" wide //weight: 5
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

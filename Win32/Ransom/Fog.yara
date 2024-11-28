@@ -41,3 +41,26 @@ rule Ransom_Win32_Fog_MKV_2147914048_0
         (all of ($x*))
 }
 
+rule Ransom_Win32_Fog_SA_2147927090_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win32/Fog.SA"
+        threat_id = "2147927090"
+        type = "Ransom"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Fog"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_CMDHSTR_EXT"
+        threshold = "40"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = "-nomutex" wide //weight: 10
+        $x_10_2 = "-size" wide //weight: 10
+        $x_10_3 = "-target" wide //weight: 10
+        $x_10_4 = "\\c$" wide //weight: 10
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
