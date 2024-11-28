@@ -282,3 +282,25 @@ rule Trojan_AndroidOS_Opfake_TE_2147919240_0
         (all of ($x*))
 }
 
+rule Trojan_AndroidOS_Opfake_OT_2147927142_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:AndroidOS/Opfake.OT"
+        threat_id = "2147927142"
+        type = "Trojan"
+        platform = "AndroidOS: Android operating system"
+        family = "Opfake"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "km1mQC?.YVs QdVLCGdOdh" ascii //weight: 1
+        $x_1_2 = "oR?d@.QVd?UdCd.1d?" ascii //weight: 1
+        $x_1_3 = "mRc?E.c`mYY`)CV.1.VA" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (2 of ($x*))
+}
+

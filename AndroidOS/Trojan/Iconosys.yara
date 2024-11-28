@@ -103,3 +103,29 @@ rule Trojan_AndroidOS_Iconosys_C_2147829873_0
         (all of ($x*))
 }
 
+rule Trojan_AndroidOS_Iconosys_A_2147927140_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:AndroidOS/Iconosys.A"
+        threat_id = "2147927140"
+        type = "Trojan"
+        platform = "AndroidOS: Android operating system"
+        family = "Iconosys"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "SendAutoPhoneData" ascii //weight: 1
+        $x_1_2 = "blackflyday.com/new/" ascii //weight: 1
+        $x_1_3 = "smsreplier.com/fly" ascii //weight: 1
+        $x_1_4 = "deals.dealbuzzer.net/iconosys.JPG" ascii //weight: 1
+        $x_1_5 = "iconosysemail@rocketmail.com" ascii //weight: 1
+        $x_1_6 = "SendToAutoServerTask" ascii //weight: 1
+        $x_1_7 = "Top o' the mornin' and all day too! May the luck be shinin' on u! Happy St. Patrick's Day!" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (2 of ($x*))
+}
+

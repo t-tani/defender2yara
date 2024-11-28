@@ -3381,3 +3381,27 @@ rule Ransom_MSIL_Filecoder_NITD_2147925865_0
         (all of ($x*))
 }
 
+rule Ransom_MSIL_Filecoder_PPG_2147927162_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:MSIL/Filecoder.PPG!MTB"
+        threat_id = "2147927162"
+        type = "Ransom"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Filecoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = "OMGOMGOMGLV2PATCHER111==" wide //weight: 3
+        $x_2_2 = "This folder protects against Ransomware" wide //weight: 2
+        $x_1_3 = "do notdelete" wide //weight: 1
+        $x_1_4 = "\\G Data" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

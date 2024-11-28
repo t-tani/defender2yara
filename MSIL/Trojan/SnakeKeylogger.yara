@@ -6639,3 +6639,25 @@ rule Trojan_MSIL_SnakeKeylogger_SVJA_2147926330_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_SnakeKeylogger_PPE_2147927163_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/SnakeKeylogger.PPE!MTB"
+        threat_id = "2147927163"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "SnakeKeylogger"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {5f 0d 09 08 7e ?? ?? ?? 04 5a 20 00 01 00 00 5d 59 20 00 01 00 00 58 20 ff 00 00 00 5f 0d 09 18 28 ?? ?? ?? 06 0d 09 66 20 ff 00 00 00 5f 0d 09}  //weight: 2, accuracy: Low
+        $x_2_2 = "ainvestinternational.com/ajax/grid/Gothams.hm" wide //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
