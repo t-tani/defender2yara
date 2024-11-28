@@ -198,6 +198,32 @@ rule Trojan_Win64_Zusy_AUZ_2147899195_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Zusy_EM_2147901026_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Zusy.EM!MTB"
+        threat_id = "2147901026"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "D:\\Desktop\\TheDLL\\x64\\Release\\TheDLL.pdb" ascii //weight: 1
+        $x_1_2 = "JLI_InitArgProcessing" ascii //weight: 1
+        $x_1_3 = "URLDownloadToFileW" ascii //weight: 1
+        $x_1_4 = "OpenMutexA" ascii //weight: 1
+        $x_1_5 = "CreateThread" ascii //weight: 1
+        $x_1_6 = "GetTempPathW" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win64_Zusy_NZA_2147901505_0
 {
     meta:

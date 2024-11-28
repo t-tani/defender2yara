@@ -2162,3 +2162,26 @@ rule Trojan_MSIL_PureLogStealer_AKEA_2147927033_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_PureLogStealer_AOEA_2147927113_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/PureLogStealer.AOEA!MTB"
+        threat_id = "2147927113"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "PureLogStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {06 0a 06 02 7d 38 00 00 04 00 16 06 7b 38 00 00 04 6f ?? 00 00 0a 18 5b 28 ?? 00 00 0a 06 fe ?? ?? 00 00 06 73 7e 00 00 0a 28 ?? 00 00 2b 28 ?? 00 00 2b 0b 2b 00 07 2a}  //weight: 4, accuracy: Low
+        $x_2_2 = "Proyecto.NET" wide //weight: 2
+        $x_2_3 = "4D5A9__3___04___FFFF__B8_______4___________________________________08" wide //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

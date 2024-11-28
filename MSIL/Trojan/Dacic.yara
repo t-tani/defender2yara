@@ -108,31 +108,6 @@ rule Trojan_MSIL_Dacic_SL_2147923796_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Dacic_NG_2147925649_0
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "Trojan:MSIL/Dacic.NG!MTB"
-        threat_id = "2147925649"
-        type = "Trojan"
-        platform = "MSIL: .NET intermediate language scripts"
-        family = "Dacic"
-        severity = "Critical"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "6"
-        strings_accuracy = "High"
-    strings:
-        $x_2_1 = {0d 09 16 1f 2c 9d 09 6f 1f 00 00 0a 16 9a 0a 06}  //weight: 2, accuracy: High
-        $x_1_2 = {2b 21 11 0c 17 58 13 0c 11 0c 11 0b 8e 69 32 b4 2b 11 11 0a 17 58 13 0a 11 0a 11 09 8e}  //weight: 1, accuracy: High
-        $x_1_3 = {13 06 11 06 8e 69 16 31 22 11 06 8e 69 17 59 8d 08 00 00 01 13 07 11 06 17 11 07 16 11 06 8e 69 17}  //weight: 1, accuracy: High
-        $x_1_4 = "_.pdb" ascii //weight: 1
-        $x_1_5 = "_.dll" ascii //weight: 1
-    condition:
-        (filesize < 20MB) and
-        (all of ($x*))
-}
-
 rule Trojan_MSIL_Dacic_NI_2147926462_0
 {
     meta:

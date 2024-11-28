@@ -1361,3 +1361,25 @@ rule Trojan_Win32_LummaC_ASA_2147926981_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_LummaC_GTT_2147927100_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaC.GTT!MTB"
+        threat_id = "2147927100"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {21 f1 89 c7 83 f7 ?? 81 e7 ?? ?? ?? ?? 21 f0 09 ca 09 c7 31 fa 89 55 ?? 8b 45 ?? 8b 4d ?? 31 e9 89 45}  //weight: 10, accuracy: Low
+        $x_1_2 = "Process Hollowing.exe" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
