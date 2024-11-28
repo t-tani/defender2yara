@@ -2139,3 +2139,26 @@ rule Trojan_MSIL_PureLogStealer_AGEA_2147926859_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_PureLogStealer_AKEA_2147927033_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/PureLogStealer.AKEA!MTB"
+        threat_id = "2147927033"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "PureLogStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {03 19 8d d9 00 00 01 25 16 12 00 28 ?? 00 00 0a 9c 25 17 12 00 28 ?? 00 00 0a 9c 25 18 12 00 28 ?? 00 00 0a 9c 07 28 ?? 00 00 2b 6f ?? 00 00 0a 11 05}  //weight: 3, accuracy: Low
+        $x_2_2 = {03 09 1f 10 63 20 ff 00 00 00 5f d2 6f 8f 00 00 0a}  //weight: 2, accuracy: High
+        $x_1_3 = "GetPixel" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

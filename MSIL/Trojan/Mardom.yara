@@ -585,3 +585,24 @@ rule Trojan_MSIL_Mardom_AABA_2147924089_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Mardom_GPN_2147927076_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Mardom.GPN!MTB"
+        threat_id = "2147927076"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Mardom"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {61 d2 9c 20 05 00 00 00 38 66 ff ff ff 38 96 00 00 00 20 05 00}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

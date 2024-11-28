@@ -506,3 +506,24 @@ rule Trojan_MSIL_Stealerc_SM_2147923284_1
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Stealerc_GPG_2147927071_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Stealerc.GPG!MTB"
+        threat_id = "2147927071"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Stealerc"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {61 13 06 13 07 11 18 13 1c 18 8d 2c 00 00 01 13 17 11 17 16 1f 30 9e 00 11 17 17 1f f9 11 17 16 94 58 9e 00 11 1c 11 17 17 94}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

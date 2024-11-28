@@ -1280,3 +1280,24 @@ rule Trojan_Win32_Stealc_AHEA_2147926913_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Stealc_ANEA_2147927068_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Stealc.ANEA!MTB"
+        threat_id = "2147927068"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Stealc"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {46 0f be 04 32 89 44 24 ?? 8b 44 24 ?? 31 44 24 ?? 83 bc 24 ?? ?? ?? ?? 0f 8a 4c 24 ?? 88 0c 32 75}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

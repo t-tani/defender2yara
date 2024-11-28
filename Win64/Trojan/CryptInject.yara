@@ -3420,3 +3420,25 @@ rule Trojan_Win64_CryptInject_RHAN_2147926974_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_CryptInject_BSA_2147927064_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CryptInject.BSA!MTB"
+        threat_id = "2147927064"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "20"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = "you clicked a address" ascii //weight: 10
+        $x_10_2 = "you clicked a bus station!" ascii //weight: 10
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -10903,6 +10903,28 @@ rule Trojan_MSIL_Remcos_SKI_2147910235_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {00 02 03 06 07 04 28 32 00 00 06 00 00 07 17 58 0b 07 02 28 30 00 00 06 2f 0b 03 6f 96 00 00 0a 04 fe 04 2b 01 16 0c 08 2d d6}  //weight: 1, accuracy: High
+        $x_1_2 = "$58edd536-1aca-4346-97ce-d606b3111f51" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Remcos_SKI_2147910235_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Remcos.SKI!MTB"
+        threat_id = "2147910235"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Remcos"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "4"
         strings_accuracy = "High"
     strings:
@@ -12269,6 +12291,28 @@ rule Trojan_MSIL_Remcos_AYA_2147926811_0
         $x_1_3 = "exporterWorker_RunWorkerCompleted" ascii //weight: 1
         $x_1_4 = "lameExeDownloadSite" ascii //weight: 1
         $x_1_5 = "dupeFinderWorker" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Remcos_PPLH_2147927036_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Remcos.PPLH!MTB"
+        threat_id = "2147927036"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Remcos"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "Low"
+    strings:
+        $x_6_1 = {1f 10 62 12 00 28 ?? ?? ?? ?? 1e 62 60 12 00 28 ?? ?? ?? ?? 60 0d 03 09 1f 10 63 20 ff 00 00 00 5f d2 6f ?? ?? ?? ?? 00 03 09 1e 63}  //weight: 6, accuracy: Low
+        $x_5_2 = {9c 25 17 12 00 28 ?? ?? ?? ?? 9c 25 18 12 00 28 ?? ?? ?? ?? 9c 07 28 ?? ?? ?? ?? 6f ?? ?? ?? ?? 00 00 2a}  //weight: 5, accuracy: Low
     condition:
         (filesize < 20MB) and
         (all of ($x*))

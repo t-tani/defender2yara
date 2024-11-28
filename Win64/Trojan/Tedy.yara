@@ -1098,3 +1098,25 @@ rule Trojan_Win64_Tedy_BSA_2147926353_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Tedy_GPK_2147927072_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Tedy.GPK!MTB"
+        threat_id = "2147927072"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Tedy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = "Imgui-Blue-loader-master\\Imgui-Blue-loader-master\\ImGui\\imstb_textedit.h" ascii //weight: 3
+        $x_2_2 = "blue_loader_imgui" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
