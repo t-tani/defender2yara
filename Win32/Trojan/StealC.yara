@@ -3506,3 +3506,28 @@ rule Trojan_Win32_StealC_ASL_2147927067_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_StealC_ASC_2147927174_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/StealC.ASC!MTB"
+        threat_id = "2147927174"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "StealC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "15"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {51 56 68 78 53 43 00 56 56 89 35 ?? ?? ?? ?? 89 35 ?? ?? ?? ?? ff 15 ?? ?? ?? ?? 56 56 ff 15}  //weight: 2, accuracy: Low
+        $x_3_2 = "gomomokukowumipusaxevu" ascii //weight: 3
+        $x_1_3 = "wowohasare" ascii //weight: 1
+        $x_5_4 = "bajitugidunileberi" ascii //weight: 5
+        $x_4_5 = "guwifumejotuwafumapigiwihemoheyecik" ascii //weight: 4
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
