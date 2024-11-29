@@ -3781,3 +3781,41 @@ rule Trojan_Win32_AutoitInject_SKA_2147926953_0
         (3 of ($x*))
 }
 
+rule Trojan_Win32_AutoitInject_AQEA_2147927209_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.AQEA!MTB"
+        threat_id = "2147927209"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "18"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = "@TEMPDIR &" ascii //weight: 1
+        $x_3_2 = "EXECUTE ( \"Fil\" & \"eR\" & \"ea\" & \"d(Fil\" & \"eOpen(@TempDir &" ascii //weight: 3
+        $x_3_3 = {45 00 58 00 45 00 43 00 55 00 54 00 45 00 20 00 28 00 20 00 22 00 [0-20] 28 00 53 00 74 00 72 00 69 00 6e 00 22 00 20 00 26 00 20 00 22 00 67 00 52 00 65 00 22 00 20 00 26 00 20 00 22 00 70 00 6c 00 61 00 63 00 65 00}  //weight: 3, accuracy: Low
+        $x_3_4 = {45 58 45 43 55 54 45 20 28 20 22 [0-20] 28 53 74 72 69 6e 22 20 26 20 22 67 52 65 22 20 26 20 22 70 6c 61 63 65}  //weight: 3, accuracy: Low
+        $x_3_5 = {45 00 58 00 45 00 43 00 55 00 54 00 45 00 20 00 28 00 20 00 22 00 41 00 22 00 20 00 26 00 20 00 22 00 73 00 63 00 28 00 53 00 74 00 72 00 69 00 6e 00 67 00 4d 00 69 00 64 00 28 00 24 00 [0-20] 2c 00 20 00 24 00 [0-20] 2c 00 20 00 31 00 29 00 29 00 22 00 20 00 29 00}  //weight: 3, accuracy: Low
+        $x_3_6 = {45 58 45 43 55 54 45 20 28 20 22 41 22 20 26 20 22 73 63 28 53 74 72 69 6e 67 4d 69 64 28 24 [0-20] 2c 20 24 [0-20] 2c 20 31 29 29 22 20 29}  //weight: 3, accuracy: Low
+        $x_2_7 = {45 00 58 00 45 00 43 00 55 00 54 00 45 00 20 00 28 00 20 00 22 00 43 00 22 00 20 00 26 00 20 00 22 00 68 00 72 00 28 00 24 00 [0-20] 20 00 2d 00 20 00 28 00 31 00 20 00 5e 00 20 00 24 00 [0-20] 29 00 29 00 22 00 20 00 29 00}  //weight: 2, accuracy: Low
+        $x_2_8 = {45 58 45 43 55 54 45 20 28 20 22 43 22 20 26 20 22 68 72 28 24 [0-20] 20 2d 20 28 31 20 5e 20 24 [0-20] 29 29 22 20 29}  //weight: 2, accuracy: Low
+        $x_2_9 = "EXECUTE ( \"D\" & \"l\" & \"l\" & \"C\" & \"a\" & \"l\" & \"l\" &" ascii //weight: 2
+        $x_2_10 = "EXECUTE ( \"D\" & \"l\" & \"l\" & \"S\" & \"truc\" & \"tC\" & \"re\" & \"at\" & \"e" ascii //weight: 2
+        $x_2_11 = "EXECUTE ( \"D\" & \"l\" & \"l\" & \"S\" & \"t\" & \"ru\" & \"ct\" & \"S\" & \"etDat" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (
+            ((3 of ($x_3_*) and 4 of ($x_2_*) and 1 of ($x_1_*))) or
+            ((3 of ($x_3_*) and 5 of ($x_2_*))) or
+            ((4 of ($x_3_*) and 3 of ($x_2_*))) or
+            ((5 of ($x_3_*) and 1 of ($x_2_*) and 1 of ($x_1_*))) or
+            ((5 of ($x_3_*) and 2 of ($x_2_*))) or
+            (all of ($x*))
+        )
+}
+
