@@ -8794,3 +8794,24 @@ rule Trojan_Win32_Ekstak_CCJP_2147926983_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Ekstak_CCJQ_2147927187_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Ekstak.CCJQ!MTB"
+        threat_id = "2147927187"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Ekstak"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {8a c2 32 c1 8b 0d ?? ?? ?? ?? 24 ?? 68 ?? ?? ?? ?? a2 ?? ?? ?? ?? 8b c6 d1 e8 03 c8 33 c0 89 0d ?? ?? ?? ?? 83 e1 07 8a c2 57 0f af c8 03 f1}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

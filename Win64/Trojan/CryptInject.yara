@@ -3442,3 +3442,24 @@ rule Trojan_Win64_CryptInject_BSA_2147927064_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_CryptInject_GTN_2147927186_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CryptInject.GTN!MTB"
+        threat_id = "2147927186"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {48 09 c2 48 39 da 0f 82 ?? ?? ?? ?? 48 89 d9 e8 ?? ?? ?? ?? 48 8d 3d ?? ?? ?? ?? 48 8b 35 ?? ?? ?? ?? 49 bc}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

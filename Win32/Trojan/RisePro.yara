@@ -457,3 +457,24 @@ rule Trojan_Win32_RisePro_YAB_2147908346_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_RisePro_LZ_2147927193_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/RisePro.LZ!MTB"
+        threat_id = "2147927193"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "RisePro"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {20 20 20 00 20 20 20 20 00 50 06 00 00 10 00 00 00 ae 03 00 00 10 00 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 e0 2e 72 73 72 63 00 00 00 38 83 00 00 00 60 06 00 00 3c 00 00 00 be 03 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 c0}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
