@@ -19,6 +19,28 @@ rule Trojan_MSIL_Rhadamanthys_ARH_2147841949_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Rhadamanthys_ARH_2147841949_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Rhadamanthys.ARH!MTB"
+        threat_id = "2147841949"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Rhadamanthys"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {11 05 11 06 6f ?? 00 00 0a 0d 00 07 16 fe 01 13 07 11 07 ?? ?? ?? ?? ?? ?? 16 0b 06 13 08 11 08 1f 20 2e 14 11 08 1f 2e 2e 77}  //weight: 1, accuracy: Low
+        $x_2_2 = {08 09 1f 41 59 1f 5b 58 d2 28 ?? 00 00 06 00 00 2b 38 09 1f 61 32 07 09 1f 7a fe 02 2b 01 17 00 13 07 11 07 2d 18 00 7e ?? 00 00 04 08 09 1f 61 59 1f 75 58 d2}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_Rhadamanthys_NEAA_2147844545_0
 {
     meta:
