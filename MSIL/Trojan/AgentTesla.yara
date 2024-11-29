@@ -106082,3 +106082,26 @@ rule Trojan_MSIL_AgentTesla_CCJN_2147926383_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AgentTesla_SKI_2147927234_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.SKI!MTB"
+        threat_id = "2147927234"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {25 16 12 00 28 ?? 00 00 0a 9c 25 17 12 00 28 ?? 00 00 0a 9c 25 18 12 00 28 ?? 00 00 0a 9c 07 28}  //weight: 1, accuracy: Low
+        $x_1_2 = "BloodBank.Properties.Resources.resources" ascii //weight: 1
+        $x_1_3 = "BloodBank.Records.resources" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
