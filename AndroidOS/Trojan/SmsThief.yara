@@ -974,3 +974,47 @@ rule Trojan_AndroidOS_SmsThief_AQ_2147918896_0
         (2 of ($x*))
 }
 
+rule Trojan_AndroidOS_SmsThief_PS_2147927264_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:AndroidOS/SmsThief.PS"
+        threat_id = "2147927264"
+        type = "Trojan"
+        platform = "AndroidOS: Android operating system"
+        family = "SmsThief"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "const_off_details" ascii //weight: 2
+        $x_2_2 = "const_gcm_send_sms" ascii //weight: 2
+        $x_2_3 = "const_on_save_sms" ascii //weight: 2
+        $x_2_4 = "const_error_register_bot" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (3 of ($x*))
+}
+
+rule Trojan_AndroidOS_SmsThief_AP_2147927265_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:AndroidOS/SmsThief.AP"
+        threat_id = "2147927265"
+        type = "Trojan"
+        platform = "AndroidOS: Android operating system"
+        family = "SmsThief"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "webservices/register_user_online_banking.php?" ascii //weight: 2
+        $x_2_2 = "webservices/add_sms.php?" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

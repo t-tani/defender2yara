@@ -146,3 +146,29 @@ rule Trojan_MSIL_Diztakun_SG_2147912187_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Diztakun_NS_2147927268_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Diztakun.NS!MTB"
+        threat_id = "2147927268"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Diztakun"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "Restrict-Run" wide //weight: 2
+        $x_2_2 = "DisableTaskMgr" wide //weight: 2
+        $x_1_3 = "lenyanyyds" wide //weight: 1
+        $x_1_4 = "ppn/uA/2dZjwwvM3/m7uDw==" wide //weight: 1
+        $x_1_5 = "Software\\Microsoft\\Windows\\CurrentVersion\\Run" wide //weight: 1
+        $x_1_6 = "jsmhToolChest.5.0B29.exe" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

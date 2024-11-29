@@ -3405,3 +3405,53 @@ rule Ransom_MSIL_Filecoder_PPG_2147927162_0
         (all of ($x*))
 }
 
+rule Ransom_MSIL_Filecoder_SWH_2147927258_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:MSIL/Filecoder.SWH!MTB"
+        threat_id = "2147927258"
+        type = "Ransom"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Filecoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "EncryptSystem" ascii //weight: 2
+        $x_1_2 = "$b841c29a-f2d3-4a08-bb80-44315616d1c7" ascii //weight: 1
+        $x_1_3 = "EnternalRed\\obj\\Debug\\JPG-Datei.pdb" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Ransom_MSIL_Filecoder_SWI_2147927262_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:MSIL/Filecoder.SWI!MTB"
+        threat_id = "2147927262"
+        type = "Ransom"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Filecoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "$6487ef15-8e15-4df5-9cdf-116bf28f9a0d" ascii //weight: 2
+        $x_2_2 = "Your files have been encrypted" ascii //weight: 2
+        $x_1_3 = "AlertaRansom" ascii //weight: 1
+        $x_1_4 = "Software\\Microsoft\\Windows\\CurrentVersion\\Run" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((2 of ($x_2_*) and 1 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+

@@ -6171,3 +6171,52 @@ rule Trojan_MSIL_Heracles_MBWB_2147926971_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Heracles_SWR_2147927259_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Heracles.SWR!MTB"
+        threat_id = "2147927259"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Heracles"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = "del /F /Q \"%destination%\" >NUL 2>&1" ascii //weight: 3
+        $x_2_2 = "taskkill /F /IM \"%destination%\" >NUL 2>&1" ascii //weight: 2
+        $x_1_3 = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\RunOnce" ascii //weight: 1
+        $x_1_4 = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_3_*) and 2 of ($x_1_*))) or
+            ((1 of ($x_3_*) and 1 of ($x_2_*))) or
+            (all of ($x*))
+        )
+}
+
+rule Trojan_MSIL_Heracles_GTT_2147927266_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Heracles.GTT!MTB"
+        threat_id = "2147927266"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Heracles"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {02 04 05 28 ?? ?? ?? 06 0a 0e 04 03 6f 9a 00 00 0a 59 0b 12 00 28 ?? ?? ?? 0a 0c 08 07 61 0c 03 06 07 28 ?? ?? ?? 06 00 2a}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

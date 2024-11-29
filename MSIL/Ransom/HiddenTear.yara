@@ -949,3 +949,32 @@ rule Ransom_MSIL_HiddenTear_RDB_2147904597_0
         (all of ($x*))
 }
 
+rule Ransom_MSIL_HiddenTear_SWA_2147927263_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:MSIL/HiddenTear.SWA!MTB"
+        threat_id = "2147927263"
+        type = "Ransom"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "HiddenTear"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "mrmalransom\\obj\\Release\\mrmalransom.pdb" ascii //weight: 2
+        $x_2_2 = "Mr. Malware" ascii //weight: 2
+        $x_2_3 = "$730c260a-a65b-4819-876c-6758ab836071" ascii //weight: 2
+        $x_2_4 = "mrmalransom.Properties.Resources" ascii //weight: 2
+        $x_1_5 = "Your computer files have been encrypted!" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((3 of ($x_2_*) and 1 of ($x_1_*))) or
+            ((4 of ($x_2_*))) or
+            (all of ($x*))
+        )
+}
+

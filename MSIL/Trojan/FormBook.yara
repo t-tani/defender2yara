@@ -13702,3 +13702,26 @@ rule Trojan_MSIL_FormBook_MBWC_2147926973_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_FormBook_MBWD_2147927278_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/FormBook.MBWD!MTB"
+        threat_id = "2147927278"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "FormBook"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {09 1f 09 91 1f 16 59 0b}  //weight: 2, accuracy: High
+        $x_1_2 = "dfgfdfgd.Form1.resources" ascii //weight: 1
+        $x_1_3 = "e30778f798a3" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
