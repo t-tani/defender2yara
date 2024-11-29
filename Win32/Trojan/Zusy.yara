@@ -4927,3 +4927,24 @@ rule Trojan_Win32_Zusy_GTN_2147927160_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Zusy_RDH_2147927236_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zusy.RDH!MTB"
+        threat_id = "2147927236"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {8b 44 24 18 83 c0 46 89 44 24 10 90 83 6c 24 10 46 8a 44 24 10 30 04 32 83 bc 24 28 0c 00 00 0f 75}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
