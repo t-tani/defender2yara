@@ -1012,3 +1012,24 @@ rule Trojan_Win64_Zusy_ARA_2147925402_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Zusy_GPS_2147927297_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Zusy.GPS!MTB"
+        threat_id = "2147927297"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {8d 41 8b 30 04 0a 48 ff c1 48 83 f9}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
