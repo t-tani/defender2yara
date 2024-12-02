@@ -2901,3 +2901,75 @@ rule Trojan_Win32_LummaStealer_RPJ_2147927298_0
         (1 of ($x*))
 }
 
+rule Trojan_Win32_LummaStealer_Z_2147927310_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaStealer.Z!MTB"
+        threat_id = "2147927310"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "Wallets/Electrum" ascii //weight: 1
+        $x_1_2 = "Wallets/ElectronCash" ascii //weight: 1
+        $x_1_3 = "%appdata%\\com.liberty.jaxx\\IndexedDB" ascii //weight: 1
+        $x_1_4 = "ExodusWeb3" ascii //weight: 1
+        $x_1_5 = "wallets/Ethereum" ascii //weight: 1
+        $x_1_6 = "%localappdata%\\Coinomi" ascii //weight: 1
+        $x_1_7 = "keystore" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_LummaStealer_Z_2147927310_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaStealer.Z!MTB"
+        threat_id = "2147927310"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "74"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "Electrum" ascii //weight: 1
+        $x_1_2 = "ElectronCash" ascii //weight: 1
+        $x_1_3 = "Exodus" ascii //weight: 1
+        $x_1_4 = "Ethereum" ascii //weight: 1
+        $x_1_5 = "BitCoin" ascii //weight: 1
+        $x_1_6 = "Binance" ascii //weight: 1
+        $x_1_7 = "xverse" ascii //weight: 1
+        $x_1_8 = "daedalus " ascii //weight: 1
+        $x_1_9 = "leap" ascii //weight: 1
+        $x_1_10 = "Glass" ascii //weight: 1
+        $x_1_11 = "Ronin" ascii //weight: 1
+        $x_1_12 = "Forniter" ascii //weight: 1
+        $x_1_13 = "RABBY" ascii //weight: 1
+        $x_1_14 = "Coinomi" ascii //weight: 1
+        $x_10_15 = "keystore" ascii //weight: 10
+        $x_10_16 = "JAXX" ascii //weight: 10
+        $x_10_17 = "base64encode" ascii //weight: 10
+        $x_10_18 = "decodebase64" ascii //weight: 10
+        $x_10_19 = {66 69 6e 64 69 6e 67 20 63 65 6e 74 72 61 6c 20 64 69 72 65 63 74 6f 72 79 00}  //weight: 10, accuracy: High
+        $x_10_20 = "password" ascii //weight: 10
+        $x_10_21 = "user-agent" ascii //weight: 10
+    condition:
+        (filesize < 20MB) and
+        (
+            ((6 of ($x_10_*) and 14 of ($x_1_*))) or
+            ((7 of ($x_10_*) and 4 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+
