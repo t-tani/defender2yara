@@ -526,3 +526,25 @@ rule Trojan_MSIL_Mamut_ARA_2147923216_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Mamut_ARAF_2147927388_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Mamut.ARAF!MTB"
+        threat_id = "2147927388"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Mamut"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "satabate.Resources" ascii //weight: 2
+        $x_2_2 = "$3645D93A-AFBF-4B56-BC8A-E12A5A0BA6BA" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

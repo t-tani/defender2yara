@@ -3582,6 +3582,33 @@ rule Trojan_Win32_Zusy_ARA_2147896826_2
         (all of ($x*))
 }
 
+rule Trojan_Win32_Zusy_ARA_2147896826_3
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zusy.ARA!MTB"
+        threat_id = "2147896826"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {32 d1 41 81 e1 ff 00 00 80 88 94 05 60 fd ff ff 79 08 49 81 c9 00 ff ff ff 41 40 83 f8 ?? 7c da}  //weight: 2, accuracy: Low
+        $x_2_2 = {8a 84 0f 74 24 a6 b2 32 c2 42 81 e2 ff 00 00 80 88 04 31 79 08 4a 81 ca 00 ff ff ff 42 41 83 f9 0e 7c dd}  //weight: 2, accuracy: High
+        $x_1_3 = "InternetReadFile" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_2_*) and 1 of ($x_1_*))) or
+            ((2 of ($x_2_*))) or
+            (all of ($x*))
+        )
+}
+
 rule Trojan_Win32_Zusy_ASL_2147896923_0
 {
     meta:
