@@ -1120,3 +1120,27 @@ rule Trojan_Win64_Tedy_GPK_2147927072_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Tedy_AST_2147927312_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Tedy.AST!MTB"
+        threat_id = "2147927312"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Tedy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {30 41 c2 04 84 91 f9 44 09 dd 3e 54 7b 34 18 12 07 0a ed 19 d4 10 f6 13 cc}  //weight: 5, accuracy: High
+        $x_5_2 = {32 38 30 04 ee 84 98 ?? ?? ?? ?? 22 0f 32 52 db}  //weight: 5, accuracy: Low
+        $x_5_3 = {58 53 51 52 56 57 55 48 89 c3 48 83 eb 05 b9 58 60 ea 00 48 29 cb 50 b8 54 4b 44 00 48 01 d8}  //weight: 5, accuracy: High
+        $x_5_4 = {40 43 2b 20 e4 06 31 93 e8 83 b5 c1 88 0b 15 d0 84 3f 54 01 06 80 52 83 10 23 f8 1c 08 a6 3a 20 0c 2a}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (2 of ($x*))
+}
+

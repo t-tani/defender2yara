@@ -243,3 +243,25 @@ rule TrojanDropper_AndroidOS_SAgnt_N_2147837781_0
         (all of ($x*))
 }
 
+rule TrojanDropper_AndroidOS_SAgnt_P_2147927315_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDropper:AndroidOS/SAgnt.P!MTB"
+        threat_id = "2147927315"
+        type = "TrojanDropper"
+        platform = "AndroidOS: Android operating system"
+        family = "SAgnt"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {6e 10 0d 00 ?? 00 0c 02 1a 03 ?? 00 71 10 ?? 00 03 00 0c 03 70 30 ?? 00 21 03 6e 10 ?? 00 01 00 1c 02 08 00 1a 03 ?? 00 71 10 ?? 00 03 00 0c 03 12 04 6e 30}  //weight: 1, accuracy: Low
+        $x_1_2 = {4d 12 0f 04 4d 05 0f 02 13 11 03 00 4d 0d 0f 11 6e 20 ?? 00 f9 00 0c 0f 6e 10 ?? 00 07 00 0c 12 23 00 ?? 00 4d 12 00 03 62 12 ?? 00 4d 12 00 04 13 10 00 00 4d 10 00 02 13 10 03 00 4d 0b 00 10 6e 20 ?? 00 0f 00 0c 01 28 02}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
