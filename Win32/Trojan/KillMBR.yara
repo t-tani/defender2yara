@@ -680,3 +680,28 @@ rule Trojan_Win32_KillMBR_NM_2147917175_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_KillMBR_EA_2147927334_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/KillMBR.EA!MTB"
+        threat_id = "2147927334"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "KillMBR"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "14"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = "DisableRegistryTools" wide //weight: 3
+        $x_3_2 = "DisableCMD" wide //weight: 3
+        $x_2_3 = "taskkill /f /im taskmgr.exe" ascii //weight: 2
+        $x_3_4 = "reg add HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System /v DisableChangePassword /t REG_DWORD /d 1 /f" ascii //weight: 3
+        $x_3_5 = "reg add HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System /v HideFastUserSwitching /t REG_DWORD /d 1 /f" ascii //weight: 3
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

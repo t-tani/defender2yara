@@ -258,3 +258,28 @@ rule Trojan_MSIL_Filecoder_ASA_2147924725_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Filecoder_WA_2147927335_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Filecoder.WA!MTB"
+        threat_id = "2147927335"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Filecoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "12"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = "trinexis.com/passwords/" wide //weight: 3
+        $x_3_2 = "z oktay@oktay.com mail adresiyle ileti" wide //weight: 3
+        $x_2_3 = "ifrelendi ve README.txt dosyas" wide //weight: 2
+        $x_2_4 = "GetDirectories" ascii //weight: 2
+        $x_2_5 = "$05a622d6-6546-4925-9648-106ea5403a90" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

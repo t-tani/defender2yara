@@ -205,3 +205,30 @@ rule Trojan_MSIL_SpyAgent_NIT_2147922108_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_SpyAgent_CA_2147927332_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/SpyAgent.CA!MTB"
+        threat_id = "2147927332"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "SpyAgent"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "IsProxyDetectedUsingWMI" ascii //weight: 1
+        $x_1_2 = "CheckForVMHardware" ascii //weight: 1
+        $x_1_3 = "DetectSandBoxByDll" ascii //weight: 1
+        $x_1_4 = "DetectMonitiringTool" ascii //weight: 1
+        $x_1_5 = "CheckForVMProcesses" ascii //weight: 1
+        $x_1_6 = "CheckForVPSEnvironment" ascii //weight: 1
+        $x_1_7 = "IsProxyDetectedUsingRegistry" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

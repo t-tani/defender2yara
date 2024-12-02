@@ -10303,6 +10303,29 @@ rule Trojan_Win32_Emotet_GB_2147747841_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {8a 4d fc 8b 55 08 c7 45 fc 75 e4 00 00 c1 6d fc 09 83 75 fc 62 d3 e2 8a 4d fc}  //weight: 1, accuracy: High
+        $x_1_2 = "Control_RunDLL" ascii //weight: 1
+        $x_1_3 = "RunDLL" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Emotet_GB_2147747841_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Emotet.GB!MTB"
+        threat_id = "2147747841"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Emotet"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "10"
         strings_accuracy = "Low"
     strings:
@@ -10312,7 +10335,7 @@ rule Trojan_Win32_Emotet_GB_2147747841_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Emotet_GB_2147747841_1
+rule Trojan_Win32_Emotet_GB_2147747841_2
 {
     meta:
         author = "defender2yara"

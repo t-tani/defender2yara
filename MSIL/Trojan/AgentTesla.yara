@@ -4342,6 +4342,28 @@ rule Trojan_MSIL_AgentTesla_GN_2147760429_1
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {06 11 07 7e 01 00 00 04 11 07 91 7e 01 00 00 04 16 91 61 d2 9c 11 07 17 58 13 07 20 15 00 cf 30 20 00 00 80 00 58 20 00 00 80 00 59 fe 0e 0b 00 fe 0d 0b 00 00 48 68 d3 13 0a 38}  //weight: 1, accuracy: High
+        $x_1_2 = "costura.costura.dll.compressed" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_AgentTesla_GN_2147760429_2
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.GN!MTB"
+        threat_id = "2147760429"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "1"
         strings_accuracy = "Low"
     strings:
@@ -4615,6 +4637,29 @@ rule Trojan_MSIL_AgentTesla_GL_2147760990_0
 }
 
 rule Trojan_MSIL_AgentTesla_GL_2147760990_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.GL!MTB"
+        threat_id = "2147760990"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {06 11 07 7e 01 00 00 04 11 07 91 7e 01 00 00 04 16 91 61 d2 9c 11 07 17 58 13 07 20 [0-4] 20 01 00 00 00 ?? fe 0e 0b 00}  //weight: 1, accuracy: Low
+        $x_1_2 = {48 68 d3 13 0a 38 ?? fa ff ff}  //weight: 1, accuracy: Low
+        $x_1_3 = "costura.costura.dll.compressed" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_AgentTesla_GL_2147760990_2
 {
     meta:
         author = "defender2yara"

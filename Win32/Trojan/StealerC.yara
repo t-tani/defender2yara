@@ -246,3 +246,29 @@ rule Trojan_Win32_StealerC_EC_2147923303_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_StealerC_NH_2147927330_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/StealerC.NH!MTB"
+        threat_id = "2147927330"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "StealerC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "SOFTWARE\\monero-project\\monero-core" ascii //weight: 2
+        $x_1_2 = "Monero\\wallet.keys" ascii //weight: 1
+        $x_1_3 = "webSocketDebuggerUrl" ascii //weight: 1
+        $x_1_4 = "QZ9FNASQEMWIEBWOY96NY42V3RFUL1SN0NSZJ4UUIGCXXFXKW5R4YUAV7OM54" ascii //weight: 1
+        $x_1_5 = "P4A7MOZP1EPLT8HL73UQJ62TN9MU37LOFMEP0ZLV5S2OOAHXJZUT937SCQTMBFW42BGH31VHS8U1ENEM2YKDM2PLPWMJF8T" ascii //weight: 1
+        $x_1_6 = "CKUA7DIYXHL04C9P2XZLKXY2LTDUQK01VB1T4YE51BP7JUSUF4UC5SGPV2YOAXINRTF3KQUDS4UJH0S1ATPVZX6C5L7CA05D3CQ0PYJZKQTB87H4J6NR" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
