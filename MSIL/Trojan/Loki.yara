@@ -265,3 +265,25 @@ rule Trojan_MSIL_Loki_E_2147917668_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Loki_MBWD_2147927368_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Loki.MBWD!MTB"
+        threat_id = "2147927368"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Loki"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "QKgifx9HZ5gTZKMjs" ascii //weight: 2
+        $x_1_2 = {57 32 45 79 71 6b 5a 67 00 38 5a 6d 4d 6e 6a 59 47 55 54 4b 76 79}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -106150,3 +106150,26 @@ rule Trojan_MSIL_AgentTesla_SKI_2147927234_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AgentTesla_MBWD_2147927367_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.MBWD!MTB"
+        threat_id = "2147927367"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {60 0c 03 19 8d ?? ?? ?? 01 25 16 08 1f 10 63 20 ?? 00 00 00 5f d2 9c 25 17 08 1e}  //weight: 2, accuracy: Low
+        $x_1_2 = "Kviskoteka.Properties" ascii //weight: 1
+        $x_1_3 = "GetExportedTypes" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
