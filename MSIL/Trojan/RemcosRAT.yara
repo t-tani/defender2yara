@@ -640,3 +640,24 @@ rule Trojan_MSIL_RemcosRAT_MEL_2147925578_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_RemcosRAT_SYDF_2147927417_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/RemcosRAT.SYDF!MTB"
+        threat_id = "2147927417"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "RemcosRAT"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {73 27 00 00 0a 13 18 00 11 18 17 6f ?? 00 00 0a 00 11 18 18 6f ?? 00 00 0a 00 11 18 20 00 01 00 00 6f ?? 00 00 0a 00 11 18 20 80 00 00 00 6f ?? 00 00 0a 00 11 18 11 08 11 09 6f ?? 00 00 0a 13 19 00 11 19 03 16 03 8e 69 6f ?? 00 00 0a 0b de 38}  //weight: 4, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

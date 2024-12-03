@@ -185,3 +185,25 @@ rule Trojan_MSIL_LockScreen_MA_2147926199_0
         )
 }
 
+rule Trojan_MSIL_LockScreen_NL_2147927400_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/LockScreen.NL!MTB"
+        threat_id = "2147927400"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "LockScreen"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {00 00 0a 72 73 00 00 70 28 ?? 00 00 0a 0a 72 89 00 00 70 0b 06 07 28 ?? 00 00 0a 00 72 03 01 00 70 06 28 ?? 00 00 0a 26}  //weight: 3, accuracy: Low
+        $x_1_2 = "Nyan Cat.exe" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

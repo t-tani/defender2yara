@@ -3040,3 +3040,25 @@ rule Trojan_MSIL_Nanocore_ZPAA_2147924274_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Nanocore_NH_2147927401_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Nanocore.NH!MTB"
+        threat_id = "2147927401"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Nanocore"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = {73 0a 00 00 0a 0a 06 74 16 00 00 01 73 0b 00 00 0a 0b 17 13 04 2b bf 07 74 19 00 00 01 02 7b 04 00 00 04 20 b8 03 00 00 20 98 03 00 00 28 05 00 00 2b 20 0f 03 00 00 20 40 03 00 00 28}  //weight: 3, accuracy: High
+        $x_1_2 = "sZIp.exe" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

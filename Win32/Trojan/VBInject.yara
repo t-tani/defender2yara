@@ -737,3 +737,28 @@ rule Trojan_Win32_VBInject_BAD_2147925685_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_VBInject_BSA_2147927432_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/VBInject.BSA!MTB"
+        threat_id = "2147927432"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "VBInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = "\\dark eye\\Dark EYE" ascii //weight: 10
+        $x_1_2 = "vermi.exe" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_10_*))) or
+            (all of ($x*))
+        )
+}
+
