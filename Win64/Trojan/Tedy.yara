@@ -1144,3 +1144,27 @@ rule Trojan_Win64_Tedy_AST_2147927312_0
         (2 of ($x*))
 }
 
+rule Trojan_Win64_Tedy_ASU_2147927476_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Tedy.ASU!MTB"
+        threat_id = "2147927476"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Tedy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {5e f6 66 24 80 b1 ?? ?? ?? ?? 9a c8 b9 4e a2 68 0d 41 29 3c 24 b3 05 f2 b2 8e d7 35 14 0f 87 de 53 71}  //weight: 5, accuracy: Low
+        $x_5_2 = {bb f0 27 ba ff f3 0c b5 30 cc ec ed 5c 80 31 e7}  //weight: 5, accuracy: High
+        $x_5_3 = {64 25 12 a4 6c 35 bc cb ea b9 c9 2d 17 23 6d 7f 97 34 b6 e2 3e}  //weight: 5, accuracy: High
+        $x_5_4 = {33 29 89 24 74 20 c3 45 2b ed}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (2 of ($x*))
+}
+
