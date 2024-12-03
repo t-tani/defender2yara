@@ -24,7 +24,8 @@ def run():
     parser.add_argument('-c','--cache', default='./cache',help="directory to save signature database(vdm/dll files) [default: ./cache]" )
     parser.add_argument('-s','--single_file',action='store_true',default=False,help="export YARA rules into a single file")
     parser.add_argument('--header_check',action='store_true',default=False,help="add file header check to generated YARA rules")
-    parser.add_argument('--full_engine','--fe',required=False,type=str,help="manually specify the path of mpam-fe.exe")
+    parser.add_argument('--filesize_check',required=False,type=str,default="20MB",help="add filesize check to generated YARA rules")
+    parser.add_argument('--mpam',required=False,type=str,help="manually specify the path of mpam-fe.exe")
     parser.add_argument('--base',required=False,type=str,help="manually specify the path of mpa{v|s}base.vdm")
     parser.add_argument('--delta',required=False,type=str,help="manually specify the path of mpa{v|s}dlta.vdm")
     parser.add_argument('--proxy',help="use a proxy to download signatures (e.g. http://localhost:8000)")
@@ -42,13 +43,13 @@ def run():
         parser.print_help()
         sys.exit(1)
     
-    if args.download and args.full_engine:
-        sys.stderr.write("[!] --download option and --fe option can not use together.")
+    if args.download and args.mpam:
+        sys.stderr.write("[!] --download option and --mpam option can not use together.")
         parser.print_help()
         sys.exit(1)
     
-    if args.full_engine and (args.base or args.delta):
-        sys.stderr.write("[!] --fe option and --base or --delta option can not use together.")
+    if args.mpam and (args.base or args.delta):
+        sys.stderr.write("[!] --mpam option and --base or --delta option can not use together.")
         parser.print_help()
         sys.exit(1)
     

@@ -8,7 +8,7 @@ from collections import defaultdict
 from defender2yara.defender.threat import Threat
 from defender2yara.yara.rule import YaraRule
 from defender2yara.defender.vdm import Vdm
-from defender2yara.defender.download import get_latest_signature_vdm, download_latest_signature, parse_full_engine_exe
+from defender2yara.defender.download import get_latest_signature_vdm, download_latest_signature, parse_mpam_exe
 
 from tqdm import tqdm
 import logging
@@ -106,7 +106,7 @@ def main(args):
         print(f"{signature_version}")
         sys.exit(0)
 
-    if (args.download or not args.base) and not args.full_engine:
+    if (args.download or not args.base) and not args.mpam:
         logger.info("Downloading latest signature database.")
         signature_version, engine_version, use_cache = download_latest_signature(cache_dir,proxy=args.proxy)
         logger.info(f"Complete (use_cache:{use_cache})")
@@ -116,9 +116,9 @@ def main(args):
     if args.download:
         sys.exit(0)
 
-    if args.full_engine:
-        signature_version, engine_version = parse_full_engine_exe(args.full_engine,cache_path=cache_dir,rm_full_engine=False)
-        logger.info(f"Loaded {args.full_engine}")
+    if args.mpam:
+        signature_version, engine_version = parse_mpam_exe(args.mpam,cache_path=cache_dir,rm_mpam=False)
+        logger.info(f"Loaded {args.mpam}")
         logger.info(f"Latest Signature Version:{signature_version}")
         logger.info(f"Latest Engine Version   :{engine_version}")
 

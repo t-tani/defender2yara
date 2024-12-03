@@ -127,7 +127,7 @@ def get_latest_signature_vdm(proxy)->Tuple[str,str,str]:
     return None,None,None
 
 
-def parse_full_engine_exe(full_engine_path:str,cache_path:str,rm_full_engine:bool) -> Tuple[str,str]:
+def parse_mpam_exe(full_engine_path:str,cache_path:str,rm_mpam:bool) -> Tuple[str,str]:
     if not os.path.exists(full_engine_path):
         raise FileNotFoundError(f"mpam-fe.exe file not found: {full_engine_path}")
     if platform.system() == 'Windows':
@@ -157,7 +157,7 @@ def parse_full_engine_exe(full_engine_path:str,cache_path:str,rm_full_engine:boo
     for file_path in files_to_remove:
         os.remove(os.path.join(source_dir,file_path))
 
-    if rm_full_engine:
+    if rm_mpam:
         os.remove(full_engine_path)
     
     return signature_version,engine_version
@@ -179,7 +179,7 @@ def download_latest_signature(cache_path='cache',proxy=None) -> Tuple[str,str,bo
         dl_file_path = download_file(download_url,proxy=proxy)
         if not os.path.exists(dl_file_path):
             raise FileNotFoundError(f"Download file not found: {dl_file_path}")
-        signature_version,engine_version = parse_full_engine_exe(dl_file_path,cache_path,rm_full_engine=True)
+        signature_version,engine_version = parse_mpam_exe(dl_file_path,cache_path,rm_mpam=True)
     else:
         use_cache = True
 
