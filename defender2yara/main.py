@@ -61,7 +61,7 @@ def write_rules_by_family(path,results:Dict[Threat,List[str]]):
     logger.info(f"Write YARA rules to {path}")
 
 
-def covert_vdm_to_yara(vdm:Vdm,header_check:bool=False) -> Tuple[Dict[Threat,List[str]],int]:
+def covert_vdm_to_yara(vdm:Vdm,filesize_check:str,header_check:bool=False) -> Tuple[Dict[Threat,List[str]],int]:
     logger.info(f"Parsing signature database...")
     results:Dict[Threat,List[str]] = defaultdict(list)
     rule_count = 0
@@ -77,7 +77,7 @@ def covert_vdm_to_yara(vdm:Vdm,header_check:bool=False) -> Tuple[Dict[Threat,Lis
             leave=False)
 
     for threat in threats:
-        yara_rules = YaraRule(threat,optional_conditions=header_check)
+        yara_rules = YaraRule(threat,filesize_check=filesize_check,do_header_check=header_check)
         if not yara_rules:
             continue
         for yara_rule in yara_rules.generate_rules():
@@ -141,7 +141,7 @@ def main(args):
         logger.info(f"Target signature version: {vdm.version}")
         logger.info(f"Target signature type   : {vdm.vdm_type}")
 
-        results,rule_counts = covert_vdm_to_yara(vdm,args.header_check)
+        results,rule_counts = covert_vdm_to_yara(vdm,args.filesize_check,args.header_check)
         logger.info(f"Convert {rule_counts} signatures.")
 
         if args.single_file:
@@ -167,7 +167,7 @@ def main(args):
             logger.info(f"Target signature version: {vdm.version}")
             logger.info(f"Target signature type   : {vdm.vdm_type}")
 
-            results,rule_counts = covert_vdm_to_yara(vdm,args.header_check)
+            results,rule_counts = covert_vdm_to_yara(vdm,args.filesize_check,args.header_check)
             logger.info(f"Convert {rule_counts} signatures")
 
             if args.single_file:

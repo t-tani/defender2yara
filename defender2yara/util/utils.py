@@ -1,4 +1,5 @@
 from typing import Union
+import re
 
 def hexdump(data, length=16):
     """
@@ -97,3 +98,24 @@ def all_elements_equal(lst):
         return True
     first_element = lst[0]
     return all(element == first_element for element in lst)
+
+
+def is_validate_filesize(input_string):
+    pattern = r'^(\d+)\s*(KB|MB|)$'
+    match = re.match(pattern, input_string.strip(), re.IGNORECASE)
+    if match:
+        value, unit = match.groups()
+        try:
+            value = int(value)
+            if unit.upper() == 'KB':
+                value *= 1024
+            elif unit.upper() == 'MB':
+                value *= 1024 * 1024
+            if value > 0:
+                return True
+            else:
+                return False
+        except ValueError:
+            return False
+    else:
+        return False

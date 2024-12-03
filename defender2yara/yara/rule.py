@@ -11,7 +11,7 @@ from .condition import YaraCondition
 
 
 class YaraRule:
-    def __init__(self,threat:Threat,optional_conditions:bool=False):
+    def __init__(self,threat:Threat,filesize_check,do_header_check:bool=False):
         self.threat = threat
         self.base_rule_name = self._gen_rule_name()
         self.meta = {}
@@ -26,7 +26,7 @@ class YaraRule:
                 rule_string = YaraString(subrule)
                 if rule_string.string:
                     strings.append(rule_string)
-            condition = YaraCondition(strings,signature,optional_conditions)
+            condition = YaraCondition(strings,signature,filesize_check,do_header_check)
 
             self.rules.append((signature,strings,condition))
 

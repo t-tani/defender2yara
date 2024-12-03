@@ -4,12 +4,14 @@ import toml
 from pathlib import Path
 
 from defender2yara.util.logging import setup_logger, suppress_logging
+from defender2yara.util.utils import is_validate_filesize
 
 
 def get_version():
     pyproject_path = Path(__file__).parent.parent / 'pyproject.toml'
     pyproject_data = toml.load(pyproject_path)
     return pyproject_data['tool']['poetry']['version']
+
 
 def run():
     import argparse
@@ -25,6 +27,7 @@ def run():
     parser.add_argument('-s','--single_file',action='store_true',default=False,help="export YARA rules into a single file")
     parser.add_argument('--header_check',action='store_true',default=False,help="add file header check to generated YARA rules")
     parser.add_argument('--filesize_check',required=False,type=str,default="20MB",help="add filesize check to generated YARA rules")
+    parser.add_argument('--no_filesize_check',action='store_true',required=False,default=False,help="remove filesize check from generated YARA rules")
     parser.add_argument('--mpam',required=False,type=str,help="manually specify the path of mpam-fe.exe")
     parser.add_argument('--base',required=False,type=str,help="manually specify the path of mpa{v|s}base.vdm")
     parser.add_argument('--delta',required=False,type=str,help="manually specify the path of mpa{v|s}dlta.vdm")
@@ -62,6 +65,15 @@ def run():
         sys.stderr.write("[!] --suppress option and --debug option can not use together.")
         parser.print_help()
         sys.exit(1)
+
+    if not is_validate_filesize(args.filesize_check):
+        sys.stderr.write("[!] Invalid filesize format. Use integer with postfix KB or MB.")
+        parser.print_help()
+        sys.exit(1)
+
+    if args.no_filesize_check:
+        # remove filesize check from generated yara rules.
+        args.filesize_check = ""
 
     setup_logger(__package__, args.debug)
 

@@ -7,11 +7,12 @@ from defender2yara.util.utils import all_elements_equal
 from .strings import YaraString
 
 class YaraCondition:
-    def __init__(self,strings:List[YaraString],signature:Union[HStrSig,HStrExtSig],optional_conditions:bool=False):
+    def __init__(self,strings:List[YaraString],signature:Union[HStrSig,HStrExtSig],filesize_check:str,do_header_check:bool=False):
         self.threshold = signature.threshold
         self.strings = strings
         self.signature = signature
-        self.optional_conditions = optional_conditions
+        self.do_header_check = do_header_check
+        self.filesize_check = filesize_check
         self.statements:List[Union[str,List[str]]] = [] # all state is connected with "and"
         self.compose_logical_expression()
 
@@ -20,10 +21,11 @@ class YaraCondition:
         positive_weight_sum = sum(positive_weight_list)
 
         # add filesize check to improve the scan performance
-        self.statements.append("filesize < 20MB")
+        if self.filesize_check:
+            self.statements.append(f"filesize < {self.filesize_check}")
 
         # add file header check to improve the scan performance
-        if self.optional_conditions:
+        if self.do_header_check:
             if "PEHSTR" in self.signature.sig_type or "DOSHSTR" in self.signature.sig_type:
                 self.statements.append("uint16(0) == 0x5a4d")
             elif "MACHOHSTR" in self.signature.sig_type:
