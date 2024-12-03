@@ -272,6 +272,27 @@ rule Trojan_Win64_MeduzaStealer_BSA_2147926151_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_MeduzaStealer_BSA_2147926151_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/MeduzaStealer.BSA!MTB"
+        threat_id = "2147926151"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "MeduzaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {48 89 5c 24 08 48 89 74 24 10 57 48 83 ec 50 48 8b 05 ?? ?? ?? ?? 48 33 c4 48 89 44 24 48 48 c7 44 24 30 00 00 00 00 48 c7 44 24 40 00 00 00 00 33 db 48 89 5c 24 40 33 ff 33 f6}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win64_MeduzaStealer_AIDA_2147926216_0
 {
     meta:

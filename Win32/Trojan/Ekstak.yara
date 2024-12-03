@@ -8857,3 +8857,24 @@ rule Trojan_Win32_Ekstak_AMCO_2147927390_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Ekstak_CCJR_2147927493_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Ekstak.CCJR!MTB"
+        threat_id = "2147927493"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Ekstak"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {8a c1 32 c2 8b d6 24 ?? a2 ?? ?? ?? ?? a1 ?? ?? ?? ?? d1 ea 03 c2 33 d2 a3 ?? ?? ?? ?? 83 e0 07 8a d1 0f af c2 03 f0}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

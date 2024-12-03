@@ -2408,3 +2408,25 @@ rule Trojan_Win32_Neoreblamy_BAJ_2147927353_0
         )
 }
 
+rule Trojan_Win32_Neoreblamy_BAK_2147927492_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Neoreblamy.BAK!MTB"
+        threat_id = "2147927492"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Neoreblamy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {51 8b 45 08 33 d2 f7 75 0c 89 45 fc 8b 45 0c 0f af 45 fc 8b 4d 08 2b c8 89 4d f8 8b 45 f8 8b e5 5d c3}  //weight: 3, accuracy: High
+        $x_2_2 = {ff 34 81 ff 34 b7 e8 ?? ?? ?? ?? 83 c4 10 89 04 b7 46 3b f3}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
