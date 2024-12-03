@@ -40,3 +40,43 @@ rule Backdoor_Win64_Supper_B_2147920400_0
         (1 of ($x*))
 }
 
+rule Backdoor_Win64_Supper_C_2147927456_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Backdoor:Win64/Supper.C"
+        threat_id = "2147927456"
+        type = "Backdoor"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Supper"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {55 48 89 e5 48 83 ec 40 48 c7 c1 10 27 00 00 e8 ?? ?? ?? ?? e8 ?? ?? ?? ?? 48 89 c1 48 8d 55 f8 e8 ?? ?? ?? ?? 48 8b 48 08 e8 ?? ?? ?? ?? 48 c7 c1 00 00 00 00 e8}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Backdoor_Win64_Supper_D_2147927457_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Backdoor:Win64/Supper.D"
+        threat_id = "2147927457"
+        type = "Backdoor"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Supper"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {48 83 ec 28 83 fa 01 75 ?? 48 c7 c1 10 27 00 00 e8 ?? ?? ?? ?? 48 83 c4 28 48 c7 c0 01 00 00 00 c3}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
