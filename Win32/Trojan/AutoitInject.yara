@@ -3852,3 +3852,25 @@ rule Trojan_Win32_AutoitInject_PPRH_2147927217_0
         )
 }
 
+rule Trojan_Win32_AutoitInject_HNB_2147927612_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.HNB!MTB"
+        threat_id = "2147927612"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "STRINGREPLACE ( \"pow\" & \"ersh\" & \"ell.exe\" , \"r\" , \"r\" )" ascii //weight: 1
+        $x_1_2 = "\" -Ex\" & \"ecut\" & \"ionPo\" & \"licy By\" & \"pass -Fi\" & \"le \"" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (1 of ($x*))
+}
+

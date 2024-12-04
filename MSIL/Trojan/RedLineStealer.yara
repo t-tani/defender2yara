@@ -3571,3 +3571,26 @@ rule Trojan_MSIL_RedLineStealer_SKJ_2147926919_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_RedLineStealer_PQBH_2147927613_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/RedLineStealer.PQBH!MTB"
+        threat_id = "2147927613"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "RedLineStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {39 00 00 0a 0a 06 72 ?? 00 00 70 28 ?? ?? ?? ?? 6f ?? ?? ?? ?? 06 72 ?? 00 00 70 28 ?? ?? ?? ?? 6f ?? ?? ?? ?? 06 6f ?? ?? ?? ?? 0b 14 0c 38 12 00 00 00 00 28 ?? ?? ?? ?? 0c dd 06 00 00 00 26 dd 00 00 00 00 08 2c eb 07 08 16 08 8e 69 6f ?? ?? ?? ?? 0d dd}  //weight: 3, accuracy: Low
+        $x_1_2 = "FromBase64String" ascii //weight: 1
+        $x_1_3 = "CreateDecryptor" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
