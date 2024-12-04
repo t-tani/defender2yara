@@ -7643,3 +7643,26 @@ rule Trojan_MSIL_Formbook_AMCN_2147927108_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Formbook_AMCP_2147927591_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Formbook.AMCP!MTB"
+        threat_id = "2147927591"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Formbook"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {20 00 01 00 00 14 14 17 8d ?? 00 00 01 25 16 08 28 ?? 00 00 06 a2 28 ?? 00 00 0a 75}  //weight: 4, accuracy: Low
+        $x_4_2 = {34 00 44 00 35 00 41 00 39 00 3a 00 30 00 33 00 3a 00 3a 00 30 00 34 00 3a 00 3a 00 46 00 46 00 46 00 46 00 3a 00 30 00 42 00 38 00 3a 00 3a 00 3a 00 3a 00 30 00 30 00 34 00 3a 00 3a 00 3a 00 3a 00 3a 00 3a 00 3a 00 3a 00 3a 00 3a}  //weight: 4, accuracy: High
+        $x_2_3 = {4c 00 6f 00 67 00 69 00 6e 00 00 09 4c 00 6f 00 61 00 64 00}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

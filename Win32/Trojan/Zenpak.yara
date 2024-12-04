@@ -9613,3 +9613,24 @@ rule Trojan_Win32_Zenpak_KAAC_2147927161_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Zenpak_AMCP_2147927602_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zenpak.AMCP!MTB"
+        threat_id = "2147927602"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zenpak"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {55 89 e5 56 50 8a 45 0c 8a 4d 08 31 d2 88 d4 [0-50] 01 f2 88 d0 a2 ?? ?? ?? ?? 8a 45 fa a2 ?? ?? ?? ?? c7 05 ?? ?? ?? ?? ?? ?? ?? ?? 8a 45 fb a2 [0-30] 0f b6 c4 83 c4 04 5e 5d c3}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

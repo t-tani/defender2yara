@@ -292,6 +292,27 @@ rule Trojan_MSIL_Snakekeylogger_ASK_2147842158_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {16 13 07 2b 1c 00 07 11 07 7e 04 00 00 04 11 07 91 08 11 07 09 5d 91 61 d2 9c 00 11 07 17 58 13 07 11 07 06 fe 04 13 08 11 08 2d d9}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Snakekeylogger_ASK_2147842158_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Snakekeylogger.ASK!MTB"
+        threat_id = "2147842158"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Snakekeylogger"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "3"
         strings_accuracy = "Low"
     strings:
@@ -302,7 +323,7 @@ rule Trojan_MSIL_Snakekeylogger_ASK_2147842158_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Snakekeylogger_ASK_2147842158_1
+rule Trojan_MSIL_Snakekeylogger_ASK_2147842158_2
 {
     meta:
         author = "defender2yara"
