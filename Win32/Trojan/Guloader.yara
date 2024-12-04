@@ -4656,3 +4656,26 @@ rule Trojan_Win32_Guloader_ASB_2147926960_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Guloader_SPBD_2147927545_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Guloader.SPBD!MTB"
+        threat_id = "2147927545"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Guloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = "nitrostarch\\grankoglerne.Vid199" wide //weight: 3
+        $x_2_2 = "Anstdelighedens214\\*.opk" wide //weight: 2
+        $x_1_3 = "jactitated.rep" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -1241,3 +1241,26 @@ rule Trojan_MSIL_Marsilia_ACDA_2147926044_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Marsilia_AXEA_2147927513_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Marsilia.AXEA!MTB"
+        threat_id = "2147927513"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Marsilia"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {2b 69 38 6e 00 00 00 2b 31 72 ?? 00 00 70 2b 2d 2b 32 2b 37 72 ?? 00 00 70 2b 33 2b 38 2b 3d 6f ?? 00 00 0a 28 ?? 00 00 06 0b 07 16 07 8e 69 6f ?? 00 00 0a 0c 1e 2c cf de 2f 06 2b cc 28 ?? 00 00 0a 2b cc 6f ?? 00 00 0a 2b c7 06 2b c6 28 ?? 00 00 0a 2b c6 6f ?? 00 00 0a 2b c1 06 2b c0}  //weight: 3, accuracy: Low
+        $x_1_2 = "FromBase64String" ascii //weight: 1
+        $x_1_3 = "CreateDecryptor" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -398,3 +398,24 @@ rule Trojan_MSIL_Fsysna_KAA_2147907241_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Fsysna_SID_2147927536_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Fsysna.SID!MTB"
+        threat_id = "2147927536"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Fsysna"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {02 7b 99 00 00 04 02 7b 9b 00 00 04 02 7b ac 00 00 04 6f 57 00 00 06 28 cc 00 00 0a 06 17 28 cd 00 00 0a 72 82 39 00 70 28 20 00 00 06 72 ab 38 00 70 28 20 00 00 06 28 ce 00 00 0a 72 82 39 00 70}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

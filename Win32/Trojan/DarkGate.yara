@@ -800,3 +800,24 @@ rule Trojan_Win32_DarkGate_MUV_2147926628_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_DarkGate_SIP_2147927535_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/DarkGate.SIP!MTB"
+        threat_id = "2147927535"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "DarkGate"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {55 68 95 83 40 00 64 ff 30 64 89 20 83 7d fc 00 74 25 8b 45 f8 e8 cf b8 ff ff 50 8d 45 f8 e8 72 ba ff ff 8b d0 8b 45 fc 59}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
