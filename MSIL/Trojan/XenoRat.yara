@@ -78,3 +78,24 @@ rule Trojan_MSIL_XenoRat_RHB_2147926756_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_XenoRat_AXN_2147927565_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/XenoRat.AXN!MTB"
+        threat_id = "2147927565"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "XenoRat"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {0d 2b 41 09 6f ?? 00 00 0a 13 04 00 11 04 72 ?? 02 00 70 6f ?? 00 00 0a 6f ?? 00 00 0a 13 05 06 11 05 6f ?? 00 00 0a 16 fe 01 13 06 11 06 2c 0b 00 06 11 05 6f}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

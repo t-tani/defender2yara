@@ -1393,3 +1393,25 @@ rule Trojan_Win32_Lazy_NO_2147925554_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Lazy_GTS_2147927576_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Lazy.GTS!MTB"
+        threat_id = "2147927576"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Lazy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {f7 d1 32 c3 81 d9 ?? ?? ?? ?? f6 d8 2c 04 d0 c0 03 ce f6 d1 8b cf}  //weight: 5, accuracy: Low
+        $x_5_2 = {3b d6 32 d9 3b e2 88 04 0c}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

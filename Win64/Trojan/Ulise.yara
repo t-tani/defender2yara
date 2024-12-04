@@ -180,3 +180,34 @@ rule Trojan_Win64_Ulise_NS_2147923057_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Ulise_AMCP_2147927577_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Ulise.AMCP!MTB"
+        threat_id = "2147927577"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Ulise"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "18"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = "http://176.111.174.140/bin/bot64.bin" ascii //weight: 10
+        $x_3_2 = "ProcessHacker.exe" ascii //weight: 3
+        $x_3_3 = "procexp64.exe" ascii //weight: 3
+        $x_3_4 = "x64dbg.exe" ascii //weight: 3
+        $x_3_5 = "autoruns.exe" ascii //weight: 3
+        $x_1_6 = "Netflix Checker.exe" ascii //weight: 1
+        $x_1_7 = "Application Data\\sysappec.exe" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_10_*) and 2 of ($x_3_*) and 2 of ($x_1_*))) or
+            ((1 of ($x_10_*) and 3 of ($x_3_*))) or
+            (all of ($x*))
+        )
+}
+

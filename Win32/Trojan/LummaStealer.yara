@@ -2940,6 +2940,69 @@ rule Trojan_Win32_LummaStealer_Z_2147927310_1
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "%appdata%\\com.liberty.jaxx" ascii //weight: 1
+        $x_1_2 = "bitcoin" ascii //weight: 1
+        $x_1_3 = "binance" ascii //weight: 1
+        $x_1_4 = "Mail Clients/TheBat" ascii //weight: 1
+        $x_1_5 = "Mail Clients/Pegasus" ascii //weight: 1
+        $x_1_6 = "Applications/Telegram" ascii //weight: 1
+        $x_1_7 = "Applications/1Password" ascii //weight: 1
+        $x_1_8 = "Wallets/Daedalus" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_LummaStealer_Z_2147927310_2
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaStealer.Z!MTB"
+        threat_id = "2147927310"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "15"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "webextension@metamask.io" ascii //weight: 1
+        $x_1_2 = "Electrum\\wallets" ascii //weight: 1
+        $x_1_3 = "Bitcoin\\wallets" ascii //weight: 1
+        $x_1_4 = "MetaMask" ascii //weight: 1
+        $x_1_5 = "Password" ascii //weight: 1
+        $x_1_6 = "Wallets/DashCore" ascii //weight: 1
+        $x_1_7 = "Ronin Wallet" ascii //weight: 1
+        $x_1_8 = "Leap Wallet" ascii //weight: 1
+        $x_1_9 = "Agrent" ascii //weight: 1
+        $x_1_10 = "localhost" ascii //weight: 1
+        $x_1_11 = "params" ascii //weight: 1
+        $x_1_12 = "exodus" ascii //weight: 1
+        $x_1_13 = "Wallets/JAXX" ascii //weight: 1
+        $x_1_14 = "keystore" ascii //weight: 1
+        $x_1_15 = "Wallets/Binance" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_LummaStealer_Z_2147927310_3
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaStealer.Z!MTB"
+        threat_id = "2147927310"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "74"
         strings_accuracy = "High"
     strings:
