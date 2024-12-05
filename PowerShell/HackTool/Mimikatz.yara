@@ -59,3 +59,32 @@ rule HackTool_PowerShell_Mimikatz_B_2147734365_0
         )
 }
 
+rule HackTool_PowerShell_Mimikatz_SA_2147927632_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "HackTool:PowerShell/Mimikatz.SA"
+        threat_id = "2147927632"
+        type = "HackTool"
+        platform = "PowerShell: "
+        family = "Mimikatz"
+        severity = "High"
+        signature_type = "SIGNATURE_TYPE_CMDHSTR_EXT"
+        threshold = "21"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = "[net.securityprotocoltype]::tls12" wide //weight: 10
+        $x_10_2 = "if([system.net.webproxy]::getdefaultproxy().address -ne $null)" wide //weight: 10
+        $x_10_3 = "[net.credentialcache]::defaultcredentials;" wide //weight: 10
+        $x_1_4 = ".downloadstring(" wide //weight: 1
+        $x_1_5 = "webclient" wide //weight: 1
+        $x_1_6 = "webrequest" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((2 of ($x_10_*) and 1 of ($x_1_*))) or
+            ((3 of ($x_10_*))) or
+            (all of ($x*))
+        )
+}
+
