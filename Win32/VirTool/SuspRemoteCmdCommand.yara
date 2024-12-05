@@ -16,8 +16,12 @@ rule VirTool_Win32_SuspRemoteCmdCommand_A_2147767977_0
         $x_1_2 = "> \\\\127.0.0.1\\C$\\Windows\\Temp\\" wide //weight: 1
         $x_1_3 = " /c " wide //weight: 1
         $x_1_4 = " 2>&1" wide //weight: 1
+        $n_1_5 = "\\helios-dom" wide //weight: -1
+        $n_1_6 = "helios-kliniken" wide //weight: -1
+        $n_1_7 = "-ServiceNow\\" wide //weight: -1
     condition:
         (filesize < 20MB) and
+        (not (any of ($n*))) and
         (all of ($x*))
 }
 
