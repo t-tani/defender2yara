@@ -6537,3 +6537,24 @@ rule Trojan_Win32_CryptInject_PAFW_2147926204_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_CryptInject_TBM_2147927695_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/CryptInject.TBM!MTB"
+        threat_id = "2147927695"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {2b fe 88 4c 24 38 88 4c 24 42 88 4c 24 47 c6 44 24 34 78 c6 44 24 35 61 88 54 24 3a c6 44 24 3e 66 c6 44 24 41 33 c6 44 24 43 97 c6 44 24 44 74 88 54 24 46 c6 44 24 40 95 c6 44 24 39 62 c7 44 24 10 01}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

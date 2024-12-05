@@ -3062,3 +3062,24 @@ rule Trojan_MSIL_Nanocore_NH_2147927401_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Nanocore_AMAF_2147927684_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Nanocore.AMAF!MTB"
+        threat_id = "2147927684"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Nanocore"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {11 19 11 0a 11 29 11 22 61 11 1e 19 58 61 11 2c 61 d2 9c 11 22 13 1e 17 11 0a 58 13 0a}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -6264,3 +6264,26 @@ rule Trojan_MSIL_Heracles_SCXF_2147927415_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Heracles_AMZ_2147927683_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Heracles.AMZ!MTB"
+        threat_id = "2147927683"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Heracles"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {11 00 11 00 6f ?? 00 00 0a 11 00 6f ?? 00 00 0a 6f ?? 00 00 0a 13 01 38}  //weight: 3, accuracy: Low
+        $x_1_2 = "GZipStream" ascii //weight: 1
+        $x_1_3 = "CreateDecryptor" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
