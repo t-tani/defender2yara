@@ -50,3 +50,25 @@ rule Trojan_MacOS_SAgnt_C_2147888515_0
         (all of ($x*))
 }
 
+rule Trojan_MacOS_SAgnt_D_2147927666_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MacOS/SAgnt.D!MTB"
+        threat_id = "2147927666"
+        type = "Trojan"
+        platform = "MacOS: "
+        family = "SAgnt"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_MACHOHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {40 8a 31 40 84 f6 74 ?? 40 38 f0 75 ?? 48 ff c1 8a 02 48 ff c2 84 c0 75 ?? 31 c0}  //weight: 1, accuracy: Low
+        $x_1_2 = {89 d1 80 e1 38 49 89 f0 49 d3 e8 44 30 07 48 83 c2 08 48 ff c7 48 83 fa 50 75 ?? c6 40 0a 00}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
