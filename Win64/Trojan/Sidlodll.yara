@@ -46,3 +46,33 @@ rule Trojan_Win64_Sidlodll_DB_2147926705_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Sidlodll_DC_2147927628_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Sidlodll.DC!MTB"
+        threat_id = "2147927628"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Sidlodll"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "31"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = "powershell.exe -windowstyle Hidden -command \"%s\"" ascii //weight: 10
+        $x_10_2 = "ExecuteScript" ascii //weight: 10
+        $x_10_3 = {61 00 63 00 6c 00 75 00 69 00 [0-15] 2e 00 64 00 6c 00 6c 00}  //weight: 10, accuracy: Low
+        $x_10_4 = {61 63 6c 75 69 [0-15] 2e 64 6c 6c}  //weight: 10, accuracy: Low
+        $x_1_5 = "ChildItem Variable:_).Value.Name-ilike'D*g'}).Name).Invoke((Item Variable:\\h).Value)" ascii //weight: 1
+        $x_1_6 = "me).Invoke('*e-*press*',1,$TRUE))(Variable U3).Value.((Variable I16).Value).Invoke((Get-Variable 7 -Value))" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((3 of ($x_10_*) and 1 of ($x_1_*))) or
+            ((4 of ($x_10_*))) or
+            (all of ($x*))
+        )
+}
+
