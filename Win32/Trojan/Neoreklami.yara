@@ -85,3 +85,25 @@ rule Trojan_Win32_Neoreklami_EC_2147922680_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Neoreklami_MBWD_2147927705_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Neoreklami.MBWD!MTB"
+        threat_id = "2147927705"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Neoreklami"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {e9 5f 61 04 00 af 52 1e 7a 57 cd 73 1e a6 63 36 66 f4 29 4a b9 e9 62 35 13 3a 65 5e b9 09 b5 e1 34 3c 01 2b 4f 8b 90 de b8 e8 28 ea 92 d9 cc}  //weight: 2, accuracy: High
+        $x_1_2 = {2c da 16 96 f8 f2 c1 41 16 59 aa ed 88 36 b1 b0 c9}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

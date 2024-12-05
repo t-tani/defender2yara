@@ -606,3 +606,25 @@ rule Trojan_MSIL_NanoCore_GNM_2147923793_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_NanoCore_MBWD_2147927704_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/NanoCore.MBWD!MTB"
+        threat_id = "2147927704"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "NanoCore"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {59 0d 06 09 03 08 18 6f ?? 00 00 0a 1f ?? 28 ?? 00 00 0a 07 09 07 8e 69 5d 91 61 d2 9c}  //weight: 2, accuracy: Low
+        $x_1_2 = "racoon.exe" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

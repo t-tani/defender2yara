@@ -13789,3 +13789,26 @@ rule Trojan_MSIL_FormBook_MBWD_2147927278_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_FormBook_MBWD_2147927278_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/FormBook.MBWD!MTB"
+        threat_id = "2147927278"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "FormBook"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {13 04 11 04 11 05 6f ?? 00 00 06 11 04 09 6f 45 00 00 06 6f 22 00 00 06 02 7b 01 00 00 04 11 05 11 04}  //weight: 2, accuracy: Low
+        $x_1_2 = "SkyrimCharacterParser.Properties" ascii //weight: 1
+        $x_1_3 = "9ad5b201ae37" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
