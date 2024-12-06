@@ -630,3 +630,25 @@ rule Trojan_Win32_ICLoader_VGAA_2147920113_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_ICLoader_BAK_2147927735_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ICLoader.BAK!MTB"
+        threat_id = "2147927735"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ICLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {c1 e2 04 a1 ?? ?? ?? 00 23 c2 a3 ?? ?? ?? 00 33 c9 8a 0d ?? ?? ?? 00 8b 15 ?? ?? ?? 00 83 e2 08 0f af ca a1 ?? ?? ?? 00 0b c1 a3}  //weight: 3, accuracy: Low
+        $x_2_2 = {89 45 fc 8a 0d ?? ?? ?? 00 32 0d ?? ?? ?? 00 88 0d ?? ?? ?? 00 33 d2 8a 15}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

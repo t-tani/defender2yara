@@ -1751,3 +1751,28 @@ rule Ransom_Win32_Genasom_AGM_2147917659_0
         (all of ($x*))
 }
 
+rule Ransom_Win32_Genasom_GNS_2147927733_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win32/Genasom.GNS!MTB"
+        threat_id = "2147927733"
+        type = "Ransom"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Genasom"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "14"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {40 40 00 c4 b3 4d 00 00 00 00 00 2e 3f 41 56 3f 24 63 6c 6f 6e 65 5f 69 6d ?? 6c 40 55 62 61 64 5f}  //weight: 10, accuracy: Low
+        $x_1_2 = "Please remove or disable the system debugger before trying to run this program again" ascii //weight: 1
+        $x_1_3 = "Your purchase is not complete. Please reattempt payment" ascii //weight: 1
+        $x_1_4 = "Your system has been corrected." ascii //weight: 1
+        $x_1_5 = "Your license has been removed" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
