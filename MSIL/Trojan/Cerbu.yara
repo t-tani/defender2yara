@@ -330,3 +330,24 @@ rule Trojan_MSIL_Cerbu_NC_2147924597_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Cerbu_AMCQ_2147927772_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Cerbu.AMCQ!MTB"
+        threat_id = "2147927772"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Cerbu"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {0a 06 17 6f ?? 00 00 0a 06 18 6f ?? 00 00 0a 73 ?? 00 00 0a 25 06 03 04 6f ?? 00 00 0a 17 73 ?? 00 00 0a 25 02 16 02 8e 69 6f ?? 00 00 0a 6f ?? 00 00 0a 6f ?? 00 00 0a 0b de 09}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

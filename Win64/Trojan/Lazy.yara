@@ -1933,3 +1933,25 @@ rule Trojan_Win64_Lazy_GTZ_2147926142_0
         (1 of ($x*))
 }
 
+rule Trojan_Win64_Lazy_GNS_2147927754_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Lazy.GNS!MTB"
+        threat_id = "2147927754"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Lazy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {66 30 03 49 89 dc 00 5b ?? 01 64 24 ?? 41 5c 0c ?? 85 38}  //weight: 5, accuracy: Low
+        $x_5_2 = {44 67 31 20 51 10 10 86 0e}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

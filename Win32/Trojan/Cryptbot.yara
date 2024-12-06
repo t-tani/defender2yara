@@ -73,3 +73,24 @@ rule Trojan_Win32_Cryptbot_GNM_2147810544_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Cryptbot_BPD_2147927767_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Cryptbot.BPD!MTB"
+        threat_id = "2147927767"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Cryptbot"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {eb 08 0f 6a 2a 00 00}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

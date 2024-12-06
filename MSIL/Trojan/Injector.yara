@@ -1175,6 +1175,29 @@ rule Trojan_MSIL_Injector_NITA_2147921880_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Injector_NITA_2147921880_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Injector.NITA!MTB"
+        threat_id = "2147921880"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Injector"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {03 04 1f 0c 58 28 ?? 00 00 0a 0c 03 04 1f 10 58 28 ?? 00 00 0a 0d 03 04 1f 14 58 28 ?? 00 00 0a 13 04 09 2c 3e 09 8d 2f 00 00 01 13 05 03 11 04 11 05 16 11 05 8e 69 28 ?? 00 00 0a 7e 08 00 00 04 7e 02 00 00 04 7b 0a 00 00 04 02 08 58 11 05 11 05 8e 69 0f 03 6f ?? 00 00 06 2d 06 73 2e 00 00 0a 7a 04 1f 28 58 10 02 07 17 58 0b 07 06 32 8f}  //weight: 2, accuracy: Low
+        $x_1_2 = "LogEncryptionResult" ascii //weight: 1
+        $x_1_3 = "shellcode" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_Injector_SWC_2147925563_0
 {
     meta:

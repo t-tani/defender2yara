@@ -592,6 +592,31 @@ rule Trojan_Win32_Zenpack_EM_2147834103_5
         threshold = "5"
         strings_accuracy = "High"
     strings:
+        $x_1_1 = "loader.cpp.bc.obj.pdb" ascii //weight: 1
+        $x_1_2 = "dominion8creepethzHismovedFishgG" ascii //weight: 1
+        $x_1_3 = "one2KtwoYou.re" ascii //weight: 1
+        $x_1_4 = "ReplenishNgathering" ascii //weight: 1
+        $x_1_5 = "CreatePointerMoniker" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Zenpack_EM_2147834103_6
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zenpack.EM!MTB"
+        threat_id = "2147834103"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zenpack"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
         $x_1_1 = "For.f9uponNSfowlsoshe.dGreater" ascii //weight: 1
         $x_1_2 = "MakeHUbroughtfish" ascii //weight: 1
         $x_1_3 = "heavenHeavenkindCElseedgreater" ascii //weight: 1
@@ -602,7 +627,7 @@ rule Trojan_Win32_Zenpack_EM_2147834103_5
         (all of ($x*))
 }
 
-rule Trojan_Win32_Zenpack_EM_2147834103_6
+rule Trojan_Win32_Zenpack_EM_2147834103_7
 {
     meta:
         author = "defender2yara"
@@ -627,7 +652,7 @@ rule Trojan_Win32_Zenpack_EM_2147834103_6
         (all of ($x*))
 }
 
-rule Trojan_Win32_Zenpack_EM_2147834103_7
+rule Trojan_Win32_Zenpack_EM_2147834103_8
 {
     meta:
         author = "defender2yara"
@@ -652,7 +677,7 @@ rule Trojan_Win32_Zenpack_EM_2147834103_7
         (all of ($x*))
 }
 
-rule Trojan_Win32_Zenpack_EM_2147834103_8
+rule Trojan_Win32_Zenpack_EM_2147834103_9
 {
     meta:
         author = "defender2yara"

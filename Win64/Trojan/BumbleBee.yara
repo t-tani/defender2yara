@@ -2295,3 +2295,24 @@ rule Trojan_Win64_BumbleBee_MBWA_2147926110_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_BumbleBee_BPD_2147927755_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/BumbleBee.BPD!MTB"
+        threat_id = "2147927755"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "BumbleBee"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {45 8b 0c 02 49 83 c2 04 44 0f af 4f 64 8b 05 c9 c8 0d 00 2b 82 94 00 00 00 2d 83 f4 26 00 09 42 6c 48 8b 05 60 c8 0d 00 45 8b c1 48 63 15 d6 c8 0d 00 41 c1 e8 08 48 8b 88 a0 00 00 00 44 88 04 0a}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
