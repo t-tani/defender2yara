@@ -65,3 +65,24 @@ rule Trojan_Win32_BlackShades_MBWB_2147926783_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_BlackShades_MBWD_2147927801_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/BlackShades.MBWD!MTB"
+        threat_id = "2147927801"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "BlackShades"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {38 74 40 00 9c 14 40 00 40 f0 34 00 00 ff ff ff 08 00 00 00 01 00 00 00 06 00 00 00 e9 00 00 00 bc 12 40 00 14 11 40 00 d0 10 40 00 78 00 00 00 80 00 00 00 8b}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
