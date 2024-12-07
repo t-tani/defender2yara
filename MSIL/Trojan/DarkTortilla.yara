@@ -4635,3 +4635,49 @@ rule Trojan_MSIL_DarkTortilla_SPJF_2147927697_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_DarkTortilla_RPZ_2147927790_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/DarkTortilla.RPZ!MTB"
+        threat_id = "2147927790"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "DarkTortilla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "98"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "set_PID" ascii //weight: 1
+        $x_10_2 = "set_AntiVM" ascii //weight: 10
+        $x_10_3 = "set_InjectionPersistence" ascii //weight: 10
+        $x_1_4 = "set_StartupPersistence" ascii //weight: 1
+        $x_10_5 = "set_AntiSandBoxie" ascii //weight: 10
+        $x_10_6 = "set_FakeMessageTitle" ascii //weight: 10
+        $x_1_7 = "set_InstallationFileName" ascii //weight: 1
+        $x_1_8 = "set_WatchDogName" ascii //weight: 1
+        $x_1_9 = "set_InstallationKeyName" ascii //weight: 1
+        $x_1_10 = "set_KeepAlive" ascii //weight: 1
+        $x_10_11 = "set_HiddenStartupReg" ascii //weight: 10
+        $x_1_12 = "set_InstallationRegisteryPath" ascii //weight: 1
+        $x_1_13 = "add_Click" ascii //weight: 1
+        $x_1_14 = "PerformClick" ascii //weight: 1
+        $x_1_15 = "set_InstallFolder" ascii //weight: 1
+        $x_1_16 = "set_InstallationFolder" ascii //weight: 1
+        $x_1_17 = "set_TempFolder" ascii //weight: 1
+        $x_1_18 = "set_StartupFolder" ascii //weight: 1
+        $x_1_19 = "Class5_Decrypter" ascii //weight: 1
+        $x_10_20 = "Class8_AntiVMs" ascii //weight: 10
+        $x_1_21 = "set_CreateNoWindow" ascii //weight: 1
+        $x_1_22 = "set_FakeMessageShow" ascii //weight: 1
+        $x_1_23 = "set_FakeMessageIconIndex" ascii //weight: 1
+        $x_10_24 = "set_InjectionHostIndex" ascii //weight: 10
+        $x_1_25 = "set_FakeMessageBody" ascii //weight: 1
+        $x_10_26 = "set_HiddenStartupKey" ascii //weight: 10
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
