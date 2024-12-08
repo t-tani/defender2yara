@@ -1357,3 +1357,30 @@ rule Ransom_Win32_FileCoder_GPAC_2147924197_0
         (all of ($x*))
 }
 
+rule Ransom_Win32_FileCoder_RHAC_2147927821_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win32/FileCoder.RHAC!MTB"
+        threat_id = "2147927821"
+        type = "Ransom"
+        platform = "Win32: Windows 32-bit platform"
+        family = "FileCoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {50 45 00 00 4c 01 04 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 0b 01 0e 27 00 1a 02 00 00 2c 40 00 00 00 00 00 87 13}  //weight: 2, accuracy: Low
+        $x_3_2 = "Are you sure this is right decription key? If not, you can loose all files" wide //weight: 3
+        $x_1_3 = "Wallpaper set successfully." wide //weight: 1
+        $x_1_4 = "DxxAlien_ReadMe.txt" wide //weight: 1
+        $x_1_5 = "Copy BTC Address" wide //weight: 1
+        $x_1_6 = "Copy Sola Address" wide //weight: 1
+        $x_1_7 = "Your PC is under my control and all your files are encrypted" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
