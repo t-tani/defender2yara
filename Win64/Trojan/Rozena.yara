@@ -1313,3 +1313,25 @@ rule Trojan_Win64_Rozena_PAFW_2147926534_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Rozena_PAFX_2147927899_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Rozena.PAFX!MTB"
+        threat_id = "2147927899"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Rozena"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {48 8b 10 4d 8b c8 48 83 c0 08 4c 03 ca 48 f7 d2 49 33 d1 49 23 d3 74}  //weight: 2, accuracy: High
+        $x_2_2 = "Decrypting shellcode" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

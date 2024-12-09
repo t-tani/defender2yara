@@ -2448,3 +2448,27 @@ rule Trojan_MSIL_Stealer_AJEA_2147926954_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Stealer_PAFU_2147927898_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Stealer.PAFU!MTB"
+        threat_id = "2147927898"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Stealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {0b 16 0c 38 ?? ?? ?? ?? 06 07 08 18 6f ?? ?? ?? ?? 1f 10 28 ?? ?? ?? ?? 6f ?? ?? ?? ?? 08 18 58 0c 08 07 6f ?? ?? ?? ?? 32 de 06 2a}  //weight: 2, accuracy: Low
+        $x_2_2 = {0a 02 06 28 ?? ?? ?? ?? 0b 14 0c 07 39 11 00 00 00}  //weight: 2, accuracy: Low
+        $x_2_3 = {20 e8 03 00 00 28 ?? ?? ?? ?? 06 17 58 0a 06 1b 32 ee}  //weight: 2, accuracy: Low
+        $x_1_4 = "InvokeMember" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
