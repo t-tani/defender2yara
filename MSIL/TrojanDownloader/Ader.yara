@@ -459,3 +459,26 @@ rule TrojanDownloader_MSIL_Ader_SS_2147917075_0
         (all of ($x*))
 }
 
+rule TrojanDownloader_MSIL_Ader_MBWE_2147927870_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:MSIL/Ader.MBWE!MTB"
+        threat_id = "2147927870"
+        type = "TrojanDownloader"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Ader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "valorantskinschanger.com/nytrajack" wide //weight: 2
+        $x_1_2 = "4e023f43e189" ascii //weight: 1
+        $x_1_3 = "Installer_sharp" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

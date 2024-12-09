@@ -106165,6 +106165,29 @@ rule Trojan_MSIL_AgentTesla_MBWD_2147927367_0
         threshold = "4"
         strings_accuracy = "Low"
     strings:
+        $x_2_1 = {02 06 07 6f ?? 00 00 0a 0c 04 03 6f ?? 00 00 0a 59 0d 09 13 ?? 11 ?? 19 32}  //weight: 2, accuracy: Low
+        $x_1_2 = {4c 00 6f 00 61 00 64}  //weight: 1, accuracy: High
+        $x_1_3 = {79 00 73 00 74 00 65 00 6d 00 2e 00 41 00 63 00 74 00 69 00 76 00 61 00 74}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_AgentTesla_MBWD_2147927367_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.MBWD!MTB"
+        threat_id = "2147927367"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "Low"
+    strings:
         $x_2_1 = {60 0c 03 19 8d ?? ?? ?? 01 25 16 08 1f 10 63 20 ?? 00 00 00 5f d2 9c 25 17 08 1e}  //weight: 2, accuracy: Low
         $x_1_2 = "Kviskoteka.Properties" ascii //weight: 1
         $x_1_3 = "GetExportedTypes" wide //weight: 1

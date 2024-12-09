@@ -20,3 +20,33 @@ rule Backdoor_MSIL_XenoRat_BSA_2147927609_0
         (all of ($x*))
 }
 
+rule Backdoor_MSIL_XenoRat_BSA_2147927609_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Backdoor:MSIL/XenoRat.BSA!MTB"
+        threat_id = "2147927609"
+        type = "Backdoor"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "XenoRat"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "22"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = "xeno rat client" ascii //weight: 10
+        $x_10_2 = "xeno_rat_client" ascii //weight: 10
+        $x_10_3 = "\\xeno-rat\\Plugins" ascii //weight: 10
+        $x_6_4 = "SendAsync" ascii //weight: 6
+        $x_6_5 = "IAsyncStateMachine" ascii //weight: 6
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_10_*) and 2 of ($x_6_*))) or
+            ((2 of ($x_10_*) and 1 of ($x_6_*))) or
+            ((3 of ($x_10_*))) or
+            (all of ($x*))
+        )
+}
+
