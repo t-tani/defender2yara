@@ -1955,3 +1955,25 @@ rule Trojan_Win64_Lazy_GNS_2147927754_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Lazy_YAF_2147927862_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Lazy.YAF!MTB"
+        threat_id = "2147927862"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Lazy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {41 0f b6 17 8b cb 48 33 d1 c1 eb 08 0f b6 ca 49 ff c7 33 5c 8c 40 48 85 ed}  //weight: 5, accuracy: High
+        $x_5_2 = "Software\\Yuwei Qusi\\Oovi Appc" ascii //weight: 5
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
