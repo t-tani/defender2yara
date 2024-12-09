@@ -1997,3 +1997,29 @@ rule Trojan_Win32_AgentTesla_GH_2147926384_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_AgentTesla_GO_2147927844_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AgentTesla.GO!MTB"
+        threat_id = "2147927844"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "SeShutdownPrivilege" wide //weight: 1
+        $x_1_2 = "\\Temp" wide //weight: 1
+        $x_1_3 = "rappellerende brumidi grinds" wide //weight: 1
+        $x_1_4 = "beatgruppen mellemdistancevaabens slagvoluminet" wide //weight: 1
+        $x_1_5 = "esas josey" wide //weight: 1
+        $x_1_6 = "hjertevarmes alfonsjagt" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

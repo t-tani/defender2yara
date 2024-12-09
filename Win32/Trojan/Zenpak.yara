@@ -9655,3 +9655,26 @@ rule Trojan_Win32_Zenpak_KAAD_2147927611_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Zenpak_ASAU_2147927822_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zenpak.ASAU!MTB"
+        threat_id = "2147927822"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zenpak"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {0f b6 55 fb 0f b6 35 ?? ?? ?? ?? 01 f2 88 d0}  //weight: 2, accuracy: Low
+        $x_2_2 = {50 8a 45 0c 8a 4d 08 31 d2 88 d4 88 45 fb 88 4d fa}  //weight: 2, accuracy: High
+        $x_1_3 = {01 f2 88 d0 a2}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

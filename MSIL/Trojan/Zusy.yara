@@ -2547,3 +2547,46 @@ rule Trojan_MSIL_Zusy_HNP_2147926803_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Zusy_HNS_2147927831_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Zusy.HNS!MTB"
+        threat_id = "2147927831"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "FEQRB26X3PDEDFWVBNNz7Z5LqvJaYhBqzMPIQb93YplgNHPM4189lIZcVRU" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Zusy_HNT_2147927832_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Zusy.HNT!MTB"
+        threat_id = "2147927832"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {00 64 77 44 65 73 69 72 65 64 41 63 63 65 73 73 00 53 75 63 63 65 73 73 00 68 50 72 6f 63 65 73 73 00 54 68 72 65 61 64 4e 6f 74 49 6e 50 72 6f 63 65 73 73 00 47 65 74 43 75 72 72 65 6e 74 50 72 6f 63 65 73 73 00 49 6e 76 61 6c 69 64 41 64 64 72 65 73 73 00 67 65 74 5f 42 61 73 65 41 64 64 72 65 73 73 00 6c 70 42 61 73 65 41 64 64 72 65 73 73 00 6c 70 41 64 64 72 65 73 73 00 6c 70 53 74 61 72 74 41 64 64 72 65 73 73}  //weight: 2, accuracy: High
+        $x_1_2 = {3c 4d 6f 64 75 6c 65 3e 00 47 65 74 48 49 4e 53 54 41 4e 43 45 00 53 79 73 74 65 6d 2e 49 4f 00 67 65 74 5f 49 56 00 73 65 74 5f 49 56 00 76 61 6c 75 65 5f 5f 00 44 6f 77 6e 6c 6f 61 64 44 61 74 61 00 4e 6f 74 4d 61 70 70 65 64 44 61 74 61 00 4e 6f 54 78 66 4d 65 74 61 64 61 74 61 00}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -1741,3 +1741,30 @@ rule Trojan_Win32_Fragtor_BSA_2147926248_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Fragtor_GA_2147927845_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Fragtor.GA!MTB"
+        threat_id = "2147927845"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Fragtor"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "shadow3dec_libvlc.dll" ascii //weight: 1
+        $x_1_2 = "BITFUCKER" ascii //weight: 1
+        $x_1_3 = "EDRMURDER" ascii //weight: 1
+        $x_1_4 = "INVINSINCIBLE" ascii //weight: 1
+        $x_1_5 = "CryptDecrypt" ascii //weight: 1
+        $x_1_6 = "CryptDeriveKey" ascii //weight: 1
+        $x_1_7 = "CryptDestroyKey" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -480,3 +480,25 @@ rule Backdoor_MSIL_WebShell_ASQ_2147924498_0
         (all of ($x*))
 }
 
+rule Backdoor_MSIL_WebShell_GNS_2147927840_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Backdoor:MSIL/WebShell.GNS!MTB"
+        threat_id = "2147927840"
+        type = "Backdoor"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "WebShell"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {0a 00 06 16 6f ?? ?? ?? 0a 00 06 28 ?? ?? ?? 0a 0b 07 6f ?? ?? ?? 0a 0c 08 6f ?? ?? ?? 0a 0d 08 6f ?? ?? ?? 0a 00 09 13 04 2b 00 11 04 2a}  //weight: 5, accuracy: Low
+        $x_5_2 = {20 c8 85 6a 9f 0a 2b 00 06 2a}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

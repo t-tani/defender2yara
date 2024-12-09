@@ -3874,3 +3874,26 @@ rule Trojan_Win32_AutoitInject_HNB_2147927612_0
         (1 of ($x*))
 }
 
+rule Trojan_Win32_AutoitInject_HNC_2147927833_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.HNC!MTB"
+        threat_id = "2147927833"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "$PPROC = __INIT ( BINARY ( \"0x55" ascii //weight: 1
+        $x_1_2 = "\"wstr\" , \"{1D5BE4B5-FA4A-452D-9CDD-5DB35105E7EB}\" , \"ptr\"" ascii //weight: 1
+        $x_1_3 = " + -11 , CHR ( 87 ) )" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
