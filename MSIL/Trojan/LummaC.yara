@@ -846,3 +846,24 @@ rule Trojan_MSIL_LummaC_NL_2147926991_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_LummaC_ALA_2147927951_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/LummaC.ALA!MTB"
+        threat_id = "2147927951"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "LummaC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {c7 bc fa 4a 03 d3 c1 57 51 3f 38 49 f6 fb 5a ca 9a a5 6b 15 90 2e 97 ce c1 51 63 a9 cc 12 e2 0d 6b 88}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
