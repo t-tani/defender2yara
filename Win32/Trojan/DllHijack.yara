@@ -105,3 +105,24 @@ rule Trojan_Win32_DllHijack_HNA_2147925079_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_DllHijack_A_2147927936_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/DllHijack.A!MTB"
+        threat_id = "2147927936"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "DllHijack"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {01 c7 c6 44 24 3c 74 81 3f 50 45 00 00 0f b7 47 14 89 7c 24 24 89 54 24 38 0f 85 27 ff ff ff 0f b7 7f 06 89 7c 24 20 66 85 ff 0f 84 16 ff ff ff 8b 7c 24 24 89 4c 24 2c 8d 6c 24 38 8d 74 07 18 31 ff 8d b4 26 00 00 00 00 66}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

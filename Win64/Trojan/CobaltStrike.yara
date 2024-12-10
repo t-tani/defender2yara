@@ -10066,6 +10066,28 @@ rule Trojan_Win64_CobaltStrike_YAG_2147895128_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_CobaltStrike_YAG_2147895128_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CobaltStrike.YAG!MTB"
+        threat_id = "2147895128"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CobaltStrike"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {32 d0 c1 c2 08 e9 ce a4 01 00 e9}  //weight: 10, accuracy: High
+        $x_1_2 = {48 c7 04 24 65 00 00 00 48 ?? ?? ?? ?? 78 00 00 00 48 ?? ?? ?? ?? 70 00 00 00 48 ?? ?? ?? ?? 6c 00 00 00 48 ?? ?? ?? ?? 6f 00 00 00 48 ?? ?? ?? ?? 72 00 00 00 48 c7 44 24 06 65}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win64_CobaltStrike_YAH_2147895233_0
 {
     meta:
