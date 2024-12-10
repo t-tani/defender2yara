@@ -13289,3 +13289,27 @@ rule TrojanDownloader_O97M_Powdow_RVCK_2147924080_0
         (all of ($x*))
 }
 
+rule TrojanDownloader_O97M_Powdow_RVCM_2147927943_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:O97M/Powdow.RVCM!MTB"
+        threat_id = "2147927943"
+        type = "TrojanDownloader"
+        platform = "O97M: Office 97, 2000, XP, 2003, 2007, and 2010 macros - those that affect Word, Excel, and PowerPoint"
+        family = "Powdow"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_MACROHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {74 74 70 3a 2f 2f 35 32 35 37 35 38 31 35 2d 33 38 2d 32 30 32 30 30 34 30 36 31 32 30 36 33 34 2e 77 65 62 73 74 61 72 74 65 72 7a 2e 63 6f 6d 2f ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 2e ?? ?? ?? 22}  //weight: 1, accuracy: Low
+        $x_1_2 = {64 73 74 72 66 69 6c 65 3d 22 63 3a 5c 70 72 6f 67 72 61 6d 64 61 74 61 5c ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 2e ?? ?? ?? 22}  //weight: 1, accuracy: Low
+        $x_1_3 = "callshell(strfile,vbnormalfocus)elseendifendsub" ascii //weight: 1
+        $x_1_4 = "subautoopen()" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
