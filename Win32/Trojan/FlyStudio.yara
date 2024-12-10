@@ -764,3 +764,25 @@ rule Trojan_Win32_FlyStudio_CZ_2147921604_0
         )
 }
 
+rule Trojan_Win32_FlyStudio_NFA_2147927970_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/FlyStudio.NFA!MTB"
+        threat_id = "2147927970"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "FlyStudio"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {eb 02 33 f6 8b 45 08 83 4d fc ?? 89 46 08 8d 45 08 68 38 c9 5a 00}  //weight: 5, accuracy: Low
+        $x_1_2 = "zheng" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

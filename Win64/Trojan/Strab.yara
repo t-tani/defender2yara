@@ -42,3 +42,26 @@ rule Trojan_Win64_Strab_ARA_2147852902_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Strab_ASB_2147927969_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Strab.ASB!MTB"
+        threat_id = "2147927969"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Strab"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {33 c0 48 8d 4d a0 48 89 45 04 89 45 0c 48 8d 05 ?? ?? ?? ?? 0f 11 45 b4 0f 11 45 a4 48 89 45 b0 48 8d 85 f0 00 00 00 0f 11 45 c4 48 89 45 b8 0f 11 45 d4}  //weight: 3, accuracy: Low
+        $x_2_2 = {48 8d 0d c3 c2 01 00 ff 15 ?? ?? ?? ?? 33 c9 ff 15}  //weight: 2, accuracy: Low
+        $x_1_3 = "\\danie\\source\\repos\\noconsole\\x64\\Release\\noconsole.pdb" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
