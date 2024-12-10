@@ -3484,3 +3484,24 @@ rule Trojan_Win64_CryptInject_XIR_2147927924_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_CryptInject_EEP_2147927985_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CryptInject.EEP!MTB"
+        threat_id = "2147927985"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {48 89 c7 49 c7 c3 14 00 00 00 48 31 c0 48 31 c9 66 4d 0f 7e e9 49 81 c1 ?? ?? ?? ?? 48 31 d2 49 f7 f3 45 8a 14 11 44 30 14 0f 48 ff c1 48 89 c8 48 81 f9 ff 2d 00 00 76}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

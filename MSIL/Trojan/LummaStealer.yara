@@ -2385,3 +2385,32 @@ rule Trojan_MSIL_LummaStealer_RDK_2147925457_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_LummaStealer_NCT_2147927980_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/LummaStealer.NCT!MTB"
+        threat_id = "2147927980"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "PuOfXRUnHTOhvjNvnlxr" ascii //weight: 2
+        $x_1_2 = "LsXIBKnWqmnzMaBjtpyTiovMLiUZ" ascii //weight: 1
+        $x_1_3 = "tsrnKMMRWaSmgIGBadTmRDVK.dll" ascii //weight: 1
+        $x_1_4 = "IvRzfftVAexkHoQJPrcwNKzchoyZQ" ascii //weight: 1
+        $x_1_5 = "EMgVkXRBlViHxiKJoGXomDnkozkr.dll" ascii //weight: 1
+        $x_1_6 = "chOlmHyzMfNVwhhnOfizMLqiz" ascii //weight: 1
+        $x_1_7 = "nxtSvXVgJXelyGLBfuddwnihiSLb.dll" ascii //weight: 1
+        $x_1_8 = "wDSDpeHhJZHHlukYvJFvIbzlFEz.dll" ascii //weight: 1
+        $x_1_9 = "QrUrwtPcnxxkwnxalgzJPWVFgTlT.dll" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
