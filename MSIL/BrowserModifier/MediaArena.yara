@@ -8,6 +8,31 @@ rule BrowserModifier_MSIL_MediaArena_363871_0
         platform = "MSIL: .NET intermediate language scripts"
         family = "MediaArena"
         severity = "High"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "OfferScreen" ascii //weight: 1
+        $x_1_2 = "offerWindow" ascii //weight: 1
+        $x_1_3 = "I_DS_T_Y_P_OPENED" ascii //weight: 1
+        $x_2_4 = "I_DS_FF_SET_TINGS_SEERRCH_ENG" ascii //weight: 2
+        $x_1_5 = "BrowserLoadedWithUrl" ascii //weight: 1
+        $x_2_6 = "MyPdfManager.pdb" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule BrowserModifier_MSIL_MediaArena_363871_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "BrowserModifier:MSIL/MediaArena"
+        threat_id = "363871"
+        type = "BrowserModifier"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "MediaArena"
+        severity = "High"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "6"
         strings_accuracy = "High"
@@ -26,7 +51,7 @@ rule BrowserModifier_MSIL_MediaArena_363871_0
         )
 }
 
-rule BrowserModifier_MSIL_MediaArena_363871_1
+rule BrowserModifier_MSIL_MediaArena_363871_2
 {
     meta:
         author = "defender2yara"
@@ -55,7 +80,7 @@ rule BrowserModifier_MSIL_MediaArena_363871_1
         (all of ($x*))
 }
 
-rule BrowserModifier_MSIL_MediaArena_363871_2
+rule BrowserModifier_MSIL_MediaArena_363871_3
 {
     meta:
         author = "defender2yara"
@@ -82,7 +107,7 @@ rule BrowserModifier_MSIL_MediaArena_363871_2
         (all of ($x*))
 }
 
-rule BrowserModifier_MSIL_MediaArena_363871_3
+rule BrowserModifier_MSIL_MediaArena_363871_4
 {
     meta:
         author = "defender2yara"
@@ -113,7 +138,7 @@ rule BrowserModifier_MSIL_MediaArena_363871_3
         (all of ($x*))
 }
 
-rule BrowserModifier_MSIL_MediaArena_363871_4
+rule BrowserModifier_MSIL_MediaArena_363871_5
 {
     meta:
         author = "defender2yara"

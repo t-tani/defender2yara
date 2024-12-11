@@ -40,3 +40,24 @@ rule Trojan_Win32_Shiz_RG_2147893257_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Shiz_EM_2147928062_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Shiz.EM!MTB"
+        threat_id = "2147928062"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Shiz"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_7_1 = {33 dd be 33 1d 00 00 03 ee d1 e5 d1 c5 bb 23 1d 00 00 03 eb 45 33 f5}  //weight: 7, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

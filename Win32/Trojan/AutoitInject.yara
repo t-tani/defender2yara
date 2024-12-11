@@ -3897,3 +3897,35 @@ rule Trojan_Win32_AutoitInject_HNC_2147927833_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_AutoitInject_NAZ_2147928055_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.NAZ!MTB"
+        threat_id = "2147928055"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {46 00 49 00 4c 00 45 00 49 00 4e 00 53 00 54 00 41 00 4c 00 4c 00 20 00 28 00 20 00 22 00 [0-47] 22 00 20 00 2c 00 20 00 40 00 54 00 45 00 4d 00 50 00 44 00 49 00 52 00 20 00 26 00 20 00 22 00 5c 00 00 22 00 20 00 2c 00 20 00 31 00 20 00 29 00}  //weight: 2, accuracy: Low
+        $x_2_2 = {46 49 4c 45 49 4e 53 54 41 4c 4c 20 28 20 22 [0-47] 22 20 2c 20 40 54 45 4d 50 44 49 52 20 26 20 22 5c 00 22 20 2c 20 31 20 29}  //weight: 2, accuracy: Low
+        $x_1_3 = {49 00 46 00 20 00 4d 00 4f 00 44 00 20 00 28 00 20 00 24 00 [0-31] 20 00 2c 00 20 00 32 00 20 00 29 00 20 00 3d 00 20 00 30 00 20 00 54 00 48 00 45 00 4e 00}  //weight: 1, accuracy: Low
+        $x_1_4 = {49 46 20 4d 4f 44 20 28 20 24 [0-31] 20 2c 20 32 20 29 20 3d 20 30 20 54 48 45 4e}  //weight: 1, accuracy: Low
+        $x_1_5 = "&= EXECUTE ( \"Chr(Asc(StringMid" ascii //weight: 1
+        $x_1_6 = "PolzogfGfrii" ascii //weight: 1
+        $x_1_7 = "PolzogfLlk_" ascii //weight: 1
+        $x_1_8 = "fx_yorn" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_2_*) and 5 of ($x_1_*))) or
+            ((2 of ($x_2_*) and 3 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+

@@ -3820,6 +3820,28 @@ rule Trojan_Win32_Zusy_AZY_2147899007_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = {8a 81 a8 7c 42 00 30 04 0a 83 e9 01}  //weight: 3, accuracy: High
+        $x_2_2 = {8a 8d c1 42 ff ff 32 8d c0 42 ff ff 80 c9 50 30 c1 88 8c 15 c0 42 ff ff 42}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Zusy_AZY_2147899007_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zusy.AZY!MTB"
+        threat_id = "2147899007"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "1"
         strings_accuracy = "High"
     strings:
@@ -3829,7 +3851,7 @@ rule Trojan_Win32_Zusy_AZY_2147899007_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Zusy_AZY_2147899007_1
+rule Trojan_Win32_Zusy_AZY_2147899007_2
 {
     meta:
         author = "defender2yara"
@@ -3851,7 +3873,7 @@ rule Trojan_Win32_Zusy_AZY_2147899007_1
         (all of ($x*))
 }
 
-rule Trojan_Win32_Zusy_AZY_2147899007_2
+rule Trojan_Win32_Zusy_AZY_2147899007_3
 {
     meta:
         author = "defender2yara"
