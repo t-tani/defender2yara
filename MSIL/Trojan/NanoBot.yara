@@ -424,3 +424,27 @@ rule Trojan_MSIL_NanoBot_BH_2147924952_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_NanoBot_ATFA_2147928025_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/NanoBot.ATFA!MTB"
+        threat_id = "2147928025"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "NanoBot"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {38 ba 00 00 00 2b 68 72 ?? 00 00 70 38 64 00 00 00 38 69 00 00 00 38 6e 00 00 00 72 ?? 00 00 70 38 6a 00 00 00 38 6f 00 00 00 16 2d 12 16 2d 0f 38 6e 00 00 00 6f ?? 00 00 0a 0b 14 0c 2b 1c}  //weight: 3, accuracy: Low
+        $x_2_2 = {07 08 16 08 8e 69 6f ?? 00 00 0a 0d de 44 06 38 ?? ff ff ff 28 ?? 00 00 0a 38 ?? ff ff ff 6f ?? 00 00 0a 38 ?? ff ff ff 06 38 ?? ff ff ff 28 ?? 00 00 0a 38 ?? ff ff ff 6f ?? 00 00 0a 38 ?? ff ff ff 06}  //weight: 2, accuracy: Low
+        $x_1_3 = "FromBase64String" ascii //weight: 1
+        $x_1_4 = "CreateDecryptor" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

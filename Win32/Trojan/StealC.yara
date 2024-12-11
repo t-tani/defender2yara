@@ -3594,3 +3594,45 @@ rule Trojan_Win32_StealC_PZ_2147927525_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_StealC_OLP_2147928018_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/StealC.OLP!MTB"
+        threat_id = "2147928018"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "StealC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {83 c0 46 89 44 24 14 ?? 83 6c 24 ?? 46 8a 44 24 14 30 04 1f 47 3b fd 7c}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_StealC_SPCB_2147928027_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/StealC.SPCB!MTB"
+        threat_id = "2147928027"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "StealC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {8d 74 24 0c c7 44 24 14 ?? ?? ?? ?? c7 44 24 0c ?? ?? ?? ?? e8 ?? ?? ?? ?? 8b 44 24 0c 83 c0 46 89 44 24 14 90 83 6c 24 14 46 8a 44 24 14 30 04 1f 47 3b fd 7c}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

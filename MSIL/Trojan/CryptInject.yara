@@ -3159,3 +3159,31 @@ rule Trojan_MSIL_CryptInject_TEH_2147927126_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_CryptInject_RHAO_2147928028_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/CryptInject.RHAO!MTB"
+        threat_id = "2147928028"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = "No-Love" wide //weight: 3
+        $x_1_2 = "cmd.exe" wide //weight: 1
+        $x_1_3 = "/c ping 0 -n 2 & del" wide //weight: 1
+        $x_1_4 = "SystemDrive" wide //weight: 1
+        $x_1_5 = "Software\\" wide //weight: 1
+        $x_1_6 = "BS.exe" wide //weight: 1
+        $x_1_7 = "\\BS.pdb" ascii //weight: 1
+        $x_2_8 = {50 45 00 00 4c 01 03 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 0b 01 50 00 00 26 00 00 00 08 00 00 00 00 00 00 d2 45}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

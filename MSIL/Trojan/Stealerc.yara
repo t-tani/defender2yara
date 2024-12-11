@@ -527,3 +527,32 @@ rule Trojan_MSIL_Stealerc_GPG_2147927071_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Stealerc_NK_2147928019_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Stealerc.NK!MTB"
+        threat_id = "2147928019"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Stealerc"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = "b584fd23-0cf9-4331-9777-a3ed637f83a8" ascii //weight: 2
+        $x_1_2 = "AddDefenderExclusions" ascii //weight: 1
+        $x_1_3 = "powershell.exe" ascii //weight: 1
+        $x_1_4 = {43 00 3a 00 5c 00 55 00 73 00 65 00 72 00 73 00 5c 00 64 00 61 00 6e 00 69 00 65 00 5c 00 73 00 6f 00 75 00 72 00 63 00 65 00 5c 00 72 00 65 00 70 00 6f 00 73 00 5c 00 51 00 77 00 65 00 73 00 74 00 5c 00 51 00 77 00 65 00 73 00 74 00 5c 00 6f 00 62 00 6a 00 5c 00 44 00 65 00 62 00 75 00 67 00 5c 00 [0-31] 2e 00 70 00 64 00 62 00}  //weight: 1, accuracy: Low
+        $x_1_5 = {43 3a 5c 55 73 65 72 73 5c 64 61 6e 69 65 5c 73 6f 75 72 63 65 5c 72 65 70 6f 73 5c 51 77 65 73 74 5c 51 77 65 73 74 5c 6f 62 6a 5c 44 65 62 75 67 5c [0-31] 2e 70 64 62}  //weight: 1, accuracy: Low
+        $x_1_6 = "powershell -Command \"Add-MpPreference -ExclusionPath" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_2_*) and 4 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+

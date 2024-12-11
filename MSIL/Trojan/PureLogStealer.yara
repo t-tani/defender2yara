@@ -2207,3 +2207,28 @@ rule Trojan_MSIL_PureLogStealer_AMCO_2147927216_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_PureLogStealer_ASFA_2147928017_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/PureLogStealer.ASFA!MTB"
+        threat_id = "2147928017"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "PureLogStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "12"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {11 06 11 08 28 ?? 02 00 06 17 73 ?? 01 00 0a 13 0c 20 00 00 00 00 7e ?? 02 00 04 39 ?? ff ff ff 26}  //weight: 3, accuracy: Low
+        $x_3_2 = {11 0c 02 16 02 8e 69 28 ?? 02 00 06 20 00 00 00 00 7e ?? 02 00 04 3a ?? 00 00 00 26}  //weight: 3, accuracy: Low
+        $x_2_3 = "F4A685CA111882879036.g.resources" ascii //weight: 2
+        $x_2_4 = "rKWJTiBuK1FSkuZvDy.XM7D23CHuvbooqaBrU" ascii //weight: 2
+        $x_2_5 = "YHg8aAJxoeft8ja7nM.yJ3itPKfvVOmJkkoc8" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

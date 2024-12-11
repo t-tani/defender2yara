@@ -563,3 +563,55 @@ rule TrojanDownloader_MSIL_Heracles_PRA_2147927164_0
         (all of ($x*))
 }
 
+rule TrojanDownloader_MSIL_Heracles_AYA_2147927994_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:MSIL/Heracles.AYA!MTB"
+        threat_id = "2147927994"
+        type = "TrojanDownloader"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Heracles"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "Solara.exe" wide //weight: 2
+        $x_1_2 = "This application requires administrative privileges." wide //weight: 1
+        $x_1_3 = "/Obufscated/solara" wide //weight: 1
+        $x_1_4 = "got ratted lmao their ip is" wide //weight: 1
+        $x_1_5 = "CreateStartupShortcut" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule TrojanDownloader_MSIL_Heracles_AYC_2147927996_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:MSIL/Heracles.AYC!MTB"
+        threat_id = "2147927996"
+        type = "TrojanDownloader"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Heracles"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "$b8abf173-0978-463e-a3fc-c" ascii //weight: 2
+        $x_1_2 = "Malta Scanner" wide //weight: 1
+        $x_1_3 = "SELECT url, title, last_visit_time FROM urls ORDER BY last_visit_time DESC" wide //weight: 1
+        $x_1_4 = "MicrosoftEdgeUpdateHistory.txt" wide //weight: 1
+        $x_1_5 = "Optimizer.Properties.Resources" wide //weight: 1
+        $x_1_6 = "TASKKILL" wide //weight: 1
+        $x_1_7 = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

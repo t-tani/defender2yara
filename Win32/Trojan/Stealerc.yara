@@ -899,3 +899,25 @@ rule Trojan_Win32_Stealerc_PAFL_2147919661_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Stealerc_APFA_2147927998_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Stealerc.APFA!MTB"
+        threat_id = "2147927998"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Stealerc"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {33 75 fc 89 75 dc 8b 45 dc 29 45 f8 81 c7 47 86 c8 61 83 6d ?? 01 0f 85}  //weight: 3, accuracy: Low
+        $x_2_2 = {8b c3 c1 e8 05 89 45 fc 8b 45 e8 01 45 fc 8b f3 c1 e6 04 03 75 ec 8d 0c 1f 33 f1}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

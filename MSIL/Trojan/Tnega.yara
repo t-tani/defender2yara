@@ -1041,3 +1041,26 @@ rule Trojan_MSIL_Tnega_MC_2147901837_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Tnega_SIK_2147928023_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Tnega.SIK!MTB"
+        threat_id = "2147928023"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Tnega"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "http://xianggrhen.com/composure/" ascii //weight: 1
+        $x_1_2 = "DownloadData" ascii //weight: 1
+        $x_1_3 = "FromBase64String" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
