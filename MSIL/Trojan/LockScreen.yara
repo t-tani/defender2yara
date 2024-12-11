@@ -162,6 +162,34 @@ rule Trojan_MSIL_LockScreen_MA_2147926199_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "DisableTaskMgr" wide //weight: 1
+        $x_1_2 = "taskkill" wide //weight: 1
+        $x_1_3 = "shutdown" wide //weight: 1
+        $x_1_4 = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run" wide //weight: 1
+        $x_5_5 = "Alphi.exe" ascii //weight: 5
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_5_*) and 3 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+
+rule Trojan_MSIL_LockScreen_MA_2147926199_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/LockScreen.MA!MTB"
+        threat_id = "2147926199"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "LockScreen"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
         threshold = "10"
         strings_accuracy = "High"
     strings:

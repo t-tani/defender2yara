@@ -1322,12 +1322,12 @@ rule Trojan_Win32_Stealc_AJFA_2147927782_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Stealc_AVFA_2147928076_0
+rule Trojan_Win32_Stealc_AVFA_2147928079_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Stealc.AVFA!MTB"
-        threat_id = "2147928076"
+        threat_id = "2147928079"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Stealc"

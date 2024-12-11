@@ -378,3 +378,25 @@ rule Trojan_Win32_Graftor_MKV_2147924864_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Graftor_AWFA_2147928080_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Graftor.AWFA!MTB"
+        threat_id = "2147928080"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Graftor"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {46 81 e6 ff 00 00 00 8a 44 34 ?? 8a d8 03 df 81 e3 ff 00 00 00 8b fb 8a 5c 3c ?? 88 5c 34 ?? 88 44 3c ?? 8a 5c 34 ?? 03 d8 81 e3 ff 00 00 00 8a 44 1c ?? 8a 1c 29 32 c3 88 01 41 4a 75}  //weight: 5, accuracy: Low
+        $x_1_2 = "stttdelzzz.bat" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

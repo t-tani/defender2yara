@@ -300,3 +300,24 @@ rule Trojan_Win32_Simda_CCIO_2147924541_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Simda_MX_2147928075_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Simda.MX!MTB"
+        threat_id = "2147928075"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Simda"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {8b da d1 e3 ff 13}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

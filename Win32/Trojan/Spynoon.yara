@@ -590,12 +590,12 @@ rule Trojan_Win32_Spynoon_MBZW_2147907374_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Spynoon_AUFA_2147928075_0
+rule Trojan_Win32_Spynoon_AUFA_2147928078_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Spynoon.AUFA!MTB"
-        threat_id = "2147928075"
+        threat_id = "2147928078"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Spynoon"
