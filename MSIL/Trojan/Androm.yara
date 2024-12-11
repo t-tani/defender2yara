@@ -1321,3 +1321,29 @@ rule Trojan_MSIL_Androm_KAC_2147920816_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Androm_EM_2147928046_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Androm.EM!MTB"
+        threat_id = "2147928046"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Androm"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "FUCKMACS" ascii //weight: 1
+        $x_1_2 = "DebuggerHiddenAttribute" ascii //weight: 1
+        $x_1_3 = "EnsureSuccessStatusCode" ascii //weight: 1
+        $x_1_4 = "ConfusedByAttribute" ascii //weight: 1
+        $x_1_5 = "get_NetworkInterfaceType" ascii //weight: 1
+        $x_1_6 = "0bf582eb-df3f-46ba-97a6-8d8caaf4113d" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

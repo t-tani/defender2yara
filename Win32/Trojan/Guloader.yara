@@ -4679,3 +4679,29 @@ rule Trojan_Win32_Guloader_SPBD_2147927545_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Guloader_ASC_2147928050_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Guloader.ASC!MTB"
+        threat_id = "2147928050"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Guloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "morbidises\\Enrive\\Twaddlier\\milieugiftes.ini" ascii //weight: 2
+        $x_1_2 = "Tonsillar\\Marginiform\\Muskmelon" ascii //weight: 1
+        $x_1_3 = "Tympaniform%\\Kalfaktor\\Samfundsbevidst\\Filkaldets\\Brevbrerens.Bin" ascii //weight: 1
+        $x_1_4 = "Dysidrosis\\Ilmarchens\\Graedefaerdig\\Bummalo" ascii //weight: 1
+        $x_1_5 = "Duplikatets\\imperativer\\Samfundsnyttehensyns\\Neurolymph.ini" ascii //weight: 1
+        $x_1_6 = "Linjevogters\\telefonboksene.ini" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
