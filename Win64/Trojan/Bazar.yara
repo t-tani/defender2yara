@@ -19,3 +19,25 @@ rule Trojan_Win64_Bazar_EA_2147853200_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Bazar_GA_2147928156_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Bazar.GA!MTB"
+        threat_id = "2147928156"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Bazar"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {48 31 d2 49 f7 f0 45 8a 14 11}  //weight: 1, accuracy: High
+        $x_1_2 = {44 30 14 0f 48 ff c1 48 89 c8 48 81 f9 [0-4] 76}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

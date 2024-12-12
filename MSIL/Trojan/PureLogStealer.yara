@@ -2232,3 +2232,26 @@ rule Trojan_MSIL_PureLogStealer_ASFA_2147928017_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_PureLogStealer_PKLH_2147928108_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/PureLogStealer.PKLH!MTB"
+        threat_id = "2147928108"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "PureLogStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_8_1 = {0b 14 0c 2b [0-20] 08 16 08 8e 69 6f ?? 00 00 0a 0d de 0a 06 2c 06 06 6f ?? 00 00 0a dc}  //weight: 8, accuracy: Low
+        $x_1_2 = "FromBase64String" ascii //weight: 1
+        $x_1_3 = "CreateDecryptor" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

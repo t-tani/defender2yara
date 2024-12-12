@@ -6558,3 +6558,48 @@ rule Trojan_Win32_CryptInject_TBM_2147927695_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_CryptInject_BKL_2147928117_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/CryptInject.BKL!MTB"
+        threat_id = "2147928117"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "MyCallUpdate" ascii //weight: 1
+        $x_1_2 = "Erro ao localizar a fun" ascii //weight: 1
+        $x_1_3 = "ClassicIEDLL_64.dll" ascii //weight: 1
+        $x_1_4 = "SaaSAPI.json" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_CryptInject_OPI_2147928125_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/CryptInject.OPI!MTB"
+        threat_id = "2147928125"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {8b 7c 24 10 89 44 24 0c 0f b6 04 30 88 04 37 8b 44 24 0c 88 0c 30 8b cf 0f b6 04 31 03 c2 0f b6 c0 8a 04 30 32 83 ?? ?? ?? ?? 88 83 00 50 1c 10 f6 c3 0f 75}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

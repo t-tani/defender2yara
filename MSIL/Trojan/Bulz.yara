@@ -475,3 +475,26 @@ rule Trojan_MSIL_Bulz_AYA_2147925309_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Bulz_ARAZ_2147928123_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Bulz.ARAZ!MTB"
+        threat_id = "2147928123"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Bulz"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "ec632fd9-1694-4f4a-9bff-f20600e37981" ascii //weight: 2
+        $x_2_2 = "sihost.Resources.resources" ascii //weight: 2
+        $x_2_3 = "\\sihost.pdb" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -3929,3 +3929,48 @@ rule Trojan_Win32_AutoitInject_NAZ_2147928055_0
         )
 }
 
+rule Trojan_Win32_AutoitInject_AYFA_2147928116_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.AYFA!MTB"
+        threat_id = "2147928116"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "22"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {46 00 49 00 4c 00 45 00 49 00 4e 00 53 00 54 00 41 00 4c 00 4c 00 20 00 28 00 20 00 22 00 [0-30] 22 00 20 00 2c 00 20 00 40 00 54 00 45 00 4d 00 50 00 44 00 49 00 52 00 20 00 26 00 20 00 22 00 5c 00 00 22 00 20 00 2c 00 20 00 31 00 20 00 29 00}  //weight: 4, accuracy: Low
+        $x_4_2 = {46 49 4c 45 49 4e 53 54 41 4c 4c 20 28 20 22 [0-30] 22 20 2c 20 40 54 45 4d 50 44 49 52 20 26 20 22 5c 00 22 20 2c 20 31 20 29}  //weight: 4, accuracy: Low
+        $x_1_3 = "= \"D\"" ascii //weight: 1
+        $x_1_4 = "&= \"llC\"" ascii //weight: 1
+        $x_1_5 = "&= \"a\"" ascii //weight: 1
+        $x_2_6 = "&= \"ll(\"\"ke\"" ascii //weight: 2
+        $x_1_7 = "&= \"rn\"" ascii //weight: 1
+        $x_1_8 = "&= \"el3\"" ascii //weight: 1
+        $x_1_9 = "&= \"2\"\", \"\"p\"" ascii //weight: 1
+        $x_1_10 = "= \"Dl\"" ascii //weight: 1
+        $x_1_11 = "&= \"lSt\"" ascii //weight: 1
+        $x_1_12 = "&= \"ructC\"" ascii //weight: 1
+        $x_2_13 = "&= \"reate(\"\"by\"" ascii //weight: 2
+        $x_1_14 = "&= \"te [\"" ascii //weight: 1
+        $x_4_15 = {45 00 58 00 45 00 43 00 55 00 54 00 45 00 20 00 28 00 20 00 22 00 44 00 22 00 20 00 26 00 20 00 22 00 6c 00 6c 00 53 00 74 00 72 00 22 00 20 00 26 00 20 00 22 00 75 00 63 00 74 00 53 00 65 00 22 00 20 00 26 00 20 00 22 00 74 00 44 00 22 00 20 00 26 00 20 00 22 00 61 00 74 00 61 00 28 00 24 00 [0-20] 2c 00 20 00 31 00 2c 00}  //weight: 4, accuracy: Low
+        $x_4_16 = {45 58 45 43 55 54 45 20 28 20 22 44 22 20 26 20 22 6c 6c 53 74 72 22 20 26 20 22 75 63 74 53 65 22 20 26 20 22 74 44 22 20 26 20 22 61 74 61 28 24 [0-20] 2c 20 31 2c}  //weight: 4, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (
+            ((2 of ($x_4_*) and 2 of ($x_2_*) and 10 of ($x_1_*))) or
+            ((3 of ($x_4_*) and 10 of ($x_1_*))) or
+            ((3 of ($x_4_*) and 1 of ($x_2_*) and 8 of ($x_1_*))) or
+            ((3 of ($x_4_*) and 2 of ($x_2_*) and 6 of ($x_1_*))) or
+            ((4 of ($x_4_*) and 6 of ($x_1_*))) or
+            ((4 of ($x_4_*) and 1 of ($x_2_*) and 4 of ($x_1_*))) or
+            ((4 of ($x_4_*) and 2 of ($x_2_*) and 2 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+

@@ -6216,3 +6216,25 @@ rule Trojan_Win32_Vidar_AVD_2147927185_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Vidar_AVDR_2147928150_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Vidar.AVDR!MTB"
+        threat_id = "2147928150"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Vidar"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {8d 34 3b 8a 04 30 88 45 ff ff 15 ?? ?? ?? ?? 8b c8 33 d2 8b c3 f7 f1 8b 45 0c 8a 04 02 32 45 ff 43 88 06}  //weight: 2, accuracy: Low
+        $x_1_2 = {8b c8 83 e1 03 8a 8c 0d ?? ?? ?? ?? 30 0c 06 40}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
