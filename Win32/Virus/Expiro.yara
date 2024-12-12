@@ -627,9 +627,9 @@ rule Virus_Win32_Expiro_HNE_2147928179_0
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "1"
-        strings_accuracy = "High"
+        strings_accuracy = "Low"
     strings:
-        $x_1_1 = {8d 15 40 00 00 00 53 50 01 d8 54 52 57 50 ff d6 58 5b 52}  //weight: 1, accuracy: High
+        $x_1_1 = {53 50 01 d8 54 52 57 50 ff d6 58 5b 52 04 00 40 00 00 00}  //weight: 1, accuracy: Low
     condition:
         (filesize < 20MB) and
         (all of ($x*))

@@ -428,3 +428,27 @@ rule Trojan_MSIL_Dnoper_AMV_2147925328_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Dnoper_ABGA_2147928188_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Dnoper.ABGA!MTB"
+        threat_id = "2147928188"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Dnoper"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {73 03 00 00 0a 0a 06 20 ?? ?? 00 00 28 ?? 03 00 06 28 ?? 00 00 0a 6f ?? 00 00 0a 06 20 ?? ?? 00 00 28 ?? 03 00 06 28 ?? 00 00 0a 6f ?? 00 00 0a 06 6f ?? 00 00 0a 0b 14 0c 2b 1b}  //weight: 3, accuracy: Low
+        $x_2_2 = {07 08 16 08 8e 69 6f ?? 00 00 0a 0d de 0a}  //weight: 2, accuracy: Low
+        $x_1_3 = "FromBase64String" ascii //weight: 1
+        $x_1_4 = "CreateDecryptor" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
