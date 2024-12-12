@@ -715,3 +715,29 @@ rule Ransom_Win64_FileCoder_MA_2147928077_0
         (all of ($x*))
 }
 
+rule Ransom_Win64_FileCoder_RHAD_2147928181_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win64/FileCoder.RHAD!MTB"
+        threat_id = "2147928181"
+        type = "Ransom"
+        platform = "Win64: Windows 64-bit platform"
+        family = "FileCoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {50 45 00 00 64 86 0f ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 0b 02 03 00 00 ?? 24 00 00 ?? 03 00 00 00 00 00 ?? ?? 06}  //weight: 2, accuracy: Low
+        $x_3_2 = "HexaLocker" ascii //weight: 3
+        $x_2_3 = "precisely from ZZART3XX" ascii //weight: 2
+        $x_1_4 = "chacha20" ascii //weight: 1
+        $x_1_5 = "your important files have been encrypted and the only way to recover them is to purchase the decryption key" ascii //weight: 1
+        $x_1_6 = "follow these instructions and purchase the decryption key to recover your encrypted files" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

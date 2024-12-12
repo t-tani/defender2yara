@@ -2414,3 +2414,24 @@ rule Trojan_MSIL_LummaStealer_NCT_2147927980_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_LummaStealer_PKPH_2147928171_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/LummaStealer.PKPH!MTB"
+        threat_id = "2147928171"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {08 11 04 02 11 04 91 07 61 06 09 91 61 d2 9c 09 03 6f ?? ?? ?? ?? 17 59 33 04 16 0d 2b 04 09 17 58 0d 11 04 17 58 13 04 11 04 02 8e 69 17 59 32 cf}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
