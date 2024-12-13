@@ -309,3 +309,24 @@ rule Trojan_Win32_DCRat_SOL_2147922847_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_DCRat_MPX_2147928219_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/DCRat.MPX!MTB"
+        threat_id = "2147928219"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "DCRat"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {2b d1 83 f2 19 8b 85 ?? ?? ?? ?? 0f af 50 04 8b 8d 4c fc ff ff 69 41 04 38 01 00 00 2b d0 8b 8d ?? ?? ?? ?? 89 11 8b 95 4c fc ff ff 89 95 ?? ?? ?? ?? 52 52 83 c4 04 eb}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -2103,3 +2103,27 @@ rule Trojan_MSIL_Tedy_NAB_2147921841_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Tedy_ARAZ_2147928216_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Tedy.ARAZ!MTB"
+        threat_id = "2147928216"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Tedy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "$323534cf-1ddb-4e54-be39-8704ee83811e" ascii //weight: 2
+        $x_2_2 = "/moc.codnogazam//:sptth" wide //weight: 2
+        $x_2_3 = "SELECT * FROM Win32_NetworkAdapter" wide //weight: 2
+        $x_2_4 = "select * from Win32_PhysicalMemory" wide //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

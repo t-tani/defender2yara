@@ -2776,3 +2776,27 @@ rule Trojan_MSIL_Lazy_AJS_2147924671_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Lazy_ARAZ_2147928217_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Lazy.ARAZ!MTB"
+        threat_id = "2147928217"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Lazy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "$49831765-298d-43f2-82a0-018c3bff7857" ascii //weight: 2
+        $x_2_2 = "gd_.Properties.Resources" ascii //weight: 2
+        $x_2_3 = "\\gd].pdb" ascii //weight: 2
+        $x_2_4 = "\\lol.pdb" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

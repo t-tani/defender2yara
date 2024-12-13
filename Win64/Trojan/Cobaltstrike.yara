@@ -2600,3 +2600,24 @@ rule Trojan_Win64_Cobaltstrike_MCH_2147928165_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Cobaltstrike_AAS_2147928218_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Cobaltstrike.AAS!MTB"
+        threat_id = "2147928218"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Cobaltstrike"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {41 89 d1 4d 69 c9 39 8e e3 38 49 c1 e9 22 45 01 c9 47 8d 0c c9 41 89 d2 45 29 ca 4c 8b 8d f8 07 00 00 47 0f b6 0c 11 45 32 0c 10 4c 8d 05 63 97 04 00 46 88 0c 02 ff c2 83 fa 0a}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
