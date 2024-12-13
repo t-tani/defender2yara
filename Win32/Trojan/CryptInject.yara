@@ -6603,3 +6603,24 @@ rule Trojan_Win32_CryptInject_OPI_2147928125_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_CryptInject_MUC_2147928288_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/CryptInject.MUC!MTB"
+        threat_id = "2147928288"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {83 c0 01 89 85 ?? ?? ff ff 8b 8d ?? ?? ff ff 3b 8d 08 f5 ff ff 73 50 8b 95 ?? ?? ff ff 03 95 ?? ?? ff ff 8b 85 b4 e3 ff ff 03 85 b8 f9 ff ff 8a 08 88 0a 56 81 ce d0 2d 00 00 81 e6 08 5e 00 00 eb}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

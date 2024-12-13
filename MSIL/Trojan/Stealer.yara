@@ -2472,3 +2472,29 @@ rule Trojan_MSIL_Stealer_PAFU_2147927898_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Stealer_NITs_2147928291_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Stealer.NITs!MTB"
+        threat_id = "2147928291"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Stealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "9"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "\\Google\\Chrome\\User Data\\Default\\Login Data" wide //weight: 2
+        $x_2_2 = "\\Opera Software\\Opera Stable\\Login Data" wide //weight: 2
+        $x_2_3 = "\\Yandex\\YandexBrowser\\User Data\\Default\\Login Data" wide //weight: 2
+        $x_1_4 = "\\Google\\Chrome\\User Data\\Default\\Cookies" wide //weight: 1
+        $x_1_5 = "Stealer" wide //weight: 1
+        $x_1_6 = "screen.jpg" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

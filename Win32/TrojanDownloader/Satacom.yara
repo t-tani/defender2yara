@@ -34,6 +34,27 @@ rule TrojanDownloader_Win32_Satacom_ARA_2147830748_0
         threshold = "2"
         strings_accuracy = "Low"
     strings:
+        $x_2_1 = {fe c2 0f b6 d2 8b 4c ?? ?? 8d 04 0b 0f b6 d8 8b 44 ?? ?? 89 44 ?? ?? 89 4c ?? ?? 02 c8 0f b6 c1 8b 4d f8 8a 44 ?? ?? 30 04 ?? ?? 3b ?? fc 7c d0}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule TrojanDownloader_Win32_Satacom_ARA_2147830748_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:Win32/Satacom.ARA!MTB"
+        threat_id = "2147830748"
+        type = "TrojanDownloader"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Satacom"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
         $x_1_1 = {8b 45 ec 8b 4d dc 03 45 c8 33 d2 23 45 e0 d3 e0 b9 08 00 00 00 8a 55 eb 2b 4d dc d3 fa 03 c2 c1 e0 08 8d 04 40 03 c0 03 45 f0 05 6c 0e 00 00 83 fb 07 7c 34 8b d7 2b d6 89 55 a4 8b 4d a4 3b 4d bc 72 06 8b 55 bc 01 55 a4 8b 4d c0 8b 55 a4 8a 0c 11 88 4d ab 8d 95 ?? ?? ?? ?? 8a 4d ab e8 ?? ?? ?? ?? 88 45 eb eb 0e 8d 95 ?? ?? ?? ?? e8 ?? ?? ?? ?? 88 45 eb 8b 45 98 8a 4d eb 88 08 ff 45 ec ff 45 98 8b 45 c4 3b 45 bc 73 03 ff 45 c4 8b 55 c0 8a 4d eb 88 0c 3a 47 3b 7d bc 75 02}  //weight: 1, accuracy: Low
         $x_1_2 = "Cheyenne1\"0" ascii //weight: 1
     condition:

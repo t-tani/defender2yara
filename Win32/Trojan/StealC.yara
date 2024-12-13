@@ -3742,3 +3742,28 @@ rule Trojan_Win32_StealC_ZC_2147928230_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_StealC_ARAZ_2147928285_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/StealC.ARAZ!MTB"
+        threat_id = "2147928285"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "StealC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "SOFTWARE\\monero-project\\monero-core" ascii //weight: 2
+        $x_2_2 = "\\Monero\\wallet.keys" ascii //weight: 2
+        $x_2_3 = "\"webSocketDebuggerUrl\":" ascii //weight: 2
+        $x_2_4 = "steam_tokens.txt" ascii //weight: 2
+        $x_2_5 = "Opus Theatre was founded by" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
