@@ -127,6 +127,28 @@ rule Trojan_MSIL_nJRat_ANJ_2147841499_4
         (all of ($x*))
 }
 
+rule Trojan_MSIL_nJRat_ANJ_2147841499_5
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/nJRat.ANJ!MTB"
+        threat_id = "2147841499"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "nJRat"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {02 0b 16 0c 2b 52 07 08 6f ?? 00 00 0a 0d 16 13 04 2b 33 7e 5a 00 00 04 11 04 6f ?? 00 00 0a 09 33 1e 06 7e 59 00 00 04 11 04 6f ?? 00 00 0a 13 05 12 05 28 ?? 01 00 0a 28}  //weight: 3, accuracy: Low
+        $x_2_2 = {2b 12 02 28 ?? 00 00 06 2c 06 16 28 ?? 00 00 0a 06 17 58 0a 06 73 15 00 00 0a 19 1f 0a 6f}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_nJRat_AJ_2147841500_0
 {
     meta:
