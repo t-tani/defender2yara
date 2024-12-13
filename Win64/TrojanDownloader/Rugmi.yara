@@ -487,3 +487,25 @@ rule TrojanDownloader_Win64_Rugmi_HNAD_2147925223_0
         )
 }
 
+rule TrojanDownloader_Win64_Rugmi_DD_2147928234_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:Win64/Rugmi.DD!MTB"
+        threat_id = "2147928234"
+        type = "TrojanDownloader"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Rugmi"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {8b 83 10 01 00 00 83 f8 14 0f 85 fa 00 00 00 48 8b 8b 20 01 00 00 48 8d 54 24 40 8d 70 ed e8 f1 00 ff ff 81 bf 94 01 00 00 00 01 00 00 74 08 81 3f 00 01 00 00}  //weight: 1, accuracy: High
+        $x_1_2 = {66 89 45 f2 8b 45 fc 69 d0 3f 00 01 00 0f b7 45 f2 01 d0 89 45 fc 83 45 f8 01}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (1 of ($x*))
+}
+
