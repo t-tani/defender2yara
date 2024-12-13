@@ -758,3 +758,25 @@ rule Trojan_Win32_ICLoader_GNM_2147928072_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_ICLoader_BAL_2147928239_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ICLoader.BAL!MTB"
+        threat_id = "2147928239"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ICLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {8d 0c 00 0b ca 89 4c 24 04 df 6c 24 04 dc 05 ?? ?? 4d 00 dd 1d ?? ?? 4d 00 ff 15 ?? ?? 4c 00 a3 ?? ?? 4d 00 83 c4 08 c3}  //weight: 4, accuracy: Low
+        $x_1_2 = {55 8b ec 83 ec 10 53 56 57 e8 ?? ?? f5 ff 89 45 fc e9}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

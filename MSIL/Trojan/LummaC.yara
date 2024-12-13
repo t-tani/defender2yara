@@ -867,3 +867,41 @@ rule Trojan_MSIL_LummaC_ALA_2147927951_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_LummaC_ASGH_2147928238_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/LummaC.ASGH!MTB"
+        threat_id = "2147928238"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "LummaC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "dJUlgvSZpdCgWTQzgwoIznJ.dll" ascii //weight: 2
+        $x_1_2 = "NEJhTxHyewesCoDXyLlJJhqb.dll" ascii //weight: 1
+        $x_1_3 = "fvXlxJdzSMOtTAgbQwqdlFnyoLo" ascii //weight: 1
+        $x_1_4 = "AnKMgjNuTdaMMEVlegARKeQm" ascii //weight: 1
+        $x_2_5 = "9FDA7AF569387AB23DEAB3DF6E8401CDB82C961CFEF5627CB560BFD96DB536A6" ascii //weight: 2
+        $x_1_6 = "w't4z}FTM;jYC$}Pybpk4jFB" ascii //weight: 1
+        $x_1_7 = "V[fa6OgSE\"mn<" ascii //weight: 1
+        $x_1_8 = "gDkyS}I#15nkS" ascii //weight: 1
+        $x_2_9 = "32F585707B9A5F9805D3DF3A366255E1D258CA4AA9281B14A8CDE2F4902E7595" ascii //weight: 2
+        $x_1_10 = "<D@4_\" \\Ra\"Mp@=-ZLq1PN#}" ascii //weight: 1
+        $x_1_11 = "0VLMx{{)y8*3#" ascii //weight: 1
+        $x_1_12 = "SamuelAvaChloe.jkqw" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((5 of ($x_1_*))) or
+            ((1 of ($x_2_*) and 3 of ($x_1_*))) or
+            ((2 of ($x_2_*) and 1 of ($x_1_*))) or
+            ((3 of ($x_2_*))) or
+            (all of ($x*))
+        )
+}
+
