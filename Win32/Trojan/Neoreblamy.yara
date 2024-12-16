@@ -2527,3 +2527,33 @@ rule Trojan_Win32_Neoreblamy_NB_2147927855_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Neoreblamy_BAN_2147928321_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Neoreblamy.BAN!MTB"
+        threat_id = "2147928321"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Neoreblamy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {59 33 d2 8b c6 f7 f1 8b 45 08 ff 34 ?? ff 34 b3 e8 ?? ?? ff ff 89 04 b3 46 59 59 3b f7 72}  //weight: 4, accuracy: Low
+        $x_1_2 = {55 8b ec 83 ec ?? 8b 45 08 03 45 0c 89 45}  //weight: 1, accuracy: Low
+        $x_3_3 = {2b c1 0f af 45 ?? 0f b6 4d ?? 8b 55 ?? 0f af d1 03 c2 8b 4d ?? 2b c8 0f b6 45}  //weight: 3, accuracy: Low
+        $x_2_4 = {2b c2 0f af 45 ?? 0f b6 55 ?? 8b 75 ?? 0f af f2 03 c6 03 c8}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_3_*) and 1 of ($x_2_*))) or
+            ((1 of ($x_4_*) and 1 of ($x_1_*))) or
+            ((1 of ($x_4_*) and 1 of ($x_2_*))) or
+            ((1 of ($x_4_*) and 1 of ($x_3_*))) or
+            (all of ($x*))
+        )
+}
+
