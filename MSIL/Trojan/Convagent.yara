@@ -343,3 +343,25 @@ rule Trojan_MSIL_Convagent_MX_2147925519_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Convagent_AMCU_2147928401_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Convagent.AMCU!MTB"
+        threat_id = "2147928401"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Convagent"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {0a 0b 00 07 28 ?? ?? 00 06 26 00 de 0b 07 2c 07 07 6f ?? 00 00 0a 00 dc 28 ?? ?? 00 06 28 ?? ?? 00 06 26 00 de 0b}  //weight: 4, accuracy: Low
+        $x_1_2 = "CreateDecryptor" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

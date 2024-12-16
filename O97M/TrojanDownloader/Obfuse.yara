@@ -27611,3 +27611,26 @@ rule TrojanDownloader_O97M_Obfuse_RVCI_2147927530_0
         (all of ($x*))
 }
 
+rule TrojanDownloader_O97M_Obfuse_RVCJ_2147928414_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:O97M/Obfuse.RVCJ!MTB"
+        threat_id = "2147928414"
+        type = "TrojanDownloader"
+        platform = "O97M: Office 97, 2000, XP, 2003, 2007, and 2010 macros - those that affect Word, Excel, and PowerPoint"
+        family = "Obfuse"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_MACROHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "bvukwxid0gimh0dha6ly9sb2x\"encodedstring=encodedstring&\"tywqubgl2zwjsb2cznjuuy29t\"encodedstring=encodedstring&\"l3jhbnnvbxdhcmuudhh0iiani\"" ascii //weight: 1
+        $x_1_2 = ".runvbcomp.name&\".downloadtwofilesfromurl\"endsubfunction" ascii //weight: 1
+        $x_1_3 = "document_open()" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
