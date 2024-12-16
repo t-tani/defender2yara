@@ -25,3 +25,31 @@ rule TrojanDownloader_MSIL_Jalapeno_AYB_2147926814_0
         (all of ($x*))
 }
 
+rule TrojanDownloader_MSIL_Jalapeno_NIT_2147928359_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:MSIL/Jalapeno.NIT!MTB"
+        threat_id = "2147928359"
+        type = "TrojanDownloader"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Jalapeno"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "tempZipArchivePath" ascii //weight: 2
+        $x_2_2 = "doSha256Check" ascii //weight: 2
+        $x_2_3 = "shell\\open\\command" wide //weight: 2
+        $x_1_4 = "NovaLauncher_ProcessedByFody" ascii //weight: 1
+        $x_1_5 = "obj\\Release\\NovaLauncher.pdb" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((3 of ($x_2_*) and 1 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+

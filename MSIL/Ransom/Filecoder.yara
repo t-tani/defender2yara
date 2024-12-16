@@ -3428,6 +3428,27 @@ rule Ransom_MSIL_Filecoder_SWH_2147927258_0
         (all of ($x*))
 }
 
+rule Ransom_MSIL_Filecoder_SWH_2147927258_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:MSIL/Filecoder.SWH!MTB"
+        threat_id = "2147927258"
+        type = "Ransom"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Filecoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {00 06 72 2d 01 00 70 28 ?? 00 00 0a 28 ?? 00 00 0a 26 72 51 01 00 70 28 ?? 00 00 0a 26 72 51 01 00 70 17 28 ?? 00 00 0a 00 06 72 2d 01 00 70 28 ?? 00 00 0a 17 28 ?? 00 00 0a 00 08 72 c7 01 00 70 28 ?? 00 00 0a 28 ?? 00 00 0a 00 73 87 00 00 0a 13 05 11 05 72 01 02 00 70 6f ?? 00 00 0a 00 11 05 17 6f ?? 00 00 0a 00 11 05 72 11 02 00 70 08 72 a3 02 00 70 28 ?? 00 00 0a 6f ?? 00 00 0a 00 11 05}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Ransom_MSIL_Filecoder_SWI_2147927262_0
 {
     meta:
@@ -3453,5 +3474,47 @@ rule Ransom_MSIL_Filecoder_SWI_2147927262_0
             ((2 of ($x_2_*) and 1 of ($x_1_*))) or
             (all of ($x*))
         )
+}
+
+rule Ransom_MSIL_Filecoder_SUX_2147928353_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:MSIL/Filecoder.SUX!MTB"
+        threat_id = "2147928353"
+        type = "Ransom"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Filecoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {07 17 58 16 0b 45 1b 00 00 00 00 00 00 00 6a fe ff ff 73 fe ff ff 82 fe ff ff 91 fe ff ff a0 fe ff ff ad fe ff ff b3 fe ff ff c1 fe ff ff cb fe ff ff f5 fe ff ff da fe ff ff f3 fe ff ff f6 fe ff ff 29 ff ff ff f8 fe ff ff 0e ff ff ff 1d ff ff ff 28 ff ff ff 38 ff ff ff 43 ff ff ff 51 ff ff ff 5f ff ff ff 6d ff ff ff 78 ff ff ff 83 ff ff ff 85 ff ff ff de 3a 08 0b 06 1f fe 30 03 17 2b 01 06 45 02 00 00 00 00 00 00 00 70 ff ff ff de 20 75 27 00 00 01 14 fe 03 06 16 fe 03 5f 07 16 fe 01 5f fe 11}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Ransom_MSIL_Filecoder_SWY_2147928354_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:MSIL/Filecoder.SWY!MTB"
+        threat_id = "2147928354"
+        type = "Ransom"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Filecoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {06 11 04 16 11 04 8e 69 6f ?? 00 00 0a 25 13 05 16 31 38 09 11 04 16 11 05 6f ?? 00 00 0a 07 6f ?? 00 00 0a 16 6a 31 23 06 07 6f ?? 00 00 0a 65 17 6f ?? 00 00 0a 26 06 07 6f ?? 00 00 0a 16 07 6f ?? 00 00 0a 69 6f ?? 00 00 0a 11 05 16 30 b0}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
 }
 

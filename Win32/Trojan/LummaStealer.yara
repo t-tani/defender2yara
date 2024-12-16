@@ -3254,3 +3254,31 @@ rule Trojan_Win32_LummaStealer_RPAC_2147928260_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_LummaStealer_BAN_2147928342_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaStealer.BAN!MTB"
+        threat_id = "2147928342"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {e0 2e 74 61 67 67 61 6e 74 00 40 00 00 00 ?? ?? 00 00 22 00 00 00 ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 e0}  //weight: 3, accuracy: Low
+        $x_2_2 = {c0 2e 69 64 61 74 61 20 20 00 20 00 00 00 80 00 00 00 02 00 00 00 38 00 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 c0}  //weight: 2, accuracy: High
+        $x_5_3 = {e0 2e 72 73 72 63 00 00 00 00 05 00 00 00 60 00 00 00 06 00 00 00 32 00 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 c0 2e 69 64 61 74 61 20 20 00 20 00 00 00 80 00 00 00 02 00 00 00 38}  //weight: 5, accuracy: High
+        $x_5_4 = {e0 2e 72 73 72 63 00 00 00 44 03 00 00 00 90 06 00 00 04 00 00 00 ee 02 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 c0 2e 69 64 61 74 61 20 20 00 10 00 00 00 a0 06 00 00 02 00 00 00 f2 02}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_3_*) and 1 of ($x_2_*))) or
+            ((1 of ($x_5_*))) or
+            (all of ($x*))
+        )
+}
+

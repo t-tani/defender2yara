@@ -4019,3 +4019,38 @@ rule Trojan_Win32_AutoitInject_AEGA_2147928264_0
         )
 }
 
+rule Trojan_Win32_AutoitInject_NBV_2147928358_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.NBV!MTB"
+        threat_id = "2147928358"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {46 00 49 00 4c 00 45 00 49 00 4e 00 53 00 54 00 41 00 4c 00 4c 00 20 00 28 00 20 00 22 00 [0-47] 22 00 20 00 2c 00 20 00 40 00 54 00 45 00 4d 00 50 00 44 00 49 00 52 00 20 00 26 00 20 00 22 00 5c 00 00 22 00 20 00 2c 00 20 00 31 00 20 00 29 00}  //weight: 2, accuracy: Low
+        $x_2_2 = {46 49 4c 45 49 4e 53 54 41 4c 4c 20 28 20 22 [0-47] 22 20 2c 20 40 54 45 4d 50 44 49 52 20 26 20 22 5c 00 22 20 2c 20 31 20 29}  //weight: 2, accuracy: Low
+        $x_1_3 = "= EXECUTE ( \"Cei\" & \"lin\" & \"g(Stri\" & \"ngLen" ascii //weight: 1
+        $x_1_4 = "= EXECUTE ( \"Str\" & \"ingL\" & \"eft" ascii //weight: 1
+        $x_1_5 = "= EXECUTE ( \"Str\" & \"ingT\" & \"rim\" & \"Le\" & \"ft" ascii //weight: 1
+        $x_1_6 = "btkqyuniuo" ascii //weight: 1
+        $x_1_7 = "wqadobiril" ascii //weight: 1
+        $x_1_8 = "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion" ascii //weight: 1
+        $x_1_9 = "Security Logs Archive\\firewall_image.jpg" ascii //weight: 1
+        $x_1_10 = "Steps\\ Monitor Logs\\component_registry.data" ascii //weight: 1
+        $x_1_11 = "Code Snapshots\\application_event_summary.txt" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_2_*) and 9 of ($x_1_*))) or
+            ((2 of ($x_2_*) and 7 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+
