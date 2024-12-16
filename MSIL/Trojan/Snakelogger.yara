@@ -148,3 +148,25 @@ rule Trojan_MSIL_Snakelogger_KAD_2147920815_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Snakelogger_PKUH_2147928393_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Snakelogger.PKUH!MTB"
+        threat_id = "2147928393"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Snakelogger"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_8_1 = {0a 06 17 6f ?? 00 00 0a 06 18 6f ?? 00 00 0a 06 03 04 6f ?? 00 00 0a 02 16 02 8e 69 6f ?? 00 00 0a 0b de 13}  //weight: 8, accuracy: Low
+        $x_2_2 = "CreateDecryptor" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

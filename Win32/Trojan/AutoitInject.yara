@@ -4054,3 +4054,29 @@ rule Trojan_Win32_AutoitInject_NBV_2147928358_0
         )
 }
 
+rule Trojan_Win32_AutoitInject_GSH_2147928371_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.GSH!MTB"
+        threat_id = "2147928371"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "FILEINSTALL ( \"nonhazardousness\" , @TEMPDIR & \"\\nonhazardousness\" , 1 )" ascii //weight: 1
+        $x_1_2 = "FILEGETSIZE ( @APPDATADIR & \"\\ Data Validator\\demo_image.bmp" ascii //weight: 1
+        $x_1_3 = "FILEMOVE ( @TEMPDIR & \"\\Endpoints\\activity_log.conf\" , @WORKINGDIR & \"\\Live\\Certificates\\operation_report.dat" ascii //weight: 1
+        $x_1_4 = "REGDELETE ( \"HKCU\\Control Panel\\Desktop\" , \"338PQpHwjFO1XpIFQRh\" )" ascii //weight: 1
+        $x_1_5 = "FILEDELETE ( @APPDATADIR & \"\\ User Access\\activity_summary.data\" )" ascii //weight: 1
+        $x_1_6 = "REGDELETE ( \"HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\" , \"BpR18J8rSz\" )" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

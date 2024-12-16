@@ -3282,3 +3282,24 @@ rule Trojan_Win32_LummaStealer_BAN_2147928342_0
         )
 }
 
+rule Trojan_Win32_LummaStealer_AMCT_2147928391_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaStealer.AMCT!MTB"
+        threat_id = "2147928391"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {31 c9 85 c0 0f 94 c1 8b 0c 8d ?? ?? ?? ?? [0-40] ff ?? 68 ?? ?? ?? ?? 50 e8 ?? ?? ?? ?? 83 c4 08 a3}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

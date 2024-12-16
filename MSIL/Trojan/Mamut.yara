@@ -548,3 +548,28 @@ rule Trojan_MSIL_Mamut_ARAF_2147927388_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Mamut_NK_2147928372_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Mamut.NK!MTB"
+        threat_id = "2147928372"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Mamut"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "PustakaSoal.Resources.resources" ascii //weight: 2
+        $x_2_2 = "AntiBitDefender" ascii //weight: 2
+        $x_2_3 = "AntiAvast" ascii //weight: 2
+        $x_1_4 = "Vindexer.exe" ascii //weight: 1
+        $x_1_5 = "addMateriKhususUSB" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

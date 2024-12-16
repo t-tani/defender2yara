@@ -1211,3 +1211,26 @@ rule Trojan_Win64_Tedy_NIT_2147928292_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Tedy_GE_2147928375_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Tedy.GE!MTB"
+        threat_id = "2147928375"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Tedy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {0f b6 c1 32 02 32 44 0d ff 34 82 88 44 0d ff 48 ff c1 48 83 f9 0e 72 e8}  //weight: 1, accuracy: High
+        $x_1_2 = "DllInstall" ascii //weight: 1
+        $x_1_3 = "DllRegisterServer" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
