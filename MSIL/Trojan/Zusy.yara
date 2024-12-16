@@ -2635,3 +2635,35 @@ rule Trojan_MSIL_Zusy_GB_2147928067_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Zusy_HNAB_2147928338_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Zusy.HNAB!MTB"
+        threat_id = "2147928338"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "13"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {73 68 61 72 65 4d 6f 64 65 00 53 69 7a 65 4f 66 49 6d 61 67 65 00 45 6e 64 49 6e 76 6f 6b 65 00 42 65 67 69 6e 49 6e 76 6f 6b 65 00}  //weight: 2, accuracy: High
+        $x_1_2 = {00 46 72 6f 6d 42 61 73 65 36 34 53 74 72 69 6e 67 00}  //weight: 1, accuracy: High
+        $x_1_3 = {00 42 61 73 65 4f 66 44 6c 6c 00}  //weight: 1, accuracy: High
+        $x_1_4 = {00 66 69 6c 65 4e 61 6d 65 00}  //weight: 1, accuracy: High
+        $x_1_5 = {00 50 72 6f 63 65 73 73 4d 6f 64 75 6c 65 00}  //weight: 1, accuracy: High
+        $x_1_6 = {00 6e 75 6d 62 65 72 4f 66 42 79 74 65 73 54 6f 4d 61 70 00}  //weight: 1, accuracy: High
+        $x_1_7 = {00 6e 65 77 50 72 6f 74 65 63 74 00}  //weight: 1, accuracy: High
+        $x_1_8 = {00 6f 6c 64 50 72 6f 74 65 63 74 00}  //weight: 1, accuracy: High
+        $x_1_9 = {00 66 69 6c 65 4f 66 66 73 65 74 4c 6f 77 00}  //weight: 1, accuracy: High
+        $x_1_10 = {00 64 65 73 69 72 65 64 41 63 63 65 73 73 00}  //weight: 1, accuracy: High
+        $x_1_11 = {00 66 6c 61 67 73 41 6e 64 41 74 74 72 69 62 75 74 65 73 00}  //weight: 1, accuracy: High
+        $x_1_12 = {2e 00 74 00 6d 00 70 00 00 00 00 00 28 00 02 00 01 00 4c 00 65 00 67 00 61 00 6c 00}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
