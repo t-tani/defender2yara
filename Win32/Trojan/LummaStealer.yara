@@ -3331,3 +3331,24 @@ rule Trojan_Win32_LummaStealer_AMCT_2147928391_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_LummaStealer_YYC_2147928499_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaStealer.YYC!MTB"
+        threat_id = "2147928499"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {8b d3 c1 e2 04 03 55 ?? 33 55 f8 33 d1 2b fa 89 7d ec 8b 45 d4 29 45 f4 83 6d ?? 01 0f 85}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
