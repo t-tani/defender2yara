@@ -19,6 +19,7 @@ rule VirTool_Win32_SuspRemoteCmdCommand_A_2147767977_0
         $n_1_5 = "\\helios-dom" wide //weight: -1
         $n_1_6 = "helios-kliniken" wide //weight: -1
         $n_1_7 = "-ServiceNow\\" wide //weight: -1
+        $n_1_8 = "heliosprod" wide //weight: -1
     condition:
         (filesize < 20MB) and
         (not (any of ($n*))) and
