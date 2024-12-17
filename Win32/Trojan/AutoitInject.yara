@@ -4080,3 +4080,25 @@ rule Trojan_Win32_AutoitInject_GSH_2147928371_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_AutoitInject_AQGA_2147928538_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.AQGA!MTB"
+        threat_id = "2147928538"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_4_1 = "SHELLEXECUTE ( @WORKINGDIR & \"\\vxQSYfert\\qWRpviqXj.exe\" )" ascii //weight: 4
+        $x_2_2 = "SHELLEXECUTE ( @WORKINGDIR & \"\\vxQSYfert\\" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

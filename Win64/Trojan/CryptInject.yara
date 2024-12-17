@@ -3569,3 +3569,25 @@ rule Trojan_Win64_CryptInject_UYC_2147928436_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_CryptInject_NIM_2147928517_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CryptInject.NIM!MTB"
+        threat_id = "2147928517"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "license key ->" ascii //weight: 1
+        $x_2_2 = {8d 41 9b 30 44 0d e7 48 ff c1 48 83 f9 05 72 f0}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

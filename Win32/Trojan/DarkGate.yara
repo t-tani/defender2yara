@@ -858,7 +858,7 @@ rule Trojan_Win32_DarkGate_GB_2147928416_0
         strings_accuracy = "Low"
     strings:
         $x_1_1 = {31 d2 f7 f3}  //weight: 1, accuracy: High
-        $x_1_2 = {30 04 0f 41 89 c8 81 f9 [0-4] 76 9d}  //weight: 1, accuracy: Low
+        $x_1_2 = {30 04 0f 41 89 c8 81 f9 [0-4] 76}  //weight: 1, accuracy: Low
     condition:
         (filesize < 20MB) and
         (all of ($x*))

@@ -1064,3 +1064,25 @@ rule Trojan_Win32_DelfInject_AB_2147900133_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_DelfInject_ADE_2147928516_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/DelfInject.ADE!MTB"
+        threat_id = "2147928516"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "DelfInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {8b 16 88 c3 32 da c1 e8 08 33 04 9d 40 54 41 00 88 c3 32 de c1 e8 08 33 04 9d 40 54 41 00 c1 ea 10 88 c3 32 da c1 e8 08 33 04 9d 40 54 41 00 88 c3 32 de c1 e8 08 33 04 9d 40 54 41 00 83 c6 04}  //weight: 2, accuracy: High
+        $x_1_2 = {88 c3 32 1e c1 e8 08 46 33 04 9d 40 54 41 00}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
