@@ -2992,6 +2992,34 @@ rule Trojan_Win32_LummaStealer_Z_2147927310_2
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = "appdata\\exodus" ascii //weight: 1
+        $x_1_2 = "appdata\\binance" ascii //weight: 1
+        $x_1_3 = {68 00 74 00 74 00 70 00 [0-80] 24 00 65 00 6e 00 76 00 3a 00 63 00 6f 00 6d 00 70 00 75 00 74 00 65 00 72 00 6e 00 61 00 6d 00 65 00 [0-80] 24 00 65 00 6e 00 76 00 3a 00 75 00 73 00 65 00 72 00 6e 00 61 00 6d 00 65 00}  //weight: 1, accuracy: Low
+        $x_1_4 = {6b 65 65 76 6f 2d 77 61 6c 6c 65 74 90}  //weight: 1, accuracy: High
+        $x_1_5 = "electrum" ascii //weight: 1
+        $x_1_6 = "onekey-wallet" ascii //weight: 1
+        $x_1_7 = "env:appdata" ascii //weight: 1
+        $x_1_8 = "get-wmiobject-classwin32_computersystem" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_LummaStealer_Z_2147927310_3
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaStealer.Z!MTB"
+        threat_id = "2147927310"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "15"
         strings_accuracy = "High"
     strings:
@@ -3015,7 +3043,7 @@ rule Trojan_Win32_LummaStealer_Z_2147927310_2
         (all of ($x*))
 }
 
-rule Trojan_Win32_LummaStealer_Z_2147927310_3
+rule Trojan_Win32_LummaStealer_Z_2147927310_4
 {
     meta:
         author = "defender2yara"
