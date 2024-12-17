@@ -741,3 +741,29 @@ rule Ransom_Win64_FileCoder_RHAD_2147928181_0
         (all of ($x*))
 }
 
+rule Ransom_Win64_FileCoder_RHAE_2147928458_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win64/FileCoder.RHAE!MTB"
+        threat_id = "2147928458"
+        type = "Ransom"
+        platform = "Win64: Windows 64-bit platform"
+        family = "FileCoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {50 45 00 00 64 86 0f ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 0b 02 03 00 00 ?? 24 00 00 ?? 03 00 00 00 00 00 ?? ?? 06}  //weight: 2, accuracy: Low
+        $x_3_2 = "encryptTicket" ascii //weight: 3
+        $x_2_3 = "Your data has been stolen and encrypted" ascii //weight: 2
+        $x_1_4 = ".backup.wallet.onepkg.config.tar" ascii //weight: 1
+        $x_1_5 = "\\UNC" ascii //weight: 1
+        $x_1_6 = "hangupkilled" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
