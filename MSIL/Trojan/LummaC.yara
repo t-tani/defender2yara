@@ -926,3 +926,46 @@ rule Trojan_MSIL_LummaC_ALM_2147928489_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_LummaC_BJ_2147928578_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/LummaC.BJ!MTB"
+        threat_id = "2147928578"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "LummaC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {14 0b 00 28 ?? 00 00 06 0b dd ?? 00 00 00 26 de f1 07 39 ?? 00 00 00 73 ?? 00 00 0a 0c 08 72 ?? 00 00 70 28 ?? 00 00 0a 6f ?? 00 00 0a 08 72 ?? 00 00 70 28 ?? 00 00 0a 6f ?? 00 00 0a 08 6f ?? 00 00 0a 07 16 07 8e 69 6f ?? 00 00 0a 0b dd ?? 00 00 00 08 39 ?? 00 00 00 08 6f ?? 00 00 0a dc 28 ?? 00 00 0a 07 6f ?? 00 00 0a 0d 09 14 28}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_LummaC_GNS_2147928579_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/LummaC.GNS!MTB"
+        threat_id = "2147928579"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "LummaC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {0b 16 0c 2b 1c 00 07 08 7e ?? ?? ?? ?? 06 7e ?? ?? ?? ?? 8e 69 6f ?? ?? ?? 0a 9a a2 00 08 17 58 0c 08 1a fe 04 0d 09 2d dc}  //weight: 10, accuracy: Low
+        $x_1_2 = "downloadedfile.exe" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
