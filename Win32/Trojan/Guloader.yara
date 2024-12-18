@@ -4729,3 +4729,29 @@ rule Trojan_Win32_Guloader_ASC_2147928050_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Guloader_ASE_2147928605_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Guloader.ASE!MTB"
+        threat_id = "2147928605"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Guloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "Phylogenetically.del" ascii //weight: 2
+        $x_1_2 = "tommelskruerne.afs" ascii //weight: 1
+        $x_1_3 = "inddatafunktionens.Tra" ascii //weight: 1
+        $x_1_4 = "stilhederne\\tamtammens.ini" ascii //weight: 1
+        $x_1_5 = "Kostbare.tes" ascii //weight: 1
+        $x_1_6 = "Overhaling64\\Fes\\squanderer" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

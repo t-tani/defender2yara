@@ -67,3 +67,26 @@ rule Trojan_MSIL_SelfDel_ND_2147923390_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_SelfDel_NS_2147928606_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/SelfDel.NS!MTB"
+        threat_id = "2147928606"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "SelfDel"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {02 72 59 18 00 70 7d 06 00 00 04 02 28 ?? 00 00 0a 0a 12 00 fe ?? ?? 00 00 01 6f ?? 00 00 0a 7d 07 00 00 04 02 72 09 18 00 70 d0 03 00 00 02 28 ?? 00 00 0a 6f ?? 00 00 0a 73 1b 00 00 0a}  //weight: 2, accuracy: Low
+        $x_1_2 = "taskkill /f /im" wide //weight: 1
+        $x_1_3 = "newFrontTools.exe" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

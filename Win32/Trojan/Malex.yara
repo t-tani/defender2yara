@@ -45,3 +45,25 @@ rule Trojan_Win32_Malex_GNN_2147918723_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Malex_AMX_2147928584_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Malex.AMX!MTB"
+        threat_id = "2147928584"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Malex"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {6a 01 6a 10 68 94 7a 42 00 68 06 7c 42 00 e8 ?? ?? ?? ?? 83 c4 10 6a 01 6a 10 68 a5 7a 42 00 68 06 7c 42 00 e8 ?? ?? ?? ?? 83 c4 10 6a 01 6a 10 68 b6 7a 42 00 68 06 7c 42 00 e8 ?? ?? ?? ?? 83 c4 10 6a 01 6a 10 ff 35 e4 7a 42 00 68 06 7c 42 00 e8}  //weight: 2, accuracy: Low
+        $x_1_2 = {83 c4 1c ff 35 20 59 42 00 68 80 8d 42 00 68 28 9c 41 00 e8 ?? ?? ?? ?? 83 c4 0c 68 28 9c 41 00 68 a4 8d 42 00 68 30 97 41 00}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

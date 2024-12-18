@@ -231,6 +231,31 @@ rule Trojan_Win64_Zusy_EM_2147901026_1
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "jPa3hpzBvq" ascii //weight: 1
+        $x_1_2 = "Discord DM : _encrypt3d." ascii //weight: 1
+        $x_1_3 = "\\StarHighSrcFixV3\\Blue loader\\Blue loader" ascii //weight: 1
+        $x_1_4 = "Star_High" ascii //weight: 1
+        $x_1_5 = "p2j1rac" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_Zusy_EM_2147901026_2
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Zusy.EM!MTB"
+        threat_id = "2147901026"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "6"
         strings_accuracy = "High"
     strings:
@@ -245,7 +270,7 @@ rule Trojan_Win64_Zusy_EM_2147901026_1
         (all of ($x*))
 }
 
-rule Trojan_Win64_Zusy_EM_2147901026_2
+rule Trojan_Win64_Zusy_EM_2147901026_3
 {
     meta:
         author = "defender2yara"
