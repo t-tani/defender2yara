@@ -220,3 +220,24 @@ rule Trojan_Win32_Redcap_MBWG_2147928370_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Redcap_MKV_2147928644_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Redcap.MKV!MTB"
+        threat_id = "2147928644"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Redcap"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {81 ea d4 7f 00 00 81 ea 37 bd 00 00 e8 0a 00 00 00 00 4c 40 ?? 4f 34 3a 32 46 35 83 c4 04 81 e2 5d 1d 01 00 5a 56 56}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
