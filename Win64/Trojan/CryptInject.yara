@@ -3591,3 +3591,24 @@ rule Trojan_Win64_CryptInject_NIM_2147928517_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_CryptInject_DDC_2147928615_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CryptInject.DDC!MTB"
+        threat_id = "2147928615"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {48 63 c8 48 8b c3 48 f7 e1 48 8b c1 48 2b c2 48 d1 e8 48 03 c2 48 c1 e8 04 48 6b c0 19 48 2b c8 49 0f af cb 0f b6 44 0d ?? 43 32 44 04 ?? 41 88 40 ff 49 ff cf 0f 85}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
