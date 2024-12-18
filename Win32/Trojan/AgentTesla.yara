@@ -322,6 +322,31 @@ rule Trojan_Win32_AgentTesla_A_2147743635_1
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "root\\cimv2" ascii //weight: 1
+        $x_1_2 = "Username:" ascii //weight: 1
+        $x_1_3 = "Password:" ascii //weight: 1
+        $x_1_4 = "worlorderbillions.top" ascii //weight: 1
+        $x_1_5 = "niggabown22jan2024" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_AgentTesla_A_2147743635_2
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AgentTesla.A!MTB"
+        threat_id = "2147743635"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "3"
         strings_accuracy = "Low"
     strings:
@@ -333,7 +358,7 @@ rule Trojan_Win32_AgentTesla_A_2147743635_1
         (all of ($x*))
 }
 
-rule Trojan_Win32_AgentTesla_A_2147743635_2
+rule Trojan_Win32_AgentTesla_A_2147743635_3
 {
     meta:
         author = "defender2yara"
@@ -354,6 +379,42 @@ rule Trojan_Win32_AgentTesla_A_2147743635_2
         $x_1_4 = "Cho-Chun Huang" wide //weight: 1
         $x_1_5 = "/checkprotection" ascii //weight: 1
         $x_1_6 = "e-China Petroleum & Chemical Corp" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_AgentTesla_A_2147743635_4
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AgentTesla.A!MTB"
+        threat_id = "2147743635"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "16"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "get_Password" ascii //weight: 1
+        $x_1_2 = "set_Password" ascii //weight: 1
+        $x_1_3 = "DomainPassword" ascii //weight: 1
+        $x_1_4 = "SmtpPassword" ascii //weight: 1
+        $x_1_5 = "FromBase64String" ascii //weight: 1
+        $x_1_6 = "ToBase64String" ascii //weight: 1
+        $x_1_7 = "EncPassword" ascii //weight: 1
+        $x_1_8 = "Discord Token" ascii //weight: 1
+        $x_1_9 = "\\Login Data" ascii //weight: 1
+        $x_1_10 = "\\Default\\Login Data" ascii //weight: 1
+        $x_1_11 = "(hostname|encryptedPassword|encryptedUsername)" ascii //weight: 1
+        $x_1_12 = ";Port=" ascii //weight: 1
+        $x_1_13 = "FoxMail" ascii //weight: 1
+        $x_1_14 = "\\mail" ascii //weight: 1
+        $x_1_15 = "IceDragon" ascii //weight: 1
+        $x_1_16 = "\\NETGATE Technologies\\BlackHawk" ascii //weight: 1
     condition:
         (filesize < 20MB) and
         (all of ($x*))

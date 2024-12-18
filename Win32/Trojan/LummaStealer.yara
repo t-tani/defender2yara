@@ -2964,6 +2964,35 @@ rule Trojan_Win32_LummaStealer_Z_2147927310_1
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "9"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "lid=%s&j=%s&ver=4.0" ascii //weight: 1
+        $x_1_2 = "TeslaBrowser/5.5" ascii //weight: 1
+        $x_1_3 = "Screen.png" ascii //weight: 1
+        $x_1_4 = "Screen Resoluton:" ascii //weight: 1
+        $x_1_5 = "User:" ascii //weight: 1
+        $x_1_6 = "Domain:" ascii //weight: 1
+        $x_1_7 = "Workgroup:" ascii //weight: 1
+        $x_1_8 = "Physical Installed Memory:" ascii //weight: 1
+        $x_1_9 = "POST /api HTTP/1.1" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_LummaStealer_Z_2147927310_2
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaStealer.Z!MTB"
+        threat_id = "2147927310"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "8"
         strings_accuracy = "High"
     strings:
@@ -2980,7 +3009,7 @@ rule Trojan_Win32_LummaStealer_Z_2147927310_1
         (all of ($x*))
 }
 
-rule Trojan_Win32_LummaStealer_Z_2147927310_2
+rule Trojan_Win32_LummaStealer_Z_2147927310_3
 {
     meta:
         author = "defender2yara"
@@ -3008,7 +3037,7 @@ rule Trojan_Win32_LummaStealer_Z_2147927310_2
         (all of ($x*))
 }
 
-rule Trojan_Win32_LummaStealer_Z_2147927310_3
+rule Trojan_Win32_LummaStealer_Z_2147927310_4
 {
     meta:
         author = "defender2yara"
@@ -3043,7 +3072,7 @@ rule Trojan_Win32_LummaStealer_Z_2147927310_3
         (all of ($x*))
 }
 
-rule Trojan_Win32_LummaStealer_Z_2147927310_4
+rule Trojan_Win32_LummaStealer_Z_2147927310_5
 {
     meta:
         author = "defender2yara"

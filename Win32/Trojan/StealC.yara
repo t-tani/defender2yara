@@ -686,6 +686,48 @@ rule Trojan_Win32_StealC_A_2147897415_0
         family = "StealC"
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {0c 8b 45 f0 89 45 c8 8b 45 c8 8b 40 3c 8b 4d f0 8d 44 01 04 89}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_StealC_A_2147897415_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/StealC.A!MTB"
+        threat_id = "2147897415"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "StealC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {55 8b ec 8b 45 14 56 57 8b 7d 08 33 f6 89 47 0c 39 75 10 76 15 8b}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_StealC_A_2147897415_2
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/StealC.A!MTB"
+        threat_id = "2147897415"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "StealC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "2"
         strings_accuracy = "Low"

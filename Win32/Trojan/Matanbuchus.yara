@@ -52,3 +52,32 @@ rule Trojan_Win32_Matanbuchus_DA_2147918562_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Matanbuchus_A_2147928558_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Matanbuchus.A!MTB"
+        threat_id = "2147928558"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Matanbuchus"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "9"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {8b 55 f0 8b 42 14 89 45 e8 33 c9 66 89 4d fc}  //weight: 1, accuracy: High
+        $x_1_2 = {03 51 20 89 55 dc 8b 45 f4 8b 4d 08 03 48 1c 89 4d cc c7 45}  //weight: 1, accuracy: High
+        $x_1_3 = {8b 55 ec 81 3a 50 45 00 00 74 07 33 c0 e9}  //weight: 1, accuracy: High
+        $x_1_4 = {8b 45 e8 8b 4d 08 03 48 3c 89 4d ec 8b 55 ec}  //weight: 1, accuracy: High
+        $x_1_5 = {8b 45 08 89 45 f8 8b 4d f8 8b 51 3c 03 55 08}  //weight: 1, accuracy: High
+        $x_1_6 = {69 c2 93 01 00 01 50 b9 01 00 00 00 c1 e1 00 03 4d 08 51 e8}  //weight: 1, accuracy: High
+        $x_1_7 = {03 45 08 89 45 e0 8b 4d e0 8b 51 78 03 55 08 89 55 f0 8b 45 f0}  //weight: 1, accuracy: High
+        $x_1_8 = {89 55 f4 8b 45 f4 83 78 04 00 0f 84 a6 00 00 00 8b 4d f4}  //weight: 1, accuracy: High
+        $x_1_9 = {89 4d ec 8b 55 ec 81 3a 50 45 00 00 74 07}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
