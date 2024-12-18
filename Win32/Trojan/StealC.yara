@@ -3788,3 +3788,24 @@ rule Trojan_Win32_StealC_ARAZ_2147928285_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_StealC_SPFF_2147928545_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/StealC.SPFF!MTB"
+        threat_id = "2147928545"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "StealC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {8d 74 24 10 c7 44 24 0c ?? ?? ?? ?? c7 44 24 10 ?? ?? ?? ?? e8 ?? ?? ?? ?? 8b 44 24 10 83 c0 46 89 44 24 0c 83 6c 24 0c 0a 90 83 6c 24 0c 3c 8a 44 24 0c 30 04 2f 83 fb 0f 75 0b 8b 4c 24 10 51 ff 15 ?? ?? ?? ?? 47 3b fb 7c}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

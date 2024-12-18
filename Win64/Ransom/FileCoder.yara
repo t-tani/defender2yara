@@ -767,3 +767,29 @@ rule Ransom_Win64_FileCoder_RHAE_2147928458_0
         (all of ($x*))
 }
 
+rule Ransom_Win64_FileCoder_RHAF_2147928552_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win64/FileCoder.RHAF!MTB"
+        threat_id = "2147928552"
+        type = "Ransom"
+        platform = "Win64: Windows 64-bit platform"
+        family = "FileCoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {50 45 00 00 64 86 0b ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 0b 02 02 2b 00 a2 39 00 00 b8 4f 00 00 1a 00 00 f0 13}  //weight: 2, accuracy: Low
+        $x_3_2 = "Your files have been encrypted." ascii //weight: 3
+        $x_2_3 = "To decrypt them, you must pay 1 Bitcoin to the following address:" ascii //weight: 2
+        $x_1_4 = "smimeencrypt" ascii //weight: 1
+        $x_1_5 = "extendedKeyUsage" ascii //weight: 1
+        $x_1_6 = "Hardware Module Name" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
