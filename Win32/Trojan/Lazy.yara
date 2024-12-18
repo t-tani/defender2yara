@@ -1415,3 +1415,27 @@ rule Trojan_Win32_Lazy_GTS_2147927576_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Lazy_NLA_2147928628_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Lazy.NLA!MTB"
+        threat_id = "2147928628"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Lazy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {ff 66 81 3f ?? 00 0f 94 c7 20 fb f6 c3 01 89 85 84 fd ff ff}  //weight: 2, accuracy: Low
+        $x_1_2 = {8b 8d 88 fd ff ff 66 81 39 ?? 00 0f 94 c3}  //weight: 1, accuracy: Low
+        $x_1_3 = {8b 95 8c fd ff ff 66 81 3a ?? 00 0f 94 c7}  //weight: 1, accuracy: Low
+        $x_1_4 = "\\loader.cpp.bc.obj.pdb" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

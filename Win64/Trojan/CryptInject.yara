@@ -3612,3 +3612,24 @@ rule Trojan_Win64_CryptInject_DDC_2147928615_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_CryptInject_EDC_2147928635_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CryptInject.EDC!MTB"
+        threat_id = "2147928635"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {41 59 41 58 5f 5e 5a 59 5b 58 5c 45 8a 14 11 44 30 14 0f 48 ff c1 48 89 c8 48 81 f9 ff 27 00 00 0f 86}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

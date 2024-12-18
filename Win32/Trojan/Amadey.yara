@@ -1557,6 +1557,36 @@ rule Trojan_Win32_Amadey_AME_2147849482_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Amadey_AME_2147849482_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Amadey.AME!MTB"
+        threat_id = "2147849482"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Amadey"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "19"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "dFKUeEPZMpb=" ascii //weight: 1
+        $x_1_2 = "TYyxVCP J8==" ascii //weight: 1
+        $x_1_3 = "P0RZOATUOaN8Cs==" ascii //weight: 1
+        $x_1_4 = "20YUfUYdMdZUPI==" ascii //weight: 1
+        $x_1_5 = "d945c8d4b2e11313c738a9a3ee074483" ascii //weight: 1
+        $x_1_6 = "56a1c3d463f38174c2fd686077b9fd81" ascii //weight: 1
+        $x_1_7 = "a2b77533b3b6d5aaf9786e5ad5d2f18c" ascii //weight: 1
+        $x_3_8 = "OVOocTQo0xYj" ascii //weight: 3
+        $x_4_9 = "PxxoPAHnNaUQBbuV" ascii //weight: 4
+        $x_5_10 = "O0agcwQVTqol1OVc1T9rcEho" ascii //weight: 5
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win32_Amadey_RPY_2147849818_0
 {
     meta:
