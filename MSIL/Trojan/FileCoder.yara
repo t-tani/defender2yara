@@ -659,3 +659,26 @@ rule Trojan_MSIL_FileCoder_DF_2147923701_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_FileCoder_PM_2147928682_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/FileCoder.PM!MTB"
+        threat_id = "2147928682"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "FileCoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {00 dc 06 07 28 ?? 00 00 06 0c 02 08 28 ?? 00 00 0a 00 02 02 72 ?? 00 00 70 28 ?? 00 00 0a 28 ?? 00 00 0a 00 2a}  //weight: 2, accuracy: Low
+        $x_2_2 = ".locked" wide //weight: 2
+        $x_1_3 = "Files have been encrypted" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

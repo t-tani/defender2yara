@@ -3324,3 +3324,26 @@ rule Trojan_Win32_Amadey_BKL_2147928287_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Amadey_BAN_2147928680_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Amadey.BAN!MTB"
+        threat_id = "2147928680"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Amadey"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {40 00 00 e0 2e 74 61 67 67 61 6e 74 00 30}  //weight: 2, accuracy: High
+        $x_3_2 = {40 00 00 c0 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 b0 06 00 00 ?? ?? 00 00 f6 02}  //weight: 3, accuracy: Low
+        $x_2_3 = {a7 bb 2d 49 e3 da 43 1a e3 da 43 1a e3 da 43 1a b8 b2 40 1b ed da 43 1a b8 b2 46 1b 42 da 43 1a 36 b7 47 1b f1 da 43}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

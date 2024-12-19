@@ -717,3 +717,28 @@ rule Trojan_Win64_CoinMiner_ASJ_2147928149_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_CoinMiner_PBH_2147928683_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CoinMiner.PBH!MTB"
+        threat_id = "2147928683"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CoinMiner"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "http://file.hitler.fans/xmrig.exe" ascii //weight: 2
+        $x_2_2 = "hitlerMinerTool" ascii //weight: 2
+        $x_2_3 = "Release\\XmrigMonitor.pdb" ascii //weight: 2
+        $x_1_4 = "taskkill /f /t /im " ascii //weight: 1
+        $x_1_5 = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

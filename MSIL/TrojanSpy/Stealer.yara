@@ -482,3 +482,30 @@ rule TrojanSpy_MSIL_Stealer_SU_2147925574_0
         (all of ($x*))
 }
 
+rule TrojanSpy_MSIL_Stealer_PTQ_2147928684_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanSpy:MSIL/Stealer.PTQ!MTB"
+        threat_id = "2147928684"
+        type = "TrojanSpy"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Stealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "13"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "FirefoxCookies.txt" wide //weight: 2
+        $x_2_2 = "EdgePasswords.txt" wide //weight: 2
+        $x_2_3 = "Electrum\\wallets" wide //weight: 2
+        $x_2_4 = "Dogecoin\\wallet" wide //weight: 2
+        $x_2_5 = "$a16abbb4-985b-4db2-a80c-21268b26c73d" ascii //weight: 2
+        $x_2_6 = "Stealer.Edge" ascii //weight: 2
+        $x_1_7 = "Telegram" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
