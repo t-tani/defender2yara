@@ -1601,3 +1601,34 @@ rule Trojan_Win32_LummaC_BA_2147928679_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_LummaC_HNAC_2147928736_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaC.HNAC!MTB"
+        threat_id = "2147928736"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "17"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {08 c1 88 e8 30 c8}  //weight: 10, accuracy: High
+        $x_5_2 = {0f af c8 89 ca 89 c8 89 cf f7 d2 [0-16] 21 ?? 81 ?? ?? ?? ?? ?? (81|89)}  //weight: 5, accuracy: Low
+        $x_5_3 = {0f af c8 89 ca 89 cb f7 d2 89 [0-21] 25 ?? ?? ?? ?? 81}  //weight: 5, accuracy: Low
+        $x_1_4 = {8d 48 ff 0f af c8 89}  //weight: 1, accuracy: High
+        $x_1_5 = {8d 69 ff 0f af e9 89}  //weight: 1, accuracy: High
+        $x_1_6 = {09 ce 89 c1 f7 d1 31 d6 89 c2}  //weight: 1, accuracy: High
+        $x_1_7 = {0f 9c 44 24 0b [0-176] 80 ?? 01 80 ?? 01}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_10_*) and 1 of ($x_5_*) and 2 of ($x_1_*))) or
+            ((1 of ($x_10_*) and 2 of ($x_5_*))) or
+            (all of ($x*))
+        )
+}
+
