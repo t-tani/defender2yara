@@ -2039,9 +2039,9 @@ rule Trojan_MSIL_AsyncRat_ASY_2147848530_2
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "1"
-        strings_accuracy = "Low"
+        strings_accuracy = "High"
     strings:
-        $x_1_1 = {74 13 00 00 01 0a 06 72 41 00 00 70 6f ?? 00 00 0a 00 72 49 00 00 70 0b 06 6f ?? 00 00 0a 74 14 00 00 01 0c 08}  //weight: 1, accuracy: Low
+        $x_1_1 = {0a 16 0b 2b 1b 06 07 02 07 91 7e 02 00 00 04 07 7e 02 00 00 04 8e 69 5d 91 61 d2 9c 07 17 58 0b 07 02 8e 69}  //weight: 1, accuracy: High
     condition:
         (filesize < 20MB) and
         (all of ($x*))
@@ -2062,13 +2062,34 @@ rule Trojan_MSIL_AsyncRat_ASY_2147848530_3
         threshold = "1"
         strings_accuracy = "Low"
     strings:
-        $x_1_1 = {0b 16 0c 2b 2d 06 08 6f ?? ?? ?? 0a 03 08 03 6f ?? ?? ?? 0a 5d 6f ?? ?? ?? 0a 61 0d 07 09 28 ?? ?? ?? 0a 8c 3e 00 00 01 28 ?? ?? ?? 0a 0b 08 17 58 0c 08 06}  //weight: 1, accuracy: Low
+        $x_1_1 = {74 13 00 00 01 0a 06 72 41 00 00 70 6f ?? 00 00 0a 00 72 49 00 00 70 0b 06 6f ?? 00 00 0a 74 14 00 00 01 0c 08}  //weight: 1, accuracy: Low
     condition:
         (filesize < 20MB) and
         (all of ($x*))
 }
 
 rule Trojan_MSIL_AsyncRat_ASY_2147848530_4
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AsyncRat.ASY!MTB"
+        threat_id = "2147848530"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AsyncRat"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {0b 16 0c 2b 2d 06 08 6f ?? ?? ?? 0a 03 08 03 6f ?? ?? ?? 0a 5d 6f ?? ?? ?? 0a 61 0d 07 09 28 ?? ?? ?? 0a 8c 3e 00 00 01 28 ?? ?? ?? 0a 0b 08 17 58 0c 08 06}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_AsyncRat_ASY_2147848530_5
 {
     meta:
         author = "defender2yara"

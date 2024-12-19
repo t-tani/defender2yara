@@ -147,24 +147,3 @@ rule Trojan_MSIL_Rhadamanthys_ARM_2147927636_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Rhadamanthys_BKL_2147928539_0
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "Trojan:MSIL/Rhadamanthys.BKL!MTB"
-        threat_id = "2147928539"
-        type = "Trojan"
-        platform = "MSIL: .NET intermediate language scripts"
-        family = "Rhadamanthys"
-        severity = "Critical"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "1"
-        strings_accuracy = "High"
-    strings:
-        $x_1_1 = {11 07 11 0b 16 11 0b 8e 69 6f 2b 00 00 0a}  //weight: 1, accuracy: High
-    condition:
-        (filesize < 20MB) and
-        (all of ($x*))
-}
-

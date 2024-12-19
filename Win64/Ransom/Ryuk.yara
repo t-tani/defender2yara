@@ -143,3 +143,24 @@ rule Ransom_Win64_Ryuk_PG_2147772840_0
         (4 of ($x*))
 }
 
+rule Ransom_Win64_Ryuk_MKZ_2147928729_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win64/Ryuk.MKZ!MTB"
+        threat_id = "2147928729"
+        type = "Ransom"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Ryuk"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {41 8b d1 2b d0 48 63 c2 49 63 d1 41 ff c1 0f b6 84 18 ?? ?? ?? ?? 41 32 00 49 ff c0 41 88 02 49 ff c2 49 63 c1 48 3d 0d 08 00 00 72}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

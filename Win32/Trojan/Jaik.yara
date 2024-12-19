@@ -279,3 +279,24 @@ rule Trojan_Win32_Jaik_ARA_2147926725_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Jaik_ARAZ_2147928718_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Jaik.ARAZ!MTB"
+        threat_id = "2147928718"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Jaik"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {0f b6 04 16 30 04 0b 83 c1 01 39 cd 75 e7}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

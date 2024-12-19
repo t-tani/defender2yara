@@ -3263,3 +3263,24 @@ rule Trojan_MSIL_Injuke_ANFA_2147927984_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Injuke_AWGA_2147928715_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Injuke.AWGA!MTB"
+        threat_id = "2147928715"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Injuke"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {06 11 08 7e 08 00 00 04 11 08 91 28 ?? 00 00 0a 28 ?? 00 00 06 6f ?? 00 00 0a 11 08 28 ?? 00 00 0a 28 ?? 00 00 06 6f ?? 00 00 0a 8e 69 5d 91 61 d2 9c 00 11 08 17 58 13 08 11 08 7e 08 00 00 04 8e 69 fe 04 13 09 11 09 2d b5}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

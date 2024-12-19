@@ -3466,3 +3466,24 @@ rule Trojan_Win32_LummaStealer_RPAF_2147928529_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_LummaStealer_NIM_2147928720_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaStealer.NIM!MTB"
+        threat_id = "2147928720"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {8a 44 24 0c 30 04 2f 83 fb 0f 75 0b 8b 4c 24 10 51 ff ?? ?? ?? ?? ?? 47 3b fb 7c}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
