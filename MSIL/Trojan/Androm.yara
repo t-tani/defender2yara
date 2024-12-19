@@ -872,6 +872,29 @@ rule Trojan_MSIL_Androm_NAD_2147891423_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {2b 2f 1e 2c 1d 20 ef be 66 06 25 2c 0a 61 2b 24 2b 26 7e 81 00 00 04 16 2d f0 59}  //weight: 2, accuracy: High
+        $x_1_2 = "FromBase64String" ascii //weight: 1
+        $x_1_3 = "RC2CryptoServiceProvider" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Androm_NAD_2147891423_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Androm.NAD!MTB"
+        threat_id = "2147891423"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Androm"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "6"
         strings_accuracy = "Low"
     strings:

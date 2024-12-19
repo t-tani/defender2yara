@@ -3872,3 +3872,24 @@ rule Trojan_Win32_StealC_SPFF_2147928545_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_StealC_TKV_2147928690_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/StealC.TKV!MTB"
+        threat_id = "2147928690"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "StealC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {8b cb c1 e1 04 03 4d ?? 8d 14 18 33 ca 33 4d f8 05 47 86 c8 61 2b f9 83 6d ?? 01 89 7d ec 89 45 f4 0f 85}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

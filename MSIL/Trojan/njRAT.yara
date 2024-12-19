@@ -1027,3 +1027,32 @@ rule Trojan_MSIL_njRAT_RDAC_2147925435_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_njRAT_NAK_2147928691_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/njRAT.NAK!MTB"
+        threat_id = "2147928691"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "njRAT"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = "c0a9a70f-63e8-42ca-965d-73a1bc903e62" ascii //weight: 2
+        $x_1_2 = "NJRAT.FURL.resources" ascii //weight: 1
+        $x_1_3 = "NJRAT.Pass.resources" ascii //weight: 1
+        $x_1_4 = "NJRAT.script.resources" ascii //weight: 1
+        $x_1_5 = {4e 00 4a 00 52 00 41 00 54 00 5c 00 6f 00 62 00 6a 00 5c 00 44 00 65 00 62 00 75 00 67 00 5c 00 [0-31] 2e 00 70 00 64 00 62 00}  //weight: 1, accuracy: Low
+        $x_1_6 = {4e 4a 52 41 54 5c 6f 62 6a 5c 44 65 62 75 67 5c [0-31] 2e 70 64 62}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_2_*) and 4 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+

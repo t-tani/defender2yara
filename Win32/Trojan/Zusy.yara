@@ -1420,7 +1420,7 @@ rule Trojan_Win32_Zusy_EM_2147842976_0
         threshold = "5"
         strings_accuracy = "High"
     strings:
-        $x_5_1 = {31 02 4b 81 c2 04 00 00 00 bb 90 ae f3 c2 21 d9 39 fa 75 e7 21 f3 c3}  //weight: 5, accuracy: High
+        $x_5_1 = {03 d3 2b f9 2b c3 2b d1 33 cf 33 fa}  //weight: 5, accuracy: High
     condition:
         (filesize < 20MB) and
         (all of ($x*))
@@ -1441,7 +1441,7 @@ rule Trojan_Win32_Zusy_EM_2147842976_1
         threshold = "5"
         strings_accuracy = "High"
     strings:
-        $x_5_1 = {8b 4d c0 33 c0 8b 5d 0c c7 42 40 00 00 00 00 8a 04 10 30 04 19 41 ff 42 40 8b 42 40}  //weight: 5, accuracy: High
+        $x_5_1 = {31 02 4b 81 c2 04 00 00 00 bb 90 ae f3 c2 21 d9 39 fa 75 e7 21 f3 c3}  //weight: 5, accuracy: High
     condition:
         (filesize < 20MB) and
         (all of ($x*))
@@ -1462,13 +1462,34 @@ rule Trojan_Win32_Zusy_EM_2147842976_2
         threshold = "5"
         strings_accuracy = "High"
     strings:
-        $x_5_1 = {88 84 34 e0 00 00 00 88 94 3c e0 00 00 00 0f b6 b4 34 e0 00 00 00 03 f2 8b 7d 08 81 e6 ff 00 00 00 8b 94 24 30 02 00 00 8a 04 0f 32 84 34 e0 00 00 00 88 04 0a}  //weight: 5, accuracy: High
+        $x_5_1 = {8b 4d c0 33 c0 8b 5d 0c c7 42 40 00 00 00 00 8a 04 10 30 04 19 41 ff 42 40 8b 42 40}  //weight: 5, accuracy: High
     condition:
         (filesize < 20MB) and
         (all of ($x*))
 }
 
 rule Trojan_Win32_Zusy_EM_2147842976_3
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zusy.EM!MTB"
+        threat_id = "2147842976"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {88 84 34 e0 00 00 00 88 94 3c e0 00 00 00 0f b6 b4 34 e0 00 00 00 03 f2 8b 7d 08 81 e6 ff 00 00 00 8b 94 24 30 02 00 00 8a 04 0f 32 84 34 e0 00 00 00 88 04 0a}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Zusy_EM_2147842976_4
 {
     meta:
         author = "defender2yara"
@@ -1498,7 +1519,7 @@ rule Trojan_Win32_Zusy_EM_2147842976_3
         (all of ($x*))
 }
 
-rule Trojan_Win32_Zusy_EM_2147842976_4
+rule Trojan_Win32_Zusy_EM_2147842976_5
 {
     meta:
         author = "defender2yara"

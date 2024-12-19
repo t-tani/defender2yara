@@ -135,3 +135,30 @@ rule Trojan_Win64_KillAV_DA_2147917260_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_KillAV_BSA_2147928706_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/KillAV.BSA!MTB"
+        threat_id = "2147928706"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "KillAV"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "20"
+        strings_accuracy = "High"
+    strings:
+        $x_20_1 = "RealBlindingEDR" ascii //weight: 20
+        $x_5_2 = "Permanently delete AV/EDR" ascii //weight: 5
+        $x_5_3 = "driver_path" ascii //weight: 5
+        $x_5_4 = "RealBlindingEDR.exe" ascii //weight: 5
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_20_*))) or
+            (all of ($x*))
+        )
+}
+

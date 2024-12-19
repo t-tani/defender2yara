@@ -125,3 +125,31 @@ rule Trojan_Win32_Lumma_AECA_2147925004_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Lumma_RHA_2147928708_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Lumma.RHA!MTB"
+        threat_id = "2147928708"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Lumma"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {50 45 00 00 4c 01 03 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 0b 01 06 00 00 40 00 00 00 30 00 00 00 00 00 00 e4 10}  //weight: 2, accuracy: Low
+        $x_3_2 = "s://api.telegram.org/bot" wide //weight: 3
+        $x_1_3 = "/sendmessage?chat_id=" wide //weight: 1
+        $x_1_4 = "Telegram message NOT SENT" wide //weight: 1
+        $x_1_5 = "\\telegramlog.txt" wide //weight: 1
+        $x_1_6 = "computername" wide //weight: 1
+        $x_1_7 = "MethCallEngine" ascii //weight: 1
+        $x_1_8 = "\\eZ-Az" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

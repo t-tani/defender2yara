@@ -2040,3 +2040,30 @@ rule Trojan_Win64_Lazy_TYC_2147928518_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Lazy_NP_2147928692_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Lazy.NP!MTB"
+        threat_id = "2147928692"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Lazy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "cmd.exe /c {}" ascii //weight: 2
+        $x_1_2 = "C:\\Windows\\System32\\" ascii //weight: 1
+        $x_1_3 = "X\\d{6}\\.dat$" ascii //weight: 1
+        $x_1_4 = "{}Windows\\System32\\backup_f64.exe" ascii //weight: 1
+        $x_1_5 = "start \"\" \"{}\"" ascii //weight: 1
+        $x_1_6 = "{}Windows\\System32\\czero_log" ascii //weight: 1
+        $x_1_7 = "schtasks /create /tn \"{}\" /sc ONLOGON /tr \"{}\" /rl HIGHEST /f" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

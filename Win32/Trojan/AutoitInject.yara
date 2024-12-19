@@ -4102,3 +4102,34 @@ rule Trojan_Win32_AutoitInject_AQGA_2147928538_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_AutoitInject_NBU_2147928693_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.NBU!MTB"
+        threat_id = "2147928693"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {46 00 49 00 4c 00 45 00 49 00 4e 00 53 00 54 00 41 00 4c 00 4c 00 20 00 28 00 20 00 22 00 [0-47] 22 00 20 00 2c 00 20 00 40 00 54 00 45 00 4d 00 50 00 44 00 49 00 52 00 20 00 26 00 20 00 22 00 5c 00 00 22 00 20 00 2c 00 20 00 31 00 20 00 29 00}  //weight: 2, accuracy: Low
+        $x_2_2 = {46 49 4c 45 49 4e 53 54 41 4c 4c 20 28 20 22 [0-47] 22 20 2c 20 40 54 45 4d 50 44 49 52 20 26 20 22 5c 00 22 20 2c 20 31 20 29}  //weight: 2, accuracy: Low
+        $x_1_3 = "= \"0x558bec81eccc020" ascii //weight: 1
+        $x_1_4 = "ffffffba7400000066899546ffffffb" ascii //weight: 1
+        $x_1_5 = "ffffba75000000668955d0b873000000668945d2b9650000006" ascii //weight: 1
+        $x_1_6 = "66894d92ba2e00000066895594b86400000066894596b96c00000066894d98ba6c000000668" ascii //weight: 1
+        $x_1_7 = "fffb96c00000066898d4affffffba6c0000006689954cffffffb82e0000006689854effffffb" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_2_*) and 5 of ($x_1_*))) or
+            ((2 of ($x_2_*) and 3 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+
