@@ -113,9 +113,14 @@ rule Trojan_Win32_ClickFix_DA_2147924941_0
         $x_1_2 = "Hidden" wide //weight: 1
         $x_10_3 = "-eC" wide //weight: 10
         $x_10_4 = "aQBlAHgAIAAoAGkAdwByACAAaAB0AHQAcABzADoALwAvA" wide //weight: 10
-        $x_1_5 = "\\1" wide //weight: 1
+        $x_10_5 = "aQBlAHgAIAAoAGkAdwByACAAaAB0AHQAcAA6AC8ALwAxA" wide //weight: 10
+        $x_1_6 = "\\1" wide //weight: 1
     condition:
         (filesize < 20MB) and
-        (all of ($x*))
+        (
+            ((2 of ($x_10_*) and 3 of ($x_1_*))) or
+            ((3 of ($x_10_*))) or
+            (all of ($x*))
+        )
 }
 
