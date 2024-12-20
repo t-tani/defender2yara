@@ -45,3 +45,27 @@ rule Trojan_Win64_Mimikatz_RPZ_2147902279_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Mimikatz_AMCV_2147928847_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Mimikatz.AMCV!MTB"
+        threat_id = "2147928847"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Mimikatz"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {65 00 50 00 c7 85 ?? ?? 00 00 72 00 69 00 c7 85 ?? ?? 00 00 76 00 69 00 c7 85 ?? ?? 00 00 6c 00 65 00 c7 85 ?? ?? 00 00 67 00 65 00 c7 85 ?? ?? 00 00 20 00 28 00 c7 85 ?? ?? 00 00 25 00 73 00}  //weight: 4, accuracy: Low
+        $x_4_2 = {41 0f b6 c1 8a 4c 04 20 88 4c 14 20 0f b6 45 21 41 03 c8 44 88 44 04 20 0f b6 c1 8a 4c 04 20 8a 45 20 30 0e fe c0 48 ff c6 88 45 20 49 3b f2}  //weight: 4, accuracy: High
+        $x_1_3 = "cmd.exe /V:on /C reg delete HKLM\\Software\\CommandTmp /f" ascii //weight: 1
+        $x_1_4 = "Please input ip. eg, /ip:xx.XXX.xx.x or /ip:xxx.com" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

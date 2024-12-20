@@ -24,3 +24,34 @@ rule Trojan_MSIL_AntiVm_NA_2147906969_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AntiVm_ND_2147928827_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AntiVm.ND!MTB"
+        threat_id = "2147928827"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AntiVm"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "12"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "nuR\\noisreVtnerruC\\swodniW\\tfosorciM\\erawtfoS" ascii //weight: 2
+        $x_1_2 = "VirtualBox" ascii //weight: 1
+        $x_1_3 = "vmware" ascii //weight: 1
+        $x_1_4 = "SbieDll.dll" ascii //weight: 1
+        $x_1_5 = "Ergo_Wallet" ascii //weight: 1
+        $x_1_6 = "Electrum" ascii //weight: 1
+        $x_1_7 = "Bitcoin_Core" ascii //weight: 1
+        $x_1_8 = "Select * from AntivirusProduct" ascii //weight: 1
+        $x_1_9 = "/c taskkill.exe /im chrome.exe /f" ascii //weight: 1
+        $x_1_10 = "/c schtasks /create /f /sc onlogon /rl highest /tn" ascii //weight: 1
+        $x_1_11 = "Google\\Chrome\\User Data\\Default\\Local Extension Settings" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

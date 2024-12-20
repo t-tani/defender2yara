@@ -341,3 +341,33 @@ rule Trojan_MSIL_DcRat_NEAH_2147844544_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_DcRat_NZA_2147928807_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/DcRat.NZA!MTB"
+        threat_id = "2147928807"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "DcRat"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "U09GVFdBUkVcTWljcm9zb2Z0XFdpbmRvd3NcQ3VycmVudFZlcnNpb25cUnVuXA==" ascii //weight: 2
+        $x_1_2 = "L2Mgc2NodGFza3MgL2NyZWF0ZSAvZiAvc2Mgb25sb2dvbiAvcmwgaGlnaGVzdCAvdG4g" ascii //weight: 1
+        $x_1_3 = "VmlydHVhbFByb3RlY3Q=" ascii //weight: 1
+        $x_1_4 = "QW1zaVNjYW5CdWZmZXI=" ascii //weight: 1
+        $x_1_5 = "DcRatByqwqdanchun" ascii //weight: 1
+        $x_1_6 = "Anti_virus" ascii //weight: 1
+        $x_1_7 = "ProcessHacker.exe" ascii //weight: 1
+        $x_1_8 = "procexp.exe" ascii //weight: 1
+        $x_1_9 = "ConfigSecurityPolicy.exe" ascii //weight: 1
+        $x_1_10 = "Select * from AntivirusProduct" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

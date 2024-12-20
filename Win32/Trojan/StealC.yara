@@ -3893,3 +3893,24 @@ rule Trojan_Win32_StealC_TKV_2147928690_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_StealC_GCM_2147928769_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/StealC.GCM!MTB"
+        threat_id = "2147928769"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "StealC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {0f b6 c0 8a 84 04 ?? ?? ?? ?? 8b 4c 24 ?? 30 04 0e 89 c8 40 39 e8 8b 54 24}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

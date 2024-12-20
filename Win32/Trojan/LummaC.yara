@@ -1632,3 +1632,24 @@ rule Trojan_Win32_LummaC_HNAC_2147928736_0
         )
 }
 
+rule Trojan_Win32_LummaC_BN_2147928782_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaC.BN!MTB"
+        threat_id = "2147928782"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {40 00 00 e0 ?? ?? ?? ?? ?? ?? ?? ?? 00 ?? ?? 00 00 ?? ?? 00 00 ?? ?? 00 00 3a 00 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 e0 ?? ?? ?? ?? ?? ?? ?? ?? 00 20 00 00 00 ?? ?? 00 00 ?? 00 00 00 ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 e0 2e 74 61 67 67 61 6e 74 00 40}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

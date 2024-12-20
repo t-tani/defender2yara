@@ -136,3 +136,30 @@ rule Ransom_Win64_Clop_A_2147919384_0
         (all of ($x*))
 }
 
+rule Ransom_Win64_Clop_AMCV_2147928846_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win64/Clop.AMCV!MTB"
+        threat_id = "2147928846"
+        type = "Ransom"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Clop"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "20"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {48 8b c2 83 e0 7f 0f b6 0c 38 0f b6 44 14 ?? 32 c8 88 4c 14 ?? 48 ff c2 48 83 fa}  //weight: 5, accuracy: Low
+        $x_5_2 = "vssadmin Delete Shadows /all /quiet" ascii //weight: 5
+        $x_4_3 = "cmd.exe /c timeout 7 & del \"%s\"" ascii //weight: 4
+        $x_2_4 = "Ignoring file with blocklisted extension" ascii //weight: 2
+        $x_2_5 = "Ignoring blocklisted directory" ascii //weight: 2
+        $x_1_6 = "net stop \"SQLsafe Filter Service\" /y" ascii //weight: 1
+        $x_1_7 = "net stop ReportServer /y" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

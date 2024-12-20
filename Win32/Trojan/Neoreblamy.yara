@@ -2559,3 +2559,27 @@ rule Trojan_Win32_Neoreblamy_BAN_2147928321_0
         )
 }
 
+rule Trojan_Win32_Neoreblamy_BH_2147928780_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Neoreblamy.BH!MTB"
+        threat_id = "2147928780"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Neoreblamy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "HooGqDnbMHZuzKSblLytJUhlexaJEr" ascii //weight: 2
+        $x_1_2 = "joRcJBpCtmXYbILeOovYrFHMsqLG" ascii //weight: 1
+        $x_1_3 = "nBPRXPpNQIecFUhaoiMuCgBpLHmmzu" ascii //weight: 1
+        $x_1_4 = "PRrkEOWsLxYKhuUyLvgrHRonWQwXMvlsax" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

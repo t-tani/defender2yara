@@ -2265,3 +2265,27 @@ rule Trojan_MSIL_DCRat_NIT_2147926208_0
         (1 of ($x*))
 }
 
+rule Trojan_MSIL_DCRat_ND_2147928803_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/DCRat.ND!MTB"
+        threat_id = "2147928803"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "DCRat"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "TessaLetMeDie601Violet.jnfvqq" ascii //weight: 2
+        $x_1_2 = "share lazy jump blue database vision understand you grow dark" ascii //weight: 1
+        $x_1_3 = "explore we moon" ascii //weight: 1
+        $x_1_4 = "$f647afa1-68f1-4859-af0d-09db821e0d3b" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

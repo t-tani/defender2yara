@@ -10733,6 +10733,29 @@ rule Trojan_Win64_CobaltStrike_HS_2147898344_1
         (all of ($x*))
 }
 
+rule Trojan_Win64_CobaltStrike_HS_2147898344_2
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CobaltStrike.HS!MTB"
+        threat_id = "2147898344"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CobaltStrike"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = "http://www.flntp.ro/fintp.x64.bin" ascii //weight: 3
+        $x_1_2 = "Updating application" ascii //weight: 1
+        $x_2_3 = "ConsoleApplication6.pdb" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win64_CobaltStrike_AKSM_2147898399_0
 {
     meta:

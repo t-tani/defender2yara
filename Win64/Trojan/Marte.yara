@@ -63,3 +63,27 @@ rule Trojan_Win64_Marte_CCHT_2147903434_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Marte_SPDG_2147928856_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Marte.SPDG!MTB"
+        threat_id = "2147928856"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Marte"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "F4as/kMih7KVLii45mPsIjWl7/18uXL8" ascii //weight: 2
+        $x_1_2 = "dZeILtlgC" ascii //weight: 1
+        $x_1_3 = "sOreloc4" ascii //weight: 1
+        $x_1_4 = "TNNhxyn" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
