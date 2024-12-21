@@ -445,6 +445,27 @@ rule Trojan_Win32_CryptBot_EZ_2147926884_0
         threshold = "2"
         strings_accuracy = "High"
     strings:
+        $x_2_1 = {20 20 20 00 20 20 20 20 00 80 06 00 00 10 00 00 00 de 02 00 00 10 00 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 e0 2e 72 73 72 63 00 00 00 d4 05 00 00 00 90 06 00 00 04 00 00 00 ee 02 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 c0}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_CryptBot_EZ_2147926884_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/CryptBot.EZ!MTB"
+        threat_id = "2147926884"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "CryptBot"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
         $x_2_1 = {20 20 20 00 20 20 20 20 00 e0 70 00 00 10 00 00 00 78 27 00 00 10 00 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 e0 2e 72 73 72 63 20 20 20 00 10 00 00 00 f0 70 00 00 00 00 00 00 88 27 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 c0}  //weight: 2, accuracy: High
     condition:
         (filesize < 20MB) and
@@ -580,5 +601,26 @@ rule Trojan_Win32_CryptBot_ZC_2147927694_0
     condition:
         (filesize < 20MB) and
         (1 of ($x*))
+}
+
+rule Trojan_Win32_CryptBot_XZ_2147928863_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/CryptBot.XZ!MTB"
+        threat_id = "2147928863"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "CryptBot"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {20 20 20 00 20 20 20 20 00 b0 07 00 00 10 00 00 00 3c 04 00 00 10 00 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 e0 2e 72 73 72 63 00 00 00 6c 16 00 00 00 c0 07 00 00 08 00 00 00 4c 04 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 c0}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
 }
 

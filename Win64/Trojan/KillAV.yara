@@ -162,3 +162,27 @@ rule Trojan_Win64_KillAV_BSA_2147928706_0
         )
 }
 
+rule Trojan_Win64_KillAV_BSB_2147928762_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/KillAV.BSB!MTB"
+        threat_id = "2147928762"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "KillAV"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "45"
+        strings_accuracy = "Low"
+    strings:
+        $x_20_1 = {45 33 c0 33 d2 e9 f2 fd ff ff cc cc e9 17 4d 00 00 ?? ?? ?? 48 8b c4 48 89 58 08 48 89 68 10 48 89 70 18 48 89 78 20 41}  //weight: 20, accuracy: Low
+        $x_5_2 = {89 05 a0 1b 02 00 e8 cb 4c 00 00 33 c9 48 89 05 9a 1b 02 00 e8 15 52}  //weight: 5, accuracy: High
+        $x_5_3 = {c1 fa 06 4c 89 34 03 48 8b c5 83 e0 3f 48 8d 0c c0 49 8b 04 d0}  //weight: 5, accuracy: High
+        $x_15_4 = "renamed, msmpeng.exe, nissrv.exe, and mpcmdrun.exe were all renamed" ascii //weight: 15
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
