@@ -281,3 +281,25 @@ rule Ransom_Linux_Babuk_AB_2147927973_0
         (all of ($x*))
 }
 
+rule Ransom_Linux_Babuk_O_2147928878_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Linux/Babuk.O!MTB"
+        threat_id = "2147928878"
+        type = "Ransom"
+        platform = "Linux: Linux platform"
+        family = "Babuk"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_ELFHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {48 89 48 08 48 8b 8c 24 90 00 00 00 48 89 48 18 48 89 50 10 e8 b6 ff f8 ff 48 8b 4c 24 70 48 ff 01}  //weight: 1, accuracy: High
+        $x_1_2 = {55 48 89 e5 48 83 ec 10 48 8b 7c 24 20 48 8b 74 24 28 48 8b 54 24 30 48 8b 05 f2 3d 13 00 48 89 e3 48 83 e4 f0 ff d0 48 89 dc 89 44 24 38 48 83 c4 10 5d c3}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
