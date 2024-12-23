@@ -249,6 +249,28 @@ rule Trojan_Win32_Lazy_ALZ_2147851724_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Lazy_ALZ_2147851724_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Lazy.ALZ!MTB"
+        threat_id = "2147851724"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Lazy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {53 68 00 02 00 00 8d 85 e4 fd ff ff 50 e8 ?? ?? ?? ?? 83 c4 28 8d 86 08 04 00 00 8d 4e 08 6a 00 50 68 ff 03 00 00 51 6a fd 8d 85 e4 fd ff ff 50 6a 00 ff 37 e8}  //weight: 2, accuracy: Low
+        $x_1_2 = {6a 00 8d 86 08 04 00 00 50 68 ff 03 00 00 8d 46 08 50 6a fd 8d 85 e4 fd ff ff 50 6a 00 ff 37 e8}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win32_Lazy_GNR_2147851938_0
 {
     meta:
@@ -1457,6 +1479,28 @@ rule Trojan_Win32_Lazy_ALA_2147928783_0
         $x_3_1 = {6a 00 68 b2 6c 41 00 68 f0 3e 41 00 6a 00 ff 15 2c f1 40 00 ff 75 14 ff 35 38 7b 41 00 ff 15 1c f1 40 00 ff 35 38 7b 41 00 ff 15 64 f1 40 00 6a 6d 53 ff 15}  //weight: 3, accuracy: High
         $x_2_2 = {8b 0d 00 60 41 00 56 8b 35 bc 73 41 00 83 e1 1f 33 35 00 60 41 00 d3 ce 85 f6}  //weight: 2, accuracy: High
         $x_1_3 = {8b 0d 00 60 41 00 8b 15 bc 73 41 00 83 e1 1f 33 15 00 60 41 00 d3 ca 85 d2 0f 95 c0}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Lazy_ALY_2147928906_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Lazy.ALY!MTB"
+        threat_id = "2147928906"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Lazy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {6a 00 8d 86 ?? ?? ?? ?? 50 68 ff 03 00 00 8d 46 08 50 6a fd 8d 85 e4 fd ff ff 50 6a 00 ff 33}  //weight: 3, accuracy: Low
+        $x_2_2 = {ab ab ab ab 8d 85 e4 dd ff ff 50 ff 15 ?? ?? ?? ?? 68 e8 ce 55 00 8d 85 e4 dd ff ff 50 ff 15}  //weight: 2, accuracy: Low
     condition:
         (filesize < 20MB) and
         (all of ($x*))

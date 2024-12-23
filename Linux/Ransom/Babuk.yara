@@ -303,3 +303,28 @@ rule Ransom_Linux_Babuk_O_2147928878_0
         (all of ($x*))
 }
 
+rule Ransom_Linux_Babuk_K_2147928907_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Linux/Babuk.K!MTB"
+        threat_id = "2147928907"
+        type = "Ransom"
+        platform = "Linux: Linux platform"
+        family = "Babuk"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_ELFHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "for i in $(esxcli vm process list" ascii //weight: 1
+        $x_1_2 = "grep -Eo '[0-9]{1,8}'); do esxcli vm process kill -t=force -w=$i; done" ascii //weight: 1
+        $x_1_3 = "for i in $(vim-cmd vmsvc/getallvms" ascii //weight: 1
+        $x_1_4 = "grep -Eo '[0-9]{1,8}'); do vim-cmd vmsvc/snapshot.removeall $i; done" ascii //weight: 1
+        $x_1_5 = "]]; then vim-cmd vmsvc/power.off $i; fi; done" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

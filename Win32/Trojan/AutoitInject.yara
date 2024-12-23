@@ -4133,3 +4133,34 @@ rule Trojan_Win32_AutoitInject_NBU_2147928693_0
         )
 }
 
+rule Trojan_Win32_AutoitInject_HNH_2147928932_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.HNH!MTB"
+        threat_id = "2147928932"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {3d 00 20 00 43 00 41 00 4c 00 4c 00 20 00 28 00 20 00 53 00 54 00 52 00 49 00 4e 00 47 00 52 00 45 00 56 00 45 00 52 00 53 00 45 00 20 00 28 00 20 00 22 00 74 00 69 00 6c 00 70 00 53 00 67 00 6e 00 69 00 72 00 74 00 53 00 22 00 20 00 29 00 20 00 2c 00 20 00 24 00 [0-53] 20 00 2c 00 20 00 22 00 ?? ?? 22 00 20 00 2c 00 20 00 ?? ?? 20 00 29 00}  //weight: 2, accuracy: Low
+        $x_2_2 = {3d 20 43 41 4c 4c 20 28 20 53 54 52 49 4e 47 52 45 56 45 52 53 45 20 28 20 22 74 69 6c 70 53 67 6e 69 72 74 53 22 20 29 20 2c 20 24 [0-53] 20 2c 20 22 ?? ?? 22 20 2c 20 ?? ?? 20 29}  //weight: 2, accuracy: Low
+        $x_1_3 = {26 00 3d 00 20 00 43 00 48 00 52 00 57 00 20 00 28 00 20 00 24 00 [0-53] 20 00 5b 00 20 00 24 00 [0-53] 20 00 5d 00 20 00 2d 00 20 00 24 00 [0-53] 20 00 29 00}  //weight: 1, accuracy: Low
+        $x_1_4 = {26 3d 20 43 48 52 57 20 28 20 24 [0-53] 20 5b 20 24 [0-53] 20 5d 20 2d 20 24 [0-53] 20 29}  //weight: 1, accuracy: Low
+        $x_1_5 = {44 00 4c 00 4c 00 43 00 41 00 4c 00 4c 00 20 00 28 00 20 00 [0-96] 20 00 28 00 20 00 [0-4] [0-6] ?? ?? [0-6] 03 [0-6] 03 [0-6] 03 04 03 [0-6] 03 [0-6] 03 [0-6] 03 [0-6] 03 [0-6] 03 0c 03 0c [0-4] 20 00 2c 00 20 00 [0-4] 20 00 2b 00 20 00 [0-4] 20 00 29 00 20 00 2c 00}  //weight: 1, accuracy: Low
+        $x_1_6 = {44 4c 4c 43 41 4c 4c 20 28 20 [0-96] 20 28 20 [0-4] [0-6] ?? ?? [0-6] 03 [0-6] 03 [0-6] 03 04 03 [0-6] 03 [0-6] 03 [0-6] 03 [0-6] 03 [0-6] 03 0c 03 0c [0-4] 20 2c 20 [0-4] 20 2b 20 [0-4] 20 29 20 2c}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (
+            ((4 of ($x_1_*))) or
+            ((1 of ($x_2_*) and 2 of ($x_1_*))) or
+            ((2 of ($x_2_*))) or
+            (all of ($x*))
+        )
+}
+

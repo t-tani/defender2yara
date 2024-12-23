@@ -380,3 +380,24 @@ rule Virus_Win64_Expiro_HNF_2147928180_0
         (all of ($x*))
 }
 
+rule Virus_Win64_Expiro_HNG_2147928933_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Virus:Win64/Expiro.HNG!MTB"
+        threat_id = "2147928933"
+        type = "Virus"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Expiro"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {48 83 ec 28 e8 ?? ?? ?? ?? 48 83 c4 28 e9}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -1,3 +1,24 @@
+rule HackTool_Linux_Chisel_A_2147794676_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "HackTool:Linux/Chisel.A"
+        threat_id = "2147794676"
+        type = "HackTool"
+        platform = "Linux: Linux platform"
+        family = "Chisel"
+        severity = "High"
+        signature_type = "SIGNATURE_TYPE_CMDHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = "chisel server" wide //weight: 10
+        $x_10_2 = "chisel client" wide //weight: 10
+    condition:
+        (filesize < 20MB) and
+        (1 of ($x*))
+}
+
 rule HackTool_Linux_Chisel_C_2147924004_0
 {
     meta:
@@ -24,5 +45,26 @@ rule HackTool_Linux_Chisel_C_2147924004_0
             ((1 of ($x_10_*) and 4 of ($x_1_*))) or
             (all of ($x*))
         )
+}
+
+rule HackTool_Linux_Chisel_B_2147928935_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "HackTool:Linux/Chisel.B"
+        threat_id = "2147928935"
+        type = "HackTool"
+        platform = "Linux: Linux platform"
+        family = "Chisel"
+        severity = "High"
+        signature_type = "SIGNATURE_TYPE_CMDHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {63 00 68 00 69 00 73 00 65 00 6c 00 [0-64] 20 00 73 00 65 00 72 00 76 00 65 00 72 00}  //weight: 10, accuracy: Low
+        $x_10_2 = {63 00 68 00 69 00 73 00 65 00 6c 00 [0-64] 20 00 63 00 6c 00 69 00 65 00 6e 00 74 00}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (1 of ($x*))
 }
 

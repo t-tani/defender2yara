@@ -826,3 +826,26 @@ rule Trojan_Win32_BlackMoon_GB_2147925375_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_BlackMoon_NIT_2147927780_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/BlackMoon.NIT!MTB"
+        threat_id = "2147927780"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "BlackMoon"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {a1 04 d0 41 00 56 85 c0 be 04 d0 41 00 74 17 8b 0d 00 d0 41 00 6a 00 51 6a 01 ff d0 8b 46 04 83 c6 04 85 c0}  //weight: 2, accuracy: High
+        $x_1_2 = "Delete00.bat" ascii //weight: 1
+        $x_1_3 = "blackmoon" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

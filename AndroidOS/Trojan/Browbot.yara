@@ -26,3 +26,25 @@ rule Trojan_AndroidOS_Browbot_R_2147899122_0
         (3 of ($x*))
 }
 
+rule Trojan_AndroidOS_Browbot_Y_2147928919_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:AndroidOS/Browbot.Y"
+        threat_id = "2147928919"
+        type = "Trojan"
+        platform = "AndroidOS: Android operating system"
+        family = "Browbot"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {73 65 6e 64 65 72 70 68 6f 6e 65 5f ?? ?? 00}  //weight: 2, accuracy: Low
+        $x_2_2 = {63 72 65 64 65 6e 74 69 61 6c 73 4c 61 75 6e 63 68 65 72 5f ?? ?? 00}  //weight: 2, accuracy: Low
+        $x_2_3 = {64 61 74 61 5f ?? ?? 2f 69 6e 64 65 78 5f ?? ?? 00}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (2 of ($x*))
+}
+
