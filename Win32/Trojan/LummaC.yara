@@ -1653,3 +1653,29 @@ rule Trojan_Win32_LummaC_BN_2147928782_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_LummaC_NLB_2147928887_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaC.NLB!MTB"
+        threat_id = "2147928887"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "_crypted.dll" ascii //weight: 2
+        $x_1_2 = "@bmnvidjapmuqvqlivxazircppbjomunmxpjyeiwubtphnmhendbjxyloyarbch" ascii //weight: 1
+        $x_1_3 = "ptkiouuecnxbzqhwftynkvokpwliaipsbjysbghjppqikbqtmnhet" ascii //weight: 1
+        $x_1_4 = "xbfyibczyizhsiwigxshdojulzcfjnvoakgvhgs" ascii //weight: 1
+        $x_1_5 = "laqxkqcpfyvpakmoyctaiwbatatssaylldhvrbchranhq" ascii //weight: 1
+        $x_1_6 = "ocdxlonrhtobxzbmmppsktncfvbqheqvmuejpgo" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
