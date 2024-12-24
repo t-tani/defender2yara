@@ -5211,3 +5211,31 @@ rule Trojan_Win32_Zusy_GD_2147928960_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Zusy_BN_2147929002_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zusy.BN!MTB"
+        threat_id = "2147929002"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {4c 00 32 c8 68 ?? ?? 4c 00 88 0d ?? ?? 4c 00 8a 0d ?? ?? 4c 00 80 c9 0c c0 e9 02 81 e1 ff 00 00 00 89 4c 24 04 db 44 24 04 dc 3d}  //weight: 4, accuracy: Low
+        $x_1_2 = "{A910187F-0C7A-45AC-92CC-9EDAFB757B53}" ascii //weight: 1
+        $x_4_3 = {83 ec 10 8b 44 24 00 68 64 e0 4c 00 6a 00 8d 4c 24 0c 6a 01 51 c7 44 24 14 0c 00 00 00 89 44 24 18 c7 44 24 1c 00 00 00 00 ff 15 ?? ?? 4c 00 a3 ?? ?? 4d 00 83 c4 10 c3}  //weight: 4, accuracy: Low
+        $x_1_4 = {55 8b ec 83 ec 0c 53 56 57 e8 ?? ?? f5 ff 89 45 fc e9}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_4_*) and 1 of ($x_1_*))) or
+            ((2 of ($x_4_*))) or
+            (all of ($x*))
+        )
+}
+

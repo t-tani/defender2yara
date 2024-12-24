@@ -342,3 +342,24 @@ rule Virus_Win32_Virut_HNC_2147925661_0
         (all of ($x*))
 }
 
+rule Virus_Win32_Virut_HNE_2147929003_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Virus:Win32/Virut.HNE!MTB"
+        threat_id = "2147929003"
+        type = "Virus"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Virut"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {a2 b0 80 f2 cf dc 71 ce 2b 86 68 8f ac 33 78 aa}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

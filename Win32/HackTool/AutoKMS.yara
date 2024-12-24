@@ -336,3 +336,26 @@ rule HackTool_Win32_AutoKMS_NK_2147744620_0
         (all of ($x*))
 }
 
+rule HackTool_Win32_AutoKMS_HNB_2147929004_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "HackTool:Win32/AutoKMS.HNB!MTB"
+        threat_id = "2147929004"
+        type = "HackTool"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoKMS"
+        severity = "High"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {44 00 43 00 00 00 6b 00 6d 00 73 00 2e 00 6a 00 6d 00 33 00 33 00 2e 00 6d 00 65 00 3a 00 31 00 36 00 38 00 38 00 00 00 4f 00 66 00 66 00 69 00 63 00 65 00 20 00 32 00 30 00 32 00 31 00 20 00}  //weight: 1, accuracy: High
+        $x_1_2 = {00 2f 00 44 00 20 00 2f 00 63 00 20 00 00 00 21 00 00 00 6b 00 6d 00 73 00 2e 00 6d 00 6f 00 65 00 79 00 75 00 75 00 6b 00 6f 00 2e 00 74 00 6f 00 70 00 3a 00 31 00 36 00 38 00 38 00 00 00 4f 00 66 00 66 00 69 00 63 00}  //weight: 1, accuracy: High
+        $x_2_3 = {00 00 6b 00 6d 00 73 00 38 00 2e 00 4d 00 53 00 47 00 75 00 69 00 64 00 65 00 73 00 2e 00 63 00 6f 00 6d 00 3a 00 31 00 36 00 38 00 38 00 00 00}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
