@@ -3417,3 +3417,24 @@ rule Trojan_Win32_Amadey_BSA_2147928965_1
         (1 of ($x*))
 }
 
+rule Trojan_Win32_Amadey_FZZ_2147929048_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Amadey.FZZ!MTB"
+        threat_id = "2147929048"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Amadey"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {49 0f 84 20 00 00 00 8b 85 05 17 2d 12 bb 00 00 00 00 0b db 0f 85 ?? ?? ?? ?? 28 24 39 30 04 39 49 0f 85 ?? ?? ?? ?? 61 e9}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

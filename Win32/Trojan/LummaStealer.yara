@@ -3533,3 +3533,24 @@ rule Trojan_Win32_LummaStealer_AMCV_2147928954_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_LummaStealer_PZZ_2147929040_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaStealer.PZZ!MTB"
+        threat_id = "2147929040"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {8b 45 ec c1 e8 05 89 45 f8 8b 45 dc 01 45 f8 8d 0c 3b 33 f1 81 3d ?? ?? ?? ?? e6 09 00 00 c7 05 ?? ?? ?? ?? ee 3d ea f4 75}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

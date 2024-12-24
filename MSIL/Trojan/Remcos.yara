@@ -12496,3 +12496,25 @@ rule Trojan_MSIL_Remcos_PKWH_2147928500_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Remcos_MBWI_2147929038_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Remcos.MBWI!MTB"
+        threat_id = "2147929038"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Remcos"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {0a 2b 37 02 28 ?? 00 00 0a 0b 12 01 28 ?? 00 00 0a 17 58 20 00 01 00 00 5d 02 28 ?? 00 00 0a 0b 12 01 28 ?? 00 00 0a 02}  //weight: 2, accuracy: Low
+        $x_1_2 = "pwsgl3.Properti" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
