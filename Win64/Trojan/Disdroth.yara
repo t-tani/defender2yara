@@ -41,3 +41,28 @@ rule Trojan_Win64_Disdroth_EM_2147848358_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Disdroth_EM_2147848358_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Disdroth.EM!MTB"
+        threat_id = "2147848358"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Disdroth"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "C:\\Users\\Tony Stark\\.rustup\\toolchains" ascii //weight: 1
+        $x_1_2 = "Prioritystream_iddependency" ascii //weight: 1
+        $x_1_3 = "Pingackpayload" ascii //weight: 1
+        $x_1_4 = "_desktop.pdb" ascii //weight: 1
+        $x_1_5 = "\\cmd.exe" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
