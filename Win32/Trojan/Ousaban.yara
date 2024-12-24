@@ -43,3 +43,24 @@ rule Trojan_Win32_Ousaban_C_2147828851_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Ousaban_GTM_2147928990_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Ousaban.GTM!MTB"
+        threat_id = "2147928990"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Ousaban"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {47 32 4d 00 00 00 00 02 00 00 00 8b ?? ?? ?? ?? 81 c4 ?? ?? ?? ?? 53 56 57 33 d2 89 95 ?? ?? ?? ?? 89 95 ?? ?? ?? ?? 89 45 ?? 8b 45}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

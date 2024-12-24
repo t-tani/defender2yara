@@ -4755,3 +4755,28 @@ rule Trojan_Win32_Guloader_ASE_2147928605_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Guloader_GTM_2147928989_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Guloader.GTM!MTB"
+        threat_id = "2147928989"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Guloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "\\mafia\\sht.Rud" ascii //weight: 1
+        $x_1_2 = "gehejmeraadernes kendetegnes fooyoung" ascii //weight: 1
+        $x_1_3 = "tempestuously" ascii //weight: 1
+        $x_1_4 = "bedsick dichromatopsia" ascii //weight: 1
+        $x_1_5 = "Nrhedsbutikkens" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
