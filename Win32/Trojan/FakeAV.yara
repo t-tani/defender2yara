@@ -117,3 +117,24 @@ rule Trojan_Win32_FakeAV_ASGT_2147919811_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_FakeAV_GPN_2147928973_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/FakeAV.GPN!MTB"
+        threat_id = "2147928973"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "FakeAV"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {55 8b ec 81 ec 80 04 00 00 53 56 57 89 95 80 fb ff ff 89 8d 84 fb ff ff c7 45 fc}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

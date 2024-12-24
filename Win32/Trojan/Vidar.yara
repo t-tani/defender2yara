@@ -5321,6 +5321,28 @@ rule Trojan_Win32_Vidar_AVR_2147912053_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Vidar_AVR_2147912053_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Vidar.AVR!MTB"
+        threat_id = "2147912053"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Vidar"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {69 0c 24 00 03 00 00 01 c8 8d 0d 84 46 42 00 6b 14 24 0c 01 d1 89 01 8d 05 00 30 42 00 69 0c 24 00 03 00 00 01 c8 05 00 01 00 00 8d 0d 84 46 42 00 6b 14 24 0c 01 d1 89 41 04 8d 05 00 30 42 00 69 0c 24 00 03 00 00 01 c8 05 00 02 00 00 8d 0d 84 46 42 00 6b 14 24 0c 01 d1}  //weight: 2, accuracy: High
+        $x_1_2 = {a3 e4 4f 63 00 68 54 0c 42 00 ff 35 c4 51 63 00 e8 2a c7 fe ff a3 e8 4f 63 00 68 bd 0a 42 00 ff 35 c4 51 63 00 e8 15 c7 fe ff a3 ec 4f 63 00 68 13 09 42 00 ff 35 c4 51 63 00 e8 00 c7 fe ff a3 f0 4f 63 00 68 51 03 42 00 ff 35 c4 51 63 00 e8 eb c6 fe ff a3 98 4f 63 00 68 dc 09 42 00 ff 35 c4 51 63 00}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win32_Vidar_ASGG_2147912189_0
 {
     meta:

@@ -2688,3 +2688,26 @@ rule Trojan_MSIL_Zusy_SF_2147928835_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Zusy_GC_2147928959_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Zusy.GC!MTB"
+        threat_id = "2147928959"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {06 11 07 7e 01 00 00 04 11 07 91 7e 01 00 00 04 16 91 61 d2 9c 11 07 17 58 13 07}  //weight: 1, accuracy: High
+        $x_1_2 = {7e 01 00 00 04 8e 69 8d 1b 00 00 01 0a 16 13 07}  //weight: 1, accuracy: High
+        $x_1_3 = "costura.costura.dll.compressed" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

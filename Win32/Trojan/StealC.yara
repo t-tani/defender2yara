@@ -3838,6 +3838,28 @@ rule Trojan_Win32_StealC_ARAZ_2147928285_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {8a 04 3e 2c ?? 34 ?? 88 04 3e 46 57 e8 ?? ?? ?? ?? 59 3b f0 72 ea}  //weight: 2, accuracy: Low
+        $x_2_2 = {53 8d 44 24 14 89 5c 24 14 50 53 68 3f 00 0f 00 53 53 53 8d 84 24 3c 04 00 00 50 68 01 00 00 80 ff}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (1 of ($x*))
+}
+
+rule Trojan_Win32_StealC_ARAZ_2147928285_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/StealC.ARAZ!MTB"
+        threat_id = "2147928285"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "StealC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "10"
         strings_accuracy = "High"
     strings:
@@ -3909,6 +3931,27 @@ rule Trojan_Win32_StealC_GCM_2147928769_0
         strings_accuracy = "Low"
     strings:
         $x_10_1 = {0f b6 c0 8a 84 04 ?? ?? ?? ?? 8b 4c 24 ?? 30 04 0e 89 c8 40 39 e8 8b 54 24}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_StealC_RPA_2147928940_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/StealC.RPA!MTB"
+        threat_id = "2147928940"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "StealC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {20 20 20 00 20 20 20 20 00 90 24 00 00 10 00 00 00 68 01 00 00 10 00 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 e0 2e 72 73 72 63 00 00 00 f0 01 00 00 00 a0 24 00 00 02 00 00 00 78 01 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 c0 2e 69 64 61 74 61 20 20 00 10 00 00 00 b0 24 00 00 02 00 00 00 7a 01 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 c0}  //weight: 1, accuracy: High
     condition:
         (filesize < 20MB) and
         (all of ($x*))

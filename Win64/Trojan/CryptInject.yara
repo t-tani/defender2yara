@@ -3432,11 +3432,54 @@ rule Trojan_Win64_CryptInject_BSA_2147927064_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = {f2 0f 11 44 24 08 48 83 ec 68 0f b6 05 69 4c 53 01 0f be c0 f2 0f 2a c0 0f b6 05 5a 4c 53 01}  //weight: 10, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_CryptInject_BSA_2147927064_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CryptInject.BSA!MTB"
+        threat_id = "2147927064"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "20"
         strings_accuracy = "High"
     strings:
         $x_10_1 = "you clicked a address" ascii //weight: 10
         $x_10_2 = "you clicked a bus station!" ascii //weight: 10
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_CryptInject_BSA_2147927064_2
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CryptInject.BSA!MTB"
+        threat_id = "2147927064"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "21"
+        strings_accuracy = "Low"
+    strings:
+        $x_11_1 = {48 2b e0 48 8b 05 ?? ?? ?? ?? 48 33 c4 48 89 84 24 e0 20 00 00 41 b9 0f 0f 05 00 4c 8b 84 24 ?? ?? ?? ?? 48 8d 94 24 ?? ?? ?? ?? 48 8d 8c 24}  //weight: 11, accuracy: Low
+        $x_10_2 = {48 8d 84 08 94 0a 00 00 89 44 24 5c c7 44 24 20 00 00 00 00 48 8d 94 24 68 02 00 00 48 8d 4c 24 30}  //weight: 10, accuracy: High
     condition:
         (filesize < 20MB) and
         (all of ($x*))

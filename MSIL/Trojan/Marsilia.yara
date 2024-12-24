@@ -1264,3 +1264,24 @@ rule Trojan_MSIL_Marsilia_AXEA_2147927513_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Marsilia_ARAZ_2147928952_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Marsilia.ARAZ!MTB"
+        threat_id = "2147928952"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Marsilia"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {03 09 11 06 58 28 ?? ?? ?? 2b 04 11 06 28 ?? ?? ?? 2b 2e 04 16 0c 2b 0b 11 06 17 58 13 06 11 06 07 32 dd}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -72,3 +72,29 @@ rule Trojan_Win32_Makoob_NM_2147906168_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Makoob_GA_2147928958_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Makoob.GA!MTB"
+        threat_id = "2147928958"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Makoob"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "efterlnsordningerne argean indflytningerne" wide //weight: 1
+        $x_1_2 = "teth.exe" wide //weight: 1
+        $x_1_3 = "arene asfreds deserteringens" wide //weight: 1
+        $x_1_4 = "SeShutdownPrivilege" wide //weight: 1
+        $x_1_5 = "\\Temp" wide //weight: 1
+        $x_1_6 = "draabningerne flaaningernes nonusing" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

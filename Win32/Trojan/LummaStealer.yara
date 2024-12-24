@@ -3487,3 +3487,49 @@ rule Trojan_Win32_LummaStealer_NIM_2147928720_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_LummaStealer_RPAG_2147928939_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaStealer.RPAG!MTB"
+        threat_id = "2147928939"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {20 20 20 00 20 20 20 20 00 80 73 00 00 10 00 00 00 36 28 00 00 10 00 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 e0 2e 72 73 72 63 00 00 00 b0 02 00 00 00 90 73 00 00 02 00 00 00 46 28 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 c0 2e 69 64 61 74 61 20 20 00 10 00 00 00 a0 73 00 00 02 00 00 00 48 28 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 c0}  //weight: 1, accuracy: High
+        $x_1_2 = {20 20 20 00 20 20 20 20 00 10 76 00 00 10 00 00 00 3c 28 00 00 10 00 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 e0 2e 72 73 72 63 00 00 00 b0 02 00 00 00 20 76 00 00 02 00 00 00 4c 28 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 c0 2e 69 64 61 74 61 20 20 00 10 00 00 00 30 76 00 00 02 00 00 00 4e 28 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 c0}  //weight: 1, accuracy: High
+        $x_1_3 = {20 20 20 00 20 20 20 20 00 60 73 00 00 10 00 00 00 44 28 00 00 10 00 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 e0 2e 72 73 72 63 00 00 00 b0 02 00 00 00 70 73 00 00 02 00 00 00 54 28 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 c0 2e 69 64 61 74 61 20 20 00 10 00 00 00 80 73 00 00 02 00 00 00 56 28 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 c0}  //weight: 1, accuracy: High
+        $x_1_4 = {20 20 20 00 20 20 20 20 00 e0 70 00 00 10 00 00 00 78 27 00 00 10 00 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 e0 2e 72 73 72 63 00 00 00 b0 02 00 00 00 f0 70 00 00 02 00 00 00 88 27 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 c0 2e 69 64 61 74 61 20 20 00 10 00 00 00 00 71 00 00 02 00 00 00 8a 27 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 c0}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (1 of ($x*))
+}
+
+rule Trojan_Win32_LummaStealer_AMCV_2147928954_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaStealer.AMCV!MTB"
+        threat_id = "2147928954"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {8b 45 e0 3b 45 e4 0f 8d ?? ?? ?? ?? 8b 45 e8 8b 4d e0 c1 e1 02 8b 04 08 89 45 f8 69 45 f8 ?? ?? ?? ?? 89 45 f8 8b 45 f8 c1 e8 18 33 45 f8 89 45 f8 69 45 f8 01 89 45 f8 69 45 ec 01 89 45 ec 8b 45 f8 33 45 ec 89 45 ec 8b 45 e0 83 c0 01 89 45 e0}  //weight: 4, accuracy: Low
+        $x_1_2 = {0f be 00 33 45 d8 89 45 d8 69 45 d8 ?? ?? ?? ?? 89 45 d8 8b 45 d8 33 45 ec 89 45 ec 8b 45 ec c1 e8 0d 33 45 ec 89 45 ec 69 45 ec 00 89 45 ec 8b 45 ec c1 e8 0f 33 45 ec 89 45 ec 8b 45 ec 89 45 cc 8b 4d fc 31 e9 e8}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

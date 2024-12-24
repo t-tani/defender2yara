@@ -1195,3 +1195,25 @@ rule Trojan_Win64_Zusy_YAK_2147928749_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Zusy_YAM_2147928972_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Zusy.YAM!MTB"
+        threat_id = "2147928972"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {c8 80 00 00 48 83 ec 60 e9}  //weight: 1, accuracy: High
+        $x_10_2 = {48 8d 3f 32 c3 48 8d 3f [0-6] 02 c3 48 8d 3f 32 c3 48 8d 3f e9}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
