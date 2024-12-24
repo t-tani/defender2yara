@@ -2498,3 +2498,25 @@ rule Trojan_MSIL_Stealer_NITs_2147928291_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Stealer_AHHA_2147929013_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Stealer.AHHA!MTB"
+        threat_id = "2147929013"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Stealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {03 11 0f 1f 10 63 20 ff 00 00 00 5f d2 6f ?? 00 00 0a 00 03 11 0f 1e 63 20 ff 00 00 00 5f d2 6f ?? 00 00 0a 00 03 11 0f 20 ff 00 00 00 5f d2 6f ?? 00 00 0a 00 11 06 11 0f 6a 61 13 06 06 11 06 58 0a}  //weight: 3, accuracy: Low
+        $x_2_2 = {01 25 16 12 08 28 ?? 00 00 0a 9c 25 17 12 08 28 ?? 00 00 0a 9c 25 18 12 08 28 ?? 00 00 0a 9c 13 10 16}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

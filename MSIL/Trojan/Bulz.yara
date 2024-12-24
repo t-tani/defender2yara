@@ -498,3 +498,24 @@ rule Trojan_MSIL_Bulz_ARAZ_2147928123_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Bulz_KAI_2147929022_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Bulz.KAI!MTB"
+        threat_id = "2147929022"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Bulz"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {11 0d 91 08 08 11 0a 84 95 08 11 08 84 95 d7 6e 20 ff 00 00 00 6a 5f 84 95 61 86 9c 11 0d 17 d6 13 0d 2b 8a}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

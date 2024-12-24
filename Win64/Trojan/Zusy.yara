@@ -1239,3 +1239,24 @@ rule Trojan_Win64_Zusy_ASJ_2147928987_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Zusy_HNAE_2147929023_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Zusy.HNAE!MTB"
+        threat_id = "2147929023"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {9b 92 e4 c1 fe e1 e6 e7 e4 e5 1a 37 4e 5c 65 66 6b 69 64 52 64 68 65 65 4d 67 70 78 2a 17 0e 0f}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
