@@ -742,3 +742,39 @@ rule Trojan_Win64_CoinMiner_PBH_2147928683_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_CoinMiner_BSA_2147929053_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CoinMiner.BSA!MTB"
+        threat_id = "2147929053"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CoinMiner"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "27"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = "Usage: xmrig [OPTIONS]" ascii //weight: 10
+        $x_6_2 = "enable nicehash/xmrig-proxy" ascii //weight: 6
+        $x_1_3 = "cryptonight" ascii //weight: 1
+        $x_2_4 = "cryptonight-lite" ascii //weight: 2
+        $x_2_5 = "cryptonight-light" ascii //weight: 2
+        $x_3_6 = "maximum CPU usage for automatic threadsmode" ascii //weight: 3
+        $x_4_7 = "print hashrate report every N seconds" ascii //weight: 4
+        $x_5_8 = "port for the miner API" ascii //weight: 5
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_10_*) and 1 of ($x_5_*) and 1 of ($x_4_*) and 1 of ($x_3_*) and 2 of ($x_2_*) and 1 of ($x_1_*))) or
+            ((1 of ($x_10_*) and 1 of ($x_6_*) and 1 of ($x_4_*) and 1 of ($x_3_*) and 2 of ($x_2_*))) or
+            ((1 of ($x_10_*) and 1 of ($x_6_*) and 1 of ($x_5_*) and 1 of ($x_3_*) and 1 of ($x_2_*) and 1 of ($x_1_*))) or
+            ((1 of ($x_10_*) and 1 of ($x_6_*) and 1 of ($x_5_*) and 1 of ($x_3_*) and 2 of ($x_2_*))) or
+            ((1 of ($x_10_*) and 1 of ($x_6_*) and 1 of ($x_5_*) and 1 of ($x_4_*) and 1 of ($x_2_*))) or
+            ((1 of ($x_10_*) and 1 of ($x_6_*) and 1 of ($x_5_*) and 1 of ($x_4_*) and 1 of ($x_3_*))) or
+            (all of ($x*))
+        )
+}
+
