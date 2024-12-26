@@ -5260,3 +5260,26 @@ rule Trojan_Win32_Zusy_AKHA_2147929047_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Zusy_AZUS_2147929114_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zusy.AZUS!MTB"
+        threat_id = "2147929114"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = {50 68 04 00 00 80 6a 00 68 cb f9 1d 00 68 04 00 00 80 6a 00 68 d2 f9 1d 00 68 06 00 00 00 bb 90 5a 14 00}  //weight: 3, accuracy: High
+        $x_2_2 = {50 68 04 00 00 80 6a 00 68 d3 f7 1d 00 68 04 00 00 80 6a 00 68 dc f7 1d 00 68 06 00 00 00 bb 90 5a 14 00}  //weight: 2, accuracy: High
+        $x_1_3 = {50 68 04 00 00 80 6a 00 68 c6 f8 1d 00 68 04 00 00 80 6a 00 68 d0 f8 1d 00 68 06 00 00 00 bb 90 5a 14 00}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
