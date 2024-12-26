@@ -1189,3 +1189,25 @@ rule Trojan_Win32_Offloader_KAT_2147928967_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Offloader_KAU_2147929092_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Offloader.KAU!MTB"
+        threat_id = "2147929092"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Offloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = "/trucksstick.icu/don.php" ascii //weight: 10
+        $x_1_2 = "/silent" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
