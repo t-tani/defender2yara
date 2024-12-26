@@ -418,3 +418,24 @@ rule Trojan_Win64_Dacic_TFZ_2147928977_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Dacic_OOZ_2147929145_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Dacic.OOZ!MTB"
+        threat_id = "2147929145"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Dacic"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {41 f7 e8 41 03 d0 c1 fa 05 8b c2 c1 e8 ?? 03 d0 0f be c2 6b c8 3a 41 0f b6 c0 2a c1 04 31 41 30 01 41 ff c0 4d 8d 49 01 41 83 f8 0c 7c}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

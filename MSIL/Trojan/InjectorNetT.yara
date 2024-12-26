@@ -19,3 +19,26 @@ rule Trojan_MSIL_InjectorNetT_AGHA_2147929009_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_InjectorNetT_AMHA_2147929152_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/InjectorNetT.AMHA!MTB"
+        threat_id = "2147929152"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "InjectorNetT"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {73 a0 00 00 0a 0a 06 72 ?? 00 00 70 28 ?? 00 00 0a 6f ?? 00 00 0a 06 72 ?? 00 00 70 28 ?? 00 00 0a 6f ?? 00 00 0a 06 6f ?? 00 00 0a 02 16 02 8e 69 6f ?? 00 00 0a 0b dd}  //weight: 4, accuracy: Low
+        $x_1_2 = "FromBase64String" ascii //weight: 1
+        $x_1_3 = "CreateDecryptor" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -1206,3 +1206,24 @@ rule Trojan_Win32_Hancitor_ARA_2147847795_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Hancitor_ARAX_2147929142_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Hancitor.ARAX!MTB"
+        threat_id = "2147929142"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Hancitor"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {8b 45 08 0f be 0c 10 8b 55 08 03 55 fc 0f be 02 33 c1 8b 4d 08 03 4d fc 88 01 eb c7}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

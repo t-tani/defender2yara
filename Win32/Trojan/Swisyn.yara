@@ -241,3 +241,24 @@ rule Trojan_Win32_Swisyn_MBXR_2147919374_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Swisyn_ARAZ_2147929141_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Swisyn.ARAZ!MTB"
+        threat_id = "2147929141"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Swisyn"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {8b 44 24 10 8d 54 24 14 6a 04 52 6a 04 6a 00 68 cc c1 b0 00 50 89 7c 24 2c ff d6 8b 54 24 10 8d 4c 24 14 6a 04 51 6a 04 6a 00 68 c0 c1 b0 00 52 c7 44 24 2c 03 00 00 00 ff d6}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

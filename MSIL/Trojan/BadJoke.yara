@@ -46,3 +46,24 @@ rule Trojan_MSIL_BadJoke_KAA_2147903844_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_BadJoke_ABD_2147929140_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/BadJoke.ABD!MTB"
+        threat_id = "2147929140"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "BadJoke"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {16 0c 2b 31 02 7b 05 00 00 04 25 6f ?? 00 00 0a 7e 07 00 00 04 1f 20 1f 7f 6f ?? 00 00 0a d1 0d 12 03 28 ?? 00 00 0a 28 ?? 00 00 0a 6f ?? 00 00 0a 08 17 58 0c 08 7e 08 00 00 04 32 c7}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

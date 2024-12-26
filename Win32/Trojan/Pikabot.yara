@@ -1136,3 +1136,24 @@ rule Trojan_Win32_Pikabot_PE_2147908378_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Pikabot_FN_2147929143_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Pikabot.FN!MTB"
+        threat_id = "2147929143"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Pikabot"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {42 0f b6 d2 8a 84 15 e8 fb ff ff 01 c1 88 85 d4 fa ff ff 0f b6 c9 8a 84 0d e8 fb ff ff 88 84 15 e8 fb ff ff 8a 85 d4 fa ff ff 88 84 0d e8 fb ff ff 02 84 15 e8 fb ff ff 0f b6 c0 8a 84 05 e8 fb ff ff 32 84 2b 76 fb ff ff 0f b6 c0 66 89 84 5d 9c fb ff ff 43 83 fb 26}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -793,3 +793,57 @@ rule Ransom_Win64_FileCoder_RHAF_2147928552_0
         (all of ($x*))
 }
 
+rule Ransom_Win64_FileCoder_RHAG_2147929147_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win64/FileCoder.RHAG!MTB"
+        threat_id = "2147929147"
+        type = "Ransom"
+        platform = "Win64: Windows 64-bit platform"
+        family = "FileCoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {50 45 00 00 64 86 06 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 0b 02 0e 29 00 a6 00 00 00 78 7a 00 00 00 00 00 78 a6}  //weight: 2, accuracy: Low
+        $x_3_2 = "All your files have been encrypted by CyberVolk ransomware" ascii //weight: 3
+        $x_2_3 = "Please never try to recover your files without decryption key which I give you after pay" ascii //weight: 2
+        $x_1_4 = "Are you sure this is right decription key" wide //weight: 1
+        $x_1_5 = "Copy BTC" wide //weight: 1
+        $x_1_6 = "Encrypting File" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Ransom_Win64_FileCoder_AMCW_2147929151_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win64/FileCoder.AMCW!MTB"
+        threat_id = "2147929151"
+        type = "Ransom"
+        platform = "Win64: Windows 64-bit platform"
+        family = "FileCoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "20"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = "And you just need run this software on each computer that encrypted and all affected files will be decrypted" ascii //weight: 5
+        $x_2_2 = "We send you a simple software with private Key" ascii //weight: 2
+        $x_2_3 = "Short video of how to Decrypt" ascii //weight: 2
+        $x_3_4 = "What are the guarantees that I can decrypt my files after paying the ransom" ascii //weight: 3
+        $x_3_5 = "This means that we can decrypt all your files after paying the ransom" ascii //weight: 3
+        $x_2_6 = "NET STOP IISADMIN" ascii //weight: 2
+        $x_2_7 = "net stop mysql" ascii //weight: 2
+        $x_1_8 = "taskkill /F /IM" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

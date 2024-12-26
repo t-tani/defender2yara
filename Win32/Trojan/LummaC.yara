@@ -1461,6 +1461,27 @@ rule Trojan_Win32_LummaC_GNM_2147927680_0
         threshold = "10"
         strings_accuracy = "Low"
     strings:
+        $x_10_1 = {f7 df 01 f8 40 0f b6 9c 04 ?? ?? ?? ?? 00 da 0f b6 f2 8a bc 34 ?? ?? ?? ?? 88 bc 04 ?? ?? ?? ?? 88 9c 34 ?? ?? ?? ?? 02 9c 04 ?? ?? ?? ?? 0f b6 f3 0f b6 9c 34 ?? ?? ?? ?? 30 99 ?? ?? ?? ?? 41}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_LummaC_GNM_2147927680_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaC.GNM!MTB"
+        threat_id = "2147927680"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
         $x_10_1 = {0f b6 d9 8a b4 1c ?? ?? ?? ?? 88 b4 04 ?? ?? ?? ?? 88 94 1c ?? ?? ?? ?? 0f b6 94 04 ?? ?? ?? ?? 00 d1 02 0c 04 0f b6 d9 8a b4 1c ?? ?? ?? ?? 88 b4 04 ?? ?? ?? ?? 88 94 1c ?? ?? ?? ?? 83 c0 ?? 3d}  //weight: 10, accuracy: Low
     condition:
         (filesize < 20MB) and
@@ -1786,6 +1807,27 @@ rule Trojan_Win32_LummaC_NLH_2147929117_0
         $x_2_1 = {8b 75 e8 0f be 34 1e 31 f0 8b 75 e8 0f af c7 43 39 da 75 ec}  //weight: 2, accuracy: High
         $x_1_2 = {89 d7 f7 df 31 f7 4a 21 f2 01 d2 29 fa 8d 34 09 83 e6 74 f7 de 01 ce 83 c6 7a 83 e6 7a}  //weight: 1, accuracy: High
         $x_1_3 = {01 f9 01 c2 89 ce 31 d6 f7 d1 21 d1 01 c9 29 f1 89 ca}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_LummaC_SXOS_2147929153_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaC.SXOS!MTB"
+        threat_id = "2147929153"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {83 c0 46 89 44 24 0c 83 6c 24 0c 0a 90 83 6c 24 0c 3c 8a 44 24 0c 30 04 2f 83 fb 0f 75}  //weight: 1, accuracy: High
     condition:
         (filesize < 20MB) and
         (all of ($x*))
