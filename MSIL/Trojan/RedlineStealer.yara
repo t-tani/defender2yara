@@ -490,6 +490,29 @@ rule Trojan_MSIL_RedlineStealer_SZA_2147929054_0
         threshold = "3"
         strings_accuracy = "High"
     strings:
+        $x_1_1 = {06 11 15 1f 1f 5f 8f 89 00 00 01 25 4a 11 12 11 15 1e 5a 1f 1f 5f 63 61 54 11 15 17 58 13 15 11 15 1a fe 04 13 16 11 16 2d d6}  //weight: 1, accuracy: High
+        $x_1_2 = "Account_Panel.Properties.Resources" ascii //weight: 1
+        $x_1_3 = "$3eb20253-9dc7-4119-9a16-5cb763e8e3e8" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_RedlineStealer_SZA_2147929054_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/RedlineStealer.SZA!MTB"
+        threat_id = "2147929054"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "RedlineStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
         $x_1_1 = "$996a36e4-64c8-4c48-bc33-95d7dcbcd09e" ascii //weight: 1
         $x_1_2 = "JYM_Project.Properties.Resources.resources" ascii //weight: 1
         $x_1_3 = {00 11 04 11 14 8f 60 00 00 01 25 47 11 0e 11 14 1e 5a 1f 1f 5f 63 d2 61 d2 52 00 11 14 17 58 13 14 11 14 1a fe 04 13 15 11 15 2d d4}  //weight: 1, accuracy: High
