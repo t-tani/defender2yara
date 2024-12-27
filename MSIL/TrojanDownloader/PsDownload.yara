@@ -124,3 +124,24 @@ rule TrojanDownloader_MSIL_PsDownload_AAIX_2147852360_0
         (all of ($x*))
 }
 
+rule TrojanDownloader_MSIL_PsDownload_PAK_2147929194_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:MSIL/PsDownload.PAK!MTB"
+        threat_id = "2147929194"
+        type = "TrojanDownloader"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "PsDownload"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {72 01 00 00 70 6f ?? 00 00 0a 06 72 17 00 00 70 6f ?? 00 00 0a 06 17 6f ?? 00 00 0a 06 17 6f ?? 00 00 0a 06 28 ?? 00 00 0a 26}  //weight: 4, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

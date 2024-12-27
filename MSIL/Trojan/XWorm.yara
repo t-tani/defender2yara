@@ -950,6 +950,30 @@ rule Trojan_MSIL_XWorm_PXM_2147926249_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_XWorm_PXM_2147926249_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/XWorm.PXM!MTB"
+        threat_id = "2147926249"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "XWorm"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = "Hastane_Proje" wide //weight: 4
+        $x_3_2 = {00 04 28 42 00 00 06 26 7e 0d 00 00 04 18 6f ?? 00 00 0a 00 02 03 02 03 02 02 03 05 28 ?? 00 00 06 0a 2b 00 06 2a}  //weight: 3, accuracy: Low
+        $x_2_3 = {00 02 02 72 97 00 00 70 16 28 ?? 00 00 06 0a 2b 00 06 2a}  //weight: 2, accuracy: Low
+        $x_1_4 = "CreateDecryptor" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_XWorm_PDM_2147926251_0
 {
     meta:

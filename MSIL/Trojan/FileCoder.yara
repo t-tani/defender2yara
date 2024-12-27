@@ -682,3 +682,50 @@ rule Trojan_MSIL_FileCoder_PM_2147928682_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_FileCoder_PN_2147929189_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/FileCoder.PN!MTB"
+        threat_id = "2147929189"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "FileCoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {11 04 11 06 16 11 07 6f ?? 00 00 0a 08 11 06 16 20 ?? 20 00 00 6f ?? 00 00 0a 25 13 07 16 30 e0 11 04 6f ?? 00 00 0a 72 e4 05 00 70 02 72 56 07 00 70 28 ?? 00 00 0a 28 ?? 00 00 0a de 0c}  //weight: 2, accuracy: Low
+        $x_2_2 = "What do I have to do to break the encryption" wide //weight: 2
+        $x_1_3 = "the encryption will be removed" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_FileCoder_PMI_2147929192_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/FileCoder.PMI!MTB"
+        threat_id = "2147929192"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "FileCoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = "NoCry Ransomware" ascii //weight: 3
+        $x_2_2 = "You have been hacked" wide //weight: 2
+        $x_2_3 = "$50c49de9-914a-42e8-a9f6-285f7ca8c71e" ascii //weight: 2
+        $x_1_4 = "your files have been destroyed" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
