@@ -1833,3 +1833,24 @@ rule Trojan_Win32_LummaC_SXOS_2147929153_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_LummaC_APP_2147929202_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaC.APP!MTB"
+        threat_id = "2147929202"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {00 c3 0f b6 cb 0f b6 94 0d ?? fe ff ff 88 94 3d ?? fe ff ff 88 84 0d ?? fe ff ff 02 84 3d ?? fe ff ff 0f b6 c0 0f b6 84 05 ?? fe ff ff 8b 4d 08 8b 55 d4 30 04 11 89 d1 41 3b 4d 0c 0f 84}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

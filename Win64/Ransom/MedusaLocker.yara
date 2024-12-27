@@ -48,3 +48,25 @@ rule Ransom_Win64_MedusaLocker_YAA_2147893956_0
         (all of ($x*))
 }
 
+rule Ransom_Win64_MedusaLocker_AMLK_2147929200_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win64/MedusaLocker.AMLK!MTB"
+        threat_id = "2147929200"
+        type = "Ransom"
+        platform = "Win64: Windows 64-bit platform"
+        family = "MedusaLocker"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {41 b8 02 00 00 00 48 8d 15 92 b2 06 00 48 8d 4c 24 50 e8 ?? ?? ?? ?? ?? 48 8d 44 24 50 48 83 7c 24 68 07 48 0f 47 44 24 50 66 01 38 48 8d 4c 24 50 48 83 7c 24 68 07 48 0f 47 4c 24 50 ff 15}  //weight: 2, accuracy: Low
+        $x_1_2 = {48 8d 4c 24 50 48 83 7c 24 68 07 48 0f 47 4c 24 50 4c 8d 44 24 70 48 8d 55 80 ff 15}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
