@@ -455,3 +455,25 @@ rule Ransom_Win64_Basta_GA_2147927356_0
         (all of ($x*))
 }
 
+rule Ransom_Win64_Basta_GB_2147929166_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win64/Basta.GB!MTB"
+        threat_id = "2147929166"
+        type = "Ransom"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Basta"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = {31 81 90 00 00 00 b8 25 68 92 92 2b 83 8c 00 00 00 48 8b 0d 64 73 00 00 01 81 20 01 00 00 49 81 f9 a0 38 00 00 0f 8c c1 fe ff ff}  //weight: 3, accuracy: High
+        $x_2_2 = "rundll" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

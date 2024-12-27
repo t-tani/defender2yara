@@ -5488,3 +5488,25 @@ rule Trojan_Win32_Farfli_ARA_2147923217_1
         (1 of ($x*))
 }
 
+rule Trojan_Win32_Farfli_AHG_2147929180_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Farfli.AHG!MTB"
+        threat_id = "2147929180"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Farfli"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {8b 45 ec 8b 48 08 8b 45 14 0f b6 04 ?? 99 ?? 15 18 00 00 f7 ?? 8b c6 6a 0a 80 c2 3d 30 14 31 99 59 f7 f9 ?? 85 d2 75}  //weight: 5, accuracy: Low
+        $x_5_2 = {6a 04 68 00 10 00 00 53 6a 00 ff 15 ?? ?? ?? 00 8b ce 8b f8 e8}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
