@@ -4190,3 +4190,54 @@ rule Trojan_Win32_AutoitInject_HNI_2147929024_0
         (3 of ($x*))
 }
 
+rule Trojan_Win32_AutoitInject_NBK_2147929249_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.NBK!MTB"
+        threat_id = "2147929249"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "CASE ( 13 * ( ( 8 ^ 2 + -59 ) * 12 + -57 ) + -35 )" ascii //weight: 2
+        $x_1_2 = "CASE ( ( 10 * 9 + -87 ) * ( 15 ^ ( 24 * 4 + -94 ) / 3 + -71 ) + -10 )" ascii //weight: 1
+        $x_1_3 = "3 * 30 + -82 ) * 7 + -49 ) * 6 + -37 ) * 17 + -83 ) , D" ascii //weight: 1
+        $x_1_4 = "[ ( ( ( 3 ^ 3 + -23 ) * 12 + -45 ) * 18 + -52 ) ]" ascii //weight: 1
+        $x_1_5 = "[ ( 38 * ( ( ( 77 ^ 1 / 11 + -1 ) * 4 + -21 ) * 4 + -10 ) / 38 ) ]" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_AutoitInject_NBM_2147929251_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.NBM!MTB"
+        threat_id = "2147929251"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "( 70 * ( 20 * ( 6 ^ ( 33 * 3 + -96 ) / 36 + -3 ) + -56 ) / 20 ) , 90 )" ascii //weight: 2
+        $x_1_2 = "( ( 5 * 4 + -6 ) , - ( ( 15 ^ 2 / 3 + -71 ) * 23 + -90 )" ascii //weight: 1
+        $x_1_3 = "( 20 * ( 6 ^ ( 33 * 3 + -96 ) / 36 + -3 ) + -56 ) / 20 ) , 90 )" ascii //weight: 1
+        $x_1_4 = "( 80 ^ ( 4 * 11 + -43 ) / 40 + 10 ) ) , 78 ) ) &" ascii //weight: 1
+        $x_1_5 = "SHELLEXECUTE" ascii //weight: 1
+        $x_1_6 = "TCPCONNECT" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

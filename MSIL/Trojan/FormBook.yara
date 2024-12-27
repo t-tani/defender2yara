@@ -13925,3 +13925,30 @@ rule Trojan_MSIL_FormBook_PLHH_2147928934_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_FormBook_NAH_2147929250_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/FormBook.NAH!MTB"
+        threat_id = "2147929250"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "FormBook"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "https://files.catbox.moe/" ascii //weight: 2
+        $x_1_2 = "Injection successful" ascii //weight: 1
+        $x_1_3 = "FromBase64String" ascii //weight: 1
+        $x_1_4 = "HttpWebRequest" ascii //weight: 1
+        $x_1_5 = "FREAKY.RunPE" ascii //weight: 1
+        $x_1_6 = "SecurityProtocolType" ascii //weight: 1
+        $x_1_7 = "BLAST" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
