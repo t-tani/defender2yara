@@ -7751,3 +7751,24 @@ rule Trojan_Win32_Trickbot_ASET_2147900235_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Trickbot_MKV_2147929220_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Trickbot.MKV!MTB"
+        threat_id = "2147929220"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Trickbot"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {30 c8 8b 4d f0 88 01 8b 45 ?? 0f b6 00 8b 4d ?? fe c0 88 01 8b 45 ?? 0f b6 00 8b 4d d4 88 01 8b 45 ?? 8b 45 d0 8b 45 d0 8b 45 d0 b8 49 d2 18 71 e9}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

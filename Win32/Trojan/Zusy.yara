@@ -5304,3 +5304,67 @@ rule Trojan_Win32_Zusy_ANHA_2147929168_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Zusy_GNT_2147929219_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zusy.GNT!MTB"
+        threat_id = "2147929219"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {55 8b ec 6a ff 68 ?? a7 4c 00 68 ?? 45 4c 00 64 a1 00 00 00 00 50 64 89 25 00 00 00 00 83 ec 58 53 56 57 89 65 e8 ff 15 ?? ?? ?? ?? 33 d2 8a d4 89 15}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Zusy_GE_2147929222_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zusy.GE!MTB"
+        threat_id = "2147929222"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {24 26 02 c3 32 c3 02 c3 32 c3 2a c3 32 c3 2a c3 c0 c8 e4 aa 83 c1 ff}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Zusy_GE_2147929222_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zusy.GE!MTB"
+        threat_id = "2147929222"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {8d 3f 02 c3 8d 3f 8d 3f 8d 3f 32 c3 8d 3f 02 c3 32 c3 8d 3f 8d 3f 2a c3 8d 3f 8d 3f 32 c3 8d 3f}  //weight: 3, accuracy: Low
+        $x_2_2 = {8d 3f 8d 3f 2a c3 8d 3f 8d 3f 8d 3f c0 c0 ?? 8d 3f 8d 3f aa 8d 3f 8d 3f 8d 3f 83 c1 ff ac 8d 3f}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

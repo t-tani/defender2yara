@@ -121,3 +121,33 @@ rule Trojan_Win64_Stealer_WZ_2147918410_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Stealer_GD_2147929221_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Stealer.GD!MTB"
+        threat_id = "2147929221"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Stealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "14"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = "88.119.167.239" ascii //weight: 5
+        $x_1_2 = "qulonglong" ascii //weight: 1
+        $x_1_3 = "remove_me_from_pool" ascii //weight: 1
+        $x_1_4 = "bot2world_connected" ascii //weight: 1
+        $x_1_5 = "bot2world_ready_read" ascii //weight: 1
+        $x_1_6 = "bot2server_connected" ascii //weight: 1
+        $x_1_7 = "bot2server_ready_read" ascii //weight: 1
+        $x_1_8 = "\\Shell\\Open\\Command" ascii //weight: 1
+        $x_1_9 = "KeyboardModifier" ascii //weight: 1
+        $x_1_10 = "mailto" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
