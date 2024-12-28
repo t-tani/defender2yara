@@ -15687,3 +15687,25 @@ rule Trojan_Win64_CobaltStrike_SHC_2147929158_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_CobaltStrike_MBWJ_2147929268_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CobaltStrike.MBWJ!MTB"
+        threat_id = "2147929268"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CobaltStrike"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "Go build ID: \"_zYEPStlItXQSIZx" ascii //weight: 2
+        $x_1_2 = "axy1/TpcPcZwBtQYcCL6rREEc/8XLJ" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
