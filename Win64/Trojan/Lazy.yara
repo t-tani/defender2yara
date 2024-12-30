@@ -2067,3 +2067,26 @@ rule Trojan_Win64_Lazy_NP_2147928692_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Lazy_ALL_2147929272_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Lazy.ALL!MTB"
+        threat_id = "2147929272"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Lazy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {0f ba f0 0f 49 8d 8f 28 ca 4c 02 48 8d 15 bd 81 03 00 41 89 87 8c 22 db 01}  //weight: 3, accuracy: High
+        $x_2_2 = {45 33 c0 48 89 44 24 28 48 8d 53 04 4c 8d 4d ?? c7 44 24 20 00 01 00 00 48 8d 0d 4a 98 03 00}  //weight: 2, accuracy: Low
+        $x_1_3 = "SAKURATECH\\Project\\B290_OneDigiMMIC\\MSVC\\mr12e\\mr12e\\mr12e\\x64\\Release\\mr12e.pdb" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
