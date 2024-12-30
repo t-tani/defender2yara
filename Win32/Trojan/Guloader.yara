@@ -4780,3 +4780,26 @@ rule Trojan_Win32_Guloader_GTM_2147928989_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Guloader_BSA_2147929326_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Guloader.BSA!MTB"
+        threat_id = "2147929326"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Guloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "25"
+        strings_accuracy = "High"
+    strings:
+        $x_15_1 = "lagere.exe" ascii //weight: 15
+        $x_5_2 = "paridigitate dentninger" ascii //weight: 5
+        $x_5_3 = "uncirostrate postglenoidal" ascii //weight: 5
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
