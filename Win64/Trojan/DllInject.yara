@@ -521,3 +521,24 @@ rule Trojan_Win64_DllInject_GY_2147929227_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_DllInject_GZ_2147929285_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/DllInject.GZ!MTB"
+        threat_id = "2147929285"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "DllInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {8a 44 0d 87 43 32 04 13 41 88 02 49 ff c2 41 81 f9}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

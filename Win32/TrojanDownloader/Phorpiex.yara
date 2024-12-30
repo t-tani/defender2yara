@@ -246,3 +246,26 @@ rule TrojanDownloader_Win32_Phorpiex_B_2147924026_0
         (all of ($x*))
 }
 
+rule TrojanDownloader_Win32_Phorpiex_APX_2147929290_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:Win32/Phorpiex.APX!MTB"
+        threat_id = "2147929290"
+        type = "TrojanDownloader"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Phorpiex"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {8b 55 fc 8b 45 cc 2b 42 14 8b 4d fc 03 41 0c 2b 45 f8 8b 55 d4 89 42 28 8b 45 d4 c7 40 08 ad de 00 00 6a 00 8b 4d f8 51 ff 15 ?? ?? ?? ?? 8b 55 f8 52 ff 15 ?? ?? ?? ?? 8b 45 f4 50}  //weight: 3, accuracy: Low
+        $x_2_2 = "%appdata%\\windrx.txt" wide //weight: 2
+        $x_1_3 = "MeNot_.txt" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

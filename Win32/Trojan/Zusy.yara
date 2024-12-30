@@ -5390,3 +5390,27 @@ rule Trojan_Win32_Zusy_AQHA_2147929229_0
         (1 of ($x*))
 }
 
+rule Trojan_Win32_Zusy_NIT_2147929286_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zusy.NIT!MTB"
+        threat_id = "2147929286"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {68 e8 dc 62 00 ff 15 2c 62 46 00 8b 54 24 20 8b 42 20 50 ff 15 20 62 46 00 8b 4c 24 20 6a 00 6a 14 8b 51 28 52 ff 15 24 62 46 00 5f 5e 5d b8 01 00 00 00 5b 83 c4 08}  //weight: 2, accuracy: High
+        $x_2_2 = {51 a1 10 d8 62 00 33 d2 3b c2 75 1a 33 c0 88 80 10 d7 62 00 40 3d 00 01 00 00 7c f2 c7 05 10 d8 62 00 01 00 00 00 8b 44 24 0c 53 8b 5c 24 14}  //weight: 2, accuracy: High
+        $x_2_3 = {50 ff 15 ac 63 46 00 85 c0 0f 84 b4 00 00 00 a1 60 dc 62 00 25 ff ff 00 00 50 ff 15 d4 63 46 00 8b f0 85 f6 75 10 ff 15 f8 63 46 00 5f}  //weight: 2, accuracy: High
+        $x_1_4 = "Software\\Microsoft\\Windows\\CurrentVersion\\Run\\W32Time" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
