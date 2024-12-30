@@ -96,3 +96,26 @@ rule Trojan_Win32_KillProc_MA_2147921689_0
         )
 }
 
+rule Trojan_Win32_KillProc_NS_2147929304_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/KillProc.NS!MTB"
+        threat_id = "2147929304"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "KillProc"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {b9 80 e6 44 00 e8 ?? ?? ?? ?? 8d 45 fc 50 68 06 00 02 00 6a 00 68 8c e6 44 00 68 02 00 00 80 e8 ?? ?? ?? ?? 83 7d fc 00 75 28}  //weight: 2, accuracy: Low
+        $x_3_2 = {8d 55 b0 8b c6 e8 ?? ?? ?? ?? ff 75 b0 68 20 eb 44 00 8b 45 fc ff 34 d8 8d 45 b4 ba 03 00 00 00 e8 ?? ?? ?? ?? 8b 55 b4 b8 f8 ea 44 00 e8}  //weight: 3, accuracy: Low
+        $x_1_3 = "kill123" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

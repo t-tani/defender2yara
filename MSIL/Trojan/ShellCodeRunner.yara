@@ -123,6 +123,32 @@ rule Trojan_MSIL_ShellCodeRunner_NS_2147923058_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_ShellCodeRunner_NS_2147923058_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/ShellCodeRunner.NS!MTB"
+        threat_id = "2147923058"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "ShellCodeRunner"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "Shellcode injected and executed using EnumUILanguagesW in Notepad process!" wide //weight: 2
+        $x_1_2 = "execute shellcode using EnumUILanguagesW in the target process!" wide //weight: 1
+        $x_1_3 = "create remote thread in the target process!" wide //weight: 1
+        $x_1_4 = "write shellcode to the remote process memory!" wide //weight: 1
+        $x_1_5 = "allocate memory in the remote process!" wide //weight: 1
+        $x_1_6 = "jiamiA_X_B.Properties.Resources" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_ShellCodeRunner_GA_2147924833_0
 {
     meta:

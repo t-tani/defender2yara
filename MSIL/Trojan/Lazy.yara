@@ -2800,3 +2800,28 @@ rule Trojan_MSIL_Lazy_ARAZ_2147928217_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Lazy_NS_2147929307_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Lazy.NS!MTB"
+        threat_id = "2147929307"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Lazy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "ftp-web.funpic.de" wide //weight: 2
+        $x_1_2 = "Spybot.exe" ascii //weight: 1
+        $x_1_3 = "trojascreenshot" ascii //weight: 1
+        $x_1_4 = "$e5bc6751-971d-43ad-82cf-38dfed81957b" ascii //weight: 1
+        $x_1_5 = "Start Menu\\Programs\\Startup" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

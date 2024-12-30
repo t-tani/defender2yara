@@ -698,6 +698,32 @@ rule Trojan_Win32_BlackMoon_AT_2147919690_0
         (1 of ($x*))
 }
 
+rule Trojan_Win32_BlackMoon_NG_2147920700_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/BlackMoon.NG!MTB"
+        threat_id = "2147920700"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "BlackMoon"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "BlackMoon RunTime Error" ascii //weight: 2
+        $x_2_2 = "8@VBScript.RegExp" ascii //weight: 2
+        $x_1_3 = "202.189.7.231" ascii //weight: 1
+        $x_1_4 = "eaigpuex.dll" ascii //weight: 1
+        $x_1_5 = "WinHttpCrackUrl" ascii //weight: 1
+        $x_1_6 = "Eai.dll" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win32_BlackMoon_ASGM_2147920918_0
 {
     meta:

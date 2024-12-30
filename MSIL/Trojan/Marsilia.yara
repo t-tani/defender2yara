@@ -398,6 +398,31 @@ rule Trojan_MSIL_Marsilia_NM_2147896733_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Marsilia_NM_2147896733_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Marsilia.NM!MTB"
+        threat_id = "2147896733"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Marsilia"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "TaiLieuJX" ascii //weight: 2
+        $x_2_2 = "AutoKeoXe.exe" wide //weight: 2
+        $x_2_3 = "AntiVolam.ini" wide //weight: 2
+        $x_1_4 = "XungBaGiangHo.Com" ascii //weight: 1
+        $x_1_5 = "$9f0251fb-b749-412c-928a-841667662226" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_Marsilia_NMA_2147896736_0
 {
     meta:

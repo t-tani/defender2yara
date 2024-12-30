@@ -114,6 +114,33 @@ rule Trojan_MSIL_FileCoder_NF_2147893379_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_FileCoder_NF_2147893379_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/FileCoder.NF!MTB"
+        threat_id = "2147893379"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "FileCoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "CalamityLocker.Resources.messagerogue.txt" ascii //weight: 2
+        $x_1_2 = "Your system has been compromised by the RogueByte ransomware" ascii //weight: 1
+        $x_1_3 = "In order to regain access to your system and files, you must send us 100$" ascii //weight: 1
+        $x_1_4 = "Every 10 minutes a random encrypted file in your system will be deleted" ascii //weight: 1
+        $x_1_5 = "If you fail to pay the ransom within 24 hours, your files will be lost" ascii //weight: 1
+        $x_1_6 = "Monero can be bought from getmonero" ascii //weight: 1
+        $x_1_7 = "By closing this window you will lose the possibility to decrypt your files" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_FileCoder_NC_2147893380_0
 {
     meta:
