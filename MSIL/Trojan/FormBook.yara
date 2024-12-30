@@ -13952,3 +13952,25 @@ rule Trojan_MSIL_FormBook_NAH_2147929250_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_FormBook_ARHA_2147929311_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/FormBook.ARHA!MTB"
+        threat_id = "2147929311"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "FormBook"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {01 25 16 11 0c 1f 10 63 20 ff 00 00 00 5f d2 9c 25 17 11 0c 1e 63 20 ff 00 00 00 5f d2 9c 25 18 11 0c 20 ff 00 00 00 5f d2 9c}  //weight: 3, accuracy: High
+        $x_2_2 = {01 25 16 12 07 28 ?? 00 00 0a 9c 25 17 12 07 28 ?? 00 00 0a 9c 25 18 12 07 28 ?? 00 00 0a 9c}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
