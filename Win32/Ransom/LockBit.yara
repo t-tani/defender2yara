@@ -397,3 +397,26 @@ rule Ransom_Win32_LockBit_SA_2147913037_0
         )
 }
 
+rule Ransom_Win32_LockBit_K_2147929342_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win32/LockBit.K"
+        threat_id = "2147929342"
+        type = "Ransom"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LockBit"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = "Version: LockBitGreen" ascii //weight: 1
+        $x_1_2 = {7e 7e 7e 20 59 6f 75 20 68 61 76 65 20 62 65 65 6e 20 61 74 74 61 63 ?? 65 64 20 62 79 20 4c 6f 63 6b 42 69 74 20 34}  //weight: 1, accuracy: Low
+        $n_1_3 = "[%d] Decrypted:" wide //weight: -1
+    condition:
+        (filesize < 20MB) and
+        (not (any of ($n*))) and
+        (all of ($x*))
+}
+

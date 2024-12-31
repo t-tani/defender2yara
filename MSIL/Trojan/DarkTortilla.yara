@@ -4857,3 +4857,26 @@ rule Trojan_MSIL_DarkTortilla_RPAF_2147929165_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_DarkTortilla_AUHA_2147929343_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/DarkTortilla.AUHA!MTB"
+        threat_id = "2147929343"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "DarkTortilla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {02 11 05 02 11 05 91 20 f0 00 00 00 61 b4 9c 1d 13 09 2b 8a 11 05 17 d6 13 05 1f ?? 13 09 38 ?? ff ff ff 11 05 11 04}  //weight: 5, accuracy: Low
+        $x_5_2 = {02 11 05 02 11 05 91 20 f0 00 00 00 61 b4 9c 1f 09 13 09 38 ?? ff ff ff 11 05 17 d6 13 05 1f 0c 13 09 38 ?? ff ff ff 11 05 11 04}  //weight: 5, accuracy: Low
+        $x_5_3 = {02 11 05 02 11 05 91 20 f0 00 00 00 61 b4 9c 19 13 09 2b 8b 11 05 17 d6 13 05 1f 0b 13 09 38 ?? ff ff ff 11 05 11 04}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (1 of ($x*))
+}
+
