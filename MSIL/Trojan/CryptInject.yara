@@ -3187,3 +3187,28 @@ rule Trojan_MSIL_CryptInject_RHAO_2147928028_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_CryptInject_RHAP_2147929408_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/CryptInject.RHAP!MTB"
+        threat_id = "2147929408"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = "github.com/olosha1/oparik/raw/refs/heads/main/gjawedrtg.exe" wide //weight: 3
+        $x_2_2 = "-NoProfile" wide //weight: 2
+        $x_2_3 = "-ExecutionPolicy Bypass -Command" wide //weight: 2
+        $x_1_4 = "powershell.exe" wide //weight: 1
+        $x_2_5 = {50 45 00 00 4c 01 03 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 0b 01 30}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

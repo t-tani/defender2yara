@@ -6023,3 +6023,45 @@ rule Trojan_Win32_Smokeloader_TFZ_2147928931_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Smokeloader_MBV_2147929406_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Smokeloader.MBV!MTB"
+        threat_id = "2147929406"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Smokeloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {8d 0c 1a 89 45 fc 8b 45 ?? 01 45 fc 8b d3 c1 e2 04 03 55 e0 33 55 fc 33 d1 2b fa 89 7d ?? 8b 45 d8 29 45 f8 83 6d ec 01 0f 85}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Smokeloader_PBV_2147929407_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Smokeloader.PBV!MTB"
+        threat_id = "2147929407"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Smokeloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {03 cf 8b 45 f0 c1 e8 05 89 45 fc 8b 55 dc 01 55 fc 33 f1 81 3d ?? ?? ?? ?? e6 09 00 00 c7 05 ?? ?? ?? ?? ee 3d ea f4 75}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

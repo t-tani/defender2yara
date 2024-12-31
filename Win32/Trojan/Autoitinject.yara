@@ -527,3 +527,32 @@ rule Trojan_Win32_Autoitinject_PMSH_2147926140_0
         )
 }
 
+rule Trojan_Win32_Autoitinject_PLNH_2147929409_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Autoitinject.PLNH!MTB"
+        threat_id = "2147929409"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Autoitinject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = "FILEINSTALL" ascii //weight: 1
+        $x_1_2 = "@TEMPDIR" ascii //weight: 1
+        $x_1_3 = "DLLCALL" ascii //weight: 1
+        $x_2_4 = {22 00 44 00 6c 00 6c 00 43 00 61 00 6c 00 6c 00 28 00 [0-20] 28 00 22 00 22 00 33 00 65 00 72 00 6b 00 32 00 6c 00 6e 00 65 00 22 00 22 00 29 00 2c 00 20 00 [0-20] 28 00 22 00 22 00 72 00 70 00 74 00 22 00 22 00 29 00 2c 00 20 00 [0-20] 28 00 22 00 22 00 6f 00 6c 00 6c 00 75 00 72 00 56 00 63 00 6c 00 41 00 61 00 74 00 69 00 22 00 22 00 29 00}  //weight: 2, accuracy: Low
+        $x_2_5 = {22 44 6c 6c 43 61 6c 6c 28 [0-20] 28 22 22 33 65 72 6b 32 6c 6e 65 22 22 29 2c 20 [0-20] 28 22 22 72 70 74 22 22 29 2c 20 [0-20] 28 22 22 6f 6c 6c 75 72 56 63 6c 41 61 74 69 22 22 29}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_2_*) and 3 of ($x_1_*))) or
+            ((2 of ($x_2_*) and 1 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+
