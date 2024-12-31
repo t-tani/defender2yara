@@ -479,3 +479,30 @@ rule Ransom_Win64_Filecoder_NITA_2147924132_0
         (all of ($x*))
 }
 
+rule Ransom_Win64_Filecoder_SWK_2147929367_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win64/Filecoder.SWK!MTB"
+        threat_id = "2147929367"
+        type = "Ransom"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Filecoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "start_cat_encrypt" ascii //weight: 2
+        $x_2_2 = "recover files,view here.txt" ascii //weight: 2
+        $x_1_3 = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run" ascii //weight: 1
+        $x_1_4 = "/c vssadmin.exe delete shadows /all /quiet" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((2 of ($x_2_*) and 1 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+

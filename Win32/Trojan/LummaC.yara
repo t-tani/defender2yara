@@ -1876,3 +1876,26 @@ rule Trojan_Win32_LummaC_BK_2147929361_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_LummaC_GNT_2147929368_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaC.GNT!MTB"
+        threat_id = "2147929368"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "12"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = {40 00 00 e0 2e 72 73 72 63 00 00 00 44 05 00 00 00 60 00 00 00 06 00 00 00 60 00 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 c0 2e 69}  //weight: 10, accuracy: High
+        $x_1_2 = {64 00 65 00 66 00 4f 00 66 00 66 00 2e 00 65 00 78 00 65 00 00 00 00 00 48 00 12 00}  //weight: 1, accuracy: High
+        $x_1_3 = "defOff.exe" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -200,3 +200,34 @@ rule Trojan_Win64_ShellCodeRunner_GPKL_2147927073_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_ShellCodeRunner_GC_2147929369_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/ShellCodeRunner.GC!MTB"
+        threat_id = "2147929369"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "ShellCodeRunner"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "main.AesDecrypt" ascii //weight: 1
+        $x_1_2 = "main.HexStrToBytes" ascii //weight: 1
+        $x_1_3 = "main.isNonChinese" ascii //weight: 1
+        $x_1_4 = "main.isNonChinese.deferwrap1" ascii //weight: 1
+        $x_1_5 = "main.isPythonInCDrive" ascii //weight: 1
+        $x_1_6 = "main.main" ascii //weight: 1
+        $x_1_7 = "main.isCPULow" ascii //weight: 1
+        $x_1_8 = "main.HideConsoleWindow" ascii //weight: 1
+        $x_1_9 = "main.HexParseKey" ascii //weight: 1
+        $x_1_10 = "/ShellCode/ShellCode" ascii //weight: 1
+        $x_1_11 = "LazyDLL" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
