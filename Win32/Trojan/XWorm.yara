@@ -71,3 +71,24 @@ rule Trojan_Win32_XWorm_FEM_2147920072_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_XWorm_PAYR_2147929391_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/XWorm.PAYR!MTB"
+        threat_id = "2147929391"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "XWorm"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_6_1 = {8b 55 d8 3b d6 7f 2d 8b 4d e8 8b 59 0c 2b 59 14 8d 0c 13 8b 55 e4 8b 5a 0c 2b 5a 14 8b 55 dc 8a 14 13 30 11 ff 45 dc 39 45 dc 7e 03 89 7d dc ff 45 d8 eb cc}  //weight: 6, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

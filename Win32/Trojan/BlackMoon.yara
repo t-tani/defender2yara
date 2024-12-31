@@ -761,6 +761,29 @@ rule Trojan_Win32_BlackMoon_GNT_2147924099_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "12"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {2a 43 5d 44 0a 53 ?? 67 00 25 3c 0b 83 37 ?? 59 b0 00 8c 1c c7 36 b7 92 04 68 01 27}  //weight: 10, accuracy: Low
+        $x_1_2 = "C:\\Windows\\EncryptSynaptics.com" ascii //weight: 1
+        $x_1_3 = "BlackMoon RunTime Error" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_BlackMoon_GNT_2147924099_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/BlackMoon.GNT!MTB"
+        threat_id = "2147924099"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "BlackMoon"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "7"
         strings_accuracy = "Low"
     strings:

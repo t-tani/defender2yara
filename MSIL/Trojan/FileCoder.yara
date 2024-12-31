@@ -756,3 +756,27 @@ rule Trojan_MSIL_FileCoder_PMI_2147929192_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_FileCoder_PMCD_2147929392_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/FileCoder.PMCD!MTB"
+        threat_id = "2147929392"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "FileCoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {16 fe 01 0a 06 2c 45 00 28 ?? 00 00 06 80 2f 00 00 04 7e 27 00 00 04 28 ?? 00 00 0a 16 fe 01 0b 07 2c 12 00 7e 27 00 00 04 28 ?? 00 00 06 28 ?? 00 00 0a 00 00 1f 14 16 7e 27 00 00 04 19 28 ?? 00 00 06 26 17 28 ?? 00 00 06 00 00}  //weight: 3, accuracy: Low
+        $x_2_2 = "GhostCry Ransomware" wide //weight: 2
+        $x_1_3 = "Success_Decrypt" wide //weight: 1
+        $x_1_4 = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
