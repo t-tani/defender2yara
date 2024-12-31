@@ -3957,3 +3957,24 @@ rule Trojan_Win32_StealC_RPA_2147928940_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_StealC_BN_2147929360_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/StealC.BN!MTB"
+        threat_id = "2147929360"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "StealC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {40 00 00 e0 [0-11] 1b 00 00 ?? ?? 00 00 ?? 1b 00 00 ?? 28 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 e0 ?? ?? ?? ?? ?? ?? ?? ?? 00 10 00 00 00 ?? ?? 00 00 ?? 00 00 00 ?? 43 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 e0 2e 74 61 67 67 61 6e 74 00 30}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
