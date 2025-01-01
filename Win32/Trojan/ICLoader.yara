@@ -929,3 +929,31 @@ rule Trojan_Win32_ICLoader_MBWJ_2147929429_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_ICLoader_BM_2147929469_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ICLoader.BM!MTB"
+        threat_id = "2147929469"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ICLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {56 8b f1 50 ff 15 ?? ?? 65 00 56 ff 15 ?? ?? 65 00 8b f0 6a 00 ff 15 ?? ?? 65 00 68 ?? ?? ?? 00 56 ff 15 ?? ?? 65 00 a3 ?? ?? ?? 00 56 ff 15 ?? ?? 65 00 8b 44 24 04 5e 59 c3}  //weight: 4, accuracy: Low
+        $x_1_2 = {55 8b ec 83 ec 0c 53 56 57 b9 ?? ?? 66 00 e8 ?? ?? fb ff 89 45 fc e9}  //weight: 1, accuracy: Low
+        $x_4_3 = {56 50 ff 15 ?? ?? 65 00 8a 0d ?? ?? 66 00 a0 ?? ?? 66 00 22 c1 8b 0d ?? ?? 66 00 a2 ?? ?? 66 00 a1 ?? ?? 66 00 8b d0 6a 00 c1 ea 02 2b ca 33 d2 8a 15}  //weight: 4, accuracy: Low
+        $x_1_4 = {55 8b ec 83 ec 0c 53 56 57 e8 ?? ?? fb ff 89 45 fc e9}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_4_*) and 1 of ($x_1_*))) or
+            ((2 of ($x_4_*))) or
+            (all of ($x*))
+        )
+}
+
