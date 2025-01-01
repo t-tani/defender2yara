@@ -283,3 +283,27 @@ rule Trojan_MSIL_Filecoder_WA_2147927335_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Filecoder_WI_2147929450_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Filecoder.WI!MTB"
+        threat_id = "2147929450"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Filecoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "!00_UNLIZARD_INSTRUCTIONS.txt" wide //weight: 2
+        $x_2_2 = "PAY {0} to {1}" wide //weight: 2
+        $x_2_3 = "to receive your key and decryptor to get back your data!" wide //weight: 2
+        $x_2_4 = "$b366f8f1-c284-4474-93f7-f91ead735f68" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
