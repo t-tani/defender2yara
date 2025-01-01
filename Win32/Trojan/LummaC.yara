@@ -1920,3 +1920,47 @@ rule Trojan_Win32_LummaC_MBV_2147929405_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_LummaC_GTM_2147929471_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaC.GTM!MTB"
+        threat_id = "2147929471"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {40 00 00 e0 2e 72 73 72 63 00 00 00 ?? ?? 00 00 00 30 05 00 00 ?? 00 00 00 70 02 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 c0 2e 69}  //weight: 5, accuracy: Low
+        $x_5_2 = {40 00 00 c0 20 20 20 20 20 20 20 20 00 ?? ?? 00 00 50 05 00 00 02 00 00 00}  //weight: 5, accuracy: Low
+        $x_1_3 = "%userappdata%\\RestartApp.exe" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_LummaC_GTK_2147929479_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaC.GTK!MTB"
+        threat_id = "2147929479"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {0f b6 84 05 ?? ?? ?? ?? 8b 8d ?? ?? ?? ?? 0f b6 8c 0d ?? ?? ?? ?? 01 c8 b9 00 01 00 00 99 f7 f9 89 95 ?? ?? ?? ?? 8b 85 ?? ?? ?? ?? 0f b6 b4 05 ?? ?? ?? ?? 8b 45 08 8b 8d ?? ?? ?? ?? 0f b6 14 08 31 f2 88 14 08 8b 85 ?? ?? ?? ?? 83 c0 01 89 85}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
