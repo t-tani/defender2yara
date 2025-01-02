@@ -47,3 +47,47 @@ rule Ransom_Win64_LockBit_NB_2147920141_0
         (all of ($x*))
 }
 
+rule Ransom_Win64_LockBit_PH_2147929528_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win64/LockBit.PH!MTB"
+        threat_id = "2147929528"
+        type = "Ransom"
+        platform = "Win64: Windows 64-bit platform"
+        family = "LockBit"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {48 8b 44 24 ?? 48 63 54 24 ?? 44 0f b7 04 ?? 8b 44 24 ?? 41 b9 [0-4] 99 41 f7 f9 83 c2 ?? 41 31 d0 48 63 44 24 ?? 66 44 89 ?? ?? 8b 44 24 ?? 83 c0 ?? 89 44 24 ?? eb}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Ransom_Win64_LockBit_M_2147929542_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win64/LockBit.M"
+        threat_id = "2147929542"
+        type = "Ransom"
+        platform = "Win64: Windows 64-bit platform"
+        family = "LockBit"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {8a 0c 08 32 4c 04 20 88 0b 48 ff c0 eb e2}  //weight: 1, accuracy: High
+        $x_1_2 = {44 0f b6 ca 45 69 c9 01 01 01 ?? 49 83 f8 07 76 0d}  //weight: 1, accuracy: Low
+        $n_1_3 = "[%d] Decrypted:" wide //weight: -1
+    condition:
+        (filesize < 20MB) and
+        (not (any of ($n*))) and
+        (all of ($x*))
+}
+

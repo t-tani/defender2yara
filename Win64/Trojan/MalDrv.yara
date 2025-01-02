@@ -73,3 +73,24 @@ rule Trojan_Win64_MalDrv_E_2147924934_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_MalDrv_RPA_2147929543_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/MalDrv.RPA!MTB"
+        threat_id = "2147929543"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "MalDrv"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {8b 0b 8b 53 0c 39 c1 76 19 01 c2 89 c1 44 8a 14 16 41 31 c2 ff c0 44 89 d2 f7 d2 41 88 54 0d 00 eb de}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -1260,3 +1260,27 @@ rule Trojan_Win64_Zusy_HNAE_2147929023_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Zusy_HNS_2147929544_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Zusy.HNS!MTB"
+        threat_id = "2147929544"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {53 00 74 00 72 00 69 00 6e 00 67 00 46 00 69 00 6c 00 65 00 49 00 6e 00 66 00 6f 00 00 00 18 00 00 00 01 00 30 00 38 00 30 00 39 00 30 00 34 00 42 00 30 00 00 00 44 00 00 00 01 00 56 00 61 00 72 00 46 00 69 00 6c 00 65 00 49 00 6e 00 66 00 6f 00 00 00 00 00 24 00 04 00 00 00 54 00 72 00 61 00 6e 00 73 00 6c 00 61 00 74 00 69 00 6f 00 6e 00 00 00 00 00}  //weight: 1, accuracy: High
+        $x_2_2 = {ff ff ff 00 c3 c3 c3 c1 c7 c7 c7 ff ee ee ee fc fd fd fd ff f9 f9 f9 ff fa fa fa ff fa fa fa ff f9 f9 f9 ff f9 f9 f9 ff f9 f9 f9 ff f9 f9 f9 ff}  //weight: 2, accuracy: High
+        $x_1_3 = "AutoIt3ExecuteScript" wide //weight: 1
+        $x_1_4 = "AutoIt3ExecuteLine" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
