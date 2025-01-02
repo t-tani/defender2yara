@@ -957,3 +957,25 @@ rule Trojan_Win32_ICLoader_BM_2147929469_0
         )
 }
 
+rule Trojan_Win32_ICLoader_GTK_2147929487_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ICLoader.GTK!MTB"
+        threat_id = "2147929487"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ICLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {0c ef 0c 00 1c ef 0c 00 30 ef 0c 00 3e ef 0c 00 4a ef 0c 00 5c ef 0c 00 30 e9 0c 00 1c e9 0c 00 0c e9 0c 00}  //weight: 5, accuracy: High
+        $x_5_2 = {48 f3 0c 00 5a f3 0c 00 6e f3 0c 00 82 f3 0c 00 9c f3}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
