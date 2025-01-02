@@ -2167,3 +2167,26 @@ rule Trojan_MSIL_SnakeKeyLogger_RDCL_2147927123_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_SnakeKeyLogger_AMCW_2147929516_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/SnakeKeyLogger.AMCW!MTB"
+        threat_id = "2147929516"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "SnakeKeyLogger"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = {53 00 6e 00 61 00 6b 00 65 00 20 00 4b 00 65 00 79 00 6c 00 6f 00 67 00 67 00 65 00 72 00 20 00 2d 00 2d 00 2d 00 2d 00 2d 00 2d 00 2d 00 2d 00 0d 00 0a 00 46 00 6f 00 75 00 6e 00 64}  //weight: 3, accuracy: High
+        $x_1_2 = "Mozilla\\Firefox\\Profiles" ascii //weight: 1
+        $x_1_3 = "logins.json" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
