@@ -762,3 +762,29 @@ rule Trojan_Win32_VBInject_BSA_2147927432_0
         )
 }
 
+rule Trojan_Win32_VBInject_BSA_2147927432_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/VBInject.BSA!MTB"
+        threat_id = "2147927432"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "VBInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "35"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = {8b ec 83 ec 08 68 66 11 40 00 64 a1 00 00 00 00 50 64 89 25 00 00 00 00 81 ec 38 01 00 00 53 56 57 89 65 f8 c7 45 fc 48}  //weight: 10, accuracy: High
+        $x_5_2 = "Regeleingang" ascii //weight: 5
+        $x_5_3 = "FernostabteilungR" ascii //weight: 5
+        $x_5_4 = "MFdchenkrcnzeD" ascii //weight: 5
+        $x_5_5 = "KFseschnitzeln" ascii //weight: 5
+        $x_5_6 = "Landesausstellungsgeb" ascii //weight: 5
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

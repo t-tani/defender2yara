@@ -1448,3 +1448,30 @@ rule Ransom_MSIL_FileCoder_RHAA_2147925678_0
         (all of ($x*))
 }
 
+rule Ransom_MSIL_FileCoder_RHAH_2147929559_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:MSIL/FileCoder.RHAH!MTB"
+        threat_id = "2147929559"
+        type = "Ransom"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "FileCoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {50 45 00 00 4c 01 03 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 0b 01 0b 00 00 56 00 00 00 08 00 00 00 00 00 00 3e 75}  //weight: 2, accuracy: Low
+        $x_3_2 = "All your files are stolen and encrypted" wide //weight: 3
+        $x_1_3 = "RdpLocker" wide //weight: 1
+        $x_1_4 = "you must pay for the decryption key" wide //weight: 1
+        $x_1_5 = "wallet" wide //weight: 1
+        $x_1_6 = "VirtualBoxVM" wide //weight: 1
+        $x_1_7 = "backup" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
