@@ -16365,3 +16365,26 @@ rule TrojanDownloader_O97M_Donoff_SWW_2147899441_0
         (all of ($x*))
 }
 
+rule TrojanDownloader_O97M_Donoff_RVB_2147929524_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:O97M/Donoff.RVB!MTB"
+        threat_id = "2147929524"
+        type = "TrojanDownloader"
+        platform = "O97M: Office 97, 2000, XP, 2003, 2007, and 2010 macros - those that affect Word, Excel, and PowerPoint"
+        family = "Donoff"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_MACROHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = "=createobject(\"scri\"+\"pting.dict\"+\"ionary\")symboldict.add\"??\",chrw(&h430)symboldict.add\"**\",chrw(&h43e)" ascii //weight: 1
+        $x_1_2 = "mid(folderpath,envvarstart+1,envvarend-envvarstart-1)folderpath=replace(folderpath,\"%\"&envvar&\"%\",environ(envvar))" ascii //weight: 1
+        $x_1_3 = {64 6f 63 75 6d 65 6e 74 5f 6f 70 65 6e 28 29 64 65 63 6f 64 65 63 6f 6e 74 65 6e 74 [0-10] 68 65 61 64 65 72 73 65 6e 64 73 75 62}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
