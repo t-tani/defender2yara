@@ -2789,3 +2789,55 @@ rule Trojan_Win32_Neoreblamy_NH_2147929537_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Neoreblamy_BP_2147929603_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Neoreblamy.BP!MTB"
+        threat_id = "2147929603"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Neoreblamy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {89 75 f8 33 d2 c7 45 fc ?? 00 00 00 8b 4d fc 8b 45 f8 f7 f1 0f af 45 fc 8b 4d f8 2b c8 8b 45 08 ff 34 88 ff 34 b3 e8 ?? ?? ff ff 89 04 b3 46 59 59 3b f7 72}  //weight: 10, accuracy: Low
+        $x_5_2 = {0f af d1 03 c2 8b 8d ?? ?? ff ff 03 c8 0f b6 85 ?? ?? ff ff 0f af 85}  //weight: 5, accuracy: Low
+        $x_5_3 = {0f af c8 0f b6 45 ?? 0f af d0 0f b6 45 ?? 2b d1 03 d0}  //weight: 5, accuracy: Low
+        $x_5_4 = {2b d0 0f b6 45 fc 0f b6 4d fe 0f af d0 0f b6 45 fc 0f af c8 03 d1}  //weight: 5, accuracy: High
+        $x_5_5 = {0f af c8 0f b6 45 ?? 0f af 45 ?? 2b d1 2b d0 03 55}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (
+            ((2 of ($x_5_*))) or
+            ((1 of ($x_10_*))) or
+            (all of ($x*))
+        )
+}
+
+rule Trojan_Win32_Neoreblamy_NQ_2147929605_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Neoreblamy.NQ!MTB"
+        threat_id = "2147929605"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Neoreblamy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {6a 04 58 6b c0 00 8b 84 05 ?? ff ff ff 89 45 cc 8b 45 cc}  //weight: 1, accuracy: Low
+        $x_2_2 = {6a 04 58 c1 e0 00 8b 84 05 cc fd ff ff 48 6a 04 59 c1 e1 00 89 84 0d cc fd ff ff 6a 04 58 c1 e0 00}  //weight: 2, accuracy: High
+        $x_1_3 = {eb 1b 6a 04 58 6b c0 00 8b 84 05 0c ff ff ff 48 6a 04 59 6b c9 00 89 84 0d 0c ff ff ff 6a 04 58}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
