@@ -620,3 +620,30 @@ rule Trojan_Win64_Shelm_NE_2147925797_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Shelm_NS_2147929587_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Shelm.NS!MTB"
+        threat_id = "2147929587"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Shelm"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "shellcode" ascii //weight: 2
+        $x_1_2 = "explorer.exe" ascii //weight: 1
+        $x_1_3 = "LdrpDllNotificationList" ascii //weight: 1
+        $x_1_4 = "IsProcessorFeaturePresent" ascii //weight: 1
+        $x_1_5 = "Successfully registered dummy callback" ascii //weight: 1
+        $x_1_6 = "trampoline has been written to remote process" ascii //weight: 1
+        $x_1_7 = "Shellcode has been written to remote process" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
