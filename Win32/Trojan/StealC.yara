@@ -3999,3 +3999,25 @@ rule Trojan_Win32_StealC_GW_2147929411_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_StealC_AMCX_2147929568_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/StealC.AMCX!MTB"
+        threat_id = "2147929568"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "StealC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {20 20 00 90 24 00 00 10 00 00 00 90 24 00 00 10 00 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 e0 2e 72 73 72 63 00 00 00 f0 01 00 00 00 a0 24 00 00 02 00 00 00 a0 24 00}  //weight: 1, accuracy: High
+        $x_1_2 = {20 20 20 f0 13 00 00 00 d0 01 00 00 10 00 00 00 b0 00 00 00 00 00 00 00 00 00 00 00 00 35 00 40 00 00 e0 2e 69 64 61 74 61 00 00 00 10 00 00 00 f0 01 00 00 10 00 00 00 c0}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (1 of ($x*))
+}
+

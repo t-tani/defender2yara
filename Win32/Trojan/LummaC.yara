@@ -1964,3 +1964,66 @@ rule Trojan_Win32_LummaC_GTK_2147929479_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_LummaC_PII_2147929566_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaC.PII!MTB"
+        threat_id = "2147929566"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {8b d3 c1 ea 05 8d 0c 18 89 55 fc 8b 45 e8 01 45 fc 8b c3 c1 e0 ?? 03 45 e0 33 45 fc 33 c1 2b f8 89 7d f0 8b 45 d8 29 45 f8 83 6d ?? 01 0f 85}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_LummaC_AMCX_2147929567_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaC.AMCX!MTB"
+        threat_id = "2147929567"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {83 ec 18 89 65 ?? 83 ec 18 89 65 ?? c7 00 ?? ?? ?? ?? c7 40 04 ?? ?? ?? ?? c7 40 08 ?? ?? ?? ?? c7 40 0c ?? ?? ?? ?? c7 40 10 ?? ?? ?? ?? 31 c9 90 [0-21] 31 [0-47] fe c2 88 14 08 [0-15] 83 e2 [0-15] 8d 0c 51 83 f9 14 72}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_LummaC_SPOS_2147929582_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaC.SPOS!MTB"
+        threat_id = "2147929582"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {20 20 20 00 10 05 00 00 10 00 00 00 48 02 00 00 10 00 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 e0 2e 72 73 72 63 00 00 00 ac 01 00 00 00 20 05 00}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

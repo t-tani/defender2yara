@@ -1197,3 +1197,24 @@ rule Trojan_MSIL_Jalapeno_AVGA_2147928707_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Jalapeno_SKKP_2147929581_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Jalapeno.SKKP!MTB"
+        threat_id = "2147929581"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Jalapeno"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {02 8e 69 20 00 30 00 00 1f 40 28 ?? 00 00 06 0a 02 16 06 02 8e 69 28 ?? 00 00 0a 7e 04 00 00 0a 0b 7e 04 00 00 0a 26 16 73 06 00 00 0a 26 16 73 06 00 00 0a 26 06 0c 7e 04 00 00 0a 16 08 7e 04 00 00 0a 16 7e 04 00 00 0a 28 ?? 00 00 06 0b 07 15 28 ?? 00 00 06 26 2a}  //weight: 3, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

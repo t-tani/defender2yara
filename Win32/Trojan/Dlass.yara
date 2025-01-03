@@ -40,3 +40,45 @@ rule Trojan_Win32_Dlass_GPPA_2147929276_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Dlass_GPPB_2147929569_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Dlass.GPPB!MTB"
+        threat_id = "2147929569"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Dlass"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {4a e6 0c 00 36 e6 0c 00 26 e6 0c 00 16 e6 0c 00 08 e6 0c 00 f8 e5 0c 00 e6 e5 0c 00 d6 e5 0c 00 c6 e5 0c 00 b4 e5 0c 00 a6 e5 0c 00 5c e6 0c}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Dlass_GPPC_2147929570_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Dlass.GPPC!MTB"
+        threat_id = "2147929570"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Dlass"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {72 44 6c 50 74 53 cd e6 d7 7b 0b 2a 01 00 00 00 ?? ?? ?? 00 ?? ?? ?? 00 00 68 0a 00 dd 20 30 ae 71 f7 48}  //weight: 4, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

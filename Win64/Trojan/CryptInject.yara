@@ -3718,3 +3718,25 @@ rule Trojan_Win64_CryptInject_MZV_2147929247_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_CryptInject_TC_2147929575_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CryptInject.TC!MTB"
+        threat_id = "2147929575"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {6b c7 64 29 c6 0f b7 f6 49 8d 43 fc 41 0f b7 3c 78 66 42 89 7c 1d e8 41 0f b7 34 70 66 42 89 74 1d ea}  //weight: 2, accuracy: High
+        $x_1_2 = "cmdnetstat -ano | findstr :" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
