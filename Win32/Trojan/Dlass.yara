@@ -82,3 +82,24 @@ rule Trojan_Win32_Dlass_GPPC_2147929570_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Dlass_GPPD_2147929622_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Dlass.GPPD!MTB"
+        threat_id = "2147929622"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Dlass"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {5a f1 0c 00 4c f1 0c 00 3a f1 0c 00 28 f1 0c 00 14 f1 0c 00 00 f1 0c 00 f0 f0 0c 00 d6 f0 0c 00 c8 f0 0c 00 ba f0 0c 00 aa f0 0c 00 9a f0 0c}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
