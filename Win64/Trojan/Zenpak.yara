@@ -86,3 +86,25 @@ rule Trojan_Win64_Zenpak_GPC_2147920375_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Zenpak_PAGE_2147929634_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Zenpak.PAGE!MTB"
+        threat_id = "2147929634"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Zenpak"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {83 f9 03 75 05 8b ce 48 8b d6}  //weight: 2, accuracy: High
+        $x_2_2 = {41 30 00 ff c1 48 ff c2 49 ff c0 49 ff c9 75}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

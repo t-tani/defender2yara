@@ -34,3 +34,27 @@ rule Trojan_Win32_UACBypassExp_SA_2147798891_0
         )
 }
 
+rule Trojan_Win32_UACBypassExp_PAGE_2147929633_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/UACBypassExp.PAGE!MTB"
+        threat_id = "2147929633"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "UACBypassExp"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {06 07 02 07 91 03 07 03 8e 69 5d 91 61 d2 9c 00 07 17 58 0b 07 02 8e 69 fe 04 0c 08 2d e1}  //weight: 2, accuracy: High
+        $x_1_2 = "GenerateGarbageCode" ascii //weight: 1
+        $x_2_3 = "EncryptDecryptXOR" ascii //weight: 2
+        $x_1_4 = "DownloadData" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
