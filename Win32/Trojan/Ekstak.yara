@@ -8899,3 +8899,45 @@ rule Trojan_Win32_Ekstak_CCJR_2147927493_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Ekstak_CCJS_2147929711_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Ekstak.CCJS!MTB"
+        threat_id = "2147929711"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Ekstak"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {8a d1 8b 3d 34 e0 4c 00 22 d0 a1 30 e0 4c 00 80 f2 ?? 56 88 15 ?? e0 4c 00 8b d0 c1 ea 05 23 fa 33 d2 83 e0 08 8a d1 0f af c2}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Ekstak_CCJT_2147929712_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Ekstak.CCJT!MTB"
+        threat_id = "2147929712"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Ekstak"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {8a d1 8b f8 a1 30 e0 4c 00 22 d3 8b 1d 34 e0 4c 00 80 f2 ?? 88 15 45 e0 4c 00 8b d0 c1 ea 05 23 da 33 d2 83 e0 08 8a d1 0f af c2}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

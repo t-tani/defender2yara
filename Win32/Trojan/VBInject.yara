@@ -788,3 +788,53 @@ rule Trojan_Win32_VBInject_BSA_2147927432_1
         (all of ($x*))
 }
 
+rule Trojan_Win32_VBInject_BSA_2147927432_2
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/VBInject.BSA!MTB"
+        threat_id = "2147927432"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "VBInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "45"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = {89 85 e0 fe ff ff 89 45 ec 8b 4d ec b8 c6 04 00 00 3b c8 0f 8f 46}  //weight: 10, accuracy: High
+        $x_5_2 = "Piezokeramikbauteile3" ascii //weight: 5
+        $x_5_3 = "hrungsversuchs" ascii //weight: 5
+        $x_5_4 = "Beispielworts7" ascii //weight: 5
+        $x_5_5 = "Krisenkartell8" ascii //weight: 5
+        $x_5_6 = "Kaiserbaracken" ascii //weight: 5
+        $x_5_7 = "Behelligendes3" ascii //weight: 5
+        $x_5_8 = "Pflegetiere6" ascii //weight: 5
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_VBInject_NIT_2147929716_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/VBInject.NIT!MTB"
+        threat_id = "2147929716"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "VBInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {81 ce 00 10 40 00 [0-48] ad [0-48] bb 54 8b ec 83 [0-48] 43 [0-48] 39 18 [0-48] 75 [0-48] bb eb 0c 56 8d [0-48] 39 58 04 [0-48] 75}  //weight: 2, accuracy: Low
+        $x_1_2 = "VBA6.DLL" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -1506,3 +1506,26 @@ rule Trojan_Win32_Lazy_ALY_2147928906_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Lazy_NIT_2147929718_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Lazy.NIT!MTB"
+        threat_id = "2147929718"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Lazy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {6a 04 68 00 10 00 00 56 57 ff 15 00 d2 57 00 85 c0 74 1a 8d 45 ec 50 68 04 01 00 00 56 57 ff 15 38 d4 57 00 85 c0}  //weight: 2, accuracy: High
+        $x_2_2 = {68 0a 6f 55 00 ff 75 0c 6a 00 ff 15 28 d4 57 00 8b f8 85 ff 75 1e ff 15 10 d4 57 00 50 e8 78 e8 ff ff 59 83 cf ff 8d 4d fc e8 af fe ff ff 8b c7 5f 5e c9 c3 57 89 7e 08 ff 15 60 d3 57 00 83 f8 ff}  //weight: 2, accuracy: High
+        $x_1_3 = {6a 00 6a 00 ff 15 10 da 57 00 6a 00 6a 00 6a 00 6a 03 6a 06 6a 00 6a 00 6a ff 6a 00 ff 15 0c da 57 00 8d 45 b4 50 68 30 88 5a 00 6a 01 6a 00 68 40 88 5a 00 ff 15 08 da 57 00 8b 35 ac d4 57 00 8d 85 00 ff ff ff}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

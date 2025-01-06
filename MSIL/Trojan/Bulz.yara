@@ -519,3 +519,26 @@ rule Trojan_MSIL_Bulz_KAI_2147929022_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Bulz_NIT_2147929714_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Bulz.NIT!MTB"
+        threat_id = "2147929714"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Bulz"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {02 6f 59 00 00 0a 0a 28 ?? 00 00 0a 03 6f ?? 00 00 0a 0b 06 73 93 00 00 0a 0c 08 07 6f ?? 00 00 0a 28 ?? 00 00 06 0d 2b 00 09 2a}  //weight: 2, accuracy: Low
+        $x_1_2 = "encryption" ascii //weight: 1
+        $x_1_3 = "chatsend" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
