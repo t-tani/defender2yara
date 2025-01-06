@@ -4265,3 +4265,42 @@ rule Trojan_Win32_AutoitInject_HNJ_2147929546_0
         (2 of ($x*))
 }
 
+rule Trojan_Win32_AutoitInject_HNL_2147929665_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.HNL!MTB"
+        threat_id = "2147929665"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {46 00 55 00 4e 00 43 00 20 00 [0-64] 20 00 28 00 20 00 29 00 [0-8] 52 00 45 00 54 00 55 00 52 00 4e 00 20 00 ?? ?? ?? ?? 01 45 00 4e 00 44 00 46 00 55 00 4e 00 43 00}  //weight: 1, accuracy: Low
+        $x_1_2 = {46 55 4e 43 20 [0-64] 20 28 20 29 [0-8] 52 45 54 55 52 4e 20 ?? ?? ?? ?? 01 45 4e 44 46 55 4e 43}  //weight: 1, accuracy: Low
+        $x_1_3 = {46 00 55 00 4e 00 43 00 20 00 [0-64] 20 00 28 00 20 00 29 00 [0-8] 52 00 45 00 54 00 55 00 52 00 4e 00 20 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 01 45 00 4e 00 44 00 46 00 55 00 4e 00 43 00}  //weight: 1, accuracy: Low
+        $x_1_4 = {46 55 4e 43 20 [0-64] 20 28 20 29 [0-8] 52 45 54 55 52 4e 20 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 01 45 4e 44 46 55 4e 43}  //weight: 1, accuracy: Low
+        $x_2_5 = {46 00 55 00 4e 00 43 00 20 00 [0-64] 20 00 28 00 20 00 29 00 [0-8] 52 00 45 00 54 00 55 00 52 00 4e 00 20 00 30 00 01 45 00 4e 00 44 00 46 00 55 00 4e 00 43 00}  //weight: 2, accuracy: Low
+        $x_2_6 = {46 55 4e 43 20 [0-64] 20 28 20 29 [0-8] 52 45 54 55 52 4e 20 30 01 45 4e 44 46 55 4e 43}  //weight: 2, accuracy: Low
+        $x_2_7 = {46 00 55 00 4e 00 43 00 20 00 [0-64] 20 00 28 00 20 00 29 00 [0-8] 47 00 4c 00 4f 00 42 00 41 00 4c 00 20 00 43 00 4f 00 4e 00 53 00 54 00 20 00 24 00 [0-64] 20 00 3d 00 20 00 [0-21] 01 45 00 4e 00 44 00 46 00 55 00 4e 00 43 00}  //weight: 2, accuracy: Low
+        $x_2_8 = {46 55 4e 43 20 [0-64] 20 28 20 29 [0-8] 47 4c 4f 42 41 4c 20 43 4f 4e 53 54 20 24 [0-64] 20 3d 20 [0-21] 01 45 4e 44 46 55 4e 43}  //weight: 2, accuracy: Low
+        $x_2_9 = {46 00 55 00 4e 00 43 00 20 00 [0-64] 20 00 28 00 20 00 29 00 [0-8] 47 00 4c 00 4f 00 42 00 41 00 4c 00 20 00 24 00 [0-64] 20 00 3d 00 20 00 [0-21] 01 45 00 4e 00 44 00 46 00 55 00 4e 00 43 00}  //weight: 2, accuracy: Low
+        $x_2_10 = {46 55 4e 43 20 [0-64] 20 28 20 29 [0-8] 47 4c 4f 42 41 4c 20 24 [0-64] 20 3d 20 [0-21] 01 45 4e 44 46 55 4e 43}  //weight: 2, accuracy: Low
+        $x_3_11 = "DLLSTRUCTCREATE ( \"wchar[4096]\" )" ascii //weight: 3
+    condition:
+        (filesize < 20MB) and
+        (
+            ((4 of ($x_2_*) and 3 of ($x_1_*))) or
+            ((5 of ($x_2_*) and 1 of ($x_1_*))) or
+            ((6 of ($x_2_*))) or
+            ((1 of ($x_3_*) and 2 of ($x_2_*) and 4 of ($x_1_*))) or
+            ((1 of ($x_3_*) and 3 of ($x_2_*) and 2 of ($x_1_*))) or
+            ((1 of ($x_3_*) and 4 of ($x_2_*))) or
+            (all of ($x*))
+        )
+}
+

@@ -771,3 +771,24 @@ rule Trojan_MSIL_Tiny_EM_2147917811_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Tiny_EAB_2147929662_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Tiny.EAB!MTB"
+        threat_id = "2147929662"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Tiny"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {00 08 06 28 10 00 00 06 00 08 06 28 11 00 00 06 00 08 06 28 12 00 00 06 00 00 08 17 58 0c 08 20 e8 03 00 00 fe 04 0d 09 2d d6}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

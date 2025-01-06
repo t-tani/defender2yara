@@ -2607,6 +2607,27 @@ rule Trojan_Win32_Raccoon_EA_2147831190_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {33 75 e4 33 f7 2b de 8b 45 ec 29 45 fc 83 6d f4 01}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Raccoon_EA_2147831190_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Raccoon.EA!MTB"
+        threat_id = "2147831190"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Raccoon"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "3"
         strings_accuracy = "High"
     strings:

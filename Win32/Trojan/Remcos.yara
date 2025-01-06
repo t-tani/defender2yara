@@ -1150,6 +1150,27 @@ rule Trojan_Win32_Remcos_ZI_2147775974_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Remcos_EA_2147778773_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Remcos.EA!MTB"
+        threat_id = "2147778773"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Remcos"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {8a 9c 07 49 9e 00 00 88 1c 30 81 f9 8d 00 00 00 75}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win32_Remcos_AB_2147781974_0
 {
     meta:
