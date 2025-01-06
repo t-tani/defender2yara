@@ -2070,3 +2070,24 @@ rule Trojan_Win32_LummaC_SPOS_2147929582_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_LummaC_GTL_2147929728_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaC.GTL!MTB"
+        threat_id = "2147929728"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {8b cb c1 e1 ?? 03 4d ?? 8d 14 18 33 ca 33 4d ?? 05 ?? ?? ?? ?? 2b f9 83 6d ?? ?? 89 7d ?? 89 45 ?? 0f 85}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

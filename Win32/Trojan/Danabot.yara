@@ -947,3 +947,24 @@ rule Trojan_Win32_Danabot_MKV_2147913778_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Danabot_ADAB_2147929727_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Danabot.ADAB!MTB"
+        threat_id = "2147929727"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Danabot"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {51 00 1c 0f 51 ?? ?? ?? ?? ?? ?? 0f 51 00 ae 0f 51 00 ae 0f 51 00 c4 0f 51 00 ed 0f 51 00 80 0f 51 ?? ?? ?? ?? ?? ?? 0f 51 00 30 0f 51}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
