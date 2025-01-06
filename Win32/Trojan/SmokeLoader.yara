@@ -8406,6 +8406,27 @@ rule Trojan_Win32_SmokeLoader_SKF_2147926685_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_SmokeLoader_BB_2147929616_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/SmokeLoader.BB!MTB"
+        threat_id = "2147929616"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "SmokeLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_6_1 = {8b 85 dc fd ff ff 0f b6 b4 05 f8 fe ff ff 8b 45 08 8b 8d e4 fd ff ff 0f b6 14 08 31 f2 88 14 08 8b 85 e4 fd ff ff 83 c0 01 89 85 e4 fd ff ff e9}  //weight: 6, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win32_SmokeLoader_EAC_2147929663_0
 {
     meta:

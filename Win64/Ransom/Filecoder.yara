@@ -506,3 +506,26 @@ rule Ransom_Win64_Filecoder_SWK_2147929367_0
         )
 }
 
+rule Ransom_Win64_Filecoder_SWJ_2147929694_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win64/Filecoder.SWJ!MTB"
+        threat_id = "2147929694"
+        type = "Ransom"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Filecoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "\\x64\\Release\\Big Ransomware.pdb" ascii //weight: 2
+        $x_2_2 = "\\ransom_note.txt" ascii //weight: 2
+        $x_1_3 = "Your files have been encrypted" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

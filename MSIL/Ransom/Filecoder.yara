@@ -3247,6 +3247,33 @@ rule Ransom_MSIL_Filecoder_SWA_2147922725_0
         (all of ($x*))
 }
 
+rule Ransom_MSIL_Filecoder_SWA_2147922725_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:MSIL/Filecoder.SWA!MTB"
+        threat_id = "2147922725"
+        type = "Ransom"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Filecoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "KILL_APPS_ENCRYPT_AGAIN" ascii //weight: 2
+        $x_2_2 = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run" wide //weight: 2
+        $x_1_3 = "All your files are stolen and encrypted" wide //weight: 1
+        $x_1_4 = "ENCRYPT_DATA" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((2 of ($x_2_*) and 1 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+
 rule Ransom_MSIL_Filecoder_SWB_2147922726_0
 {
     meta:

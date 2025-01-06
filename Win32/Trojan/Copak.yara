@@ -3153,3 +3153,24 @@ rule Trojan_Win32_Copak_GPAD_2147919411_0
         (1 of ($x*))
 }
 
+rule Trojan_Win32_Copak_MKZ_2147929699_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Copak.MKZ!MTB"
+        threat_id = "2147929699"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Copak"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {f7 d1 be de 5a 6f a9 81 c1 01 00 00 00 f7 d6 f7 d6 31 3b 29 ce 41 81 c3 02 00 00 00 81 e9 01 00 00 00 be 40 3e df 8f 81 c1 8f 5d 9f aa 39 d3 0f 8c}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
