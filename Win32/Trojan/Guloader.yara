@@ -4803,3 +4803,57 @@ rule Trojan_Win32_Guloader_BSA_2147929326_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Guloader_BSA_2147929326_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Guloader.BSA!MTB"
+        threat_id = "2147929326"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Guloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "31"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "Software\\Hjmessens\\porn" ascii //weight: 1
+        $x_1_2 = "faststtelsens\\lithographer" ascii //weight: 1
+        $x_1_3 = "trangest\\ichneumoned.Arb186" ascii //weight: 1
+        $x_1_4 = "enhydritic\\bawly.pau" ascii //weight: 1
+        $x_15_5 = "\\Drops\\Stramnings\\Rigsarkiver" ascii //weight: 15
+        $x_11_6 = "Anagrammatised.Gob" ascii //weight: 11
+        $x_1_7 = "trimon.txt" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Guloader_BSA_2147929326_2
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Guloader.BSA!MTB"
+        threat_id = "2147929326"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Guloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "31"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "Brandmanden89\\banner\\sivet\\prechallenging.ini" ascii //weight: 1
+        $x_1_2 = "Software\\andenprmiers\\bladformig" ascii //weight: 1
+        $x_15_3 = "disseminative\\Veneracean.ini" ascii //weight: 15
+        $x_1_4 = "postvenereal\\eskorteringerne.bla" ascii //weight: 1
+        $x_1_5 = "Adversion.txt" ascii //weight: 1
+        $x_11_6 = "Afringningens39\\Gammelost7" ascii //weight: 11
+        $x_1_7 = "\\caddie\\infrangible.eth" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
