@@ -192,3 +192,24 @@ rule Trojan_Win32_Tepfer_EM_2147926886_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Tepfer_SPCI_2147929650_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Tepfer.SPCI!MTB"
+        threat_id = "2147929650"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Tepfer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = {c1 e8 05 89 45 fc 8b 45 f8 8b 55 e8 01 55 fc 03 c7 33 f0 81 3d}  //weight: 10, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
