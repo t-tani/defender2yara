@@ -2520,3 +2520,24 @@ rule Trojan_MSIL_Stealer_AHHA_2147929013_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Stealer_SOG_2147929677_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Stealer.SOG!MTB"
+        threat_id = "2147929677"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Stealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {72 65 00 00 70 0c 72 ?? ?? ?? 70 0d 72 5a 01 00 70 13 04 09 72 9a 01 00 70 28 15 00 00 0a 6f 16 00 00 0a 6f 17 00 00 0a 0d 09 28 18 00 00 0a 74 13 00 00 01 13 05 72 b0 01 00 70 13 06 11 05 72 e8 01 00 70 6f 19 00 00 0a 00 72 f0 01 00 70 13 07 72 ?? ?? ?? 70 13 08 11 08}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
