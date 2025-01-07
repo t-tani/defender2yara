@@ -203,3 +203,30 @@ rule Trojan_MSIL_Nekark_NM_2147927269_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Nekark_AYA_2147929764_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Nekark.AYA!MTB"
+        threat_id = "2147929764"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Nekark"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "Horror_virus.Properties.Resources" wide //weight: 2
+        $x_1_2 = "You Computer Hacked :)" wide //weight: 1
+        $x_1_3 = "your computer won't start because MBR deleted" wide //weight: 1
+        $x_1_4 = "DisableRegistryTools" wide //weight: 1
+        $x_1_5 = "Trojan.redskull" wide //weight: 1
+        $x_1_6 = "DisableTaskMgr" wide //weight: 1
+        $x_1_7 = "if you break at least one rule, you computer death" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

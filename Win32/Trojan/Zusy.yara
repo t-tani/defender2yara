@@ -5481,3 +5481,24 @@ rule Trojan_Win32_Zusy_AMCX_2147929518_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Zusy_AMCY_2147929781_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zusy.AMCY!MTB"
+        threat_id = "2147929781"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {8b cf 39 4c 24 ?? 76 19 83 7c 24 ?? 0f 8d 44 24 ?? 0f 47 44 24 ?? 80 34 08 52 41 3b 4c 24 ?? 72 ?? 8d 54 24 ?? 8d 4c 24 ?? e8}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

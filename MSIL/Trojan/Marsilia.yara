@@ -1310,3 +1310,32 @@ rule Trojan_MSIL_Marsilia_ARAZ_2147928952_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Marsilia_AYC_2147929770_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Marsilia.AYC!MTB"
+        threat_id = "2147929770"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Marsilia"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "TelegramRAT" ascii //weight: 2
+        $x_1_2 = "KEYLOGGER" wide //weight: 1
+        $x_1_3 = "Sending screenshot..." wide //weight: 1
+        $x_1_4 = "Is running on a VM:" wide //weight: 1
+        $x_1_5 = "SELECT ProcessorId FROM Win32_Processor" wide //weight: 1
+        $x_1_6 = "Select * From Win32_ComputerSystem" wide //weight: 1
+        $x_1_7 = "CheckIfBeingAnalyzed" ascii //weight: 1
+        $x_1_8 = "InstallAndAddToStartup" ascii //weight: 1
+        $x_1_9 = "GetWifiProfilesAndPasswords" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

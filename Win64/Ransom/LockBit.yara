@@ -91,3 +91,31 @@ rule Ransom_Win64_LockBit_M_2147929542_0
         (all of ($x*))
 }
 
+rule Ransom_Win64_LockBit_AYA_2147929767_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win64/LockBit.AYA!MTB"
+        threat_id = "2147929767"
+        type = "Ransom"
+        platform = "Win64: Windows 64-bit platform"
+        family = "LockBit"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = "YOUR FILES HAVE BEEN ENCRYPTED! Send 5 BTC to unlock." ascii //weight: 3
+        $x_1_2 = "RANSOM_NOTE.txt" ascii //weight: 1
+        $x_1_3 = "net user TrojanUser" ascii //weight: 1
+        $x_1_4 = "DisableAntiSpyware" ascii //weight: 1
+        $x_1_5 = "DisableTaskMgr" ascii //weight: 1
+        $x_1_6 = "DisableRegistryTools" ascii //weight: 1
+        $x_1_7 = "vssadmin delete shadows /all /quiet" ascii //weight: 1
+        $x_1_8 = "bcdedit /delete {bootmgr} /f" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

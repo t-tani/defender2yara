@@ -246,3 +246,26 @@ rule Trojan_Win64_Khalesi_RZ_2147912416_0
         (2 of ($x*))
 }
 
+rule Trojan_Win64_Khalesi_ARAZ_2147929778_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Khalesi.ARAZ!MTB"
+        threat_id = "2147929778"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Khalesi"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_4_1 = {89 c1 44 0f b6 44 0c 34 8d 50 77 83 c0 01 44 31 c2 88 54 0c 34 8b 54 24 30 39 c2 77 e3}  //weight: 4, accuracy: High
+        $x_1_2 = "VirtualAlloc" ascii //weight: 1
+        $x_1_3 = "WaitForSingleObject" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
