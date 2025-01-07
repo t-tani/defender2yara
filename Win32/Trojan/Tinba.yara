@@ -508,3 +508,24 @@ rule Trojan_Win32_Tinba_MKV_2147920564_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Tinba_MKA_2147929788_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Tinba.MKA!MTB"
+        threat_id = "2147929788"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Tinba"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {8b 4a 0c 8b 95 ?? ?? ff ff 8a 0c 11 8b 95 ?? ?? ff ff 32 0c 10 8b 95 a8 fe ff ff 88 0c 10 ff d7 8b d0 8d 8d ?? ?? ff ff ff d6 50 6a 6b ff d7 8b d0}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

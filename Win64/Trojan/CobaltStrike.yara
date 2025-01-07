@@ -15857,3 +15857,26 @@ rule Trojan_Win64_CobaltStrike_OMK_2147929736_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_CobaltStrike_ASD_2147929793_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CobaltStrike.ASD!MTB"
+        threat_id = "2147929793"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CobaltStrike"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "Access violation caught, decrypting memory" ascii //weight: 1
+        $x_1_2 = "drop of the panic payload panicked" ascii //weight: 1
+        $x_2_3 = {31 c0 48 39 c2 74 08 f6 14 01 48 ff c0 eb f3}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
