@@ -2932,3 +2932,26 @@ rule Trojan_Win32_Neoreblamy_NR_2147929742_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Neoreblamy_GPL_2147929750_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Neoreblamy.GPL!MTB"
+        threat_id = "2147929750"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Neoreblamy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = "MpAVIvjhOiILZ" ascii //weight: 3
+        $x_2_2 = "zHlexAfLBOqNzeHCfQgZb" ascii //weight: 2
+        $x_1_3 = "QgVpkNQNUSWVOlStsSlpdiYnN" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

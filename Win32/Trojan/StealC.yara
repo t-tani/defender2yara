@@ -4021,3 +4021,24 @@ rule Trojan_Win32_StealC_AMCX_2147929568_0
         (1 of ($x*))
 }
 
+rule Trojan_Win32_StealC_ZE_2147929748_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/StealC.ZE!MTB"
+        threat_id = "2147929748"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "StealC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {8b d3 c1 e2 ?? 03 55 ?? 8d 0c 18 33 d1 33 55 ?? 05 ?? ?? ?? ?? 2b fa}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
