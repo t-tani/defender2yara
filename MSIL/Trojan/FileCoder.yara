@@ -316,6 +316,30 @@ rule Trojan_MSIL_FileCoder_ARAZ_2147909212_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_FileCoder_ARAZ_2147909212_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/FileCoder.ARAZ!MTB"
+        threat_id = "2147909212"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "FileCoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "\\BlackRansomwareFireeye.pdb" ascii //weight: 2
+        $x_2_2 = "EvilBillingAddressForBitcoins" wide //weight: 2
+        $x_2_3 = "\\victim\\Desktop" wide //weight: 2
+        $x_2_4 = "Your files will be lost" wide //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_FileCoder_ARAX_2147909496_0
 {
     meta:
