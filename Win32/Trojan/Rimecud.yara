@@ -48,3 +48,24 @@ rule Trojan_Win32_Rimecud_A_2147632584_0
         (2 of ($x*))
 }
 
+rule Trojan_Win32_Rimecud_ARMI_2147929807_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Rimecud.ARMI!MTB"
+        threat_id = "2147929807"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Rimecud"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {33 c0 55 68 d7 4a 4a 00 64 ff 30 64 89 20 8b c3 8b 10 ff 52 ?? ba f0 4a 4a 00 8b c3 8b 08 ff 51 ?? 8d 45 f8 8b 4d fc ba 10 4b 4a 00 e8 ?? ?? ?? ?? 8b 55 f8 8b c3 8b 08 ff 51 ?? ba 28 4b 4a 00 8b c3 8b 08 ff 51 38}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

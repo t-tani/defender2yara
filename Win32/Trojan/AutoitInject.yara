@@ -4304,3 +4304,29 @@ rule Trojan_Win32_AutoitInject_HNL_2147929665_0
         )
 }
 
+rule Trojan_Win32_AutoitInject_HNM_2147929812_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.HNM!MTB"
+        threat_id = "2147929812"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {47 00 4c 00 4f 00 42 00 41 00 4c 00 20 00 24 00 [0-22] 20 00 3d 00 20 00 43 00 41 00 4c 00 4c 00 20 00 28 00 20 00 [0-22] 20 00 28 00 20 00 22 00 48 00 7c 00 6a 00 69 00 7c 00 7c 00 6e 00 22 00 20 00 2c 00 20 00 32 00 20 00 29 00 20 00 2c 00 20 00 24 00 [0-22] 20 00 26 00 20 00 22 00 28 00 40 00 54 00 65 00 6d 00 70 00 44 00 69 00 72 00 20 00 26 00 20 00 22 00 22 00 5c 00 [0-38] 22 00 22 00 2c 00 20 00 31 00 38 00 29 00 22 00 20 00 29 00}  //weight: 1, accuracy: Low
+        $x_1_2 = {47 4c 4f 42 41 4c 20 24 [0-22] 20 3d 20 43 41 4c 4c 20 28 20 [0-22] 20 28 20 22 48 7c 6a 69 7c 7c 6e 22 20 2c 20 32 20 29 20 2c 20 24 [0-22] 20 26 20 22 28 40 54 65 6d 70 44 69 72 20 26 20 22 22 5c [0-38] 22 22 2c 20 31 38 29 22 20 29}  //weight: 1, accuracy: Low
+        $x_2_3 = "(\"\"sxw\"\", 2)" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_2_*) and 1 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+

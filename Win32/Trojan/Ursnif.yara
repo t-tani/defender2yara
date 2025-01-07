@@ -6564,3 +6564,24 @@ rule Trojan_Win32_Ursnif_MBXV_2147924161_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Ursnif_OKA_2147929800_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Ursnif.OKA!MTB"
+        threat_id = "2147929800"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Ursnif"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {53 53 68 04 22 41 00 ff 15 ?? ?? ?? ?? eb ?? 33 db 83 ee 01 78 0d e8 a6 ed ff ff 30 04 37 83 ee 01 79}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
