@@ -7980,29 +7980,6 @@ rule Trojan_Win32_Ekstak_KAJ_2147916731_0
         (1 of ($x*))
 }
 
-rule Trojan_Win32_Ekstak_KAK_2147916875_0
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "Trojan:Win32/Ekstak.KAK!MTB"
-        threat_id = "2147916875"
-        type = "Trojan"
-        platform = "Win32: Windows 32-bit platform"
-        family = "Ekstak"
-        severity = "Critical"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "1"
-        strings_accuracy = "Low"
-    strings:
-        $x_1_1 = {72 44 6c 50 74 53 cd e6 d7 7b 0b 2a 01 00 00 00 ?? ?? ?? 00 ?? ?? ?? 00 00 da 0a 00 e7}  //weight: 1, accuracy: Low
-        $x_1_2 = {72 44 6c 50 74 53 cd e6 d7 7b 0b 2a 01 00 00 00 ?? ?? ?? 00 ?? ?? ?? 00 00 da 0a 00 fb}  //weight: 1, accuracy: Low
-        $x_1_3 = {72 44 6c 50 74 53 cd e6 d7 7b 0b 2a 01 00 00 00 ?? ?? ?? 00 ?? ?? ?? 00 00 da 0a 00 45}  //weight: 1, accuracy: Low
-    condition:
-        (filesize < 20MB) and
-        (1 of ($x*))
-}
-
 rule Trojan_Win32_Ekstak_SLAA_2147916907_0
 {
     meta:

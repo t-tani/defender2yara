@@ -107,3 +107,30 @@ rule Trojan_Win32_SnakeKeylogger_SML_2147926923_1
         (all of ($x*))
 }
 
+rule Trojan_Win32_SnakeKeylogger_Z_2147929760_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/SnakeKeylogger.Z!MTB"
+        threat_id = "2147929760"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "SnakeKeylogger"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "SnakeKeylogger" ascii //weight: 1
+        $x_1_2 = "sendMessage?chat_id=" ascii //weight: 1
+        $x_1_3 = "sendDocument?chat_id" ascii //weight: 1
+        $x_1_4 = "Screenshot" ascii //weight: 1
+        $x_1_5 = "Keystrokes" ascii //weight: 1
+        $x_1_6 = "api.telegram.org" ascii //weight: 1
+        $x_1_7 = "software\\microsoft\\windows\\currentversion\\run" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
