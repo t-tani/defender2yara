@@ -2789,3 +2789,27 @@ rule Trojan_Win32_TrickBot_QW_2147799573_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_TrickBot_NA_2147929882_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/TrickBot.NA!MTB"
+        threat_id = "2147929882"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "TrickBot"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {c6 00 40 c6 40 01 6b c6 40 02 72 c6 40 03 2d c6 40 04 4a c6 40 05 02}  //weight: 2, accuracy: High
+        $x_1_2 = {89 e6 8d 48 ff 0f af c8 89 c8 83 f0 fe 85 c8}  //weight: 1, accuracy: High
+        $x_1_3 = "@W@KrasIodW" ascii //weight: 1
+        $x_1_4 = "KrasIodW" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

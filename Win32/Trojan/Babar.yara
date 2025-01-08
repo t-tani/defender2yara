@@ -576,3 +576,24 @@ rule Trojan_Win32_Babar_MBWJ_2147929212_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Babar_CCJT_2147929895_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Babar.CCJT!MTB"
+        threat_id = "2147929895"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Babar"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {01 d0 0f b6 18 0f b6 85 ?? ?? ff ff 0f b6 8c 05 ?? ?? ff ff 8b 95 ?? ?? ff ff 8b 45 ?? 01 d0 31 cb 89 da 88 10}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

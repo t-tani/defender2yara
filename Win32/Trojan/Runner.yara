@@ -56,3 +56,25 @@ rule Trojan_Win32_Runner_RP_2147910770_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Runner_CCJT_2147929896_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Runner.CCJT!MTB"
+        threat_id = "2147929896"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Runner"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {8b 04 b2 01 f8 0f be 08 8d 58 01 b8 ?? ?? ?? ?? 85 c9 74 ?? 89 34 24 8d b4 26 00 00 00 00 66 90 89 c6 83 c3 01 c1 e6 05 01 c6 8d 04 0e 0f be 4b ?? 85 c9 75}  //weight: 2, accuracy: Low
+        $x_1_2 = {83 ec 14 85 c0 75 ?? c7 04 24 ?? ?? ?? ?? ff d3 52 85 c0 74}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
