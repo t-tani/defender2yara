@@ -166,3 +166,26 @@ rule Trojan_Win32_Reconyc_GXZ_2147903460_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Reconyc_GNT_2147929907_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Reconyc.GNT!MTB"
+        threat_id = "2147929907"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Reconyc"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "12"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = {ff 34 1a 40 00 c0 54 40 00 10 93 40 00 10}  //weight: 10, accuracy: High
+        $x_1_2 = "\\guodongguodong.guodong" ascii //weight: 1
+        $x_1_3 = "\\svchest.exe" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

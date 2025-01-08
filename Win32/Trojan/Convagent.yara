@@ -1551,3 +1551,24 @@ rule Trojan_Win32_Convagent_CCJT_2147929903_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Convagent_ADIA_2147929917_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Convagent.ADIA!MTB"
+        threat_id = "2147929917"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Convagent"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {8b d3 c1 ea 05 03 cb 89 55 ?? 8b 45 ?? 01 45 ?? 8b c3 c1 e0 04 03 45 ?? 33 45 ?? 33 c1 2b f8 89 7d ?? 8b 45 ?? 29 45 ?? 83 6d ?? 01 0f 85}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

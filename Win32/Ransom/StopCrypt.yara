@@ -5561,3 +5561,29 @@ rule Ransom_Win32_StopCrypt_TOQ_2147916216_0
         (all of ($x*))
 }
 
+rule Ransom_Win32_StopCrypt_ASC_2147929906_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win32/StopCrypt.ASC!MTB"
+        threat_id = "2147929906"
+        type = "Ransom"
+        platform = "Win32: Windows 32-bit platform"
+        family = "StopCrypt"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "16"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = "cmd.exe /C ping 1.1.1.1 -n 1 -w 3000 > Nul & Del /f /q" wide //weight: 3
+        $x_2_2 = "Decryptfiles.txt" ascii //weight: 2
+        $x_5_3 = "boot.inidesktop.inintuser.daticoncache.dbbootsect.bakntuser.dat.logBootfont.binDecryptfiles.txt" ascii //weight: 5
+        $x_4_4 = "edfr789@tutanota.com" ascii //weight: 4
+        $x_1_5 = "we advise you contact us in less than 72 hours, otherwise there is a possibility that your files will never be returned" ascii //weight: 1
+        $x_1_6 = "Do not try to recover your files without a decrypt tool, you may damage them making them impossible to recover" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
