@@ -2355,3 +2355,25 @@ rule Trojan_Win32_Fauppod_GTG_2147929388_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Fauppod_SAA_2147929845_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Fauppod.SAA"
+        threat_id = "2147929845"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Fauppod"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_CMDHSTR_EXT"
+        threshold = "30"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = "cmd.exe" wide //weight: 10
+        $x_10_2 = "net use" wide //weight: 10
+        $x_10_3 = ".si@ssl\\" wide //weight: 10
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

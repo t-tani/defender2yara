@@ -61,29 +61,6 @@ rule HackTool_Win64_Killgent_RPA_2147929049_0
         )
 }
 
-rule HackTool_Win64_Killgent_ZA_2147929264_0
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "HackTool:Win64/Killgent.ZA!MTB"
-        threat_id = "2147929264"
-        type = "HackTool"
-        platform = "Win64: Windows 64-bit platform"
-        family = "Killgent"
-        severity = "High"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "3"
-        strings_accuracy = "High"
-    strings:
-        $x_1_1 = {89 44 24 3c 48 63 c8 48 c1 e1 20 48 83 c9 02 48 89 4c 24 40 31 c0 48 01 c8 48 89 44 24 28 48 89 44 24 48 48 8b 4c 24 28}  //weight: 1, accuracy: High
-        $x_1_2 = "CloseServiceHandle" ascii //weight: 1
-        $x_1_3 = "OpenSCManager" ascii //weight: 1
-    condition:
-        (filesize < 20MB) and
-        (all of ($x*))
-}
-
 rule HackTool_Win64_Killgent_ZB_2147929265_0
 {
     meta:
