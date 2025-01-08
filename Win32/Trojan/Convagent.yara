@@ -1527,3 +1527,27 @@ rule Trojan_Win32_Convagent_AMO_2147923434_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Convagent_CCJT_2147929903_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Convagent.CCJT!MTB"
+        threat_id = "2147929903"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Convagent"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {c7 45 dc e1 32 41 00 89 75 e0 89 75 e4 89 45 e8 ff 15}  //weight: 2, accuracy: High
+        $x_1_2 = {8b 85 1c ff ff ff 05 3f 03 00 00 ff e0}  //weight: 1, accuracy: High
+        $x_1_3 = {b9 be f9 ff ff f7 d1 e8 00 00 00 00 5a 83 c2 11 92 bb 1b 84 44 1b 31 18 83 c0 04 e2 f9 4e 0f a8}  //weight: 1, accuracy: High
+        $x_1_4 = {17 90 f4 58 28 d2 0f 02 13 90 fa 64 90 2d e2 7d 54 03 f1 b6 73 a9 76 a6 ef 73 b6 30 8a 17 ec c1}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

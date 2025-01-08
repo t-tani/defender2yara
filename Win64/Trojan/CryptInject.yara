@@ -3475,6 +3475,28 @@ rule Trojan_Win64_CryptInject_BSA_2147927064_2
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "12"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {eb 21 48 8b 45 e8 48 3b 45 e0 75 09 c7 45 f0 ?? ?? ?? ?? eb 45 b9 e8 03 00 00 48 8b 05 be 40 29 00 ff d0 48 8b 05 ?? ?? ?? ?? 48 89 45 c8}  //weight: 10, accuracy: Low
+        $x_2_2 = {f0 48 0f b1 0a 48 89 45 e8 48 83 7d e8 ?? 75 a8 48 8b 05 ?? ?? ?? ?? 8b 00 83 f8 01}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_CryptInject_BSA_2147927064_3
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CryptInject.BSA!MTB"
+        threat_id = "2147927064"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "21"
         strings_accuracy = "Low"
     strings:

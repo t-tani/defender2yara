@@ -418,33 +418,17 @@ rule Virus_Win64_Expiro_HNN_2147929545_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "1"
-        strings_accuracy = "High"
-    strings:
-        $x_1_1 = {66 66 0f 1f 84 00 00 00 00 00 ff e0}  //weight: 1, accuracy: High
-    condition:
-        (filesize < 20MB) and
-        (all of ($x*))
-}
-
-rule Virus_Win64_Expiro_HNK_2147929547_0
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "Virus:Win64/Expiro.HNK!MTB"
-        threat_id = "2147929547"
-        type = "Virus"
-        platform = "Win64: Windows 64-bit platform"
-        family = "Expiro"
-        severity = "Critical"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "1"
+        threshold = "11"
         strings_accuracy = "Low"
     strings:
-        $x_1_1 = {48 83 ec 28 e8 ?? ?? ?? ?? 48 83 c4 28}  //weight: 1, accuracy: Low
+        $x_10_1 = {66 66 0f 1f 84 00 00 00 00 00 ff e0}  //weight: 10, accuracy: High
+        $x_1_2 = {2e 72 65 6c 6f 63 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 40 00 00 e2}  //weight: 1, accuracy: Low
+        $x_1_3 = {2e 72 65 6c 6f 63 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 40 00 00 60}  //weight: 1, accuracy: Low
     condition:
         (filesize < 20MB) and
-        (all of ($x*))
+        (
+            ((1 of ($x_10_*) and 1 of ($x_1_*))) or
+            (all of ($x*))
+        )
 }
 

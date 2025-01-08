@@ -1263,3 +1263,24 @@ rule Trojan_MSIL_Jalapeno_ABIA_2147929799_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Jalapeno_GNT_2147929902_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Jalapeno.GNT!MTB"
+        threat_id = "2147929902"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Jalapeno"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {13 08 1a 8d ?? ?? ?? ?? 13 09 11 08 11 09 16 1a 6f ?? ?? ?? 0a 26 11 09 16 28 ?? ?? ?? 0a 13 0a 11 08 16 73 ?? ?? ?? 0a 13 0b 11 0b 06}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
