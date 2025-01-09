@@ -880,3 +880,46 @@ rule Trojan_MSIL_Zilla_PLTH_2147929501_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Zilla_PKVH_2147929935_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Zilla.PKVH!MTB"
+        threat_id = "2147929935"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Zilla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {13 09 11 07 11 09 3b aa 00 00 00 11 07 6f ?? 00 00 06 13 05 12 05 28 ?? 00 00 0a 11 09 6f ?? 00 00 06 13 05 12 05 28 ?? 00 00 0a 59 11 07 6f ?? 00 00 06 13 05 12 05 28 ?? 00 00 0a 11 09 6f ?? 00 00 06 13 05 12 05 28 ?? 00 00 0a 59 13 0a 25 5a 11 0a 11 0a 5a 58 6c}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Zilla_PKYH_2147929936_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Zilla.PKYH!MTB"
+        threat_id = "2147929936"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Zilla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_8_1 = {0a 07 04 6f ?? 00 00 0a 07 17 6f ?? 00 00 0a 07 18 6f ?? 00 00 0a 73 ?? 00 00 0a 0c 08 07 6f ?? 00 00 0a 17 73 ?? 00 00 0a 0d 09 02 16 02 8e 69 6f ?? 00 00 0a 09 6f ?? 00 00 0a 08 6f ?? 00 00 0a 0a de 0a}  //weight: 8, accuracy: Low
+        $x_2_2 = "CreateDecryptor" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
