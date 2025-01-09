@@ -1356,3 +1356,24 @@ rule Trojan_Win32_Tofsee_KAH_2147929675_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Tofsee_KAI_2147929972_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Tofsee.KAI!MTB"
+        threat_id = "2147929972"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Tofsee"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {29 c0 2b 03 f7 d8 83 c3 ?? f7 d8 83 e8 ?? 83 c0 ?? 83 e8 ?? 29 f0 29 f6 29 c6 f7 de c7 41 ?? ?? ?? ?? ?? 31 01 83 c1 ?? 83 ef ?? 85 ff 75 d1}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
