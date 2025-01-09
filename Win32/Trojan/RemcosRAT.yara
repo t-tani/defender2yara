@@ -269,3 +269,52 @@ rule Trojan_Win32_RemcosRAT_NRM_2147897040_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_RemcosRAT_Z_2147929925_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/RemcosRAT.Z!MTB"
+        threat_id = "2147929925"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "RemcosRAT"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "Remcos" ascii //weight: 1
+        $x_1_2 = "CreateObject(\"WScript.Shell\").Run \"cmd" ascii //weight: 1
+        $x_1_3 = "\\sysinfo.txt" ascii //weight: 1
+        $x_1_4 = "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion" ascii //weight: 1
+        $x_1_5 = "reg.exe ADD HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System" ascii //weight: 1
+        $x_1_6 = "%02i:%02i:%02i" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_RemcosRAT_ZA_2147929926_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/RemcosRAT.ZA!MTB"
+        threat_id = "2147929926"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "RemcosRAT"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "Remcos v" ascii //weight: 1
+        $x_1_2 = "%02i:%02i:%02i" ascii //weight: 1
+        $x_1_3 = "Remcos Agent initialized" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
