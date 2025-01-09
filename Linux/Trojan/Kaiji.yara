@@ -149,3 +149,28 @@ rule Trojan_Linux_Kaiji_E_2147928899_0
         (all of ($x*))
 }
 
+rule Trojan_Linux_Kaiji_F_2147929990_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Linux/Kaiji.F!MTB"
+        threat_id = "2147929990"
+        type = "Trojan"
+        platform = "Linux: Linux platform"
+        family = "Kaiji"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_ELFHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "main.Dns_Url" ascii //weight: 1
+        $x_1_2 = "main.Killsh" ascii //weight: 1
+        $x_1_3 = "/client/linux/killcpu.go" ascii //weight: 1
+        $x_1_4 = "main.getwebwalk" ascii //weight: 1
+        $x_1_5 = "main.attack" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
