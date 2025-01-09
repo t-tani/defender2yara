@@ -3014,3 +3014,28 @@ rule Trojan_Win32_OffLoader_GPPB_2147929908_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_OffLoader_AEIA_2147929928_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/OffLoader.AEIA!MTB"
+        threat_id = "2147929928"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "OffLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_4_1 = "://tinfuel.sbs/yie.php?" ascii //weight: 4
+        $x_1_2 = "/silent" ascii //weight: 1
+        $x_1_3 = "/weaksecurity" ascii //weight: 1
+        $x_1_4 = "/nocookies" ascii //weight: 1
+        $x_1_5 = "/resume" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
