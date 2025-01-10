@@ -9318,31 +9318,6 @@ rule VirTool_Win32_VBInject_AFI_2147707207_0
         (2 of ($x*))
 }
 
-rule VirTool_Win32_VBInject_AFJ_2147707410_0
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "VirTool:Win32/VBInject.AFJ"
-        threat_id = "2147707410"
-        type = "VirTool"
-        platform = "Win32: Windows 32-bit platform"
-        family = "VBInject"
-        severity = "Critical"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "3"
-        strings_accuracy = "Low"
-    strings:
-        $x_1_1 = {8b 54 1d 00 (66 0f|0f)}  //weight: 1, accuracy: Low
-        $x_1_2 = {31 c2 66 0f}  //weight: 1, accuracy: High
-        $x_1_3 = {89 54 1d 00 (66 0f|0f)}  //weight: 1, accuracy: Low
-        $x_1_4 = {43 83 c3 03 81 7c 1d fc ?? ?? ?? ?? 75}  //weight: 1, accuracy: Low
-        $n_1_5 = "axil7359.com/" wide //weight: -1
-    condition:
-        (filesize < 20MB) and
-        (not (any of ($n*))) and
-        (3 of ($x*))
-}
-
 rule VirTool_Win32_VBInject_AEN_2147707653_0
 {
     meta:
