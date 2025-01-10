@@ -42,3 +42,43 @@ rule Ransom_Win64_BlackByte_FG_2147848231_0
         (all of ($x*))
 }
 
+rule Ransom_Win64_BlackByte_GB_2147930059_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win64/BlackByte.GB!MTB"
+        threat_id = "2147930059"
+        type = "Ransom"
+        platform = "Win64: Windows 64-bit platform"
+        family = "BlackByte"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "22"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "main.decFunc" ascii //weight: 1
+        $x_1_2 = "main.Encrypt" ascii //weight: 1
+        $x_1_3 = "main.Aes256Encr" ascii //weight: 1
+        $x_1_4 = "main.DelShadows" ascii //weight: 1
+        $x_1_5 = "main.Destroy" ascii //weight: 1
+        $x_1_6 = "main.GrantAll" ascii //weight: 1
+        $x_1_7 = "main.EnableLongPaths" ascii //weight: 1
+        $x_1_8 = "main.GenDrives" ascii //weight: 1
+        $x_1_9 = "main.CheckBusy" ascii //weight: 1
+        $x_1_10 = "main.PreventSleep" ascii //weight: 1
+        $x_1_11 = "main.ShowNote" ascii //weight: 1
+        $x_1_12 = "main.Startproc" ascii //weight: 1
+        $x_1_13 = "main.EnableLink" ascii //weight: 1
+        $x_1_14 = "main.SetupKey" ascii //weight: 1
+        $x_1_15 = "main.MountDrives" ascii //weight: 1
+        $x_1_16 = "main.Kill" ascii //weight: 1
+        $x_1_17 = "main.StopAllsvc" ascii //weight: 1
+        $x_1_18 = "main.Encode" ascii //weight: 1
+        $x_1_19 = "main.ClearRecycle" ascii //weight: 1
+        $x_3_20 = "BlackByteGO/_cgo_gotypes.go" ascii //weight: 3
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

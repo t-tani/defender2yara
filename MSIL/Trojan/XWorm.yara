@@ -1109,25 +1109,3 @@ rule Trojan_MSIL_XWorm_PLKH_2147929214_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_XWorm_PLLDH_2147929874_0
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "Trojan:MSIL/XWorm.PLLDH!MTB"
-        threat_id = "2147929874"
-        type = "Trojan"
-        platform = "MSIL: .NET intermediate language scripts"
-        family = "XWorm"
-        severity = "Critical"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "11"
-        strings_accuracy = "Low"
-    strings:
-        $x_10_1 = {00 07 11 04 6f ?? 00 00 0a 00 07 18 6f ?? 00 00 0a 00 07 6f ?? 00 00 0a 13 06 02 28 ?? 00 00 0a 13 07 28 ?? 00 00 0a 11 06 11 07 16 11 07 8e 69 6f ?? 00 00 0a 6f ?? 00 00 0a 0d de 10}  //weight: 10, accuracy: Low
-        $x_1_2 = "CreateDecryptor" ascii //weight: 1
-    condition:
-        (filesize < 20MB) and
-        (all of ($x*))
-}
-
