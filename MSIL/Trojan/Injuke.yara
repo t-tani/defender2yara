@@ -3284,12 +3284,12 @@ rule Trojan_MSIL_Injuke_AWGA_2147928715_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Injuke_SSUB_2147930032_0
+rule Trojan_MSIL_Injuke_SSUB_2147930040_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Injuke.SSUB!MTB"
-        threat_id = "2147930032"
+        threat_id = "2147930040"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Injuke"

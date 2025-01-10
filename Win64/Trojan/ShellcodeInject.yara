@@ -223,12 +223,12 @@ rule Trojan_Win64_ShellcodeInject_MP_2147929684_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_ShellcodeInject_ASD_2147930028_0
+rule Trojan_Win64_ShellcodeInject_ASD_2147930035_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/ShellcodeInject.ASD!MTB"
-        threat_id = "2147930028"
+        threat_id = "2147930035"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "ShellcodeInject"

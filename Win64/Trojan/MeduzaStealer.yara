@@ -335,12 +335,12 @@ rule Trojan_Win64_MeduzaStealer_OPX_2147928124_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_MeduzaStealer_OOV_2147930031_0
+rule Trojan_Win64_MeduzaStealer_OOV_2147930039_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/MeduzaStealer.OOV!MTB"
-        threat_id = "2147930031"
+        threat_id = "2147930039"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "MeduzaStealer"

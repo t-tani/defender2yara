@@ -15901,12 +15901,12 @@ rule Trojan_Win64_CobaltStrike_ASD_2147929793_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_CobaltStrike_DAKU_2147930029_0
+rule Trojan_Win64_CobaltStrike_DAKU_2147930036_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/CobaltStrike.DAKU!MTB"
-        threat_id = "2147930029"
+        threat_id = "2147930036"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "CobaltStrike"

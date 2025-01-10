@@ -2940,12 +2940,12 @@ rule Trojan_MSIL_CoinMiner_BH_2147926474_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_CoinMiner_PLLGH_2147930035_0
+rule Trojan_MSIL_CoinMiner_PLLGH_2147930043_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/CoinMiner.PLLGH!MTB"
-        threat_id = "2147930035"
+        threat_id = "2147930043"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "CoinMiner"

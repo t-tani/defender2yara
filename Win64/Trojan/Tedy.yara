@@ -1299,3 +1299,25 @@ rule Trojan_Win64_Tedy_ARAZ_2147929327_0
         (1 of ($x*))
 }
 
+rule Trojan_Win64_Tedy_GTR_2147930031_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Tedy.GTR!MTB"
+        threat_id = "2147930031"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Tedy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {d0 34 b6 39 e3 58 6c 18 22}  //weight: 5, accuracy: High
+        $x_5_2 = {9c ec 28 76 ?? a4 32 44 3a ?? 55 1a 8b}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

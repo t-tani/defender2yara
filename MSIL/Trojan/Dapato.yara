@@ -158,12 +158,12 @@ rule Trojan_MSIL_Dapato_SH_2147917074_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Dapato_AJIA_2147930027_0
+rule Trojan_MSIL_Dapato_AJIA_2147930034_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Dapato.AJIA!MTB"
-        threat_id = "2147930027"
+        threat_id = "2147930034"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Dapato"

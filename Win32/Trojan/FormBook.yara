@@ -3803,12 +3803,12 @@ rule Trojan_Win32_FormBook_NOB_2147924092_0
         )
 }
 
-rule Trojan_Win32_FormBook_NOE_2147930034_0
+rule Trojan_Win32_FormBook_NOE_2147930042_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/FormBook.NOE!MTB"
-        threat_id = "2147930034"
+        threat_id = "2147930042"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "FormBook"

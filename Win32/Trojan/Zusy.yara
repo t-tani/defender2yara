@@ -5545,12 +5545,12 @@ rule Trojan_Win32_Zusy_GF_2147929957_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Zusy_HNAM_2147930033_0
+rule Trojan_Win32_Zusy_HNAM_2147930041_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/Zusy.HNAM!MTB"
-        threat_id = "2147930033"
+        threat_id = "2147930041"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "Zusy"
