@@ -335,3 +335,24 @@ rule Trojan_Win64_MeduzaStealer_OPX_2147928124_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_MeduzaStealer_OOV_2147930025_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/MeduzaStealer.OOV!MTB"
+        threat_id = "2147930025"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "MeduzaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {89 c8 c1 e8 10 88 85 4e 04 00 00 c1 e9 18 88 8d 4f 04 00 00 48 c7 85 ?? ?? ?? ?? 00 00 00 00 31 c0 4c 8b a5 10 09 00 00 48 8b b5 18 09 00 00 48 8b 8d 08 09 00 00 0f b6 84 05 10 04 00 00 30 04 0e 48 8b 85 ?? ?? ?? ?? 48 ff c0 48 89 85 ?? ?? ?? ?? 48 ff c1 4c 39 e1 0f 84 ?? ?? ?? ?? 48 83 f8 40 72}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

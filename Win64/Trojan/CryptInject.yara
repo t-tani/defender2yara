@@ -3783,3 +3783,24 @@ rule Trojan_Win64_CryptInject_RPF_2147929817_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_CryptInject_AMC_2147930024_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CryptInject.AMC!MTB"
+        threat_id = "2147930024"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {48 c7 c0 78 7a 93 01 48 01 e8 48 81 c0 b8 00 00 00 48 c7 c1 0b 06 00 00 48 c7 c2 b8 11 0a e8 30 10 48 ff c0 48 ff c9}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

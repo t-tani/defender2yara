@@ -1097,3 +1097,26 @@ rule Trojan_MSIL_LummaC_ACIA_2147929873_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_LummaC_AIIA_2147930021_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/LummaC.AIIA!MTB"
+        threat_id = "2147930021"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "LummaC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {0a 13 04 11 04 09 06 07 6f ?? 00 00 0a 17 73 2a 00 00 0a 13 05 11 05 08 16 08 8e 69 6f ?? 00 00 0a 11 04 6f ?? 00 00 0a 13 06 dd}  //weight: 3, accuracy: Low
+        $x_1_2 = "FromBase64String" ascii //weight: 1
+        $x_1_3 = "CreateDecryptor" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
