@@ -223,3 +223,26 @@ rule Trojan_Win64_ShellcodeInject_MP_2147929684_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_ShellcodeInject_ASD_2147930019_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/ShellcodeInject.ASD!MTB"
+        threat_id = "2147930019"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "ShellcodeInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "msedgewhite.rtz" ascii //weight: 1
+        $x_1_2 = "Failed to load and execute shellcode" ascii //weight: 1
+        $x_1_3 = "Dll4.pdb" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
