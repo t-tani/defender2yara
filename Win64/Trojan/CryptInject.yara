@@ -3783,12 +3783,12 @@ rule Trojan_Win64_CryptInject_RPF_2147929817_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_CryptInject_AMC_2147930024_0
+rule Trojan_Win64_CryptInject_AMC_2147930030_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/CryptInject.AMC!MTB"
-        threat_id = "2147930024"
+        threat_id = "2147930030"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "CryptInject"

@@ -1097,12 +1097,12 @@ rule Trojan_MSIL_LummaC_ACIA_2147929873_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_LummaC_AIIA_2147930021_0
+rule Trojan_MSIL_LummaC_AIIA_2147930026_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/LummaC.AIIA!MTB"
-        threat_id = "2147930021"
+        threat_id = "2147930026"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "LummaC"

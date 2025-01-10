@@ -2278,12 +2278,12 @@ rule Trojan_MSIL_PureLogStealer_APU_2147928882_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_PureLogStealer_AHIA_2147930020_0
+rule Trojan_MSIL_PureLogStealer_AHIA_2147930025_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/PureLogStealer.AHIA!MTB"
-        threat_id = "2147930020"
+        threat_id = "2147930025"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "PureLogStealer"
