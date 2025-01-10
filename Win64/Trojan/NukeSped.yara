@@ -43,3 +43,24 @@ rule Trojan_Win64_NukeSped_LKV_2147897411_0
         (1 of ($x*))
 }
 
+rule Trojan_Win64_NukeSped_DA_2147930009_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/NukeSped.DA!MTB"
+        threat_id = "2147930009"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "NukeSped"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {0f b6 43 01 ff ce 0f b6 0c 28 43 30 0c 26 41 ff c6 0f b6 43 01 fe c0 88 43 01 3c 40 75}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
