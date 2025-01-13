@@ -180,3 +180,26 @@ rule Trojan_Win32_Lumma_RHB_2147928848_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Lumma_MBWM_2147930093_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Lumma.MBWM!MTB"
+        threat_id = "2147930093"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Lumma"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {0f af d9 f7 d3 83 cb fe 83 fb ff 0f 94 c1 83 fa 0a 0f 9c c5 30 cd 0f 45 f0 83 fb ff 89 f1 0f 44 c8}  //weight: 2, accuracy: High
+        $x_2_2 = {0f af c8 89 c8 83 f0 fe 85 c8 0f 94 c3 83 fa 0a 0f 9c c7 30 df}  //weight: 2, accuracy: High
+        $x_1_3 = {40 00 00 40 2e 64 61 74 61 00 00 00 7c 1b 00 00 00 80 04}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
