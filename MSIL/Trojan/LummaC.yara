@@ -1120,3 +1120,30 @@ rule Trojan_MSIL_LummaC_AIIA_2147930033_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_LummaC_MBWM_2147930099_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/LummaC.MBWM!MTB"
+        threat_id = "2147930099"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "LummaC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {9c 07 08 04 08 05 5d 91 9c 08 17 58 0c 08 20 00 01 00 00}  //weight: 1, accuracy: High
+        $x_2_2 = {49 39 55 64 6a 77 44 00 44 51 6a 62 43 67 64 44 61 4d 4d 56 4e 64 45 47 4b 6b}  //weight: 2, accuracy: High
+        $x_2_3 = {47 33 44 77 64 32 33 00 6c 6c 78 69 4f 39 4d 6a 72 41 49 6d 77 63 68 68 4f 65}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_2_*) and 1 of ($x_1_*))) or
+            ((2 of ($x_2_*))) or
+            (all of ($x*))
+        )
+}
+
