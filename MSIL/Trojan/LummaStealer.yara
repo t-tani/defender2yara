@@ -2519,3 +2519,45 @@ rule Trojan_MSIL_LummaStealer_GPL_2147929751_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_LummaStealer_GPPA_2147930086_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/LummaStealer.GPPA!MTB"
+        threat_id = "2147930086"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {25 47 11 00 11 06 91 61 d2 52 20 ?? 00 00 00 7e}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_LummaStealer_GPPB_2147930087_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/LummaStealer.GPPB!MTB"
+        threat_id = "2147930087"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "Tm5McYSCxHrGi4S+xs0dRKxy+8/OKxRNXx1SEPQEI804Dz4Y8PunFang" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
