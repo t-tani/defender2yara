@@ -50,3 +50,31 @@ rule Ransom_MSIL_HiddenTears_AYA_2147929769_0
         (all of ($x*))
 }
 
+rule Ransom_MSIL_HiddenTears_SUR_2147930139_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:MSIL/HiddenTears.SUR!MTB"
+        threat_id = "2147930139"
+        type = "Ransom"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "HiddenTears"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "FORCE_BSOD@Payloads" ascii //weight: 2
+        $x_2_2 = "MBR_Overwrite@Payloads" ascii //weight: 2
+        $x_2_3 = "Screen_Glitching@Payloads" ascii //weight: 2
+        $x_1_4 = "GetFilesAndEncrypt" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((2 of ($x_2_*) and 1 of ($x_1_*))) or
+            ((3 of ($x_2_*))) or
+            (all of ($x*))
+        )
+}
+

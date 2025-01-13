@@ -2219,24 +2219,3 @@ rule Trojan_Win32_Injector_NIT_2147927359_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Injector_MKV_2147930131_0
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "Trojan:Win32/Injector.MKV!MTB"
-        threat_id = "2147930131"
-        type = "Trojan"
-        platform = "Win32: Windows 32-bit platform"
-        family = "Injector"
-        severity = "Critical"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "5"
-        strings_accuracy = "Low"
-    strings:
-        $x_5_1 = {8b 4d f8 83 c1 01 33 4d fc 2b c1 8b 55 f8 88 82 ?? ?? ?? ?? eb 18 8b 45 f4 0f be 08 51 e8}  //weight: 5, accuracy: Low
-    condition:
-        (filesize < 20MB) and
-        (all of ($x*))
-}
-
