@@ -3334,3 +3334,24 @@ rule Trojan_Win32_Raccoon_MZZ_2147918918_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Raccoon_EAXA_2147928695_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Raccoon.EAXA!MTB"
+        threat_id = "2147928695"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Raccoon"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {8b f0 d3 e0 c1 ee 05 03 b4 24 d8 02 00 00 03 84 24 d0 02 00 00 89 74 24 10}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

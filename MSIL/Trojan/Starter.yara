@@ -313,3 +313,37 @@ rule Trojan_MSIL_Starter_ASR_2147922602_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Starter_MBWO_2147930126_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Starter.MBWO!MTB"
+        threat_id = "2147930126"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Starter"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "22"
+        strings_accuracy = "High"
+    strings:
+        $x_20_1 = {67 65 74 5f 53 74 61 72 74 75 70 50 61 74 68 00 53 74 72 69 6e 67 00 43 6f 6e 63 61 74 00 50 72 6f 63 65 73 73 00 53 74 61 72 74}  //weight: 20, accuracy: High
+        $x_1_2 = "UHWOVeeg" ascii //weight: 1
+        $x_1_3 = "kRCRJy" ascii //weight: 1
+        $x_1_4 = "lnFwUn" ascii //weight: 1
+        $x_1_5 = "OjtnxDp" ascii //weight: 1
+        $x_1_6 = "WKuSAtYBx" ascii //weight: 1
+        $x_1_7 = "sGgZHxu" ascii //weight: 1
+        $x_1_8 = "TfhaR" ascii //weight: 1
+        $x_1_9 = "TawrHJfW" ascii //weight: 1
+        $x_1_10 = "dHDMFLR" ascii //weight: 1
+        $x_1_11 = "dldGoFYEKg" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_20_*) and 2 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+

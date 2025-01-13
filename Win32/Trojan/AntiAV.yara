@@ -140,3 +140,24 @@ rule Trojan_Win32_AntiAV_GNO_2147851492_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_AntiAV_EAG_2147930127_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AntiAV.EAG!MTB"
+        threat_id = "2147930127"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AntiAV"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {33 d7 33 d6 c7 05 ?? ?? ?? ?? ff ff ff ff 2b da 8b 44 24 28 29 44 24 10 83 6c 24 14 01}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

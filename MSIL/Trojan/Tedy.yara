@@ -2127,3 +2127,24 @@ rule Trojan_MSIL_Tedy_ARAZ_2147928216_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Tedy_EANT_2147928921_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Tedy.EANT!MTB"
+        threat_id = "2147928921"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Tedy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {2b 18 07 28 1b 00 00 0a 0c 06 12 02 28 1c 00 00 0a 6f 1d 00 00 0a 07 17 58 0b 07 28 1e 00 00 0a 32 e0}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
