@@ -156,3 +156,24 @@ rule Trojan_Win32_Dapato_AMME_2147906181_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Dapato_MKV_2147930116_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Dapato.MKV!MTB"
+        threat_id = "2147930116"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Dapato"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {8a 80 40 57 46 00 8a 92 40 57 46 00 c0 f8 04 c0 e2 02 24 03 32 c2 8b d7 88 04 13 8b 55 ?? 43 83 fa 10 72}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
