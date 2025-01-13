@@ -570,3 +570,24 @@ rule Trojan_Win64_Latrodectus_GNP_2147929881_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Latrodectus_ASJ_2147930148_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Latrodectus.ASJ!MTB"
+        threat_id = "2147930148"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Latrodectus"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {48 f7 e1 48 8b c1 48 2b c2 48 d1 e8 48 03 c2 48 c1 e8 04 48 6b c0 ?? 48 2b c8 49 0f af cf 8a 44 0d ?? 43 32 04 19 41 88 03 49 ff c3 41 81 fa}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

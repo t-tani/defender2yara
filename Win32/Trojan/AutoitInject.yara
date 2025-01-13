@@ -4364,3 +4364,28 @@ rule Trojan_Win32_AutoitInject_NBO_2147929897_0
         )
 }
 
+rule Trojan_Win32_AutoitInject_NBN_2147930168_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.NBN!MTB"
+        threat_id = "2147930168"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "( 3 * 33 + -96 ) * 16 + -47 ) , ( 12 * ( 3 ^ ( 10 * 9 + -87 ) + -23 ) / 48 )" ascii //weight: 2
+        $x_1_2 = "( 12 * 5 + -53 ) * ( ( 25 * 3 + -70 ) * 16 + -71 ) + -59 )" ascii //weight: 1
+        $x_1_3 = "( 77 ^ 1 / 11 + -1 ) * 4 + -21 ) * 4 + -10 ) / 38 ) , D )" ascii //weight: 1
+        $x_1_4 = "( - ( 14 * ( 26 * 3 + -72 ) + -80 )" ascii //weight: 1
+        $x_1_5 = "( 12 * ( 3 ^ ( 10 * 9 + -87 ) + -23 ) / 48 )" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -3025,3 +3025,33 @@ rule Trojan_Win32_Neoreblamy_NW_2147930145_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Neoreblamy_BR_2147930167_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Neoreblamy.BR!MTB"
+        threat_id = "2147930167"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Neoreblamy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_6_1 = {59 33 d2 8b c6 f7 f1 8b 45 08 ff 34 ?? ff 34 b3 e8 ?? ?? ff ff 89 04 b3 46 59 59 3b f7 72}  //weight: 6, accuracy: Low
+        $x_2_2 = {55 8b ec 53 56 57 8d 3c 09 33 f6}  //weight: 2, accuracy: High
+        $x_2_3 = {40 6a 04 59 d1 e1 89 84 0d}  //weight: 2, accuracy: High
+        $x_6_4 = {0f b6 94 15 ?? ?? ff ff 0f be 54 15 ?? 23 ca 2b c1 8b 4d ?? 0f b6 8c 0d ?? ?? ff ff 88 44 0d}  //weight: 6, accuracy: Low
+        $x_2_5 = {8b 45 fc 8b 00 40 8b 4d fc 89 01 8b 45 fc 83 38 00 7f}  //weight: 2, accuracy: High
+        $x_2_6 = {ff 6b 89 85 ?? ?? ff ff 6b 85 ?? ?? ff ff 6c 89 85}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_6_*) and 2 of ($x_2_*))) or
+            ((2 of ($x_6_*))) or
+            (all of ($x*))
+        )
+}
+

@@ -3763,6 +3763,27 @@ rule Trojan_Win32_StealC_GTM_2147928146_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_StealC_GTM_2147928146_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/StealC.GTM!MTB"
+        threat_id = "2147928146"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "StealC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {89 c8 41 f7 e5 c1 ea ?? 6b c2 ?? 8d 14 1e 0f b6 44 10 ?? 32 44 1e ?? 88 44 1f ?? 43}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win32_StealC_OIX_2147928164_0
 {
     meta:
