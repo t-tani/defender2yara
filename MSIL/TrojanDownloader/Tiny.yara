@@ -544,27 +544,6 @@ rule TrojanDownloader_MSIL_Tiny_AT_2147847843_0
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "1"
-        strings_accuracy = "Low"
-    strings:
-        $x_1_1 = {0c 08 02 6f ?? 00 00 0a 00 08 03 6f ?? 00 00 0a 00 08 16 6f ?? 00 00 0a 00 08 17 6f ?? 00 00 0a 00 08 17 6f ?? 00 00 0a 00 08 0a}  //weight: 1, accuracy: Low
-    condition:
-        (filesize < 20MB) and
-        (all of ($x*))
-}
-
-rule TrojanDownloader_MSIL_Tiny_AT_2147847843_1
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "TrojanDownloader:MSIL/Tiny.AT!MTB"
-        threat_id = "2147847843"
-        type = "TrojanDownloader"
-        platform = "MSIL: .NET intermediate language scripts"
-        family = "Tiny"
-        severity = "Critical"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "1"
         strings_accuracy = "High"
     strings:
         $x_1_1 = {73 03 00 00 0a 0a 06 6f 04 00 00 0a 72 01 00 00 70 6f 05 00 00 0a 06 6f 04 00 00 0a 72 11 00 00 70 6f 06 00 00 0a 06 6f 04 00 00 0a 17 6f 07 00 00 0a 06 6f 04 00 00 0a 17 6f 08 00 00 0a 06 6f 09 00 00 0a 26 06}  //weight: 1, accuracy: High
@@ -573,7 +552,7 @@ rule TrojanDownloader_MSIL_Tiny_AT_2147847843_1
         (all of ($x*))
 }
 
-rule TrojanDownloader_MSIL_Tiny_AT_2147847843_2
+rule TrojanDownloader_MSIL_Tiny_AT_2147847843_1
 {
     meta:
         author = "defender2yara"
@@ -595,7 +574,7 @@ rule TrojanDownloader_MSIL_Tiny_AT_2147847843_2
         (all of ($x*))
 }
 
-rule TrojanDownloader_MSIL_Tiny_AT_2147847843_3
+rule TrojanDownloader_MSIL_Tiny_AT_2147847843_2
 {
     meta:
         author = "defender2yara"
