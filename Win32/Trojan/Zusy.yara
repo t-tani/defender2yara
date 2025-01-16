@@ -5591,3 +5591,25 @@ rule Trojan_Win32_Zusy_HNAM_2147930041_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Zusy_PA_2147930580_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zusy.PA!MTB"
+        threat_id = "2147930580"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "riotclient" ascii //weight: 1
+        $x_3_2 = {fe c3 8a 04 1e 02 d0 86 04 16 88 04 1e 02 04 16 8a 04 06 30 07 47 49 75}  //weight: 3, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

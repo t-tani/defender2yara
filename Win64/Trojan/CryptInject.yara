@@ -3830,3 +3830,24 @@ rule Trojan_Win64_CryptInject_RHAQ_2147930318_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_CryptInject_OOZ_2147930395_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CryptInject.OOZ!MTB"
+        threat_id = "2147930395"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {48 63 c8 49 8b c0 48 f7 e1 48 c1 ea 04 48 8d 04 52 48 c1 e0 ?? 48 2b c8 49 0f af cb 0f b6 44 0d 8f 43 32 44 0e fc 41 88 41 ff 49 ff cc 0f 85}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
