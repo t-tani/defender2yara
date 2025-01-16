@@ -89,3 +89,29 @@ rule Trojan_Win32_Mansabo_RPX_2147848254_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Mansabo_NBA_2147930776_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Mansabo.NBA!MTB"
+        threat_id = "2147930776"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Mansabo"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "fHqLSlizClxmHHMSLpJGUSHyTgeFoOzalhKgpxDzoqjwETnDVJyyQAXkcDBPbRmncJaFpaw" ascii //weight: 2
+        $x_1_2 = "fJhjZBzUpkvzvfegEKbXXKUjogTEWnjtQvJFODqeJYEYcqRP" ascii //weight: 1
+        $x_1_3 = "mFRzsekJpnvrrYWBPUCtFGsFtplRuHKptnlbaGsGdXLTzuFbSHvFmaHB" ascii //weight: 1
+        $x_1_4 = "QDvDMdOpvkmxJbDYzNHpHIUlOvAkNuNODsHjqfHewrJbUMootScRK" ascii //weight: 1
+        $x_1_5 = "IRyfxKmqwdGMXOrFBFYRwtXetegWWBDLadrMeEAFi" ascii //weight: 1
+        $x_1_6 = "btioUXEvcpcPlDQXprwYKLovyIbYEL" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
