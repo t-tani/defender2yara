@@ -4389,3 +4389,28 @@ rule Trojan_Win32_AutoitInject_NBN_2147930168_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_AutoitInject_AE_2147930743_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.AE!MTB"
+        threat_id = "2147930743"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = " FILEEXISTS ( @APPDATADIR & \"\\Authentication\\event_archive.txt\" )" ascii //weight: 1
+        $x_1_2 = " FILEFINDFIRSTFILE ( @TEMPDIR & \"\\ Command Logs\\history_log.data\" )" ascii //weight: 1
+        $x_1_3 = " REGDELETE ( \"HKCU\\Control Panel\\Desktop\" , \"mMlVBY9pA5Q8TmlTP\" )" ascii //weight: 1
+        $x_1_4 = " FILEFINDNEXTFILE ( @MYDOCUMENTSDIR & \"\\ Temporary Files\\resource_info.txt\" )" ascii //weight: 1
+        $x_1_5 = " PING ( \"htttp://h6DYWsLj2T.io\" , 7036 , 6665 )" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

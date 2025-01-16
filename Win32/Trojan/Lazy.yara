@@ -1529,3 +1529,24 @@ rule Trojan_Win32_Lazy_NIT_2147929718_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Lazy_GPPC_2147930744_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Lazy.GPPC!MTB"
+        threat_id = "2147930744"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Lazy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_4_1 = {8d 41 b4 30 44 0d a0 48 ff c1 48 83 f9 3f 72 f0}  //weight: 4, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

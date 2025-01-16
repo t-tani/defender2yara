@@ -2132,3 +2132,24 @@ rule Trojan_Win64_Lazy_AMCW_2147929314_1
         (all of ($x*))
 }
 
+rule Trojan_Win64_Lazy_AOP_2147930767_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Lazy.AOP!MTB"
+        threat_id = "2147930767"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Lazy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {28 d1 30 c1 31 c0 28 c8 88 44 24 ?? 8b 4c 24 08 48 8b 54 24 18 44 8a 44 24 ?? 8a 44 24 06 44 30 c0 4c 63 c1 42 88 04 02 83 c1 01 83 f9 13 89 4c 24 ?? 88 44 24 2f 0f 85}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

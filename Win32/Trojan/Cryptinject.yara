@@ -432,3 +432,24 @@ rule Trojan_Win32_Cryptinject_QB_2147905195_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Cryptinject_YBB_2147930738_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Cryptinject.YBB!MTB"
+        threat_id = "2147930738"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Cryptinject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "High"
+    strings:
+        $x_11_1 = {2b d1 2b 55 e8 89 55 a0 8b 85 64 ff ff ff 33 85 6c ff ff ff 89 85 64 ff ff ff 0f b7 4d ec 0f b6 55 e0 2b ca 89}  //weight: 11, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

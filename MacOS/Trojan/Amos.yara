@@ -1597,3 +1597,136 @@ rule Trojan_MacOS_Amos_CQ_2147929613_0
         (all of ($x*))
 }
 
+rule Trojan_MacOS_Amos_CN_2147930745_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MacOS/Amos.CN!MTB"
+        threat_id = "2147930745"
+        type = "Trojan"
+        platform = "MacOS: "
+        family = "Amos"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_MACHOHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {e8 53 01 00 00 f6 45 c8 01 75 45 f6 45 98 01 75 4e f6 45 b0 01 75 57 f6 45 80 01 74 09 48 8b 7d 90 e8 14 01 00 00 4c 89 ff e8 0c 01 00 00 4c 89 f7 e8 04 01 00 00 48 89 df e8 fc 00 00 00 31 c0 48 81 c4 b0 00 00 00}  //weight: 1, accuracy: High
+        $x_1_2 = {49 89 c4 f6 45 98 01 74 36 eb 78 49 89 c4 f6 45 b0 01 74 31 eb 7c 49 89 c4 f6 45 80 01 75 2c eb 33 49 89 c4 eb 2e 49 89 c4 eb 31 49 89 c4 eb 34 49 89 c4 f6 45 c8 01 75 3b f6 45 98 01 75 44}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MacOS_Amos_CR_2147930746_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MacOS/Amos.CR!MTB"
+        threat_id = "2147930746"
+        type = "Trojan"
+        platform = "MacOS: "
+        family = "Amos"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_MACHOHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {6e 74 65 72 5f 74 6f 42 38 6e 65 31 38 30 31 30 30 45 52 53 31 5f 00 5f 5f 5a 4e 4b 53 74 33 5f 5f 31 34 66 70 6f 73 49 31 31 5f 5f 6d 62 73 74 61 74 65 5f 74 45 63 76 78 42 38 6e 65 31 38 30 31 30 30 45 76 00}  //weight: 1, accuracy: High
+        $x_1_2 = {00 00 00 40 5f 5f 5a 4e 53 74 33 5f 5f 31 31 35 62 61 73 69 63 5f 73 74 72 69 6e 67 62 75 66 49 63 4e 53 5f 31 31 63 68 61 72 5f 74 72 61 69 74 73 49 63 45 45 4e 53 5f 39 61 6c 6c 6f 63 61 74}  //weight: 1, accuracy: High
+        $x_1_3 = {48 8b 7d e0 e8 8b 17 00 00 48 83 c4 20 5d c3 48 8b 7d e0 48 89 c1}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (2 of ($x*))
+}
+
+rule Trojan_MacOS_Amos_CH_2147930749_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MacOS/Amos.CH!MTB"
+        threat_id = "2147930749"
+        type = "Trojan"
+        platform = "MacOS: "
+        family = "Amos"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_MACHOHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {e0 03 15 aa ad 00 00 94 e0 03 14 aa ab 00 00 94 e0 03 13 aa a9 00 00 94 00 00 80 52 fd 7b 4e a9 f4 4f 4d a9 f6 57 4c a9 ff c3 03 91 c0 03 5f d6}  //weight: 1, accuracy: High
+        $x_1_2 = {f4 4f be a9 fd 7b 01 a9 fd 43 00 91 f4 03 00 aa 00 02 80 52 35 00 00 94 f3 03 00 aa e1 03 14 aa 0c 00 00 94 61 00 00 b0 21 0c 40 f9 62 00 00 b0 42 00 40 f9 e0 03 13 aa 3b 00 00 94}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MacOS_Amos_CI_2147930750_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MacOS/Amos.CI!MTB"
+        threat_id = "2147930750"
+        type = "Trojan"
+        platform = "MacOS: "
+        family = "Amos"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_MACHOHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {55 48 89 e5 41 56 53 49 89 fe bf 10 00 00 00 e8 ?? ?? ?? ?? 48 89 c3 48 89 c7 4c 89 f6 e8 ?? ?? ?? ?? 48 8b 35 df c7 00 00 48 8b 15 c0 c7 00 00 48 89 df}  //weight: 1, accuracy: Low
+        $x_1_2 = {4c 89 ff e8 ?? ?? ?? ?? 4c 89 f7 e8 ?? ?? ?? ?? 48 89 df e8 ?? ?? ?? ?? 31 c0 48 81 c4 c0 00 00 00 5b 41 5c 41 5e 41 5f 5d c3}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MacOS_Amos_CM_2147930752_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MacOS/Amos.CM!MTB"
+        threat_id = "2147930752"
+        type = "Trojan"
+        platform = "MacOS: "
+        family = "Amos"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_MACHOHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {f8 5f bc a9 f6 57 01 a9 f4 4f 02 a9 fd 7b 03 a9 fd c3 00 91 f5 03 01 aa f3 03 00 aa e0 03 01 aa 55 00 00 94 e8 eb 7c b2 1f 00 08 eb 62 ?? ?? ?? f4 03 00 aa 1f 5c 00 f1 a2 ?? ?? ?? 74 5e 00 39 f6 03 13 aa}  //weight: 1, accuracy: Low
+        $x_1_2 = {f4 4f be a9 fd 7b 01 a9 fd 43 00 91 f4 03 00 aa 00 02 80 52 73 00 00 94 f3 03 00 aa e1 03 14 aa 0c 00 00 94 61 00 00 b0 21 08 40 f9 62 00 00 b0 42 00 40 f9 e0 03 13 aa 70 00 00 94}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MacOS_Amos_CP_2147930755_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MacOS/Amos.CP!MTB"
+        threat_id = "2147930755"
+        type = "Trojan"
+        platform = "MacOS: "
+        family = "Amos"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_MACHOHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {ff c3 01 d1 fc 6f 01 a9 fa 67 02 a9 f8 5f 03 a9 f6 57 04 a9 f4 4f 05 a9 fd 7b 06 a9 fd 83 01 91 f6 03 01 aa f5 03 00 aa f4 03 08 aa 00 80 80 52 f9 01 00 94 f3 03 00 aa e1 1f 80 52 02 80 80 52 10 02 00 94 c8 5e c0 39 68 ?? ?? ?? 08 1d 40 92 e0 03 13 aa}  //weight: 1, accuracy: Low
+        $x_1_2 = {9f 7e 00 a9 9f 0a 00 f9 a8 5e 40 39 09 1d 00 13 aa 2e 40 a9 3f 01 00 71 59 b1 95 9a 69 b1 88 9a 49 ?? ?? ?? 1a 00 80 52 08 00 80 52 2a 03 09 8b ea 07 00 f9}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
