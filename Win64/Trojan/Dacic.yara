@@ -481,3 +481,26 @@ rule Trojan_Win64_Dacic_NTJ_2147929303_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Dacic_AMCY_2147930694_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Dacic.AMCY!MTB"
+        threat_id = "2147930694"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Dacic"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {66 66 0f 1f 84 00 00 00 00 00 b8 ?? ?? ?? ?? 4d 8d 40 01 f7 e9 d1 fa 8b c2 c1 e8 1f 03 d0 0f be c2 6b d0 37 0f b6 c1 ff c1 2a c2 04 35 41 30 40 ff 83 f9 1d 7c}  //weight: 3, accuracy: Low
+        $x_1_2 = "taskkill.exe /f" ascii //weight: 1
+        $x_1_3 = "Zc_AntiHitbox" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
