@@ -1147,3 +1147,26 @@ rule Trojan_MSIL_LummaC_MBWM_2147930099_0
         )
 }
 
+rule Trojan_MSIL_LummaC_ARIA_2147930712_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/LummaC.ARIA!MTB"
+        threat_id = "2147930712"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "LummaC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {38 a3 00 00 00 2b 3c 72 ?? 00 00 70 2b 38 2b 3d 2b 42 72 ?? 00 00 70 28 ?? 00 00 0a 6f ?? 00 00 0a 1a 2c 1d 08 6f ?? 00 00 0a 0d 28 ?? 00 00 0a 09 07 16 07 8e 69 6f ?? 00 00 0a 6f ?? 00 00 0a 0a de 1e}  //weight: 4, accuracy: Low
+        $x_1_2 = "FromBase64String" ascii //weight: 1
+        $x_1_3 = "CreateDecryptor" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

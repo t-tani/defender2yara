@@ -3871,3 +3871,39 @@ rule Trojan_Win32_FormBook_NOG_2147930457_0
         )
 }
 
+rule Trojan_Win32_FormBook_NOH_2147930730_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/FormBook.NOH!MTB"
+        threat_id = "2147930730"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "FormBook"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {26 00 20 00 22 00 28 00 40 00 54 00 65 00 6d 00 70 00 44 00 69 00 72 00 20 00 26 00 20 00 22 00 [0-31] 22 00 2c 00 20 00 31 00 38 00 29 00 22 00 20 00 29 00}  //weight: 2, accuracy: Low
+        $x_2_2 = {26 20 22 28 40 54 65 6d 70 44 69 72 20 26 20 22 [0-31] 22 2c 20 31 38 29 22 20 29}  //weight: 2, accuracy: Low
+        $x_1_3 = {46 00 4f 00 52 00 20 00 24 00 [0-31] 20 00 3d 00 20 00 31 00 20 00 54 00 4f 00 20 00 53 00 54 00 52 00 49 00 4e 00 47 00 4c 00 45 00 4e 00 20 00 28 00 20 00 24 00 [0-31] 20 00 29 00}  //weight: 1, accuracy: Low
+        $x_1_4 = {46 4f 52 20 24 [0-31] 20 3d 20 31 20 54 4f 20 53 54 52 49 4e 47 4c 45 4e 20 28 20 24 [0-31] 20 29}  //weight: 1, accuracy: Low
+        $x_1_5 = {47 00 4c 00 4f 00 42 00 41 00 4c 00 20 00 43 00 4f 00 4e 00 53 00 54 00 20 00 24 00 [0-31] 20 00 3d 00 20 00 [0-31] 20 00 28 00 20 00 22 00}  //weight: 1, accuracy: Low
+        $x_1_6 = {47 4c 4f 42 41 4c 20 43 4f 4e 53 54 20 24 [0-31] 20 3d 20 [0-31] 20 28 20 22}  //weight: 1, accuracy: Low
+        $x_1_7 = {26 00 3d 00 20 00 45 00 58 00 45 00 43 00 55 00 54 00 45 00 20 00 28 00 20 00 22 00 43 00 68 00 72 00 28 00 41 00 73 00 63 00 28 00 53 00 74 00 72 00 69 00 6e 00 67 00 4d 00 69 00 64 00 28 00 24 00 [0-31] 2c 00 20 00 24 00 [0-31] 2c 00 20 00 31 00 29 00 29 00 20 00 2d 00 20 00 4d 00 6f 00 64 00 28 00 24 00 [0-31] 20 00 2b 00 20 00 24 00 [0-31] 2c 00 20 00 32 00 35 00 36 00 29 00 29 00 22 00 20 00 29 00}  //weight: 1, accuracy: Low
+        $x_1_8 = {26 3d 20 45 58 45 43 55 54 45 20 28 20 22 43 68 72 28 41 73 63 28 53 74 72 69 6e 67 4d 69 64 28 24 [0-31] 2c 20 24 [0-31] 2c 20 31 29 29 20 2d 20 4d 6f 64 28 24 [0-31] 20 2b 20 24 [0-31] 2c 20 32 35 36 29 29 22 20 29}  //weight: 1, accuracy: Low
+        $x_1_9 = "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion" ascii //weight: 1
+        $x_1_10 = "561840652" ascii //weight: 1
+        $x_1_11 = "Snapshots" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((7 of ($x_1_*))) or
+            ((1 of ($x_2_*) and 5 of ($x_1_*))) or
+            ((2 of ($x_2_*) and 3 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+

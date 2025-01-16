@@ -19,3 +19,24 @@ rule Worm_Win32_Bundpil_ASFG_2147904264_0
         (all of ($x*))
 }
 
+rule Worm_Win32_Bundpil_GTT_2147930727_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Worm:Win32/Bundpil.GTT!MTB"
+        threat_id = "2147930727"
+        type = "Worm"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Bundpil"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {43 0f b6 93 ?? ?? ?? ?? 8b 9d ?? ?? ?? ?? 32 14 03 41 81 e1 ff ?? ?? ?? 88 10 79}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

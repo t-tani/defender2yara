@@ -5481,3 +5481,26 @@ rule Trojan_MSIL_AsyncRAT_PLLQH_2147930688_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AsyncRAT_KAAF_2147930715_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AsyncRAT.KAAF!MTB"
+        threat_id = "2147930715"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AsyncRAT"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_4_1 = {e4 05 20 00 4c 00 20 00 e4 05 e4 05 6f 00 20 00 61 00 20 00 64 00 e4 05 20 00 e4 05}  //weight: 4, accuracy: High
+        $x_3_2 = {20 00 20 00 20 00 45 00 20 00 e4 05 6e 00 20 00 20 00 e4 05 20 00 74 00 20 00 20 00 e4 05 20 00 72 00 20 00 20 00 e4 05 20 00 20 00 20 00 79 00 20 00 70 00 e4 05 e4 05 e4 05 20 00 6f 00 20 00 69 00 20 00 6e 00 20 00 e4 05 e4 05 74 00}  //weight: 3, accuracy: High
+        $x_3_3 = {20 00 69 00 20 00 e4 05 e4 05 20 00 6e 00 20 00 e4 05 e4 05 20 00 20 00 20 00 76 00 20 00 20 00 20 00 e4 05 e4 05 20 00 20 00 6f 00 20 00 e4 05 e4 05 20 00 6b 00 20 00 e4 05 e4 05 20 00 65 00}  //weight: 3, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

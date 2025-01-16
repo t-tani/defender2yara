@@ -1597,3 +1597,49 @@ rule Backdoor_MSIL_Crysan_SM_2147930544_0
         (all of ($x*))
 }
 
+rule Backdoor_MSIL_Crysan_AQIA_2147930699_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Backdoor:MSIL/Crysan.AQIA!MTB"
+        threat_id = "2147930699"
+        type = "Backdoor"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Crysan"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {0a 0c 73 4f 00 00 0a 0d 09 07 6f ?? 00 00 0a 09 08 6f ?? 00 00 0a 09 6f ?? 00 00 0a 06 16 06 8e 69 6f ?? 00 00 0a 13 04 dd ?? 00 00 00 09 39 ?? 00 00 00 09 6f ?? 00 00 0a dc}  //weight: 4, accuracy: Low
+        $x_1_2 = "FromBase64String" ascii //weight: 1
+        $x_1_3 = "CreateDecryptor" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Backdoor_MSIL_Crysan_ASIA_2147930728_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Backdoor:MSIL/Crysan.ASIA!MTB"
+        threat_id = "2147930728"
+        type = "Backdoor"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Crysan"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {16 2d 29 2b 45 72 ?? ?? 00 70 2b 41 2b 46 2b 4b 72 ?? ?? 00 70 28 ?? 00 00 0a 6f ?? 00 00 0a 16 2d de 16 2d 23 08 6f ?? 00 00 0a 0d 16 2d 19 16 2d ce 28 ?? 00 00 0a 09 07 16 07 8e 69 6f ?? 00 00 0a 6f ?? 00 00 0a 0a de 1e}  //weight: 4, accuracy: Low
+        $x_1_2 = "FromBase64String" ascii //weight: 1
+        $x_1_3 = "CreateDecryptor" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
