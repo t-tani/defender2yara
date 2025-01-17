@@ -6486,3 +6486,26 @@ rule Trojan_MSIL_Heracles_SDID_2147930190_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Heracles_AWIA_2147930845_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Heracles.AWIA!MTB"
+        threat_id = "2147930845"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Heracles"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {16 2d 19 72 ?? ?? 00 70 28 ?? 00 00 0a 0b 16 2d 0b 72 ?? ?? 00 70 28 ?? 00 00 0a 0c 73 ?? 00 00 0a 0d 16 2d 06 2b 22 2b 23 2b 24 2b 29 2b 2a 1c 2d 2a 26 26 16 2d f4 2b 2a 2b 2b 06 16 06 8e 69 6f ?? 00 00 0a 13 04 de 37 09 2b db 07 2b da 6f ?? 00 00 0a 2b d5 09 2b d4 08 2b d3 6f ?? 00 00 0a 2b d1 09 2b d3 6f ?? 00 00 0a 2b ce}  //weight: 4, accuracy: Low
+        $x_1_2 = "FromBase64String" ascii //weight: 1
+        $x_1_3 = "CreateDecryptor" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

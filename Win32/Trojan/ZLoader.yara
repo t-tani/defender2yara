@@ -192,3 +192,24 @@ rule Trojan_Win32_ZLoader_MJJ_2147921733_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_ZLoader_AAB_2147930846_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ZLoader.AAB!MTB"
+        threat_id = "2147930846"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ZLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {57 50 e8 fd dd ?? ?? 8b 4d ec 83 c4 08 23 45 f0 21 ?? 8b 75 10 0f b6 04 06 30 01 41 8b 45 e8 48 0f 85}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

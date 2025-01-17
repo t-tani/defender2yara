@@ -4857,3 +4857,31 @@ rule Trojan_Win32_Guloader_BSA_2147929326_2
         (all of ($x*))
 }
 
+rule Trojan_Win32_Guloader_ASF_2147930853_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Guloader.ASF!MTB"
+        threat_id = "2147930853"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Guloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "Ramtils\\Formaldehyds\\tyngdepunkterne" ascii //weight: 2
+        $x_2_2 = "brudsikreste.txt" ascii //weight: 2
+        $x_1_3 = "arrogantly.wea" ascii //weight: 1
+        $x_1_4 = "vagabondage.fis" ascii //weight: 1
+        $x_1_5 = "kreditdage\\yielden" ascii //weight: 1
+        $x_1_6 = "Heteroscian234%\\sammentraadte\\kerseymere" ascii //weight: 1
+        $x_1_7 = "badmitons\\garantisedlerne.bek" ascii //weight: 1
+        $x_1_8 = "vanskbnerne%\\sprogklfts\\Photocomposes.con" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

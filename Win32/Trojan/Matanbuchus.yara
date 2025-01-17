@@ -81,3 +81,24 @@ rule Trojan_Win32_Matanbuchus_A_2147928558_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Matanbuchus_GKN_2147930833_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Matanbuchus.GKN!MTB"
+        threat_id = "2147930833"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Matanbuchus"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {8a 45 ff 64 a1 30 00 00 00 53 56 57 8b 40 0c 8b 40 0c 8b 50 18 8b 4a 3c 8b 4c 11 78 03 ca}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

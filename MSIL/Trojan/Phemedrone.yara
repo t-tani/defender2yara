@@ -86,3 +86,24 @@ rule Trojan_MSIL_Phemedrone_APD_2147921663_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Phemedrone_APM_2147930867_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Phemedrone.APM!MTB"
+        threat_id = "2147930867"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Phemedrone"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {5d 13 07 11 08 08 11 07 91 58 20 00 01 00 00 5d 13 08 08 11 07 91 0d 08 11 07 08 11 08 91 9c 08 11 08 09 9c 08 08 11 07 91 08 11 08 91 58 20 00 01 00 00 5d 91 13 0a 07 11 09 02 11 09 91 11 0a 61 d2 9c 11 09 17 58}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
