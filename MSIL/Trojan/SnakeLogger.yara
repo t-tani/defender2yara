@@ -35,6 +35,29 @@ rule Trojan_MSIL_SnakeLogger_PB_2147773657_0
         threshold = "4"
         strings_accuracy = "High"
     strings:
+        $x_1_1 = "PK11SDR_Decrypt" wide //weight: 1
+        $x_1_2 = "\\discord\\Local Storage\\leveldb" wide //weight: 1
+        $x_2_3 = "-------- Snake Keylogger --------" wide //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_SnakeLogger_PB_2147773657_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/SnakeLogger.PB!MTB"
+        threat_id = "2147773657"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "SnakeLogger"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
         $x_1_1 = "\\I$s#$lT3ssl.exe" wide //weight: 1
         $x_1_2 = "Twice Baked Potatoes" wide //weight: 1
         $x_1_3 = "http://tempuri.org/SampleProductsDataSet.xsd" wide //weight: 1
