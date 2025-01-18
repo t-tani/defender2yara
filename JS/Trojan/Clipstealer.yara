@@ -1,11 +1,11 @@
-rule Trojan_Win32_Clipstealer_DA_2147929430_0
+rule Trojan_JS_Clipstealer_DA_2147930890_0
 {
     meta:
         author = "defender2yara"
-        detection_name = "Trojan:Win32/Clipstealer.DA!MTB"
-        threat_id = "2147929430"
+        detection_name = "Trojan:JS/Clipstealer.DA!MTB"
+        threat_id = "2147930890"
         type = "Trojan"
-        platform = "Win32: Windows 32-bit platform"
+        platform = "JS: JavaScript scripts"
         family = "Clipstealer"
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
