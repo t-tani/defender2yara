@@ -778,3 +778,30 @@ rule Trojan_Win64_CoinMiner_BSA_2147929053_0
         )
 }
 
+rule Trojan_Win64_CoinMiner_BQ_2147930885_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CoinMiner.BQ!MTB"
+        threat_id = "2147930885"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CoinMiner"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "c82a3b21-5c19-4d42-af17-8f00fb3599c7" ascii //weight: 2
+        $x_1_2 = "Cf23T3Ds6kQAN4Ou" ascii //weight: 1
+        $x_1_3 = "Hc3yeA5nmnqKjbL1" ascii //weight: 1
+        $x_1_4 = "F.DNH(J" ascii //weight: 1
+        $x_1_5 = "N@P RHPm" ascii //weight: 1
+        $x_1_6 = ":/data/app.exe" ascii //weight: 1
+        $x_1_7 = {08 60 00 8a 02 a2 04 76 02 00 00 01 04 01 00 04 42 00 00 19 14 06 00 14 64 09 00 14 34 07}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
