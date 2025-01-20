@@ -9930,3 +9930,25 @@ rule Trojan_Win32_Zenpak_GPPB_2147930219_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Zenpak_AMCY_2147930983_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zenpak.AMCY!MTB"
+        threat_id = "2147930983"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zenpak"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {53 8b 5c 24 20 55 8b 6c 24 20 57 55 ff 15 ?? ?? ?? ?? 53 8b f8 66 c7 44 24 14 02 00 ff 15}  //weight: 4, accuracy: Low
+        $x_1_2 = {6a 10 8b 08 8d 44 24 ?? 50 8b 11 8b 4e 08 51 89 54 24 ?? ff 15}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -504,3 +504,27 @@ rule Trojan_Win64_Dacic_AMCY_2147930694_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Dacic_AMCZ_2147930985_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Dacic.AMCZ!MTB"
+        threat_id = "2147930985"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Dacic"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {f7 e9 c1 fa 04 8b c2 c1 e8 1f 03 d0 0f be c2 6b d0 35 0f b6 c1 ff c1 2a c2 04 36 41 30 40 ff 83 f9 1d}  //weight: 5, accuracy: High
+        $x_2_2 = "taskkill /FI \"IMAGENAME eq wireshark*\" /IM * /F /T >nul 2>&1" ascii //weight: 2
+        $x_2_3 = "taskkill /FI \"IMAGENAME eq processhacker*\" /IM * /F /T >nul 2>&1" ascii //weight: 2
+        $x_1_4 = "sc stop KProcessHacker2 >nul 2>&1" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

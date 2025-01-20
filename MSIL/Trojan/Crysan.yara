@@ -2043,3 +2043,25 @@ rule Trojan_MSIL_Crysan_AMCU_2147929115_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Crysan_PLLZH_2147930989_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Crysan.PLLZH!MTB"
+        threat_id = "2147930989"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Crysan"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "Low"
+    strings:
+        $x_6_1 = {fe 0c 00 00 fe 0d 03 00 28 ?? 00 00 0a 6f ?? 00 00 0a fe 0c 00 00 fe 0d 03 00 28 ?? 00 00 0a 6f ?? 00 00 0a fe 0c 00 00 fe 0d 03 00 28 1e 00 00 0a 6f ?? 00 00 0a fe 0c 02 00}  //weight: 6, accuracy: Low
+        $x_5_2 = {fe 09 00 00 fe 0c 01 00 fe 0c 02 00 6f ?? 00 00 0a fe 0e 03 00 28 ?? 00 00 06 fe 0e 04 00 00 fe 0c 04 00}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
