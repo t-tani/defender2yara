@@ -1015,3 +1015,26 @@ rule Trojan_MSIL_Keylogger_SAA_2147927537_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Keylogger_AYA_2147930960_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Keylogger.AYA!MTB"
+        threat_id = "2147930960"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Keylogger"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {72 58 01 00 70 18 28 17 00 00 0a 11 05 11 04 6f 18 00 00 0a de 0c 11 05 2c 07 11 05 6f 19 00 00 0a dc 1b 28 1a 00 00 0a 72 68 01 00 70 28 1b 00 00 0a 17 73 16 00 00 0a 13 06 1b 28 1a 00 00 0a 72 68 01 00 70 28 1b 00 00 0a 18 28 17 00 00 0a}  //weight: 2, accuracy: High
+        $x_1_2 = "keylogger.exe" ascii //weight: 1
+        $x_1_3 = "persistence_true" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

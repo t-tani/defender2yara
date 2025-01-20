@@ -78,3 +78,30 @@ rule Ransom_MSIL_HiddenTears_SUR_2147930139_0
         )
 }
 
+rule Ransom_MSIL_HiddenTears_AYB_2147930965_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:MSIL/HiddenTears.AYB!MTB"
+        threat_id = "2147930965"
+        type = "Ransom"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "HiddenTears"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "Your computer was infected with a ransomware virus" wide //weight: 2
+        $x_1_2 = "All your files are stolen and encrypted" wide //weight: 1
+        $x_1_3 = "Monero Address:" wide //weight: 1
+        $x_1_4 = "Readit.txt" wide //weight: 1
+        $x_1_5 = "activation.php?code=" wide //weight: 1
+        $x_1_6 = "deactivation.php?hash=" wide //weight: 1
+        $x_1_7 = "CreateEncryptor" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -2848,3 +2848,59 @@ rule Trojan_MSIL_Lazy_AMCW_2147929515_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Lazy_AYA_2147930961_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Lazy.AYA!MTB"
+        threat_id = "2147930961"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Lazy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {07 11 05 07 11 05 91 11 04 11 05 11 04 8e b7 5d 91 61 9c 00 11 05 17 d6 13 05 11 05 11 07 13 08 11 08 31 dc}  //weight: 2, accuracy: High
+        $x_2_2 = "snake.My.Resources" ascii //weight: 2
+        $x_1_3 = "DecryptPayload" ascii //weight: 1
+        $x_1_4 = "ExecutePayload" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Lazy_AYD_2147930962_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Lazy.AYD!MTB"
+        threat_id = "2147930962"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Lazy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "24"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = "$c82ce7ac-31af-46b4-b97f-8ad002d69900" ascii //weight: 10
+        $x_5_2 = "Stub\\obj\\Debug\\Stub.pdb" ascii //weight: 5
+        $x_5_3 = "Stub.Properties.Resources" wide //weight: 5
+        $x_5_4 = "pastebin.com/raw" wide //weight: 5
+        $x_1_5 = "GenerateKey" ascii //weight: 1
+        $x_1_6 = "DownloadString" ascii //weight: 1
+        $x_1_7 = "CreateDecryptor" ascii //weight: 1
+        $x_1_8 = "DecryptFile" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_10_*) and 2 of ($x_5_*) and 4 of ($x_1_*))) or
+            ((1 of ($x_10_*) and 3 of ($x_5_*))) or
+            (all of ($x*))
+        )
+}
+

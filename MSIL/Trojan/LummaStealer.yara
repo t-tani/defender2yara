@@ -2582,3 +2582,51 @@ rule Trojan_MSIL_LummaStealer_DC_2147930287_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_LummaStealer_AYA_2147930959_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/LummaStealer.AYA!MTB"
+        threat_id = "2147930959"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = "$cd7ada21-2b00-4720-b46f-d785c125c466" ascii //weight: 3
+        $x_1_2 = "TextForm\\obj\\Debug\\TextForm.pdb" ascii //weight: 1
+        $x_1_3 = "The moon is shining brightly outside. Only those who reverse this application are hardcore suckers." wide //weight: 1
+        $x_1_4 = "AddToDefenderExclusions" ascii //weight: 1
+        $x_1_5 = "IsAdministrator" ascii //weight: 1
+        $x_1_6 = "Restarting the program with administrator privileges..." wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_LummaStealer_SPCZ_2147930969_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/LummaStealer.SPCZ!MTB"
+        threat_id = "2147930969"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_4_1 = {5d 0c 09 06 08 91 58 20 00 01 00 00 5d 0d 06 09 91 13 07 06 09 06 08 91 9c 06 08 11 07 9c dd}  //weight: 4, accuracy: High
+        $x_1_2 = {5d 13 06 02 11 05 8f 1d 00 00 01 25 47 06 11 06 91 61 d2 52 11 05 17 58 13 05}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

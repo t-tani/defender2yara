@@ -1308,3 +1308,26 @@ rule Trojan_MSIL_Injector_MBWJ_2147929493_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Injector_AYA_2147930964_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Injector.AYA!MTB"
+        threat_id = "2147930964"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Injector"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {08 11 09 08 28 0d 00 00 06 5d 08 11 09 08 28 0d 00 00 06 5d 91 07 11 09 07 28 0d 00 00 06 5d 91 61 08 11 09 17 d6 08 28 0d 00 00 06 5d 91 da 20 00 01 00 00 d6 20 00 01 00 00 5d b4 9c 11 09 17 d6 13 09 11 09 11 08 31 b7}  //weight: 2, accuracy: High
+        $x_1_2 = "HXX.Form1.resources" ascii //weight: 1
+        $x_1_3 = "GetPixel" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

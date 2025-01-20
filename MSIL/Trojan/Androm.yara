@@ -1394,3 +1394,28 @@ rule Trojan_MSIL_Androm_AAGA_2147928177_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Androm_AYA_2147930958_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Androm.AYA!MTB"
+        threat_id = "2147930958"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Androm"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "sudovpn.su/macs/Dnames/R/gate.php" wide //weight: 2
+        $x_1_2 = "NetInt\\obj\\Release\\NetInt.pdb" ascii //weight: 1
+        $x_1_3 = "$c0f9fb8d-a947-4ad0-844d-7af6f4a80784" ascii //weight: 1
+        $x_1_4 = "Data successfully sent to the gate." wide //weight: 1
+        $x_1_5 = "Error reading driver information from the registry" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

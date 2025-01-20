@@ -8490,3 +8490,47 @@ rule Trojan_Win32_SmokeLoader_BD_2147930134_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_SmokeLoader_SZXB_2147930971_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/SmokeLoader.SZXB!MTB"
+        threat_id = "2147930971"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "SmokeLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = {83 c0 46 89 44 24 14 83 6c 24 14 0a 83 6c 24 14 3c 8a 44 24 14 30 04 1f 47 3b fd 7c}  //weight: 3, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_SmokeLoader_AMDA_2147930972_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/SmokeLoader.AMDA!MTB"
+        threat_id = "2147930972"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "SmokeLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {83 f0 01 0f af 86 ?? 00 00 00 8b d3 c1 ea 10 89 86 ?? 00 00 00 8b 86 ?? 00 00 00 83 f0 01 29 46 ?? 8b 86 ?? 00 00 00 88 14 01 8b d3 ff 46}  //weight: 3, accuracy: Low
+        $x_1_2 = {83 c4 14 33 ff 8b 46 ?? 33 86 ?? 00 00 00 33 46 ?? 89 86 ?? 00 00 00 a1 ?? ?? ?? ?? 6a 24 8b 40}  //weight: 1, accuracy: Low
+        $x_1_3 = {33 c0 40 2b 86 ?? 00 00 00 01 46 ?? a1 ?? ?? ?? ?? 03 46 ?? 83 f0 25 01 46 ?? a1 ?? ?? ?? ?? 8b 40 ?? 0f af 46 ?? 89 46 ?? a1 ?? ?? ?? ?? 8b 80 ?? ?? ?? ?? 8b 0c 38 a1 ?? ?? ?? ?? 33 8e ?? 00 00 00 89 0c 07 83 c7 04}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

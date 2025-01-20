@@ -1212,3 +1212,31 @@ rule Trojan_MSIL_LummaC_ALC_2147930765_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_LummaC_AYA_2147930963_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/LummaC.AYA!MTB"
+        threat_id = "2147930963"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "LummaC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = "$ab382339-c29b-4560-af26-a0ff9718742e" ascii //weight: 3
+        $x_1_2 = "testreverseproxy" ascii //weight: 1
+        $x_1_3 = "AddFolderToDefenderExclusions" ascii //weight: 1
+        $x_1_4 = "GenerateRandomFileName" ascii //weight: 1
+        $x_1_5 = "GenerateRandomFolderName" ascii //weight: 1
+        $x_1_6 = "IsRunAsAdmin" ascii //weight: 1
+        $x_1_7 = "RestartAsAdmin" ascii //weight: 1
+        $x_1_8 = "Command \"Add-MpPreference -ExclusionPath" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
