@@ -218,3 +218,24 @@ rule Trojan_MSIL_SystemBC_ATGA_2147928627_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_SystemBC_GKN_2147931006_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/SystemBC.GKN!MTB"
+        threat_id = "2147931006"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "SystemBC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {fe 0c 00 00 fe 0c 01 00 fe 0c 00 00 fe 0c 01 00 93 20 56 bc 11 d2 20 be 6a e4 15 61 20 06 62 4a 18 58 65 20 75 06 9b 05 58 65 20 10 32 a5 da 59 65 66 61 fe 09 00 00 61 d1 9d}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

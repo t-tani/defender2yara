@@ -15922,3 +15922,24 @@ rule Trojan_Win64_CobaltStrike_DAKU_2147930036_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_CobaltStrike_GKN_2147931007_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CobaltStrike.GKN!MTB"
+        threat_id = "2147931007"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CobaltStrike"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {65 48 8b 04 25 60 00 00 00 48 89 44 24 38 48 8b 44 24 38 48 8b 40 18 48 89 44 24 40 48 8b 44 24 40 48 83 c0 20 48 89 44 24 30 48 8b 44 24 30 48 8b 00 48 89 44 24 20 48 8b 44 24 30 48 39 44 24 20}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

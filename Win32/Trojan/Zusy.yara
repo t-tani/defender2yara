@@ -5635,3 +5635,26 @@ rule Trojan_Win32_Zusy_PA_2147930580_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Zusy_HNAK_2147931009_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zusy.HNAK!MTB"
+        threat_id = "2147931009"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {20 20 20 00 20 20 20 20 00 20 05 00 00 10 00 00 00 20 05 00 00 10 00 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 e0 2e 72 73 72 63 00 00 00 b0 02 00 00 00 30 05 00 00 04 00 00 00 30 05 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 c0 2e 69 64 61 74 61 20 20 00 10 00 00 00 40 05 00 00 02 00 00 00 34 05 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00}  //weight: 1, accuracy: High
+        $x_1_2 = {00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 e0 2e 74 61 67 67 61 6e 74 00 30 00 00 00}  //weight: 1, accuracy: High
+        $x_1_3 = {02 00 40 80 00 00 10 00 00 10 00 00 00 00 10 00 00 10 00 00 00 00 00 00 10 00 00 00 00 00 00 00 00 00 00 00 59 40 05 00 6d 00 00 00 00 30 05 00 b0 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 f8 41 05 00 08 00 00 00}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

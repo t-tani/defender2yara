@@ -717,6 +717,30 @@ rule Trojan_Win32_KillMBR_ARAZ_2147928457_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "\\APM 08279+5255.pdb" ascii //weight: 2
+        $x_2_2 = "overwrite the boot record" ascii //weight: 2
+        $x_2_3 = "Malware, Run" ascii //weight: 2
+        $x_2_4 = "\\\\.\\PhysicalDrive0" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_KillMBR_ARAZ_2147928457_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/KillMBR.ARAZ!MTB"
+        threat_id = "2147928457"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "KillMBR"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "6"
         strings_accuracy = "High"
     strings:

@@ -345,3 +345,25 @@ rule Trojan_Win32_FileCoder_ARAX_2147910935_1
         (all of ($x*))
 }
 
+rule Trojan_Win32_FileCoder_AMDA_2147931008_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/FileCoder.AMDA!MTB"
+        threat_id = "2147931008"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "FileCoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = "Gaza and the Resistance are victorious. Israel defeated" ascii //weight: 1
+        $x_4_2 = {8d 41 e0 3c 5a 77 [0-10] 99 f7 7d [0-24] 5b [0-10] b9 5b 00 00 00 [0-5] f7 f9 8d 4a 20 88 0c 37 46 [0-10] 84 c9 75}  //weight: 4, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
