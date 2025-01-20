@@ -919,3 +919,26 @@ rule Trojan_Win32_BlackMoon_NIT_2147927780_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_BlackMoon_GTC_2147931045_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/BlackMoon.GTC!MTB"
+        threat_id = "2147931045"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "BlackMoon"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {84 03 00 0c 85 ?? ?? ?? ?? 03 00 34 85 03 00 30 89 03 00 b6 83}  //weight: 5, accuracy: Low
+        $x_5_2 = {3e 8a 03 00 50 ?? 03 00 58 8a 03 00 66 ?? 03 00}  //weight: 5, accuracy: Low
+        $x_1_3 = "BlackMoon RunTime Error" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
