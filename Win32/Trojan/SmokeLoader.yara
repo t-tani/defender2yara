@@ -8534,3 +8534,24 @@ rule Trojan_Win32_SmokeLoader_AMDA_2147930972_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_SmokeLoader_BE_2147931030_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/SmokeLoader.BE!MTB"
+        threat_id = "2147931030"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "SmokeLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = {89 44 24 14 83 6c 24 14 0a 83 6c 24 14 3c 8a 44 24 14 30 04 1f 47 3b fd 7c}  //weight: 3, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

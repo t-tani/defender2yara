@@ -752,3 +752,28 @@ rule Trojan_Win32_KillMBR_ARAZ_2147928457_1
         (all of ($x*))
 }
 
+rule Trojan_Win32_KillMBR_PAGD_2147931024_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/KillMBR.PAGD!MTB"
+        threat_id = "2147931024"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "KillMBR"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "\\\\.\\PhysicalDrive" ascii //weight: 2
+        $x_1_2 = "SeShutdownPrivilege" ascii //weight: 1
+        $x_2_3 = "CustomMBR" ascii //weight: 2
+        $x_1_4 = "-bypasswarning" ascii //weight: 1
+        $x_2_5 = "If you run this app your computer will be destroyed" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

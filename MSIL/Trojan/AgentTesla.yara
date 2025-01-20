@@ -46741,6 +46741,27 @@ rule Trojan_MSIL_AgentTesla_NCA_2147810496_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = {08 11 04 08 11 04 91 07 11 04 91 61 d2 9c 11 04 17 58 13 04 11 04 02 7b 03 00 00 04 32 e2}  //weight: 3, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_AgentTesla_NCA_2147810496_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.NCA!MTB"
+        threat_id = "2147810496"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "4"
         strings_accuracy = "Low"
     strings:
@@ -46753,7 +46774,7 @@ rule Trojan_MSIL_AgentTesla_NCA_2147810496_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_AgentTesla_NCA_2147810496_1
+rule Trojan_MSIL_AgentTesla_NCA_2147810496_2
 {
     meta:
         author = "defender2yara"

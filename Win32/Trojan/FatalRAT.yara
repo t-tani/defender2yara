@@ -87,3 +87,24 @@ rule Trojan_Win32_FatalRAT_D_2147920795_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_FatalRAT_GTT_2147931019_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/FatalRAT.GTT!MTB"
+        threat_id = "2147931019"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "FatalRAT"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {55 8b ec 83 e4 ?? 81 ec ?? ?? ?? ?? a1 ?? ?? ?? ?? 33 c4 89 84 24 ?? ?? ?? ?? 56 e8 ?? ?? ?? ?? 8d 44 24 ?? 33 f6 50 6a 40 56 56 89 74 24 ?? ff 15 ?? ?? ?? ?? ff 15 ?? ?? ?? ?? 85 c0 0f 85}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

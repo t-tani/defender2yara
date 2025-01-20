@@ -2904,3 +2904,25 @@ rule Trojan_MSIL_Lazy_AYD_2147930962_0
         )
 }
 
+rule Trojan_MSIL_Lazy_KAAH_2147931026_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Lazy.KAAH!MTB"
+        threat_id = "2147931026"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Lazy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_4_1 = {47 7e 25 57 87 a8 26 9a 75 02 db 6a 6b 9a 29 4b 5e 8a 47 98 fe a3 b7 46 c6 86 ec}  //weight: 4, accuracy: High
+        $x_3_2 = {a1 c3 fb a2 a4 ec d7 57 3d 4a 88 41 9a f0 4e 8c e6 20 30 ce 6c c7 65 26 65 56}  //weight: 3, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

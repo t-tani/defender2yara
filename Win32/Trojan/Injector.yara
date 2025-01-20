@@ -2219,3 +2219,24 @@ rule Trojan_Win32_Injector_NIT_2147927359_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Injector_BA_2147931029_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Injector.BA!MTB"
+        threat_id = "2147931029"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Injector"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {2b f9 57 31 1f 83 c7 04 ?? ?? ?? ?? ?? 8b 3c 24 4d c0 e9 55 8b 3c 24}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

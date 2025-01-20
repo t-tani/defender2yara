@@ -6687,3 +6687,28 @@ rule Trojan_Win32_CryptInject_OIV_2147930143_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_CryptInject_PAGB_2147931021_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/CryptInject.PAGB!MTB"
+        threat_id = "2147931021"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "ReflectiveLoader" ascii //weight: 2
+        $x_2_2 = "injection.dll" ascii //weight: 2
+        $x_2_3 = "SeDebugPrivilege" ascii //weight: 2
+        $x_1_4 = "Failed to open the target process" ascii //weight: 1
+        $x_1_5 = "[+] Injected the DLL into process %lu" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

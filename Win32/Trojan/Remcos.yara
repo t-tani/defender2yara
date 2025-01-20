@@ -793,6 +793,27 @@ rule Trojan_Win32_Remcos_BA_2147756570_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {8b 5d 08 8b c6 99 f7 f9 8a 04 1a 8b 55 f8 30 04 16 46 3b f7 7c}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Remcos_BA_2147756570_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Remcos.BA!MTB"
+        threat_id = "2147756570"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Remcos"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "3"
         strings_accuracy = "Low"
     strings:
@@ -2613,6 +2634,27 @@ rule Trojan_Win32_Remcos_NR_2147928598_0
     strings:
         $x_3_1 = {46 4d 41 39 33 3f 83 c4 04 58 50 53 83 c4 04 81 e8 bf ee 00 00 58 69 8d}  //weight: 3, accuracy: High
         $x_2_2 = {3a 48 3c 5e 50 51 83 c4 04 e8 0b 00 00 00 00 33 3c 3d 50}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Remcos_LMV_2147931025_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Remcos.LMV!MTB"
+        threat_id = "2147931025"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Remcos"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {41 83 c4 04 81 eb 9f 9c 00 00 5b 8b 8d ?? ?? ff ff 0f b6 94 0d ?? ?? ff ff 8b 85 ?? ?? ff ff 03 85 ?? ?? ff ff 0f b6 08 33 ca 8b 95 60 f0 ff ff 03 95 d0 fa ff ff 88 0a e9}  //weight: 5, accuracy: Low
     condition:
         (filesize < 20MB) and
         (all of ($x*))

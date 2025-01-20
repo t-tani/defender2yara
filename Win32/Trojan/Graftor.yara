@@ -400,3 +400,24 @@ rule Trojan_Win32_Graftor_AWFA_2147928080_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Graftor_BA_2147931027_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Graftor.BA!MTB"
+        threat_id = "2147931027"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Graftor"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "Low"
+    strings:
+        $x_8_1 = {83 c4 04 8b 45 f8 33 d2 b9 0e 00 00 00 f7 f1 8b 45 f4 0f b6 0c 10 8b 55 f8 0f b6 82 ?? ?? ?? ?? 33 c1 8b 4d f8 88 81}  //weight: 8, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
