@@ -4414,3 +4414,30 @@ rule Trojan_Win32_AutoitInject_AE_2147930743_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_AutoitInject_AF_2147931060_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.AF!MTB"
+        threat_id = "2147931060"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = " INETREAD ( \"htttp://Vm6J7PQC.net\" , 544 , 9807 , 6418 )" ascii //weight: 1
+        $x_1_2 = " PING ( \"htttp://yIGjx2Nw.io\" , 7341 , 3375 )" ascii //weight: 1
+        $x_1_3 = " FILEDELETE ( @SCRIPTFULLPATH & \"\\Compliance\\reboot_log.dat\" )" ascii //weight: 1
+        $x_1_4 = " @DESKTOPDIR & \"\\Info\\ Encrypted Logs\\step_by_step_image.gif\" )" ascii //weight: 1
+        $x_1_5 = " REGDELETE ( \"HKCU\\Control Panel\\Mouse\" , \"SKTpmLKJqmKaMtlBXf\" )" ascii //weight: 1
+        $x_1_6 = " FILEDELETE ( @PROGRAMFILESDIR & \"\\Debugging\\system_inspection_log.ini\" )" ascii //weight: 1
+        $x_1_7 = " FILEWRITELINE ( 1577 , \"T2AvPyPKhI2\" )" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
