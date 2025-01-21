@@ -10,6 +10,28 @@ rule Trojan_MSIL_QQPass_NIT_2147926894_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {11 18 02 28 ?? 00 00 06 28 ?? 00 00 0a 6f ?? 00 00 0a 13 1d 2b 45 11 1d 6f ?? 00 00 0a 74 1a 00 00 01 13 1e 00 72 64 05 00 70 13 1f 11 1e 6f ?? 00 00 0a 1b 6f ?? 00 00 0a 6f ?? 00 00 0a 13 20 02 73 2c 00 00 0a 28 ?? 00 00 06 00 02 28 ?? 00 00 06 11 20 6f ?? 00 00 0a 00 00 11 1d 6f ?? 00 00 0a 2d b2 de 16}  //weight: 2, accuracy: Low
+        $x_1_2 = "TUKSystemForSell" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_QQPass_NIT_2147926894_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/QQPass.NIT!MTB"
+        threat_id = "2147926894"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "QQPass"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "2"
         strings_accuracy = "Low"
     strings:

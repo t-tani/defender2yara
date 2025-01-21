@@ -3524,3 +3524,25 @@ rule Trojan_Win32_Amadey_RPA_2147929973_0
         (1 of ($x*))
 }
 
+rule Trojan_Win32_Amadey_NIT_2147931114_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Amadey.NIT!MTB"
+        threat_id = "2147931114"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Amadey"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {8b 79 04 39 ba a0 00 00 00 72 14 8b 01 03 c7 39 82 a0 00 00 00 0f 82 0b 01 00 00 0f b7 42 06 46 83 c1 28 3b f0 72 d9}  //weight: 2, accuracy: High
+        $x_1_2 = {0f 8c 0a ff ff ff ff 75 d0 ff 15 5c f0 43 00 83 f8 ff 74 0e b8 01 00 00 00 5f 5e 8b e5 5d 8b e3 5b c3}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

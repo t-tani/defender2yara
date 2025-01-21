@@ -19,8 +19,10 @@ rule HackTool_Linux_WinExeExecution_BA_2147765788_0
         $x_1_5 = "--runas=" wide //weight: 1
         $x_1_6 = "-a " wide //weight: 1
         $x_1_7 = "--authentication-file=" wide //weight: 1
+        $n_20_8 = "/airflow/" wide //weight: -20
     condition:
         (filesize < 20MB) and
+        (not (any of ($n*))) and
         (
             ((1 of ($x_5_*) and 3 of ($x_1_*))) or
             ((1 of ($x_5_*) and 1 of ($x_2_*) and 1 of ($x_1_*))) or
