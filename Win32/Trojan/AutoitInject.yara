@@ -4441,3 +4441,37 @@ rule Trojan_Win32_AutoitInject_AF_2147931060_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_AutoitInject_AG_2147931123_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.AG!MTB"
+        threat_id = "2147931123"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "HOTKEYSET ( \"{F5}\" , \"r71W4lZeAaJm\" )" ascii //weight: 1
+        $x_1_2 = "ADLIBUNREGISTER ( \"wWjjeNVAVo4ChEjLZ2rF\" )" ascii //weight: 1
+        $x_1_3 = "REGDELETE ( \"HKCU\\Software\" , \"xGK\" )" ascii //weight: 1
+        $x_1_4 = "REGDELETE ( \"HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\" , \"fjRmvM\" )" ascii //weight: 1
+        $x_1_5 = "PING ( \"htttp://cK0Pqjnal.io\" , 6063 , 4713 )" ascii //weight: 1
+        $x_1_6 = "DIRMOVE ( @HOMEPATH & \"\\Info\" , @TEMPDIR & \"\\Decryption\\App Data\" , 2047 )" ascii //weight: 1
+        $x_1_7 = "REGDELETE ( \"HKCU\\Software\" , \"aH1EMwy0l7yRwo\" )" ascii //weight: 1
+        $x_1_8 = "ADLIBREGISTER ( \"umzPcc2VqsXuH6UV\" , 6915 )" ascii //weight: 1
+        $x_1_9 = "HOTKEYSET ( \"pNgi\" , \"XI\" )" ascii //weight: 1
+        $x_1_10 = "PING ( \"htttp://Q7qC5l1GX.com\" , 5441 , 8308 )" ascii //weight: 1
+        $x_1_11 = "FILEWRITELINE ( 1813 , \"Rhc56z2fVEd\" )" ascii //weight: 1
+        $x_1_12 = "REGDELETE ( \"HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\" , \"9qZf\" )" ascii //weight: 1
+        $x_1_13 = "INETREAD ( \"htttp://zuEGdOV57.net\" , 4634 , 663 , 4407 )" ascii //weight: 1
+        $x_1_14 = "WINWAITACTIVE ( \"HgmwoKhe6c - LumenDrive\" , \"ipW2\" , 7575 )" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (7 of ($x*))
+}
+
