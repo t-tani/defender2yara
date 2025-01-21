@@ -108,3 +108,24 @@ rule TrojanDownloader_Win64_CobaltStrike_GLG_2147911091_0
         (all of ($x*))
 }
 
+rule TrojanDownloader_Win64_CobaltStrike_RJD_2147931071_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:Win64/CobaltStrike.RJD!MTB"
+        threat_id = "2147931071"
+        type = "TrojanDownloader"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CobaltStrike"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {48 8b 55 10 48 8b 45 f8 48 01 d0 0f b6 08 8b 45 18 41 89 c0 48 8b 55 e8 48 8b 45 f8 48 01 d0 44 31 c1 89 ca 88 10 48 83 45 f8 01 48 8b 45 f8 48 3b 45 f0}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

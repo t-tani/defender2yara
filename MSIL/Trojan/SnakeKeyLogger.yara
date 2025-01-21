@@ -2190,3 +2190,24 @@ rule Trojan_MSIL_SnakeKeyLogger_AMCW_2147929516_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_SnakeKeyLogger_AMDA_2147931072_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/SnakeKeyLogger.AMDA!MTB"
+        threat_id = "2147931072"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "SnakeKeyLogger"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {01 25 16 11 ?? 1f 10 63 20 ff 00 00 00 5f d2 9c 25 17 11 ?? 1e 63 20 ff 00 00 00 5f d2 9c 25 18 11 ?? 20 ff 00 00 00 5f d2 9c 6f ?? 00 00 0a 00}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

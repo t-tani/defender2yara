@@ -2224,28 +2224,6 @@ rule Trojan_MSIL_Injuke_CCHE_2147901772_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Injuke_CVAA_2147902005_0
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "Trojan:MSIL/Injuke.CVAA!MTB"
-        threat_id = "2147902005"
-        type = "Trojan"
-        platform = "MSIL: .NET intermediate language scripts"
-        family = "Injuke"
-        severity = "Critical"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "5"
-        strings_accuracy = "Low"
-    strings:
-        $x_4_1 = {ff ff 11 01 16 11 01 8e 69 28 ?? 00 00 0a 20}  //weight: 4, accuracy: Low
-        $x_1_2 = "Reverse" ascii //weight: 1
-    condition:
-        (filesize < 20MB) and
-        (all of ($x*))
-}
-
 rule Trojan_MSIL_Injuke_SPXX_2147902592_0
 {
     meta:

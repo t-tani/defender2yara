@@ -134,3 +134,25 @@ rule Trojan_MSIL_Darkcloud_AAZA_2147898684_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Darkcloud_AAJA_2147931092_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Darkcloud.AAJA!MTB"
+        threat_id = "2147931092"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Darkcloud"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {01 25 16 0f 01 20 47 03 00 00 20 30 03 00 00 28 ?? 00 00 06 9c 25 17 0f 01 20 f1 00 00 00 20 89 00 00 00 28 ?? 00 00 06 9c 25 18 0f 01 20 39 01 00 00 20 40 01 00 00 28 ?? 00 00 06 9c 6f ?? 00 00 0a 16 0d}  //weight: 3, accuracy: Low
+        $x_2_2 = {01 25 16 0f 00 20 4a 01 00 00 20 3d 01 00 00 28 ?? 00 00 06 9c 25 17 0f 00 20 8c 03 00 00 20 f4 03 00 00 28 ?? 00 00 06 9c 25 18 0f 00 28 ?? 00 00 0a 9c 0a 17 0c 2b 8f}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
