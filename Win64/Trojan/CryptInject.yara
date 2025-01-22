@@ -3872,3 +3872,52 @@ rule Trojan_Win64_CryptInject_GKN_2147930968_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_CryptInject_LZV_2147931219_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CryptInject.LZV!MTB"
+        threat_id = "2147931219"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {4d 89 e2 8b 55 c3 4c 89 55 e5 05 eb 14 00 00 48 03 45 c3 4c 8b 45 f9 48 01 4d b5 32 45 dc 4c 8b 65 c9 4c 01 d8 03 45 d6 48 c7 c0 ?? ?? ?? ?? 88 f2 89 45 e4 48 ff 04 24 b9 06 00 00 00 3b 0c 24 0f 8c}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_CryptInject_RPH_2147931220_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CryptInject.RPH!MTB"
+        threat_id = "2147931220"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = {c0 1d 00 00 10 00 00 00 a6 11 00 00 04 00 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 e0 00 00 00 00 00 00 00 00 00 30 02 00 00 d0 1d 00 00 9c 00 00 00 aa 11 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 e0 00 00 00 00 00 00 00 00 00 90 13 00 00 00 20 00 00 08 0e 00 00 46 12}  //weight: 10, accuracy: High
+        $x_1_2 = {40 1d 01 00 40 34 00 00 ca 07 00 00 60 20 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 e0 00 00 00 00 00 00 00 00 00 30 41 00 00 80 51 01 00 2a 41 00 00 2a 28 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 e0}  //weight: 1, accuracy: High
+        $x_10_3 = {3c 12 00 00 04 00 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 e0 00 00 00 00 00 00 00 00 00 80 01 00 00 60 1f 00 00 9a 00 00 00 40 12 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 e0 00 00 00 00 00 00 00 00 00 60 13 00 00 e0 20 00 00 f6 0d 00 00 da 12}  //weight: 10, accuracy: High
+        $x_1_4 = {60 1a 01 00 f0 34 00 00 a2 2b 00 00 e2 20 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 e0 00 00 00 00 00 00 00 00 00 50 42 00 00 50 4f 01 00 50 42 00 00 84 4c 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 e0}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_10_*) and 1 of ($x_1_*))) or
+            ((2 of ($x_10_*))) or
+            (all of ($x*))
+        )
+}
+
