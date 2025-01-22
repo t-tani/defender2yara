@@ -475,3 +475,24 @@ rule Trojan_MSIL_Dnoper_ARGA_2147928544_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Dnoper_SVCB_2147931185_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Dnoper.SVCB!MTB"
+        threat_id = "2147931185"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Dnoper"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {2b 1f 2b 20 08 07 6f ?? 00 00 0a 08 6f ?? 00 00 0a 02 16 02 8e 69 6f ?? 00 00 0a 0d de 1a 08 2b df 06 2b de 6f ?? 00 00 0a 2b d9}  //weight: 4, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
