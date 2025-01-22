@@ -1953,6 +1953,28 @@ rule Trojan_MSIL_Taskun_ATA_2147900353_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {16 0a 2b 21 00 02 04 06 6f ?? 00 00 0a 0b 05 03 6f ?? 00 00 0a 59 0c 03 07 08 28 ?? 00 00 06 00 00 06 17 58 0a}  //weight: 3, accuracy: Low
+        $x_2_2 = {1e 62 60 0f 01 28 ?? 00 00 0a 60 13 06 02 19 8d ?? 00 00 01 25 16 11 06 1f 10 63 20 ff 00 00 00 5f d2 9c 25 17 11 06 1e 63 20 ff 00 00 00 5f d2 9c 25 18 11 06 20 ff 00 00 00 5f d2 9c 6f}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Taskun_ATA_2147900353_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Taskun.ATA!MTB"
+        threat_id = "2147900353"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Taskun"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "6"
         strings_accuracy = "High"
     strings:

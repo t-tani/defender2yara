@@ -62,7 +62,7 @@ rule Trojan_Win32_ClickFix_D_2147924939_0
         strings_accuracy = "Low"
     strings:
         $x_1_1 = "mshta" wide //weight: 1
-        $x_1_2 = {68 00 74 00 74 00 70 00 [0-1] 3a 00 2f 00 2f 00}  //weight: 1, accuracy: Low
+        $x_1_2 = {68 00 74 00 74 00 70 00 [0-2] 3a 00 2f 00 2f 00}  //weight: 1, accuracy: Low
         $x_1_3 = "recaptcha" wide //weight: 1
         $x_1_4 = "verif" wide //weight: 1
     condition:
