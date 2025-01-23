@@ -1148,3 +1148,25 @@ rule Trojan_Win32_ICLoader_AZIA_2147931020_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_ICLoader_GTC_2147931224_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ICLoader.GTC!MTB"
+        threat_id = "2147931224"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ICLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {55 8b ec 6a ff 68 ?? e5 89 00 68 ?? 7d 89 00 64 a1 00 00 00 00 50 64 89 25 00 00 00 00 83 ec ?? 53 56 57 89 65 ?? ff 15}  //weight: 10, accuracy: Low
+        $x_10_2 = {55 8b ec 6a ff 68 ?? e6 89 00 68 ?? 7d 89 00 64 a1 00 00 00 00 50 64 89 25 00 00 00 00 83 ec 58 53 56 57 89 65 e8}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (1 of ($x*))
+}
+
