@@ -1572,3 +1572,28 @@ rule Trojan_Win32_Convagent_ADIA_2147929917_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Convagent_NG_2147931427_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Convagent.NG!MTB"
+        threat_id = "2147931427"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Convagent"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "Sukses Inject" ascii //weight: 2
+        $x_2_2 = "koalabaper.com" ascii //weight: 2
+        $x_2_3 = "vip-fnatic.com" ascii //weight: 2
+        $x_1_4 = "DLL Injected" ascii //weight: 1
+        $x_1_5 = "Harap Buka Ulang Tools Injection Atau Hubungi Seller" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

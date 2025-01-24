@@ -106391,3 +106391,24 @@ rule Trojan_MSIL_AgentTesla_PLLPH_2147930319_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AgentTesla_SOB_2147931434_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.SOB!MTB"
+        threat_id = "2147931434"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {08 20 ee 83 00 00 28 ?? ?? ?? 06 28 02 00 00 0a 6f 04 00 00 0a 08 6f 05 00 00 0a 0d 28 06 00 00 0a 09 07 16 07 8e 69 6f 07 00 00 0a}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

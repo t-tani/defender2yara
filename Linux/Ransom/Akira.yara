@@ -74,3 +74,25 @@ rule Ransom_Linux_Akira_C_2147923770_0
         (all of ($x*))
 }
 
+rule Ransom_Linux_Akira_AB_2147931430_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Linux/Akira.AB!MTB"
+        threat_id = "2147931430"
+        type = "Ransom"
+        platform = "Linux: Linux platform"
+        family = "Akira"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_ELFHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {b8 c8 e4 91 00 c6 00 01 bf b8 e4 91 00 e8 7f f2 f6 ff ba e8 bc 64 00 be b8 e4 91 00 bf 62 57 46 00 e8 9f 61 0f 00 b8 d0 e4 91 00}  //weight: 1, accuracy: High
+        $x_1_2 = {55 48 89 e5 48 83 ec 10 48 89 7d f8 48 89 75 f0 48 8b 45 f8 48 89 c7 e8 0d 37 fd ff 84 c0 74 13 48 8b 55 f0 48 8b 45 f8 48 89 d6 48 89 c7 e8 03 00 00 00}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

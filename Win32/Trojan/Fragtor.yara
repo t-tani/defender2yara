@@ -1945,3 +1945,24 @@ rule Trojan_Win32_Fragtor_GKN_2147931261_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Fragtor_AUJ_2147931425_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Fragtor.AUJ!MTB"
+        threat_id = "2147931425"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Fragtor"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {8b 45 0c 8b 4d 08 c7 45 ec 01 00 00 00 c7 45 f0 f4 ab 48 00 89 4d f4 89 45 f8 8d 45 ec 66 c7 45 fc 01 00 50 e8 61 0e ff ff}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

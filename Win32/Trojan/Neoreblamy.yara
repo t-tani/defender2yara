@@ -3222,3 +3222,26 @@ rule Trojan_Win32_Neoreblamy_BV_2147931341_0
         )
 }
 
+rule Trojan_Win32_Neoreblamy_NLF_2147931428_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Neoreblamy.NLF!MTB"
+        threat_id = "2147931428"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Neoreblamy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {eb 08 8b 45 e0 40 40 89 45 e0 83 7d e0 1e}  //weight: 2, accuracy: High
+        $x_1_2 = {eb 07 8b 45 80 40 89 45 80 83 7d 80 03 7d 10 8b 45 80}  //weight: 1, accuracy: High
+        $x_1_3 = {eb d7 6a 04 58 6b c0 03 8b 84 05 ?? ?? ff ff 40 6a 04 59 6b c9 03}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
