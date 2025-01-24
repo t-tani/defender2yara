@@ -152,3 +152,24 @@ rule Trojan_Win32_QQpass_EC_2147896930_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_QQpass_MX_2147931475_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/QQpass.MX!MTB"
+        threat_id = "2147931475"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "QQpass"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {c6 45 fc 00 8b b5 dc fd ff ff 83 c6 f0 8d 7e 0c 83 c4 08 83 3f 00 8b d8}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

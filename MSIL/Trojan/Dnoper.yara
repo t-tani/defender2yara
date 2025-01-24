@@ -496,3 +496,26 @@ rule Trojan_MSIL_Dnoper_SVCB_2147931185_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Dnoper_ND_2147931476_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Dnoper.ND!MTB"
+        threat_id = "2147931476"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Dnoper"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {7e 20 00 00 0a 72 25 00 00 70 6f ?? 00 00 0a 0a 06 72 99 00 00 70 17 8c 31 00 00 01 1a 6f ?? 00 00 0a 00 28 1a 00 00 0a 72 b7 00 00 70 28 1b 00 00 0a}  //weight: 3, accuracy: Low
+        $x_1_2 = "irmeni.Properties.Resources.resources" ascii //weight: 1
+        $x_1_3 = "Kimya_De" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
