@@ -390,3 +390,24 @@ rule Trojan_MSIL_KeyLogger_SPBF_2147915070_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_KeyLogger_SO_2147931331_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/KeyLogger.SO!MTB"
+        threat_id = "2147931331"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "KeyLogger"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {07 06 08 91 1f 1a 59 1f 1f 58 1f 15 59 1e 59 1f 21 59 d2 6f 0a 00 00 0a 08 17 58 0c 08 06 8e 69 32 de}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

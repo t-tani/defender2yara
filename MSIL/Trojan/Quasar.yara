@@ -1613,3 +1613,28 @@ rule Trojan_MSIL_Quasar_AQA_2147930874_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Quasar_BK_2147931309_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Quasar.BK!MTB"
+        threat_id = "2147931309"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Quasar"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {0a 26 08 09 6f ?? 00 00 0a 07 08 6f ?? 00 00 0a 16 73 ?? 00 00 0a 13 07 07 6f ?? 00 00 0a 1f 10 6a 59 17 6a 58 d4 8d}  //weight: 2, accuracy: Low
+        $x_2_2 = {10 01 03 28 ?? ?? 00 06 10 01 03 8e 69 02 28 ?? 00 00 06 58 8d ?? 00 00 01 0a 03 8e 69 28 ?? 00 00 0a 06 02 28 ?? 00 00 06 28 ?? 00 00 0a 03 16 06 02 28 ?? 00 00 06 03 8e 69}  //weight: 2, accuracy: Low
+        $x_1_3 = "GetKeyloggerLogs" wide //weight: 1
+        $x_1_4 = "Get Clipboard Successfull" wide //weight: 1
+        $x_1_5 = "Cant Rename The Victim" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

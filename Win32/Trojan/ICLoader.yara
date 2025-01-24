@@ -737,6 +737,28 @@ rule Trojan_Win32_ICLoader_AIC_2147928054_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_ICLoader_AIC_2147928054_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ICLoader.AIC!MTB"
+        threat_id = "2147928054"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ICLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {80 c9 10 c0 e9 03 81 e1 ff 00 00 00 89 4c 24 00 db 44 24 00 dc 3d c8 49 8a 00 dc 05 58 10 8a 00 dd 1d 38 4a 8a 00 ff 15 ?? ?? ?? ?? 25 ff 00 00 00 83 f8 06 0f 93 c2 83 f8 06}  //weight: 2, accuracy: Low
+        $x_1_2 = {56 57 68 24 4b 8a 00 68 48 48 8a 00 ff 15 ?? ?? ?? ?? a1 64 10 8a 00 8b 35 f0 e2 89 00 50 ff d6 8b 3d f4 e2 89 00 68 b8 10 8a 00 50 ff d7 8b 0d 64 10 8a 00 a3 78 49 8a 00 51 ff d6}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win32_ICLoader_GNM_2147928072_0
 {
     meta:
@@ -1168,5 +1190,26 @@ rule Trojan_Win32_ICLoader_GTC_2147931224_0
     condition:
         (filesize < 20MB) and
         (1 of ($x*))
+}
+
+rule Trojan_Win32_ICLoader_AIJA_2147931290_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ICLoader.AIJA!MTB"
+        threat_id = "2147931290"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ICLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {55 8b ec 6a ff 68 ?? a9 63 00 68 ?? 3e 63 00 64 a1 00 00 00 00 50 64 89 25 00 00 00 00 83 ec 58 53 56 57 89 65 e8 ff 15 ?? ?? 63 00 33 d2 8a d4 89 15 ?? 5d 64 00 8b c8 81 e1 ff 00 00 00 89 0d ?? 5d 64 00 c1 e1 08 03 ca 89 0d ?? 5d 64 00 c1 e8 10 a3 ?? 5d 64 00 6a 01}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
 }
 

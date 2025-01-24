@@ -450,3 +450,24 @@ rule Trojan_Win32_Tedy_ARAF_2147926915_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Tedy_NITA_2147931298_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Tedy.NITA!MTB"
+        threat_id = "2147931298"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Tedy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {ff 36 8d 4c 24 10 e8 24 0c 00 00 83 f8 ff 75 58 83 c6 04 8d 44 24 40 3b f0}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

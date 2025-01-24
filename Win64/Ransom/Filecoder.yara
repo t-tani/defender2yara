@@ -529,3 +529,31 @@ rule Ransom_Win64_Filecoder_SWJ_2147929694_0
         (all of ($x*))
 }
 
+rule Ransom_Win64_Filecoder_NITD_2147931302_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win64/Filecoder.NITD!MTB"
+        threat_id = "2147931302"
+        type = "Ransom"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Filecoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "crypt_only_these_directories" ascii //weight: 2
+        $x_2_2 = "services_to_stop" ascii //weight: 2
+        $x_2_3 = "ces_to_stop" ascii //weight: 2
+        $x_1_4 = "temporary_extension" ascii //weight: 1
+        $x_1_5 = "onion/chat" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((3 of ($x_2_*) and 1 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+

@@ -134,3 +134,24 @@ rule Trojan_MSIL_MSILZilla_NITA_2147926332_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_MSILZilla_GKN_2147931265_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/MSILZilla.GKN!MTB"
+        threat_id = "2147931265"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "MSILZilla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {fe 0c 03 00 3b 30 00 00 00 fe 0c 09 00 fe 0c 05 00 46 fe 0c 13 00 61 52 fe 0c 05 00 20 01 00 00 00 58 fe 0e 05 00 fe 0c 09 00 20 01 00 00 00 58 fe 0e 09 00}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

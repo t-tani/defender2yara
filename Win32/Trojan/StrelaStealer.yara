@@ -115,3 +115,24 @@ rule Trojan_Win32_StrelaStealer_ASR_2147926757_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_StrelaStealer_GKN_2147931291_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/StrelaStealer.GKN!MTB"
+        threat_id = "2147931291"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "StrelaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {89 d8 35 98 45 cc 75 89 f2 81 f2 05 2a 48 b3 41 89 d2 41 21 f2 41 89 c3 41 21 f3 31 f0}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

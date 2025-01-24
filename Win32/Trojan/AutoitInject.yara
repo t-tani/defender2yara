@@ -4475,3 +4475,33 @@ rule Trojan_Win32_AutoitInject_AG_2147931123_0
         (7 of ($x*))
 }
 
+rule Trojan_Win32_AutoitInject_AH_2147931329_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.AH!MTB"
+        threat_id = "2147931329"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {45 00 58 00 45 00 43 00 55 00 54 00 45 00 20 00 28 00 20 00 22 00 43 00 22 00 20 00 26 00 20 00 22 00 68 00 72 00 28 00 41 00 22 00 20 00 26 00 20 00 22 00 73 00 63 00 28 00 [0-31] 28 00 22 00 20 00 26 00 20 00 22 00 24 00 [0-31] 2c 00 20 00 24 00 [0-31] 2c 00 20 00 31 00 29 00 29 00 20 00 2d 00 20 00 4d 00 6f 00 64 00 28 00 24 00 [0-31] 20 00 2b 00 20 00 24 00 [0-31] 2c 00 20 00 32 00 35 00 36 00 29 00 29 00 22 00 20 00 29 00}  //weight: 2, accuracy: Low
+        $x_2_2 = {45 58 45 43 55 54 45 20 28 20 22 43 22 20 26 20 22 68 72 28 41 22 20 26 20 22 73 63 28 [0-31] 28 22 20 26 20 22 24 [0-31] 2c 20 24 [0-31] 2c 20 31 29 29 20 2d 20 4d 6f 64 28 24 [0-31] 20 2b 20 24 [0-31] 2c 20 32 35 36 29 29 22 20 29}  //weight: 2, accuracy: Low
+        $x_1_3 = {46 00 49 00 4c 00 45 00 53 00 45 00 4c 00 45 00 43 00 54 00 46 00 4f 00 4c 00 44 00 45 00 52 00 20 00 28 00 20 00 24 00 [0-31] 20 00 2c 00 20 00 22 00 71 00 61 00 4d 00 64 00 53 00 47 00 48 00 7a 00 4f 00 77 00 6b 00 4e 00 76 00 22 00 20 00 2c 00 20 00 39 00 38 00 35 00 38 00 20 00 2c 00 20 00 22 00 70 00 77 00 6d 00 73 00 4b 00 74 00 67 00 52 00 49 00 35 00 41 00 58 00 45 00 62 00 58 00 75 00 65 00 69 00 64 00 22 00 20 00 29 00}  //weight: 1, accuracy: Low
+        $x_1_4 = {46 49 4c 45 53 45 4c 45 43 54 46 4f 4c 44 45 52 20 28 20 24 [0-31] 20 2c 20 22 71 61 4d 64 53 47 48 7a 4f 77 6b 4e 76 22 20 2c 20 39 38 35 38 20 2c 20 22 70 77 6d 73 4b 74 67 52 49 35 41 58 45 62 58 75 65 69 64 22 20 29}  //weight: 1, accuracy: Low
+        $x_1_5 = "PING ( \"htttp://ilgXbtc9tZ.io\" , 7368 , 5328 )" ascii //weight: 1
+        $x_1_6 = "WINGETHANDLE ( \"gFVQXm - MatrixFlow\" , \"6jGAaMyK\" )" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_2_*) and 3 of ($x_1_*))) or
+            ((2 of ($x_2_*) and 1 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+

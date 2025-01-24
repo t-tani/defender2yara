@@ -6530,3 +6530,24 @@ rule Trojan_MSIL_Heracles_SPCB_2147931109_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Heracles_NITA_2147931299_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Heracles.NITA!MTB"
+        threat_id = "2147931299"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Heracles"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {17 8d 02 00 00 01 25 16 72 23 03 00 70 7e 06 00 00 04 72 55 03 00 70 28 02 00 00 0a a2 28 4f 00 00 0a 73 50 00 00 0a 25 72 87 03 00 70 6f 51 00 00 0a 25 72 bf 03 00 70 72 01 03 00 70 28 4d 00 00 0a 72 0b 03 00 70 28 02 00 00 0a 6f 52 00 00 0a}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

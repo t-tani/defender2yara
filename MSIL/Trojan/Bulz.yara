@@ -563,3 +563,32 @@ rule Trojan_MSIL_Bulz_SWA_2147930140_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Bulz_NITA_2147931301_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Bulz.NITA!MTB"
+        threat_id = "2147931301"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Bulz"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "resworBxednaY" wide //weight: 2
+        $x_2_2 = "xednaY" wide //weight: 2
+        $x_1_3 = "drocsid" wide //weight: 1
+        $x_1_4 = "btpdrocsid" wide //weight: 1
+        $x_1_5 = "yranacdrocsid" wide //weight: 1
+        $x_1_6 = "kill.bat" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((2 of ($x_2_*) and 3 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+

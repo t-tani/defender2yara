@@ -383,3 +383,24 @@ rule Trojan_Win64_ZLoader_GA_2147926853_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_ZLoader_ZZV_2147931293_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/ZLoader.ZZV!MTB"
+        threat_id = "2147931293"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "ZLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {48 89 ca 48 c1 ea 3f 48 c1 f9 ?? 01 d1 89 ca c1 e2 04 01 ca 89 c1 29 d1 48 63 c9 42 0f b6 0c 31 32 0c 06 88 0c 07 75}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

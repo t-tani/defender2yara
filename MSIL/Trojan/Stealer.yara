@@ -2425,6 +2425,36 @@ rule Trojan_MSIL_Stealer_NITA_2147926210_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Stealer_NITA_2147926210_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Stealer.NITA!MTB"
+        threat_id = "2147926210"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Stealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "DecryptBrowsers" ascii //weight: 2
+        $x_2_2 = "GetProcessesByName" ascii //weight: 2
+        $x_2_3 = "Monero" wide //weight: 2
+        $x_2_4 = "LitecoinCore" wide //weight: 2
+        $x_1_5 = "Ethereum" wide //weight: 1
+        $x_1_6 = "Passwords" wide //weight: 1
+        $x_1_7 = "get_SandBoxie" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((4 of ($x_2_*) and 2 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+
 rule Trojan_MSIL_Stealer_AJEA_2147926954_0
 {
     meta:
@@ -2558,6 +2588,31 @@ rule Trojan_MSIL_Stealer_ACJA_2147931166_0
     strings:
         $x_4_1 = {0a 13 04 06 11 04 6f ?? 00 00 0a 00 00 de 0b 09 2c 07 09 6f ?? 00 00 0a 00 dc 06 18 6f ?? 00 00 0a 00 06 6f ?? 00 00 0a 0b 07 02 16 02 8e 69 6f ?? 00 00 0a 0c 08 13 05 2b 00 11 05 2a}  //weight: 4, accuracy: Low
         $x_1_2 = "CreateDecryptor" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Stealer_EM_2147931327_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Stealer.EM!MTB"
+        threat_id = "2147931327"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Stealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "Ocean-ac_ProcessedByFody" ascii //weight: 1
+        $x_1_2 = "Ocean-ac.pdb" ascii //weight: 1
+        $x_1_3 = "Taskkill Executed" ascii //weight: 1
+        $x_1_4 = "keyauth.win" ascii //weight: 1
+        $x_1_5 = "React Scanner - Cheat" ascii //weight: 1
     condition:
         (filesize < 20MB) and
         (all of ($x*))

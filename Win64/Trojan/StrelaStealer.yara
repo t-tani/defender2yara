@@ -976,6 +976,28 @@ rule Trojan_Win64_StrelaStealer_ASL_2147916133_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {48 83 ec 10 48 89 7c 24 20 31 c9 ba 1a 00 00 00 45 31 c0 45 31 c9 4c 8b 25 06 28 05 00 41 ff d4 48 83 c4 10 48 89 f9 4c 8d 3d 2b f6 04 00 4c 89 fa 4c 89 eb 41 ff d5 41 b8 04 01 00 00 48 89 f1 31 d2 e8 14 93 04 00}  //weight: 2, accuracy: High
+        $x_1_2 = "c8d79d55-6723-4d85-9f23-7252e2e2bff1" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_StrelaStealer_ASL_2147916133_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/StrelaStealer.ASL!MTB"
+        threat_id = "2147916133"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "StrelaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "5"
         strings_accuracy = "Low"
     strings:

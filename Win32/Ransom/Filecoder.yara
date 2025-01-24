@@ -2314,3 +2314,30 @@ rule Ransom_Win32_Filecoder_PAFR_2147922991_0
         (all of ($x*))
 }
 
+rule Ransom_Win32_Filecoder_SWA_2147931284_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win32/Filecoder.SWA!MTB"
+        threat_id = "2147931284"
+        type = "Ransom"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Filecoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "/c vssadmin.exe delete shadows /all /quiet" wide //weight: 2
+        $x_2_2 = "How To Restore Your Files.txt" wide //weight: 2
+        $x_1_3 = "DoYouWantToHaveSexWithCuongDong" ascii //weight: 1
+        $x_1_4 = "processes killer" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((2 of ($x_2_*) and 1 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+
