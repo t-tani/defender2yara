@@ -9973,3 +9973,24 @@ rule Trojan_Win32_Zenpak_AMDA_2147931241_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Zenpak_GB_2147931394_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zenpak.GB!MTB"
+        threat_id = "2147931394"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zenpak"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {8b 85 a8 fd ff ff 33 d2 b9 0a 00 00 00 f7 f1 b8 01 00 00 00 6b c8 00 8d 84 0d 70 ef ff ff 0f be 0c 10 8b 95 e0 f7 ff ff 03 95 a8 fd ff ff 0f b6 02 33 c1 8b 8d e0 f7 ff ff 03 8d a8 fd ff ff 88 01}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

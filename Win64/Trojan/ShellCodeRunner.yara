@@ -231,3 +231,33 @@ rule Trojan_Win64_ShellCodeRunner_GC_2147929369_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_ShellCodeRunner_RPH_2147931390_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/ShellCodeRunner.RPH!MTB"
+        threat_id = "2147931390"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "ShellCodeRunner"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "12"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = "\\maldev\\!code-section\\!Shellcode\\Shellcode-test\\x64\\Release\\Shellcode-test.pdb" ascii //weight: 10
+        $x_10_2 = "\\maldev\\!code-section\\!Shellcode\\Shellcode-obfuscated\\x64\\Release\\Shellcode-obfuscated.pdb" ascii //weight: 10
+        $x_10_3 = "\\maldev\\code-section\\fud-cmd\\x64\\Release\\fud-cmd.pdb" ascii //weight: 10
+        $x_10_4 = "\\maldev\\!code-section\\fud-cmd\\x64\\Release\\fud-cmd.pdb" ascii //weight: 10
+        $x_1_5 = "curl_easy_perform cannot be executed if the CURL handle is used in a MultiPerform." ascii //weight: 1
+        $x_1_6 = {68 74 74 70 73 3a 2f 2f [0-144] 2e 74 78 74}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_10_*) and 2 of ($x_1_*))) or
+            ((2 of ($x_10_*))) or
+            (all of ($x*))
+        )
+}
+
