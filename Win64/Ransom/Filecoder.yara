@@ -557,3 +557,34 @@ rule Ransom_Win64_Filecoder_NITD_2147931302_0
         )
 }
 
+rule Ransom_Win64_Filecoder_NITD_2147931302_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win64/Filecoder.NITD!MTB"
+        threat_id = "2147931302"
+        type = "Ransom"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Filecoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "16"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "FILES HAVE BEEN ENCRYPTED" ascii //weight: 2
+        $x_2_2 = "Bitcoin" ascii //weight: 2
+        $x_2_3 = "NOT ALLOW ANTI-VIRUS SOFTWARE" ascii //weight: 2
+        $x_2_4 = "DECRYPTING ALL FILES IMPOSSIBLE" ascii //weight: 2
+        $x_2_5 = "receive your decryption key" ascii //weight: 2
+        $x_1_6 = "encryption_date" ascii //weight: 1
+        $x_1_7 = "To recover your files" ascii //weight: 1
+        $x_1_8 = "VirtualBox" ascii //weight: 1
+        $x_1_9 = "vboxtray" ascii //weight: 1
+        $x_1_10 = "vboxservice" ascii //weight: 1
+        $x_1_11 = "vmtoolsd" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

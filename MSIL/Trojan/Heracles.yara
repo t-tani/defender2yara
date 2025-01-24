@@ -6551,3 +6551,26 @@ rule Trojan_MSIL_Heracles_NITA_2147931299_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Heracles_GPPA_2147931382_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Heracles.GPPA!MTB"
+        threat_id = "2147931382"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Heracles"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = "ZXNzKQ0KJGQuUmVhZCgkYiwgMCwgODM5" ascii //weight: 3
+        $x_2_2 = "U51bGwNCltSZWZsZWN0aW9uLkFzc2VtYmx" ascii //weight: 2
+        $x_1_3 = "CltzdHViLlByb2dyYW1dOjpNYWlu" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
