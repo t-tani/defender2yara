@@ -707,6 +707,31 @@ rule Trojan_MSIL_KillMBR_NK_2147912384_2
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = {20 00 02 00 00 8d 11 00 00 01 0a 72 3d 00 00 70 20 00 00 00 10 19 7e 11 00 00 0a 19 16 7e 11 00 00 0a 28 13 00 00 06 0b}  //weight: 3, accuracy: High
+        $x_1_2 = "GDI_payloads2" ascii //weight: 1
+        $x_1_3 = "/k reg delete HKCR /f" wide //weight: 1
+        $x_1_4 = "th1s is Freemasonry" wide //weight: 1
+        $x_1_5 = "gdi_malware" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_KillMBR_NK_2147912384_3
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/KillMBR.NK!MTB"
+        threat_id = "2147912384"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "KillMBR"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "8"
         strings_accuracy = "High"
     strings:

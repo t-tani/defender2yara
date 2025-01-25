@@ -605,3 +605,31 @@ rule Trojan_Win32_KeyLogger_NK_2147925900_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_KeyLogger_NL_2147931491_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/KeyLogger.NL!MTB"
+        threat_id = "2147931491"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "KeyLogger"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = "LazLogger" ascii //weight: 3
+        $x_2_2 = "KeepConnectionTDY" ascii //weight: 2
+        $x_1_3 = "DES_ecb_encrypt" ascii //weight: 1
+        $x_1_4 = "fpopenssl.serrfailedtocreatessl" ascii //weight: 1
+        $x_1_5 = "\\grb.dan" ascii //weight: 1
+        $x_1_6 = "obeapp.exe" ascii //weight: 1
+        $x_1_7 = "Press Abort to kill the program." ascii //weight: 1
+        $x_1_8 = "KABx64" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

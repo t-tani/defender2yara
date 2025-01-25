@@ -45,3 +45,26 @@ rule Trojan_Win64_Sliver_ASV_2147894261_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Sliver_ASV_2147894261_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Sliver.ASV!MTB"
+        threat_id = "2147894261"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Sliver"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {48 89 45 17 e8 ?? ?? ?? ?? 48 8b c8 48 8d 15 65 3f 00 00 e8 ?? ?? ?? ?? 48 8d 4d d7 48 89 45 1f e8 ?? ?? ?? ?? 48 8b c8 48 8d 15 59 3f 00 00 e8}  //weight: 2, accuracy: Low
+        $x_1_2 = {c7 45 db 76 00 61 00 c7 45 df 70 00 69 00 c7 45 e3 33 00 32 00 c7 45 e7 2e 00 64 00 c7 45 eb 6c 00 6c 00 e8 ?? ?? ?? ?? 48 8b c8 48 8d 15 8b 3f 00 00 e8 ?? ?? ?? ?? 48 8d 4d d7 48 8b d8}  //weight: 1, accuracy: Low
+        $x_3_3 = {57 48 83 ec 20 48 8d 15 6d 3e 00 00 48 8d 0d 6e 3e 00 00 e8 ?? ?? ?? ?? 33 d2 48 8b c8 48 8b f8 44 8d 42 02 e8 ?? ?? ?? ?? 48 8b cf e8 3e 0f 00 00 48 63 d8 45 33 c0 33 d2 48 8b cf 48 8b eb e8 ?? ?? ?? ?? 48 8b cb e8 ?? ?? ?? ?? 4c 8b cf 41 b8 01 00 00 00 48 8b d3 48 8b c8}  //weight: 3, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

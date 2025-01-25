@@ -165,3 +165,28 @@ rule Trojan_MSIL_ZemsilF_NE_2147927399_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_ZemsilF_NG_2147931490_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/ZemsilF.NG!MTB"
+        threat_id = "2147931490"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "ZemsilF"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "PcapDotNet.Packets.IpV4" ascii //weight: 2
+        $x_2_2 = "$30086e9d-877a-47ea-b130-56af224a2809" ascii //weight: 2
+        $x_1_3 = "qLZ#.resources" ascii //weight: 1
+        $x_1_4 = "PayloadLayer" ascii //weight: 1
+        $x_1_5 = "winlogon.exe" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

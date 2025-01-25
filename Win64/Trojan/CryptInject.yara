@@ -3507,6 +3507,32 @@ rule Trojan_Win64_CryptInject_BSA_2147927064_3
         (all of ($x*))
 }
 
+rule Trojan_Win64_CryptInject_BSA_2147927064_4
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CryptInject.BSA!MTB"
+        threat_id = "2147927064"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "16"
+        strings_accuracy = "High"
+    strings:
+        $x_4_1 = "matrix1.txt" ascii //weight: 4
+        $x_4_2 = "result_matrix.txt" ascii //weight: 4
+        $x_2_3 = {41 b9 0a 00 00 00 42 f6 44 f0 38 48 74 79 42 8a 44 f0 3a 41 3a c1 74 6f 85 ed}  //weight: 2, accuracy: High
+        $x_2_4 = {4b 8b 04 c3 42 8a 4c f0 3b 41 3a c9 74 45 85 ed 74 41 41 88 0f 41 8d 79 f8 4b}  //weight: 2, accuracy: High
+        $x_2_5 = {3c 41 3a c9 74 19 85 ed 74 15 41 88 0f 41 8d 79 f9 4b 8b 04 c3 4c 03 fa ff cd}  //weight: 2, accuracy: High
+        $x_2_6 = {46 88 4c f0 3c 41 8b cd e8 92 76 00 00 85 c0}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win64_CryptInject_GTN_2147927186_0
 {
     meta:

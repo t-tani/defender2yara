@@ -3701,3 +3701,27 @@ rule Trojan_Win32_LummaStealer_SXOX_2147931110_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_LummaStealer_NE_2147931489_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaStealer.NE!MTB"
+        threat_id = "2147931489"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {8b 0d a8 74 21 01 64 8b 09 8b 39 83 ff 00 74 ?? 8b 6f 18 3b 7d 30}  //weight: 3, accuracy: Low
+        $x_2_2 = {74 1a 8b 75 00 39 f7 74 13 e8 ?? ?? ?? ?? 8b 0d a8 74 21 01 64 8b 09 89 31 8b 66 1c 83 ec}  //weight: 2, accuracy: Low
+        $x_1_3 = "new443agevia200404tcp" ascii //weight: 1
+        $x_1_4 = "Gems Folder Size" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
