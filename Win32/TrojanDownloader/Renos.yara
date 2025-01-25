@@ -228,6 +228,35 @@ rule TrojanDownloader_Win32_Renos_2147799811_4
         family = "Renos"
         severity = "9"
         signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "33"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = {73 00 68 00 65 00 72 00 69 00 66 00 66 00 2e 00 65 00 78 00 65 00 00 00 77}  //weight: 10, accuracy: High
+        $x_10_2 = "InternetGetConnectedState" ascii //weight: 10
+        $x_10_3 = "gethostbyname" ascii //weight: 10
+        $x_1_4 = "System error: spyware intrusion detected!" ascii //weight: 1
+        $x_1_5 = "Critical error: system in danger!" ascii //weight: 1
+        $x_1_6 = "Windows has detected spyware" ascii //weight: 1
+        $x_1_7 = "System Alert!" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((3 of ($x_10_*) and 3 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+
+rule TrojanDownloader_Win32_Renos_2147799811_5
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:Win32/Renos"
+        threat_id = "2147799811"
+        type = "TrojanDownloader"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Renos"
+        severity = "9"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
         threshold = "208"
         strings_accuracy = "High"
     strings:
@@ -259,7 +288,7 @@ rule TrojanDownloader_Win32_Renos_2147799811_4
         )
 }
 
-rule TrojanDownloader_Win32_Renos_2147799811_5
+rule TrojanDownloader_Win32_Renos_2147799811_6
 {
     meta:
         author = "defender2yara"
@@ -366,7 +395,7 @@ rule TrojanDownloader_Win32_Renos_2147799811_5
         )
 }
 
-rule TrojanDownloader_Win32_Renos_2147799811_6
+rule TrojanDownloader_Win32_Renos_2147799811_7
 {
     meta:
         author = "defender2yara"
@@ -388,7 +417,7 @@ rule TrojanDownloader_Win32_Renos_2147799811_6
         (1 of ($x*))
 }
 
-rule TrojanDownloader_Win32_Renos_2147799811_7
+rule TrojanDownloader_Win32_Renos_2147799811_8
 {
     meta:
         author = "defender2yara"
@@ -419,7 +448,7 @@ rule TrojanDownloader_Win32_Renos_2147799811_7
         )
 }
 
-rule TrojanDownloader_Win32_Renos_2147799811_8
+rule TrojanDownloader_Win32_Renos_2147799811_9
 {
     meta:
         author = "defender2yara"
@@ -442,7 +471,7 @@ rule TrojanDownloader_Win32_Renos_2147799811_8
         (all of ($x*))
 }
 
-rule TrojanDownloader_Win32_Renos_2147799811_9
+rule TrojanDownloader_Win32_Renos_2147799811_10
 {
     meta:
         author = "defender2yara"
@@ -468,7 +497,7 @@ rule TrojanDownloader_Win32_Renos_2147799811_9
         (6 of ($x*))
 }
 
-rule TrojanDownloader_Win32_Renos_2147799811_10
+rule TrojanDownloader_Win32_Renos_2147799811_11
 {
     meta:
         author = "defender2yara"
@@ -492,7 +521,7 @@ rule TrojanDownloader_Win32_Renos_2147799811_10
         (all of ($x*))
 }
 
-rule TrojanDownloader_Win32_Renos_2147799811_11
+rule TrojanDownloader_Win32_Renos_2147799811_12
 {
     meta:
         author = "defender2yara"
@@ -524,7 +553,7 @@ rule TrojanDownloader_Win32_Renos_2147799811_11
         )
 }
 
-rule TrojanDownloader_Win32_Renos_2147799811_12
+rule TrojanDownloader_Win32_Renos_2147799811_13
 {
     meta:
         author = "defender2yara"
@@ -556,7 +585,7 @@ rule TrojanDownloader_Win32_Renos_2147799811_12
         )
 }
 
-rule TrojanDownloader_Win32_Renos_2147799811_13
+rule TrojanDownloader_Win32_Renos_2147799811_14
 {
     meta:
         author = "defender2yara"
@@ -585,7 +614,7 @@ rule TrojanDownloader_Win32_Renos_2147799811_13
         (all of ($x*))
 }
 
-rule TrojanDownloader_Win32_Renos_2147799811_14
+rule TrojanDownloader_Win32_Renos_2147799811_15
 {
     meta:
         author = "defender2yara"
@@ -617,7 +646,7 @@ rule TrojanDownloader_Win32_Renos_2147799811_14
         )
 }
 
-rule TrojanDownloader_Win32_Renos_2147799811_15
+rule TrojanDownloader_Win32_Renos_2147799811_16
 {
     meta:
         author = "defender2yara"
@@ -652,7 +681,7 @@ rule TrojanDownloader_Win32_Renos_2147799811_15
         )
 }
 
-rule TrojanDownloader_Win32_Renos_2147799811_16
+rule TrojanDownloader_Win32_Renos_2147799811_17
 {
     meta:
         author = "defender2yara"
