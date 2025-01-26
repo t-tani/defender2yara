@@ -607,6 +607,31 @@ rule TrojanDownloader_Win32_Renos_2147799811_14
         family = "Renos"
         severity = "9"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {4e 6f 52 65 6d 6f 76 65 20 41 70 70 49 44 ?? ?? ?? ?? ?? ?? ?? ?? 27 25 41 50 50 49 44 25 27 20 3d 20 73 20 27 53 70 79 53 68 72 65 64 64 65 72 27 ?? ?? ?? ?? 27 77 65 62 69 6e 73 74 2e 64 6c 6c 27}  //weight: 1, accuracy: Low
+        $x_1_2 = {53 70 79 53 68 72 65 64 64 65 72 2e 57 65 62 49 6e 73 74 61 6c 6c 2e 31 20 3d 20 73 20 27 57 65 62 49 6e 73 74 61 6c 6c 20 43 6c 61 73 73 27 ?? ?? ?? ?? ?? ?? ?? ?? 43 4c 53 49 44 20 3d 20 73 20 27 7b 33 34 33 43 45 32 31 34 2d 39 39 39 38 2d 34 42 32 31 2d 41 31 35 31 2d 46 46 45 39 37 30 31 36 37 32 39 37 7d 27}  //weight: 1, accuracy: Low
+        $x_1_3 = {53 70 79 53 68 72 65 64 64 65 72 2e 57 65 62 49 6e 73 74 61 6c 6c 20 3d 20 73 20 27 57 65 62 49 6e 73 74 61 6c 6c 20 43 6c 61 73 73 27 ?? ?? ?? ?? ?? ?? ?? ?? 43 4c 53 49 44 20 3d 20 73 20 27 7b 33 34 33 43 45 32 31 34 2d 39 39 39 38 2d 34 42 32 31 2d 41 31 35 31 2d 46 46 45 39 37 30 31 36 37 32 39 37 7d 27}  //weight: 1, accuracy: Low
+        $x_1_4 = {43 75 72 56 65 72 20 3d 20 73 20 27 53 70 79 53 68 72 65 64 64 65 72 2e 57 65 62 49 6e 73 74 61 6c 6c 2e 31 27 ?? ?? ?? ?? ?? ?? ?? 4e 6f 52 65 6d 6f 76 65 20 43 4c 53 49 44 ?? ?? ?? ?? ?? ?? ?? ?? 46 6f 72 63 65 52 65 6d 6f 76 65 20 7b 33 34 33 43 45 32 31 34 2d 39 39 39 38 2d 34 42 32 31 2d 41 31 35 31 2d 46 46 45 39 37 30 31 36 37 32 39 37 7d 20 3d 20 73 20 27 57 65 62 49 6e 73 74 61 6c 6c 20 43 6c 61 73 73 27}  //weight: 1, accuracy: Low
+        $x_1_5 = {50 72 6f 67 49 44 20 3d 20 73 20 27 53 70 79 53 68 72 65 64 64 65 72 2e 57 65 62 49 6e 73 74 61 6c 6c 2e 31 27 ?? ?? ?? ?? ?? 56 65 72 73 69 6f 6e 49 6e 64 65 70 65 6e 64 65 6e 74 50 72 6f 67 49 44 20 3d 20 73 20 27 53 70 79 53 68 72 65 64 64 65 72 2e 57 65 62 49 6e 73 74 61 6c 6c 27}  //weight: 1, accuracy: Low
+        $x_1_6 = "'TypeLib' = s '{D2436533-33F9-495C-9CD9-DAF21E67FFEB}'" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule TrojanDownloader_Win32_Renos_2147799811_15
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:Win32/Renos"
+        threat_id = "2147799811"
+        type = "TrojanDownloader"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Renos"
+        severity = "9"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "12"
         strings_accuracy = "Low"
     strings:
