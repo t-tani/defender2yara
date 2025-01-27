@@ -14060,3 +14060,29 @@ rule Trojan_MSIL_FormBook_MBWO_2147930893_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_FormBook_RVA_2147931571_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/FormBook.RVA!MTB"
+        threat_id = "2147931571"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "FormBook"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {57 95 a2 29 09 0b 00 00 00 fa 25 33 00 16 00 00 01 00 00 00 91 00 00 00 09 00 00 00 25 00 00 00 41 00 00 00 3e 00 00 00 fb 00 00 00 17 00 00 00 01 00 00 00 27 00 00 00 03 00 00 00 0b 00 00 00 0c 00 00 00 0c 00 00 00 01 00 00 00 01 00 00 00 07 00 00 00 04 00 00 00 01 00 00 00 04}  //weight: 1, accuracy: High
+        $x_1_2 = {57 95 a2 29 09 1e 00 00 00 fa 01 33 00 16 00 00 01 00 00 00 a9 00 00 00 10 00 00 00 31 00 00 00 b6 00 00 00 3e 00 00 00 11 01 00 00 8a 00 00 00 05 00 00 00 52 00 00 00 03 00 00 00 0b 00 00 00 0c 00 00 00 18 00 00 00 05 00 00 00 01 00 00 00 07 00 00 00 06 00 00 00 81 00 00 00 63}  //weight: 1, accuracy: High
+        $x_2_3 = "17b60f4c-8a91-4715-8d2c-303f7b8700fe" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_2_*) and 1 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+

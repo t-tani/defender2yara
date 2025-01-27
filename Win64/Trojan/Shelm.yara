@@ -647,3 +647,25 @@ rule Trojan_Win64_Shelm_NS_2147929587_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Shelm_NM_2147931582_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Shelm.NM!MTB"
+        threat_id = "2147931582"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Shelm"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {4f 8d 04 27 41 b9 0d 00 00 00 4d 29 e1 4c 89 f1 48 89 fa e8 ?? ?? 00 00 0f b7 44 24 58 66 85 c0 75 ?? 4c 03 64 24 50}  //weight: 3, accuracy: Low
+        $x_2_2 = {49 83 fc 0d 75 ?? 48 8d 15 dc 48 07 00 4c 8d 84 24 80 00 00 00 48 89 d9 e8 ?? ?? 01 00 66 85 c0 0f 84 ?? ?? 00 00 66 83 f8 10}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

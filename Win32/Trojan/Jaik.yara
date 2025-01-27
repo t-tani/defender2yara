@@ -195,6 +195,28 @@ rule Trojan_Win32_Jaik_MBXZ_2147925401_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Jaik_NJ_2147925485_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Jaik.NJ!MTB"
+        threat_id = "2147925485"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Jaik"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {8b 45 e0 8d 14 00 8b 45 e4 01 d0 0f b7 00 66 83 f8 5c 75 ?? 8b 45 e0 8d 14 00 8b 45 e4 01 d0}  //weight: 3, accuracy: Low
+        $x_2_2 = {83 ec 28 c7 45 d8 2a 00 00 00 8b 55 d8 8b 45 c8 c7 44 24 10 04 00 00 00 c7 44 24 0c 00 10 00 00 89 54 24 08 c7 44 24 04 00 00 00 00 89 04 24}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win32_Jaik_MBWA_2147925622_0
 {
     meta:
