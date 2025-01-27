@@ -2370,3 +2370,24 @@ rule Trojan_Win32_LummaC_AE_2147931353_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_LummaC_GLK_2147931602_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaC.GLK!MTB"
+        threat_id = "2147931602"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {0f b6 8c 04 ?? ?? ?? ?? 31 c1 ba ?? ?? ?? ?? 29 ca 83 c1 ?? 81 e2 ?? ?? ?? ?? 83 e1 ?? 29 d1 88 8c 04 ?? ?? ?? ?? 40 3d}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
