@@ -2377,3 +2377,24 @@ rule Trojan_Win32_Fauppod_SAA_2147929845_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Fauppod_AMDC_2147931539_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Fauppod.AMDC!MTB"
+        threat_id = "2147931539"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Fauppod"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {55 89 e5 56 8a 45 0c 8a 4d 08 31 d2 88 d4 [0-30] 8b 15 ?? ?? ?? ?? 89 d6 81 c6 ?? ?? ?? ?? 89 35 [0-21] 0f b6 c4 5e 5d c3}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

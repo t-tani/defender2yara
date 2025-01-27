@@ -3208,3 +3208,38 @@ rule Trojan_Win32_CoinMiner_HNAB_2147930739_0
         )
 }
 
+rule Trojan_Win32_CoinMiner_HNAC_2147931547_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/CoinMiner.HNAC!MTB"
+        threat_id = "2147931547"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "CoinMiner"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = ".CreateShortcut(\"$env:APPDATA\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\xmrig.lnk\")" ascii //weight: 10
+        $x_10_2 = "Get-ChildItem -Path '\\xmrig-*\\xmrig.exe' | Move-Item -Destination '\\svchost.exe" ascii //weight: 10
+        $x_5_3 = {55 53 45 52 50 52 4f 46 49 4c 45 5c [0-192] 2e 65 78 65}  //weight: 5, accuracy: Low
+        $x_5_4 = {49 6e 76 6f 6b 65 2d 57 65 62 52 65 71 75 65 73 74 20 2d 55 72 69 20 27 27 20 2d 4f 75 74 46 69 6c 65 20 27 27 [0-96] 45 78 70 61 6e 64 2d 41 72 63 68 69 76 65 20 2d 50 61 74 68 20 27 27 20 2d 44 65 73 74 69 6e 61 74 69 6f 6e 50 61 74 68 20 27 27 20 2d 46 6f 72 63 65}  //weight: 5, accuracy: Low
+        $x_5_5 = {2e 43 72 65 61 74 65 53 68 6f 72 74 63 75 74 28 22 24 65 6e 76 3a 41 50 50 44 41 54 41 5c 4d 69 63 72 6f 73 6f 66 74 5c 57 69 6e 64 6f 77 73 5c 53 74 61 72 74 20 4d 65 6e 75 5c 50 72 6f 67 72 61 6d 73 5c 53 74 61 72 74 75 70 5c [0-192] 2e 6c 6e 6b 22 29}  //weight: 5, accuracy: Low
+        $x_5_6 = {2e 43 72 65 61 74 65 53 68 6f 72 74 63 75 74 28 5b 53 79 73 74 65 6d 2e 49 4f 2e 50 61 74 68 5d 3a 3a 43 6f 6d 62 69 6e 65 28 24 65 6e 76 3a 41 50 50 44 41 54 41 2c 20 27 4d 69 63 72 6f 73 6f 66 74 5c 57 69 6e 64 6f 77 73 5c 53 74 61 72 74 20 4d 65 6e 75 5c 50 72 6f 67 72 61 6d 73 5c 53 74 61 72 74 75 70 5c [0-192] 20 [0-192] 2e 6c 6e 6b 27 29 29 3b}  //weight: 5, accuracy: Low
+        $x_1_7 = {2e 53 61 76 65 28 29 [0-80] 68 74 74 70 73 3a 2f 2f 70 61 73 74 65 62 69 6e 2e 63 6f 6d 2f 72 61 77 2f}  //weight: 1, accuracy: Low
+        $x_1_8 = {00 00 00 00 5c 78 6d 72 69 67 2e 65 78 65 00 00 00 00}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (
+            ((2 of ($x_5_*) and 1 of ($x_1_*))) or
+            ((3 of ($x_5_*))) or
+            ((1 of ($x_10_*) and 1 of ($x_1_*))) or
+            ((1 of ($x_10_*) and 1 of ($x_5_*))) or
+            ((2 of ($x_10_*))) or
+            (all of ($x*))
+        )
+}
+

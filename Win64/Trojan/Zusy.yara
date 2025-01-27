@@ -1284,3 +1284,33 @@ rule Trojan_Win64_Zusy_HNS_2147929544_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Zusy_HNAP_2147931545_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Zusy.HNAP!MTB"
+        threat_id = "2147931545"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "High"
+    strings:
+        $x_7_1 = "vSRxEHtGTeVQLLRoEVpjWdrWTEMSdzpVinmQFKYdwHFfidJiTRiAazgrREpzjCLbgkQWPqobgYJkIFcfKEYFPgnMyVGEdccQOuJHRyYQavjpslirWtLiXFTyzlUtAKmOMEMXRbGO" ascii //weight: 7
+        $x_7_2 = "mkhViulPiqHHOEocCvVciLqRTwkgwGHcgRTBlPKkkAxFVLqMHzFlfCAAbgSacgxeBLbMyapxQwMTuurdnFbXCkXxaImi" ascii //weight: 7
+        $x_2_3 = "Zeba]JGUh{DJjehFeX" ascii //weight: 2
+        $x_2_4 = "Zn(X\\ck+O|jvTG}!mcU@a^" ascii //weight: 2
+        $x_2_5 = "Wtd{T}hItyDgnEbcXC" ascii //weight: 2
+        $x_2_6 = "dAIttvIybAxgAgNf" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_7_*) and 2 of ($x_2_*))) or
+            ((2 of ($x_7_*))) or
+            (all of ($x*))
+        )
+}
+
