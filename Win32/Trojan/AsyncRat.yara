@@ -255,3 +255,24 @@ rule Trojan_Win32_AsyncRat_CCIC_2147909158_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_AsyncRat_ASA_2147931668_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AsyncRat.ASA!MTB"
+        threat_id = "2147931668"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AsyncRat"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {53 57 83 c4 04 81 f3 10 0e 01 00 81 f3 0d 27 00 00 81 eb 58 52 00 00 5b 56 81 ce ea 17 00 00 5e 52 52 83 c4 04 81 ea e0 4e 01 00 81 ca 45 db 00 00 5a 51 81 c9 f8 99 00 00 81 e9 e4 5e 00 00 59 52 83 ec 14 e8 ?? ?? ?? ?? 00 37 32 50 43 45 46 3a 48 37 32 83 c4 18 81 c2 fc}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
