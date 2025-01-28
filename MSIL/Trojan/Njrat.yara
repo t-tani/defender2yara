@@ -747,3 +747,25 @@ rule Trojan_MSIL_Njrat_MBZY_2147907707_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Njrat_PLIKH_2147931706_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Njrat.PLIKH!MTB"
+        threat_id = "2147931706"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Njrat"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {0a 00 06 08 6f ?? 00 00 0a 00 06 18 6f ?? 00 00 0a 00 06 6f ?? 00 00 0a 03 16 03 8e 69 6f ?? 00 00 0a 13 04 11 04 13 05 11 05 74 ?? 00 00 1b 13 06 2b 00 11 06 2a}  //weight: 10, accuracy: Low
+        $x_1_2 = "CreateDecryptor" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

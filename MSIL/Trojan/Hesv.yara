@@ -20,3 +20,25 @@ rule Trojan_MSIL_Hesv_NITA_2147925787_0
         (1 of ($x*))
 }
 
+rule Trojan_MSIL_Hesv_ARJA_2147931724_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Hesv.ARJA!MTB"
+        threat_id = "2147931724"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Hesv"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {01 25 16 02 1f 10 63 20 ff 00 00 00 5f d2 9c 25 17 02 1e 63 20 ff 00 00 00 5f d2 9c 25 18 02 20 ff 00 00 00 5f d2 9c 0b}  //weight: 3, accuracy: High
+        $x_2_2 = {01 25 16 0f 00 28 ?? 00 00 0a 9c 25 17 0f 00 28 ?? 00 00 0a 9c 25 18 0f 00 28 ?? 00 00 0a 9c 13 04}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

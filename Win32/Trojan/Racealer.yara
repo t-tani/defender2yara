@@ -1031,3 +1031,24 @@ rule Trojan_Win32_Racealer_DH_2147829588_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Racealer_ARAX_2147931745_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Racealer.ARAX!MTB"
+        threat_id = "2147931745"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Racealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {8a 5c 02 04 8a 89 30 73 41 00 32 d9 88 5c 02 04 83 c0 05 3d 40 42 0f 00 0f 8c 5b fd ff ff}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -19,3 +19,24 @@ rule Trojan_Win32_Amonetize_SIBA_2147798991_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Amonetize_ARAZ_2147931742_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Amonetize.ARAZ!MTB"
+        threat_id = "2147931742"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Amonetize"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {f7 e2 d1 ea 8d 04 52 8b d1 2b d0 0f b6 44 15 fe 32 44 0f 02 83 c1 03 88 46 02 83 c6 03 83 f9 1b 7c 95}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

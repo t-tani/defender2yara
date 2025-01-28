@@ -1398,3 +1398,24 @@ rule Trojan_Win32_Tofsee_KAJ_2147930816_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Tofsee_AMDC_2147931725_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Tofsee.AMDC!MTB"
+        threat_id = "2147931725"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Tofsee"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {ff 33 58 83 c3 04 f7 d8 83 c0 [0-10] 29 d0 89 c2 c7 46 00 00 00 00 00 31 06 8d 76 04 8d 49 04 68 cf 52 40 00 c3}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

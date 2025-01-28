@@ -847,3 +847,29 @@ rule Ransom_Win64_FileCoder_AMCW_2147929151_0
         (all of ($x*))
 }
 
+rule Ransom_Win64_FileCoder_RHAI_2147931726_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win64/FileCoder.RHAI!MTB"
+        threat_id = "2147931726"
+        type = "Ransom"
+        platform = "Win64: Windows 64-bit platform"
+        family = "FileCoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {50 45 00 00 64 86 0f ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 0b 02 03 00 00 ?? 28 00 00 e4 03 00 00 00 00 00 40 42 07}  //weight: 2, accuracy: Low
+        $x_3_2 = ".doc.odt.sql.mdb.xls.ods.ppt" ascii //weight: 3
+        $x_1_3 = "cookieuser" ascii //weight: 1
+        $x_1_4 = "ReadMe.txt" ascii //weight: 1
+        $x_1_5 = "CBCEncrypter" ascii //weight: 1
+        $x_2_6 = "HexaLockerV2" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
