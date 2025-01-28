@@ -50,3 +50,25 @@ rule Trojan_MSIL_Apost_NBL_2147896415_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Apost_NS_2147931769_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Apost.NS!MTB"
+        threat_id = "2147931769"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Apost"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {20 c0 0f 00 00 28 06 00 00 0a 00 14 fe 06 03 00 00 06 73 07 00 00 0a 28 08 00 00 0a}  //weight: 3, accuracy: High
+        $x_2_2 = {72 01 00 00 70 0a 28 ?? 00 00 0a 0b 07 72 ?? 00 00 70 28 ?? 00 00 0a 0c 07 72 ?? 00 00 70 28 ?? 00 00 0a 0d 14 13 04 12 05 fe 15 03 00 00 02 12 06 fe 15 04 00 00 02 73 ?? 00 00 0a 13 07}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
