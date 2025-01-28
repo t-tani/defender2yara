@@ -45,3 +45,24 @@ rule Trojan_Win32_Potao_B_2147648018_0
         (2 of ($x*))
 }
 
+rule Trojan_Win32_Potao_MKV_2147931752_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Potao.MKV!MTB"
+        threat_id = "2147931752"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Potao"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {2b c8 0f b6 4c 11 ff 30 0c 02 8b 73 0c 0f b7 53 ?? 0f b6 0c 06 2b d0 30 4c 32 ff 0f b7 4b 10 8b 53 0c 2b c8 40 0f b6 4c 11 ?? 30 4c 02 ff 0f b7 4b 10 d1 e9 3b c1 7c}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
