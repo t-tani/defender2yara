@@ -7885,3 +7885,24 @@ rule Trojan_MSIL_Formbook_KAW_2147931295_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Formbook_AUJ_2147931781_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Formbook.AUJ!MTB"
+        threat_id = "2147931781"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Formbook"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {03 11 05 9a 28 81 01 00 0a 20 98 00 00 00 da b4 13 06 09 11 06 6f 82 01 00 0a 00 11 05 17 d6 13 05 11 05 11 04}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

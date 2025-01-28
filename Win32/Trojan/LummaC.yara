@@ -2022,6 +2022,27 @@ rule Trojan_Win32_LummaC_GTK_2147929479_1
         threshold = "10"
         strings_accuracy = "Low"
     strings:
+        $x_10_1 = {0f b6 8c 0d ?? ?? ?? ?? 8b 55 ?? 03 55 ?? 0f b6 02 33 c1 8b 4d ?? 03 4d ?? 88 01 50 33 c0}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_LummaC_GTK_2147929479_2
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaC.GTK!MTB"
+        threat_id = "2147929479"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
         $x_5_1 = {88 5b 00 00 2b c1 33 d0 0f af 95}  //weight: 5, accuracy: High
         $x_5_2 = {6a 40 68 00 30 00 00 8b 85 ?? ?? ?? ?? 50 6a 00 ff 95 ?? ?? ?? ?? 89 85 ?? ?? ?? ?? c7 85 ?? ?? ?? ?? d0 f9 82 20 83 bd}  //weight: 5, accuracy: Low
     condition:
@@ -2029,7 +2050,7 @@ rule Trojan_Win32_LummaC_GTK_2147929479_1
         (all of ($x*))
 }
 
-rule Trojan_Win32_LummaC_GTK_2147929479_2
+rule Trojan_Win32_LummaC_GTK_2147929479_3
 {
     meta:
         author = "defender2yara"

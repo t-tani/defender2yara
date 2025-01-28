@@ -299,6 +299,31 @@ rule Trojan_Win32_ICLoader_EM_2147888905_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = ".aqrsvtt.1.12264" ascii //weight: 1
+        $x_1_2 = "WNetGetConnectionW" ascii //weight: 1
+        $x_1_3 = "BringWindowToTop" ascii //weight: 1
+        $x_1_4 = "CsrClientCallServer" ascii //weight: 1
+        $x_1_5 = "alizeThunk" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_ICLoader_EM_2147888905_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ICLoader.EM!MTB"
+        threat_id = "2147888905"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ICLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "10"
         strings_accuracy = "High"
     strings:

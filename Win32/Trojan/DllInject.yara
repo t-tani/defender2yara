@@ -91,6 +91,27 @@ rule Trojan_Win32_DllInject_A_2147833578_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_DllInject_A_2147833578_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/DllInject.A!MTB"
+        threat_id = "2147833578"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "DllInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "Low"
+    strings:
+        $x_7_1 = {15 10 ff 15 00 ?? 11 10 6a 00 6a 00 6a 01 68 ?? ?? 15 10 ff 15 04 ?? 11 10 c7 05 ?? ?? 15 10 0c 00 00 00 c7 05}  //weight: 7, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win32_DllInject_MW_2147833805_0
 {
     meta:

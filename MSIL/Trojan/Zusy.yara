@@ -2802,3 +2802,26 @@ rule Trojan_MSIL_Zusy_GD_2147931603_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Zusy_SL_2147931780_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Zusy.SL!MTB"
+        threat_id = "2147931780"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {11 05 11 0a 8f 19 00 00 01 25 47 08 d2 61 d2 52 11 0a 20 ff 00 00 00 5f 2d 0b 08 08 5a 20 b7 5c 8a 00 6a 5e 0c 11 0a 17 58 13 0a 11 0a 11 05 8e 69 32 cd}  //weight: 2, accuracy: High
+        $x_2_2 = "server.Resources.resources" ascii //weight: 2
+        $x_2_3 = "Gatphor Pineice All Right Reserved" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
