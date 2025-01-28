@@ -3725,3 +3725,50 @@ rule Trojan_Win32_LummaStealer_NE_2147931489_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_LummaStealer_GPPG_2147931803_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaStealer.GPPG!MTB"
+        threat_id = "2147931803"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {89 c1 80 c1 ?? 30 4c 04 02 40 83 f8 14 75 f1}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_LummaStealer_GC_2147931814_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaStealer.GC!MTB"
+        threat_id = "2147931814"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "main.CocLYFOOoa" ascii //weight: 2
+        $x_3_2 = "main.lFDfigPOFq" ascii //weight: 3
+        $x_1_3 = "main.RDF" ascii //weight: 1
+        $x_1_4 = "main.CONTEXT" ascii //weight: 1
+        $x_1_5 = "XORKey" ascii //weight: 1
+        $x_2_6 = "main.ISLAdTJUKL" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

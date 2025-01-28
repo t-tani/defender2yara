@@ -194,3 +194,27 @@ rule Trojan_AndroidOS_Arsink_H_2147925839_0
         (all of ($x*))
 }
 
+rule Trojan_AndroidOS_Arsink_X_2147931872_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:AndroidOS/Arsink.X!MTB"
+        threat_id = "2147931872"
+        type = "Trojan"
+        platform = "AndroidOS: Android operating system"
+        family = "Arsink"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "EvilRat" ascii //weight: 1
+        $x_1_2 = "DemonSen" ascii //weight: 1
+        $x_1_3 = "TheEvil Camera" ascii //weight: 1
+        $x_1_4 = "hide_app" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

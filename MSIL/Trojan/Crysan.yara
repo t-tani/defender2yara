@@ -2065,3 +2065,27 @@ rule Trojan_MSIL_Crysan_PLLZH_2147930989_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Crysan_CCJR_2147931800_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Crysan.CCJR!MTB"
+        threat_id = "2147931800"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Crysan"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "tDActIQ7U7SS4ebJS7EaOA==" ascii //weight: 2
+        $x_1_2 = "HfgOq4jUIgE=" ascii //weight: 1
+        $x_1_3 = "c:\\temp\\Assembly.exe" ascii //weight: 1
+        $x_1_4 = "Bcifjhzvuw" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

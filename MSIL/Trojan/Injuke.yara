@@ -3304,3 +3304,35 @@ rule Trojan_MSIL_Injuke_SGUD_2147930117_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Injuke_GA_2147931815_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Injuke.GA!MTB"
+        threat_id = "2147931815"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Injuke"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "15"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = "YzMyMTVmZTM3MmQwNWZjMDkxNzY2NTRiZGEyYzhhMDIyZjY2ZTg1MDBkN2U4OWNmYTliM2NmNTkzYjY5MjVmZQ==" wide //weight: 3
+        $x_1_2 = "GetDelegateForFunctionPointer" wide //weight: 1
+        $x_2_3 = "file:///" wide //weight: 2
+        $x_1_4 = "{11111-22222-10009-11111}" wide //weight: 1
+        $x_1_5 = "{11111-22222-50001-00000}" wide //weight: 1
+        $x_1_6 = "{11111-22222-20001-00001}" wide //weight: 1
+        $x_1_7 = "{11111-22222-20001-00002}" wide //weight: 1
+        $x_1_8 = "{11111-22222-30001-00001}" wide //weight: 1
+        $x_1_9 = "{11111-22222-30001-00002}" wide //weight: 1
+        $x_1_10 = "{11111-22222-40001-00001}" wide //weight: 1
+        $x_1_11 = "{11111-22222-40001-00002}" wide //weight: 1
+        $x_1_12 = "$this.SnapToGrid" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

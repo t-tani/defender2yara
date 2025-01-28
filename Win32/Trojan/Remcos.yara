@@ -2660,3 +2660,24 @@ rule Trojan_Win32_Remcos_LMV_2147931025_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Remcos_GPPB_2147931801_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Remcos.GPPB!MTB"
+        threat_id = "2147931801"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Remcos"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {0f 1f 00 81 f3 ?? ?? ?? ?? 0f 1f 00 0f 1f 00 0f 1f 00 0f 72 f0 ?? 0f 1f 00 0f 1f 00 0f 1f 00 0f 1f 00 0f 1f 00 0f 1f 00 0f 6f c8 0f 1f 00 0f 1f 00 0f 1f 00 0f 1f 00 0f 1f 00 0f 1f 00 66 0f e8 f6 0f 1f 00 0f 1f 00 0f 1f 00 89 1c 08}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

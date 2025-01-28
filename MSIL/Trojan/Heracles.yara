@@ -6574,3 +6574,24 @@ rule Trojan_MSIL_Heracles_GPPA_2147931382_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Heracles_MBWQ_2147931795_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Heracles.MBWQ!MTB"
+        threat_id = "2147931795"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Heracles"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {0a 06 18 6f ?? 00 00 0a 02 06 6f ?? 00 00 0a 06 6f ?? 00 00 0a 28 ?? 00 00 06 0b 72 01 00 00 70}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
