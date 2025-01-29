@@ -4533,3 +4533,28 @@ rule Trojan_Win32_AutoitInject_HNP_2147931549_0
         (1 of ($x*))
 }
 
+rule Trojan_Win32_AutoitInject_AI_2147931966_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AutoitInject.AI!MTB"
+        threat_id = "2147931966"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AutoitInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "HOTKEYSET ( \"Wf4YRwW8mqpUrmdw\" , \"veN2rm\" )" ascii //weight: 1
+        $x_1_2 = "PING ( \"htttp://bRsE69c.net\" , 3266 , 2533 )" ascii //weight: 1
+        $x_1_3 = "FILEDELETE ( @TEMPDIR & \"\\ Admin Tools\\brand_partner_photo.bmp\" )" ascii //weight: 1
+        $x_1_4 = "REGDELETE ( \"HKCU\\Control Panel\\Desktop\" , \"Eeu9Wi62YDhTI4iJ\" )" ascii //weight: 1
+        $x_1_5 = "FILEINSTALL ( \"bankrupture\" , @TEMPDIR & \"\\bankrupture\" , 1 )" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
