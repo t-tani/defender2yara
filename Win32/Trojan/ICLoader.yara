@@ -1125,6 +1125,28 @@ rule Trojan_Win32_ICLoader_GTM_2147930057_0
         threshold = "10"
         strings_accuracy = "Low"
     strings:
+        $x_5_1 = {00 c7 44 24 08 04 3a 5c 00 01 04 24}  //weight: 5, accuracy: High
+        $x_5_2 = {8b 44 24 40 8b 5e 0c 00 01 30 89 ?? ?? ?? ?? 00 89 ?? ?? ?? ?? 08 00 00 01 34 24}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_ICLoader_GTM_2147930057_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ICLoader.GTM!MTB"
+        threat_id = "2147930057"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ICLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
         $x_10_1 = {55 8b ec 6a ff 68 ?? 57 4c 00 68 ?? f5 4b 00 64 a1 00 00 00 00 50 64 89 25 00 00 00 00 83 ec 58 53 56 57 89 65 ?? ff 15}  //weight: 10, accuracy: Low
     condition:
         (filesize < 20MB) and
@@ -1323,5 +1345,27 @@ rule Trojan_Win32_ICLoader_BR_2147931797_0
     condition:
         (filesize < 20MB) and
         (1 of ($x*))
+}
+
+rule Trojan_Win32_ICLoader_CCJT_2147931937_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ICLoader.CCJT!MTB"
+        threat_id = "2147931937"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ICLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {0b c8 33 d0 89 4c 24 00 33 c9 89 4c 24 04 [0-6] df 6c 24 00}  //weight: 2, accuracy: Low
+        $x_1_2 = {89 0e ff 15 ?? ?? 89 00 a0 ?? ?? 8a 00 8a 0d ?? ?? 8a 00 8b 15 ?? ?? 8a 00 22 c8 a1 ?? ?? 8a 00 88 0d ?? ?? 8a 00 8b c8 8b 3d ?? ?? 89 00 c1 e9 02 2b d1 33 c9}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
 }
 

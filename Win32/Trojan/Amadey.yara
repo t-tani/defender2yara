@@ -2687,6 +2687,33 @@ rule Trojan_Win32_Amadey_NA_2147903515_1
         (all of ($x*))
 }
 
+rule Trojan_Win32_Amadey_NB_2147903516_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Amadey.NB!MTB"
+        threat_id = "2147903516"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Amadey"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "&= CHR ( RANDOM ( 97 , 122 , 1 ) )" ascii //weight: 2
+        $x_1_2 = "&= STRINGMID ( $CHARS , RANDOM ( 1 , STRINGLEN ( $CHARS ) , 1 ) , 1 )" ascii //weight: 1
+        $x_1_3 = "RUN ( @COMSPEC & \" /c schtasks /create /tn \" &" ascii //weight: 1
+        $x_1_4 = "script = decodeURIComponent" ascii //weight: 1
+        $x_1_5 = "STRINGREPLACE ( $EXENAME , \"\\\" , \"%5C\" ) ) &" ascii //weight: 1
+        $x_1_6 = "%50%6f%77%65%72%53%68%65%6c%6c%20%2d%57%69%6e%64%6f%77%53%74%79%6c%65%20%48%" ascii //weight: 1
+        $x_1_7 = "%27%3b%28%4e%65%77%2d%4f%62%6a%65%63%74%20%53%79%73%74%65%6d%2e%4e%65%74%2e%57%65%62%43%" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win32_Amadey_KL_2147904617_0
 {
     meta:

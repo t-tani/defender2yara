@@ -3772,3 +3772,25 @@ rule Trojan_Win32_LummaStealer_GC_2147931814_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_LummaStealer_SKE_2147931944_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaStealer.SKE!MTB"
+        threat_id = "2147931944"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {53 89 b5 10 f9 ff ff ff 15 80 02 44 00 89 ?? ?? ?? ff ff 33 db 8d 85 f0 f5 ff ff 89 ?? ?? ?? ff ff 50 53 ff 15 28 02 44 00 8b 35 30 02 44 00 eb 1a}  //weight: 1, accuracy: Low
+        $x_1_2 = "Screenshoter: Screen Uploader" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -731,3 +731,24 @@ rule Trojan_Win32_DllInject_XZ_2147903389_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_DllInject_SUP_2147931946_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/DllInject.SUP!MTB"
+        threat_id = "2147931946"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "DllInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {64 ff 30 64 89 20 8b c3 e8 98 b8 fd ff 50 e8 52 69 fe ff 89 45 f8 33 c0 5a 59 59 64 89 10}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

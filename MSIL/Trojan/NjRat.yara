@@ -3202,3 +3202,27 @@ rule Trojan_MSIL_NjRat_AYA_2147922982_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_NjRat_SAB_2147931942_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/NjRat.SAB!MTB"
+        threat_id = "2147931942"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "NjRat"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {4d 00 69 00 63 00 72 00 6f 00 73 00 6f 00 66 00 74 00 5c 00 57 00 69 00 6e 00 64 00 6f 00 77 00 73 00 5c 00 [0-15] 2e 00 65 00 78 00 65 00}  //weight: 1, accuracy: Low
+        $x_1_2 = "Add-MpPreference -ExclusionPath '" wide //weight: 1
+        $x_1_3 = "Stop-Process -Name 'SecurityHealthSystray' -Force;" wide //weight: 1
+        $x_1_4 = "-ExecutionPolicy Bypass" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

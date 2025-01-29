@@ -4936,3 +4936,29 @@ rule Trojan_Win32_Guloader_ASG_2147931798_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Guloader_RVDX_2147931936_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Guloader.RVDX!MTB"
+        threat_id = "2147931936"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Guloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "\\deambulatories\\irrational\\amarillo" ascii //weight: 1
+        $x_1_2 = "Perfuses\\fraflytningen" ascii //weight: 1
+        $x_1_3 = "%kogerskerne%\\preacute\\patenterings" ascii //weight: 1
+        $x_1_4 = "ajatsa drowns immunogenicity" ascii //weight: 1
+        $x_1_5 = "foul homburg" ascii //weight: 1
+        $x_1_6 = "ngo forlener.exe" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
