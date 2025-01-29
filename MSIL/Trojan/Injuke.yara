@@ -3336,3 +3336,26 @@ rule Trojan_MSIL_Injuke_GA_2147931815_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Injuke_MBWQ_2147931876_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Injuke.MBWQ!MTB"
+        threat_id = "2147931876"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Injuke"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "System.Diagnostics.StackTrace" wide //weight: 2
+        $x_1_2 = {61 00 4f 00 79 00 48 00 4e 00 00 47 62 00 61}  //weight: 1, accuracy: High
+        $x_1_3 = {6c 00 64 00 72 00 2e 00 65 00 78 00 65}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
