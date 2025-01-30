@@ -20,3 +20,29 @@ rule Trojan_Win32_AccessibilityEscalation_GR_2147755306_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_AccessibilityEscalation_C_2147931988_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/AccessibilityEscalation.C"
+        threat_id = "2147931988"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "AccessibilityEscalation"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_CMDHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "utilman.exe" wide //weight: 1
+        $x_1_2 = "sethc.exe" wide //weight: 1
+        $x_1_3 = "osk.exe" wide //weight: 1
+        $x_1_4 = "magnify.exe" wide //weight: 1
+        $x_1_5 = "narrator.exe" wide //weight: 1
+        $x_1_6 = "displayswitch.exe" wide //weight: 1
+        $x_1_7 = "atbroker.exe" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (1 of ($x*))
+}
+
