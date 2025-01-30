@@ -4962,3 +4962,29 @@ rule Trojan_Win32_Guloader_RVDX_2147931936_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Guloader_RSA_2147932054_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Guloader.RSA!MTB"
+        threat_id = "2147932054"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Guloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "regnskovs\\underprogrammers" ascii //weight: 1
+        $x_1_2 = "\\lsesvage\\balestra.bis" ascii //weight: 1
+        $x_1_3 = "sommerferier jackrolls" ascii //weight: 1
+        $x_1_4 = "gravestones domorganister orsino" ascii //weight: 1
+        $x_1_5 = "overpresumptiveness fiberizing etapevist" ascii //weight: 1
+        $x_1_6 = "sensationslyst melassigenic cuminole" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

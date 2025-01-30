@@ -963,3 +963,25 @@ rule Trojan_Win32_BlackMoon_ABMN_2147931211_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_BlackMoon_GTS_2147932046_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/BlackMoon.GTS!MTB"
+        threat_id = "2147932046"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "BlackMoon"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {40 46 33 20 20 cd b7 d0 d8 c7 d0 bb ?? ?? ?? ?? 46 34 20 20 cf d4 ca be ?? ?? ?? ?? 20 20 00 20 20 20 41 49}  //weight: 10, accuracy: Low
+        $x_1_2 = "BlackMoon RunTime Error" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

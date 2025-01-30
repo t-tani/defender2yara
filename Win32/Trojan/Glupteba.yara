@@ -9209,3 +9209,66 @@ rule Trojan_Win32_Glupteba_EAH_2147930128_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Glupteba_EACY_2147932048_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Glupteba.EACY!MTB"
+        threat_id = "2147932048"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Glupteba"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {03 d0 d3 e0 c1 ee 05 03 b4 24 e0 02 00 00 03 84 24 d0 02 00 00 89 74 24 10}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Glupteba_EAHH_2147932049_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Glupteba.EAHH!MTB"
+        threat_id = "2147932049"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Glupteba"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {c1 e8 05 03 f2 89 45 fc 8b 45 f4 01 45 fc 8b 5d f8}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Glupteba_EAHC_2147932050_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Glupteba.EAHC!MTB"
+        threat_id = "2147932050"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Glupteba"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {8d a4 24 00 00 00 00 8d 49 00 8b 15 ?? ?? ?? ?? 8a 8c 02 3b 2d 0b 00 8b 15 ?? ?? ?? ?? 88 0c 02 8b 15 ?? ?? ?? ?? 40 3b c2}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

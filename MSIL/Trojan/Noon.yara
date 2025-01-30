@@ -105,3 +105,25 @@ rule Trojan_MSIL_Noon_MBYP_2147912642_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Noon_PLIPH_2147932024_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Noon.PLIPH!MTB"
+        threat_id = "2147932024"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Noon"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "Low"
+    strings:
+        $x_6_1 = {01 25 16 02 1f 10 63 20 ?? 00 00 00 5f d2 9c 25 17 02 1e 63 20 ?? 00 00 00 5f d2 9c 25 18 02 20 ?? 00 00 00 5f d2 9c 2a}  //weight: 6, accuracy: Low
+        $x_5_2 = {0f 00 18 1f 5f 28 ?? 00 00 06 1f 10 62 0f 00 20 9d 02 00 00 20 c3 02 00 00 28 ?? 00 00 06 1e 62 60 0f 00 28 ?? 00 00 0a 60 2a}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

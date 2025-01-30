@@ -5723,3 +5723,24 @@ rule Trojan_Win32_Zusy_AXJA_2147931986_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Zusy_EACQ_2147932047_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zusy.EACQ!MTB"
+        threat_id = "2147932047"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {88 45 fc 8b 45 e8 03 45 f4 8a 4d fc 88 08}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

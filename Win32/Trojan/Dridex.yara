@@ -9544,3 +9544,24 @@ rule Trojan_Win32_Dridex_SZUK_2147920644_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Dridex_MWV_2147932055_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Dridex.MWV!MTB"
+        threat_id = "2147932055"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Dridex"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {01 d7 8b 54 24 34 8b 74 24 10 29 f2 89 54 24 58 89 7c 24 38 35 3a ce 26 18 09 c8 c7 44 24 ?? ad 85 92 7a 89 44 24 04 74 b0 eb}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

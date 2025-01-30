@@ -8555,3 +8555,24 @@ rule Trojan_Win32_SmokeLoader_BE_2147931030_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_SmokeLoader_EAQP_2147932052_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/SmokeLoader.EAQP!MTB"
+        threat_id = "2147932052"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "SmokeLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {8b 45 08 8b 0d ?? ?? ?? ?? 8a 8c 01 d6 38 00 00 8b 15 ?? ?? ?? ?? 88 0c 02 c9}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -5793,6 +5793,29 @@ rule Trojan_MSIL_AgentTesla_BE_2147763521_2
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AgentTesla_RSA_2147764446_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.RSA!MTB"
+        threat_id = "2147764446"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {57 15 a2 09 09 09 00 00 00 fa 01 33 00 16 00 00 01 00 00 00 98 00 00 00 0d 00 00 00 4e 00 00 00 4f 00 00 00 4a 00 00 00 0a 01 00 00 3f 00 00 00 22 00 00 00 05 00 00 00 0d 00 00 00 0f 00 00 00 05 00 00 00 01 00 00 00 08 00 00 00 06 00 00 00 01}  //weight: 1, accuracy: High
+        $x_1_2 = "16031b9e-bcfe-42ca-9442-4d66d1b95cef" ascii //weight: 1
+        $x_1_3 = "IgniteFitnessTracker" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_AgentTesla_TA_2147764993_0
 {
     meta:
