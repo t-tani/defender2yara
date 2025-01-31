@@ -81,9 +81,8 @@ rule Trojan_Win32_Lummac_SC_2147931978_0
         $x_10_4 = {8b 4c 24 04 8b 14 24 31 ca f7 d2 21 ca 29 d0}  //weight: 10, accuracy: High
         $x_10_5 = {89 f1 c1 e9 0c 80 c9 e0 88 08 89 f1 c1 e9 06 80 e1 3f 80 c9 80 88 48 01 80 e2 3f}  //weight: 10, accuracy: High
         $x_10_6 = {32 1d 30 f9 48 77 82 5a 3c bf 73 7f dd 4f 15 75}  //weight: 10, accuracy: High
-        $x_10_7 = {fe dc ba 98 76 54 32 10 f0 e1 d2 c3}  //weight: 10, accuracy: High
-        $x_5_8 = {02 0f b7 16 83 c6 02 66 85 d2 75 ef 66 c7 00 00 00 0f b7 11}  //weight: 5, accuracy: High
-        $x_5_9 = {0c 0f b7 4c 24 04 66 89 0f 83 c7 02 39 f7 73 0c 01 c3 39 eb}  //weight: 5, accuracy: High
+        $x_5_7 = {02 0f b7 16 83 c6 02 66 85 d2 75 ef 66 c7 00 00 00 0f b7 11}  //weight: 5, accuracy: High
+        $x_5_8 = {0c 0f b7 4c 24 04 66 89 0f 83 c7 02 39 f7 73 0c 01 c3 39 eb}  //weight: 5, accuracy: High
     condition:
         (filesize < 20MB) and
         (

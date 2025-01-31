@@ -42,3 +42,24 @@ rule Trojan_Win32_Darkgate_YAB_2147928173_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Darkgate_YAC_2147932096_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Darkgate.YAC!MTB"
+        threat_id = "2147932096"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Darkgate"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "Low"
+    strings:
+        $x_11_1 = {2d 67 12 13 00 01 87 ?? ?? ?? ?? a1 ?? ?? ?? ?? 8b 80 ?? ?? ?? ?? 33 87 ?? ?? ?? ?? 83 e8 ?? 31 87 ?? ?? ?? ?? 8b 87 ?? ?? ?? ?? 0f af 87}  //weight: 11, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

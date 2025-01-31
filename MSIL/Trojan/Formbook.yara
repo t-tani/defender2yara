@@ -7929,3 +7929,26 @@ rule Trojan_MSIL_Formbook_PLIOH_2147931917_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Formbook_NOS_2147932117_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Formbook.NOS!MTB"
+        threat_id = "2147932117"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Formbook"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {03 2d 0a 04 1f 41 fe 04 16 fe 01 2b 01 17 0b}  //weight: 2, accuracy: High
+        $x_1_2 = {25 17 6f 33 01 00 0a 0b 03 17 da 0d 18 13 04}  //weight: 1, accuracy: High
+        $x_1_3 = {1f 7c 07 1b 5d 17 d6 ?? ?? 00 00 0a ?? ?? 00 00 0a 07 18 d6 0b 07 06}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
