@@ -5569,6 +5569,27 @@ rule Trojan_Win32_Zusy_AAIA_2147929792_0
         (1 of ($x*))
 }
 
+rule Trojan_Win32_Zusy_EAKJ_2147929831_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zusy.EAKJ!MTB"
+        threat_id = "2147929831"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {2b d8 88 5d fc 8b 45 e8 03 45 f4 8a 4d fc 88 08}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win32_Zusy_GF_2147929957_0
 {
     meta:

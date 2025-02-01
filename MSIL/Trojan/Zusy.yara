@@ -2825,3 +2825,31 @@ rule Trojan_MSIL_Zusy_SL_2147931780_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Zusy_NITA_2147932225_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Zusy.NITA!MTB"
+        threat_id = "2147932225"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "9"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {13 1b 11 1b 14 6f 02 00 00 2b 26 06 6f 74 00 00 06 2d 10 11 1c 7b 5b 00 00 04 1f 64 6f 1a 01 00 0a 2c e8 11 05 6f 1b 01 00 0a 11 05 6f 1c 01 00 0a 6f 1d 01 00 0a 1b 33 1d 11 1c 7b 5a 00 00 04 11 05 6f 1c 01 00 0a 6f 1e 01 00 0a 6f e6 00 00 0a 6f e7 00 00 0a de 0c}  //weight: 2, accuracy: High
+        $x_1_2 = {17 28 d0 00 00 0a 0b 12 01 28 d1 00 00 0a 1f 0d 33 07 28 d2 00 00 0a 2b 4f 12 01 28 d1 00 00 0a 1e 33 23 06 6f d3 00 00 0a 16 31 d4 06 06 6f d3 00 00 0a 17 59 6f d4 00 00 0a 72 49 02 00 70 28 d5 00 00 0a 2b ba 12 01 28 d6 00 00 0a 2c b1 06 12 01 28 d6 00 00 0a 6f ce 00 00 0a 72 51 02 00 70 28 d5 00 00 0a 2b 98}  //weight: 1, accuracy: High
+        $x_1_3 = "Start-Process PowerShell" ascii //weight: 1
+        $x_1_4 = "ExecutionPolicy Bypass" ascii //weight: 1
+        $x_1_5 = "USERNAME_TARGET_CREDENTIALS" ascii //weight: 1
+        $x_1_6 = "set_VirtualKeyCode" ascii //weight: 1
+        $x_1_7 = "set_ControlKeyState" ascii //weight: 1
+        $x_1_8 = "PromptForPassword" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -3243,3 +3243,25 @@ rule Trojan_Win32_CoinMiner_HNAC_2147931547_0
         )
 }
 
+rule Trojan_Win32_CoinMiner_GNT_2147932222_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/CoinMiner.GNT!MTB"
+        threat_id = "2147932222"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "CoinMiner"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {4a 1c 6f a3 ?? ?? ?? ?? 6b 37 70 11 56 ?? ec 93}  //weight: 5, accuracy: Low
+        $x_5_2 = {30 53 1d 2c 7c b3 e7 4a}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

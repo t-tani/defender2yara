@@ -32,6 +32,27 @@ rule TrojanDownloader_Win32_Satacom_ARA_2147830748_0
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {32 04 39 88 04 3b 47 3b 7d 18 72 cd}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule TrojanDownloader_Win32_Satacom_ARA_2147830748_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:Win32/Satacom.ARA!MTB"
+        threat_id = "2147830748"
+        type = "TrojanDownloader"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Satacom"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
         strings_accuracy = "Low"
     strings:
         $x_2_1 = {fe c2 0f b6 d2 8b 4c ?? ?? 8d 04 0b 0f b6 d8 8b 44 ?? ?? 89 44 ?? ?? 89 4c ?? ?? 02 c8 0f b6 c1 8b 4d f8 8a 44 ?? ?? 30 04 ?? ?? 3b ?? fc 7c d0}  //weight: 2, accuracy: Low
@@ -40,7 +61,7 @@ rule TrojanDownloader_Win32_Satacom_ARA_2147830748_0
         (all of ($x*))
 }
 
-rule TrojanDownloader_Win32_Satacom_ARA_2147830748_1
+rule TrojanDownloader_Win32_Satacom_ARA_2147830748_2
 {
     meta:
         author = "defender2yara"

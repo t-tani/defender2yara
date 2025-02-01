@@ -591,3 +591,24 @@ rule Trojan_Win64_Latrodectus_ASJ_2147930148_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Latrodectus_VKZ_2147932184_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Latrodectus.VKZ!MTB"
+        threat_id = "2147932184"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Latrodectus"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {48 31 d2 c4 c1 55 ef e9 49 f7 f1 66 0f 67 d7 45 8a 14 10 ?? 66 0f 6f fd 66 0f eb d3 66 0f fe f2 66 0f fe fa 66 0f 6f d8 44 30 14 0f 66 0f f6 c8 51 48 31 f9 59 48 ff c1 66 0f 73 ff ?? 48 89 c8 48 81 f9 d3 3b 01 00 76}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

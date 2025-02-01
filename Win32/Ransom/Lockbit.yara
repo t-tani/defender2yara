@@ -204,3 +204,29 @@ rule Ransom_Win32_Lockbit_SS_2147909068_0
         (all of ($x*))
 }
 
+rule Ransom_Win32_Lockbit_NIT_2147932224_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win32/Lockbit.NIT!MTB"
+        threat_id = "2147932224"
+        type = "Ransom"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Lockbit"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {8b 54 30 02 8b 0c fb 8b c1 c1 e8 18 88 46 fe 8b c1 c1 e8 10 88 46 ff 8b c1 c1 e8 08 88 06 8b c2 c1 e8 18 8d 76 08 88 46 fa 8b c2 c1 e8 10 88 46 fb 8b c2 c1 e8 08 47 88 46 fc 8b 45 fc 88 4e f9 88 56 fd 83 ff 08}  //weight: 2, accuracy: High
+        $x_1_2 = {4a 8d 76 fc 8b 46 04 85 d2 7e 04 8b 0e eb 02 8b cf c1 e9 1d c1 e0 03 0b c8 89 4c 95 e8 85 d2 75 df}  //weight: 1, accuracy: High
+        $x_1_3 = "Tor Browser" ascii //weight: 1
+        $x_1_4 = "data is completely encrypted" ascii //weight: 1
+        $x_1_5 = "decryption keys" ascii //weight: 1
+        $x_1_6 = "Reyonpharm_hacked" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

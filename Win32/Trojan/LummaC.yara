@@ -1854,6 +1854,27 @@ rule Trojan_Win32_LummaC_NLH_2147929117_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_LummaC_EAI_2147929133_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaC.EAI!MTB"
+        threat_id = "2147929133"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {8b c6 c1 e8 05 89 45 f8 8b 45 e4 01 45 f8 8b 4d f0 c1 e6 04 03 75 d8 8d 14 0b 33 f2 81 3d}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win32_LummaC_SXOS_2147929153_0
 {
     meta:

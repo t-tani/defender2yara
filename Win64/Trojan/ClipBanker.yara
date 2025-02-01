@@ -886,3 +886,25 @@ rule Trojan_Win64_ClipBanker_ACA_2147928356_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_ClipBanker_AUJ_2147932197_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/ClipBanker.AUJ!MTB"
+        threat_id = "2147932197"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "ClipBanker"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {30 8c 24 ea 00 00 00 30 8c 24 eb 00 00 00 30 8c 24 ec 00 00 00 30 8c 24 ed 00 00 00 30 8c 24 ee 00 00 00 30 8c 24 ef 00 00 00 32 d1 88 94 24 f0 00 00 00}  //weight: 1, accuracy: High
+        $x_1_2 = "ChromiumData.exe" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

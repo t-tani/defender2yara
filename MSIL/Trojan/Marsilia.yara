@@ -1310,6 +1310,27 @@ rule Trojan_MSIL_Marsilia_ARAZ_2147928952_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Marsilia_EAFZ_2147929550_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Marsilia.EAFZ!MTB"
+        threat_id = "2147929550"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Marsilia"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {08 11 05 18 5b 07 11 05 18 6f 2e 00 00 0a 1f 10 28 2f 00 00 0a 9c 11 05 18 d6 13 05 11 05 11 04 31 de}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_Marsilia_AYC_2147929770_0
 {
     meta:

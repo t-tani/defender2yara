@@ -752,3 +752,32 @@ rule Trojan_Win32_DllInject_SUP_2147931946_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_DllInject_NIT_2147932228_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/DllInject.NIT!MTB"
+        threat_id = "2147932228"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "DllInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "14"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "DLL Injected!" ascii //weight: 2
+        $x_2_2 = "PROCESS INJECTION" ascii //weight: 2
+        $x_2_3 = "_Query_perf_counter" ascii //weight: 2
+        $x_2_4 = "Process opened successfully" ascii //weight: 2
+        $x_2_5 = "Release\\skeet2.pdb" ascii //weight: 2
+        $x_1_6 = "terminate" ascii //weight: 1
+        $x_1_7 = "CreateToolhelp32Snapshot" ascii //weight: 1
+        $x_1_8 = "WriteProcessMemory" ascii //weight: 1
+        $x_1_9 = "VirtualAllocEx" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

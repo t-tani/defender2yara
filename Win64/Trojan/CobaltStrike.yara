@@ -2200,27 +2200,6 @@ rule Trojan_Win64_CobaltStrike_BI_2147814907_1
         (all of ($x*))
 }
 
-rule Trojan_Win64_CobaltStrike_BI_2147814907_2
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "Trojan:Win64/CobaltStrike.BI!MTB"
-        threat_id = "2147814907"
-        type = "Trojan"
-        platform = "Win64: Windows 64-bit platform"
-        family = "CobaltStrike"
-        severity = "Critical"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "1"
-        strings_accuracy = "Low"
-    strings:
-        $x_1_1 = {0f b6 09 41 30 08 66 89 43 ?? 48 8b 43 ?? 80 3c 10 ?? 48 ?? ?? ?? ?? 0f b6 00 88 44 24 ?? 0f 85 ?? ?? ?? ?? 83 c8 ?? 4c ?? ?? ?? ?? 41 88 01 48 ?? ?? ?? 80 3c 11 ?? 0f 88 ?? ?? ?? ?? 48 ?? ?? ?? ?? 83 e0 ?? 88 01}  //weight: 1, accuracy: Low
-    condition:
-        (filesize < 20MB) and
-        (all of ($x*))
-}
-
 rule Trojan_Win64_CobaltStrike_ABA_2147815030_0
 {
     meta:
@@ -16066,6 +16045,31 @@ rule Trojan_Win64_CobaltStrike_OTV_2147931961_0
         strings_accuracy = "Low"
     strings:
         $x_5_1 = {2d cb 3d 00 00 88 44 24 31 48 8b 05 16 2c 18 00 48 69 c0 63 4f 00 00 0f b7 0d ?? ?? ?? ?? 48 03 c8 48 8b c1 66 89 05 ?? ?? ?? ?? 48 63 44 24 54 48 b9 07 61 c5 2f d5 28 03 00 48 2b c1 89 05 eb 2b 18 00 48 8b 44 24 78 48 8b 0d e7 2b 18 00 48 2b c8 48 8b c1 48 8b 0d ?? ?? ?? ?? 48 33 c8 48 8b c1 48 89 05 cd 2b 18 00}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_CobaltStrike_DLR_2147932174_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CobaltStrike.DLR!MTB"
+        threat_id = "2147932174"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CobaltStrike"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {c7 44 24 20 40 00 00 00 41 b9 00 30 00 00 49 89 d0 ba 00 00 00 00 48 89 c1 48 8b 05 66 6a 00 00 ff d0}  //weight: 2, accuracy: High
+        $x_1_2 = "maskdesk.info" ascii //weight: 1
+        $x_1_3 = "/file" ascii //weight: 1
+        $x_1_4 = "ResumeThread" ascii //weight: 1
+        $x_1_5 = "System32\\notepad.exe" ascii //weight: 1
     condition:
         (filesize < 20MB) and
         (all of ($x*))

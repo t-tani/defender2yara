@@ -6400,6 +6400,27 @@ rule Trojan_MSIL_Heracles_AOGA_2147928498_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Heracles_EANT_2147928696_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Heracles.EANT!MTB"
+        threat_id = "2147928696"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Heracles"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {00 06 72 a5 01 00 70 7e 1d 00 00 04 16 72 a5 01 00 70 28 6f 00 00 0a 6f 70 00 00 0a 28 71 00 00 0a 28 72 00 00 0a 6f 73 00 00 0a 00 00 08 17 58 0c 08 07 fe 02 16 fe 01 0d 09 2d c4}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_Heracles_SIK_2147928834_0
 {
     meta:

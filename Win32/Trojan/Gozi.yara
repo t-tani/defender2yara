@@ -3309,3 +3309,24 @@ rule Trojan_Win32_Gozi_KYY_2147921731_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Gozi_EAPL_2147929393_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Gozi.EAPL!MTB"
+        threat_id = "2147929393"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Gozi"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {c1 e8 05 03 44 24 30 33 d0 c7 05 d8 91 4f 00 00 00 00 00 8b 44 24 18 03 c7 33 d0 a1}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
