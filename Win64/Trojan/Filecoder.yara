@@ -68,3 +68,29 @@ rule Trojan_Win64_Filecoder_PAZ_2147917931_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Filecoder_BA_2147932266_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Filecoder.BA!MTB"
+        threat_id = "2147932266"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Filecoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "Greetings from Cs-137 Group" ascii //weight: 1
+        $x_1_2 = "Your files have been encrypted with ChaCha20" ascii //weight: 1
+        $x_1_3 = "The encryption key was randomly generated and not saved because this is development version" ascii //weight: 1
+        $x_1_4 = "This means your files cannot be recovered" ascii //weight: 1
+        $x_1_5 = "Go away security research,," ascii //weight: 1
+        $x_1_6 = "ussadmin.exe celete shadows /all" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
