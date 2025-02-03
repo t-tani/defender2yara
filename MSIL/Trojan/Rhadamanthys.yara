@@ -147,3 +147,36 @@ rule Trojan_MSIL_Rhadamanthys_ARM_2147927636_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Rhadamanthys_BK_2147932339_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Rhadamanthys.BK!MTB"
+        threat_id = "2147932339"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Rhadamanthys"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {13 06 11 06 07 16 07 8e 69 6f ?? 00 00 0a 73 ?? 00 00 0a 16 73 ?? 00 00 0a 13 07 11 07 14 fe 01 13 10 11 10 2d 4c}  //weight: 3, accuracy: Low
+        $x_1_2 = "_k_k Ll V.mTN b p_hm5_M G1W5.L:" wide //weight: 1
+        $x_1_3 = "9qLYTBA0MX=rN&" wide //weight: 1
+        $x_2_4 = "P.4.g_j_h M_e.4uN T G h.wJG_C.K v.7 R" wide //weight: 2
+        $x_1_5 = "Z F u.i-wSpu M u_DK d_ai_YU I Z4.2.n.7" wide //weight: 1
+        $x_1_6 = "vvi q_JP7.OAUG_V_yJw z.I y+_i.b.a_b.DQ_xx" wide //weight: 1
+        $x_1_7 = "g.L.Y QA_WwW_M.e k P_b.p.2_M]_t.j.S.x*.ce" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((5 of ($x_1_*))) or
+            ((1 of ($x_2_*) and 3 of ($x_1_*))) or
+            ((1 of ($x_3_*) and 2 of ($x_1_*))) or
+            ((1 of ($x_3_*) and 1 of ($x_2_*))) or
+            (all of ($x*))
+        )
+}
+
