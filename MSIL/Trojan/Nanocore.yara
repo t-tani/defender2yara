@@ -1600,6 +1600,29 @@ rule Trojan_MSIL_Nanocore_ANO_2147842894_1
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Nanocore_ANO_2147842894_2
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Nanocore.ANO!MTB"
+        threat_id = "2147842894"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Nanocore"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {16 0a 2b 0e 02 03 06 04 05 28 ?? 00 00 06 06 17 58 0a 06 02 6f ?? 00 00 0a 2f 09 04 6f ?? 00 00 0a 05 32 e0}  //weight: 3, accuracy: Low
+        $x_2_2 = {16 0a 2b 0d 02 06 03 04 28 ?? 00 00 06 06 17 58 0a 06 02 6f ?? 00 00 0a 2f 09 03 6f ?? 00 00 0a 04 32 e1}  //weight: 2, accuracy: Low
+        $x_1_3 = "TemperatureConverter" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_Nanocore_ABPW_2147843317_0
 {
     meta:

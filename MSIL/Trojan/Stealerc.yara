@@ -556,3 +556,25 @@ rule Trojan_MSIL_Stealerc_NK_2147928019_0
         )
 }
 
+rule Trojan_MSIL_Stealerc_AMDA_2147932347_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Stealerc.AMDA!MTB"
+        threat_id = "2147932347"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Stealerc"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {0a 02 16 02 8e 69 6f ?? 00 00 0a 13 03 20}  //weight: 4, accuracy: Low
+        $x_1_2 = {0a 26 20 00 00 00 00 7e ?? ?? 00 04 7b 40 00 d0 ?? 00 00 01 28 ?? 00 00 0a 11 ?? 6f ?? 00 00 0a 11 ?? a3 ?? 00 00 01 72 ?? 00 00 70}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
