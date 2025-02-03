@@ -1412,3 +1412,32 @@ rule Trojan_Win32_ICLoader_BS_2147932087_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_ICLoader_GLN_2147932310_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ICLoader.GLN!MTB"
+        threat_id = "2147932310"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ICLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {40 00 00 40 2e 64 61 74 61 00 00 00 98 43 40 00 00 00 4a 00 00 32}  //weight: 5, accuracy: High
+        $x_5_2 = {40 00 00 c0 2e 72 73 72 63 00 00 00 68 06 0a 00 00 50 8a}  //weight: 5, accuracy: High
+        $x_5_3 = {40 00 00 40 2e 64 61 74 61 00 00 00 f8 63 00 00 00 b0 23}  //weight: 5, accuracy: High
+        $x_5_4 = {40 00 00 c0 2e 72 73 72 63 00 00 00 00 e4 15}  //weight: 5, accuracy: High
+        $x_10_5 = {2e 72 64 61 74 61 00 00 b4 22 00 00 00 e0 49 00 00 24 00 00 00 c6 49 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 40 2e 64 61 74 61 00 00 00 98 53 40 00 00 10 4a 00 00 32 00 00 00 ea 49 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00 c0 2e 72 73 72 63 00 00 00 08 f5 08 00 00 70 8a 00 00 f6 08 00 00 1c 4a}  //weight: 10, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (
+            ((2 of ($x_5_*))) or
+            ((1 of ($x_10_*))) or
+            (all of ($x*))
+        )
+}
+
