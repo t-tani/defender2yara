@@ -233,3 +233,24 @@ rule Trojan_Win64_BlackWidow_MKZ_2147932214_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_BlackWidow_MKK_2147932379_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/BlackWidow.MKK!MTB"
+        threat_id = "2147932379"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "BlackWidow"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {49 f7 f1 c5 e5 71 f3 07 c4 e3 fd 00 f6 ?? c4 e3 fd 00 ff ?? 45 8a 14 10 c5 ed fd e2 c5 f5 fd f9 c5 e5 fd c3 44 30 14 0f c5 f5 ef c9 c5 e5 75 db 48 ff c1 c5 fd 69 f4 c5 fd 61 c4 48 89 c8 c5 fd 62 c3 48 81 f9 d3 3b 01 00 76}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

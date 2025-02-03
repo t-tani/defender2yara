@@ -1356,3 +1356,26 @@ rule Trojan_Win64_Zusy_GTN_2147932306_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Zusy_GTP_2147932370_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Zusy.GTP!MTB"
+        threat_id = "2147932370"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "discord.gg" ascii //weight: 1
+        $x_1_2 = "Spotify Recoil Macro" ascii //weight: 1
+        $x_2_3 = "discord.com/users/993976505627586591sssssssss" wide //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
