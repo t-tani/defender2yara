@@ -3360,3 +3360,32 @@ rule Trojan_Win32_Neoreblamy_NLK_2147932247_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Neoreblamy_BX_2147932317_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Neoreblamy.BX!MTB"
+        threat_id = "2147932317"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Neoreblamy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {33 d2 8b c6 f7 f1 ff 34 97 ff 34 b3 e8 ?? ?? ff ff 89 04 b3 46 8b 45 f8 03 45 fc 59 59 3b f0 72}  //weight: 5, accuracy: Low
+        $x_5_2 = {33 d2 8b c6 f7 f1 8b 45 f8 ff 34 97 ff 34 b0 e8 ?? ?? ff ff 59 59 8b 4d f8 89 04 b1 46 8b 45 f4 03 c3 3b f0 72}  //weight: 5, accuracy: Low
+        $x_5_3 = {59 33 d2 8b c6 f7 f1 8b 45 08 ff 34 ?? ff 34 b3 e8 ?? ?? ff ff 89 04 b3 46 59 59 3b f7 72}  //weight: 5, accuracy: Low
+        $x_4_4 = {8b 45 08 8b d6 8b 0c b3 83 e2 3f 8b 14 ?? ?? ?? ?? ff ff 89 04 b3 46 3b f7 72}  //weight: 4, accuracy: Low
+        $x_1_5 = {8b c1 23 c2 03 c0 2b c8 8d 04 0a c3}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_4_*) and 1 of ($x_1_*))) or
+            ((1 of ($x_5_*))) or
+            (all of ($x*))
+        )
+}
+

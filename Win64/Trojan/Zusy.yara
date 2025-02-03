@@ -1335,3 +1335,24 @@ rule Trojan_Win64_Zusy_ARAX_2147931743_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Zusy_GTN_2147932306_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Zusy.GTN!MTB"
+        threat_id = "2147932306"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {40 34 52 2a cd fe 40 d4 b6 5e 32 01 bf ?? ?? ?? ?? 40 22 38 0c 32}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
