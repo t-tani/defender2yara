@@ -1462,3 +1462,46 @@ rule Trojan_Win32_ICLoader_ADKA_2147932378_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_ICLoader_GNN_2147932442_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ICLoader.GNN!MTB"
+        threat_id = "2147932442"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ICLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {03 f0 03 f8 ff 24 95 ?? ?? ?? ?? 8b ff 30 3b 63 00 38 3b 63 ?? 48 3b 63 ?? 5c 3b 63 00 8b 45 ?? 5e 5f c9}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_ICLoader_GRN_2147932443_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ICLoader.GRN!MTB"
+        threat_id = "2147932443"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ICLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {40 00 00 c0 2e 72 73 72 63 00 00 00 00 7a 06 00 00 40 24}  //weight: 5, accuracy: High
+        $x_5_2 = {40 00 00 40 2e 64 61 74 61 00 00 00 b8 53 00 00 00 e0 23 00 00 30 00 00 00 c8 23}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
