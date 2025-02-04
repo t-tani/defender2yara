@@ -75,14 +75,13 @@ rule Trojan_Win32_Lummac_SC_2147931978_0
         threshold = "10"
         strings_accuracy = "Low"
     strings:
-        $x_10_1 = {55 89 e5 83 e4 f8 83 ec 10 dd 45 08 dd 54 24 08 8b 4c 24 0c 89 ca c1 ea 14 81 e2 ff 07 00 00 81 fa ff 07 00 00 74 25 66 b8 ff ff 85 d2 75 31 dd 1c 24 b8 ff ff ff 7f 23 44 24 04 31 c9 0b 04 24}  //weight: 10, accuracy: High
-        $x_10_2 = {b0 40 c3 b0 3f c3 89 c8 04 d0 3c 09 77 06 80 c1 04 89 c8 c3}  //weight: 10, accuracy: High
-        $x_10_3 = {b0 40 c3 b0 3f c3 80 f9 30 72 ?? 80 f9 39 77 06 80 c1 04 89 c8 c3}  //weight: 10, accuracy: Low
-        $x_10_4 = {8b 4c 24 04 8b 14 24 31 ca f7 d2 21 ca 29 d0}  //weight: 10, accuracy: High
-        $x_10_5 = {89 f1 c1 e9 0c 80 c9 e0 88 08 89 f1 c1 e9 06 80 e1 3f 80 c9 80 88 48 01 80 e2 3f}  //weight: 10, accuracy: High
-        $x_10_6 = {32 1d 30 f9 48 77 82 5a 3c bf 73 7f dd 4f 15 75}  //weight: 10, accuracy: High
-        $x_5_7 = {02 0f b7 16 83 c6 02 66 85 d2 75 ef 66 c7 00 00 00 0f b7 11}  //weight: 5, accuracy: High
-        $x_5_8 = {0c 0f b7 4c 24 04 66 89 0f 83 c7 02 39 f7 73 0c 01 c3 39 eb}  //weight: 5, accuracy: High
+        $x_10_1 = {b0 40 c3 b0 3f c3 89 c8 04 d0 3c 09 77 06 80 c1 04 89 c8 c3}  //weight: 10, accuracy: High
+        $x_10_2 = {b0 40 c3 b0 3f c3 80 f9 30 72 ?? 80 f9 39 77 06 80 c1 04 89 c8 c3}  //weight: 10, accuracy: Low
+        $x_10_3 = {8b 4c 24 04 8b 14 24 31 ca f7 d2 21 ca 29 d0}  //weight: 10, accuracy: High
+        $x_10_4 = {89 f1 c1 e9 0c 80 c9 e0 88 08 89 f1 c1 e9 06 80 e1 3f 80 c9 80 88 48 01 80 e2 3f}  //weight: 10, accuracy: High
+        $x_10_5 = {32 1d 30 f9 48 77 82 5a 3c bf 73 7f dd 4f 15 75}  //weight: 10, accuracy: High
+        $x_5_6 = {02 0f b7 16 83 c6 02 66 85 d2 75 ef 66 c7 00 00 00 0f b7 11}  //weight: 5, accuracy: High
+        $x_5_7 = {0c 0f b7 4c 24 04 66 89 0f 83 c7 02 39 f7 73 0c 01 c3 39 eb}  //weight: 5, accuracy: High
     condition:
         (filesize < 20MB) and
         (

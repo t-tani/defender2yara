@@ -318,3 +318,33 @@ rule Trojan_Win32_RemcosRAT_ZA_2147929926_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_RemcosRAT_ZB_2147932429_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/RemcosRAT.ZB!MTB"
+        threat_id = "2147932429"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "RemcosRAT"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Login Data" ascii //weight: 1
+        $x_1_2 = "\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Cookies" ascii //weight: 1
+        $x_1_3 = "AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\" ascii //weight: 1
+        $x_1_4 = "\\logins.json" ascii //weight: 1
+        $x_1_5 = "\\key3.db" ascii //weight: 1
+        $x_1_6 = "Agent initialized" ascii //weight: 1
+        $x_1_7 = "Access Level:" ascii //weight: 1
+        $x_1_8 = "Administrator" ascii //weight: 1
+        $x_1_9 = "StartForward" ascii //weight: 1
+        $x_1_10 = "StartReverse" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
