@@ -132,3 +132,25 @@ rule Backdoor_AndroidOS_Basdoor_E_2147906017_0
         (all of ($x*))
 }
 
+rule Backdoor_AndroidOS_Basdoor_F_2147932470_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Backdoor:AndroidOS/Basdoor.F!MTB"
+        threat_id = "2147932470"
+        type = "Backdoor"
+        platform = "AndroidOS: Android operating system"
+        family = "Basdoor"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {72 10 33 76 01 00 0a 02 38 02 39 00 72 10 34 76 01 00 0c 02 1f 02 b3 14 38 02 f4 ff 54 73 00 00 22 04 b5 14 70 10 98 73 04 00 54 75 00 00 71 10 09 00 05 00 0c 05 6e 20 a4 73 54 00 6e 20 a4 73 04 00 6e 20 a4 73 24 00 6e 10 b6 73 04 00 0c 04 71 20 0a 00 43 00 54 73 00 00}  //weight: 1, accuracy: High
+        $x_1_2 = {6e 20 a4 73 08 00 71 10 ce 75 07 00 0c 07 6e 20 a4 73 78 00 1a 07 4b 06 6e 20 a4 73 78 00 6e 10 b6 73 08 00 0c 07 70 20 a7 72 76 00 27 06 72 10 c1 76 00 00 0a 02 3d 02 07 00 21 73 b1 23 23 33 ae 1b}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
