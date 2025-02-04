@@ -125,3 +125,24 @@ rule Trojan_Win64_Rhadamanthys_CCHZ_2147905535_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Rhadamanthys_MKP_2147932420_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Rhadamanthys.MKP!MTB"
+        threat_id = "2147932420"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Rhadamanthys"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {ff d0 48 83 c4 20 43 8a 04 3c 4c 8b 7d 70 48 8b 4d ?? 41 02 04 0c 0f b6 c0 41 8a 04 04 48 8b 4d 80 4c 8b 65 e0 42 32 04 21 42 88 04 21 48 b8 51 63 bb ed 3e b6 72 96 48 03 05 2f 0c 13 00 48 83 ec 20}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -2834,3 +2834,24 @@ rule Trojan_Win32_TrickBot_MKZ_2147932056_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_TrickBot_MKP_2147932419_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/TrickBot.MKP!MTB"
+        threat_id = "2147932419"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "TrickBot"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {8b 54 24 58 8d 7c 24 03 8d 74 24 43 8b df 03 ea 3b de 0f 43 df 8a 0b 43 30 0a 42 3b d5 72 f1}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

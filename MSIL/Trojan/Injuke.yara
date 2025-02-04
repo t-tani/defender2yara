@@ -3380,3 +3380,24 @@ rule Trojan_MSIL_Injuke_SWA_2147932324_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Injuke_SFUD_2147932394_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Injuke.SFUD!MTB"
+        threat_id = "2147932394"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Injuke"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {2b 32 16 2d e4 2b 34 6f ?? 00 00 0a 02 16 02 8e 69 6f ?? 00 00 0a 0b de 38 06 2b cf 28 ?? 00 00 0a 2b cf 6f ?? 00 00 0a 2b ca 06 2b cc 28 ?? 00 00 0a 2b cc 6f ?? 00 00 0a 2b c7}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

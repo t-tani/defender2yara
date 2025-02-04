@@ -219,7 +219,7 @@ rule Trojan_Win32_ClickFix_DC_2147932130_0
         $x_10_4 = "verif" wide //weight: 10
         $x_1_5 = "- ray" wide //weight: 1
         $x_1_6 = "- recaptcha" wide //weight: 1
-        $x_1_7 = "- re CAPTCHA" wide //weight: 1
+        $x_1_7 = "- re captcha" wide //weight: 1
     condition:
         (filesize < 20MB) and
         (
@@ -248,7 +248,7 @@ rule Trojan_Win32_ClickFix_DF_2147932251_0
         $x_5_3 = "http:" wide //weight: 5
         $x_5_4 = "https_" wide //weight: 5
         $x_1_5 = "- recaptcha" wide //weight: 1
-        $x_1_6 = "- re CAPTCHA" wide //weight: 1
+        $x_1_6 = "- re captcha" wide //weight: 1
     condition:
         (filesize < 20MB) and
         (

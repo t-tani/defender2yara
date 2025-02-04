@@ -889,3 +889,27 @@ rule Trojan_MSIL_KillMBR_ARAX_2147923238_2
         (all of ($x*))
 }
 
+rule Trojan_MSIL_KillMBR_PAGH_2147932409_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/KillMBR.PAGH!MTB"
+        threat_id = "2147932409"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "KillMBR"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "\\\\.\\PhysicalDrive0" wide //weight: 2
+        $x_1_2 = "DisableTaskMgr" wide //weight: 1
+        $x_1_3 = "DisableRegistryTools" wide //weight: 1
+        $x_2_4 = "Your System has been hacked" wide //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

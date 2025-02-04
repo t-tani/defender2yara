@@ -1,9 +1,9 @@
-rule HackTool_Win32_HFLSASecrets_J_2147932413_0
+rule HackTool_Win32_HFLSASecrets_J_2147932427_0
 {
     meta:
         author = "defender2yara"
         detection_name = "HackTool:Win32/HFLSASecrets.J"
-        threat_id = "2147932413"
+        threat_id = "2147932427"
         type = "HackTool"
         platform = "Win32: Windows 32-bit platform"
         family = "HFLSASecrets"

@@ -296,3 +296,39 @@ rule Trojan_Win32_Malgent_AYA_2147920017_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Malgent_PR_2147931153_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Malgent.PR!MTB"
+        threat_id = "2147931153"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Malgent"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "12"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {68 00 74 00 74 00 70 00 73 00 3a 00 2f 00 2f 00 77 00 77 00 77 00 2e 00 63 00 75 00 6f 00 63 00 68 00 69 00 70 00 65 00 72 00 75 00 6e 00 67 00 69 00 6f 00 72 00 6e 00 6f 00 2e 00 69 00 74 00 2f 00 [0-10] 2f 00 [0-20] 5f 00 53 00 65 00 74 00 75 00 70 00 2e 00 65 00 78 00 65 00}  //weight: 5, accuracy: Low
+        $x_5_2 = {68 74 74 70 73 3a 2f 2f 77 77 77 2e 63 75 6f 63 68 69 70 65 72 75 6e 67 69 6f 72 6e 6f 2e 69 74 2f [0-10] 2f [0-20] 5f 53 65 74 75 70 2e 65 78 65}  //weight: 5, accuracy: Low
+        $x_5_3 = {68 00 74 00 74 00 70 00 73 00 3a 00 2f 00 2f 00 74 00 61 00 70 00 65 00 73 00 74 00 72 00 79 00 6f 00 66 00 74 00 72 00 75 00 74 00 68 00 2e 00 63 00 6f 00 6d 00 2f 00 [0-10] 2f 00 [0-20] 2e 00 65 00 78 00 65 00}  //weight: 5, accuracy: Low
+        $x_5_4 = {68 74 74 70 73 3a 2f 2f 74 61 70 65 73 74 72 79 6f 66 74 72 75 74 68 2e 63 6f 6d 2f [0-10] 2f [0-20] 2e 65 78 65}  //weight: 5, accuracy: Low
+        $x_1_5 = "BCryptGenRandom" ascii //weight: 1
+        $x_1_6 = "RtlLookupFunctionEntry" ascii //weight: 1
+        $x_1_7 = "WSADuplicateSocket" ascii //weight: 1
+        $x_1_8 = "IsDebuggerPresent" ascii //weight: 1
+        $x_1_9 = "LoadLibrary" ascii //weight: 1
+        $x_1_10 = "VirtualAlloc" ascii //weight: 1
+        $x_1_11 = "Sleep" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_5_*) and 7 of ($x_1_*))) or
+            ((2 of ($x_5_*) and 2 of ($x_1_*))) or
+            ((3 of ($x_5_*))) or
+            (all of ($x*))
+        )
+}
+
