@@ -258,3 +258,32 @@ rule Trojan_Win32_ClickFix_DF_2147932251_0
         )
 }
 
+rule Trojan_Win32_ClickFix_J_2147932433_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ClickFix.J!MTB"
+        threat_id = "2147932433"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ClickFix"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_CMDHSTR_EXT"
+        threshold = "41"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = "http" wide //weight: 10
+        $x_10_2 = "mshta" wide //weight: 10
+        $x_10_3 = "captcha" wide //weight: 10
+        $x_10_4 = "verif" wide //weight: 10
+        $x_1_5 = ".mp4" wide //weight: 1
+        $x_1_6 = ".mp3" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((4 of ($x_10_*) and 1 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+
