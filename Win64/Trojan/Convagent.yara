@@ -480,3 +480,23 @@ rule Trojan_Win64_Convagent_AMCW_2147929517_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Convagent_PMM_2147932482_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Convagent.PMM"
+        threat_id = "2147932482"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Convagent"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {88 85 4f 03 00 00 0f b6 85 4f 03 00 00 83 f0 01 84 c0 74 0a bb 01 00 00 00 e9}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

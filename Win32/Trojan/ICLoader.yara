@@ -1505,3 +1505,46 @@ rule Trojan_Win32_ICLoader_GRN_2147932443_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_ICLoader_BT_2147932499_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ICLoader.BT!MTB"
+        threat_id = "2147932499"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ICLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {32 c1 8b 4c 24 0c a2 ?? ?? ?? 00 0c 30 c0 e8 04 25 ff 00 00 00 68 ?? ?? ?? 00 89 44 24 0c 6a 00 db 44 24 10 8d 54 24 1c 6a 01 52 89 4c 24 ?? dc 3d}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_ICLoader_AGKA_2147932501_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ICLoader.AGKA!MTB"
+        threat_id = "2147932501"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ICLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {55 8b ec 6a ff 68 ?? e6 89 00 68 ?? 7e 89 00 64 a1 00 00 00 00 50 64 89 25 00 00 00 00 83 ec 58 53 56 57 89 65 e8 ff 15 ?? ?? 89 00 33 d2 8a d4 89 15 ?? 3c ca 00 8b c8 81 e1 ff 00 00 00 89 0d ?? 3c ca 00 c1 e1 08 03 ca 89 0d ?? 3c ca 00 c1 e8 10 a3 ?? 3c ca 00 6a 01}  //weight: 5, accuracy: Low
+        $x_5_2 = {55 8b ec 6a ff 68 ?? e6 89 00 68 ?? 7e 89 00 64 a1 00 00 00 00 50 64 89 25 00 00 00 00 83 ec 58 53 56 57 89 65 e8 ff 15 ?? ?? 89 00 33 d2 8a d4 89 15 ?? 2c ca 00 8b c8 81 e1 ff 00 00 00 89 0d ?? 2c ca 00 c1 e1 08 03 ca 89 0d ?? 2c ca 00 c1 e8 10 a3 ?? 2c ca 00 6a 01}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (1 of ($x*))
+}
+

@@ -2333,3 +2333,27 @@ rule Trojan_MSIL_Vidar_SWA_2147932323_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Vidar_AYA_2147932496_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Vidar.AYA!MTB"
+        threat_id = "2147932496"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Vidar"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {00 23 00 00 00 00 00 00 00 00 0a 16 0b 2b 19 00 06 07 6c 23 00 00 00 00 00 00 00 40 28 4e 00 00 0a 58 0a 00 07 17 58 0b 07 20 40 42 0f 00 fe 04 0c 08 2d db 1f 64 28 28 00 00 0a 00 00 17 0d 2b bf}  //weight: 2, accuracy: High
+        $x_1_2 = "NoProfile -ExecutionPolicy Bypass -Command" wide //weight: 1
+        $x_1_3 = "IsRunAsAdmin" ascii //weight: 1
+        $x_1_4 = "RestartAsAdmin" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

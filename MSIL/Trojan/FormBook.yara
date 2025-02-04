@@ -14130,3 +14130,48 @@ rule Trojan_MSIL_FormBook_RVA_2147931571_0
         )
 }
 
+rule Trojan_MSIL_FormBook_RVC_2147932500_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/FormBook.RVC!MTB"
+        threat_id = "2147932500"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "FormBook"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {57 95 a2 29 09 0f 00 00 00 fa 01 33 00 16 00 00 01 00 00 00 9b 00 00 00 2a 00 00 00 2c 01 00 00 2b 01 00 00 8f 01 00 00 48 01 00 00 63 00 00 00 01 00 00 00 5d 00 00 00 07 00 00 00 17 00 00 00 2b 00 00 00 1b 00 00 00 01 00 00 00 01 00 00 00 07 00 00 00 16 00 00 00 01 00 00 00 01 00 00 00 03}  //weight: 1, accuracy: High
+        $x_1_2 = "7ee282ab-b519-4615-9504-bdff0be83247" ascii //weight: 1
+        $x_1_3 = "Polyclinic" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_FormBook_PLJFH_2147932503_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/FormBook.PLJFH!MTB"
+        threat_id = "2147932503"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "FormBook"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "Low"
+    strings:
+        $x_6_1 = {01 25 16 02 ?? 00 00 ff 00 5f 1f 10 63 20 ff 00 00 00 5f d2 9c 25 17 02 20 ?? ff 00 00 5f 1e 63 20 ff 00 00 00 5f d2 9c 25 18 02 20 ff 00 00 00 5f 20 ff 00 00 00 5f d2 9c 13 05 2b 00 11 05 2a}  //weight: 6, accuracy: Low
+        $x_5_2 = {0a 1f 10 62 0f 00 28 ?? 00 00 0a 1e 62 60 0f 00 28 ?? 00 00 0a 60 0b 2b 00}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

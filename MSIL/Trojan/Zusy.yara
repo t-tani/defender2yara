@@ -2875,3 +2875,29 @@ rule Trojan_MSIL_Zusy_AMCZ_2147932345_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Zusy_AYC_2147932497_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Zusy.AYC!MTB"
+        threat_id = "2147932497"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "ExclusionLoader.pdb" ascii //weight: 2
+        $x_2_2 = "$2f9ce5c0-3881-418e-b840-635004632362" ascii //weight: 2
+        $x_1_3 = "WinDefExclusion" ascii //weight: 1
+        $x_1_4 = "command = 'Add-MpPreference -ExclusionPath" wide //weight: 1
+        $x_1_5 = "FolderNameRandomName" ascii //weight: 1
+        $x_1_6 = "Command \"Start-Process" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
