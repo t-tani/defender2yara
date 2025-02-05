@@ -4320,3 +4320,25 @@ rule Trojan_MSIL_Taskun_PLJBH_2147932458_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Taskun_MBWQ_2147932608_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Taskun.MBWQ!MTB"
+        threat_id = "2147932608"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Taskun"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "4D5A9--3---04---FFFF--B8-------4" wide //weight: 2
+        $x_1_2 = {45 00 31 00 46 00 42 00 41 00 30 00 45 00 2d 00 42 00 34 00 30 00 39 00 43 00 44 00 32 00 31 00 42 00 38 00 30 00 31 00 34 00 43 00 43 00 44 00 32 00 31 00 35 00 34}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

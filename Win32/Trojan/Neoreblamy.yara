@@ -3464,3 +3464,26 @@ rule Trojan_Win32_Neoreblamy_BY_2147932584_0
         )
 }
 
+rule Trojan_Win32_Neoreblamy_GPPF_2147932612_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Neoreblamy.GPPF!MTB"
+        threat_id = "2147932612"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Neoreblamy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = "miHUdngPLwfuuoSzOsVXlcr" ascii //weight: 3
+        $x_2_2 = "bYLBIqioKjYHWGhzIJ" ascii //weight: 2
+        $x_1_3 = "VxkVnKbFOBLfbNnK" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -3794,3 +3794,24 @@ rule Trojan_Win32_LummaStealer_SKE_2147931944_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_LummaStealer_GPPH_2147932611_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaStealer.GPPH!MTB"
+        threat_id = "2147932611"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {8b c1 83 e0 03 8a 44 05 ?? 30 04 0b 41 3b ce 72 ef}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
