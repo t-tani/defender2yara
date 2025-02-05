@@ -3545,3 +3545,27 @@ rule Ransom_MSIL_Filecoder_SWY_2147928354_0
         (all of ($x*))
 }
 
+rule Ransom_MSIL_Filecoder_AKK_2147932586_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:MSIL/Filecoder.AKK!MTB"
+        threat_id = "2147932586"
+        type = "Ransom"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Filecoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "DisableTaskManager" ascii //weight: 2
+        $x_2_2 = "DisableFirefoxDownloads" ascii //weight: 2
+        $x_2_3 = "tcp://2.tcp.eu.ngrok.io" wide //weight: 2
+        $x_2_4 = "$028d0421-0685-40c3-9b3f-02dffb1947eb" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (3 of ($x*))
+}
+

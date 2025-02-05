@@ -2618,3 +2618,28 @@ rule Trojan_MSIL_Stealer_EM_2147931327_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Stealer_AX_2147932585_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Stealer.AX!MTB"
+        threat_id = "2147932585"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Stealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "Google\\Chrome\\User Data\\Default\\Login Data" wide //weight: 2
+        $x_2_2 = "Google\\Chrome\\User Data\\Local State" wide //weight: 2
+        $x_2_3 = "Google\\Chrome\\User Data\\Default\\Network\\Cookies" wide //weight: 2
+        $x_2_4 = "Google\\Chrome\\User Data\\Default\\History" wide //weight: 2
+        $x_2_5 = "Google\\Chrome\\User Data\\Default\\Web Data" wide //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

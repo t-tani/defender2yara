@@ -6365,3 +6365,24 @@ rule Trojan_Win32_Vidar_VKZ_2147932213_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Vidar_APD_2147932535_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Vidar.APD!MTB"
+        threat_id = "2147932535"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Vidar"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {89 d9 83 e1 03 8a 8c 0c b8 00 00 00 32 0c 18 0f be c1 89 f1 50 6a 01 e8 5e 78 00 00 43 39 dd}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

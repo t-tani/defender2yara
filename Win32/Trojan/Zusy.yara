@@ -5723,6 +5723,28 @@ rule Trojan_Win32_Zusy_MBWQ_2147931705_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Zusy_MBWQ_2147931705_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zusy.MBWQ!MTB"
+        threat_id = "2147931705"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {91 4c 00 33 d2 8a d4 89 15 90 fb 4c 00 8b c8 81 e1 ff 00 00 00 89 0d 8c fb 4c 00 c1 e1 08 03 ca 89 0d 88 fb 4c}  //weight: 2, accuracy: High
+        $x_1_2 = {55 8b ec 6a ff 68 ?? 92 4c 00 68 ?? 4c 4c 00 64 a1 00 00 00 00 50}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win32_Zusy_AXJA_2147931986_0
 {
     meta:

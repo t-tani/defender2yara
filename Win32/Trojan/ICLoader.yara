@@ -1548,3 +1548,24 @@ rule Trojan_Win32_ICLoader_AGKA_2147932501_0
         (1 of ($x*))
 }
 
+rule Trojan_Win32_ICLoader_AID_2147932572_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ICLoader.AID!MTB"
+        threat_id = "2147932572"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ICLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {8a 0d 4a 10 8a 00 8a 15 4d 10 8a 00 a1 34 10 8a 00 22 d1 8b 0d 30 10 8a 00 88 15 4d 10 8a 00 8b d0 6a 10 c1 ea 02 2b ca 33 d2 8a 15 43 10 8a 00 89 0d 30 10 8a 00 8b 0d 38 10 8a 00 83 c9 07 0f af ca 23 c1}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
