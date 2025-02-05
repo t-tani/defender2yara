@@ -37,3 +37,55 @@ rule HackTool_MSIL_FrostyStash_A_2147932410_0
         )
 }
 
+rule HackTool_MSIL_FrostyStash_B_2147932628_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "HackTool:MSIL/FrostyStash.B!dha"
+        threat_id = "2147932628"
+        type = "HackTool"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "FrostyStash"
+        severity = "High"
+        info = "dha: an internal category used to refer to some threats"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "MessageData" wide //weight: 1
+        $x_1_2 = "TypeData" wide //weight: 1
+        $x_1_3 = "PackageData" wide //weight: 1
+        $x_1_4 = "StatusConnection" wide //weight: 1
+        $x_1_5 = "END_OF_MESSAGES" wide //weight: 1
+        $x_1_6 = "NO_MESSAGES" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule HackTool_MSIL_FrostyStash_C_2147932629_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "HackTool:MSIL/FrostyStash.C!dha"
+        threat_id = "2147932629"
+        type = "HackTool"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "FrostyStash"
+        severity = "High"
+        info = "dha: an internal category used to refer to some threats"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "_uniqIdSys" ascii //weight: 1
+        $x_1_2 = "_uniqIdCor" ascii //weight: 1
+        $x_1_3 = "ProcessData" ascii //weight: 1
+        $x_1_4 = "_pathLog" ascii //weight: 1
+        $x_1_5 = "get_Msg" ascii //weight: 1
+        $x_1_6 = "JavaScriptSerializer" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

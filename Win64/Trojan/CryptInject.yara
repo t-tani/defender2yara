@@ -3947,3 +3947,24 @@ rule Trojan_Win64_CryptInject_RPH_2147931220_0
         )
 }
 
+rule Trojan_Win64_CryptInject_HOP_2147932619_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CryptInject.HOP!MTB"
+        threat_id = "2147932619"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {45 00 ea 45 0f b6 c2 42 8a 54 04 ?? 44 02 da 41 0f b6 cb 8a 44 0c 50 42 88 44 04 50 88 54 0c 50 42 02 54 04 ?? 0f b6 c2 8a 4c 04 50 41 30 09 4d 01 e9 4c 29 eb 75}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

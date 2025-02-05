@@ -1031,3 +1031,25 @@ rule Ransom_Win32_Cerber_PAFY_2147927900_0
         (all of ($x*))
 }
 
+rule Ransom_Win32_Cerber_YAD_2147932627_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win32/Cerber.YAD!MTB"
+        threat_id = "2147932627"
+        type = "Ransom"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Cerber"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {8b 55 b4 8b 45 dc 23 05 ?? ?? ?? ?? 33 c9 29 15 ?? ?? ?? ?? 8b 4d fc 31 55 d8 47 89 15}  //weight: 1, accuracy: Low
+        $x_10_2 = {33 3d 60 96 40 00 03 3d 18 96 40 00 8b 55 08 f7 1d ?? ?? ?? ?? 03 f3 8b 45 0c 89 4d ec 8b 0d}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
