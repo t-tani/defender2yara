@@ -110,3 +110,24 @@ rule Ransom_Win64_Lockbit_AUJ_2147932417_0
         (all of ($x*))
 }
 
+rule Ransom_Win64_Lockbit_PMK_2147932644_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win64/Lockbit.PMK!MTB"
+        threat_id = "2147932644"
+        type = "Ransom"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Lockbit"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {41 ff c0 45 0f b6 c0 46 8a 8c 04 ?? ?? ?? ?? 44 00 ca 44 0f b6 d2 46 8a 9c 14 ?? ?? ?? ?? 46 88 9c 04 e0 03 00 00 46 88 8c 14 e0 03 00 00 46 02 8c 04 e0 03 00 00 45 0f b6 c9 46 8a 8c 0c ?? ?? ?? ?? 44 30 0c 01 48 ff c0 eb}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

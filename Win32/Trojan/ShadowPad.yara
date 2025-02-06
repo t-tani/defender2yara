@@ -109,3 +109,24 @@ rule Trojan_Win32_ShadowPad_C_2147921620_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_ShadowPad_GA_2147932645_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ShadowPad.GA!MTB"
+        threat_id = "2147932645"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ShadowPad"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "{%8.8x-%4.4x-%4.4x-%8.8x%8.8x}" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

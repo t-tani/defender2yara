@@ -80,3 +80,24 @@ rule Trojan_Win64_Filisto_C_2147912107_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Filisto_K_2147932634_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Filisto.K!dha"
+        threat_id = "2147932634"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Filisto"
+        severity = "Critical"
+        info = "dha: an internal category used to refer to some threats"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {5c d4 00 00 [0-4] c7 81 60 d4 00 00 00 00 02 00 ?? ?? 68 d4 00 00 [0-7] (30|34|40) 28 01 00}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

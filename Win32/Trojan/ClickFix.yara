@@ -287,3 +287,65 @@ rule Trojan_Win32_ClickFix_J_2147932433_0
         )
 }
 
+rule Trojan_Win32_ClickFix_DD_2147932646_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ClickFix.DD!MTB"
+        threat_id = "2147932646"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ClickFix"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_CMDHSTR_EXT"
+        threshold = "41"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = "mshta" wide //weight: 10
+        $x_10_2 = "http" wide //weight: 10
+        $x_10_3 = "verif" wide //weight: 10
+        $x_10_4 = "\\1" wide //weight: 10
+        $x_1_5 = "robot - captcha" wide //weight: 1
+        $x_1_6 = "- ray" wide //weight: 1
+        $x_1_7 = "- recaptcha" wide //weight: 1
+        $x_1_8 = "- re captcha" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((4 of ($x_10_*) and 1 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+
+rule Trojan_Win32_ClickFix_DE_2147932647_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ClickFix.DE!MTB"
+        threat_id = "2147932647"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ClickFix"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_CMDHSTR_EXT"
+        threshold = "41"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = "powershell" wide //weight: 10
+        $x_10_2 = "http" wide //weight: 10
+        $x_10_3 = "\\1" wide //weight: 10
+        $x_10_4 = "verif" wide //weight: 10
+        $x_1_5 = "robot - captcha" wide //weight: 1
+        $x_1_6 = "- ray" wide //weight: 1
+        $x_1_7 = "- recaptcha" wide //weight: 1
+        $x_1_8 = "- re captcha" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((4 of ($x_10_*) and 1 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+
