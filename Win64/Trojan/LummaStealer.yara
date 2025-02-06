@@ -422,3 +422,26 @@ rule Trojan_Win64_LummaStealer_VVG_2147922956_0
         )
 }
 
+rule Trojan_Win64_LummaStealer_EM_2147932659_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/LummaStealer.EM!MTB"
+        threat_id = "2147932659"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "I02Op2e6ZD52OJInVolF/WhWwGUgukvawTLHcS4qp" ascii //weight: 1
+        $x_1_2 = "PWGVuoIBdb/core_injector.go" ascii //weight: 1
+        $x_1_3 = "PWGVuoIBdb/injection.go" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

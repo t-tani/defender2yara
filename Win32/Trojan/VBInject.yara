@@ -838,3 +838,28 @@ rule Trojan_Win32_VBInject_NIT_2147929716_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_VBInject_EM_2147932658_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/VBInject.EM!MTB"
+        threat_id = "2147932658"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "VBInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "schtasks /delete /tn" ascii //weight: 1
+        $x_1_2 = "taskkill /f /im winws.exe" ascii //weight: 1
+        $x_1_3 = "Cmd /x/c taskkill /f /im" ascii //weight: 1
+        $x_1_4 = "cmd /c timeout /t 1 && start" ascii //weight: 1
+        $x_1_5 = "Launcher for Zapret New\\Project1.vbp" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
