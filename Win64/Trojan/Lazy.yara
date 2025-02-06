@@ -2153,3 +2153,24 @@ rule Trojan_Win64_Lazy_AOP_2147930767_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Lazy_GNN_2147932689_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Lazy.GNN!MTB"
+        threat_id = "2147932689"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Lazy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = {43 8d 0c 00 44 8b c9 41 81 f1 b7 0d c1 04 45 85 c0 44 0f 49 c9 43 8d 14 09 8b ca 81 f1 b7 0d c1 04 45 85 c9 0f 49 ca ff c3 89 4f fc}  //weight: 10, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -1382,3 +1382,28 @@ rule Trojan_Win64_Rozena_BSA_2147929916_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Rozena_NBK_2147932690_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Rozena.NBK!MTB"
+        threat_id = "2147932690"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Rozena"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "VirtualAlloc" ascii //weight: 1
+        $x_1_2 = "PAYLOAD:" ascii //weight: 1
+        $x_1_3 = {48 31 c0 ac 3c 61 7c 02 2c 20 41 c1 c9 0d 41 01 c1 e2 ed}  //weight: 1, accuracy: High
+        $x_2_4 = {e3 56 4d 31 c9 48 ff c9 41 8b 34 88 48 01 d6 48 31 c0 41 c1 c9 0d ac 41 01 c1 38 e0 75 f1}  //weight: 2, accuracy: High
+        $x_1_5 = {41 58 41 58 48 01 d0 5e 59 5a 41 58 41 59 41 5a 48 83 ec 20 41 52 ff e0 58 41 59 5a}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
