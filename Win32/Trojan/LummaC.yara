@@ -2601,3 +2601,24 @@ rule Trojan_Win32_LummaC_PMK_2147932636_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_LummaC_FAD_2147932667_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaC.FAD!MTB"
+        threat_id = "2147932667"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {87 d1 03 f3 33 d5 4f f7 d3 f7 12 46 f7 d3 33 dd f7 d6 49 2b df f7 de 33 c7 c1 c3 13 f7 d6 f7 d6 c1 cb 13 33 c7}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

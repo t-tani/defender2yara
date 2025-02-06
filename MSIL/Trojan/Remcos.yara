@@ -12603,3 +12603,24 @@ rule Trojan_MSIL_Remcos_NCF_2147931929_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Remcos_BA_2147932663_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Remcos.BA!MTB"
+        threat_id = "2147932663"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Remcos"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {07 08 06 08 91 03 08 03 6f 05 00 00 0a 5d 6f 06 00 00 0a 61 d2 9c 08 17 58 0c 08 06 8e 69 32 e0}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

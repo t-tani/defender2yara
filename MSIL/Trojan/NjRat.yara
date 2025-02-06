@@ -3226,3 +3226,24 @@ rule Trojan_MSIL_NjRat_SAB_2147931942_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_NjRat_NEPA_2147932664_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/NjRat.NEPA!MTB"
+        threat_id = "2147932664"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "NjRat"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {02 07 02 07 91 1f 09 61 d2 9c 07 1f 09 58 0b 07 08 31 ed}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
