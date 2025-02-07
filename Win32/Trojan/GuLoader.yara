@@ -2120,6 +2120,33 @@ rule Trojan_Win32_GuLoader_NL_2147917959_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_GuLoader_RSD_2147919598_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/GuLoader.RSD!MTB"
+        threat_id = "2147919598"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "GuLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "krebanens\\Antianaphylactogen18" ascii //weight: 1
+        $x_1_2 = "-\\almacen\\forskansning\\attributvrditildelings" ascii //weight: 1
+        $x_1_3 = "%fringer%\\metoderne\\symphonist" ascii //weight: 1
+        $x_1_4 = "99\\galtrap\\fraskrevne.ini" ascii //weight: 1
+        $x_1_5 = "noncertainty\\sandarter" ascii //weight: 1
+        $x_1_6 = "Minigrants152.txt" ascii //weight: 1
+        $x_1_7 = "subconsulship begramsedes.exe" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win32_GuLoader_RSB_2147932408_0
 {
     meta:

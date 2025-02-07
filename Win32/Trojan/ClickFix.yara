@@ -349,3 +349,80 @@ rule Trojan_Win32_ClickFix_DE_2147932647_0
         )
 }
 
+rule Trojan_Win32_ClickFix_L_2147932742_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ClickFix.L!MTB"
+        threat_id = "2147932742"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ClickFix"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_CMDHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "http" wide //weight: 1
+        $x_1_2 = "mshta" wide //weight: 1
+        $x_1_3 = "captcha" wide //weight: 1
+        $x_1_4 = "verif" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_ClickFix_M_2147932743_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ClickFix.M!MTB"
+        threat_id = "2147932743"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ClickFix"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_CMDHSTR_EXT"
+        threshold = "31"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = "powershell" wide //weight: 10
+        $x_10_2 = "-command $" wide //weight: 10
+        $x_10_3 = ".Content; iex $" wide //weight: 10
+        $x_1_4 = "Invoke-WebRequest -Uri $" wide //weight: 1
+        $x_1_5 = "iwr -Uri $" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((3 of ($x_10_*) and 1 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+
+rule Trojan_Win32_ClickFix_DH_2147932752_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ClickFix.DH!MTB"
+        threat_id = "2147932752"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ClickFix"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_CMDHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = "powershell" wide //weight: 1
+        $x_1_2 = "|Member|Where-Object{$_.Name -like" wide //weight: 1
+        $x_1_3 = ".Name).Invoke" wide //weight: 1
+        $x_1_4 = "CommandTypes]::Cmdlet" wide //weight: 1
+        $x_1_5 = {76 00 61 00 72 00 69 00 61 00 62 00 6c 00 65 00 3a 00 2f 00 [0-15] 27 00 68 00 74 00 74 00 70 00}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -125,3 +125,108 @@ rule Trojan_Win32_LummaStealerClick_K_2147932423_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_LummaStealerClick_H_2147932737_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaStealerClick.H"
+        threat_id = "2147932737"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaStealerClick"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_CMDHSTR_EXT"
+        threshold = "50"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = "powershell" wide //weight: 10
+        $x_10_2 = "net.webclient" wide //weight: 10
+        $x_10_3 = "[system.reflection.assembly]::load($" wide //weight: 10
+        $x_10_4 = ".invoke($" wide //weight: 10
+        $x_10_5 = ".headers.add($" wide //weight: 10
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_LummaStealerClick_AB_2147932739_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaStealerClick.AB!MTB"
+        threat_id = "2147932739"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaStealerClick"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_CMDHSTR_EXT"
+        threshold = "41"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = "powershell" wide //weight: 10
+        $x_10_2 = "$env:" wide //weight: 10
+        $x_1_3 = "iex $" wide //weight: 1
+        $x_1_4 = "invoke-expression $" wide //weight: 1
+        $x_10_5 = "useragent" wide //weight: 10
+        $x_10_6 = ".php?" wide //weight: 10
+    condition:
+        (filesize < 20MB) and
+        (
+            ((4 of ($x_10_*) and 1 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+
+rule Trojan_Win32_LummaStealerClick_Q_2147932741_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaStealerClick.Q!MTB"
+        threat_id = "2147932741"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaStealerClick"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_CMDHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "powershell" wide //weight: 1
+        $x_1_2 = "http" wide //weight: 1
+        $x_1_3 = "-Join" wide //weight: 1
+        $x_1_4 = "I`E`X" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_LummaStealerClick_S_2147932744_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/LummaStealerClick.S!MTB"
+        threat_id = "2147932744"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LummaStealerClick"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_CMDHSTR_EXT"
+        threshold = "31"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = "powershell" wide //weight: 10
+        $x_10_2 = "http" wide //weight: 10
+        $x_10_3 = "telegram" wide //weight: 10
+        $x_1_4 = "invoke-restmethod -uri" wide //weight: 1
+        $x_1_5 = "iwr -uri" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((3 of ($x_10_*) and 1 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+
