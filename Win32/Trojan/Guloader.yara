@@ -2685,6 +2685,32 @@ rule Trojan_Win32_Guloader_ASH_2147826862_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "longhouse\\Habilimentation226.ini" ascii //weight: 1
+        $x_1_2 = "Uagtsommes\\Eftermiddagsmaaltiders\\smudse" ascii //weight: 1
+        $x_1_3 = "sjldenheder\\Syrebadets.tor" ascii //weight: 1
+        $x_1_4 = "resfornrmendes\\Printerkommando.vel" ascii //weight: 1
+        $x_1_5 = "gteskabssagen\\Afkristnendes.dll" ascii //weight: 1
+        $x_1_6 = "Totalsaneringen242.txt" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Guloader_ASH_2147826862_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Guloader.ASH!MTB"
+        threat_id = "2147826862"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Guloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "9"
         strings_accuracy = "High"
     strings:
@@ -5009,6 +5035,31 @@ rule Trojan_Win32_Guloader_RSC_2147932534_0
         $x_1_4 = "%Blomsterbutikkernes%\\overbebyggelses.ove" ascii //weight: 1
         $x_1_5 = "99\\popover.ini" ascii //weight: 1
         $x_1_6 = "\\Langfibrede.Unt" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Guloader_SBM_2147932787_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Guloader.SBM!MTB"
+        threat_id = "2147932787"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Guloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "9"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "bldgringers.cry" ascii //weight: 2
+        $x_2_2 = "Chorusses247.scu" ascii //weight: 2
+        $x_2_3 = "intercalated.sas" ascii //weight: 2
+        $x_2_4 = "sardiskes.res" ascii //weight: 2
+        $x_1_5 = "Overtegnedes16\\nedbrydelige.par" ascii //weight: 1
     condition:
         (filesize < 20MB) and
         (all of ($x*))

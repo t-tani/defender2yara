@@ -317,3 +317,24 @@ rule Trojan_Win64_BlackWidow_MMD_2147932722_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_BlackWidow_ZZP_2147932786_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/BlackWidow.ZZP!MTB"
+        threat_id = "2147932786"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "BlackWidow"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {49 f7 f0 c4 43 2d 0f d2 08 45 8a 14 11 c4 43 1d 0f e4 ?? c4 43 1d 46 e0 13 c4 e3 5d 0f e4 04 c4 43 1d 0f e4 0c c4 43 2d 0f d2 08 c4 43 0d 0f f6 04 c5 cd 72 d6 19 48 83 c7 02 0f f5 c2 44 30 54 0f ?? c4 43 1d 0f e4 0c 48 83 ef 02 c4 e3 5d 0f e4 04 48 ff c1 c4 43 1d 46 e0 13 48 89 c8 0f 6a cc 48 81 f9 d3 35 01 00 0f 86}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -3247,3 +3247,24 @@ rule Trojan_MSIL_NjRat_NEPA_2147932664_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_NjRat_GPPE_2147932775_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/NjRat.GPPE!MTB"
+        threat_id = "2147932775"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "NjRat"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_4_1 = {02 03 20 00 7e 00 00 5d 91 0a 06 7e 03 00 00 04 03 1f 16 5d 28}  //weight: 4, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
