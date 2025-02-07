@@ -1981,3 +1981,24 @@ rule Trojan_Win64_Bumblebee_FFZ_2147928978_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Bumblebee_GA_2147932797_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Bumblebee.GA!MTB"
+        threat_id = "2147932797"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Bumblebee"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {42 8b 0c 30 33 4a 60 48 8b 83 80 00 00 00 41 89 0c 06}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

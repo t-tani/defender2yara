@@ -85,3 +85,24 @@ rule Trojan_Win64_LummaC_AMCZ_2147930987_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_LummaC_GA_2147932798_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/LummaC.GA!MTB"
+        threat_id = "2147932798"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "LummaC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {41 03 c8 8b d1 89 50 20 8b c5 99 f7 f9 8d a8}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
