@@ -310,6 +310,8 @@ rule VirTool_Win32_UACBypassExp_D_2147852914_1
         $x_1_13 = {20 00 2d 00 65 00 20 00 22 80 80 0b 30 2d 39 41 2d 5a 61 2d 7a 2f 2b}  //weight: 1, accuracy: Low
         $x_1_14 = {20 00 2d 00 65 00 6e 00 20 00 22 80 80 0b 30 2d 39 41 2d 5a 61 2d 7a 2f 2b}  //weight: 1, accuracy: Low
         $x_1_15 = {20 00 2d 00 45 00 6e 00 63 00 6f 00 64 00 65 00 64 00 20 00 22 80 80 0b 30 2d 39 41 2d 5a 61 2d 7a 2f 2b}  //weight: 1, accuracy: Low
+        $x_1_16 = "=[Ref].Assembly.GetType($((" wide //weight: 1
+        $x_1_17 = " -ExclusionProcess powershell.exe" wide //weight: 1
     condition:
         (filesize < 20MB) and
         (
