@@ -3401,3 +3401,25 @@ rule Trojan_MSIL_Injuke_SFUD_2147932394_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Injuke_AQKA_2147932791_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Injuke.AQKA!MTB"
+        threat_id = "2147932791"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Injuke"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {16 13 36 02 11 31 91 13 36 11 36 11 34 16 6f ?? 00 00 0a 61 d2 13 36 02 11 31 11 36 9c 11 31 17 58 13 31}  //weight: 3, accuracy: Low
+        $x_2_2 = {13 32 11 32 11 2b 11 2e 91 6f ?? 00 00 0a 11 2b 11 2e 11 2b 11 2d 91 9c 11 2b 11 2d 11 32 16 6f ?? 00 00 0a 9c 11 2b 11 2d 91 11 2b 11 2e 91 58 7e ?? 00 00 04 28 ?? 03 00 06 11 2f 7e ?? 00 00 04 28 ?? 03 00 06 7e ?? 00 00 04 28 ?? 03 00 06 7e ?? 00 00 04 28 ?? 03 00 06 5d}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
