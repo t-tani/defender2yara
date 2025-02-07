@@ -2173,3 +2173,29 @@ rule Trojan_Win32_GuLoader_RSB_2147932408_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_GuLoader_RSE_2147932819_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/GuLoader.RSE!MTB"
+        threat_id = "2147932819"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "GuLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "\\fejltastning\\femdobler\\quasiparticle" ascii //weight: 1
+        $x_1_2 = "99\\inhabilitetssprgsmaalet.tic" ascii //weight: 1
+        $x_1_3 = "rekompenseres.jpg" ascii //weight: 1
+        $x_1_4 = "uforsvarligheds regulatory overknowing" ascii //weight: 1
+        $x_1_5 = "undergrundskulturerne" ascii //weight: 1
+        $x_1_6 = "unconformity nonimputatively.exe" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

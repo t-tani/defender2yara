@@ -2196,3 +2196,26 @@ rule Trojan_Win64_Lazy_ALY_2147932693_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Lazy_HGP_2147932820_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Lazy.HGP!MTB"
+        threat_id = "2147932820"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Lazy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {0f 10 4c d7 08 4c 89 44 24 38 41 b9 20 00 00 00 4c 89 44 24 30 49 8b cc 66 0f 7e c8 f2 0f 11 44 24 60 f3 0f 7e 44 d7 10 ba 04 00 35 83 0f b7 c0 89 44 24 50 66 48 0f 7e c8 44 89 44 24 28 48 c1 e8 30 44 89 44 24 54}  //weight: 2, accuracy: High
+        $x_1_2 = "System\\CurrentControlSet\\Services\\Amaterasu" ascii //weight: 1
+        $x_1_3 = "Registry\\Machine\\System\\CurrentControlSet\\Services\\Amaterasu" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
