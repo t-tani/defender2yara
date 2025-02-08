@@ -628,68 +628,6 @@ rule TrojanDownloader_Win32_Renos_2147799811_15
         family = "Renos"
         severity = "9"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "5"
-        strings_accuracy = "Low"
-    strings:
-        $x_1_1 = " is infected" ascii //weight: 1
-        $x_1_2 = {55 8b ec 81 c4 18 fe ff ff [0-3] e8 ?? ?? ?? ?? 83 f8 00 0f 85 ?? 00 00 00}  //weight: 1, accuracy: Low
-        $x_1_3 = {30 fe ff ff 00 8d 85 18 fe ff ff 50 6a 01 e8 ?? ?? ?? ?? [0-4] 0b c0 75 00}  //weight: 1, accuracy: Low
-        $x_1_4 = {6a 06 6a 00 6a 00 6a 00 6a 00 6a ff ff 75 08 e8}  //weight: 1, accuracy: High
-        $x_1_5 = {75 1e 6a 64 ff 35 ?? ?? ?? ?? e8 ?? ?? ?? ?? a3 ?? ?? ?? ?? c7 05 ?? ?? ?? ?? 01 00 00 00 eb 1c 6a 66 ff 35 ?? ?? ?? ?? e8 ?? ?? ?? ?? a3 ?? ?? ?? ?? c7 05 ?? ?? ?? ?? 00 00 00 00 68 ?? ?? ?? ?? 6a 01 e8 ?? ?? ?? ?? c9 c2 10 00}  //weight: 1, accuracy: Low
-        $x_1_6 = {68 e0 93 04 00 68 ?? ?? ?? ?? ff 75 08 e8 ?? ?? ?? ?? e9 ?? 00 00 00 81 7d 14 03 02 00 00 74 ?? 81 7d 14 04 02 00 00 74 ?? 81 7d 14 01 02 00 00 74 ?? 81 7d 14 05 04 00 00}  //weight: 1, accuracy: Low
-        $x_1_7 = {55 8b ec 81 c4 00 fe ff ff 51 56 57 68 ff 00 00 00 8d ?? 01 ff ff ff ?? e8 ?? ?? ?? ?? 8d 85 02 fe ff ff 50 6a 00 68 ?? ?? ?? ?? 8d 85 01 ff ff ff 50 e8 ?? ?? ?? ?? 8d 85 02 fe ff ff 50 e8 ?? ?? ?? ?? 8d 85 02 fe ff ff 50 ff 15 ?? ?? ?? ?? 83 c4 04 b9 03 00 00 00 2b c1 8d bd 02 fe ff ff}  //weight: 1, accuracy: Low
-        $x_1_8 = {8d 85 02 fe ff ff 50 ff 75 08 e8 ?? ?? ?? ?? 83 f8 01 75 30}  //weight: 1, accuracy: Low
-    condition:
-        (filesize < 20MB) and
-        (5 of ($x*))
-}
-
-rule TrojanDownloader_Win32_Renos_2147799811_16
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "TrojanDownloader:Win32/Renos"
-        threat_id = "2147799811"
-        type = "TrojanDownloader"
-        platform = "Win32: Windows 32-bit platform"
-        family = "Renos"
-        severity = "9"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "68"
-        strings_accuracy = "High"
-    strings:
-        $x_10_1 = "{ABCDECF0-4B15-11D1-ABED-709549C10000}" ascii //weight: 10
-        $x_10_2 = "{393921-e939391-3919139-3d3a738-11}" ascii //weight: 10
-        $x_10_3 = "SYSTEM\\CurrentControlSet\\Services\\SharedAccess\\Parameters\\FirewallPolicy\\StandardProfile\\AuthorizedApplications\\List" ascii //weight: 10
-        $x_10_4 = "DisableRegistryTools" ascii //weight: 10
-        $x_10_5 = "EnableBalloonTips" ascii //weight: 10
-        $x_5_6 = "\\drivers\\etc\\hosts" ascii //weight: 5
-        $x_3_7 = "windowsupdate.microsoft.com" ascii //weight: 3
-        $x_3_8 = "kaspersky.com" ascii //weight: 3
-        $x_3_9 = "mcafee.com" ascii //weight: 3
-        $x_3_10 = "symantec.com" ascii //weight: 3
-        $x_1_11 = "192.168.200.3" ascii //weight: 1
-        $x_1_12 = "Warning! Potential Spyware Operation!" ascii //weight: 1
-        $x_1_13 = "Your computer is making unauthorized copies of your system and" ascii //weight: 1
-    condition:
-        (filesize < 20MB) and
-        (
-            ((5 of ($x_10_*) and 1 of ($x_5_*) and 4 of ($x_3_*) and 1 of ($x_1_*))) or
-            (all of ($x*))
-        )
-}
-
-rule TrojanDownloader_Win32_Renos_2147799811_17
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "TrojanDownloader:Win32/Renos"
-        threat_id = "2147799811"
-        type = "TrojanDownloader"
-        platform = "Win32: Windows 32-bit platform"
-        family = "Renos"
-        severity = "9"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "6"
         strings_accuracy = "Low"
     strings:
@@ -704,7 +642,7 @@ rule TrojanDownloader_Win32_Renos_2147799811_17
         (all of ($x*))
 }
 
-rule TrojanDownloader_Win32_Renos_2147799811_18
+rule TrojanDownloader_Win32_Renos_2147799811_16
 {
     meta:
         author = "defender2yara"
