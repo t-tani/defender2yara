@@ -55564,40 +55564,6 @@ rule Trojan_MSIL_AgentTesla_NON_2147815038_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_AgentTesla_NMR_2147815039_0
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "Trojan:MSIL/AgentTesla.NMR!MTB"
-        threat_id = "2147815039"
-        type = "Trojan"
-        platform = "MSIL: .NET intermediate language scripts"
-        family = "AgentTesla"
-        severity = "Critical"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "14"
-        strings_accuracy = "Low"
-    strings:
-        $x_1_1 = {0a 02 06 16 06 13 00 20 00 10 00 00 8d ?? 00 00 01 [0-8] 8e 69 6f ?? ?? ?? 0a 0b 07 16 30 01 2a 03 06 16 07 6f ?? ?? ?? 0a 2b e4}  //weight: 1, accuracy: Low
-        $x_1_2 = {08 07 5d 91 0d 0e 04 08 0e 05 58 03 08 04 58 91 02 6f ?? ?? ?? 0a 09 06 5d 91 61 d2 9c 08 17 58 0c 08 05 32 d5}  //weight: 1, accuracy: Low
-        $x_1_3 = {52 00 69 00 6a 00 6e 00 64 00 61 00 65 00 6c 00 00 07 52 00 43 00 32}  //weight: 1, accuracy: High
-        $x_1_4 = "GetResponseStream" ascii //weight: 1
-        $x_1_5 = "InvokeMember" ascii //weight: 1
-        $x_1_6 = "Reverse" ascii //weight: 1
-        $x_1_7 = "ToArray" ascii //weight: 1
-        $x_1_8 = "CreateDecryptor" ascii //weight: 1
-        $x_1_9 = "CreateEncryptor" ascii //weight: 1
-        $x_1_10 = "TransformFinalBlock" ascii //weight: 1
-        $x_1_11 = "MemoryStream" ascii //weight: 1
-        $x_1_12 = "Dequeue" ascii //weight: 1
-        $x_1_13 = "Enqueue" ascii //weight: 1
-        $x_1_14 = "FromBase64String" ascii //weight: 1
-    condition:
-        (filesize < 20MB) and
-        (all of ($x*))
-}
-
 rule Trojan_MSIL_AgentTesla_NMS_2147815050_0
 {
     meta:
