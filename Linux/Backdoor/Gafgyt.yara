@@ -4672,3 +4672,31 @@ rule Backdoor_Linux_Gafgyt_BR_2147917137_0
         (all of ($x*))
 }
 
+rule Backdoor_Linux_Gafgyt_DE_2147932896_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Backdoor:Linux/Gafgyt.DE!MTB"
+        threat_id = "2147932896"
+        type = "Backdoor"
+        platform = "Linux: Linux platform"
+        family = "Gafgyt"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_ELFHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {65 6e 74 3a 20 22 25 73 22 0a 00 45 52 52 4f 52 20 6f 70 65 6e 69 6e 67 20 73 6f 63 6b 65 74 00 45 52 52 4f 52 20 6f 6e 20 62 69 6e 64 69 6e 67 00 45 52 52 4f 52 20 6f 6e 20 61 63 63 65 70 74 00 55 73 61 67 65 3a 20 25 73 20 5b 70 6f 72 74 5d 20 5b 74 68 72 65 61 64 73 5d 0a 00}  //weight: 5, accuracy: High
+        $x_1_2 = {66 63 6e 74 6c 00 67 65 74 61 64 64 72 69 6e 66 6f 3a 20 25 73 0a 00 73 65 74 73 6f 63 6b 6f 70 74 00 43 6f 75 6c 64 20 6e 6f 74 20 62 69 6e 64 0a 00 50 49 4e 47 00 1b 5b 33 33 6d 00 3a 20 00 73 65 6e 74 20 74 6f 20 66 64 3a 20 25 64 0a 00 0d 0a 1b 5b 33 31 6d 3e 20 1b 5b 30 6d 00 0a 00}  //weight: 1, accuracy: High
+        $x_1_3 = {2a 2a 2a 2a 2a 2a 2a 2a 2a 2a 2a 2a 2a 2a 2a 2a 2a 2a 2a 2a 2a 2a 2a 2a 2a 2a 2a 2a 2a 2a 2a 2a 2a 0d 0a 0d 0a 3e 20 1b 5b 30 6d 00 1b 5b 33 31 6d 3e 20 1b 5b 30 6d 00 6d 61 6e 61 67 65 6d 65 6e 74 3a 20 22 25 73 22 0a 00 45 52 52 4f 52 20 6f 70 65 6e 69 6e 67 20 73 6f 63 6b 65 74 00 45 52 52 4f 52 20 6f 6e 20 62 69 6e 64 69 6e 67 00 45 52 52 4f 52 20 6f 6e}  //weight: 1, accuracy: High
+        $x_2_4 = "Bots connected" ascii //weight: 2
+        $x_2_5 = "Clients connected" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_5_*) and 2 of ($x_2_*) and 1 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+
