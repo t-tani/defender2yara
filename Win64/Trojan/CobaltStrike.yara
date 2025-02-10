@@ -16117,3 +16117,26 @@ rule Trojan_Win64_CobaltStrike_AZP_2147932865_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_CobaltStrike_ASL_2147932883_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CobaltStrike.ASL!MTB"
+        threat_id = "2147932883"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CobaltStrike"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {0f b6 54 24 ?? 03 ca 03 c1 83 f0 08 88 44 24 ?? 48 8b 44 24 ?? 48 ff c0 48 89 44 24 ?? eb}  //weight: 3, accuracy: Low
+        $x_1_2 = {99 83 e0 01 33 c2 2b c2 48 63 4c 24}  //weight: 1, accuracy: High
+        $x_1_3 = {33 ca 03 c1 25 ff 00 00 00 88 04 24 0f b6 04 24 48 83 c4 18}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

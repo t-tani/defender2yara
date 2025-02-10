@@ -1654,3 +1654,26 @@ rule Trojan_Win32_ICLoader_ARKA_2147932795_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_ICLoader_BU_2147932881_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ICLoader.BU!MTB"
+        threat_id = "2147932881"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ICLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {63 00 32 c1 68 ?? ?? 63 00 a2 ?? ?? 63 00 0c 30 c0 e8 04 25 ff 00 00 00 53 89 44 24 18 8d 44 24 20 db 44 24 18 6a 01 50 89 5c 24 2c 89 5c 24 30 dc 3d}  //weight: 5, accuracy: Low
+        $x_5_2 = {6a 00 ff 15 ?? ?? 63 00 a0 ?? ?? 63 00 8a 0d ?? ?? 63 00 8b 15 ?? ?? 63 00 22 c8 a1 ?? ?? 63 00 88 0d ?? ?? 63 00 8b c8 c1 e9 02 2b d1 33 c9 8a 0d ?? ?? 63 00 89 15 ?? ?? 63 00 8b 15 ?? ?? 63 00 83 ca 07 0f af d1 23 c2}  //weight: 5, accuracy: Low
+        $x_5_3 = {83 ec 18 a0 ?? ?? 63 00 8a 0d ?? ?? 63 00 32 c8 56 88 0d ?? ?? 63 00 8a 0d ?? ?? 63 00 80 c9 08 57 c0 e9 03 81 e1 ff 00 00 00 6a 01 89 4c 24 0c c7 44 24 18 0c 00 00 00 db 44 24 0c}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (1 of ($x*))
+}
+
