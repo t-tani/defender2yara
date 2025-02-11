@@ -2147,6 +2147,32 @@ rule Trojan_Win32_GuLoader_RSD_2147919598_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_GuLoader_RSH_2147925145_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/GuLoader.RSH!MTB"
+        threat_id = "2147925145"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "GuLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "amygdale\\Uinitialiseret\\restriktivitetens" ascii //weight: 1
+        $x_1_2 = "#\\Selvhjtidelig\\calodemonial.ini" ascii //weight: 1
+        $x_1_3 = "\\megaara.Cer" ascii //weight: 1
+        $x_1_4 = "frekvensomraaderne gliadines" ascii //weight: 1
+        $x_1_5 = "precontention unperforating" ascii //weight: 1
+        $x_1_6 = "andedammene elektronrret" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win32_GuLoader_RSB_2147932408_0
 {
     meta:
