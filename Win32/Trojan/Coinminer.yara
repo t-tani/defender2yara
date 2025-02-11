@@ -302,3 +302,24 @@ rule Trojan_Win32_Coinminer_RPX_2147846167_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Coinminer_CCJT_2147933108_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Coinminer.CCJT!MTB"
+        threat_id = "2147933108"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Coinminer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {74 00 61 00 c7 45 ?? 6e 00 74 00 c7 45 ?? 54 00 4e 00 c7 45 ?? 51 00 30 00 c7 45 ?? 4e 00 32 00 c7 45 ?? 54 00 61 00 c7 45 ?? 51 00 75 00 c7 45 ?? 31 00 71 00 c7 45 ?? 54 00 4e 00 c7 45 ?? 51 00 30 00 c7 45 ?? 4e 00 32 00 c7 45 ?? 54 00 61 00 c7 45 ?? 51 00 75 00 c7 45 ?? 31 00 70 00 c7}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

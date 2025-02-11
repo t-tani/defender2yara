@@ -4077,3 +4077,27 @@ rule Trojan_Win32_FormBook_AMDE_2147932058_0
         )
 }
 
+rule Trojan_Win32_FormBook_AYKA_2147933106_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/FormBook.AYKA!MTB"
+        threat_id = "2147933106"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "FormBook"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "@TEMPDIR &" ascii //weight: 1
+        $x_1_2 = "DLLCALL" ascii //weight: 1
+        $x_2_3 = "k5058815630er5058815630nel350588156302" ascii //weight: 2
+        $x_2_4 = "5058815630V5058815630ir5058815630tualA5058815630llo5058815630c" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

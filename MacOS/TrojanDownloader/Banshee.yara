@@ -20,3 +20,25 @@ rule TrojanDownloader_MacOS_Banshee_A_2147923948_0
         (all of ($x*))
 }
 
+rule TrojanDownloader_MacOS_Banshee_B_2147933109_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:MacOS/Banshee.B!MTB"
+        threat_id = "2147933109"
+        type = "TrojanDownloader"
+        platform = "MacOS: "
+        family = "Banshee"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_MACHOHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {00 00 00 90 00 80 3d 91 dc 00 00 94 e1 a3 00 91 e0 03 14 aa 02 00 80 52 de 00 00 94 e8 01 80 52 e8 2b 00 b9 e8 2b 40 b9 1f 4d 00 71}  //weight: 1, accuracy: High
+        $x_1_2 = {88 0d 80 52 e8 63 00 39 08 00 00 90 08 39 3c 91 08 01 40 f9 e8 0b 00 f9 73 02 40 f9 f4 a3 00 91 e8 a3 00 91 e0 43 00 91 65 00 00 94 e8 ff c0 39 e9 17 40 f9 1f 01 00 71 28 b1 94 9a e8 7f 00 a9 e0 03 13 aa e1 03 13 aa 9b 00 00 94}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

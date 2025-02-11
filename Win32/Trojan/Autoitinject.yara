@@ -584,3 +584,31 @@ rule Trojan_Win32_Autoitinject_PLLAH_2147929795_0
         )
 }
 
+rule Trojan_Win32_Autoitinject_SPNH_2147933107_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Autoitinject.SPNH!MTB"
+        threat_id = "2147933107"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Autoitinject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = "EXECUTE" ascii //weight: 1
+        $x_4_2 = {44 00 4c 00 4c 00 43 00 41 00 4c 00 4c 00 20 00 28 00 20 00 [0-20] 20 00 28 00 20 00 22 00 31 00 30 00 38 00 7b 00 31 00 30 00 32 00 7b 00 31 00 31 00 35 00 7b 00 31 00 31 00 31 00 7b 00 31 00 30 00 32 00 7b 00 31 00 30 00 39 00 7b 00 35 00 32 00 7b 00 35 00 31 00 7b 00 34 00 37 00 7b 00 31 00 30 00 31 00 7b 00 31 00 30 00 39 00 7b 00 31 00 30 00 39 00 22 00 20 00 2c 00 20 00 31 00 20 00 29 00 20 00 2c 00 20 00 00 20 00 28 00 20 00 22 00 31 00 30 00 31 00 7b 00 31 00 32 00 30 00 7b 00 31 00 31 00 32 00 7b 00 31 00 31 00 35 00 7b 00 31 00 30 00 31 00 22 00 20 00 2c 00 20 00 31 00 20 00 29 00 20 00 2c 00 20 00 00 20 00 28 00 20 00 22 00}  //weight: 4, accuracy: Low
+        $x_4_3 = {44 4c 4c 43 41 4c 4c 20 28 20 [0-20] 20 28 20 22 31 30 38 7b 31 30 32 7b 31 31 35 7b 31 31 31 7b 31 30 32 7b 31 30 39 7b 35 32 7b 35 31 7b 34 37 7b 31 30 31 7b 31 30 39 7b 31 30 39 22 20 2c 20 31 20 29 20 2c 20 00 20 28 20 22 31 30 31 7b 31 32 30 7b 31 31 32 7b 31 31 35 7b 31 30 31 22 20 2c 20 31 20 29 20 2c 20 00 20 28 20 22}  //weight: 4, accuracy: Low
+        $x_1_4 = "\"69{110{113{117{103{74{99{112{102{110{103\"" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_4_*) and 2 of ($x_1_*))) or
+            ((2 of ($x_4_*))) or
+            (all of ($x*))
+        )
+}
+
