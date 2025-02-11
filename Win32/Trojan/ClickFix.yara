@@ -313,6 +313,7 @@ rule Trojan_Win32_ClickFix_DD_2147932646_0
         $x_1_9 = "- re captcha" wide //weight: 1
         $x_1_10 = "robot: r" wide //weight: 1
         $x_1_11 = "robot - r" wide //weight: 1
+        $x_1_12 = "- rCAPTCHA" wide //weight: 1
     condition:
         (filesize < 20MB) and
         (

@@ -1412,6 +1412,28 @@ rule Trojan_Win32_ICLoader_BS_2147932087_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_ICLoader_CCJU_2147932238_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ICLoader.CCJU!MTB"
+        threat_id = "2147932238"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ICLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {8b f9 8a 0d 40 ?? 8a 00 a0 4f ?? 8a 00 80 c9 0c 8a 1d 42 ?? 8a 00 c0 e9 02 81 e1 ff 00 00 00 32 d8 89 4c 24}  //weight: 2, accuracy: Low
+        $x_1_2 = {32 d1 88 15 49 ?? 8a 00 8b 15 34 ?? 8a 00 8b 0d 48 ?? 8a 00 83 e2 04 03 c2 81 e1}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win32_ICLoader_GLN_2147932310_0
 {
     meta:

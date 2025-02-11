@@ -612,3 +612,28 @@ rule Trojan_Win32_Autoitinject_SPNH_2147933107_0
         )
 }
 
+rule Trojan_Win32_Autoitinject_SPDH_2147933134_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Autoitinject.SPDH!MTB"
+        threat_id = "2147933134"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Autoitinject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "15"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "FILEINSTALL" ascii //weight: 1
+        $x_1_2 = "@TEMPDIR" ascii //weight: 1
+        $x_1_3 = "DLLCALL" ascii //weight: 1
+        $x_5_4 = "k281250650er281250650nel32812506502" ascii //weight: 5
+        $x_7_5 = "281250650V281250650ir281250650tualA281250650llo281250650c" ascii //weight: 7
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
