@@ -471,3 +471,34 @@ rule Trojan_Win32_Tedy_NITA_2147931298_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Tedy_ND_2147933077_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Tedy.ND!MTB"
+        threat_id = "2147933077"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Tedy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "15"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "tukul.ndeso\\shell\\open\\command" wide //weight: 2
+        $x_2_2 = "Persistent" wide //weight: 2
+        $x_2_3 = "Infected!" wide //weight: 2
+        $x_2_4 = "Blue Screen Of Death" wide //weight: 2
+        $x_1_5 = "SCRNSAVE.EXE" wide //weight: 1
+        $x_1_6 = "This is your last chance!!" wide //weight: 1
+        $x_1_7 = "Please enter confirmpassword & Password" wide //weight: 1
+        $x_1_8 = "HideFileExt" wide //weight: 1
+        $x_1_9 = "This File Has Been Quarantined By Simple Machine Protect" wide //weight: 1
+        $x_1_10 = "DisableRegistryTools" wide //weight: 1
+        $x_1_11 = "EncryptByte" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -2437,6 +2437,31 @@ rule Trojan_Win32_Zusy_NZ_2147852763_3
         (all of ($x*))
 }
 
+rule Trojan_Win32_Zusy_NZ_2147852763_4
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zusy.NZ!MTB"
+        threat_id = "2147852763"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "antianalysier started" ascii //weight: 2
+        $x_1_2 = "encodedPayload_password" ascii //weight: 1
+        $x_1_3 = "( i dont love u, bro(((" ascii //weight: 1
+        $x_1_4 = "@ why u reverse my stub?((" ascii //weight: 1
+        $x_1_5 = "POnPaPic" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win32_Zusy_MBHQ_2147852860_0
 {
     meta:

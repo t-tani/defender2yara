@@ -308,6 +308,28 @@ rule Trojan_MSIL_Lazy_NL_2147840169_2
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Lazy_NL_2147840169_3
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Lazy.NL!MTB"
+        threat_id = "2147840169"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Lazy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = {72 41 01 00 70 13 0b 11 05 72 fe 01 00 70 72 41 01 00 70 6f 27 00 00 0a 13 0c 11 07 16 fe 04 16 fe 01 13 0d 11 0d 2c 3b 00 02 7b 0c 00 00 04}  //weight: 3, accuracy: High
+        $x_2_2 = {72 e5 02 00 70 72 e0 01 00 70 28 23 00 00 0a 26 20 ee 02 00 00 28 03 00 00 0a 00 72 0f 03 00 70 28 35 00 00 0a}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_Lazy_NEAF_2147840211_0
 {
     meta:
@@ -2966,6 +2988,28 @@ rule Trojan_MSIL_Lazy_SVJI_2147931905_0
         $x_2_1 = {09 08 06 07 6f ?? 00 00 0a 17 73 ?? 00 00 0a 13 04 16 2d 0e 2b 21 2b 23 16 2b 23 8e 69 6f ?? 00 00 0a 73 ?? 00 00 0a 25 09 6f ?? 00 00 0a 6f ?? 00 00 0a 13 05 de 30}  //weight: 2, accuracy: Low
         $x_1_2 = "FromBase64String" ascii //weight: 1
         $x_1_3 = "CreateDecryptor" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Lazy_NU_2147933076_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Lazy.NU!MTB"
+        threat_id = "2147933076"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Lazy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = {17 33 1d 73 5c 00 00 0a 25 72 b6 01 00 70 6f 5d 00 00 0a 25 17 6f 5e 00 00 0a 28 5f 00 00 0a 26 02}  //weight: 3, accuracy: High
+        $x_2_2 = {72 b0 04 00 70 02 7b 10 00 00 04 6f 3a 00 00 0a 28 72 00 00 0a 72 ba 04 00 70 6f 73 00 00 0a 72 64 0b 00 70 72 ba 04 00 70 6f 73 00 00 0a 28 6b 00 00 06}  //weight: 2, accuracy: High
     condition:
         (filesize < 20MB) and
         (all of ($x*))

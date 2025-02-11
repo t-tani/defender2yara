@@ -180,3 +180,27 @@ rule Trojan_Win32_GhostRat_NIM_2147928745_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_GhostRat_AGR_2147933071_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/GhostRat.AGR!MTB"
+        threat_id = "2147933071"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "GhostRat"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {b3 1c a1 04 f0 43 00 ba 0f 00 00 00 23 d0 0f b6 92 c6 f9 43 00 0f b6 cb 88 14 0f c1 e8 04 4b 85 c0}  //weight: 3, accuracy: High
+        $x_2_2 = {6a 00 68 d4 cf 40 00 e8 ?? ?? ?? ?? 8b d8 85 db 74 3b 53 e8 ?? ?? ?? ?? 85 c0 74 31 68 ff 01 00 00 6a 00 6a 00 8d 44 24 14 50 e8 ?? ?? ?? ?? 8b d8 85 db}  //weight: 2, accuracy: Low
+        $x_1_3 = "Printer driver software installation" wide //weight: 1
+        $x_4_4 = "WINDOWS\\GGTALL\\GGTupdate.exe" wide //weight: 4
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
