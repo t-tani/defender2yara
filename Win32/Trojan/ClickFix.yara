@@ -307,9 +307,12 @@ rule Trojan_Win32_ClickFix_DD_2147932646_0
         $x_10_3 = "verif" wide //weight: 10
         $x_10_4 = "\\1" wide //weight: 10
         $x_1_5 = "robot - captcha" wide //weight: 1
-        $x_1_6 = "- ray" wide //weight: 1
-        $x_1_7 = "- recaptcha" wide //weight: 1
-        $x_1_8 = "- re captcha" wide //weight: 1
+        $x_1_6 = "robot: captcha" wide //weight: 1
+        $x_1_7 = "- ray" wide //weight: 1
+        $x_1_8 = "- recaptcha" wide //weight: 1
+        $x_1_9 = "- re captcha" wide //weight: 1
+        $x_1_10 = "robot: r" wide //weight: 1
+        $x_1_11 = "robot - r" wide //weight: 1
     condition:
         (filesize < 20MB) and
         (
@@ -338,9 +341,12 @@ rule Trojan_Win32_ClickFix_DE_2147932647_0
         $x_10_3 = "\\1" wide //weight: 10
         $x_10_4 = "verif" wide //weight: 10
         $x_1_5 = "robot - captcha" wide //weight: 1
-        $x_1_6 = "- ray" wide //weight: 1
-        $x_1_7 = "- recaptcha" wide //weight: 1
-        $x_1_8 = "- re captcha" wide //weight: 1
+        $x_1_6 = "robot: captcha" wide //weight: 1
+        $x_1_7 = "- ray" wide //weight: 1
+        $x_1_8 = "- recaptcha" wide //weight: 1
+        $x_1_9 = "- re captcha" wide //weight: 1
+        $x_1_10 = "robot: r" wide //weight: 1
+        $x_1_11 = "robot - r" wide //weight: 1
     condition:
         (filesize < 20MB) and
         (

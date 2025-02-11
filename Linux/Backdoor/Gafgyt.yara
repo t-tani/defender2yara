@@ -4672,6 +4672,30 @@ rule Backdoor_Linux_Gafgyt_BR_2147917137_0
         (all of ($x*))
 }
 
+rule Backdoor_Linux_Gafgyt_DF_2147932283_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Backdoor:Linux/Gafgyt.DF!MTB"
+        threat_id = "2147932283"
+        type = "Backdoor"
+        platform = "Linux: Linux platform"
+        family = "Gafgyt"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_ELFHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "socket_attack" ascii //weight: 1
+        $x_1_2 = "bot.c" ascii //weight: 1
+        $x_1_3 = "udp_attack" ascii //weight: 1
+        $x_1_4 = "vse_attack" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Backdoor_Linux_Gafgyt_DE_2147932896_0
 {
     meta:

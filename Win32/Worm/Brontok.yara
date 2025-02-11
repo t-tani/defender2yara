@@ -171,3 +171,24 @@ rule Worm_Win32_Brontok_GA_2147602386_0
         (all of ($x*))
 }
 
+rule Worm_Win32_Brontok_MBQ_2147932984_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Worm:Win32/Brontok.MBQ!MTB"
+        threat_id = "2147932984"
+        type = "Worm"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Brontok"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {70 7f 40 00 00 f8 30 00 00 ff ff ff 08 00 00 00 01 00 00 00 01 00 00 00 e9 00 00 00 00 7a 40 00 e8 78 40 00 00 20 40 00 78 00 00 00 7d 00 00 00 82 00 00 00 83}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

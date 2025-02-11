@@ -201,3 +201,24 @@ rule Trojan_MSIL_Dapato_GPPC_2147932421_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Dapato_AMDG_2147932966_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Dapato.AMDG!MTB"
+        threat_id = "2147932966"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Dapato"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {11 36 11 34 16 6f ?? 00 00 0a 61 d2 13 36 20 ?? ?? ?? ?? 7e}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

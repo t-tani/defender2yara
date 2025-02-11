@@ -49,3 +49,29 @@ rule TrojanSpy_AndroidOS_Abarw_B_2147844326_0
         (5 of ($x*))
 }
 
+rule TrojanSpy_AndroidOS_Abarw_C_2147932963_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanSpy:AndroidOS/Abarw.C!MTB"
+        threat_id = "2147932963"
+        type = "TrojanSpy"
+        platform = "AndroidOS: Android operating system"
+        family = "Abarw"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "ArabWareSMS" ascii //weight: 1
+        $x_1_2 = "timer_attack" ascii //weight: 1
+        $x_1_3 = "droid/child/MainActivity" ascii //weight: 1
+        $x_1_4 = "_send_Telgra" ascii //weight: 1
+        $x_1_5 = "_start_attack" ascii //weight: 1
+        $x_1_6 = "_gotelgram_request_listener" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

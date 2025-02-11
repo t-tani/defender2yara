@@ -10,13 +10,12 @@ rule Virus_O97M_Kangatang_2147932807_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_MACROHSTR_EXT"
-        threshold = "4"
-        strings_accuracy = "High"
+        threshold = "3"
+        strings_accuracy = "Low"
     strings:
-        $x_1_1 = "subauto_open()'ifthisworkbook.path<>application.path&\"\\xlstart\"thenthisworkbook.saveasfilename:=application.path&\"\\xlstart\\mypersonel1.xls\"" ascii //weight: 1
-        $x_1_2 = "Application.OnSheetActivate = \"mypersonnel1.xls!allocated\"" ascii //weight: 1
-        $x_1_3 = "ifactiveworkbook.sheets(1).name<>\"kangatang\"thenapplication.screenupdating=trueapplication.displaystatusbar=truecurrentsh=activesheet.name" ascii //weight: 1
-        $x_1_4 = "thisworkbook.sheets(\"kangatang\").copybefore:=activeworkbook.sheets(1)activeworkbook.sheets(currentsh).selectapplication.screenupdating=trueendifendsub" ascii //weight: 1
+        $x_1_1 = {61 70 70 6c 69 63 61 74 69 6f 6e 2e 6f 6e 73 68 65 65 74 61 63 74 69 76 61 74 65 3d 22 6d 79 70 65 72 73 6f 6e 6e 65 6c [0-4] 2e 78 6c 73 21 61 6c 6c 6f 63 61 74 65 64 22}  //weight: 1, accuracy: Low
+        $x_1_2 = "ifactiveworkbook.sheets(1).name<>\"kangatang\"thenapplication.screenupdating" ascii //weight: 1
+        $x_1_3 = "thisworkbook.sheets(\"kangatang\").copybefore:=activeworkbook.sheets(1)activeworkbook.sheets(currentsh).selectapplication.screenupdating=trueendifendsub" ascii //weight: 1
     condition:
         (filesize < 20MB) and
         (all of ($x*))

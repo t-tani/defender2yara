@@ -2199,3 +2199,54 @@ rule Trojan_Win32_GuLoader_RSE_2147932819_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_GuLoader_RSF_2147932961_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/GuLoader.RSF!MTB"
+        threat_id = "2147932961"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "GuLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "dommedagsprdikenens johnnis" ascii //weight: 1
+        $x_1_2 = "vignetted" ascii //weight: 1
+        $x_1_3 = "kodes" ascii //weight: 1
+        $x_1_4 = "toggler triumvirates.exe" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_GuLoader_RSG_2147932999_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/GuLoader.RSG!MTB"
+        threat_id = "2147932999"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "GuLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "charpiet\\Summertide245\\Anskueligt" ascii //weight: 1
+        $x_1_2 = "motatory\\Gudmdrene\\krematorier" ascii //weight: 1
+        $x_1_3 = "%Ineffektiviteterne40%\\bejape\\Lullet210" ascii //weight: 1
+        $x_1_4 = "%Trabucos%\\protestations\\unfiendlike" ascii //weight: 1
+        $x_1_5 = "\\funke\\Befolkningsttheders75.kal" ascii //weight: 1
+        $x_1_6 = "\\Sugeskive140.smu" ascii //weight: 1
+        $x_1_7 = "genfremstilles dmringer.exe" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

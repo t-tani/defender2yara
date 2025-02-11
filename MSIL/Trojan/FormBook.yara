@@ -7990,6 +7990,30 @@ rule Trojan_MSIL_FormBook_AFK_2147835374_22
         (all of ($x*))
 }
 
+rule Trojan_MSIL_FormBook_AFK_2147835374_23
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/FormBook.AFK!MTB"
+        threat_id = "2147835374"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "FormBook"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {02 03 07 04 05 28 ?? 00 00 06 00 73 7f 00 00 0a 13 05 11 05 72 a7 08 00 70 6f ?? 00 00 0a 26 11 05 72 a7 08 00 70 6f ?? 00 00 0a 26 07 17 58 0b 00 07 02 6f}  //weight: 4, accuracy: Low
+        $x_3_2 = "rdoBtnSoftDrinks" wide //weight: 3
+        $x_2_3 = "rdoBtnAlcohol" wide //weight: 2
+        $x_1_4 = "Unfortunately You have entered the wrong password three times" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_FormBook_AGCG_2147835375_0
 {
     meta:

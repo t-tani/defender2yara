@@ -5547,3 +5547,26 @@ rule Trojan_MSIL_AsyncRAT_SVCI_2147932396_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AsyncRAT_SPY_2147932965_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AsyncRAT.SPY!MTB"
+        threat_id = "2147932965"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AsyncRAT"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {0b 73 09 00 00 0a 0c 08 07 17 73 0a 00 00 0a 0d 09 03 16 03 8e 69 6f ?? 00 00 0a 08 6f ?? 00 00 0a 13 04 de 1e 09 2c 06 09 6f ?? 00 00 0a dc}  //weight: 2, accuracy: Low
+        $x_1_2 = "CreateDecryptor" ascii //weight: 1
+        $x_1_3 = "FromBase64String" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

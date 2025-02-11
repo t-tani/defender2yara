@@ -218,3 +218,26 @@ rule Trojan_AndroidOS_Arsink_X_2147931872_0
         (all of ($x*))
 }
 
+rule Trojan_AndroidOS_Arsink_I_2147932962_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:AndroidOS/Arsink.I!MTB"
+        threat_id = "2147932962"
+        type = "Trojan"
+        platform = "AndroidOS: Android operating system"
+        family = "Arsink"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "com/DeathRat" ascii //weight: 1
+        $x_1_2 = "_getAllContacts" ascii //weight: 1
+        $x_1_3 = "getAllCallsHistoty" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
