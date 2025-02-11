@@ -79,9 +79,8 @@ rule Trojan_Win32_Lummac_SC_2147931978_0
         $x_10_2 = {b0 40 c3 b0 3f c3 80 f9 30 72 ?? 80 f9 39 77 06 80 c1 04 89 c8 c3}  //weight: 10, accuracy: Low
         $x_10_3 = {8b 4c 24 04 8b 14 24 31 ca f7 d2 21 ca 29 d0}  //weight: 10, accuracy: High
         $x_10_4 = {89 f1 c1 e9 0c 80 c9 e0 88 08 89 f1 c1 e9 06 80 e1 3f 80 c9 80 88 48 01 80 e2 3f}  //weight: 10, accuracy: High
-        $x_10_5 = {32 1d 30 f9 48 77 82 5a 3c bf 73 7f dd 4f 15 75}  //weight: 10, accuracy: High
-        $x_5_6 = {02 0f b7 16 83 c6 02 66 85 d2 75 ef 66 c7 00 00 00 0f b7 11}  //weight: 5, accuracy: High
-        $x_5_7 = {0c 0f b7 4c 24 04 66 89 0f 83 c7 02 39 f7 73 0c 01 c3 39 eb}  //weight: 5, accuracy: High
+        $x_5_5 = {02 0f b7 16 83 c6 02 66 85 d2 75 ef 66 c7 00 00 00 0f b7 11}  //weight: 5, accuracy: High
+        $x_5_6 = {0c 0f b7 4c 24 04 66 89 0f 83 c7 02 39 f7 73 0c 01 c3 39 eb}  //weight: 5, accuracy: High
     condition:
         (filesize < 20MB) and
         (
@@ -89,5 +88,27 @@ rule Trojan_Win32_Lummac_SC_2147931978_0
             ((1 of ($x_10_*))) or
             (all of ($x*))
         )
+}
+
+rule Trojan_Win32_Lummac_SD_2147933009_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Lummac.SD"
+        threat_id = "2147933009"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Lummac"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "15"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {32 1d 30 f9 48 77 82 5a 3c bf 73 7f dd 4f 15 75}  //weight: 5, accuracy: High
+        $x_5_2 = {74 72 75 65 00 66 61 6c 73 65}  //weight: 5, accuracy: High
+        $x_5_3 = {fe dc ba 98 76 54 32 10 f0 e1 d2 c3}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
 }
 
