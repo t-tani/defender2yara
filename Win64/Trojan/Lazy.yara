@@ -2219,3 +2219,25 @@ rule Trojan_Win64_Lazy_HGP_2147932820_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Lazy_GNE_2147933061_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Lazy.GNE!MTB"
+        threat_id = "2147933061"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Lazy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {61 f3 56 1d ?? ?? ?? ?? 1b f3 56 1d ?? ?? ?? ?? e2 f0 56 1d ?? ?? ?? ?? 2b f3 56 1d}  //weight: 10, accuracy: Low
+        $x_1_2 = "UwUdisRAT.pdb" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

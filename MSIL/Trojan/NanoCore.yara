@@ -649,3 +649,26 @@ rule Trojan_MSIL_NanoCore_PLAH_2147928654_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_NanoCore_BL_2147933059_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/NanoCore.BL!MTB"
+        threat_id = "2147933059"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "NanoCore"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {0a 10 00 02 28 ?? 00 00 0a 0d 08 08 6f ?? 00 00 0a 08 6f ?? 00 00 0a 6f ?? 00 00 0a 13 04 00 09 73 ?? 00 00 0a 13 05 00 11 05 11 04 16 73 ?? 00 00 0a 13 06}  //weight: 3, accuracy: Low
+        $x_1_2 = "41.216.188.198/Panel/page.php" wide //weight: 1
+        $x_1_3 = "vSBUyYcgKOgzYy0nDLQex7k6kSCdTt6T" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
