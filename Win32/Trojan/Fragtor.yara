@@ -2117,3 +2117,26 @@ rule Trojan_Win32_Fragtor_NR_2147933074_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Fragtor_NFE_2147933279_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Fragtor.NFE!MTB"
+        threat_id = "2147933279"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Fragtor"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = {56 ff 75 f8 89 45 fc 50 89 03 89 73 10 89 7b 14 e8 26 4e 00 00 8b 45 fc 83 c4 0c 5f c6 04 06 00 5e 5b 8b e5 5d}  //weight: 3, accuracy: High
+        $x_1_2 = "amjsolutionx.pw/stub" ascii //weight: 1
+        $x_1_3 = "SIDF.json" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

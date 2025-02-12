@@ -2199,6 +2199,33 @@ rule Trojan_Win32_GuLoader_RSI_2147925419_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_GuLoader_RSJ_2147925465_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/GuLoader.RSJ!MTB"
+        threat_id = "2147925465"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "GuLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "Software\\replaster\\uninterpleaded" ascii //weight: 1
+        $x_1_2 = "Recants\\kirsebrsten\\rhesuspositiv" ascii //weight: 1
+        $x_1_3 = "99\\multiplicere\\mortify.Pun" ascii //weight: 1
+        $x_1_4 = "$$\\Grecianize\\turritellidae.ini" ascii //weight: 1
+        $x_1_5 = "%Undergrundsbane%\\Akkusativobjekterne.Tan" ascii //weight: 1
+        $x_1_6 = "mechanicalizations.bla" ascii //weight: 1
+        $x_1_7 = "regalers.jpg" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win32_GuLoader_RSB_2147932408_0
 {
     meta:
