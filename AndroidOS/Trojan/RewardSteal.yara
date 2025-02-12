@@ -117,3 +117,25 @@ rule Trojan_AndroidOS_RewardSteal_Y_2147933112_0
         (all of ($x*))
 }
 
+rule Trojan_AndroidOS_RewardSteal_X_2147933284_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:AndroidOS/RewardSteal.X!MTB"
+        threat_id = "2147933284"
+        type = "Trojan"
+        platform = "AndroidOS: Android operating system"
+        family = "RewardSteal"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_DEXHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {3a 03 20 00 6e 20 39 28 31 00 0c 04 1f 04 0d 07 6e 20 40 28 94 00 0a 05 38 05 11 00}  //weight: 1, accuracy: High
+        $x_1_2 = {5b 53 e9 03 22 03 b1 02 70 10 cd 0c 03 00 5b 53 ec 03 5c 51 ed 03 5b 56 d8 03 62 06 49 05 6e 20 85 0c 62 00 62 06 47 05}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
