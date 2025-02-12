@@ -44,3 +44,61 @@ rule Trojan_MSIL_Malgent_MBAO_2147838730_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Malgent_PR_2147933223_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Malgent.PR!AMTB"
+        threat_id = "2147933223"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Malgent"
+        severity = "Critical"
+        info = "AMTB: an internal category used to refer to some threats"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "9"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "E:\\PROJETOS2023\\CSHARP\\RAT\\MXNOBUGMAG\\Bin\\Release\\msedge_elf.pdb" ascii //weight: 1
+        $x_1_2 = "ToString" ascii //weight: 1
+        $x_1_3 = "WriteAllBytes" ascii //weight: 1
+        $x_1_4 = "Replace" ascii //weight: 1
+        $x_1_5 = "KASjDQA7FcOTljmC0PVBUJnBNB7cburrVCK3df0fsdk=" ascii //weight: 1
+        $x_1_6 = "sC6zp6p0ui2QzFHKcfq6vYl6CZ3U2Vo7yW1LgKFTJ6Q=" ascii //weight: 1
+        $x_1_7 = "l6PjPku2W0NahCbd36HRrMt3OvjY3svw1l1VAr63795ZSuvoliYrT76jhbTr4DE8" ascii //weight: 1
+        $x_1_8 = "o2ydLwGi6hIsHroFCdSiRcRHYtZnvb0vCwvSX" ascii //weight: 1
+        $x_1_9 = "gZZm0XrYdyIRihnH0golgTnw==" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Malgent_PR_2147933223_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Malgent.PR!AMTB"
+        threat_id = "2147933223"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Malgent"
+        severity = "Critical"
+        info = "AMTB: an internal category used to refer to some threats"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "9"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "ToString" ascii //weight: 1
+        $x_1_2 = "WriteAllBytes" ascii //weight: 1
+        $x_1_3 = "Replace" ascii //weight: 1
+        $x_1_4 = "E:\\PROJETOS2023\\CSHARP\\RAT\\MXNOBUGMAG\\Bin\\Release\\VCRUNTIME140.pdb" ascii //weight: 1
+        $x_1_5 = "o2ydLwGi6hIsHroFCdSiRcRHYtZnvb0vCwvSX" ascii //weight: 1
+        $x_1_6 = "gZZm0XrYdyIRihnH0golgTnw==" ascii //weight: 1
+        $x_1_7 = "KASjDQA7FcOTljmC0PVBUJnBNB7cburrVCK3df0fsdk=" ascii //weight: 1
+        $x_1_8 = "sC6zp6p0ui2QzFHKcfq6vYl6CZ3U2Vo7yW1LgKFTJ6Q=" ascii //weight: 1
+        $x_1_9 = "l6PjPku2W0NahCbd36HRrMt3OvjY3svw1l1VAr63795ZSuvoliYrT76jhbTr4DE8" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

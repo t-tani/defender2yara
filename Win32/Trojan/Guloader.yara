@@ -5065,3 +5065,30 @@ rule Trojan_Win32_Guloader_SBM_2147932787_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Guloader_ASI_2147933232_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Guloader.ASI!MTB"
+        threat_id = "2147933232"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Guloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "apotekerbevillings.txt" ascii //weight: 1
+        $x_1_2 = "trningsdragternes\\misdannes\\Tekstilfarvers" ascii //weight: 1
+        $x_1_3 = "tyverisikrendes.dll" ascii //weight: 1
+        $x_1_4 = "Unrhymed.adi" ascii //weight: 1
+        $x_1_5 = "christianshavnerne.deh" ascii //weight: 1
+        $x_1_6 = "stoppegarns.bra" ascii //weight: 1
+        $x_1_7 = "normalfordelte.jpg" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
