@@ -1419,3 +1419,24 @@ rule Trojan_Win32_Tofsee_AMDC_2147931725_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Tofsee_GNE_2147933247_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Tofsee.GNE!MTB"
+        threat_id = "2147933247"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Tofsee"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = {ff 0c 24 ff 0c 24 68 02 10 00 00 ff 0c 24 ff 0c 24 68 8a 06 00 00 ff 0c 24 ff 0c 24 6a 00}  //weight: 10, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

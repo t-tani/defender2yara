@@ -6425,6 +6425,28 @@ rule Trojan_MSIL_FormBook_AFO_2147832747_11
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {16 0a 2b 0e 02 03 06 04 05 28 ?? 00 00 06 06 17 58 0a 06 02 6f ?? 00 00 0a 2f 0b 04 6f ?? 00 00 0a 05 fe 04 2b 01 16 0b 07 2d d9}  //weight: 2, accuracy: Low
+        $x_1_2 = {02 03 04 6f ?? 00 00 0a 0a 0e 04 05 6f ?? 00 00 0a 59 0b 06 07 05 28}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_FormBook_AFO_2147832747_12
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/FormBook.AFO!MTB"
+        threat_id = "2147832747"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "FormBook"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "1"
         strings_accuracy = "Low"
     strings:
@@ -6434,7 +6456,7 @@ rule Trojan_MSIL_FormBook_AFO_2147832747_11
         (all of ($x*))
 }
 
-rule Trojan_MSIL_FormBook_AFO_2147832747_12
+rule Trojan_MSIL_FormBook_AFO_2147832747_13
 {
     meta:
         author = "defender2yara"
@@ -6456,7 +6478,7 @@ rule Trojan_MSIL_FormBook_AFO_2147832747_12
         (all of ($x*))
 }
 
-rule Trojan_MSIL_FormBook_AFO_2147832747_13
+rule Trojan_MSIL_FormBook_AFO_2147832747_14
 {
     meta:
         author = "defender2yara"
@@ -6478,7 +6500,7 @@ rule Trojan_MSIL_FormBook_AFO_2147832747_13
         (all of ($x*))
 }
 
-rule Trojan_MSIL_FormBook_AFO_2147832747_14
+rule Trojan_MSIL_FormBook_AFO_2147832747_15
 {
     meta:
         author = "defender2yara"
@@ -6500,7 +6522,7 @@ rule Trojan_MSIL_FormBook_AFO_2147832747_14
         (all of ($x*))
 }
 
-rule Trojan_MSIL_FormBook_AFO_2147832747_15
+rule Trojan_MSIL_FormBook_AFO_2147832747_16
 {
     meta:
         author = "defender2yara"
@@ -6522,7 +6544,7 @@ rule Trojan_MSIL_FormBook_AFO_2147832747_15
         (all of ($x*))
 }
 
-rule Trojan_MSIL_FormBook_AFO_2147832747_16
+rule Trojan_MSIL_FormBook_AFO_2147832747_17
 {
     meta:
         author = "defender2yara"
@@ -6544,7 +6566,7 @@ rule Trojan_MSIL_FormBook_AFO_2147832747_16
         (all of ($x*))
 }
 
-rule Trojan_MSIL_FormBook_AFO_2147832747_17
+rule Trojan_MSIL_FormBook_AFO_2147832747_18
 {
     meta:
         author = "defender2yara"
@@ -6570,7 +6592,7 @@ rule Trojan_MSIL_FormBook_AFO_2147832747_17
         (all of ($x*))
 }
 
-rule Trojan_MSIL_FormBook_AFO_2147832747_18
+rule Trojan_MSIL_FormBook_AFO_2147832747_19
 {
     meta:
         author = "defender2yara"
@@ -9666,6 +9688,28 @@ rule Trojan_MSIL_FormBook_AFR_2147841577_1
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {16 0a 11 04 20 ca 00 00 00 91 20 dd 00 00 00 59 0d 2b c3 02 03 06 04 05 28 ?? ?? ?? 06 06 17 58 0a 19 0d 2b b1}  //weight: 2, accuracy: Low
+        $x_1_2 = {02 03 04 20 a4 02 00 00 20 a6 02 00 00 28 ?? 00 00 2b 0a 0e 04 05 6f ?? 00 00 0a 59 0b 19 0d 2b c5}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_FormBook_AFR_2147841577_2
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/FormBook.AFR!MTB"
+        threat_id = "2147841577"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "FormBook"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "1"
         strings_accuracy = "Low"
     strings:
@@ -9675,7 +9719,7 @@ rule Trojan_MSIL_FormBook_AFR_2147841577_1
         (all of ($x*))
 }
 
-rule Trojan_MSIL_FormBook_AFR_2147841577_2
+rule Trojan_MSIL_FormBook_AFR_2147841577_3
 {
     meta:
         author = "defender2yara"

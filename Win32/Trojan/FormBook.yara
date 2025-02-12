@@ -4101,3 +4101,39 @@ rule Trojan_Win32_FormBook_AYKA_2147933106_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_FormBook_NFA_2147933255_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/FormBook.NFA!MTB"
+        threat_id = "2147933255"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "FormBook"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_AUTOITHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {46 00 49 00 4c 00 45 00 49 00 4e 00 53 00 54 00 41 00 4c 00 4c 00 20 00 28 00 20 00 22 00 [0-47] 22 00 20 00 2c 00 20 00 40 00 54 00 45 00 4d 00 50 00 44 00 49 00 52 00 20 00 26 00 20 00 22 00 5c 00 00 22 00 20 00 2c 00 20 00 31 00 20 00 29 00}  //weight: 2, accuracy: Low
+        $x_2_2 = {46 49 4c 45 49 4e 53 54 41 4c 4c 20 28 20 22 [0-47] 22 20 2c 20 40 54 45 4d 50 44 49 52 20 26 20 22 5c 00 22 20 2c 20 31 20 29}  //weight: 2, accuracy: Low
+        $x_1_3 = "5058815630" ascii //weight: 1
+        $x_1_4 = {43 00 4f 00 4e 00 53 00 4f 00 4c 00 45 00 57 00 52 00 49 00 54 00 45 00 20 00 28 00 20 00 24 00 [0-31] 20 00 5b 00 20 00 24 00 [0-31] 20 00 5d 00 20 00 5b 00 20 00 30 00 20 00 5d 00 20 00 26 00 20 00 22 00 20 00 22 00 20 00 26 00}  //weight: 1, accuracy: Low
+        $x_1_5 = {43 4f 4e 53 4f 4c 45 57 52 49 54 45 20 28 20 24 [0-31] 20 5b 20 24 [0-31] 20 5d 20 5b 20 30 20 5d 20 26 20 22 20 22 20 26}  //weight: 1, accuracy: Low
+        $x_1_6 = {49 00 46 00 20 00 24 00 [0-31] 20 00 3c 00 3e 00 20 00 2b 00 20 00 2d 00 31 00 20 00 41 00 4e 00 44 00 20 00 24 00 [0-31] 20 00 3c 00 3e 00 20 00 2b 00 20 00 2d 00 31 00 20 00 54 00 48 00 45 00 4e 00}  //weight: 1, accuracy: Low
+        $x_1_7 = {49 46 20 24 [0-31] 20 3c 3e 20 2b 20 2d 31 20 41 4e 44 20 24 [0-31] 20 3c 3e 20 2b 20 2d 31 20 54 48 45 4e}  //weight: 1, accuracy: Low
+        $x_1_8 = {49 00 46 00 20 00 24 00 [0-31] 20 00 3d 00 20 00 2b 00 20 00 2d 00 31 00 20 00 4f 00 52 00 20 00 24 00 [0-31] 20 00 3d 00 20 00 2b 00 20 00 2d 00 31 00 20 00 54 00 48 00 45 00 4e 00 20 00 52 00 45 00 54 00 55 00 52 00 4e 00}  //weight: 1, accuracy: Low
+        $x_1_9 = {49 46 20 24 [0-31] 20 3d 20 2b 20 2d 31 20 4f 52 20 24 [0-31] 20 3d 20 2b 20 2d 31 20 54 48 45 4e 20 52 45 54 55 52 4e}  //weight: 1, accuracy: Low
+        $x_1_10 = "( \"H\" , \"Hydrogen\" , 10 )" ascii //weight: 1
+        $x_1_11 = "( \"HCl\" , \"Hydrochloric Acid\" , \"aqueous\" )" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((8 of ($x_1_*))) or
+            ((1 of ($x_2_*) and 6 of ($x_1_*))) or
+            ((2 of ($x_2_*) and 4 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+

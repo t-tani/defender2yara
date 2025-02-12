@@ -323,3 +323,26 @@ rule Trojan_Win32_Coinminer_CCJT_2147933108_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Coinminer_CCJU_2147933253_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Coinminer.CCJU!MTB"
+        threat_id = "2147933253"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Coinminer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {51 00 30 00 c7 45 ?? 4e 00 32 00 c7 45 ?? 54 00 61 00 c7 45 ?? 51 00 75 00 c7 45 ?? 31 00 61 00 ff 15}  //weight: 2, accuracy: Low
+        $x_1_2 = {30 32 58 25 c7 45 ?? 30 32 58 25 c7 45 ?? 30 32 58 00}  //weight: 1, accuracy: Low
+        $x_1_3 = {61 70 70 64 c7 45 ?? 61 74 61 64 c7 45 ?? 2e 69 6e 69}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
