@@ -279,6 +279,7 @@ rule Trojan_Win32_ClickFix_J_2147932433_0
         $x_10_4 = "verif" wide //weight: 10
         $x_1_5 = ".mp4" wide //weight: 1
         $x_1_6 = ".mp3" wide //weight: 1
+        $x_1_7 = ".flv" wide //weight: 1
     condition:
         (filesize < 20MB) and
         (
@@ -429,6 +430,55 @@ rule Trojan_Win32_ClickFix_DH_2147932752_0
         $x_1_3 = ".Name).Invoke" wide //weight: 1
         $x_1_4 = "CommandTypes]::Cmdlet" wide //weight: 1
         $x_1_5 = {76 00 61 00 72 00 69 00 61 00 62 00 6c 00 65 00 3a 00 2f 00 [0-15] 27 00 68 00 74 00 74 00 70 00}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_ClickFix_O_2147933213_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ClickFix.O!MTB"
+        threat_id = "2147933213"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ClickFix"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_CMDHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {70 00 6f 00 77 00 65 00 72 00 73 00 68 00 65 00 6c 00 6c 00 [0-16] 2d 00 65 00}  //weight: 10, accuracy: Low
+        $x_1_2 = "iwr" wide //weight: 1
+        $x_1_3 = "invoke-webrequest" wide //weight: 1
+        $x_1_4 = "iex" wide //weight: 1
+        $x_1_5 = "invoke-expression" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_10_*) and 1 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+
+rule Trojan_Win32_ClickFix_Y_2147933215_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ClickFix.Y!MTB"
+        threat_id = "2147933215"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ClickFix"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_CMDHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {6d 00 68 00 73 00 74 00 61 00 [0-32] 68 00 74 00 74 00 70 00 [0-80] 23 00}  //weight: 1, accuracy: Low
     condition:
         (filesize < 20MB) and
         (all of ($x*))
