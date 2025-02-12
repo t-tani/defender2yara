@@ -2173,6 +2173,32 @@ rule Trojan_Win32_GuLoader_RSH_2147925145_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_GuLoader_RSI_2147925419_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/GuLoader.RSI!MTB"
+        threat_id = "2147925419"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "GuLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "Software\\Shrilling221\\melanemia" ascii //weight: 1
+        $x_1_2 = "99\\Dkvingernes88\\malaga" ascii //weight: 1
+        $x_1_3 = "#\\afsindigstes\\physitheism\\altingsmedlemmet" ascii //weight: 1
+        $x_1_4 = "indefensibly\\antiatomkampagnen" ascii //weight: 1
+        $x_1_5 = "Levnedsmiddelet.hyd" ascii //weight: 1
+        $x_1_6 = "vejningers.jpg" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win32_GuLoader_RSB_2147932408_0
 {
     meta:
