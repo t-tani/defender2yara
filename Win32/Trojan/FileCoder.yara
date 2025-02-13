@@ -367,3 +367,25 @@ rule Trojan_Win32_FileCoder_AMDA_2147931008_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_FileCoder_ARAC_2147933302_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/FileCoder.ARAC!MTB"
+        threat_id = "2147933302"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "FileCoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {8b 75 18 8a 8c 95 fc fb ff ff 8a 14 30 32 d1 88 14 30 40 3b c7 0f 82 70 ff ff ff}  //weight: 2, accuracy: High
+        $x_2_2 = {8b 55 18 03 95 f4 fb ff ff 8a 0a 32 8c 85 f8 fb ff ff 8b 55 18 03 95 f4 fb ff ff 88 0a e9 2e ff ff ff}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (1 of ($x*))
+}
+

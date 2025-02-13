@@ -2329,3 +2329,30 @@ rule Trojan_Win32_GuLoader_RSG_2147932999_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_GuLoader_RSK_2147933300_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/GuLoader.RSK!MTB"
+        threat_id = "2147933300"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "GuLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "unstraightened\\unpredicable\\konstance" ascii //weight: 1
+        $x_1_2 = "\\dynelfterne\\fremmedpolitis.Afk" ascii //weight: 1
+        $x_1_3 = "%kajpladserne%\\cordies\\participerendes.Ann" ascii //weight: 1
+        $x_1_4 = "5\\Snespurve.Mys" ascii //weight: 1
+        $x_1_5 = "\\breathalyze\\adults.loc" ascii //weight: 1
+        $x_1_6 = "#\\Disallowance232\\*.vej" ascii //weight: 1
+        $x_1_7 = "busseronne.ini" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
