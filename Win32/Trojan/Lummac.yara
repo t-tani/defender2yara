@@ -105,8 +105,28 @@ rule Trojan_Win32_Lummac_SD_2147933009_0
         strings_accuracy = "High"
     strings:
         $x_5_1 = {32 1d 30 f9 48 77 82 5a 3c bf 73 7f dd 4f 15 75}  //weight: 5, accuracy: High
-        $x_5_2 = {74 72 75 65 00 66 61 6c 73 65}  //weight: 5, accuracy: High
+        $x_5_2 = {00 6e 75 6c 6c 00 74 72 75 65 00 66 61 6c 73 65 00 30 31 32 33 34 35 36 37 38 39 41 42 43 44 45 46 47 48 49 4a 4b 4c 4d 4e 4f 50 51 52 53 54 55 56 57 58 59 5a}  //weight: 5, accuracy: High
         $x_5_3 = {fe dc ba 98 76 54 32 10 f0 e1 d2 c3}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Lummac_SE_2147933324_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Lummac.SE"
+        threat_id = "2147933324"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Lummac"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = {8b 44 24 08 8b 54 24 04 89 54 24 fc 89 74 24 f8 89 7c 24 f4 8b 4c 24 0c 8d 74 24 10 8d 7c 24 04 f3 a4 8b 74 24 f8 8b 7c 24 f4 8d 54 24 04 ff 54 24 fc c3}  //weight: 10, accuracy: High
     condition:
         (filesize < 20MB) and
         (all of ($x*))

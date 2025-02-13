@@ -863,3 +863,24 @@ rule Trojan_Win32_VBInject_EM_2147932658_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_VBInject_MBQ_2147933332_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/VBInject.MBQ!MTB"
+        threat_id = "2147933332"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "VBInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {fc 22 40 00 00 f8 30 00 00 ff ff ff 08 00 00 00 01 00 00 00 01 00 00 00 e9 00 00 00 18 22 40 00 10 22 40 00 24 18 40 00 78 00 00 00 81 00 00 00 8a 00 00 00 8b [0-33] 50 72 6f 6a 65 63 74 31 00 50 72 6f 6a}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

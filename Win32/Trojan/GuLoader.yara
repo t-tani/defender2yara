@@ -2226,6 +2226,32 @@ rule Trojan_Win32_GuLoader_RSJ_2147925465_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_GuLoader_RSL_2147925570_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/GuLoader.RSL!MTB"
+        threat_id = "2147925570"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "GuLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "\\Lividities\\indlaegger\\noncapillaries" ascii //weight: 1
+        $x_1_2 = "88\\Disrespective\\mouseweb.sup" ascii //weight: 1
+        $x_1_3 = "7\\caryophyllene.bac" ascii //weight: 1
+        $x_1_4 = "%Farcicality115%\\venus" ascii //weight: 1
+        $x_1_5 = "\\bearnaisens\\lejen.mac" ascii //weight: 1
+        $x_1_6 = "kolonialt billedtppet.exe" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win32_GuLoader_RSB_2147932408_0
 {
     meta:
