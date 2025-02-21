@@ -279,27 +279,6 @@ rule Trojan_MSIL_DarkCloud_CRAA_2147901934_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_DarkCloud_CBAA_2147902083_0
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "Trojan:MSIL/DarkCloud.CBAA!MTB"
-        threat_id = "2147902083"
-        type = "Trojan"
-        platform = "MSIL: .NET intermediate language scripts"
-        family = "DarkCloud"
-        severity = "Critical"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "5"
-        strings_accuracy = "Low"
-    strings:
-        $x_5_1 = {07 08 18 5b 02 08 18 28 ?? 01 00 06 1f 10 28 ?? 01 00 06 9c 11 05}  //weight: 5, accuracy: Low
-    condition:
-        (filesize < 20MB) and
-        (all of ($x*))
-}
-
 rule Trojan_MSIL_DarkCloud_DZAA_2147902711_0
 {
     meta:
