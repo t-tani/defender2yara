@@ -16,9 +16,10 @@ import logging
 logger = logging.getLogger(__package__)
 
 DOWNLOAD_URL = "https://go.microsoft.com/fwlink/?LinkID=121721&arch=x86"
-URL_PATTERN = r'https://definitionupdates\.microsoft\.com/download/DefinitionUpdates/versionedsignatures/[aA][mM]/[0-9.]+/[0-9.]+/x86/mpam-fe\.exe'
-UPDATE_CATALOG = "https://www.microsoft.com/en-us/wdsi/definitions/antimalware-definition-release-notes?requestVersion={signature_version}"
+URL_PATTERN_1 = r'https://definitionupdates\.microsoft\.com/download/DefinitionUpdates/versionedsignatures/[aA][mM]/[0-9.]+/[0-9.]+/x86/mpam-fe\.exe'
+URL_PATTERN_2 = r'https://definitionupdates\.microsoft\.com/packages/content/mpam-fe\.exe\?packageType=Signatures&packageVersion=([0-9.]+)&arch=x86&engineVersion=([0-9.]+)'
 
+UPDATE_CATALOG = "https://www.microsoft.com/en-us/wdsi/definitions/antimalware-definition-release-notes?requestVersion={signature_version}"
 
 def check_cached_signature(signature_version,engine_version,cache_dir='cache') -> Tuple[bool,bool,bool]:
     has_base_signature = False
@@ -119,10 +120,16 @@ def move_files(signature_version,engine_version,source_dir,cache_path) -> None:
 def get_latest_signature_vdm(proxy)->Tuple[str,str,str]:
     client = httpx.Client(proxy=proxy)
     res = client.head(DOWNLOAD_URL,follow_redirects=True)
+    
     download_url = str(res.url)
-    if re.match(URL_PATTERN,download_url):
+    if re.match(URL_PATTERN_1,download_url):
         signature_version = download_url.split("/")[7]
         engine_version = download_url.split("/")[8]
+        return download_url, signature_version, engine_version
+    elif re.match(URL_PATTERN_2,download_url):
+        m = re.match(URL_PATTERN_2,download_url)
+        signature_version = m.groups()[0]
+        engine_version = m.groups()[1]
         return download_url, signature_version, engine_version
     return None,None,None
 
