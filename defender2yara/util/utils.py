@@ -37,6 +37,21 @@ def is_printable_ascii(data: Union[bytes,str]) -> bool:
         raise ValueError("Not supported type.")
 
 
+def is_printable_ascii_null_terminated(data:bytes) -> bool:
+    """
+    Check if the byte data is printable ASCII and null-terminated.
+
+    Args:
+        data (bytes): The byte data to check.
+
+    Returns:
+        bool: True if the byte data is printable ASCII and null-terminated, False otherwise.
+    """
+    if len(data) == 0 or data[-1] != 0:
+        return False
+    return is_printable_ascii(data[:-1])
+
+
 def is_printable_utf16_le_ascii(byte_data:bytes) -> bool:
     """
     Check if the given byte data is encoded as UTF-16-LE and contains only ASCII characters.
@@ -59,6 +74,22 @@ def is_printable_utf16_le_ascii(byte_data:bytes) -> bool:
     except UnicodeDecodeError:
         # If decoding fails, it's not a valid UTF-16-LE encoding
         return False
+
+
+def is_printable_utf16_le_ascii_null_terminated(byte_data:bytes) -> bool:
+    """
+    Check if the given byte data is UTF-16-LE encoded, contains only ASCII characters, and is null-terminated.
+
+    Args:
+        byte_data (bytes): The byte data to check.
+
+    Returns:
+        bool: True if the byte data is UTF-16-LE encoded, contains only ASCII characters, and is null-terminated, False otherwise.
+    """
+    if len(byte_data) < 2 or byte_data[-2:] != b'\x00\x00':
+        # Check if the byte data is at least 2 bytes long and null-terminated
+        return False
+    return is_printable_utf16_le_ascii(byte_data[:-2])
 
 
 def is_ascii(c:int) -> bool:

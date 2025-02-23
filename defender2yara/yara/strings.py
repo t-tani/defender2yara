@@ -2,7 +2,7 @@ from typing import Tuple, List, Union
 import json
 import re
 from defender2yara.defender.subrule.hstr import HStrSubRule,HStrExtSubRule
-from defender2yara.util import is_printable_ascii, is_printable_utf16_le_ascii
+from defender2yara.util import is_printable_ascii_null_terminated, is_printable_ascii, is_printable_utf16_le_ascii_null_terminated, is_printable_utf16_le_ascii
 
 class YaraString:
     def __init__(self,subrule:Union[HStrSubRule,HStrExtSubRule]):
@@ -13,6 +13,8 @@ class YaraString:
 
     def __repr__(self) -> str:
         if "ascii" in self.types or "wide" in self.types:
+            if self.string.endswith('\x00'):
+                return json.dumps(self.string[:-1])[:-1] + '\\x00"'
             return json.dumps(self.string)
         if "hex" in self.types:
             return f"{{{self.string}}} "
@@ -35,9 +37,15 @@ class YaraString:
         string_types = []
         is_inaccurate = False
 
-        if is_printable_ascii(data):
+        if is_printable_ascii_null_terminated(data):
+            string = data[:-1].decode('utf-8') + '\x00'
+            string_types.append('ascii')
+        elif is_printable_ascii(data):
             string = data.decode('utf-8')
             string_types.append('ascii')
+        elif is_printable_utf16_le_ascii_null_terminated(data):
+            string = data[:-2].decode('utf-16-le') + '\x00'
+            string_types.append('wide')
         elif is_printable_utf16_le_ascii(data):
             string = data.decode('utf-16-le')
             string_types.append('wide')
