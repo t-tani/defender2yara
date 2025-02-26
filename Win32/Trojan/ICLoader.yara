@@ -1919,12 +1919,12 @@ rule Trojan_Win32_ICLoader_GPQ_2147934250_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_ICLoader_GNQ_2147934592_0
+rule Trojan_Win32_ICLoader_GNQ_2147934597_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/ICLoader.GNQ!MTB"
-        threat_id = "2147934592"
+        threat_id = "2147934597"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "ICLoader"

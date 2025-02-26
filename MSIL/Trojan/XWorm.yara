@@ -1278,12 +1278,12 @@ rule Trojan_MSIL_XWorm_ARX_2147934292_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_XWorm_ARM_2147934591_0
+rule Trojan_MSIL_XWorm_ARM_2147934594_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/XWorm.ARM!MTB"
-        threat_id = "2147934591"
+        threat_id = "2147934594"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "XWorm"

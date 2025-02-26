@@ -2801,12 +2801,12 @@ rule Trojan_Win32_GuLoader_RSY_2147934560_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_GuLoader_RSZ_2147934593_0
+rule Trojan_Win32_GuLoader_RSZ_2147934598_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/GuLoader.RSZ!MTB"
-        threat_id = "2147934593"
+        threat_id = "2147934598"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "GuLoader"
