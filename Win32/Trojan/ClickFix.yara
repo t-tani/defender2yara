@@ -703,3 +703,99 @@ rule Trojan_Win32_ClickFix_SA_2147934466_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_ClickFix_AC_2147934651_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ClickFix.AC!MTB"
+        threat_id = "2147934651"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ClickFix"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_CMDHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "[convert]::tobase64string($" wide //weight: 1
+        $x_1_2 = ".invoke($" wide //weight: 1
+        $x_1_3 = "net.webclient" wide //weight: 1
+        $x_1_4 = "http" wide //weight: 1
+        $x_1_5 = ".getstring($" wide //weight: 1
+        $x_1_6 = "[system.reflection.assembly]::load($" wide //weight: 1
+        $x_1_7 = ".getmethod" wide //weight: 1
+        $x_1_8 = ".download" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_ClickFix_AG_2147934652_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ClickFix.AG!MTB"
+        threat_id = "2147934652"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ClickFix"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_CMDHSTR_EXT"
+        threshold = "201"
+        strings_accuracy = "High"
+    strings:
+        $x_200_1 = "powershell" wide //weight: 200
+        $x_1_2 = "captcha" wide //weight: 1
+        $x_1_3 = "robot" wide //weight: 1
+        $x_1_4 = "human" wide //weight: 1
+        $x_1_5 = " ray" wide //weight: 1
+        $x_1_6 = " recaptcha" wide //weight: 1
+        $x_1_7 = " re captcha" wide //weight: 1
+        $x_1_8 = " rCAPTCHA" wide //weight: 1
+        $x_1_9 = " clip FREE" wide //weight: 1
+        $x_1_10 = " Over FREE" wide //weight: 1
+        $x_1_11 = "robot: r" wide //weight: 1
+        $x_1_12 = "robot - r" wide //weight: 1
+        $x_1_13 = "Cloudflare" wide //weight: 1
+        $x_1_14 = "- Over FREE" wide //weight: 1
+        $x_1_15 = "Google Meet" wide //weight: 1
+        $x_1_16 = "Restart  DNS service" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_200_*) and 1 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+
+rule Trojan_Win32_ClickFix_AH_2147934653_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ClickFix.AH!MTB"
+        threat_id = "2147934653"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ClickFix"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_CMDHSTR_EXT"
+        threshold = "410"
+        strings_accuracy = "High"
+    strings:
+        $x_100_1 = "powershell" wide //weight: 100
+        $x_100_2 = "curl" wide //weight: 100
+        $x_100_3 = "-join" wide //weight: 100
+        $x_100_4 = "[char]($" wide //weight: 100
+        $x_10_5 = "invoke-expression" wide //weight: 10
+        $x_10_6 = "iex" wide //weight: 10
+    condition:
+        (filesize < 20MB) and
+        (
+            ((4 of ($x_100_*) and 1 of ($x_10_*))) or
+            (all of ($x*))
+        )
+}
+
