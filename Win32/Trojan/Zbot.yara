@@ -6088,3 +6088,25 @@ rule Trojan_Win32_Zbot_ASGA_2147909741_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Zbot_AZT_2147934843_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zbot.AZT!MTB"
+        threat_id = "2147934843"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zbot"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {23 02 20 68 25 20 02 20 68 1d 20 02 20 68 15 20 02 20 e9 0d ee ff ff 32 9c 68 ?? ?? ?? ?? 68 25 20 02 20 68 1d 20 02 20 68 15 20 02 20}  //weight: 3, accuracy: Low
+        $x_2_2 = {d0 8b d8 c3 a1 8b 73 3c c3 8f 03 f3 c3 aa 8b 86 80 00 00 00 c3 f3 fd 8b 44 18 10 c3 41}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
