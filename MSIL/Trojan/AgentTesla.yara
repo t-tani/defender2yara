@@ -109006,3 +109006,25 @@ rule Trojan_MSIL_AgentTesla_EALU_2147947296_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AgentTesla_PGT_2147947698_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.PGT!MTB"
+        threat_id = "2147947698"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "##############F####i####l################l############St############ar############t############################" ascii //weight: 2
+        $x_3_2 = "N%%%%%%%%%%%%iv%%%%%%%%%%%%%%%%%%%%%%e%%%%%%%%%%%%%%%%%%%%%%%%" ascii //weight: 3
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
