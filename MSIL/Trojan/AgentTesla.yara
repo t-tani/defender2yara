@@ -109050,3 +109050,26 @@ rule Trojan_MSIL_AgentTesla_PGT_2147947698_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AgentTesla_RBC_2147948110_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.RBC!MTB"
+        threat_id = "2147948110"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {57 9f a2 2b 09 0f 00 00 00 fa 01 33 00 16 00 00 01 00 00 00 cd 00 00 00 2f 00 00 00 7c 01 00 00 6b 02 00 00 fd 01 00 00 06 00 00 00 20 04 00 00 06 00 00 00 e5 01 00 00 02 00 00 00 93 00 00 00 17 00 00 00 12 01 00 00 4e 01 00 00 02 00 00 00 b4 00 00 00 02 00 00 00 01 00 00 00 06 00 00 00 02 00 00 00 0f 00 00 00 d2 00 00 00 35}  //weight: 1, accuracy: High
+        $x_1_2 = "a9b3a267-fec5-4d24-8c20-2ab841d6ec74" ascii //weight: 1
+        $x_1_3 = "AnalyzeGraphics.Properties.Resources" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
