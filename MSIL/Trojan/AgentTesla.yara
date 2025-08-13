@@ -109140,3 +109140,45 @@ rule Trojan_MSIL_AgentTesla_RBD_2147949130_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AgentTesla_GAPO_2147949243_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.GAPO!MTB"
+        threat_id = "2147949243"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "Low"
+    strings:
+        $x_8_1 = {58 07 06 1f ?? 58 4a 91 54 06 4a 61 06 1f ?? 58 4a 61 54 08 06 1f ?? 58 4a 06 1f ?? 58 4a d2 9c 06 1f ?? 58 4a 06 1a 58 4a 17 59 33}  //weight: 8, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_AgentTesla_GAPP_2147949244_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.GAPP!MTB"
+        threat_id = "2147949244"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "Low"
+    strings:
+        $x_8_1 = {1f 0a 95 61 9e 38 ?? ?? 00 00 11 07 11 05 25 17 58 13 05 11 0b 1f 10 64 d2}  //weight: 8, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
