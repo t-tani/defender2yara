@@ -59232,38 +59232,6 @@ rule Trojan_MSIL_AgentTesla_GAB_2147816350_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_AgentTesla_GAB_2147816350_1
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "Trojan:MSIL/AgentTesla.GAB!MTB"
-        threat_id = "2147816350"
-        type = "Trojan"
-        platform = "MSIL: .NET intermediate language scripts"
-        family = "AgentTesla"
-        severity = "Critical"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "12"
-        strings_accuracy = "High"
-    strings:
-        $x_1_1 = "Fluence.Fluence" wide //weight: 1
-        $x_1_2 = "Fluences" wide //weight: 1
-        $x_1_3 = "BIGBOSS" wide //weight: 1
-        $x_1_4 = "GetType" ascii //weight: 1
-        $x_1_5 = "GetMethod" ascii //weight: 1
-        $x_1_6 = "Invoke" ascii //weight: 1
-        $x_1_7 = "CreateDecryptor" ascii //weight: 1
-        $x_1_8 = "ToArray" ascii //weight: 1
-        $x_1_9 = "RijndaelManaged" ascii //weight: 1
-        $x_1_10 = "GetBytes" ascii //weight: 1
-        $x_1_11 = "Reverse" ascii //weight: 1
-        $x_1_12 = "DownloadData" ascii //weight: 1
-    condition:
-        (filesize < 20MB) and
-        (all of ($x*))
-}
-
 rule Trojan_MSIL_AgentTesla_EPC_2147816384_0
 {
     meta:
