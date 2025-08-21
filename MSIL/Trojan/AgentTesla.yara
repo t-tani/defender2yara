@@ -109150,3 +109150,26 @@ rule Trojan_MSIL_AgentTesla_GAPP_2147949244_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AgentTesla_RBE_2147949774_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.RBE!MTB"
+        threat_id = "2147949774"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {57 1d a2 09 09 09 00 00 00 fa 25 33 00 16 00 00 01 00 00 00 5e 00 00 00 09 00 00 00 31 00 00 00 ef 00 00 00 42 00 00 00 cd 00 00 00 0c 00 00 00 17 00 00 00 1f 00 00 00 02 00 00 00 05 00 00 00 06 00 00 00 0e 00 00 00 01 00 00 00 06 00 00 00 04 00 00 00 01}  //weight: 1, accuracy: High
+        $x_1_2 = "a1b2c3d4-e5f6-7890-abcd-ef1234567890" ascii //weight: 1
+        $x_1_3 = "WorldClock.Properties.Resources" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
