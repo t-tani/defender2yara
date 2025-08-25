@@ -109216,3 +109216,25 @@ rule Trojan_MSIL_AgentTesla_GVF_2147949858_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AgentTesla_AKDB_2147949957_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.AKDB!MTB"
+        threat_id = "2147949957"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {01 13 05 11 05 16 08 8c ?? 00 00 01 a2 11 05 17 02 17 8d ?? 00 00 01 13 04 11 04 16 08 1a d6 8c ?? 00 00 01 a2 11 04 14 28 ?? 00 00 0a 28 ?? 00 00 0a a2 11 05 14 28 ?? 00 00 0a 08 17 d6 0c}  //weight: 4, accuracy: Low
+        $x_3_2 = {02 03 61 04 61 8c ?? 00 00 01 2a}  //weight: 3, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
