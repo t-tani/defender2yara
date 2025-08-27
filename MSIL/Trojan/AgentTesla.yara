@@ -109238,3 +109238,26 @@ rule Trojan_MSIL_AgentTesla_AKDB_2147949957_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AgentTesla_RBF_2147950530_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.RBF!MTB"
+        threat_id = "2147950530"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {57 9d a2 29 09 0b 00 00 00 fa 25 33 00 16 00 00 01 00 00 00 66 00 00 00 0e 00 00 00 3c 00 00 00 e6 00 00 00 36 00 00 00 a5 00 00 00 07 00 00 00 29 00 00 00 01 00 00 00 17 00 00 00 04 00 00 00 0b 00 00 00 10 00 00 00 06 00 00 00 01 00 00 00 01 00 00 00 06 00 00 00 04 00 00 00 02 00 00 00 07}  //weight: 1, accuracy: High
+        $x_1_2 = "2345678-1234-1234-1234-123456789abc" ascii //weight: 1
+        $x_1_3 = "WordScrambleGame.Properties.Resources" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
