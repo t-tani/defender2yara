@@ -109326,3 +109326,26 @@ rule Trojan_MSIL_AgentTesla_CW_2147951415_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AgentTesla_RBG_2147951588_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.RBG!MTB"
+        threat_id = "2147951588"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {57 9d a2 29 09 1e 00 00 00 fa 01 33 00 16 00 00 01 00 00 00 ?? 00 00 00 16 00 00 00 51 00 00 00 ?? 00 00 00 61 00 00 00 c2 00 00 00 03 00 00 00 ?? 00 00 00 05 00 00 00 ?? 00 00 00 03 00 00 00 18 00 00 00 2c 00 00 00 13 00 00 00 05 00 00 00 01 00 00 00 05 00 00 00 09}  //weight: 1, accuracy: Low
+        $x_1_2 = "12345678-1234-5678-9abc-123456789abc" ascii //weight: 1
+        $x_1_3 = "PrimeNumberGenerator.Properties" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
