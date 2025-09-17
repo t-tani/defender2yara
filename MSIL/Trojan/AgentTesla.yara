@@ -108948,6 +108948,29 @@ rule Trojan_MSIL_AgentTesla_SKC_2147945687_3
         threshold = "3"
         strings_accuracy = "High"
     strings:
+        $x_1_1 = {00 11 1b 11 1c 1f 61 5a 61 13 1d 00 02 11 1a 11 1c 6f 6e 00 00 0a 13 1e 04 03 6f 6f 00 00 0a 59 13 1f 11 1f 13 20 11 20 19 fe 02 13 26 11 26 2c 03 19 13 20 11 20 16 fe 04 13 27 11 27 2c 03 16 13 20}  //weight: 1, accuracy: High
+        $x_1_2 = "$a1b2c3d4-e5f6-7890-abcd-123456789abc" ascii //weight: 1
+        $x_1_3 = "CSS_Minifier.Properties.Resources.resources" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_AgentTesla_SKC_2147945687_4
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.SKC!MTB"
+        threat_id = "2147945687"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
         $x_1_1 = {06 7b 3f 00 00 04 20 39 05 00 00 61 7d 3f 00 00 04 16 06 7b 41 00 00 04 6f 8a 00 00 0a 28 8b 00 00 0a 06 fe 06 9d 00 00 06 73 8c 00 00 0a 28 05 00 00 2b 06 fe 06 a0 00 00 06 73 8e 00 00 0a 28 06 00 00 2b 28 07 00 00 2b}  //weight: 1, accuracy: High
         $x_1_2 = "NotepadPlus.Properties.Resources.resources" ascii //weight: 1
         $x_1_3 = "$87654321-4321-8765-4321-876543218765" ascii //weight: 1
