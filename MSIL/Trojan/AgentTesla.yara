@@ -109525,3 +109525,26 @@ rule Trojan_MSIL_AgentTesla_APFB_2147952724_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AgentTesla_RBH_2147953541_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.RBH!MTB"
+        threat_id = "2147953541"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {57 9d a2 29 09 1e 00 00 00 fa 01 33 00 16 00 00 01 00 00 00 8e 00 00 00 13 00 00 00 53 00 00 00 ?? 00 00 00 5b 00 00 00 d9 00 00 00 10 00 00 00 84 00 00 00 04 00 00 00 ?? 00 00 00 02 00 00 00 05 00 00 00 06 00 00 00 0d 00 00 00 04 00 00 00 01 00 00 00 06 00 00 00 07 00 00 00 71 00 00 00 55}  //weight: 1, accuracy: Low
+        $x_1_2 = "8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" ascii //weight: 1
+        $x_1_3 = "get_Teacher" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
