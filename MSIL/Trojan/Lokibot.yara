@@ -3026,3 +3026,24 @@ rule Trojan_MSIL_Lokibot_ADA_2147953758_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Lokibot_ALA_2147953764_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Lokibot.ALA!MTB"
+        threat_id = "2147953764"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Lokibot"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {13 0f 11 0e 74 ?? 00 00 1b 8e 69 17 58 11 0f 74 ?? 00 00 1b 8e 69 58 17 58 06 75 ?? 00 00 1b 8e 69 58}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
