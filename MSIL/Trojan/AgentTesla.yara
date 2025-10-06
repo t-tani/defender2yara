@@ -109548,3 +109548,26 @@ rule Trojan_MSIL_AgentTesla_RBH_2147953541_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AgentTesla_MKVV_2147954220_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.MKVV!MTB"
+        threat_id = "2147954220"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {26 20 03 00 00 00 38 6c ff ff ff 03 16 03 8e 69 28 ?? 00 00 0a 20 00 00 00 00 7e 66 00 00 04 7b 53 00 00 04 39 4e ff ff ff 26 20 00 00 00 00 38 43 ff ff ff 72 01 00 00 70 13 01 20 08 00 00 00 38 32 ff ff ff 28 ?? 00 00 0a 03 6f ?? 00 00 0a 6f ?? 00 00 0a 11 00 fe 06 10 00 00 06 73 07 00 00 0a}  //weight: 5, accuracy: Low
+        $x_5_2 = {0a 06 72 01 00 00 70 7d 06 00 00 04 72 4d 00 00 70 0b 03 16 03 8e 69 28 ?? 00 00 0a 28 ?? 00 00 0a 03 6f ?? 00 00 0a 6f ?? 00 00 0a 06 fe 06 14 00 00 06 73 06 00 00 0a 28 ?? 00 00 2b 0c 08 14}  //weight: 5, accuracy: Low
+        $x_5_3 = {19 13 04 38 6a ff ff ff 1f 29 28 ?? 00 00 06 0d 18 13 04 38 5a ff ff ff 38 4e ff ff ff 03 16 03 8e 69 28 ?? 00 00 0a 1f cd 0d 38 3c ff ff ff 08 14 28 ?? 00 00 0a 39 86 00 00 00 1f 21 28 ?? 00 00 06 0d 38 23 ff ff ff 20 ed 12 00 00 28 ?? 00 00 06 0b 1f c8 0d 38 10 ff ff ff}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (1 of ($x*))
+}
+
