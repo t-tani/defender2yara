@@ -105115,6 +105115,27 @@ rule Trojan_MSIL_AgentTesla_AHK_2147912605_0
         family = "AgentTesla"
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {7e 45 02 00 04 07 9a 06 28 a3 00 00 0a 39 0b 00 00 00 7e 46 02 00 04 74 24 00 00 01 2a 07 17 58 0b 07 7e 45 02 00 04 8e 69 3f d2 ff ff ff}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_AgentTesla_AHK_2147912605_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.AHK!MTB"
+        threat_id = "2147912605"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "2"
         strings_accuracy = "High"
@@ -105125,7 +105146,7 @@ rule Trojan_MSIL_AgentTesla_AHK_2147912605_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_AgentTesla_AHK_2147912605_1
+rule Trojan_MSIL_AgentTesla_AHK_2147912605_2
 {
     meta:
         author = "defender2yara"
