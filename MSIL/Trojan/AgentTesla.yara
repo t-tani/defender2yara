@@ -109084,6 +109084,29 @@ rule Trojan_MSIL_AgentTesla_BR_2147945982_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AgentTesla_BR_2147945982_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.BR!MTB"
+        threat_id = "2147945982"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "Personal finance planning and investment advisory" ascii //weight: 1
+        $x_1_2 = "WealthWise Advisor.dll" ascii //weight: 1
+        $x_1_3 = "FinTech Advisors Inc" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_AgentTesla_BT_2147945983_0
 {
     meta:
