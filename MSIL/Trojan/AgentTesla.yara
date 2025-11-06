@@ -104421,6 +104421,27 @@ rule Trojan_MSIL_AgentTesla_AIK_2147909869_0
         threshold = "2"
         strings_accuracy = "High"
     strings:
+        $x_2_1 = {7e 45 02 00 04 07 9a 06 28 a0 00 00 0a 39 0b 00 00 00 7e 46 02 00 04 74 25 00 00 01 2a 07 17 58 0b 07 7e 45 02 00 04 8e 69 3f d2 ff ff ff}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_AgentTesla_AIK_2147909869_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.AIK!MTB"
+        threat_id = "2147909869"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
         $x_2_1 = {11 0a 91 13 0b 06 17 58 09 5d 13 0c 07 06 91 11 0b 61 07 11 0c 91 59 13 0d 11 0d 20 00 01 00 00 58 13 0e 07 06 11 0e d2 9c 06 17 58 0a 06 07 8e 69 fe 04 13 0f 11 0f 2d ac}  //weight: 2, accuracy: High
     condition:
         (filesize < 20MB) and
