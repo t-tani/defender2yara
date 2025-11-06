@@ -107476,6 +107476,27 @@ rule Trojan_MSIL_AgentTesla_NCR_2147935616_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AgentTesla_NCR_2147935616_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.NCR!MTB"
+        threat_id = "2147935616"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {28 1b 00 00 0a 06 72 15 00 00 70 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 06 72 47 00 00 70 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 06 ?? ?? ?? ?? ?? 0b 14 0c 2b 0c 00 ?? ?? ?? ?? ?? 0c de 03 26 de 00 08 2c f1 07 08 16 08 8e 69 ?? ?? ?? ?? ?? 0d 02 09 ?? ?? ?? ?? ?? de 0a 06 2c 06 06 ?? ?? ?? ?? ?? dc}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_AgentTesla_SWC_2147935629_0
 {
     meta:
@@ -109826,6 +109847,27 @@ rule Trojan_MSIL_AgentTesla_ZWL_2147956824_0
         strings_accuracy = "Low"
     strings:
         $x_10_1 = {02 11 10 11 11 6f ?? 00 00 0a 13 20 12 20 28 ?? 00 00 0a 03 06 6f ?? 00 00 0a 59 13 1a 28 ?? 00 00 0a 13 1b 18 13 1c 17 13 1d 16 13 1e 11 07 11 10}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_AgentTesla_NCW_2147956952_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.NCW!MTB"
+        threat_id = "2147956952"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {00 07 08 09 93 66 d1 ?? ?? ?? ?? ?? 26 00 09 17 58 0d 09 08 8e 69 fe 04 13 04 11 04 2d e2}  //weight: 2, accuracy: Low
     condition:
         (filesize < 20MB) and
         (all of ($x*))
