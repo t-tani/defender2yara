@@ -7272,6 +7272,27 @@ rule Trojan_MSIL_AgentTesla_FO_2147769436_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {73 0b 00 00 0a 13 01 38 00 00 00 00 00 11 01 11 0c 6f 0c 00 00 0a 17 73 0d 00 00 0a 13 0b 38 00 00 00 00 00 11 0b 02 16 02 8e 69 6f 0e 00 00 0a}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_AgentTesla_FO_2147769436_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.FO!MTB"
+        threat_id = "2147769436"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "13"
         strings_accuracy = "High"
     strings:
@@ -7284,7 +7305,7 @@ rule Trojan_MSIL_AgentTesla_FO_2147769436_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_AgentTesla_FO_2147769436_1
+rule Trojan_MSIL_AgentTesla_FO_2147769436_2
 {
     meta:
         author = "defender2yara"
@@ -109975,6 +109996,29 @@ rule Trojan_MSIL_AgentTesla_NCS_2147957136_0
         strings_accuracy = "Low"
     strings:
         $x_2_1 = {13 05 11 05 11 04 ?? ?? ?? ?? ?? 17 73 e1 01 00 0a 13 06 11 06 09 16 09 8e 69 ?? ?? ?? ?? ?? 11 06 ?? ?? ?? ?? ?? 11 05 ?? ?? ?? ?? ?? 0d 11 05 ?? ?? ?? ?? ?? 11 06 ?? ?? ?? ?? ?? 73 df 01 00 0a 13 07 09 73 e5 01 00 0a 16 73 e6 01 00 0a 13 0b 20 00 04 00 00 13 0c 11 0c 8d 98 00 00 01 13 0e 11 0b 11 0e 16 11 0c ?? ?? ?? ?? ?? 13 0d 2b 1a 11 07 11 0e 16 11 0d ?? ?? ?? ?? ?? 11 0b 11 0e 16 11 0c ?? ?? ?? ?? ?? 13 0d 11 0d 16 30 e1}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_AgentTesla_RBI_2147957441_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.RBI!MTB"
+        threat_id = "2147957441"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {57 9d b6 29 09 1e 00 00 00 fa 01 33 00 16 00 00 01 00 00 00 ?? 00 00 00 ?? 00 00 00 ?? 00 00 00 ?? 00 00 00 34 00 00 00 d9 00 00 00 0e 00 00 00 ?? 00 00 00 04 00 00 00 ?? 00 00 00 02 00 00 00 02 00 00 00 05 00 00 00 15 00 00 00 25 00 00 00 0d 00 00 00 04 00 00 00 01 00 00 00 05 00 00 00 ?? 00 00 00 ?? 00 00 00 44}  //weight: 1, accuracy: Low
+        $x_1_2 = "6c161e0e-ce4a-45cf-bb3e-0d439b47bfdb" ascii //weight: 1
+        $x_1_3 = "Carubbi.MetroLayoutEngine" ascii //weight: 1
     condition:
         (filesize < 20MB) and
         (all of ($x*))
