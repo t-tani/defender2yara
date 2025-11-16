@@ -28514,27 +28514,6 @@ rule Trojan_MSIL_AgentTesla_CED_2147787192_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "1"
-        strings_accuracy = "Low"
-    strings:
-        $x_1_1 = {20 df 8e fb 0e 0b 07 20 e7 8e fb 0e fe 01 0c 08 2c 09 20 1f 8f fb 0e 0b 00 2b 34 07 20 f1 8e fb 0e fe 01 0d 09 2c 09 20 18 8f fb 0e 0b 00 2b 1f 00 20 07 8f fb 0e 0b 17 13 04 02 28 ?? ?? ?? 2b 16 02 6f ?? ?? ?? 0a 28 ?? ?? ?? 0a 0a 2b 00 06 2a}  //weight: 1, accuracy: Low
-    condition:
-        (filesize < 20MB) and
-        (all of ($x*))
-}
-
-rule Trojan_MSIL_AgentTesla_CED_2147787192_1
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "Trojan:MSIL/AgentTesla.CED!MTB"
-        threat_id = "2147787192"
-        type = "Trojan"
-        platform = "MSIL: .NET intermediate language scripts"
-        family = "AgentTesla"
-        severity = "Critical"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "4"
         strings_accuracy = "Low"
     strings:
@@ -28545,35 +28524,6 @@ rule Trojan_MSIL_AgentTesla_CED_2147787192_1
     condition:
         (filesize < 20MB) and
         (all of ($x*))
-}
-
-rule Trojan_MSIL_AgentTesla_CED_2147787192_2
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "Trojan:MSIL/AgentTesla.CED!MTB"
-        threat_id = "2147787192"
-        type = "Trojan"
-        platform = "MSIL: .NET intermediate language scripts"
-        family = "AgentTesla"
-        severity = "Critical"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "8"
-        strings_accuracy = "Low"
-    strings:
-        $x_1_1 = {43 00 6c 00 61 00 73 00 73 00 4c 00 69 00 62 00 72 00 61 00 72 00 79 00 [0-37] 44 00 61 00 74 00 61 00}  //weight: 1, accuracy: Low
-        $x_1_2 = {43 6c 61 73 73 4c 69 62 72 61 72 79 [0-37] 44 61 74 61}  //weight: 1, accuracy: Low
-        $x_1_3 = "FromBase64String" ascii //weight: 1
-        $x_1_4 = "GetString" ascii //weight: 1
-        $x_1_5 = "Replace" ascii //weight: 1
-        $x_1_6 = "po@wershe@ll" ascii //weight: 1
-        $x_1_7 = "DebuggableAttribute" ascii //weight: 1
-        $x_1_8 = "DebuggingModes" ascii //weight: 1
-        $x_1_9 = "AssemblyResolve" ascii //weight: 1
-    condition:
-        (filesize < 20MB) and
-        (8 of ($x*))
 }
 
 rule Trojan_MSIL_AgentTesla_CEL_2147787199_0
