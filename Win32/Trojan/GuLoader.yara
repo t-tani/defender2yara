@@ -6952,3 +6952,28 @@ rule Trojan_Win32_GuLoader_RDG_2147957727_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_GuLoader_RDH_2147957991_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/GuLoader.RDH!MTB"
+        threat_id = "2147957991"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "GuLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "\\stiks\\knosp" ascii //weight: 1
+        $x_1_2 = "acalycine\\unsalvaged\\qindars" ascii //weight: 1
+        $x_1_3 = "%ophovnede%\\tjaele\\Eleemosynar" ascii //weight: 1
+        $x_1_4 = "internuncially.ini" ascii //weight: 1
+        $x_1_5 = "\\Sealike18\\colorfully.jpg" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
