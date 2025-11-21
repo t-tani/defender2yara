@@ -601,12 +601,33 @@ rule Trojan_Win64_Rhadamanthys_NQF_2147957747_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_Rhadamanthys_NQG_2147957754_0
+rule Trojan_Win64_Rhadamanthys_MK_2147957824_0
 {
     meta:
         author = "defender2yara"
-        detection_name = "Trojan:Win64/Rhadamanthys.NQG!MTB"
-        threat_id = "2147957754"
+        detection_name = "Trojan:Win64/Rhadamanthys.MK!MTB"
+        threat_id = "2147957824"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Rhadamanthys"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "25"
+        strings_accuracy = "High"
+    strings:
+        $x_25_1 = {f6 21 88 01 4d 8d 6d 00 90 4d 8d 36 48 83 c1 01 4c 39 c1 75}  //weight: 25, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_Rhadamanthys_NQH_2147958007_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Rhadamanthys.NQH!MTB"
+        threat_id = "2147958007"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "Rhadamanthys"
@@ -625,22 +646,25 @@ rule Trojan_Win64_Rhadamanthys_NQG_2147957754_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_Rhadamanthys_MK_2147957824_0
+rule Trojan_Win64_Rhadamanthys_NQI_2147958008_0
 {
     meta:
         author = "defender2yara"
-        detection_name = "Trojan:Win64/Rhadamanthys.MK!MTB"
-        threat_id = "2147957824"
+        detection_name = "Trojan:Win64/Rhadamanthys.NQI!MTB"
+        threat_id = "2147958008"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "Rhadamanthys"
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "25"
+        threshold = "5"
         strings_accuracy = "High"
     strings:
-        $x_25_1 = {f6 21 88 01 4d 8d 6d 00 90 4d 8d 36 48 83 c1 01 4c 39 c1 75}  //weight: 25, accuracy: High
+        $x_1_1 = "ChainingModeCBC" ascii //weight: 1
+        $x_1_2 = "BCryptDecrypt" ascii //weight: 1
+        $x_1_3 = {f3 0f 6f 00 48 83 c0 10 66 0f ef c1 0f 11 40 f0}  //weight: 1, accuracy: High
+        $x_2_4 = {48 89 c2 66 0f 70 c0 00 66 0f ef c8 66 0f ef c2}  //weight: 2, accuracy: High
     condition:
         (filesize < 20MB) and
         (all of ($x*))
