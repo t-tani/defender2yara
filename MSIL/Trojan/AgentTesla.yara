@@ -104654,6 +104654,29 @@ rule Trojan_MSIL_AgentTesla_AJK_2147909870_2
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AgentTesla_AJK_2147909870_3
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.AJK!MTB"
+        threat_id = "2147909870"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "$a1b2c3d4-e5f6-47a8-b9c0-d1e2f3a4b5c6" ascii //weight: 2
+        $x_2_2 = "Ahorcado.Properties.Resources" ascii //weight: 2
+        $x_2_3 = "Juego del Ahorcado - Proyecto Universitario" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_AgentTesla_RDBI_2147909895_0
 {
     meta:
