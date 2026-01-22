@@ -2825,6 +2825,30 @@ rule Trojan_MSIL_AgentTesla_SJ_2147756279_1
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {00 08 02 6f 19 00 00 0a fe 04 16 fe 01 13 12 11 12 2c 05 38 f7 01 00 00 09 02 6f 1a 00 00 0a fe 04 16 fe 01 13 13 11 13 2c 05}  //weight: 1, accuracy: High
+        $x_1_2 = {06 11 0d 18 91 6f 1e 00 00 0a 00 11 05 17 59 25 13 05 16 fe 02 16 fe 01 13 17 11 17 2c 05 38 a8 00 00 00 06}  //weight: 1, accuracy: High
+        $x_1_3 = "UnravelGraphicMatrix" ascii //weight: 1
+        $x_1_4 = "dicegame.Properties.Resources" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_AgentTesla_SJ_2147756279_2
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.SJ!MTB"
+        threat_id = "2147756279"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "3"
         strings_accuracy = "High"
     strings:
