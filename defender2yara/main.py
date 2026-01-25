@@ -5,6 +5,7 @@ import shutil
 import yara
 from collections import defaultdict
 
+from defender2yara.defender.constant.ignore_threats import IGNORE_THREAT_NAME_LIST
 from defender2yara.defender.threat import Threat
 from defender2yara.yara.rule import YaraRule
 from defender2yara.defender.vdm import Vdm
@@ -77,6 +78,11 @@ def covert_vdm_to_yara(vdm:Vdm,filesize_check:str,header_check:bool=False) -> Tu
             leave=False)
 
     for threat in threats:
+        
+        if threat.threat_name in IGNORE_THREAT_NAME_LIST:
+            logger.info(f"Ignored threat: {threat.threat_name}")
+            continue
+        logger.debug(f"Start converting {threat.threat_name}")
         yara_rules = YaraRule(threat,filesize_check=filesize_check,do_header_check=header_check)
         if not yara_rules:
             continue
