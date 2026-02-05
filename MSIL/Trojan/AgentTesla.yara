@@ -110343,3 +110343,27 @@ rule Trojan_MSIL_AgentTesla_ABAT_2147962267_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AgentTesla_SJX_2147962495_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.SJX!MTB"
+        threat_id = "2147962495"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {00 07 09 5b 08 2f 0e 06 6f ?? ?? ?? ?? 03 fe 04 16 fe 01 2b 01 17 13 22 11 22 2c 05 38 2c 03 00 00 28 ?? ?? ?? ?? 13 1b 12 1b 28 ?? ?? ?? ?? 11 0c 59 13 0f 11 0a 11 0f 20 ff ff 00 00 6a 5f 69 61 13 0a 11 0b 18 62 11 0b 1f 1e 63 60 13 0b 11 0b 11 0f 19 6a 5f 69 61 13 0b 11 0d 07 1f 0a 5d 11 0d 07 1f 0a 5d 94 17}  //weight: 1, accuracy: Low
+        $x_1_2 = {20 ff ff ff 7f 5f 9e 02 07 09 5b 07 09 5d 6f ?? ?? ?? ?? 13 10 19 8d 3d 00 00 01 25 16 12 10 28 ?? ?? ?? ?? 9c 25 17 12 10 28 ?? ?? ?? ?? 9c 25 18 12 10 28 ?? ?? ?? ?? 9c 13 11 11 05 17 62 11 05 1f 1f 63 60 07 61 13 05 11 05 20 ad de 00 00 58 20 ef be 00 00 61 20 ad de 00 00 61 20 ef be 00 00 61 13 05 11 06 20 6d 4e c6 41 5a 20 39 30 00 00 58 20 ff ff ff 7f 5f 13 06 11 06 11 05 61 11 04 61 13 12 11 12}  //weight: 1, accuracy: Low
+        $x_1_3 = {20 aa aa 00 00 5f 11 12 20 55 55 00 00 5f 60 13 12 11 07 11 09 20 00 01 00 00 5d 07 20 ff 00 00 00 5f d2 9c 11 08 11 07 11 09 20 00 01 00 00 5d 91 91 13 13 11 09 17 58 13 09 11 0e 16 91 13 14 16 13 23 2b 12 11 0e 11 23 11 0e 11 23 17 58 91 9c 11 23 17 58 13 23 11 23 1d fe 04 13 24 11 24 2d e3}  //weight: 1, accuracy: High
+        $x_1_4 = "AcquireImageBytes" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
