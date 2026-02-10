@@ -110388,3 +110388,27 @@ rule Trojan_MSIL_AgentTesla_AKK_2147962628_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AgentTesla_GPAP_2147962759_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.GPAP!MTB"
+        threat_id = "2147962759"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {11 04 11 06 61 13 10 08 11 0a 11 10 20 ff 00 00 00 5f d2 9c 08 11 0a 17 58 11 10}  //weight: 5, accuracy: High
+        $x_1_2 = "ProcessHollowing" ascii //weight: 1
+        $x_1_3 = "targetProcessPath" ascii //weight: 1
+        $x_1_4 = "payload" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
