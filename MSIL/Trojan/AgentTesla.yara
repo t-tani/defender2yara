@@ -109817,27 +109817,6 @@ rule Trojan_MSIL_AgentTesla_ZDO_2147951168_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_AgentTesla_CW_2147951415_0
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "Trojan:MSIL/AgentTesla.CW!MTB"
-        threat_id = "2147951415"
-        type = "Trojan"
-        platform = "MSIL: .NET intermediate language scripts"
-        family = "AgentTesla"
-        severity = "Critical"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "1"
-        strings_accuracy = "High"
-    strings:
-        $x_1_1 = {01 7d 7a 00 00 04 02 7b 79 00 00 04 7b 10 00 00 04 02 7b 7a 00 00 04 16 02 7b 7a 00 00 04 8e 69}  //weight: 1, accuracy: High
-    condition:
-        (filesize < 20MB) and
-        (all of ($x*))
-}
-
 rule Trojan_MSIL_AgentTesla_RBG_2147951588_0
 {
     meta:
