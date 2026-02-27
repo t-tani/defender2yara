@@ -110478,3 +110478,26 @@ rule Trojan_MSIL_AgentTesla_VD_2147963023_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AgentTesla_RBJ_2147963627_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.RBJ!MTB"
+        threat_id = "2147963627"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {57 9d a2 29 09 0b 00 00 00 00 00 00 00 00 00 00 02 00 00 00 a4 00 00 00 31 00 00 00 ?? 01 00 00 08 01 00 00 a6 00 00 00 4c 01 00 00 04 00 00 00 78 00 00 00 0c 00 00 00 ?? 00 00 00 02 00 00 00 05 00 00 00 06 00 00 00 11 00 00 00 0f 00 00 00 02 00 00 00 06 00 00 00 03 00 00 00 1f 00 00 00 08}  //weight: 1, accuracy: Low
+        $x_1_2 = "4dfb529d-9243-453d-9a7d-b5d5273dc46e" ascii //weight: 1
+        $x_1_3 = "SprintPlanner" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
