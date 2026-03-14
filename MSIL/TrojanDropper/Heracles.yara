@@ -1,12 +1,12 @@
-rule TrojanDropper_MSIL_Agentagen_VD_2147964539_0
+rule TrojanDropper_MSIL_Heracles_VDE_2147964742_0
 {
     meta:
         author = "defender2yara"
-        detection_name = "TrojanDropper:MSIL/Agentagen.VD!MTB"
-        threat_id = "2147964539"
+        detection_name = "TrojanDropper:MSIL/Heracles.VDE!MTB"
+        threat_id = "2147964742"
         type = "TrojanDropper"
         platform = "MSIL: .NET intermediate language scripts"
-        family = "Agentagen"
+        family = "Heracles"
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
