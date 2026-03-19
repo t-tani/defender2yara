@@ -69102,6 +69102,27 @@ rule Trojan_MSIL_AgentTesla_ABG_2147830117_1
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {02 09 11 04 6f ?? 00 00 0a 13 06 12 06 28 ?? 00 00 0a 13 07 12 06 28 ?? 00 00 0a 13 08 12 06 28 ?? 00 00 0a 13 09 06 11 07 6f ?? 00 00 06 13 07 06 11 08}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_AgentTesla_ABG_2147830117_2
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.ABG!MTB"
+        threat_id = "2147830117"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "8"
         strings_accuracy = "Low"
     strings:
