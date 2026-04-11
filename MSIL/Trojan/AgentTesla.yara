@@ -109268,6 +109268,28 @@ rule Trojan_MSIL_AgentTesla_SLWT_2147944459_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AgentTesla_AMTB_2147944494_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla!AMTB"
+        threat_id = "2147944494"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "Screen Uploader" ascii //weight: 1
+        $x_1_2 = "https://oshi.at/Yybk" ascii //weight: 1
+        $x_1_3 = "Xqxladbni" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_AgentTesla_RAY_2147944626_0
 {
     meta:
