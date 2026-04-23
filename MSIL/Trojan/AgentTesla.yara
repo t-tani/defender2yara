@@ -83931,6 +83931,28 @@ rule Trojan_MSIL_AgentTesla_MBCX_2147846901_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AgentTesla_AAZ_2147846926_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.AAZ!MTB"
+        threat_id = "2147846926"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_9_1 = {0a 06 02 7d ?? 00 00 04 06 03 7d ?? 00 00 04 02 7b ?? 00 00 04 02 7b ?? 00 00 04 6f ?? 01 00 0a 28 ?? 00 00 0a 06 fe ?? 96 00 00 06 73 ?? 00 00 0a 28 ?? 00 00 2b 2a}  //weight: 9, accuracy: Low
+        $x_1_2 = "GetPixel" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_AgentTesla_GAH_2147846955_0
 {
     meta:
