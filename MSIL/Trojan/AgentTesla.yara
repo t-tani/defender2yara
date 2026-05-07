@@ -110826,3 +110826,25 @@ rule Trojan_MSIL_AgentTesla_ASZ_2147967704_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AgentTesla_AHA_2147968633_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.AHA!MTB"
+        threat_id = "2147968633"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "50"
+        strings_accuracy = "Low"
+    strings:
+        $x_20_1 = "PatekPorot.exe" ascii //weight: 20
+        $x_30_2 = {d2 fe 01 16 fe 01 13 08 11 08 2c 06 00 16 13 06 2b 17 00 11 07 17 58 13 07 11 07 06 6f ?? ?? ?? 0a fe 04 13 09 11 09 2d c7}  //weight: 30, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
