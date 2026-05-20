@@ -80375,6 +80375,28 @@ rule Trojan_MSIL_AgentTesla_MBCN_2147843541_0
         threshold = "2"
         strings_accuracy = "High"
     strings:
+        $x_1_1 = {09 11 06 08 11 06 91 07 11 06 07 8e 69 5d 91 61 d2 9c}  //weight: 1, accuracy: High
+        $x_1_2 = "SGA.Properties.Resources.resource" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_AgentTesla_MBCN_2147843541_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.MBCN!MTB"
+        threat_id = "2147843541"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
         $x_1_1 = "4D_5A_9PP3?PPP4?PP0_FF_FF?P0_B8?" wide //weight: 1
         $x_1_2 = "PPPPPPPPPP0_8PPPPE_1F_BA?E?0_B4" wide //weight: 1
     condition:
