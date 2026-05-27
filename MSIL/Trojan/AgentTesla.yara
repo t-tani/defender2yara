@@ -110913,3 +110913,38 @@ rule Trojan_MSIL_AgentTesla_AEC_2147969937_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AgentTesla_SL_2147970357_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.SL!MTB"
+        threat_id = "2147970357"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "15"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "DisableDefender" ascii //weight: 1
+        $x_1_2 = "SOFTWARE\\Microsoft\\Windows Defender\\Exclusions\\Paths" ascii //weight: 1
+        $x_1_3 = "SOFTWARE\\Bitdefender\\Exclusions" ascii //weight: 1
+        $x_1_4 = "SOFTWARE\\ESET\\Exclusions[InternetShortcut]" ascii //weight: 1
+        $x_1_5 = "DisableAntiSpyware" ascii //weight: 1
+        $x_1_6 = "DisableRealtimeMonitoring" ascii //weight: 1
+        $x_1_7 = "schtasks.exe" ascii //weight: 1
+        $x_1_8 = "DownloadPayload" ascii //weight: 1
+        $x_1_9 = "ExecutePayload" ascii //weight: 1
+        $x_1_10 = "AddToStartup" ascii //weight: 1
+        $x_1_11 = "NewGuid" ascii //weight: 1
+        $x_1_12 = "Replace" ascii //weight: 1
+        $x_1_13 = "pathToExclude" ascii //weight: 1
+        $x_1_14 = "Sleep" ascii //weight: 1
+        $x_1_15 = "/create /tn \"SysCoreUpdate\" /tr \"" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
