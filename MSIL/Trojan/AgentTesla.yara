@@ -110948,3 +110948,27 @@ rule Trojan_MSIL_AgentTesla_SL_2147970357_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AgentTesla_RBK_2147970509_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.RBK!MTB"
+        threat_id = "2147970509"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {57 9d a2 29 09 1f 00 00 00 fa 25 33 00 16 00 00 01 00 00 00 ?? 01 00 00 ?? 00 00 00 ef 01 00 00 ?? 03 00 00 02 00 00 00 55 02 00 00 02 00 00 00 43 00 00 00 06 00 00 00 ?? 00 00 00 04 00 00 00 09 00 00 00 0a 00 00 00 2b 00 00 00 07 00 00 00 01 00 00 00 08 00 00 00 03 00 00 00 ?? 00 00 00 05 00 00 00 18}  //weight: 5, accuracy: Low
+        $x_1_2 = ".g.resources" ascii //weight: 1
+        $x_1_3 = "CreateDecryptor" ascii //weight: 1
+        $x_1_4 = "StringBuilder" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
