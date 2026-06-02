@@ -110964,12 +110964,17 @@ rule Trojan_MSIL_AgentTesla_RBK_2147970509_0
         strings_accuracy = "Low"
     strings:
         $x_5_1 = {57 9d a2 29 09 1f 00 00 00 fa 25 33 00 16 00 00 01 00 00 00 ?? 01 00 00 ?? 00 00 00 ef 01 00 00 ?? 03 00 00 02 00 00 00 55 02 00 00 02 00 00 00 43 00 00 00 06 00 00 00 ?? 00 00 00 04 00 00 00 09 00 00 00 0a 00 00 00 2b 00 00 00 07 00 00 00 01 00 00 00 08 00 00 00 03 00 00 00 ?? 00 00 00 05 00 00 00 18}  //weight: 5, accuracy: Low
-        $x_1_2 = ".g.resources" ascii //weight: 1
-        $x_1_3 = "CreateDecryptor" ascii //weight: 1
-        $x_1_4 = "StringBuilder" ascii //weight: 1
+        $x_5_2 = {57 96 a2 2b 09 1f 00 00 00 fa 25 33 00 16 00 00 01 00 00 00 ?? 01 00 00 ?? 00 00 00 52 03 00 00 ?? 06 00 00 04 00 00 00 65 02 00 00 51 00 00 00 0c 00 00 00 ?? 00 00 00 04 00 00 00 09 00 00 00 0a 00 00 00 08 00 00 00 4f 00 00 00 0d 00 00 00 01 00 00 00 07 00 00 00 03 00 00 00 ?? 00 00 00 0d 00 00 00 1a}  //weight: 5, accuracy: Low
+        $x_1_3 = ".g.resources" ascii //weight: 1
+        $x_1_4 = "CreateDecryptor" ascii //weight: 1
+        $x_1_5 = "StringBuilder" ascii //weight: 1
     condition:
         (filesize < 20MB) and
-        (all of ($x*))
+        (
+            ((1 of ($x_5_*) and 3 of ($x_1_*))) or
+            ((2 of ($x_5_*))) or
+            (all of ($x*))
+        )
 }
 
 rule Trojan_MSIL_AgentTesla_RBL_2147970671_0
