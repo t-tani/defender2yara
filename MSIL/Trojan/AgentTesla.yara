@@ -111026,3 +111026,24 @@ rule Trojan_MSIL_AgentTesla_VDB_2147970989_0
         )
 }
 
+rule Trojan_MSIL_AgentTesla_ATZ_2147971009_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.ATZ!MTB"
+        threat_id = "2147971009"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {0a 06 02 7d ?? 00 00 04 06 04 7d ?? 00 00 04 16 02 7b ?? 00 00 04 28 ?? 00 00 0a 06 fe ?? ?? 00 00 06 73 ?? 01 00 0a 28 ?? 00 00 2b 03 02 7b ?? 00 00 04 25 2d 16 26 02 02}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
