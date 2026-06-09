@@ -55,12 +55,12 @@ rule Trojan_MSIL_DesckVBRAT_GVB_2147971038_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_DesckVBRAT_GVD_2147971201_0
+rule Trojan_MSIL_DesckVBRAT_GVD_2147971205_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/DesckVBRAT.GVD!MTB"
-        threat_id = "2147971201"
+        threat_id = "2147971205"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "DesckVBRAT"
@@ -77,12 +77,12 @@ rule Trojan_MSIL_DesckVBRAT_GVD_2147971201_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_DesckVBRAT_GVE_2147971202_0
+rule Trojan_MSIL_DesckVBRAT_GVE_2147971206_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/DesckVBRAT.GVE!MTB"
-        threat_id = "2147971202"
+        threat_id = "2147971206"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "DesckVBRAT"
@@ -98,12 +98,12 @@ rule Trojan_MSIL_DesckVBRAT_GVE_2147971202_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_DesckVBRAT_GVF_2147971203_0
+rule Trojan_MSIL_DesckVBRAT_GVF_2147971207_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/DesckVBRAT.GVF!MTB"
-        threat_id = "2147971203"
+        threat_id = "2147971207"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "DesckVBRAT"
