@@ -78726,29 +78726,6 @@ rule Trojan_MSIL_AgentTesla_DAU_2147841692_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_AgentTesla_DAW_2147841726_0
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "Trojan:MSIL/AgentTesla.DAW!MTB"
-        threat_id = "2147841726"
-        type = "Trojan"
-        platform = "MSIL: .NET intermediate language scripts"
-        family = "AgentTesla"
-        severity = "Critical"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "5"
-        strings_accuracy = "Low"
-    strings:
-        $x_3_1 = {0c 16 13 06 2b 18 00 08 11 06 07 11 06 9a 1f 10 28 ?? 00 00 0a d2 9c 00 11 06 17 58 13 06 11 06 07 8e 69 fe 04 13 07 11 07 2d db}  //weight: 3, accuracy: Low
-        $x_1_2 = "Replace" ascii //weight: 1
-        $x_1_3 = "Split" ascii //weight: 1
-    condition:
-        (filesize < 20MB) and
-        (all of ($x*))
-}
-
 rule Trojan_MSIL_AgentTesla_DAX_2147841727_0
 {
     meta:
