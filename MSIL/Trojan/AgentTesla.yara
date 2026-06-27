@@ -18209,6 +18209,30 @@ rule Trojan_MSIL_AgentTesla_ARR_2147780603_2
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AgentTesla_ARR_2147780603_3
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.ARR!MTB"
+        threat_id = "2147780603"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "20"
+        strings_accuracy = "High"
+    strings:
+        $x_8_1 = "$a83f91a2-57a1-4f2e-9218-ead397a167bd" ascii //weight: 8
+        $x_6_2 = "<VitesseRotation>k__BackingField" ascii //weight: 6
+        $x_4_3 = "<EngrenagesConnectes>k__BackingField" ascii //weight: 4
+        $x_2_4 = "<VitesseEntreeAttendue>k__BackingField" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_AgentTesla_ASB_2147780604_0
 {
     meta:
