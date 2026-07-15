@@ -1,9 +1,9 @@
-rule Trojan_Win64_ApexBot_Z_2147973408_0
+rule Trojan_Win64_ApexBot_Z_2147973417_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/ApexBot.Z!MTB"
-        threat_id = "2147973408"
+        threat_id = "2147973417"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "ApexBot"
@@ -26,12 +26,12 @@ rule Trojan_Win64_ApexBot_Z_2147973408_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_ApexBot_ZA_2147973409_0
+rule Trojan_Win64_ApexBot_ZA_2147973418_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/ApexBot.ZA!MTB"
-        threat_id = "2147973409"
+        threat_id = "2147973418"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "ApexBot"
