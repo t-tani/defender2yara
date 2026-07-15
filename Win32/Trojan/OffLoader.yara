@@ -7256,12 +7256,12 @@ rule Trojan_Win32_OffLoader_YZJ_2147973498_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_OffLoader_ABDS_2147973598_0
+rule Trojan_Win32_OffLoader_ABDS_2147973597_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win32/OffLoader.ABDS!MTB"
-        threat_id = "2147973598"
+        threat_id = "2147973597"
         type = "Trojan"
         platform = "Win32: Windows 32-bit platform"
         family = "OffLoader"

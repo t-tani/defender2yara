@@ -11133,12 +11133,12 @@ rule Trojan_MSIL_Heracles_NYA_2147973484_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Heracles_PGHH_2147973526_0
+rule Trojan_MSIL_Heracles_PGHH_2147973525_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Heracles.PGHH!MTB"
-        threat_id = "2147973526"
+        threat_id = "2147973525"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Heracles"
@@ -11154,12 +11154,12 @@ rule Trojan_MSIL_Heracles_PGHH_2147973526_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Heracles_AVN_2147973543_0
+rule Trojan_MSIL_Heracles_AVN_2147973542_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Heracles.AVN!MTB"
-        threat_id = "2147973543"
+        threat_id = "2147973542"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Heracles"
@@ -11177,12 +11177,12 @@ rule Trojan_MSIL_Heracles_AVN_2147973543_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Heracles_AVN_2147973543_1
+rule Trojan_MSIL_Heracles_AVN_2147973542_1
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Heracles.AVN!MTB"
-        threat_id = "2147973543"
+        threat_id = "2147973542"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Heracles"
@@ -11199,12 +11199,12 @@ rule Trojan_MSIL_Heracles_AVN_2147973543_1
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Heracles_SXI_2147973566_0
+rule Trojan_MSIL_Heracles_SXI_2147973565_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Heracles.SXI!MTB"
-        threat_id = "2147973566"
+        threat_id = "2147973565"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Heracles"
@@ -11221,12 +11221,12 @@ rule Trojan_MSIL_Heracles_SXI_2147973566_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Heracles_A_2147973613_0
+rule Trojan_MSIL_Heracles_A_2147973612_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/Heracles.A!AMTB"
-        threat_id = "2147973613"
+        threat_id = "2147973612"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "Heracles"

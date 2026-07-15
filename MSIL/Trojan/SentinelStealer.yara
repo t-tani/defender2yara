@@ -1,9 +1,9 @@
-rule Trojan_MSIL_SentinelStealer_AHM_2147973539_0
+rule Trojan_MSIL_SentinelStealer_AHM_2147973538_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/SentinelStealer.AHM!MTB"
-        threat_id = "2147973539"
+        threat_id = "2147973538"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "SentinelStealer"

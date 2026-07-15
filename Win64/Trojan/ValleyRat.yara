@@ -743,12 +743,12 @@ rule Trojan_Win64_ValleyRat_NGT_2147973460_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_ValleyRat_BAA_2147973518_0
+rule Trojan_Win64_ValleyRat_BAA_2147973517_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:Win64/ValleyRat.BAA!MTB"
-        threat_id = "2147973518"
+        threat_id = "2147973517"
         type = "Trojan"
         platform = "Win64: Windows 64-bit platform"
         family = "ValleyRat"

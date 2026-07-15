@@ -106,12 +106,12 @@ rule TrojanDownloader_Win64_Small_PAHW_2147973441_0
         (all of ($x*))
 }
 
-rule TrojanDownloader_Win64_Small_AMTB_2147973515_0
+rule TrojanDownloader_Win64_Small_AMTB_2147973514_0
 {
     meta:
         author = "defender2yara"
         detection_name = "TrojanDownloader:Win64/Small!AMTB"
-        threat_id = "2147973515"
+        threat_id = "2147973514"
         type = "TrojanDownloader"
         platform = "Win64: Windows 64-bit platform"
         family = "Small"

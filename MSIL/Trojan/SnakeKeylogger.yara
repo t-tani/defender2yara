@@ -8689,12 +8689,12 @@ rule Trojan_MSIL_SnakeKeylogger_ZXA_2147973496_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_SnakeKeylogger_ABQK_2147973595_0
+rule Trojan_MSIL_SnakeKeylogger_ABQK_2147973594_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/SnakeKeylogger.ABQK!MTB"
-        threat_id = "2147973595"
+        threat_id = "2147973594"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "SnakeKeylogger"

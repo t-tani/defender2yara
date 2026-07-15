@@ -111112,12 +111112,12 @@ rule Trojan_MSIL_AgentTesla_RBM_2147973428_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_AgentTesla_ABVK_2147973600_0
+rule Trojan_MSIL_AgentTesla_ABVK_2147973599_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/AgentTesla.ABVK!MTB"
-        threat_id = "2147973600"
+        threat_id = "2147973599"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "AgentTesla"

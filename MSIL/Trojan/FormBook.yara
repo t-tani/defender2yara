@@ -18459,12 +18459,12 @@ rule Trojan_MSIL_FormBook_RSL_2147973427_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_FormBook_PGFL_2147973525_0
+rule Trojan_MSIL_FormBook_PGFL_2147973524_0
 {
     meta:
         author = "defender2yara"
         detection_name = "Trojan:MSIL/FormBook.PGFL!MTB"
-        threat_id = "2147973525"
+        threat_id = "2147973524"
         type = "Trojan"
         platform = "MSIL: .NET intermediate language scripts"
         family = "FormBook"
