@@ -4096,3 +4096,29 @@ rule Ransom_MSIL_Filecoder_SX_2147972443_0
         (all of ($x*))
 }
 
+rule Ransom_MSIL_Filecoder_VDC_2147977703_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:MSIL/Filecoder.VDC!MTB"
+        threat_id = "2147977703"
+        type = "Ransom"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Filecoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = "delete shadows /all /quiet" wide //weight: 3
+        $x_1_2 = "CurrentVersion\\Run" wide //weight: 1
+        $x_2_3 = "/Create /F /TN \"WinUpdate\" /TR" wide //weight: 2
+        $x_1_4 = "Add-MpPreference -ExclusionPath" wide //weight: 1
+        $x_2_5 = "Global\\JunkLockerZovLockerMegaPidorAnal" wide //weight: 2
+        $x_1_6 = "new_victim" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

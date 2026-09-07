@@ -19,6 +19,33 @@ rule Trojan_Win32_Zusy_SIBA_2147794234_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Zusy_AB_2147797555_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Zusy.AB!MTB"
+        threat_id = "2147797555"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "15"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {83 f2 5a 88 94 05 54 dd bf ff 40 83 f8 0e 75}  //weight: 10, accuracy: High
+        $x_10_2 = {83 f2 5a 88 94 05 ?? ?? ?? ?? 40 83 f8}  //weight: 10, accuracy: Low
+        $x_5_3 = "u=5>34<5kjithimtchtkkl" ascii //weight: 5
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_10_*) and 1 of ($x_5_*))) or
+            ((2 of ($x_10_*))) or
+            (all of ($x*))
+        )
+}
+
 rule Trojan_Win32_Zusy_AC_2147797612_0
 {
     meta:

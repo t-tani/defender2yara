@@ -894,3 +894,24 @@ rule Trojan_MSIL_Noon_AE_2147977598_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Noon_XN_2147977708_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Noon.XN!MTB"
+        threat_id = "2147977708"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Noon"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {5a 59 13 4e 03 11 4d 11 4e 6f ?? ?? 00 0a 13 26 11 4a 13 27 07 11 4a 09 5d 9a 6f ?? ?? 00 0a 8e 69 13 4f 02 02 7b ?? ?? 00 04 11 4f 6a 58}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -412,7 +412,9 @@ rule VirTool_Win32_CobaltStrike_K_2147977260_0
         strings_accuracy = "Low"
     strings:
         $x_1_1 = {33 c0 bf 00 18 00 00 80 b0 ?? ?? ?? ?? ?? 40 3b c7 7c ?? 6a 09 59 e8 ?? ?? ?? ?? 8b f0 85 f6 74 ?? 33 c9 8b c1 99 6a 03 5b f7 fb 0f be b9 ?? ?? ?? ?? 81 e7 ff 00 00 00 42 0f af fa 03 7d f4 33 d2 8b c7 bf ff e0 f5 05}  //weight: 1, accuracy: Low
-        $x_1_2 = {41 bf 01 00 00 00 48 8d ?? ?? ?? ?? ?? 41 be 00 18 00 00 80 34 30 ?? 49 03 c7 49 3b c6 7c ?? b9 09 00 00 00 e8 ?? ?? ?? ?? 8b d8 85 c0 74 ?? 45 8b c5 4c 8b ce b8 56 55 55 55 41 f7 e8 8b ca c1 e9 1f 03 d1 8d 04 52 41 8b d0 45 03 c7 2b d0 41 0f be 01 4d 03 cf 41 03 d7 0f b6 c8 b8 2f 77 cc ab}  //weight: 1, accuracy: Low
+        $x_1_2 = {85 c0 74 0a 80 b0 ?? ?? ?? ?? ?? 40 eb f2 a1 ?? ?? ?? ?? 8b 48 48 31 f6 66 83 f9 02 75 ?? 8b 68 4c bf 00 00 00 00 85 ed 74 ?? 66 bb 03 00 be ff e0 f5 05 31 ff 31 c9 89 c8 31 d2 66 f7 f3 81 f9 00 18 00 00 74}  //weight: 1, accuracy: Low
+        $x_1_3 = {41 bf 01 00 00 00 48 8d ?? ?? ?? ?? ?? 41 be 00 18 00 00 80 34 30 ?? 49 03 c7 49 3b c6 7c ?? b9 09 00 00 00 e8 ?? ?? ?? ?? 8b d8 85 c0 74 ?? 45 8b c5 4c 8b ce b8 56 55 55 55 41 f7 e8 8b ca c1 e9 1f 03 d1 8d 04 52 41 8b d0 45 03 c7 2b d0 41 0f be 01 4d 03 cf 41 03 d7 0f b6 c8 b8 2f 77 cc ab}  //weight: 1, accuracy: Low
+        $x_1_4 = {48 3d 00 18 00 00 74 0a 42 80 34 00 ?? 48 ff c0 eb ee 48 8b ?? ?? ?? ?? ?? 31 db 66 83 b8 ?? ?? ?? ?? 02 75 ?? 44 8b 88 ?? ?? ?? ?? bf 00 00 00 00 45 85 c9 74 ?? 66 41 ba 01 00 66 41 bb 03 00 bb ff e0 f5 05 31 c9 31 ff 89 c8 31 d2 66 41 f7 f3 48 81 f9 00 18 00 00 74}  //weight: 1, accuracy: Low
     condition:
         (filesize < 20MB) and
         (1 of ($x*))

@@ -109,3 +109,27 @@ rule Trojan_Win32_Neoreklami_AMTB_2147958280_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Neoreklami_YBA_2147977711_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Neoreklami.YBA!MTB"
+        threat_id = "2147977711"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Neoreklami"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "fashionable factions under the banners of these two families" ascii //weight: 1
+        $x_1_2 = "cobwebs woven round the limbs of an infant giant" ascii //weight: 1
+        $x_1_3 = "there was a pleasure in all this while snugly cuddling" ascii //weight: 1
+        $x_1_4 = "Naked of pomp or earthly domination" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

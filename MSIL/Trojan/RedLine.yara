@@ -4276,3 +4276,24 @@ rule Trojan_MSIL_RedLine_STES_2147971972_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_RedLine_SSD_2147977690_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/RedLine.SSD!MTB"
+        threat_id = "2147977690"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "RedLine"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {13 04 09 11 04 1f 20 6f ?? 00 00 0a 6f ?? 00 00 0a 09 07 6f ?? 00 00 0a 09 09 6f ?? 00 00 0a 09 6f ?? 00 00 0a 6f ?? 00 00 0a 13 05 08 11 05 16 73 2d 00 00 0a 13 06 06 18 18 16 20 00 10 00 00 17 73 28 00 00 0a 13 07 11 06 11 07 6f ?? 00 00 0a de 0c}  //weight: 3, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

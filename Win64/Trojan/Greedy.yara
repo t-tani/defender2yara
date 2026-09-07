@@ -164,3 +164,24 @@ rule Trojan_Win64_Greedy_AHB_2147975045_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Greedy_AB_2147977709_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Greedy.AB!MTB"
+        threat_id = "2147977709"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Greedy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {4b 8d 04 40 ba ?? ?? ?? ?? 48 2b d0 41 0f b6 c0 6b c8 ?? 83 e2 0f 42 32 0c 0a 42 30 0c 06 49 ff c0 49 81 f8}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
