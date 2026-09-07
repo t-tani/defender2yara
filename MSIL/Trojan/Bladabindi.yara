@@ -4941,3 +4941,29 @@ rule Trojan_MSIL_Bladabindi_ZRX_2147976353_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Bladabindi_AYM_2147977668_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Bladabindi.AYM!MTB"
+        threat_id = "2147977668"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Bladabindi"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "12"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = "JunkLockerZovLockerMegaPidorAnal" wide //weight: 5
+        $x_2_2 = "$2e2b5ffc-a06d-4b22-b039-111f62877b1a" ascii //weight: 2
+        $x_2_3 = "CaptureAndSendScreenshotWithRetry" ascii //weight: 2
+        $x_1_4 = "WindowsFormsApp15.AntiAntiDBG" ascii //weight: 1
+        $x_1_5 = "DisableTaskMgr" wide //weight: 1
+        $x_1_6 = "MutexManager.TryCreateMutex" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

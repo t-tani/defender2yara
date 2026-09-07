@@ -29,3 +29,26 @@ rule Trojan_Win64_SteamStealer_AAA_2147973529_0
         )
 }
 
+rule Trojan_Win64_SteamStealer_PA_2147977671_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/SteamStealer.PA!MTB"
+        threat_id = "2147977671"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "SteamStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = "=eval(" ascii //weight: 1
+        $x_1_2 = "JSON.stringify(" ascii //weight: 1
+        $x_3_3 = {68 74 74 70 3a 2f 2f 31 32 30 2e 34 38 2e 31 35 36 2e 31 37 2f [0-8] 2e 70 68 70}  //weight: 3, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

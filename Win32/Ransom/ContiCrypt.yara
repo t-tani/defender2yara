@@ -525,3 +525,24 @@ rule Ransom_Win32_ContiCrypt_PP_2147908377_0
         (all of ($x*))
 }
 
+rule Ransom_Win32_ContiCrypt_PQ_2147977670_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win32/ContiCrypt.PQ!MTB"
+        threat_id = "2147977670"
+        type = "Ransom"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ContiCrypt"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {0f b6 c0 2b c8 6b c1 [0-4] 99 f7 fe 8d 42 [0-4] 99 f7 fe 88 54 3c [0-4] 47 83 ff [0-4] 72}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
