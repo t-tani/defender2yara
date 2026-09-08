@@ -514,3 +514,27 @@ rule Ransom_Win64_LockFile_RV_2147970107_0
         (all of ($x*))
 }
 
+rule Ransom_Win64_LockFile_PAHN_2147977725_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win64/LockFile.PAHN!MTB"
+        threat_id = "2147977725"
+        type = "Ransom"
+        platform = "Win64: Windows 64-bit platform"
+        family = "LockFile"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "your files will be lost forever" ascii //weight: 1
+        $x_2_2 = "YOUR FILES ARE ENCRYPTED" ascii //weight: 2
+        $x_1_3 = "screenshot.bmp" ascii //weight: 1
+        $x_1_4 = "READ_ME_RECOVER.txt" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

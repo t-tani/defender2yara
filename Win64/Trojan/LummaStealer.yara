@@ -3037,3 +3037,28 @@ rule Trojan_Win64_LummaStealer_LR_2147977648_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_LummaStealer_PAIC_2147977723_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/LummaStealer.PAIC!MTB"
+        threat_id = "2147977723"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "LummaStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "DisableRealtimeMonitoring" ascii //weight: 2
+        $x_2_2 = "DisableBehaviorMonitoring" ascii //weight: 2
+        $x_1_3 = "\\History" ascii //weight: 1
+        $x_1_4 = "\\Login Data" ascii //weight: 1
+        $x_1_5 = "\\Network\\Cookies" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

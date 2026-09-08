@@ -185,3 +185,32 @@ rule Trojan_Win64_BypassUAC_MKB_2147975270_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_BypassUAC_PAHM_2147977724_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/BypassUAC.PAHM!MTB"
+        threat_id = "2147977724"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "BypassUAC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "System restore disabled" ascii //weight: 1
+        $x_1_2 = "Boot recovery removed" ascii //weight: 1
+        $x_2_3 = "DiscordRAT" wide //weight: 2
+        $x_2_4 = "BotMain: elevated" ascii //weight: 2
+        $x_1_5 = "keylog start|stop|dump" ascii //weight: 1
+        $x_1_6 = "disableuac" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((2 of ($x_2_*) and 3 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+
