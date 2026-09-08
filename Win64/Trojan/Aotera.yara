@@ -491,3 +491,28 @@ rule Trojan_Win64_Aotera_CZ_2147977129_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Aotera_PA_2147977713_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Aotera.PA!MTB"
+        threat_id = "2147977713"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Aotera"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "9"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = "----Init---- [ StackTrace ]" ascii //weight: 1
+        $x_1_2 = "InternalHijack: TgtThread = %llx, IP = %p" ascii //weight: 1
+        $x_1_3 = "Process is terminating due to StackOverflowException" ascii //weight: 1
+        $x_1_4 = "[ ex collide ] kind = %d, pass = %d, idxCurClause = %d" ascii //weight: 1
+        $x_5_5 = {2d 2d 2d 2d 49 6e 69 74 20 77 69 74 68 [0-16] 20 63 74 78 2d 2d 2d 2d 20 5b 20 68 69 6a 61 63 6b 20 5d}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

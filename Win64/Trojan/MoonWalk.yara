@@ -19,3 +19,33 @@ rule Trojan_Win64_MoonWalk_A_2147916188_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_MoonWalk_NM_2147977717_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/MoonWalk.NM!MTB"
+        threat_id = "2147977717"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "MoonWalk"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "nt.MpTriggerStatusRefreshNotification" ascii //weight: 1
+        $x_1_2 = "nt.MpUpdateBrowserActiveTab" ascii //weight: 1
+        $x_1_3 = "nt.MpTriggerHeartbeatOnUninstall" ascii //weight: 1
+        $x_1_4 = "nt.MpReportClipboardOwner" ascii //weight: 1
+        $x_1_5 = "nt.MpDefenderIsPrintAccessCheckNeeded" ascii //weight: 1
+        $x_2_6 = "nt.MpCheckAccessForClipboardOperationEx" ascii //weight: 2
+        $x_1_7 = "ChangeCipherSpecPayloadAlertMessagePayload" ascii //weight: 1
+        $x_1_8 = "Fc/uc/o" ascii //weight: 1
+        $x_1_9 = "DJMRMDMCWCPPVSSSDMVHVWZCD" ascii //weight: 1
+        $x_1_10 = "PHmolmilmblxloglnktKMKKinHPhaGydBCo" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
