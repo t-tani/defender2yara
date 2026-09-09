@@ -9119,6 +9119,33 @@ rule Trojan_Win64_CobaltStrike_CH_2147851264_1
         (all of ($x*))
 }
 
+rule Trojan_Win64_CobaltStrike_CH_2147851264_2
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CobaltStrike.CH!MTB"
+        threat_id = "2147851264"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CobaltStrike"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "14"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "nekoTssecorPnepO" ascii //weight: 2
+        $x_2_2 = "noitamrofnInekoTteG" ascii //weight: 2
+        $x_2_3 = "sehcaorppAtceteD" ascii //weight: 2
+        $x_2_4 = "llDdaolnUrdL" ascii //weight: 2
+        $x_2_5 = "Error GetModule NTDLL_HASH" ascii //weight: 2
+        $x_2_6 = "Error GetModule KERNELBASE_HASH" ascii //weight: 2
+        $x_2_7 = "Error During KERNEL32DLL_HASH" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win64_CobaltStrike_CI_2147851265_0
 {
     meta:
