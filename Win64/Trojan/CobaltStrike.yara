@@ -19729,3 +19729,27 @@ rule Trojan_Win64_CobaltStrike_PLA_2147976869_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_CobaltStrike_PAE_2147977876_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CobaltStrike.PAE!MTB"
+        threat_id = "2147977876"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CobaltStrike"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {48 8b 3e 48 8b 4e 08 48 2b cf 33 d2 49 8b c0 48 f7 f1 0f b6 04 3a 41 30 04 18 49 ff c0 4d 3b c1 72 de}  //weight: 2, accuracy: High
+        $x_1_2 = "encrypt" ascii //weight: 1
+        $x_1_3 = "VirtualAlloc failed." ascii //weight: 1
+        $x_1_4 = "VirtualProtect failed." ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

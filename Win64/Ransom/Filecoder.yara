@@ -2102,3 +2102,28 @@ rule Ransom_Win64_Filecoder_VDB_2147977177_0
         (all of ($x*))
 }
 
+rule Ransom_Win64_Filecoder_VDD_2147977872_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win64/Filecoder.VDD!MTB"
+        threat_id = "2147977872"
+        type = "Ransom"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Filecoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = "All your files have been STOLEN and encrypted" ascii //weight: 3
+        $x_1_2 = "victim" ascii //weight: 1
+        $x_2_3 = "destroyed" ascii //weight: 2
+        $x_1_4 = "decryption key" ascii //weight: 1
+        $x_1_5 = "payment" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
