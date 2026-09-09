@@ -18992,3 +18992,26 @@ rule Trojan_MSIL_FormBook_XC_2147977672_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_FormBook_XD_2147977842_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/FormBook.XD!MTB"
+        threat_id = "2147977842"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "FormBook"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {57 95 a2 29 09 0b 00 00 00 00 00 00 00 00 00 00 02 00 00 00 7f 00 00 00 25 00 00 00 f8 00 00 00 b5 00 00 00 73 00 00 00 ca 00 00 00 8b 00 00 00 0d 00 00 00 21 00 00 00 02 00 00 00 06 00 00 00 07 00 00 00 04 00 00 00 12 00 00 00 02 00 00 00 07 00 00 00 03 00 00 00 11 00 00 00 02}  //weight: 2, accuracy: High
+        $x_1_2 = "ChurchClock.Properties.Resources" ascii //weight: 1
+        $x_1_3 = "GetPixel" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

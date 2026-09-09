@@ -689,6 +689,28 @@ rule Trojan_Win64_DllHijack_LR_2147964863_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "30"
+        strings_accuracy = "High"
+    strings:
+        $x_20_1 = {45 08 c8 80 ca 1b 41 80 f0 ff 41 20 d0 48 63 d0 44 88 04 11 2d 92 06 17 42 83 c0 01 05 92 06 17 42 83 f8 12 89 44 24 04}  //weight: 20, accuracy: High
+        $x_10_2 = {8b 44 24 04 48 8b 4c 24 10 4c 8b 44 24 08 48 8b 54 24 18 4c 63 c8 42 8a 14 0a 41 89 c1 41 83 e1 0f 4d 63 c9 47 8a 0c 08 41 88 d2 41 80 f2 ff}  //weight: 10, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_DllHijack_LR_2147964863_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/DllHijack.LR!MTB"
+        threat_id = "2147964863"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "DllHijack"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "20"
         strings_accuracy = "Low"
     strings:
@@ -700,6 +722,57 @@ rule Trojan_Win64_DllHijack_LR_2147964863_0
     condition:
         (filesize < 20MB) and
         (all of ($x*))
+}
+
+rule Trojan_Win64_DllHijack_LR_2147964863_2
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/DllHijack.LR!MTB"
+        threat_id = "2147964863"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "DllHijack"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "55"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "[*] Running Anti-Debug checks..." ascii //weight: 1
+        $x_2_2 = "  [!!] DEBUGGER DETECTED!" ascii //weight: 2
+        $x_3_3 = "  [!!] SANDBOX DETECTED!" ascii //weight: 3
+        $x_4_4 = "[*] All checks completed." ascii //weight: 4
+        $x_5_5 = "  Debug Score:   %d / 31  (Threshold: 5)" ascii //weight: 5
+        $x_6_6 = "  Sandbox Score: %d / 19  (Threshold: 5)" ascii //weight: 6
+        $x_7_7 = "  [ACTION] Environment is clean. Proceeding." ascii //weight: 7
+        $x_8_8 = "  [ACTION] Hostile environment detected. Aborting." ascii //weight: 8
+        $x_9_9 = "DisableInformationProtectionControl" ascii //weight: 9
+        $x_10_10 = "DisableIntrusionPreventionSystem" ascii //weight: 10
+        $x_11_11 = "DisableRealtimeMonitoring" ascii //weight: 11
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_10_*) and 1 of ($x_9_*) and 1 of ($x_8_*) and 1 of ($x_7_*) and 1 of ($x_6_*) and 1 of ($x_5_*) and 1 of ($x_4_*) and 1 of ($x_3_*) and 1 of ($x_2_*) and 1 of ($x_1_*))) or
+            ((1 of ($x_11_*) and 1 of ($x_9_*) and 1 of ($x_8_*) and 1 of ($x_7_*) and 1 of ($x_6_*) and 1 of ($x_5_*) and 1 of ($x_4_*) and 1 of ($x_3_*) and 1 of ($x_2_*))) or
+            ((1 of ($x_11_*) and 1 of ($x_10_*) and 1 of ($x_8_*) and 1 of ($x_7_*) and 1 of ($x_6_*) and 1 of ($x_5_*) and 1 of ($x_4_*) and 1 of ($x_3_*) and 1 of ($x_1_*))) or
+            ((1 of ($x_11_*) and 1 of ($x_10_*) and 1 of ($x_8_*) and 1 of ($x_7_*) and 1 of ($x_6_*) and 1 of ($x_5_*) and 1 of ($x_4_*) and 1 of ($x_3_*) and 1 of ($x_2_*))) or
+            ((1 of ($x_11_*) and 1 of ($x_10_*) and 1 of ($x_9_*) and 1 of ($x_7_*) and 1 of ($x_6_*) and 1 of ($x_5_*) and 1 of ($x_4_*) and 1 of ($x_2_*) and 1 of ($x_1_*))) or
+            ((1 of ($x_11_*) and 1 of ($x_10_*) and 1 of ($x_9_*) and 1 of ($x_7_*) and 1 of ($x_6_*) and 1 of ($x_5_*) and 1 of ($x_4_*) and 1 of ($x_3_*))) or
+            ((1 of ($x_11_*) and 1 of ($x_10_*) and 1 of ($x_9_*) and 1 of ($x_8_*) and 1 of ($x_6_*) and 1 of ($x_5_*) and 1 of ($x_3_*) and 1 of ($x_2_*) and 1 of ($x_1_*))) or
+            ((1 of ($x_11_*) and 1 of ($x_10_*) and 1 of ($x_9_*) and 1 of ($x_8_*) and 1 of ($x_6_*) and 1 of ($x_5_*) and 1 of ($x_4_*) and 1 of ($x_2_*))) or
+            ((1 of ($x_11_*) and 1 of ($x_10_*) and 1 of ($x_9_*) and 1 of ($x_8_*) and 1 of ($x_6_*) and 1 of ($x_5_*) and 1 of ($x_4_*) and 1 of ($x_3_*))) or
+            ((1 of ($x_11_*) and 1 of ($x_10_*) and 1 of ($x_9_*) and 1 of ($x_8_*) and 1 of ($x_7_*) and 1 of ($x_4_*) and 1 of ($x_3_*) and 1 of ($x_2_*) and 1 of ($x_1_*))) or
+            ((1 of ($x_11_*) and 1 of ($x_10_*) and 1 of ($x_9_*) and 1 of ($x_8_*) and 1 of ($x_7_*) and 1 of ($x_5_*) and 1 of ($x_3_*) and 1 of ($x_2_*))) or
+            ((1 of ($x_11_*) and 1 of ($x_10_*) and 1 of ($x_9_*) and 1 of ($x_8_*) and 1 of ($x_7_*) and 1 of ($x_5_*) and 1 of ($x_4_*) and 1 of ($x_1_*))) or
+            ((1 of ($x_11_*) and 1 of ($x_10_*) and 1 of ($x_9_*) and 1 of ($x_8_*) and 1 of ($x_7_*) and 1 of ($x_5_*) and 1 of ($x_4_*) and 1 of ($x_2_*))) or
+            ((1 of ($x_11_*) and 1 of ($x_10_*) and 1 of ($x_9_*) and 1 of ($x_8_*) and 1 of ($x_7_*) and 1 of ($x_5_*) and 1 of ($x_4_*) and 1 of ($x_3_*))) or
+            ((1 of ($x_11_*) and 1 of ($x_10_*) and 1 of ($x_9_*) and 1 of ($x_8_*) and 1 of ($x_7_*) and 1 of ($x_6_*) and 1 of ($x_3_*) and 1 of ($x_1_*))) or
+            ((1 of ($x_11_*) and 1 of ($x_10_*) and 1 of ($x_9_*) and 1 of ($x_8_*) and 1 of ($x_7_*) and 1 of ($x_6_*) and 1 of ($x_3_*) and 1 of ($x_2_*))) or
+            ((1 of ($x_11_*) and 1 of ($x_10_*) and 1 of ($x_9_*) and 1 of ($x_8_*) and 1 of ($x_7_*) and 1 of ($x_6_*) and 1 of ($x_4_*))) or
+            ((1 of ($x_11_*) and 1 of ($x_10_*) and 1 of ($x_9_*) and 1 of ($x_8_*) and 1 of ($x_7_*) and 1 of ($x_6_*) and 1 of ($x_5_*))) or
+            (all of ($x*))
+        )
 }
 
 rule Trojan_Win64_DllHijack_LRA_2147965374_0

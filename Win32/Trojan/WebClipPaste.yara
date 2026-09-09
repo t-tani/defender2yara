@@ -54,9 +54,11 @@ rule Trojan_Win32_WebClipPaste_A_2147977447_0
         $x_20_40 = "invokecommand" wide //weight: 20
         $x_20_41 = "-w 1 " wide //weight: 20
         $x_20_42 = "-w h " wide //weight: 20
-        $n_1000_43 = "/install" wide //weight: -1000
-        $n_1000_44 = ".ps1" wide //weight: -1000
-        $n_1000_45 = "(get-wmiobject -class win32_operatingsystem).caption" wide //weight: -1000
+        $x_20_43 = "[scriptblock]::Create" wide //weight: 20
+        $x_20_44 = "[PowerShell]::Create()" wide //weight: 20
+        $n_1000_45 = "/install" wide //weight: -1000
+        $n_1000_46 = ".ps1" wide //weight: -1000
+        $n_1000_47 = "(get-wmiobject -class win32_operatingsystem).caption" wide //weight: -1000
     condition:
         (filesize < 20MB) and
         (not (any of ($n*))) and
@@ -124,9 +126,10 @@ rule Trojan_Win32_WebClipPaste_B_2147977448_0
         $x_10_40 = "invokecommand" wide //weight: 10
         $x_10_41 = "-w 1 " wide //weight: 10
         $x_10_42 = "-w h " wide //weight: 10
-        $n_1000_43 = "/install" wide //weight: -1000
-        $n_1000_44 = ".ps1" wide //weight: -1000
-        $n_1000_45 = "(get-wmiobject -class win32_operatingsystem).caption" wide //weight: -1000
+        $x_10_43 = "[scriptblock]::Create" wide //weight: 10
+        $x_10_44 = "[PowerShell]::Create()" wide //weight: 10
+        $n_1000_45 = "/install" wide //weight: -1000
+        $n_1000_46 = "(get-wmiobject -class win32_operatingsystem).caption" wide //weight: -1000
     condition:
         (filesize < 20MB) and
         (not (any of ($n*))) and
