@@ -434,3 +434,29 @@ rule Trojan_Win64_DiscordStealer_A_2147976975_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_DiscordStealer_KK_2147977786_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/DiscordStealer.KK!MTB"
+        threat_id = "2147977786"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "DiscordStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "21"
+        strings_accuracy = "High"
+    strings:
+        $x_6_1 = "\\Local State" ascii //weight: 6
+        $x_5_2 = "\"encrypted_key\":\"" ascii //weight: 5
+        $x_4_3 = "CryptUnprotectData" ascii //weight: 4
+        $x_3_4 = "\\screenshot.bmp" ascii //weight: 3
+        $x_2_5 = "mfa\\.[a-zA-Z0-9_-]{20,}" ascii //weight: 2
+        $x_1_6 = "dQw4w9WgXcQ:[" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

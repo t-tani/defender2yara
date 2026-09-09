@@ -1695,6 +1695,29 @@ rule Trojan_Win64_Zusy_A_2147936264_1
         (all of ($x*))
 }
 
+rule Trojan_Win64_Zusy_A_2147936264_2
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Zusy.A!MTB"
+        threat_id = "2147936264"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "60"
+        strings_accuracy = "High"
+    strings:
+        $x_30_1 = "C:\\Users\\Public\\apex\\dng_dbg.txt" ascii //weight: 30
+        $x_20_2 = "v20 no elevation_service.exe" ascii //weight: 20
+        $x_10_3 = "Yandex\\YandexBr%s\\elevation_serYandexBrowserBetW" ascii //weight: 10
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win64_Zusy_AB_2147936266_0
 {
     meta:
@@ -1718,6 +1741,34 @@ rule Trojan_Win64_Zusy_AB_2147936266_0
         $x_1_6 = "ejbalbakoplchlghecdalmeeeajnimhm" ascii //weight: 1
         $x_1_7 = "fhbohimaelbohpjbbldcngcnapndodjp" ascii //weight: 1
         $x_1_8 = "Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_Zusy_AB_2147936266_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Zusy.AB!MTB"
+        threat_id = "2147936266"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "45"
+        strings_accuracy = "High"
+    strings:
+        $x_8_1 = "YOU_GOT_TROLLED.txt" ascii //weight: 8
+        $x_3_2 = "oopsie :) your files did cardio and never came back." ascii //weight: 3
+        $x_7_3 = "files haunted. no take-backs." ascii //weight: 7
+        $x_4_4 = "files haunted (slow-burn, unrecoverable)" ascii //weight: 4
+        $x_2_5 = "^(bc1|[13])[a-zA-HJ-NP-Z0-9]{25,60}$" ascii //weight: 2
+        $x_10_6 = "files encrypted. key required." ascii //weight: 10
+        $x_6_7 = "(vault present, decrypt needs password)" ascii //weight: 6
+        $x_5_8 = "<FoxPbeDecrypt>b__101_0" ascii //weight: 5
     condition:
         (filesize < 20MB) and
         (all of ($x*))
@@ -2182,6 +2233,27 @@ rule Trojan_Win64_Zusy_KK_2147946085_3
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "20"
+        strings_accuracy = "Low"
+    strings:
+        $x_20_1 = {45 8a 02 48 b8 ?? ?? ?? ?? ?? ?? ?? ?? 49 f7 e1 49 8b c1 41 c0 c0 03 48 2b c2 49 8b c9 48 d1 e8 49 ff c1 48 03 c2 48 c1 e8 04 48 6b c0 1c 48 2b c8 48 8d 05 ?? 0e 00 00 44 32 04 01 45 88 02 49 ff c2 49 83 eb 01}  //weight: 20, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_Zusy_KK_2147946085_4
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Zusy.KK!MTB"
+        threat_id = "2147946085"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "15"
         strings_accuracy = "High"
     strings:
@@ -2195,7 +2267,7 @@ rule Trojan_Win64_Zusy_KK_2147946085_3
         (all of ($x*))
 }
 
-rule Trojan_Win64_Zusy_KK_2147946085_4
+rule Trojan_Win64_Zusy_KK_2147946085_5
 {
     meta:
         author = "defender2yara"
@@ -2218,7 +2290,7 @@ rule Trojan_Win64_Zusy_KK_2147946085_4
         (all of ($x*))
 }
 
-rule Trojan_Win64_Zusy_KK_2147946085_5
+rule Trojan_Win64_Zusy_KK_2147946085_6
 {
     meta:
         author = "defender2yara"
@@ -2240,7 +2312,7 @@ rule Trojan_Win64_Zusy_KK_2147946085_5
         (all of ($x*))
 }
 
-rule Trojan_Win64_Zusy_KK_2147946085_6
+rule Trojan_Win64_Zusy_KK_2147946085_7
 {
     meta:
         author = "defender2yara"
@@ -2263,7 +2335,7 @@ rule Trojan_Win64_Zusy_KK_2147946085_6
         (all of ($x*))
 }
 
-rule Trojan_Win64_Zusy_KK_2147946085_7
+rule Trojan_Win64_Zusy_KK_2147946085_8
 {
     meta:
         author = "defender2yara"

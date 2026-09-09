@@ -141,6 +141,29 @@ rule Trojan_Win64_Greedy_KK_2147969666_2
         (all of ($x*))
 }
 
+rule Trojan_Win64_Greedy_KK_2147969666_3
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Greedy.KK!MTB"
+        threat_id = "2147969666"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Greedy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "18"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = "browser_stealer+discord_stealer+system_info+screenshot+shell+file_manager+process_manager+keylogger+clipboard+screen+audio+" ascii //weight: 10
+        $x_5_2 = "webcam+wallets+sessions+file_hunt+clipper+socks5+fun+minecraft_stealer+tts+audio_player+open_website+shutdown+bsod+persistence" ascii //weight: 5
+        $x_3_3 = "SELECT origin_url, username_value, password_value FROM logins" ascii //weight: 3
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win64_Greedy_AHB_2147975045_0
 {
     meta:

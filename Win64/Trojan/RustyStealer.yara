@@ -20,6 +20,29 @@ rule Trojan_Win64_RustyStealer_A_2147912272_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_RustyStealer_A_2147912272_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/RustyStealer.A!MTB"
+        threat_id = "2147912272"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "RustyStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "60"
+        strings_accuracy = "High"
+    strings:
+        $x_30_1 = "SELECT id,job_type,payload,status,attempt,created_at,updated_at FROM received_jobs WHERE status NOT IN ('succeeded','failed') ORDER BY created_at" ascii //weight: 30
+        $x_20_2 = "Programs/Guarda/Guarda.exeGuarda/Guarda.exeMonero GUI Wallet/monero-wallet-gui.exePrograms/Monero GUI Wallet/monero-wallet-gui.exeBitcoin/bitcoin-qt" ascii //weight: 20
+        $x_10_3 = "Brave-Browser/User DataYandex/YandexBrowser/User DataOpera Software/Opera StableMozilla" ascii //weight: 10
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win64_RustyStealer_ZX_2147913787_0
 {
     meta:
@@ -640,6 +663,31 @@ rule Trojan_Win64_RustyStealer_FUA_2147973619_0
         strings_accuracy = "High"
     strings:
         $x_1_1 = {65 48 8b 04 25 60 00 00 00 bf 20 00 00 00 8b f2 8b d9 4c 8b 48 18 4c 03 cf 33 ed 4d 8b 01 4d 85 c0}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_RustyStealer_AA_2147977752_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/RustyStealer.AA!MTB"
+        threat_id = "2147977752"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "RustyStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "30"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {8a 04 3a 49 8b 0a 42 30 04 19 41 8d 49 ?? 45 33 c9 49 8d 43 ?? 41 3b 4a 08 44 0f 4c c9 45 33 db 48 ff c7 41 3b 4a ?? 4c 0f 4c d8 48 3b fb}  //weight: 4, accuracy: Low
+        $x_6_2 = {48 89 f1 4c 89 c2 4d 89 c8 4c 8d 0d ?? ?? ?? ?? ?? ?? ?? ?? ?? 89 f1 f7 d9 83 e1}  //weight: 6, accuracy: Low
+        $x_10_3 = "assets/content.ts-B6XGI__y.js" ascii //weight: 10
+        $x_2_4 = "agent poll decode error:" ascii //weight: 2
+        $x_8_5 = "assets/background.ts-D6ogNSgd.js" ascii //weight: 8
     condition:
         (filesize < 20MB) and
         (all of ($x*))

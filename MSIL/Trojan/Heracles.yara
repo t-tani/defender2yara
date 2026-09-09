@@ -2257,6 +2257,30 @@ rule Trojan_MSIL_Heracles_AB_2147849707_1
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "20"
+        strings_accuracy = "Low"
+    strings:
+        $x_8_1 = {25 2d 04 26 14 2b 05 28 ?? 00 00 0a 75 ?? ?? ?? 01 25 2d 07 26 02}  //weight: 8, accuracy: Low
+        $x_3_2 = {02 25 2d 04 26 14 2b 05 6f ?? ?? ?? ?? 06 2d 07 72}  //weight: 3, accuracy: Low
+        $x_7_3 = "[crydbg] opened payload bytes=" ascii //weight: 7
+        $x_2_4 = "<Main>b__0_0" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Heracles_AB_2147849707_2
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Heracles.AB!MTB"
+        threat_id = "2147849707"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Heracles"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "5"
         strings_accuracy = "Low"
     strings:

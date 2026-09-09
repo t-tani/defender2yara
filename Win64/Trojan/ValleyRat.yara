@@ -1230,3 +1230,30 @@ rule Trojan_Win64_ValleyRat_YAJ_2147977563_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_ValleyRat_CH_2147977737_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/ValleyRat.CH!MTB"
+        threat_id = "2147977737"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "ValleyRat"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "14"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "DEBUGGER DETECTED" ascii //weight: 2
+        $x_2_2 = "SANDBOX DETECTED" ascii //weight: 2
+        $x_2_3 = "Hostile environment detected. Aborting." ascii //weight: 2
+        $x_2_4 = "Windows Defender\\Real-Time Protection" ascii //weight: 2
+        $x_2_5 = "Running Anti-Debug checks" ascii //weight: 2
+        $x_2_6 = "x64dbg" ascii //weight: 2
+        $x_2_7 = "OLLYDBG" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

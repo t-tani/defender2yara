@@ -604,3 +604,29 @@ rule Trojan_MSIL_Cerbu_GPKA_2147977276_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Cerbu_NYS_2147977750_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Cerbu.NYS!MTB"
+        threat_id = "2147977750"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Cerbu"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "HasSandboxFiles" ascii //weight: 2
+        $x_2_2 = "HasVMRegistryKeys" ascii //weight: 2
+        $x_1_3 = "HasVMSmbiosMarkers" ascii //weight: 1
+        $x_1_4 = "HasVMSpecificProcesses" ascii //weight: 1
+        $x_1_5 = "vmProcesses" ascii //weight: 1
+        $x_1_6 = "biosVer" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

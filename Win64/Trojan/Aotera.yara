@@ -220,6 +220,30 @@ rule Trojan_Win64_Aotera_CP_2147963929_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Aotera_DA_2147964128_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Aotera.DA!MTB"
+        threat_id = "2147964128"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Aotera"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = "gXjUzH2lA/T/fYjNrFdDwBjCmU6PGHLpjI4" wide //weight: 10
+        $x_10_2 = "TXV\\]ZPX\\SQX^^\\TSQW]RYX_^P__]WU_ZQP[\\Y]RP]ZR]ZX__^T\\Q_TRS^XQ\\Y]V" ascii //weight: 10
+        $x_10_3 = "TXV]YQ\\V\\^SQ^RP^_VR[_SZU\\QR\\PR^X\\_WQZ]QWS\\PRQ_P][ZW[_Q^P^^QUTTR[" ascii //weight: 10
+        $x_10_4 = "PT]PQ][\\RYWZ_SWUTR\\Y[PUQQW^[[TX]ZQ^PXW^Q\\][TSY^VXT]\\XSYY[R]PR^T]" ascii //weight: 10
+    condition:
+        (filesize < 20MB) and
+        (1 of ($x*))
+}
+
 rule Trojan_Win64_Aotera_GVN_2147964383_0
 {
     meta:
@@ -514,5 +538,27 @@ rule Trojan_Win64_Aotera_PA_2147977713_0
     condition:
         (filesize < 20MB) and
         (all of ($x*))
+}
+
+rule Trojan_Win64_Aotera_DB_2147977790_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Aotera.DB!MTB"
+        threat_id = "2147977790"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Aotera"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = " zxr5q0uE0RUxAXeF*SmX07YPgspx4x2HwLfGez*LDQa3b0FEUQTY4d4Kya7B" ascii //weight: 10
+        $x_10_2 = {32 00 20 7a 78 72 35 71 30 75 45 30 52 55 78 41 58 65 46 2a 53 6d 58 30 37 59 50 67 73 70 78 34 78 32 48 77 4c 66 47 65 7a 2a 4c 44 51 61 33 62 30 46 45 55 51 54 59 34 64 34 4b 79 61 37 42 18}  //weight: 10, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (1 of ($x*))
 }
 

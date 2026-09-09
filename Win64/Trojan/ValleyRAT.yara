@@ -645,6 +645,32 @@ rule Trojan_Win64_ValleyRAT_PAHT_2147972979_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_ValleyRAT_DB_2147973356_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/ValleyRAT.DB!MTB"
+        threat_id = "2147973356"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "ValleyRAT"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = {04 00 cc 41 52 41 53 4c 8b dc 4c 2b d8 72 24 65 4c 8b 14 25 10 00 00 00 4d 3b da 73 16 49 81 e3 00 f0 ff ff 49 81 ea 00 10 00 00 41 85 02 4d 3b d3 77 f1 41 5b 41 5a c3}  //weight: 10, accuracy: High
+        $x_10_2 = {66 0f 6c d1 66 0f ef c9 66 0f 76 d1 66 0f 70 da b1 66 0f db da 66 0f 76 c1 66 0f 70 c8 b1 66 0f db c8 66 0f 6b d9 0f 50 cb 31 c0 85 c9 74}  //weight: 10, accuracy: High
+        $x_10_3 = {b6 57 01 8d 4a 9f 44 8d 42 e0 80 f9 1a 41 0f b6 c8 0f 43 ca 44 0f b6 47 02 41 8d 50 9f 45 8d 48 e0 80 fa 1a 41 0f b6 d1 41 0f 43 d0 44 0f b6 4f 03 45 8d 41 9f 45 8d 51 e0 41 80 f8 1a 45 0f b6 c2 45 0f 43 c1 44 8b 57 04 45 8d 4a 9f 45 8d 5a e0 41 80 f9 1a 45 0f b6 cb}  //weight: 10, accuracy: High
+        $x_10_4 = {97 00 00 00 80 7c 11 ff 4c 75 16 80 3c 11 8b 75 10 80 7c 11 01 d1 75 09 80 7c 11 02 b8 74 7f 66 90 42 80 7c 01 fc 4c 75 c8 42 80 7c 01 fd 8b 75 c0 42 80 7c 01 fe d1 75 b8 42 80 7c 01 ff b8 75 b0 41 ba 01 00 00 00 49 29 d2 31 c0 49 83 fa 05 0f}  //weight: 10, accuracy: High
+        $x_10_5 = "MKG)+<L.MJ@'<3*OO)@!WY\".^\\N'U%V>XZ3E:U&YNA<A#3MH)Q[F?3,Y\"8W/\"@6.H4!%D@2QW!IZ(X9-TX\"0MY:96" ascii //weight: 10
+        $x_10_6 = "90=Y'>M1)1U;@#C_+1@%(2,?OX;&$SDO;,7I`VQG:U?YB*\\@]2YW;<@)4]U7H'-AI+8(JZY1.<K](7(KMP6'J87Z" ascii //weight: 10
+    condition:
+        (filesize < 20MB) and
+        (1 of ($x*))
+}
+
 rule Trojan_Win64_ValleyRAT_EM_2147973551_0
 {
     meta:

@@ -2837,3 +2837,27 @@ rule Trojan_MSIL_Injector_WY_2147977528_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Injector_B_2147977751_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Injector.B!MTB"
+        threat_id = "2147977751"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Injector"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "Injection.dll" wide //weight: 1
+        $x_1_2 = "Injection.Techniques" wide //weight: 1
+        $x_1_3 = "Process {0} has no threads. Aborting." wide //weight: 1
+        $x_1_4 = "QueueUserAPC uses early bird injection and requires the thread to be in an initialized state." wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -3054,3 +3054,26 @@ rule TrojanDownloader_Win32_Small_MK_2147968188_0
         (all of ($x*))
 }
 
+rule TrojanDownloader_Win32_Small_GV_2147977776_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:Win32/Small.GV!MTB"
+        threat_id = "2147977776"
+        type = "TrojanDownloader"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Small"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "http://204.194.50.231/9856.png" ascii //weight: 1
+        $x_1_2 = "http://156.251.16.29//789.png" ascii //weight: 1
+        $x_1_3 = "KaBoom!" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (2 of ($x*))
+}
+

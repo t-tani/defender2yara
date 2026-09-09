@@ -6778,6 +6778,29 @@ rule Trojan_Win64_Lazy_PGLQ_2147972939_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Lazy_NZ_2147973369_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Lazy.NZ!MTB"
+        threat_id = "2147973369"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Lazy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "ClearDesktopMonitorHook" ascii //weight: 1
+        $x_1_2 = "SetDesktopMonitorHook" ascii //weight: 1
+        $x_2_3 = {66 0f 47 d0 44 0f b7 c2 41 0f b6 c0 41 33 c3 41 c1 e8 08}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win64_Lazy_NA_2147973621_0
 {
     meta:

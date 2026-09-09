@@ -1941,6 +1941,29 @@ rule Trojan_Win64_ClipBanker_AB_2147977039_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_ClipBanker_AB_2147977039_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/ClipBanker.AB!MTB"
+        threat_id = "2147977039"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "ClipBanker"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {48 8b c7 83 e0 1f 46 0f b6 0c 30 44 32 0c 2f 48 8b 4b 10 48 8b 53 18 48 3b ca 73 1f 48 8d 41 01 48 89 43 10 48 8b c3 48 83 fa}  //weight: 5, accuracy: High
+        $x_3_2 = "Global\\msv78runid-syncx59401" ascii //weight: 3
+        $x_2_3 = "bitcoincash" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win64_ClipBanker_SY_2147977045_0
 {
     meta:
