@@ -156,6 +156,31 @@ rule Trojan_MSIL_DCRat_A_2147825238_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_DCRat_A_2147825238_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/DCRat.A!MTB"
+        threat_id = "2147825238"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "DCRat"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "35"
+        strings_accuracy = "High"
+    strings:
+        $x_15_1 = "<StartKeylog>b__21_0" ascii //weight: 15
+        $x_10_2 = "<InProcessKeylog>b__18_0" ascii //weight: 10
+        $x_5_3 = "<TokenFromSessionProcess>b__21_0" ascii //weight: 5
+        $x_3_4 = "PatchAmsi" ascii //weight: 3
+        $x_2_5 = "ProcessHollow" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_DCRat_AN_2147830116_0
 {
     meta:

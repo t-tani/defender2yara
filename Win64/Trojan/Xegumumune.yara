@@ -69,3 +69,25 @@ rule Trojan_Win64_Xegumumune_A_2147977156_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Xegumumune_B_2147977816_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Xegumumune.B!MTB"
+        threat_id = "2147977816"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Xegumumune"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "35"
+        strings_accuracy = "Low"
+    strings:
+        $x_20_1 = {0f b6 84 11 ?? ?? ?? ?? 32 c1 48 ff c1 34 5a 88 44 0c 57 48 83 f9}  //weight: 20, accuracy: Low
+        $x_15_2 = {41 b9 19 00 02 00 45 33 c0 48 8b d5 48 c7 c1 01 00 00 80 48 89 5c 24 30 48 89 44 24 20 41 ff d6}  //weight: 15, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
