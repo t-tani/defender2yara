@@ -7575,3 +7575,30 @@ rule Trojan_Win64_Lazy_AA_2147977614_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Lazy_ZX_2147977859_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Lazy.ZX!MTB"
+        threat_id = "2147977859"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Lazy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {8b c2 41 03 d3 42 0f b6 0c 20 8b c6 48 33 c8 c1 ee 08 0f b6 c1 41 33 74 85 00}  //weight: 2, accuracy: High
+        $x_1_2 = "Local\\FearMtx" ascii //weight: 1
+        $x_1_3 = "Telegram" ascii //weight: 1
+        $x_1_4 = "discord" ascii //weight: 1
+        $x_1_5 = "NSS_Shutdown" ascii //weight: 1
+        $x_1_6 = "PK11_CheckUserPassword" ascii //weight: 1
+        $x_1_7 = "logins.json" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -69,3 +69,27 @@ rule VirTool_Win32_SuspLummaInj_D_2147977385_0
         (all of ($x*))
 }
 
+rule VirTool_Win32_SuspLummaInj_E_2147977857_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "VirTool:Win32/SuspLummaInj.E"
+        threat_id = "2147977857"
+        type = "VirTool"
+        platform = "Win32: Windows 32-bit platform"
+        family = "SuspLummaInj"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {b9 ff ff 1f 00 31 d2 41 89 f0 41 ff d6}  //weight: 1, accuracy: High
+        $x_1_2 = {c7 44 24 20 40 00 00 00 48 89 d9 31 d2 4c 8b 84 24 ?? ?? ?? ?? 41 b9 00 30 00 00 ff d7}  //weight: 1, accuracy: Low
+        $x_1_3 = {48 8d 84 24 ?? ?? ?? ?? 48 89 44 24 20 48 89 d9 48 8b 94 24 ?? ?? ?? ?? 4c 89 fe 4d 89 f8 4c 8b 4c 24 ?? 41 ff d4 85 c0 74}  //weight: 1, accuracy: Low
+        $x_1_4 = {4c 03 ac 24 ?? ?? ?? ?? 48 83 64 24 30 00 83 64 24 28 00 48 83 64 24 20 00 48 89 d9 31 d2 45 31 c0 4d 89 e9 ff 94 24 ?? ?? ?? ?? 48 85 c0 74 ?? 48 89 c1 ff 94 24}  //weight: 1, accuracy: Low
+        $x_1_5 = {48 8d 7c 24 ?? 41 b8 ?? ?? ?? ?? 48 89 f9 41 b1 ?? ff d0 4c 8b 6f 10 48 8b 05 ?? ?? ?? ?? 48 8d 15 ?? ?? ?? ?? 4c 8d bc 24 ?? ?? ?? ?? 41 b8 ?? ?? ?? ?? 4c 89 f9 41 b1 ?? ff d0 4d 8b 67 10 48 8b 05 ?? ?? ?? ?? b9 ?? ?? ?? ?? 4c 89 ea 41 b8 ?? ?? ?? ?? 4d 89 e1 ff d0 49 89 c6}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

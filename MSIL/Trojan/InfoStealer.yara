@@ -193,3 +193,32 @@ rule Trojan_MSIL_InfoStealer_AMTB_2147971772_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_InfoStealer_UT_2147977858_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/InfoStealer.UT!MTB"
+        threat_id = "2147977858"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "InfoStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "26"
+        strings_accuracy = "High"
+    strings:
+        $x_4_1 = "hook force reinstalled" wide //weight: 4
+        $x_3_2 = "keyloghistoryminutes" wide //weight: 3
+        $x_3_3 = "CaptureAllMonitors" ascii //weight: 3
+        $x_3_4 = "AddClipboardFormatListener" ascii //weight: 3
+        $x_3_5 = "WH_KEYBOARD_LL" ascii //weight: 3
+        $x_2_6 = "ScreenshotIntervalSec" ascii //weight: 2
+        $x_2_7 = "MaxScreenshots" ascii //weight: 2
+        $x_3_8 = "unutma_run.log" wide //weight: 3
+        $x_3_9 = "Local\\UnutmaAdhdToolSingleInstance" ascii //weight: 3
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
