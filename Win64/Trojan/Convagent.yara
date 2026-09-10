@@ -1670,3 +1670,29 @@ rule Trojan_Win64_Convagent_AZ_2147977201_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Convagent_A_2147977914_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Convagent.A"
+        threat_id = "2147977914"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Convagent"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "34"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {49 8b 0e 49 8b 56 08 e8 ?? ?? ?? ?? 48 8d 15 ?? ?? ?? ?? 4c 8d b4 24 ?? ?? ?? ?? 41 b8 0a 00 00 00 4c 89 f1 e8 ?? ?? ?? ?? 4c 8b 7b 08 48 8b 43 10 48 8d 0d}  //weight: 10, accuracy: Low
+        $x_10_2 = {48 89 83 78 01 00 00 48 8b 84 24 ?? ?? ?? ?? 48 89 83 80 01 00 00 48 8d 05 ?? ?? ?? ?? 48 89 83 98 01 00 00 48 c7 83 a0 01 00 00 0b 00 00 00 4c 89 a3 b0 01 00 00 c6 83 ba 01 00 00 00 4c 8d bb 68 01 00 00}  //weight: 10, accuracy: Low
+        $x_10_3 = {48 8b 4c 24 ?? 0f 11 43 19 48 89 43 28 48 89 4b 30 48 8d 05 ?? ?? ?? ?? 48 89 43 48 48 c7 43 50 0c 00 00 00 4c 89 7b 60 c6 43 6a 00 4c 8d 73 18}  //weight: 10, accuracy: Low
+        $x_1_4 = "auth_verifiedexecute_commandfile_actiontask_actionutility_actioninteract_actionnotification_actionsettings_actionclipboard_actionadvanced_actionstream_actionaudio_action" ascii //weight: 1
+        $x_1_5 = "dump_browserescalatebrowser" ascii //weight: 1
+        $x_1_6 = "screen_startscreen_stopwebcam_startwebcam_stop" ascii //weight: 1
+        $x_1_7 = "powershell-NoProfile-NonInteractive-CommandtitleSystem Message" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

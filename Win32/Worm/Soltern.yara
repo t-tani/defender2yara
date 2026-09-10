@@ -21,3 +21,25 @@ rule Worm_Win32_Soltern_GMH_2147889371_0
         (all of ($x*))
 }
 
+rule Worm_Win32_Soltern_A_2147977913_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Worm:Win32/Soltern.A"
+        threat_id = "2147977913"
+        type = "Worm"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Soltern"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_6_1 = {c7 06 01 00 00 00 6a 00 8d 45 f4 e8 ?? ?? ?? ?? ff 75 f4 68 ?? ?? ?? ?? 8b 06 ff 34 85 ?? ?? ?? ?? 8d 45 f8 ba 03 00 00 00 e8 ?? ?? ?? ?? 8b 45 f8 e8 ?? ?? ?? ?? 50 8d 55 f0 33 c0 e8 ?? ?? ?? ?? 8b 45 f0 e8 ?? ?? ?? ?? 50 e8 ?? ?? ?? ?? ff 06 4b 75 b2}  //weight: 6, accuracy: Low
+        $x_2_2 = "\\Software\\Morpheus\\LocalContent" ascii //weight: 2
+        $x_2_3 = "\\Software\\Kazaa\\LocalContent" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

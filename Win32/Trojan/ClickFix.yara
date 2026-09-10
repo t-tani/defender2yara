@@ -3979,7 +3979,7 @@ rule Trojan_Win32_ClickFix_ZGA_2147941490_0
         $n_600_27 = "pwceur.sharepoint.com" wide //weight: -600
         $n_600_28 = "pwcinternal.com" wide //weight: -600
         $n_600_29 = "-win32" wide //weight: -600
-        $n_600_30 = ".asia.corp.anz.com" wide //weight: -600
+        $n_600_30 = {5c 00 70 00 6f 00 77 00 65 00 72 00 73 00 68 00 65 00 6c 00 6c 00 2d 00 [0-16] 2d 00 77 00 69 00 6e 00 2d 00 78 00 36 00 34 00 2e 00 6d 00 73 00 69 00}  //weight: -600, accuracy: Low
         $n_600_31 = "\\PowerShell7AndAzCmdlets\\PowerShell-7.5.4-win-x64.msi" wide //weight: -600
     condition:
         (filesize < 20MB) and
