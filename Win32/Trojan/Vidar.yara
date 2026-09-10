@@ -7433,3 +7433,25 @@ rule Trojan_Win32_Vidar_DG_2147977372_0
         (5 of ($x*))
 }
 
+rule Trojan_Win32_Vidar_YBD_2147977921_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Vidar.YBD!MTB"
+        threat_id = "2147977921"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Vidar"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {33 c8 89 8c 24 ac 00 00 00 8b 84 24 ac 00 00 00 41}  //weight: 2, accuracy: High
+        $x_2_2 = {89 05 f5 1d 15 00 8b 05 db 2f 15 00 33 05 e9 1d 15 00 89 05 cf 2f 15 00 48}  //weight: 2, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

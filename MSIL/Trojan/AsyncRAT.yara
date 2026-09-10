@@ -7435,3 +7435,26 @@ rule Trojan_MSIL_AsyncRAT_XYE_2147976836_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AsyncRAT_RX_2147977925_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AsyncRAT.RX!MTB"
+        threat_id = "2147977925"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AsyncRAT"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {2a 00 00 00 11 05 17 3b 11 00 00 00 0f 00 7c ?? 00 00 04 28 ?? 00 00 0a 38 0c 00 00 00 0f 00 7c ?? 00 00 04 28 ?? 00 00 0a 38 0c 00 00 00 0f 00 7c ?? 00 00 04 28 ?? 00 00 0a 6f ?? 00 00 0a 38}  //weight: 2, accuracy: Low
+        $x_1_2 = "8f7a9d3e-1b2c-4e5f-9a8b-7c6d5e4f3a2b" ascii //weight: 1
+        $x_1_3 = "GetPixel" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

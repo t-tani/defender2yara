@@ -901,3 +901,24 @@ rule Trojan_Win64_Dacic_GVD_2147977332_0
         (4 of ($x*))
 }
 
+rule Trojan_Win64_Dacic_YBD_2147977922_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Dacic.YBD!MTB"
+        threat_id = "2147977922"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Dacic"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_4_1 = {8a 02 34 3c 88 02 48 ff c2 8a 02 34 e8 88 02 48 ff c2 48 ff ce 75 e9}  //weight: 4, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

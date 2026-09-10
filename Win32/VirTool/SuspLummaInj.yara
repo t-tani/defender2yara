@@ -44,6 +44,28 @@ rule VirTool_Win32_SuspLummaInj_C_2147976849_0
         (all of ($x*))
 }
 
+rule VirTool_Win32_SuspLummaInj_C_2147976849_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "VirTool:Win32/SuspLummaInj.C"
+        threat_id = "2147976849"
+        type = "VirTool"
+        platform = "Win32: Windows 32-bit platform"
+        family = "SuspLummaInj"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {48 83 f8 2a 48 89 c6 48 89 44 24 30 75 ?? 41 80 3f 30 75 ?? 41 80 7f 01 78 75 ?? b8 02 00 00 00 48 83 f8 2a 0f 84 ?? ?? ?? ?? 41 8a 0c 07 89 ca 80 e2 df 80 c1 d0 80 f9 0a 0f 92 c1 80 c2 bf 80 fa 06 0f 92 c2 08 ca 48 ff c0 84 d2 75}  //weight: 1, accuracy: Low
+        $x_1_2 = {45 31 c0 48 8d 7c 24 58 b9 40 00 00 00 31 c0 f3 ab 40 f6 dd 40 0f b6 c5 48 8d 0d}  //weight: 1, accuracy: High
+        $x_1_3 = {48 89 f3 41 0f b6 34 2e 41 0f b6 4c 2e 01 c1 e1 08 09 f1 83 e6 1f 48 83 c6 04 48 83 c5 02 0f b7 c9 c1 e9 05 f7 d9 48 0f bf c9 4c 8d 34 08 49 ff ce 48 83 ee 01 72 ?? 4c 3b 74 24 58 0f 83 ?? ?? ?? ?? 48 8b 44 24 68 42 8a 14 30 48 8b 05 ?? ?? ?? ?? 4c 89 f9 ff d0}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule VirTool_Win32_SuspLummaInj_D_2147977385_0
 {
     meta:
