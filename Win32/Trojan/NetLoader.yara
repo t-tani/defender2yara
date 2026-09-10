@@ -80,6 +80,29 @@ rule Trojan_Win32_NetLoader_RPH_2147836593_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_NetLoader_A_2147838311_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/NetLoader.A!MTB"
+        threat_id = "2147838311"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "NetLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "60"
+        strings_accuracy = "High"
+    strings:
+        $x_30_1 = "[TTrojanThread::FRemoteControl]  FLoadPluginList." ascii //weight: 30
+        $x_20_2 = "TTrojanThread::Execute" ascii //weight: 20
+        $x_10_3 = "[FSendNetworkCommand]" ascii //weight: 10
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win32_NetLoader_CA_2147838516_0
 {
     meta:

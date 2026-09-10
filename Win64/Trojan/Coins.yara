@@ -98,3 +98,24 @@ rule Trojan_Win64_Coins_A_2147977095_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Coins_PC_2147977889_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Coins.PC!MTB"
+        threat_id = "2147977889"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Coins"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {49 39 ca 74 ?? 48 89 c8 31 d2 48 ff c1 49 f7 f1 41 8a 04 13 41 30 00 49 ff c0 eb}  //weight: 5, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

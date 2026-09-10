@@ -2494,6 +2494,30 @@ rule Trojan_MSIL_XWorm_AB_2147945980_2
         (all of ($x*))
 }
 
+rule Trojan_MSIL_XWorm_AB_2147945980_3
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/XWorm.AB!MTB"
+        threat_id = "2147945980"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "XWorm"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "20"
+        strings_accuracy = "High"
+    strings:
+        $x_6_1 = {20 f6 14 00 00 28 0c 02 00 06 72 01 00 00 70 73 8c 00 00 06 7e 6d 01 00 04 28 63 04 00 06 20 02 00 00 00 28 dd 01 00 06 39 7b ff ff ff 26}  //weight: 6, accuracy: High
+        $x_3_2 = "ChimneySweep.Properties.Resources" ascii //weight: 3
+        $x_7_3 = "ChimneySweep.DachForm+<>c__DisplayClass16_0+HbdlRN0VfGyHm36dTo" ascii //weight: 7
+        $x_4_4 = "$a27b08b2-74fe-48ca-a25e-a2e4b92942f2" ascii //weight: 4
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_XWorm_AC_2147945981_0
 {
     meta:
