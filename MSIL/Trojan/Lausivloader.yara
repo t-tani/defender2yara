@@ -194,3 +194,39 @@ rule Trojan_MSIL_Lausivloader_MA_2147977877_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Lausivloader_MC_2147977943_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Lausivloader.MC!MTB"
+        threat_id = "2147977943"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Lausivloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "22"
+        strings_accuracy = "High"
+    strings:
+        $x_4_1 = "ChaveSecretaGlobal" ascii //weight: 4
+        $x_2_2 = "VerificarMinutos" ascii //weight: 2
+        $x_2_3 = "cpiNcystvbmomsM" ascii //weight: 2
+        $x_2_4 = "vzuwobbatvffzyN" ascii //weight: 2
+        $x_1_5 = "ZwUnmapViewOfSection" ascii //weight: 1
+        $x_1_6 = "SetThreadContext" ascii //weight: 1
+        $x_1_7 = "CreateProcess" ascii //weight: 1
+        $x_1_8 = "WriteProcessMemory" ascii //weight: 1
+        $x_1_9 = "FromBase64String" ascii //weight: 1
+        $x_1_10 = "CreateDecryptor" ascii //weight: 1
+        $x_1_11 = "RegisterTaskDefinition" ascii //weight: 1
+        $x_1_12 = "BootTrigger" ascii //weight: 1
+        $x_1_13 = "SendEmail" ascii //weight: 1
+        $x_1_14 = "Rijndael" ascii //weight: 1
+        $x_1_15 = "VirtualAllocEx" ascii //weight: 1
+        $x_1_16 = "Microsoft.Win32.TaskScheduler.dll" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
