@@ -659,35 +659,6 @@ rule Trojan_MSIL_RedLine_MR_2147830103_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_RedLine_2147830104_0
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "Trojan:MSIL/RedLine.MT!MTB"
-        threat_id = "2147830104"
-        type = "Trojan"
-        platform = "MSIL: .NET intermediate language scripts"
-        family = "RedLine"
-        severity = "Critical"
-        info = "MT: an internal category used to refer to some threats"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "8"
-        strings_accuracy = "High"
-    strings:
-        $x_1_1 = {57 15 a2 09 09 0b 00 00 00 fa 25 33 00 16 00 00 01 00 00 00 35 00 00 00 0c 00 00 00 12 00 00 00 31}  //weight: 1, accuracy: High
-        $x_1_2 = "92ad98ed-8c3b-4ccb-94f9-c50da764d548" ascii //weight: 1
-        $x_1_3 = "Jambo" ascii //weight: 1
-        $x_1_4 = "CreateInstance" ascii //weight: 1
-        $x_1_5 = "PervasiveMindChallenge.Properties" ascii //weight: 1
-        $x_1_6 = "CreateDecryptor" ascii //weight: 1
-        $x_1_7 = "TransformFinalBlock" ascii //weight: 1
-        $x_1_8 = "GetBytes" ascii //weight: 1
-    condition:
-        (filesize < 20MB) and
-        (all of ($x*))
-}
-
 rule Trojan_MSIL_RedLine_MU_2147830389_0
 {
     meta:

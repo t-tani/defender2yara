@@ -263,3 +263,27 @@ rule HackTool_Win64_PSWDump_MK_2147974576_0
         (all of ($x*))
 }
 
+rule HackTool_Win64_PSWDump_A_2147978069_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "HackTool:Win64/PSWDump.A!MTB"
+        threat_id = "2147978069"
+        type = "HackTool"
+        platform = "Win64: Windows 64-bit platform"
+        family = "PSWDump"
+        severity = "High"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "24"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = "Usage: chromelevator.exe [payload_path]" wide //weight: 10
+        $x_10_2 = "payload_path: Path to payload .enc file (default: payload.enc)" wide //weight: 10
+        $x_2_3 = "\\Registry\\Machine\\SOFTWARE\\Clients\\StartMenuInternet\\Microsoft Edge\\shell\\open\\command" wide //weight: 2
+        $x_2_4 = "\\Registry\\Machine\\SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Google Chrome" wide //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
