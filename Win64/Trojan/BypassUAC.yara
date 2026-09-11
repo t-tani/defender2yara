@@ -214,3 +214,34 @@ rule Trojan_Win64_BypassUAC_PAHM_2147977724_0
         )
 }
 
+rule Trojan_Win64_BypassUAC_BA_2147978107_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/BypassUAC.BA!MTB"
+        threat_id = "2147978107"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "BypassUAC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "12"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "all UAC bypass methods failedUAC bypass triggered" ascii //weight: 1
+        $x_1_2 = "UAC bypass method failed, trying next" ascii //weight: 1
+        $x_1_3 = "password" ascii //weight: 1
+        $x_1_4 = ".cmd" ascii //weight: 1
+        $x_2_5 = "@echo off" ascii //weight: 2
+        $x_1_6 = "ping -n 4 127.0.0.1 >nul" ascii //weight: 1
+        $x_1_7 = "del /f /q \"%~f0\" >nul 2>&1" ascii //weight: 1
+        $x_1_8 = "Invoke-WebRequest -Uri $NefConURL -OutFile $nefZip -UseBasicParsing" ascii //weight: 1
+        $x_1_9 = "$sidecarDir = Join-Path $env:ProgramData \"Monitorador\\Agent\\tools" ascii //weight: 1
+        $x_1_10 = "set SCRIPT=%~dp0vdd-ctl.ps1" ascii //weight: 1
+        $x_1_11 = "powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"%SCRIPT%\" %*" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

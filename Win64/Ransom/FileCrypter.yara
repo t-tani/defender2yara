@@ -102,3 +102,29 @@ rule Ransom_Win64_FileCrypter_MKV_2147970754_0
         (all of ($x*))
 }
 
+rule Ransom_Win64_FileCrypter_LZ_2147978106_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win64/FileCrypter.LZ!MTB"
+        threat_id = "2147978106"
+        type = "Ransom"
+        platform = "Win64: Windows 64-bit platform"
+        family = "FileCrypter"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "YOUR FILES ARE ENCRYPTED!" ascii //weight: 1
+        $x_1_2 = "WARNING: IF YOU TURN OFF YOUR PC ALL FILES WILL BE DELETED AND RELEASED PUBLICLY!" ascii //weight: 1
+        $x_1_3 = "RANSOM_NOTE.txt" ascii //weight: 1
+        $x_1_4 = ".locked" ascii //weight: 1
+        $x_1_5 = "RansomKey" ascii //weight: 1
+        $x_1_6 = "To decrypt, send" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

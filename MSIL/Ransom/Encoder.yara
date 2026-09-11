@@ -218,3 +218,26 @@ rule Ransom_MSIL_Encoder_NG_2147976448_0
         )
 }
 
+rule Ransom_MSIL_Encoder_PG_2147978105_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:MSIL/Encoder.PG!MTB"
+        threat_id = "2147978105"
+        type = "Ransom"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Encoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = ".compressed" wide //weight: 1
+        $x_1_2 = "EncryptedLog.txt" wide //weight: 1
+        $x_3_3 = "You've been hacked" wide //weight: 3
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

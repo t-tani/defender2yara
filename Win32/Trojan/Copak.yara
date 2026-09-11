@@ -3635,6 +3635,27 @@ rule Trojan_Win32_Copak_KK_2147961194_1
         threshold = "20"
         strings_accuracy = "Low"
     strings:
+        $x_20_1 = {10 14 40 00 c3 [0-20] d8 85 40 00 [0-20] e8 ?? 00 00 00 [0-15] 31 [0-50] 39 ?? 75}  //weight: 20, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Copak_KK_2147961194_2
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Copak.KK!MTB"
+        threat_id = "2147961194"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Copak"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "20"
+        strings_accuracy = "Low"
+    strings:
         $x_20_1 = {20 e7 42 00 c3 [0-31] c7 b3 43 00 [0-31] e8 ?? 00 00 00 [0-31] 31 [0-80] 39 ?? 75}  //weight: 20, accuracy: Low
     condition:
         (filesize < 20MB) and
