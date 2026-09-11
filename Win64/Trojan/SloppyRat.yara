@@ -19,3 +19,24 @@ rule Trojan_Win64_SloppyRat_DA_2147978041_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_SloppyRat_YBD_2147978094_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/SloppyRat.YBD!MTB"
+        threat_id = "2147978094"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "SloppyRat"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {83 e2 02 0f b6 14 10 41 30 54 08 ?? 48 83 f9 ?? 74 ?? 89 ca 83 e2 ?? 0f b6 14 10 41 30 14 08}  //weight: 4, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

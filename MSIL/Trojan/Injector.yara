@@ -2928,3 +2928,28 @@ rule Trojan_MSIL_Injector_MY_2147977878_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Injector_ME_2147978097_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Injector.ME!MTB"
+        threat_id = "2147978097"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Injector"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "9"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = "$6f5de052-f32c-4167-96cc-36343c27a8bd" ascii //weight: 3
+        $x_3_2 = {00 00 00 00 02 00 00 01 57 bd 02 3c 09 0e 00 00 00 fa 25 33 00 16 00 00 01 00 00 00 38 00 00 00 19 00 00 00 58 00 00 00 6e 00 00 00 ab 00 00 00 49 00 00 00 09 00 00 00 18 00 00 00 02 00 00 00 02 00 00 00 11 00 00 00 01 00 00 00 01 00 00 00 02 00 00 00 02 00 00 00 01 00 00 00 02 00 00 00 16 00 00 00 06 00 00 00 0d 00 00 00}  //weight: 3, accuracy: High
+        $x_1_3 = "SHEEP.dll" ascii //weight: 1
+        $x_1_4 = "Runner" ascii //weight: 1
+        $x_1_5 = "LAUNCH" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
