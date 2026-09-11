@@ -112,24 +112,28 @@ rule Trojan_Win32_WebClipPaste_B_2147977448_0
         $x_10_26 = "wget " wide //weight: 10
         $x_10_27 = "certutil" wide //weight: 10
         $x_10_28 = "bitsadmin" wide //weight: 10
-        $x_10_29 = "start-bitstransfer" wide //weight: 10
-        $x_10_30 = "-urlcache" wide //weight: 10
-        $x_10_31 = "regsvr32" wide //weight: 10
-        $x_10_32 = "rundll32" wide //weight: 10
-        $x_10_33 = "scrobj" wide //weight: 10
-        $x_10_34 = "mshta" wide //weight: 10
-        $x_10_35 = "--headless" wide //weight: 10
-        $x_10_36 = "/v:on" wide //weight: 10
-        $x_10_37 = "for /f" wide //weight: 10
-        $x_10_38 = "delims=" wide //weight: 10
-        $x_10_39 = "invokescript" wide //weight: 10
-        $x_10_40 = "invokecommand" wide //weight: 10
-        $x_10_41 = "-w 1 " wide //weight: 10
-        $x_10_42 = "-w h " wide //weight: 10
-        $x_10_43 = "[scriptblock]::Create" wide //weight: 10
-        $x_10_44 = "[PowerShell]::Create()" wide //weight: 10
-        $n_1000_45 = "/install" wide //weight: -1000
-        $n_1000_46 = "(get-wmiobject -class win32_operatingsystem).caption" wide //weight: -1000
+        $x_110_29 = "bitsadmin /transfer" wide //weight: 110
+        $x_10_30 = "start-bitstransfer" wide //weight: 10
+        $x_110_31 = "-urlcache" wide //weight: 110
+        $x_10_32 = "regsvr32" wide //weight: 10
+        $x_110_33 = "regsvr32 /i:http" wide //weight: 110
+        $x_110_34 = "regsvr32 /s /n /u /i:" wide //weight: 110
+        $x_10_35 = "rundll32" wide //weight: 10
+        $x_110_36 = "rundll32 javascript:" wide //weight: 110
+        $x_10_37 = "scrobj" wide //weight: 10
+        $x_110_38 = "mshta" wide //weight: 110
+        $x_10_39 = "--headless" wide //weight: 10
+        $x_10_40 = "/v:on" wide //weight: 10
+        $x_10_41 = "for /f" wide //weight: 10
+        $x_10_42 = "delims=" wide //weight: 10
+        $x_10_43 = "invokescript" wide //weight: 10
+        $x_10_44 = "invokecommand" wide //weight: 10
+        $x_10_45 = "-w 1 " wide //weight: 10
+        $x_10_46 = "-w h " wide //weight: 10
+        $x_10_47 = "[scriptblock]::Create" wide //weight: 10
+        $x_10_48 = "[PowerShell]::Create()" wide //weight: 10
+        $n_1000_49 = "/install" wide //weight: -1000
+        $n_1000_50 = "(get-wmiobject -class win32_operatingsystem).caption" wide //weight: -1000
     condition:
         (filesize < 20MB) and
         (not (any of ($n*))) and
@@ -137,6 +141,7 @@ rule Trojan_Win32_WebClipPaste_B_2147977448_0
             ((11 of ($x_10_*))) or
             ((1 of ($x_100_*) and 1 of ($x_10_*))) or
             ((2 of ($x_100_*))) or
+            ((1 of ($x_110_*))) or
             (all of ($x*))
         )
 }
