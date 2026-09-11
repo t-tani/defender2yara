@@ -522,3 +522,29 @@ rule Trojan_MSIL_Exnet_LRC_2147977423_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Exnet_AA_2147977992_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Exnet.AA!MTB"
+        threat_id = "2147977992"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Exnet"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "30"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {0a 06 1b 28 ?? ?? ?? 0a 2d 14 28 ?? ?? ?? ?? 2d 0d 06 28}  //weight: 4, accuracy: Low
+        $x_6_2 = "-OutFile $env:TEMP\\BK279399.exe; Start-Process $env:TEMP\\BK279399.exe -WindowStyle Hidden " ascii //weight: 6
+        $x_2_3 = "keylog started" ascii //weight: 2
+        $x_7_4 = "<!-- ratman:vcxproj -->" ascii //weight: 7
+        $x_3_5 = "[ratman:exe]" ascii //weight: 3
+        $x_8_6 = "RATMAN_INFECT_ROOT" ascii //weight: 8
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

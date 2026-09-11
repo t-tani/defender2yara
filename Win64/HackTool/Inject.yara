@@ -95,3 +95,28 @@ rule HackTool_Win64_Inject_SXC_2147971173_0
         (all of ($x*))
 }
 
+rule HackTool_Win64_Inject_A_2147977950_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "HackTool:Win64/Inject.A!MTB"
+        threat_id = "2147977950"
+        type = "HackTool"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Inject"
+        severity = "High"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "[*] Executing IAT Camouflage" ascii //weight: 1
+        $x_1_2 = "[*] Decrypting The Payload" ascii //weight: 1
+        $x_1_3 = "[+] Payload Started, Beginning Sleep Obfuscation" ascii //weight: 1
+        $x_1_4 = "[+] Sacrificial DLL Loaded -> 0x%p" ascii //weight: 1
+        $x_1_5 = "Nocturne" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

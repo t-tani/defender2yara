@@ -1404,3 +1404,28 @@ rule Trojan_MSIL_KillMBR_AYA_2147976948_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_KillMBR_A_2147977991_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/KillMBR.A!MTB"
+        threat_id = "2147977991"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "KillMBR"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "35"
+        strings_accuracy = "High"
+    strings:
+        $x_15_1 = "/c dd if=C:\\mbr.dat of=\\\\?\\PhysicalDrive0 bs=512 count=1" wide //weight: 15
+        $x_10_2 = "/c bcdedit /deletevalue {default} bootmgr" wide //weight: 10
+        $x_5_3 = "/c bcdedit /deletevalue {default} bootmenupolicy" wide //weight: 5
+        $x_3_4 = "DisableTaskMgr" wide //weight: 3
+        $x_2_5 = "C:\\mbr.dat" wide //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

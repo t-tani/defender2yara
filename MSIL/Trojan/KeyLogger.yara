@@ -631,3 +631,28 @@ rule Trojan_MSIL_KeyLogger_SXB_2147975877_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_KeyLogger_AB_2147977993_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/KeyLogger.AB!MTB"
+        threat_id = "2147977993"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "KeyLogger"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "25"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {2d 02 de 3c 00 1f 28 28 ?? 00 00 0a 72 ?? 00 00 70 72 ?? 00 00 70 28 ?? 00 00 0a 0c 08 28 ?? 00 00 06 00 00 de 05 26 00 00 de 00}  //weight: 4, accuracy: Low
+        $x_6_2 = "- Silent + Persistent" ascii //weight: 6
+        $x_8_3 = "keylog.txt" ascii //weight: 8
+        $x_2_4 = "Global\\WdiServiceHost4321" ascii //weight: 2
+        $x_5_5 = "+++ SESSION START +++" ascii //weight: 5
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

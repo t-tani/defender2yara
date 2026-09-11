@@ -47,6 +47,7 @@ rule TrojanDownloader_Win32_ClickFix_MS_2147977560_0
         $x_1_11 = "iex" wide //weight: 1
         $x_1_12 = "invoke-expression" wide //weight: 1
         $x_1_13 = "start-process" wide //weight: 1
+        $x_1_14 = "11e56648-a9b4-446c-9b49-19d979841d85" wide //weight: 1
     condition:
         (filesize < 20MB) and
         (

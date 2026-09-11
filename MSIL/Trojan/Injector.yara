@@ -2767,6 +2767,28 @@ rule Trojan_MSIL_Injector_LR_2147977425_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Injector_LR_2147977425_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Injector.LR!MTB"
+        threat_id = "2147977425"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Injector"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "30"
+        strings_accuracy = "High"
+    strings:
+        $x_20_1 = {14 11 06 6f 11 00 00 0a a5 15 00 00 01 13 07 11 07 2d 02 16 2a 11 06 1e 9a 0a 11 06 1f 09 9a 0b 07 72 67 03 00 70 28 07 00 00 06 a5 14 00 00 01 13 08 07 72 79 03 00 70 28 07 00 00 06 a5 14 00 00 01 13 09 7e 02 00 00 04 72 97 00 00 70 6f 0b 00 00 0a 13 0a 11 0a 72 89 03 00 70 6f 21 00 00 0a 13 0b 11 0b 14 1b 8d 01 00 00 01 13 18 11 18 16 11 08 8c 14 00 00 01 a2 11 18 17 7e 22 00 00 0a 8c 14 00 00 01 a2 11 18 18 03 8e 69 8c 13 00 00 01 a2 11 18 19 20 00 30 00 00 8c 13 00 00 01 a2 11 18 1a 1f 40 8c 13 00 00 01 a2 11 18 6f 11 00 00 0a}  //weight: 20, accuracy: High
+        $x_10_2 = {7e 22 00 00 0a 28 23 00 00 0a 2c 0b 11 08 11 09 28 0b 00 00 06 16 2a 7e 03 00 00 04 72 cb 00 00 70 6f 0b 00 00 0a 13 0d 11 0d 11 08 11 0c 03 28 0a 00 00 06 13 0e 11 0e 2d 0b 11 08 11 09 28 0b 00 00 06 16 2a 7e 04 00 00 04 72 ff 00 00 70 6f 0b 00 00 0a 13 0f 11 0f 72 a7 03 00 70 6f 21 00 00 0a 13 10 11 10 14 19 8d 01 00 00 01 13 19 11 19 16 11 0c 8c 14 00 00 01 a2 11 19 17 11 09 8c 14 00 00 01 a2 11 19 18 7e 24 00 00 0a 8c 16 00 00 01 a2 11 19 6f 11 00 00 0a a5 15 00 00 01 13 11 11 11 2d 0b 11 08 11 09 28 0b 00 00 06 16 2a 7e}  //weight: 10, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_Injector_AA_2147977487_0
 {
     meta:

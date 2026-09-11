@@ -1696,3 +1696,27 @@ rule Trojan_Win64_Convagent_A_2147977914_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Convagent_C_2147977990_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Convagent.C!MTB"
+        threat_id = "2147977990"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Convagent"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "20"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = "[agent] copy watchdog spawn failed:" ascii //weight: 10
+        $x_5_2 = "[agent] copy schedule expired, exiting copy instance" ascii //weight: 5
+        $x_3_3 = "[agent] copy stop requested, exiting copy instance" ascii //weight: 3
+        $x_2_4 = "[agent] heartbeat timeout, reconnecting" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
