@@ -1180,3 +1180,30 @@ rule Trojan_MSIL_PureLogs_BAI_2147970954_1
         (all of ($x*))
 }
 
+rule Trojan_MSIL_PureLogs_DN_2147978049_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/PureLogs.DN!MTB"
+        threat_id = "2147978049"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "PureLogs"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "Qf6cDwlXoSb4MDFQoM.k25Cn6cFeZ4IZUoMFZ" ascii //weight: 2
+        $x_1_2 = "HOXlLUHjYLHnGJO4r2.wgcK7IbCFvJMJxKIV" ascii //weight: 1
+        $x_1_3 = "XBaxkvpU2odZitjqxh.XNp1pDv0qZHf7H52Yy" ascii //weight: 1
+        $x_1_4 = "1x6aC8QtfaPkn8bV8D.N7FPE8dgOwKaUsgKZv" ascii //weight: 1
+        $x_1_5 = "FromBase64String" ascii //weight: 1
+        $x_1_6 = "AesCryptoServiceProvider" ascii //weight: 1
+        $x_1_7 = "Ye802qjIbIyM1odRPSx" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

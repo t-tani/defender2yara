@@ -250,3 +250,28 @@ rule Trojan_Win64_Lotok_AHB_2147973724_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Lotok_BQ_2147978056_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Lotok.BQ!MTB"
+        threat_id = "2147978056"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Lotok"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {8d 14 38 80 e2 07 b9 08 00 00 00 2a ca 41 b8 fd 00 00 00 41 d2 e8 8a ca b8 fd 00 00 00 d2 e0 44 0a c0 40 0f b6 c7 6b c8 5c b8 a4 00 00 00 2a c1 44 32 c0 41 80 f0 cb 44 8a 0c 37 45 32 c8}  //weight: 2, accuracy: High
+        $x_1_2 = "DARKCORE01" ascii //weight: 1
+        $x_1_3 = "ANTI_DEBUG HIT exit" ascii //weight: 1
+        $x_1_4 = "ANTI_VM CHECK ok" ascii //weight: 1
+        $x_1_5 = "ANTI_SANDBOX HIT exit" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

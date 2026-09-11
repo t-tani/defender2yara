@@ -3443,6 +3443,30 @@ rule Trojan_MSIL_XWorm_AH_2147954441_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_XWorm_AH_2147954441_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/XWorm.AH!MTB"
+        threat_id = "2147954441"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "XWorm"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "12"
+        strings_accuracy = "High"
+    strings:
+        $x_6_1 = {02 28 19 00 00 06 28 21 00 00 06 13 04 11 04 8e 69 28 42 00 00 0a 72 79 00 00 70 28 43 00 00 0a 28 19 00 00 06 13 05 09 11 05 16 11 05 8e 69 6f 3c 00 00 0a 00 09 11 04 16 11 04 8e 69 6f 3c 00 00 0a 00 7e 03 00 00 04 15 17 6f 44 00 00 0a 26 7e 03 00 00 04 09 6f 38 00 00 0a 16 09}  //weight: 6, accuracy: High
+        $x_2_2 = "_CASH_218.exe" ascii //weight: 2
+        $x_2_3 = "Sleep" ascii //weight: 2
+        $x_2_4 = "Select * from AntivirusProduct" wide //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_XWorm_ZMM_2147954565_0
 {
     meta:
@@ -6406,6 +6430,29 @@ rule Trojan_MSIL_XWorm_XL_2147977701_0
         strings_accuracy = "Low"
     strings:
         $x_10_1 = {8e 69 17 da 0b 03 0c 16 0d 2b 16 02 7b ?? 02 00 04 09 02 7b ?? 02 00 04 09 91 04 61 9c 09 08 d6 0d 08 1f 1f 63 09 61 08 1f 1f 63 07 61 31 dc 02 0a 2b 00 06 2a}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_XWorm_AI_2147978055_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/XWorm.AI!MTB"
+        threat_id = "2147978055"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "XWorm"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "14"
+        strings_accuracy = "Low"
+    strings:
+        $x_6_1 = {13 05 2b 18 11 04 11 05 06 18 11 05 58 91 20 ?? 00 00 00 61 d2 9c 11 05 17 58 13 05 11 05 09 32 e3 28 18 00 00 0a 11 04}  //weight: 6, accuracy: Low
+        $x_6_2 = {8e 69 28 1a 00 00 0a 72 0d 01 00 70 28 08 00 00 06 13 08 72 67 01 00 70 28 08 00 00 06 13 09 73 1b 00 00 0a 13 0b}  //weight: 6, accuracy: High
+        $x_2_3 = "decrypted payload" wide //weight: 2
     condition:
         (filesize < 20MB) and
         (all of ($x*))

@@ -542,3 +542,26 @@ rule Trojan_Win64_ReverseShell_ARR_2147970034_2
         (all of ($x*))
 }
 
+rule Trojan_Win64_ReverseShell_PB_2147978057_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/ReverseShell.PB!MTB"
+        threat_id = "2147978057"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "ReverseShell"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {4c 89 d0 31 d2 49 f7 f1 41 8a 04 10 42 30 04 11 49 ff c2 4d 39 da}  //weight: 2, accuracy: High
+        $x_1_2 = "Beacon/1.0.0" ascii //weight: 1
+        $x_1_3 = "BeaconBrowserHijack" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
