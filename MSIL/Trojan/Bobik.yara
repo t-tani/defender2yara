@@ -1066,3 +1066,70 @@ rule Trojan_MSIL_Bobik_SSD_2147978084_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Bobik_2147978117_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Bobik.MT!MTB"
+        threat_id = "2147978117"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Bobik"
+        severity = "Critical"
+        info = "MT: an internal category used to refer to some threats"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {08 16 16 16 16 07 6f 09 00 00 0a 6f 0a 00 00 0a 07 02 16 9a 28 0b 00 00 0a 6f 0c 00 00 0a de 0a}  //weight: 1, accuracy: High
+        $x_1_2 = "winupdate.exe" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Bobik_MU_2147978118_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Bobik.MU!MTB"
+        threat_id = "2147978118"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Bobik"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {7b 02 00 00 04 07 06 6f 2d 00 00 0a 0c 02 7b 02 00 00 04 07 06 20 ff 00 00 00 12 02 28 34 00 00 0a 59 20 ff 00 00 00 12 02 28 35 00 00 0a 59 20 ff 00 00 00 12 02}  //weight: 1, accuracy: High
+        $x_1_2 = "AllEffects.exe" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Bobik_MV_2147978119_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Bobik.MV!MTB"
+        threat_id = "2147978119"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Bobik"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {28 32 00 00 0a 59 20 ff 00 00 00 12 02 28 33 00 00 0a 59 28 34 00 00 0a 0d 03 07 06 09 6f 35 00 00 0a 00 00 07 17 58 0b}  //weight: 1, accuracy: High
+        $x_1_2 = "GDI1.exe" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

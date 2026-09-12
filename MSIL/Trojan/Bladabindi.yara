@@ -4967,3 +4967,27 @@ rule Trojan_MSIL_Bladabindi_AYM_2147977668_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Bladabindi_2147978116_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Bladabindi.MT!MTB"
+        threat_id = "2147978116"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Bladabindi"
+        severity = "Critical"
+        info = "MT: an internal category used to refer to some threats"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {e8 30 ff 47 9c 78 5b 33 28 06 2c 33 24 55 ce 05 01 00 00 00 00 08 b7 7a 5c 56 19 34 e0 89 04 20 01 01 0e 08 01 00 08 00 00 00 00 00 04 20 01 01 08 1e 01}  //weight: 1, accuracy: High
+        $x_1_2 = {74 69 6f 6e 54 68 72 6f 77 73 01 03 20 00 01 29 01 00 24 37 36 65 38 63 37 65 62 2d 32 64 66 33 2d 34 63 39 32 2d 39 32 37 31 2d 34 38 36 31 65 66 39 35 36 30}  //weight: 1, accuracy: High
+        $x_1_3 = "XClient.exe" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
