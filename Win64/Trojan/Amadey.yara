@@ -1020,3 +1020,26 @@ rule Trojan_Win64_Amadey_CJX_2147974571_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Amadey_AG_2147979080_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Amadey.AG!MTB"
+        threat_id = "2147979080"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Amadey"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {31 c0 48 3d ?? ?? ?? ?? ?? ?? 8a 8c 04 ?? ?? ?? ?? 30 8c 04 ?? ?? ?? ?? 48 ff c0 eb}  //weight: 5, accuracy: Low
+        $x_3_2 = "DKVMKVMKVMMicrosoft HvVMwareVMwareXenVMMXenVMMprl hypervVBoxVBoxVBoxbhyve bhyve" ascii //weight: 3
+        $x_2_3 = "payload-keypayload-noncestage2-url" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

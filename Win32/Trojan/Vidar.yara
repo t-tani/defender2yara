@@ -7542,3 +7542,24 @@ rule Trojan_Win32_Vidar_YAW_2147978723_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Vidar_YAK_2147979076_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Vidar.YAK!MTB"
+        threat_id = "2147979076"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Vidar"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "12"
+        strings_accuracy = "Low"
+    strings:
+        $x_12_1 = {33 c8 89 4c 24 30 8b 4c 24 20 8b 45 50 81 e1 ?? ?? ?? ?? 2b c1 89 45}  //weight: 12, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

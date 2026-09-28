@@ -1174,3 +1174,24 @@ rule Trojan_Win64_StealC_AB_2147977237_1
         )
 }
 
+rule Trojan_Win64_StealC_YAM_2147979079_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/StealC.YAM!MTB"
+        threat_id = "2147979079"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "StealC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = {42 0f b6 0c 20 0f b6 c2 32 04 29 42 8d 0c 7a 41 2a c0 41 03 cf 43 00 04 33}  //weight: 10, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

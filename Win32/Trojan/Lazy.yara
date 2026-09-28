@@ -3363,3 +3363,24 @@ rule Trojan_Win32_Lazy_YAW_2147978907_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Lazy_YAT_2147979077_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Lazy.YAT!MTB"
+        threat_id = "2147979077"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Lazy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "12"
+        strings_accuracy = "High"
+    strings:
+        $x_12_1 = {49 bb b9 e5 e4 1c 6d 47 58 bf 44 8b c8 49 ba eb 11 31 13 bb 49 d0 94 48 b9 15 7c 4a 7f b9 79 37 9e 48 33 c1 48 8b c8}  //weight: 12, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
