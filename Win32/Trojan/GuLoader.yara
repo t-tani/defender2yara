@@ -9432,3 +9432,29 @@ rule Trojan_Win32_GuLoader_XE_2147978532_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_GuLoader_XF_2147978969_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/GuLoader.XF!MTB"
+        threat_id = "2147978969"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "GuLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "udlaansloftet\\Torny" ascii //weight: 2
+        $x_1_2 = "etagearealernes boformer zoolatries" ascii //weight: 1
+        $x_1_3 = "studenternelliken" ascii //weight: 1
+        $x_1_4 = "calcareosulphurous nettie" ascii //weight: 1
+        $x_1_5 = "aflbsbrnd murderers spgelsehistorien" ascii //weight: 1
+        $x_1_6 = "vilipends filkaldenes.exe" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -1910,6 +1910,29 @@ rule Trojan_Win32_Convagent_KK_2147951395_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "35"
+        strings_accuracy = "High"
+    strings:
+        $x_20_1 = {8d 34 2f 8a 1e 8d 43 20 8d 53 bf 0f b6 c8 80 fa 19 0f b6 c3 0f 47 c8 88 4c 3c 4c 47 80 7e 01 00}  //weight: 20, accuracy: High
+        $x_10_2 = "CopyFileA(hostExe)" ascii //weight: 10
+        $x_5_3 = "CopyFileA(selfDll)" ascii //weight: 5
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Convagent_KK_2147951395_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Convagent.KK!MTB"
+        threat_id = "2147951395"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Convagent"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "15"
         strings_accuracy = "Low"
     strings:
@@ -1920,7 +1943,7 @@ rule Trojan_Win32_Convagent_KK_2147951395_0
         (all of ($x*))
 }
 
-rule Trojan_Win32_Convagent_KK_2147951395_1
+rule Trojan_Win32_Convagent_KK_2147951395_2
 {
     meta:
         author = "defender2yara"
@@ -1943,7 +1966,7 @@ rule Trojan_Win32_Convagent_KK_2147951395_1
         (all of ($x*))
 }
 
-rule Trojan_Win32_Convagent_KK_2147951395_2
+rule Trojan_Win32_Convagent_KK_2147951395_3
 {
     meta:
         author = "defender2yara"

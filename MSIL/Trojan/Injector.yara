@@ -2779,6 +2779,28 @@ rule Trojan_MSIL_Injector_LR_2147977425_0
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "30"
+        strings_accuracy = "Low"
+    strings:
+        $x_20_1 = {02 17 8d 09 00 00 01 13 04 11 04 16 72 ?? ?? ?? ?? a2 11 04 17 6f 0c 00 00 0a 0a 73 0d 00 00 0a 0b 06 13 05 16 13 06 2b 37 11 05 11 06 9a 0c 08 28 0e 00 00 0a 2d 23 08 6f 0f 00 00 0a 18 30 03 08 2b 08 08 16 18 6f 10 00 00 0a 0d 07 09 1f 10 28 ?? ?? ?? ?? 6f 12 00 00 0a 11 06 17 58 13 06 11 06 11 05 8e 69 32 c1 07 6f 13 00 00 0a 2a}  //weight: 20, accuracy: Low
+        $x_10_2 = {02 28 0e 00 00 0a 2c 07 16 8d 0d 00 00 01 2a 02 28 03 00 00 06 28 04 00 00 06 0a de 0a 26 16 8d 0d 00 00 01 0a de 00 06 2a}  //weight: 10, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Injector_LR_2147977425_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Injector.LR!MTB"
+        threat_id = "2147977425"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Injector"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "30"
         strings_accuracy = "High"
     strings:
         $x_20_1 = {12 01 7b 13 00 00 04 7e 0a 00 00 0a 03 8e 69 20 00 30 00 00 1a 28 02 00 00 06 13 04 11 04 7e 0a 00 00 0a 28 0b 00 00 0a 2c 2b 12 01 7b 13 00 00 04 17 28 08 00 00 06 26 12 01 7b 13 00 00 04 28 05 00 00 06 26 12 01 7b 14 00 00 04 28 05 00 00 06 26 1f fe 2a 12 01 7b 13 00 00 04 11 04 03 03 8e 69 12 05 28 03 00 00 06 2d 2b 12 01 7b 13 00 00 04 17 28 08 00 00 06 26 12 01 7b 13 00 00 04 28 05 00 00 06 26 12 01 7b 14 00 00 04 28 05 00 00 06 26 1f fd 2a 12 01 7b 13 00 00 04 11 04 03 8e 69 1f 20 12 06 28 04 00 00 06 2d 2b 12 01 7b 13 00 00 04 17 28 08 00 00 06 26 12 01}  //weight: 20, accuracy: High
@@ -2788,7 +2810,7 @@ rule Trojan_MSIL_Injector_LR_2147977425_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Injector_LR_2147977425_1
+rule Trojan_MSIL_Injector_LR_2147977425_2
 {
     meta:
         author = "defender2yara"

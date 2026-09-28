@@ -520,6 +520,29 @@ rule Trojan_Win64_CoinMiner_AB_2147849949_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_CoinMiner_AB_2147849949_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CoinMiner.AB!MTB"
+        threat_id = "2147849949"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CoinMiner"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_6_1 = {48 83 3d 39 c6 01 00 00 0f 84 2b 01 00 00 48 83 3d 23 c6 01 00 00 0f 84 1d 01 00 00 48 83 3d 0d c6 01 00 00 0f 84 0f 01 00 00 48 83 3d f7 c5 01 00 00 0f 84 01 01 00 00 48 83 3d e1 c5 01 00 00 0f 84 f3 00 00 00 48 83 3d cb c5 01 00 00 0f 84 e5 00 00 00 48 85 c0 0f 84 dc 00 00 00 65 48 8b 04 25 30 00 00 00 48 ba ff ff fe ff ff 7f 00 00 48 8b 40 60 48 89 05 8e c5 01 00 48 2d 00 00 01 00 48 39 c2 0f 82 db 00 00 00 4c 8d 84 24 b0 00 00 00 48 8d 94 24 10 05 00 00 48 8d 0d 02 66 01 00 e8 13 28 00 00 85 c0 74 11}  //weight: 6, accuracy: High
+        $x_1_2 = "EXC code=0x%08x addr=%p rip=%p rsp=%p" wide //weight: 1
+        $x_1_3 = "eFIMG" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win64_CoinMiner_EN_2147851463_0
 {
     meta:
@@ -1303,6 +1326,30 @@ rule Trojan_Win64_CoinMiner_PA_2147978210_0
         $x_1_3 = "stratum+tcp://" ascii //weight: 1
         $x_1_4 = "stratum+ssl://" ascii //weight: 1
         $x_1_5 = "socks5://" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_CoinMiner_AC_2147978970_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CoinMiner.AC!MTB"
+        threat_id = "2147978970"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CoinMiner"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "9"
+        strings_accuracy = "High"
+    strings:
+        $x_6_1 = {4c 8d 25 99 35 01 00 48 89 fa eb 25 0f 1f 40 00 48 8d 8c 24 0c 07 00 00 45 31 ed ff d3 85 c0 41 0f 94 c5 49 8b 54 24 08 49 83 c4 08 48 85 d2 74 05 45 85 ed 74 da 48 8d 94 24 e0 06 00 00 4c 89 f1 e8 2a 1d 01 00 85 c0}  //weight: 6, accuracy: High
+        $x_1_2 = "--algorithm pearlhash --pool prl.kryptex.network:7048 --wallet prl1p" wide //weight: 1
+        $x_1_3 = "GoogleUpdateTask" wide //weight: 1
+        $x_1_4 = "guanchor.dll" wide //weight: 1
     condition:
         (filesize < 20MB) and
         (all of ($x*))

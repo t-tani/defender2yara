@@ -1,3 +1,24 @@
+rule Trojan_Win64_Lotok_ARA_2147892922_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Lotok.ARA!MTB"
+        threat_id = "2147892922"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Lotok"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_4_1 = {83 fa 08 73 10 41 0f b6 0c 18 ff c2 30 0b 48 ff c3 3b d7 72 eb}  //weight: 4, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win64_Lotok_GPC_2147902629_0
 {
     meta:

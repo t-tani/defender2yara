@@ -3144,6 +3144,31 @@ rule Trojan_MSIL_CoinMiner_VD_2147964543_0
         (4 of ($x*))
 }
 
+rule Trojan_MSIL_CoinMiner_KK_2147972593_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/CoinMiner.KK!MTB"
+        threat_id = "2147972593"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "CoinMiner"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "15"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = "stealer-upload|" ascii //weight: 5
+        $x_4_2 = "cookie-tools|" ascii //weight: 4
+        $x_3_3 = "loader.hollow_ok" ascii //weight: 3
+        $x_2_4 = "SELECT key, value FROM ItemTable WHERE key LIKE 'cursorAuth/%' LIMIT 32" ascii //weight: 2
+        $x_1_5 = "$a182c4d9-274a-43b9-9c8e-d1a9355c58e0" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_CoinMiner_AM_2147978728_0
 {
     meta:
