@@ -19,3 +19,28 @@ rule Trojan_Win64_PhantomCore_EM_2147976212_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_PhantomCore_A_2147979414_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/PhantomCore.A!AMTB"
+        threat_id = "2147979414"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "PhantomCore"
+        severity = "Critical"
+        info = "AMTB: an internal category used to refer to some threats"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = "graphi_exchange.dll" ascii //weight: 3
+        $x_3_2 = "\"@microsoft.graph.conflictBehavior\":\"replace\"}" ascii //weight: 3
+        $x_2_3 = "ServiceMain" ascii //weight: 2
+        $x_1_4 = "SLH-DSA-SHAKE-256s PRIVATE KEY" ascii //weight: 1
+        $x_1_5 = "@.gxfg" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
