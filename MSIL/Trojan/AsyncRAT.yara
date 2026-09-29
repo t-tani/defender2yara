@@ -7463,3 +7463,29 @@ rule Trojan_MSIL_AsyncRAT_RX_2147977925_0
         )
 }
 
+rule Trojan_MSIL_AsyncRAT_SE_2147979240_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AsyncRAT.SE!MTB"
+        threat_id = "2147979240"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AsyncRAT"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "13"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {73 d5 00 00 06 0a 06 03 7d 99 00 00 04 06 02 7d 9c 00 00 04 00 28 ?? ?? ?? ?? 0b 06 06 7b 99 00 00 04 16 30 03 16 2b 06 06 7b 99 00 00 04 73 2b 01 00 0a 7d 98 00 00 04 06 7b 99 00 00 04 16 31 1e 06 7b 9c 00 00 04 6f ?? ?? ?? ?? 17 32 10 06 7b 9c 00 00 04 6f ?? ?? ?? ?? 17 fe 04 2b 01 17 0d 09 2c 0d}  //weight: 2, accuracy: Low
+        $x_4_2 = {06 7b 98 00 00 04 13 04 38 04 01 00 00 06 06 7b 9c 00 00 04 6f ?? ?? ?? ?? 7d 94 00 00 04 06 06 7b 9c 00 00 04 6f ?? ?? ?? ?? 7d 97 00 00 04 06 16 7d 93 00 00 04 06 16 7d 96 00 00 04 06 16 7d 95 00 00 04 06 7c 9b 00 00 04 fe 15 2d 00 00 01 06 15 7d 9a 00 00 04 1d 8d 2c 00 00 01 0c 08 16 06 fe 06 d6 00 00 06 73 2e 01 00 0a a2 08 17 06 fe 06 d7 00 00 06 73 2e 01 00 0a a2 08 18 06 fe 06 d8 00 00 06}  //weight: 4, accuracy: Low
+        $x_4_3 = {73 2e 01 00 0a a2 08 19 06 fe 06 d9 00 00 06 73 2e 01 00 0a a2 08 1a 06 fe 06 da 00 00 06 73 2e 01 00 0a a2 08 1b 06 fe 06 db 00 00 06 73 2e 01 00 0a a2 08 1c 06 fe 06 dc 00 00 06 73 2e 01 00 0a a2 2b 0e 08 06 7b 95 00 00 04 9a 6f ?? ?? ?? ?? 00 06 7b 95 00 00 04 16 fe 04 16 fe 01 13 05 11 05 2d e0 07 21 00 00 00 00 00 00 00 80 fe 01 13 06 11 06 2c 0c 06 7b 98 00 00 04 6f ?? ?? ?? ?? 00 06 7b 98 00 00 04 13 04 2b 00 11 04 2a}  //weight: 4, accuracy: Low
+        $x_1_4 = "frmQuanLyChuDe_Load" ascii //weight: 1
+        $x_1_5 = "latchedPixel" ascii //weight: 1
+        $x_1_6 = "QuanLyThuVienCaNhan" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

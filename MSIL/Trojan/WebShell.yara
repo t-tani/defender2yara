@@ -853,3 +853,26 @@ rule Trojan_MSIL_WebShell_AC_2147978453_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_WebShell_MK_2147979238_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/WebShell.MK!MTB"
+        threat_id = "2147979238"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "WebShell"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "35"
+        strings_accuracy = "High"
+    strings:
+        $x_20_1 = {74 1c 00 00 01 6f 46 00 00 0a 00 00 38 d3 00 00 00 00 09 72 7b 05 00 70 6f 44 00 00 0a 74 1c 00 00 01 72 95 05 00 70 6f 21 00 00 0a 13 04 73 47 00 00 0a 13 05}  //weight: 20, accuracy: High
+        $x_10_2 = "BypassFriendlyUrlRoute succesfully!<br/>" wide //weight: 10
+        $x_5_3 = "BypassPrecompiledApp succesfully!<br/>" wide //weight: 5
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

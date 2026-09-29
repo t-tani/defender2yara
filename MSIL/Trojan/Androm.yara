@@ -2278,3 +2278,27 @@ rule Trojan_MSIL_Androm_ABAG_2147975754_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Androm_MK_2147979239_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Androm.MK!MTB"
+        threat_id = "2147979239"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Androm"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "35"
+        strings_accuracy = "High"
+    strings:
+        $x_20_1 = {00 06 16 16 7e 0b 00 00 04 7e 0c 00 00 04 20 49 00 5a 00 28 0d 00 00 06 26 1f 64 28 24 00 00 0a 00 00}  //weight: 20, accuracy: High
+        $x_10_2 = "UAC_MBR_GDI_Bypass" ascii //weight: 10
+        $x_3_3 = "WipeMBR" ascii //weight: 3
+        $x_2_4 = "\\\\.\\PhysicalDrive0" wide //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

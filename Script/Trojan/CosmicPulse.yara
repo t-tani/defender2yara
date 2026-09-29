@@ -19,3 +19,24 @@ rule Trojan_Script_CosmicPulse_B_2147952835_0
         (all of ($x*))
 }
 
+rule Trojan_Script_CosmicPulse_D_2147953132_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Script/CosmicPulse.D!dha"
+        threat_id = "2147953132"
+        type = "Trojan"
+        platform = "Script: "
+        family = "CosmicPulse"
+        severity = "Critical"
+        info = "dha: an internal category used to refer to some threats"
+        signature_type = "SIGNATURE_TYPE_CMDHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = {63 00 6f 00 6e 00 74 00 72 00 6f 00 6c 00 2e 00 65 00 78 00 65 00 20 00 5c 00 5c 00 [0-64] 5c 00 73 00 79 00 73 00 74 00 65 00 6d 00 68 00 65 00 61 00 6c 00 74 00 68 00 5c 00 63 00 68 00 65 00 63 00 6b 00}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

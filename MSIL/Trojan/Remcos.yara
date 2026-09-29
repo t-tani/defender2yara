@@ -15205,3 +15205,27 @@ rule Trojan_MSIL_Remcos_AT_2147977261_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Remcos_RX_2147979228_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Remcos.RX!MTB"
+        threat_id = "2147979228"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Remcos"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {57 95 b6 29 09 0b 00 00 00 fa 01 33 00 16 00 00 01 00 00 00 99 00 00 00 2c 00 00 00 a0 00 00 00 df 00 00 00 a1 00 00 00 41 01 00 00 8b 00 00 00 05 00 00 00 49 00 00 00 01 00 00 00 01 00 00 00 07 00 00 00 1f 00 00 00 3c 00 00 00 12 00 00 00 09 00 00 00 01 00 00 00 06 00 00 00 06 00 00 00 0e 00 00 00 0a}  //weight: 2, accuracy: High
+        $x_1_2 = "f9b36259-630b-4999-8d7c-56a9dea36011" ascii //weight: 1
+        $x_1_3 = "QuanLyThuVienCaNhan" ascii //weight: 1
+        $x_1_4 = "GetPixel" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

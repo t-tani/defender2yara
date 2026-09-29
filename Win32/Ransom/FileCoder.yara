@@ -578,6 +578,31 @@ rule Ransom_Win32_FileCoder_AB_2147766646_1
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "20"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "[+] Start encryption of directory: %s" ascii //weight: 2
+        $x_5_2 = "[+] Encrypting: %s" ascii //weight: 5
+        $x_3_3 = "Encrypt only selected file" ascii //weight: 3
+        $x_6_4 = "PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTogMjBweDsgZm9udC" ascii //weight: 6
+        $x_4_5 = "[-] Couldn't delete shadow copies from %c:/ Error: %d" ascii //weight: 4
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Ransom_Win32_FileCoder_AB_2147766646_2
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win32/FileCoder.AB!MTB"
+        threat_id = "2147766646"
+        type = "Ransom"
+        platform = "Win32: Windows 32-bit platform"
+        family = "FileCoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "8"
         strings_accuracy = "High"
     strings:
