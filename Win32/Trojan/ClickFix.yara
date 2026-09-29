@@ -16071,3 +16071,83 @@ rule Trojan_Win32_ClickFix_CI_2147979081_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_ClickFix_OA_2147979200_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ClickFix.OA!MTB"
+        threat_id = "2147979200"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ClickFix"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_CMDHSTR_EXT"
+        threshold = "12"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = ".vg'|Invoke-Expression" wide //weight: 10
+        $x_10_2 = ".vg'|iex" wide //weight: 10
+        $x_10_3 = ".vg')|iex" wide //weight: 10
+        $x_10_4 = {2e 00 76 00 67 00 2f 00 [0-5] 7c 00 69 00 65 00 78 00}  //weight: 10, accuracy: Low
+        $x_10_5 = ".cc'|Invoke-Expression" wide //weight: 10
+        $x_10_6 = ".cc'|iex" wide //weight: 10
+        $x_10_7 = ".cc')|iex" wide //weight: 10
+        $x_10_8 = {2e 00 63 00 63 00 2f 00 [0-5] 7c 00 69 00 65 00 78 00}  //weight: 10, accuracy: Low
+        $x_10_9 = ".gl'|Invoke-Expression" wide //weight: 10
+        $x_10_10 = ".gl'|iex" wide //weight: 10
+        $x_10_11 = ".gl')|iex" wide //weight: 10
+        $x_10_12 = {2e 00 67 00 6c 00 2f 00 [0-5] 7c 00 69 00 65 00 78 00}  //weight: 10, accuracy: Low
+        $x_1_13 = "http" wide //weight: 1
+        $x_1_14 = "invoke-restmethod" wide //weight: 1
+        $x_1_15 = "irm " wide //weight: 1
+        $x_1_16 = ".DownloadData" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_10_*) and 2 of ($x_1_*))) or
+            ((2 of ($x_10_*))) or
+            (all of ($x*))
+        )
+}
+
+rule Trojan_Win32_ClickFix_OB_2147979201_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ClickFix.OB!MTB"
+        threat_id = "2147979201"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ClickFix"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_CMDHSTR_EXT"
+        threshold = "12"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = ".vg';irm $" wide //weight: 10
+        $x_10_2 = ".vg';invoke-restmethod $" wide //weight: 10
+        $x_10_3 = ".vg';& ([scriptblock]::Create('irm $" wide //weight: 10
+        $x_10_4 = ".vg';(iwr $" wide //weight: 10
+        $x_10_5 = ".cc';irm $" wide //weight: 10
+        $x_10_6 = ".cc';invoke-restmethod $" wide //weight: 10
+        $x_10_7 = ".cc';& ([scriptblock]::Create('irm $" wide //weight: 10
+        $x_10_8 = ".cc';(iwr $" wide //weight: 10
+        $x_10_9 = ".gl';irm $" wide //weight: 10
+        $x_10_10 = ".gl';invoke-restmethod $" wide //weight: 10
+        $x_10_11 = ".gl';& ([scriptblock]::Create('irm $" wide //weight: 10
+        $x_10_12 = ".gl';(iwr $" wide //weight: 10
+        $x_1_13 = "|iex" wide //weight: 1
+        $x_1_14 = "|invoke-expression" wide //weight: 1
+        $x_1_15 = "http" wide //weight: 1
+        $x_1_16 = ".DownloadData" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_10_*) and 2 of ($x_1_*))) or
+            ((2 of ($x_10_*))) or
+            (all of ($x*))
+        )
+}
+

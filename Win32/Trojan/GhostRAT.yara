@@ -324,3 +324,24 @@ rule Trojan_Win32_GhostRAT_SPVX_2147959671_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_GhostRAT_DA_2147979204_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/GhostRAT.DA!MTB"
+        threat_id = "2147979204"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "GhostRAT"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {5b 89 df 83 ef 25 89 d8 83 e8 25 2d ?? ?? ?? ?? 89 c5 8b 77 0c 01 fe 8b 0f 8b 0c 0f b2 5a 30 16 0f b6 c2 6b c0 0b 83 c0 13 88 c2 46 49 75 ?? 8b 4f 04}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

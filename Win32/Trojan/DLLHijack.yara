@@ -352,3 +352,26 @@ rule Trojan_Win32_DLLHijack_ASYB_2147975867_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_DLLHijack_DAK_2147979203_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/DLLHijack.DAK!MTB"
+        threat_id = "2147979203"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "DLLHijack"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = {86 c1 80 63 d0 b2 67 6c 69 7d 76 ba 52 ea b1 6a 4f 4b 3c 07 86 eb 13 72 e0 6a 76 39 1e 83 c2 28 8a 3b 67 27 20 31 f7 f4 96 ed 9f 52 6c 9e 37 11 0f c7 38 53 87 02 6f 90 f4 5f 8a 80 11 45 c9 6c 7a 3e e2 49 92 cd 58 97 7c 65 66 29 ae 15 72}  //weight: 10, accuracy: High
+        $x_10_2 = {45 59 e3 c6 1c de 95 51 ea 8d 65 ca b4 bd 86 88 eb 13 2d be 60 51 2d 56 da b6 92 23 bb cb 52 6b ce 12 7c c7 6a 9c 52 22 61 8c 1e f5 36 8c 27 79 14 ec ca 83 5e fe 3a b8 c3 b1 92 0e 30 f4 93 40 cf 58 e3 69 7d 93 ee af 15 2b b8 81 0e 69 ad 78 14 55 2d be}  //weight: 10, accuracy: High
+        $x_10_3 = {5d 7e 54 49 45 de 32 5c ed 06 ad ee 71 5f 96 6b cf 5a 3b 30 5f af c6 bd 5d 01 c5 80 24 64 1a 1b 4a 68 4e 0e 54 df 79 39 95 63 ad ff 46 13 87 6f 0c 8d e1 26 5d ad 22 58 f3 60 a3 84 13 30 1e 2e 4c 6a 5f 0e 54 df 79 39 95 63 ad ed 7c 06 a5 6f dd 5c 3d e3 8e 61 22 7e d3 72 a0 93}  //weight: 10, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (1 of ($x*))
+}
+
