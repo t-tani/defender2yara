@@ -1879,6 +1879,27 @@ rule Trojan_Win32_Tedy_E_2147978478_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "30"
+        strings_accuracy = "Low"
+    strings:
+        $x_30_1 = {f7 e1 c1 ea ?? 69 c2 ?? ?? 00 00 29 c1 89 ca 0f b7 c3 89 cd 0f af e8 0f b7 ce 01 c1 8d b9 ?? ?? 00 00 c1 eb ?? c1 ee ?? 01 f3 29 d3}  //weight: 30, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Tedy_E_2147978478_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Tedy.E!MTB"
+        threat_id = "2147978478"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Tedy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "50"
         strings_accuracy = "Low"
     strings:
@@ -1935,6 +1956,27 @@ rule Trojan_Win32_Tedy_BA_2147978847_0
         strings_accuracy = "High"
     strings:
         $x_4_1 = {8b 4d f8 c1 e1 03 8b 45 1c d3 e8 0f b6 c8 8b 55 08 03 55 fc 0f b6 02 33 c1 8b 4d 08 03 4d fc 88 01 8b 55 fc 83 c2 01 89 55 fc eb}  //weight: 4, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_Tedy_F_2147979326_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Tedy.F!MTB"
+        threat_id = "2147979326"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Tedy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "30"
+        strings_accuracy = "Low"
+    strings:
+        $x_30_1 = {8b 45 e4 33 42 ?? 33 1a 89 45 d0 8b 45 e0 33 42 ?? 89 5d d8 89 45 cc 8b 45 dc 33 42 ?? ff 4d c0 89 45 c8 0f}  //weight: 30, accuracy: Low
     condition:
         (filesize < 20MB) and
         (all of ($x*))

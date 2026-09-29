@@ -20,6 +20,31 @@ rule Trojan_Win64_Disco_A_2147828447_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Disco_A_2147828447_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Disco.A!MTB"
+        threat_id = "2147828447"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Disco"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "150"
+        strings_accuracy = "High"
+    strings:
+        $x_50_1 = "*[]*main.friendPaginator" ascii //weight: 50
+        $x_40_2 = "*main.c2MsgAttachment" ascii //weight: 40
+        $x_30_3 = "*main.nativeKeylogger" ascii //weight: 30
+        $x_20_4 = "*main.LockscreenConfig" ascii //weight: 20
+        $x_10_5 = "*[]main.CreditCard" ascii //weight: 10
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win64_Disco_CM_2147908976_0
 {
     meta:

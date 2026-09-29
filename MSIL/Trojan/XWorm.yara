@@ -6435,6 +6435,54 @@ rule Trojan_MSIL_XWorm_RVE_2147977033_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_XWorm_A_2147977157_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/XWorm.A!MTB"
+        threat_id = "2147977157"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "XWorm"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "20"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = "<XWormmm>" wide //weight: 10
+        $x_5_2 = "PhantomXWorm" wide //weight: 5
+        $x_3_3 = "phantomsdk.dll" wide //weight: 3
+        $x_2_4 = "Software\\PhantomPersistence" wide //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_XWorm_A_2147977157_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/XWorm.A!MTB"
+        threat_id = "2147977157"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "XWorm"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "13"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {07 8e 69 6f ?? 00 00 0a 7e ?? 00 00 04 15 17 6f ?? 00 00 0a 26 7e ?? 00 00 04 06 6f ?? 00 00 0a 16}  //weight: 10, accuracy: Low
+        $x_1_2 = "Chrome: CloneProfile Completed" wide //weight: 1
+        $x_1_3 = "MicrosoftEdge: CloneProfile Completed" wide //weight: 1
+        $x_1_4 = "HVNC" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_XWorm_AS_2147977185_0
 {
     meta:

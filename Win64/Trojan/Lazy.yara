@@ -6116,6 +6116,28 @@ rule Trojan_Win64_Lazy_LR_2147964502_6
         threshold = "30"
         strings_accuracy = "Low"
     strings:
+        $x_10_1 = {48 89 44 24 58 b8 01 00 00 00 48 6b c0 00 b9 01 00 00 00 48 6b c9 00 48 8b 54 24 58 0f b6 04 02 88 44 0c 50 b8 01 00 00 00 48 6b c0 01 c6 44 04 50 3a b8 01 00 00 00 48 6b c0 02 c6 44 04 50 5c b8 01 00 00 00 48 6b c0 03}  //weight: 10, accuracy: High
+        $x_20_2 = {8b 44 24 40 ff c0 89 44 24 40 83 7c 24 40 05 7d ?? ba 04 00 00 00 48 8d 4c 24 44}  //weight: 20, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_Lazy_LR_2147964502_7
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Lazy.LR!MTB"
+        threat_id = "2147964502"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Lazy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "30"
+        strings_accuracy = "Low"
+    strings:
         $x_20_1 = {4c 89 c0 4d 8b 88 10 01 00 00 4d 85 c9 74 ?? 44 0f b7 40 02 4c 8d 52 01 4c 89 01 4c 89 51 08 48 85 d2 ba 18 01 00 00 41 b8 78 01 00 00 4c 0f 44 c2 4c 89 49 10 ba 08 00 00 00 48 89 c1}  //weight: 20, accuracy: Low
         $x_10_2 = {53 48 81 ec 88 05 00 00 0f 29 b4 24 70 05 00 00 48 8b 01 48 89 44 24 58 48 8b 41 10 48 89 44 24 50 48 8b 41 30 48 89 44 24 68 48 89 4c 24 48 48 8b 41 20 48 89 44 24 60}  //weight: 10, accuracy: High
     condition:
@@ -7877,5 +7899,106 @@ rule Trojan_Win64_Lazy_B_2147978387_0
     condition:
         (filesize < 20MB) and
         (all of ($x*))
+}
+
+rule Trojan_Win64_Lazy_L_2147979327_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Lazy.L!MTB"
+        threat_id = "2147979327"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Lazy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "30"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "PayloadKeepAlive exit: no launch path succeeded" ascii //weight: 1
+        $x_2_2 = "PayloadKeepAlive exit: v1 payload launched" ascii //weight: 2
+        $x_3_3 = "Whole payload fallback disabled; payload loading is chunks-only" ascii //weight: 3
+        $x_4_4 = "PayloadKeepAlive exit: rs42 payload launched" ascii //weight: 4
+        $x_5_5 = "SELF_SPAWN_POC_SELF_SPAWN_TARGET" ascii //weight: 5
+        $x_6_6 = "Self-donor direct module target selected:" ascii //weight: 6
+        $x_7_7 = "payload manager: enter keepalive" ascii //weight: 7
+        $x_8_8 = "Runstate process is not alive; continuing recovery" ascii //weight: 8
+        $x_9_9 = "payload launch: ElevatedGhostedHollowingSelfDonor backend" ascii //weight: 9
+        $x_10_10 = "GhostedHollowing started PID:" ascii //weight: 10
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_8_*) and 1 of ($x_7_*) and 1 of ($x_5_*) and 1 of ($x_4_*) and 1 of ($x_3_*) and 1 of ($x_2_*) and 1 of ($x_1_*))) or
+            ((1 of ($x_8_*) and 1 of ($x_7_*) and 1 of ($x_6_*) and 1 of ($x_4_*) and 1 of ($x_3_*) and 1 of ($x_2_*))) or
+            ((1 of ($x_8_*) and 1 of ($x_7_*) and 1 of ($x_6_*) and 1 of ($x_5_*) and 1 of ($x_3_*) and 1 of ($x_1_*))) or
+            ((1 of ($x_8_*) and 1 of ($x_7_*) and 1 of ($x_6_*) and 1 of ($x_5_*) and 1 of ($x_3_*) and 1 of ($x_2_*))) or
+            ((1 of ($x_8_*) and 1 of ($x_7_*) and 1 of ($x_6_*) and 1 of ($x_5_*) and 1 of ($x_4_*))) or
+            ((1 of ($x_9_*) and 1 of ($x_6_*) and 1 of ($x_5_*) and 1 of ($x_4_*) and 1 of ($x_3_*) and 1 of ($x_2_*) and 1 of ($x_1_*))) or
+            ((1 of ($x_9_*) and 1 of ($x_7_*) and 1 of ($x_5_*) and 1 of ($x_4_*) and 1 of ($x_3_*) and 1 of ($x_2_*))) or
+            ((1 of ($x_9_*) and 1 of ($x_7_*) and 1 of ($x_6_*) and 1 of ($x_4_*) and 1 of ($x_3_*) and 1 of ($x_1_*))) or
+            ((1 of ($x_9_*) and 1 of ($x_7_*) and 1 of ($x_6_*) and 1 of ($x_4_*) and 1 of ($x_3_*) and 1 of ($x_2_*))) or
+            ((1 of ($x_9_*) and 1 of ($x_7_*) and 1 of ($x_6_*) and 1 of ($x_5_*) and 1 of ($x_2_*) and 1 of ($x_1_*))) or
+            ((1 of ($x_9_*) and 1 of ($x_7_*) and 1 of ($x_6_*) and 1 of ($x_5_*) and 1 of ($x_3_*))) or
+            ((1 of ($x_9_*) and 1 of ($x_7_*) and 1 of ($x_6_*) and 1 of ($x_5_*) and 1 of ($x_4_*))) or
+            ((1 of ($x_9_*) and 1 of ($x_8_*) and 1 of ($x_5_*) and 1 of ($x_4_*) and 1 of ($x_3_*) and 1 of ($x_1_*))) or
+            ((1 of ($x_9_*) and 1 of ($x_8_*) and 1 of ($x_5_*) and 1 of ($x_4_*) and 1 of ($x_3_*) and 1 of ($x_2_*))) or
+            ((1 of ($x_9_*) and 1 of ($x_8_*) and 1 of ($x_6_*) and 1 of ($x_4_*) and 1 of ($x_2_*) and 1 of ($x_1_*))) or
+            ((1 of ($x_9_*) and 1 of ($x_8_*) and 1 of ($x_6_*) and 1 of ($x_4_*) and 1 of ($x_3_*))) or
+            ((1 of ($x_9_*) and 1 of ($x_8_*) and 1 of ($x_6_*) and 1 of ($x_5_*) and 1 of ($x_2_*))) or
+            ((1 of ($x_9_*) and 1 of ($x_8_*) and 1 of ($x_6_*) and 1 of ($x_5_*) and 1 of ($x_3_*))) or
+            ((1 of ($x_9_*) and 1 of ($x_8_*) and 1 of ($x_6_*) and 1 of ($x_5_*) and 1 of ($x_4_*))) or
+            ((1 of ($x_9_*) and 1 of ($x_8_*) and 1 of ($x_7_*) and 1 of ($x_3_*) and 1 of ($x_2_*) and 1 of ($x_1_*))) or
+            ((1 of ($x_9_*) and 1 of ($x_8_*) and 1 of ($x_7_*) and 1 of ($x_4_*) and 1 of ($x_2_*))) or
+            ((1 of ($x_9_*) and 1 of ($x_8_*) and 1 of ($x_7_*) and 1 of ($x_4_*) and 1 of ($x_3_*))) or
+            ((1 of ($x_9_*) and 1 of ($x_8_*) and 1 of ($x_7_*) and 1 of ($x_5_*) and 1 of ($x_1_*))) or
+            ((1 of ($x_9_*) and 1 of ($x_8_*) and 1 of ($x_7_*) and 1 of ($x_5_*) and 1 of ($x_2_*))) or
+            ((1 of ($x_9_*) and 1 of ($x_8_*) and 1 of ($x_7_*) and 1 of ($x_5_*) and 1 of ($x_3_*))) or
+            ((1 of ($x_9_*) and 1 of ($x_8_*) and 1 of ($x_7_*) and 1 of ($x_5_*) and 1 of ($x_4_*))) or
+            ((1 of ($x_9_*) and 1 of ($x_8_*) and 1 of ($x_7_*) and 1 of ($x_6_*))) or
+            ((1 of ($x_10_*) and 1 of ($x_6_*) and 1 of ($x_5_*) and 1 of ($x_4_*) and 1 of ($x_3_*) and 1 of ($x_2_*))) or
+            ((1 of ($x_10_*) and 1 of ($x_7_*) and 1 of ($x_5_*) and 1 of ($x_4_*) and 1 of ($x_3_*) and 1 of ($x_1_*))) or
+            ((1 of ($x_10_*) and 1 of ($x_7_*) and 1 of ($x_5_*) and 1 of ($x_4_*) and 1 of ($x_3_*) and 1 of ($x_2_*))) or
+            ((1 of ($x_10_*) and 1 of ($x_7_*) and 1 of ($x_6_*) and 1 of ($x_4_*) and 1 of ($x_2_*) and 1 of ($x_1_*))) or
+            ((1 of ($x_10_*) and 1 of ($x_7_*) and 1 of ($x_6_*) and 1 of ($x_4_*) and 1 of ($x_3_*))) or
+            ((1 of ($x_10_*) and 1 of ($x_7_*) and 1 of ($x_6_*) and 1 of ($x_5_*) and 1 of ($x_2_*))) or
+            ((1 of ($x_10_*) and 1 of ($x_7_*) and 1 of ($x_6_*) and 1 of ($x_5_*) and 1 of ($x_3_*))) or
+            ((1 of ($x_10_*) and 1 of ($x_7_*) and 1 of ($x_6_*) and 1 of ($x_5_*) and 1 of ($x_4_*))) or
+            ((1 of ($x_10_*) and 1 of ($x_8_*) and 1 of ($x_5_*) and 1 of ($x_4_*) and 1 of ($x_2_*) and 1 of ($x_1_*))) or
+            ((1 of ($x_10_*) and 1 of ($x_8_*) and 1 of ($x_5_*) and 1 of ($x_4_*) and 1 of ($x_3_*))) or
+            ((1 of ($x_10_*) and 1 of ($x_8_*) and 1 of ($x_6_*) and 1 of ($x_3_*) and 1 of ($x_2_*) and 1 of ($x_1_*))) or
+            ((1 of ($x_10_*) and 1 of ($x_8_*) and 1 of ($x_6_*) and 1 of ($x_4_*) and 1 of ($x_2_*))) or
+            ((1 of ($x_10_*) and 1 of ($x_8_*) and 1 of ($x_6_*) and 1 of ($x_4_*) and 1 of ($x_3_*))) or
+            ((1 of ($x_10_*) and 1 of ($x_8_*) and 1 of ($x_6_*) and 1 of ($x_5_*) and 1 of ($x_1_*))) or
+            ((1 of ($x_10_*) and 1 of ($x_8_*) and 1 of ($x_6_*) and 1 of ($x_5_*) and 1 of ($x_2_*))) or
+            ((1 of ($x_10_*) and 1 of ($x_8_*) and 1 of ($x_6_*) and 1 of ($x_5_*) and 1 of ($x_3_*))) or
+            ((1 of ($x_10_*) and 1 of ($x_8_*) and 1 of ($x_6_*) and 1 of ($x_5_*) and 1 of ($x_4_*))) or
+            ((1 of ($x_10_*) and 1 of ($x_8_*) and 1 of ($x_7_*) and 1 of ($x_3_*) and 1 of ($x_2_*))) or
+            ((1 of ($x_10_*) and 1 of ($x_8_*) and 1 of ($x_7_*) and 1 of ($x_4_*) and 1 of ($x_1_*))) or
+            ((1 of ($x_10_*) and 1 of ($x_8_*) and 1 of ($x_7_*) and 1 of ($x_4_*) and 1 of ($x_2_*))) or
+            ((1 of ($x_10_*) and 1 of ($x_8_*) and 1 of ($x_7_*) and 1 of ($x_4_*) and 1 of ($x_3_*))) or
+            ((1 of ($x_10_*) and 1 of ($x_8_*) and 1 of ($x_7_*) and 1 of ($x_5_*))) or
+            ((1 of ($x_10_*) and 1 of ($x_8_*) and 1 of ($x_7_*) and 1 of ($x_6_*))) or
+            ((1 of ($x_10_*) and 1 of ($x_9_*) and 1 of ($x_5_*) and 1 of ($x_3_*) and 1 of ($x_2_*) and 1 of ($x_1_*))) or
+            ((1 of ($x_10_*) and 1 of ($x_9_*) and 1 of ($x_5_*) and 1 of ($x_4_*) and 1 of ($x_2_*))) or
+            ((1 of ($x_10_*) and 1 of ($x_9_*) and 1 of ($x_5_*) and 1 of ($x_4_*) and 1 of ($x_3_*))) or
+            ((1 of ($x_10_*) and 1 of ($x_9_*) and 1 of ($x_6_*) and 1 of ($x_3_*) and 1 of ($x_2_*))) or
+            ((1 of ($x_10_*) and 1 of ($x_9_*) and 1 of ($x_6_*) and 1 of ($x_4_*) and 1 of ($x_1_*))) or
+            ((1 of ($x_10_*) and 1 of ($x_9_*) and 1 of ($x_6_*) and 1 of ($x_4_*) and 1 of ($x_2_*))) or
+            ((1 of ($x_10_*) and 1 of ($x_9_*) and 1 of ($x_6_*) and 1 of ($x_4_*) and 1 of ($x_3_*))) or
+            ((1 of ($x_10_*) and 1 of ($x_9_*) and 1 of ($x_6_*) and 1 of ($x_5_*))) or
+            ((1 of ($x_10_*) and 1 of ($x_9_*) and 1 of ($x_7_*) and 1 of ($x_3_*) and 1 of ($x_1_*))) or
+            ((1 of ($x_10_*) and 1 of ($x_9_*) and 1 of ($x_7_*) and 1 of ($x_3_*) and 1 of ($x_2_*))) or
+            ((1 of ($x_10_*) and 1 of ($x_9_*) and 1 of ($x_7_*) and 1 of ($x_4_*))) or
+            ((1 of ($x_10_*) and 1 of ($x_9_*) and 1 of ($x_7_*) and 1 of ($x_5_*))) or
+            ((1 of ($x_10_*) and 1 of ($x_9_*) and 1 of ($x_7_*) and 1 of ($x_6_*))) or
+            ((1 of ($x_10_*) and 1 of ($x_9_*) and 1 of ($x_8_*) and 1 of ($x_2_*) and 1 of ($x_1_*))) or
+            ((1 of ($x_10_*) and 1 of ($x_9_*) and 1 of ($x_8_*) and 1 of ($x_3_*))) or
+            ((1 of ($x_10_*) and 1 of ($x_9_*) and 1 of ($x_8_*) and 1 of ($x_4_*))) or
+            ((1 of ($x_10_*) and 1 of ($x_9_*) and 1 of ($x_8_*) and 1 of ($x_5_*))) or
+            ((1 of ($x_10_*) and 1 of ($x_9_*) and 1 of ($x_8_*) and 1 of ($x_6_*))) or
+            ((1 of ($x_10_*) and 1 of ($x_9_*) and 1 of ($x_8_*) and 1 of ($x_7_*))) or
+            (all of ($x*))
+        )
 }
 

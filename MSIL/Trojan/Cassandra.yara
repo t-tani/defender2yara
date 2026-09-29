@@ -645,3 +645,25 @@ rule Trojan_MSIL_Cassandra_ID_2147978823_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Cassandra_TN_2147979317_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Cassandra.TN!MTB"
+        threat_id = "2147979317"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Cassandra"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "$AI-powered creative design assistant" ascii //weight: 1
+        $x_1_2 = "CreativeAI Labs 2025" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

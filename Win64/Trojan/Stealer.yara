@@ -1361,3 +1361,29 @@ rule Trojan_Win64_Stealer_MD_2147979116_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Stealer_DN_2147979325_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Stealer.DN!MTB"
+        threat_id = "2147979325"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Stealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "extract_all_wallet_artifacts@crypto_wallets@chromium@browsers@yami" ascii //weight: 1
+        $x_1_2 = "WinHttpOpenRequest" ascii //weight: 1
+        $x_1_3 = "%APPDATA%\\ExodusWeb3" ascii //weight: 1
+        $x_1_4 = "mnemonics_phantom.txt" ascii //weight: 1
+        $x_1_5 = "BraveSoftware\\Brave-Browser\\User Data" ascii //weight: 1
+        $x_2_6 = "https://txrouteuifbfewfubewfbhgrabbing.xyz/api/log" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

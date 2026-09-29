@@ -90,8 +90,12 @@ rule Trojan_PowerShell_ClickFix_SVL_2147978583_0
         $x_1_1 = {70 00 6f 00 77 00 65 00 72 00 73 00 68 00 65 00 6c 00 6c 00 [0-16] 20 00 2d 00 77 00 20 00 68 00 [0-16] 69 00 72 00 6d 00}  //weight: 1, accuracy: Low
         $x_1_2 = "|powershell -w h" wide //weight: 1
         $x_1_3 = "gg.ps1" wide //weight: 1
-        $x_3_4 = "SW52b2tlLVdlYlJlcXVlc3QgJ2h0dHA6Ly8xNjYuMS44OS45MS96YXAvJyAtVXNlQmFzaWNQYXJzaW5nIHwgSW52b2tlLUV4cHJlc3Npb24=" wide //weight: 3
-        $x_3_5 = "SW52b2tlLVdlYlJlcXVlc3QgJ2h0dHA6Ly8xNjYuMS44OS45MS9fLycgLVVzZUJhc2ljUGFyc2luZyB8IEludm9rZS1FeHByZXNzaW9u" wide //weight: 3
+        $x_3_4 = {69 00 72 00 6d 00 20 00 31 00 34 00 35 00 30 00 30 00 30 00 33 00 32 00 30 00 37 00 2f 00 [0-48] 24 00 65 00 6e 00 76 00 3a 00 74 00 65 00 6d 00 70 00}  //weight: 3, accuracy: Low
+        $x_3_5 = "SW52b2tlLVdlYlJlcXVlc3QgJ2h0dHA6Ly8xNjYuMS44OS45MS96YXAvJyAtVXNlQmFzaWNQYXJzaW5nIHwgSW52b2tlLUV4cHJlc3Npb24=" wide //weight: 3
+        $x_3_6 = "SW52b2tlLVdlYlJlcXVlc3QgJ2h0dHA6Ly8xNjYuMS44OS45MS9fLycgLVVzZUJhc2ljUGFyc2luZyB8IEludm9rZS1FeHByZXNzaW9u" wide //weight: 3
+        $x_3_7 = "aQByAG0AIABoAHQAdABwADoALwAvADEANgA2AC4AMQAuADgAOQAuADkAMQAvAF8AfABpAGUAeAA=" wide //weight: 3
+        $x_3_8 = "aQByAG0AIABoAHQAdABwADoALwAvADEANgA2AC4AMQAuADgAOQAuADkAMQAvAHoAYQBwAHwAaQBlAHgA" wide //weight: 3
+        $x_3_9 = {6d 00 73 00 68 00 74 00 61 00 [0-48] 68 00 74 00 74 00 70 00 73 00 3a 00 2f 00 2f 00 31 00 39 00 30 00 32 00 2d 00 63 00 66 00 2e 00 63 00 6f 00 6d 00}  //weight: 3, accuracy: Low
     condition:
         (filesize < 20MB) and
         (
