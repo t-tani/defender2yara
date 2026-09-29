@@ -1335,3 +1335,29 @@ rule Trojan_Win64_Stealer_CN_2147978889_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Stealer_MD_2147979116_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Stealer.MD!MTB"
+        threat_id = "2147979116"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Stealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {48 89 f8 4e 8d 04 2f 0f 1f 00 0f b6 10 48 83 c0 01 31 da c1 eb 08 0f b6 d2 33 1c 91 4c 39 c0 75 e9}  //weight: 5, accuracy: High
+        $x_1_2 = "Exodus\\exodus.wallet" ascii //weight: 1
+        $x_1_3 = "os_crypt" ascii //weight: 1
+        $x_1_4 = "encrypted_key" ascii //weight: 1
+        $x_1_5 = "CryptUnprotectData" ascii //weight: 1
+        $x_1_6 = "Bitcoin\\wallets" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

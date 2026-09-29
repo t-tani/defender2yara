@@ -45,3 +45,28 @@ rule Trojan_Win64_DiscordRAT_NB_2147972933_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_DiscordRAT_KK_2147979199_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/DiscordRAT.KK!MTB"
+        threat_id = "2147979199"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "DiscordRAT"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "15"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = "<:botdevwhite:1512913060413575340> **Token:**" ascii //weight: 5
+        $x_4_2 = "<:botdev:1512875141896339567>" ascii //weight: 4
+        $x_3_3 = "PostPayload exception" ascii //weight: 3
+        $x_2_4 = "DiscordWebhook" ascii //weight: 2
+        $x_1_5 = "YOUR_DISCORD" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

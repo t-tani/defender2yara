@@ -3115,6 +3115,32 @@ rule Trojan_Win64_Lazy_KK_2147944057_0
         family = "Lazy"
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "21"
+        strings_accuracy = "High"
+    strings:
+        $x_6_1 = "Injector" wide //weight: 6
+        $x_5_2 = "Select a Java game window (Up/Down, Enter to inject, Esc to quit)" wide //weight: 5
+        $x_4_3 = "Target process is not x64; injection refused." wide //weight: 4
+        $x_3_4 = "Could not resolve remote kernel32!LoadLibraryW." wide //weight: 3
+        $x_2_5 = "Remote LoadLibraryW did not finish within 30 second" wide //weight: 2
+        $x_1_6 = "Loaded %ls into PID %lu; Java bootstrap is running asynchronously." wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_Lazy_KK_2147944057_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Lazy.KK!MTB"
+        threat_id = "2147944057"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Lazy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "35"
         strings_accuracy = "High"
@@ -3127,7 +3153,7 @@ rule Trojan_Win64_Lazy_KK_2147944057_0
         (all of ($x*))
 }
 
-rule Trojan_Win64_Lazy_KK_2147944057_1
+rule Trojan_Win64_Lazy_KK_2147944057_2
 {
     meta:
         author = "defender2yara"
@@ -3149,7 +3175,7 @@ rule Trojan_Win64_Lazy_KK_2147944057_1
         (all of ($x*))
 }
 
-rule Trojan_Win64_Lazy_KK_2147944057_2
+rule Trojan_Win64_Lazy_KK_2147944057_3
 {
     meta:
         author = "defender2yara"
@@ -3171,7 +3197,7 @@ rule Trojan_Win64_Lazy_KK_2147944057_2
         (all of ($x*))
 }
 
-rule Trojan_Win64_Lazy_KK_2147944057_3
+rule Trojan_Win64_Lazy_KK_2147944057_4
 {
     meta:
         author = "defender2yara"
@@ -3197,7 +3223,7 @@ rule Trojan_Win64_Lazy_KK_2147944057_3
         (all of ($x*))
 }
 
-rule Trojan_Win64_Lazy_KK_2147944057_4
+rule Trojan_Win64_Lazy_KK_2147944057_5
 {
     meta:
         author = "defender2yara"
@@ -3219,7 +3245,7 @@ rule Trojan_Win64_Lazy_KK_2147944057_4
         (all of ($x*))
 }
 
-rule Trojan_Win64_Lazy_KK_2147944057_5
+rule Trojan_Win64_Lazy_KK_2147944057_6
 {
     meta:
         author = "defender2yara"
@@ -3245,7 +3271,7 @@ rule Trojan_Win64_Lazy_KK_2147944057_5
         (all of ($x*))
 }
 
-rule Trojan_Win64_Lazy_KK_2147944057_6
+rule Trojan_Win64_Lazy_KK_2147944057_7
 {
     meta:
         author = "defender2yara"
@@ -3267,7 +3293,7 @@ rule Trojan_Win64_Lazy_KK_2147944057_6
         (all of ($x*))
 }
 
-rule Trojan_Win64_Lazy_KK_2147944057_7
+rule Trojan_Win64_Lazy_KK_2147944057_8
 {
     meta:
         author = "defender2yara"
@@ -3290,7 +3316,7 @@ rule Trojan_Win64_Lazy_KK_2147944057_7
         (all of ($x*))
 }
 
-rule Trojan_Win64_Lazy_KK_2147944057_8
+rule Trojan_Win64_Lazy_KK_2147944057_9
 {
     meta:
         author = "defender2yara"
