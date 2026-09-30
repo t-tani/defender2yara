@@ -52,3 +52,25 @@ rule Trojan_Linux_Melofee_A_2147844752_0
         (all of ($x*))
 }
 
+rule Trojan_Linux_Melofee_AMTB_2147979497_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Linux/Melofee!AMTB"
+        threat_id = "2147979497"
+        type = "Trojan"
+        platform = "Linux: Linux platform"
+        family = "Melofee"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_ELFHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "NSt6thread11_State_implINS_8_InvokerISt5tupleIJPFvSt10shared_ptrI13ConnExchangerEES5_EEEEEE" ascii //weight: 2
+        $x_1_2 = "iptables -t nat -D PREROUTING -p tcp -s %s --dport %d -j REDIRECT --to-port %d" ascii //weight: 1
+        $x_2_3 = "rm -rf /etc/systemd/system/vmware.service" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

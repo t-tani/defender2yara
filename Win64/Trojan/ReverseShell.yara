@@ -565,3 +565,34 @@ rule Trojan_Win64_ReverseShell_PB_2147978057_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_ReverseShell_NP_2147979494_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/ReverseShell.NP!MTB"
+        threat_id = "2147979494"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "ReverseShell"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {31 c0 48 89 da 48 89 cb 48 89 d1 e8 91 ?? ?? ?? 48 83 c4 38 5d}  //weight: 2, accuracy: Low
+        $x_2_2 = {40 88 7c 24 60 48 89 44 24 48 48 89 5c 24 50 48 8d ?? ?? ?? ?? 00 48 89 d9 e8 30 ?? ?? ?? 48 8b 5c 24 50 0f b6 7c 24 60 48 89 c1 48 8b 44 24 48}  //weight: 2, accuracy: Low
+        $x_1_3 = ":4444" ascii //weight: 1
+        $x_1_4 = "NoLogowindowsrunning" ascii //weight: 1
+        $x_1_5 = "powershell.exe" ascii //weight: 1
+        $x_1_6 = "urlschtasksrundll32-Commandnetedns0" ascii //weight: 1
+        $x_1_7 = "decoy.docx" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_2_*) and 5 of ($x_1_*))) or
+            ((2 of ($x_2_*) and 3 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+

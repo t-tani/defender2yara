@@ -7489,3 +7489,26 @@ rule Trojan_MSIL_AsyncRAT_SE_2147979240_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AsyncRAT_SR_2147979488_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AsyncRAT.SR!MTB"
+        threat_id = "2147979488"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AsyncRAT"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {02 02 7b f6 00 00 04 03 7b d7 00 00 04 03 7b d8 00 00 04 6f 89 01 00 0a 7d f5 00 00 04 02 03 7b d7 00 00 04 7d f3 00 00 04 02 03 7b d8 00 00 04 7d f4 00 00 04 00 03 7b d9 00 00 04 2c 23 03 7b d9 00 00 04 17 2e 0d 02 7c f5 00 00 04 28 a5 00 00 0a 2b 0b 02 7c f5 00 00 04 28 a4 00 00 0a 2b 0b 02 7c f5 00 00 04 28 a3 00 00 0a 0a 02 7b f1 00 00 04 06 6f 8a 01 00 0a}  //weight: 1, accuracy: High
+        $x_1_2 = "PigeonLoft.Properties.Resources.resources" ascii //weight: 1
+        $x_1_3 = "$e58b14a2-7dc2-48f8-b3ec-df4ca12808b1" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

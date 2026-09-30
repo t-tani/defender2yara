@@ -1301,6 +1301,32 @@ rule Trojan_Win64_ClipBanker_NR_2147956163_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_ClipBanker_NR_2147956163_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/ClipBanker.NR!MTB"
+        threat_id = "2147956163"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "ClipBanker"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "bitcoincash" ascii //weight: 2
+        $x_1_2 = "CurrentVersion\\Run" ascii //weight: 1
+        $x_1_3 = "write to clipboard" ascii //weight: 1
+        $x_1_4 = ".log" ascii //weight: 1
+        $x_2_5 = "clipper.Run.(*Logger" ascii //weight: 2
+        $x_1_6 = "steal" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win64_ClipBanker_PGCB_2147956352_0
 {
     meta:

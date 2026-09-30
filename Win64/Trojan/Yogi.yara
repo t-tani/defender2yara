@@ -1,3 +1,29 @@
+rule Trojan_Win64_Yogi_NY_2147973372_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Yogi.NY!MTB"
+        threat_id = "2147973372"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Yogi"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {48 8b 44 24 10 48 8b 5c 24 18 48 89 e2 e8 ?? ?? ?? ?? 48 89 31 48 8b 66 38 48 83 ec 10 48 83 e4 f0 48 89 7c 24 08 48 8b 7f 08 48 29 d7 48 89 3c 24 e8 ?? ?? ?? ?? 48 8b 0d 9e 3d 5d 00 65 48 8b 09 48 8b 7c 24 08 48 8b 77 08 48 2b 34 24 48 89 39 48 89 f4 89 44 24 20}  //weight: 2, accuracy: Low
+        $x_2_2 = {48 89 54 24 20 88 44 24 1f 48 8b 05 63 a5 5c 00 48 89 04 24 48 8d 82 20 05 00 00 48 89 44 24 08 e8 ?? ?? ?? ?? 45 0f 57 ff 4c 8b 35 03 02 61 00 65 4d 8b 36 4d 8b 36 0f b6 44 24 1f 84 c0}  //weight: 2, accuracy: Low
+        $x_1_3 = "NewCBCDecrypter" ascii //weight: 1
+        $x_1_4 = "formatBase10" ascii //weight: 1
+        $x_1_5 = "stringremoveexec: hangupkilledlistensocket" ascii //weight: 1
+        $x_1_6 = "//fakecorp" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win64_Yogi_GVA_2147976307_0
 {
     meta:

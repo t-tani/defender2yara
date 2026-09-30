@@ -23,3 +23,31 @@ rule Ransom_Win32_BlackSpider_XV_2147977555_0
         (all of ($x*))
 }
 
+rule Ransom_Win32_BlackSpider_GV_2147979467_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win32/BlackSpider.GV!MTB"
+        threat_id = "2147979467"
+        type = "Ransom"
+        platform = "Win32: Windows 32-bit platform"
+        family = "BlackSpider"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "20"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = ".bl4ck" ascii //weight: 2
+        $x_2_2 = "R3ADM3.txt" ascii //weight: 2
+        $x_2_3 = "del /f /q /a" ascii //weight: 2
+        $x_2_4 = "schtasks.exe /create /f" ascii //weight: 2
+        $x_3_5 = "DisableRealtimeMonitoring" ascii //weight: 3
+        $x_3_6 = "DisableAntiSpyware" ascii //weight: 3
+        $x_3_7 = "DisableIOAVProtection" ascii //weight: 3
+        $x_3_8 = "DisableBehaviorMonitoring" ascii //weight: 3
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

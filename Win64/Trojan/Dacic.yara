@@ -991,3 +991,26 @@ rule Trojan_Win64_Dacic_B_2147978857_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Dacic_A_2147979496_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Dacic.A!MTB"
+        threat_id = "2147979496"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Dacic"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "60"
+        strings_accuracy = "High"
+    strings:
+        $x_30_1 = "[AGNT] RunPayload persistent loop started." ascii //weight: 30
+        $x_20_2 = "[-] Connect failed. Retrying in 5s..." ascii //weight: 20
+        $x_10_3 = "[AGNT] Connecting to C2 server" ascii //weight: 10
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

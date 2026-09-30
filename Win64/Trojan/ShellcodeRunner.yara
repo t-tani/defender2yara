@@ -3832,3 +3832,32 @@ rule Trojan_Win64_ShellcodeRunner_LR_2147978825_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_ShellcodeRunner_NP_2147979492_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/ShellcodeRunner.NP!MTB"
+        threat_id = "2147979492"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "ShellcodeRunner"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "ShellcodeMain" ascii //weight: 2
+        $x_1_2 = "Software\\Microsoft\\Windows\\CurrentVersion\\Run" ascii //weight: 1
+        $x_2_3 = "schtasks /create /tn \"WindowsUpdateTask" ascii //weight: 2
+        $x_1_4 = "winsvc" ascii //weight: 1
+        $x_2_5 = "WinExec" ascii //weight: 2
+        $x_1_6 = "NtWriteVirtualMemory" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((3 of ($x_2_*) and 2 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+

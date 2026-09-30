@@ -3893,3 +3893,51 @@ rule Trojan_MSIL_Stealer_H_2147978238_0
         )
 }
 
+rule Trojan_MSIL_Stealer_VDB_2147979470_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Stealer.VDB!MTB"
+        threat_id = "2147979470"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Stealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {11 05 6f 0b 00 00 0a 6f 0c 00 00 0a 13 06 11 06 72 17 00 00 70 28 0d 00 00 0a 2c 51 11 05 6f 0e 00 00 0a 13 07 11 07 74 08 00 00 01 28 0f 00 00 0a 13 08 28 10 00 00 0a 72 43 00 00 70 28 11 00 00 0a 13 09 11 09 28 12 00 00 0a 28 13 00 00 0a 26 11 09 11 08 28 14 00 00 0a 11 09 28 15 00 00 0a 26 7e 01 00 00 04 6f 16 00 00 0a 26 11 05 6f 17 00 00 0a 2d 8a}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Stealer_VDC_2147979472_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Stealer.VDC!MTB"
+        threat_id = "2147979472"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Stealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {57 9f a3 3d 09 1f 00 00 00 00 00 00 00 00 00 00 02 00 00 00 88 00 00 00 9b 01 00 00 ?? 02 00 00 ea 08 00 00 bd 03 00 00 03}  //weight: 5, accuracy: Low
+        $x_1_2 = "CreateDecryptor" ascii //weight: 1
+        $x_1_3 = "StringBuilder" ascii //weight: 1
+        $x_1_4 = "TripleDES" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_5_*))) or
+            (all of ($x*))
+        )
+}
+

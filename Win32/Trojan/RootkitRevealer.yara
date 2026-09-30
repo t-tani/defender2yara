@@ -48,3 +48,30 @@ rule Trojan_Win32_RootkitRevealer_SL_2147967721_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_RootkitRevealer_NR_2147979490_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/RootkitRevealer.NR!MTB"
+        threat_id = "2147979490"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "RootkitRevealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "Enumerating" ascii //weight: 2
+        $x_2_2 = ":NewWish" ascii //weight: 2
+        $x_2_3 = "RKREVEAL150.SYS" ascii //weight: 2
+        $x_1_4 = "cmd.exe /c chcp 65001 && set DIRCMD= && \"cmd /c dir /4 /a /s %s\\ > %s" ascii //weight: 1
+        $x_1_5 = "Hidden from Windows API" ascii //weight: 1
+        $x_1_6 = "RootkitRevealer v1.7" ascii //weight: 1
+        $x_2_7 = "Admin$\\System32\\tmp.hiv" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
