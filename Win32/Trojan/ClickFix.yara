@@ -16176,3 +16176,50 @@ rule Trojan_Win32_ClickFix_JH_2147979423_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_ClickFix_DKM_2147979427_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ClickFix.DKM!MTB"
+        threat_id = "2147979427"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ClickFix"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_CMDHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "irm 'https://" wide //weight: 1
+        $x_1_2 = "-UserAgent 'WUA/" wide //weight: 1
+        $x_1_3 = "-Headers @{'X-WUA'='" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_ClickFix_DKQ_2147979428_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ClickFix.DKQ!MTB"
+        threat_id = "2147979428"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ClickFix"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_CMDHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "cmd /v:on /c" wide //weight: 1
+        $x_1_2 = "shell&power!power!" wide //weight: 1
+        $x_1_3 = "iex(irm" wide //weight: 1
+        $x_1_4 = "&set " wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

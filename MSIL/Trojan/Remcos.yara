@@ -15229,3 +15229,49 @@ rule Trojan_MSIL_Remcos_RX_2147979228_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Remcos_RY_2147979441_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Remcos.RY!MTB"
+        threat_id = "2147979441"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Remcos"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {2c 37 00 02 02 7b ?? 00 00 04 03 7b ?? 00 00 04 03 7b ?? 00 00 04 6f ?? 00 00 0a 7d ?? 00 00 04 02 03 7b ?? 00 00 04 7d ?? 00 00 04 02 03 7b ?? 00 00 04 7d ?? 00 00 04 00 03 7b ?? 00 00 04 2c 23 03 7b ?? 00 00 04 17 2e 0d 02 7c ?? 00 00 04 28 ?? 00 00 0a 2b 0b 02 7c ?? 00 00 04 28 ?? 00 00 0a 2b 0b 02 7c ?? 00 00 04 28 ?? 00 00 0a 0a 02 7b ?? 00 00 04 06 6f ?? 00 00 0a 00}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Remcos_SF_2147979442_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Remcos.SF!MTB"
+        threat_id = "2147979442"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Remcos"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {73 4e 00 00 06 0a 06 03 7d 80 00 00 04 06 02 7d 84 00 00 04 00 28 ?? ?? ?? ?? 0b 06 06 7b 80 00 00 04 16 30 03 16 2b 06 06 7b 80 00 00 04 73 88 00 00 0a 7d 7f 00 00 04 06 7b 80 00 00 04 16 31 1e 06 7b 84 00 00 04 6f ?? ?? ?? ?? 17 32 10 06 7b 84 00 00 04 6f ?? ?? ?? ?? 17 fe 04 2b 01 17 13 05 11 05 2c 0d 06 7b 7f 00 00 04 13 06 38 a1 00 00 00 06 06}  //weight: 4, accuracy: Low
+        $x_4_2 = {7b 84 00 00 04 6f ?? ?? ?? ?? 7d 7d 00 00 04 06 06 7b 84 00 00 04 6f ?? ?? ?? ?? 7d 7e 00 00 04 12 02 16 16 16 28 ?? ?? ?? ?? 06 7c 83 00 00 04 fe 15 2e 00 00 01 06 15 7d 81 00 00 04 06 15 7d 82 00 00 04 06 fe 06 4f 00 00 06 73 8b 00 00 0a 0d 12 04 08 28 ?? ?? ?? ?? 2b 0f 09 12 04 28 ?? ?? ?? ?? 6f ?? ?? ?? ?? 13 04 12 04 28 ?? ?? ?? ?? 13 07 11 07 2d e4 07 21 00 00 00 00 00 00 00 80 fe 01 13 08 11 08 2c 0c 06 7b 7f 00 00 04 6f ?? ?? ?? ?? 00 06 7b 7f 00 00 04 13 06 2b 00 11 06 2a}  //weight: 4, accuracy: Low
+        $x_1_3 = "frmDangNhap" ascii //weight: 1
+        $x_1_4 = "KaraokeManager" ascii //weight: 1
+        $x_1_5 = "ZipperTraversalExtractor" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

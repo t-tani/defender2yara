@@ -1393,3 +1393,24 @@ rule Trojan_MSIL_Mardom_ABUB_2147967526_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Mardom_OD_2147979432_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Mardom.OD!MTB"
+        threat_id = "2147979432"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Mardom"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {11 05 11 0a 07 11 0a 91 08 11 0a 91 61 9c 11 0a 17 d6 13 0a 11 0a 1f 1f 31 e6}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

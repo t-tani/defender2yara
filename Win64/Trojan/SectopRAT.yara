@@ -40,3 +40,24 @@ rule Trojan_Win64_SectopRAT_GVB_2147975126_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_SectopRAT_DB_2147979426_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/SectopRAT.DB!MTB"
+        threat_id = "2147979426"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "SectopRAT"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {48 83 ec 38 83 fa 01 75 ?? 48 89 0d 34 f1 00 00 4c 8d 05 55 08 00 00 33 c9 48 c7 44 24 28 00 00 00 00 45 33 c9 c7 44 24 20 00 00 00 00 33 d2 ff 15}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
