@@ -16151,3 +16151,28 @@ rule Trojan_Win32_ClickFix_OB_2147979201_0
         )
 }
 
+rule Trojan_Win32_ClickFix_JH_2147979423_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ClickFix.JH"
+        threat_id = "2147979423"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ClickFix"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_CMDHSTR_EXT"
+        threshold = "22"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = "!!" wide //weight: 5
+        $x_5_2 = "/v:on " wide //weight: 5
+        $x_1_3 = "cmd.exe" wide //weight: 1
+        $x_1_4 = "where " wide //weight: 1
+        $x_5_5 = "for /f" wide //weight: 5
+        $x_5_6 = "timeout " wide //weight: 5
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
