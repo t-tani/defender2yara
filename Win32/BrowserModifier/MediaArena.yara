@@ -75,6 +75,32 @@ rule BrowserModifier_Win32_MediaArena_362962_3
         family = "MediaArena"
         severity = "High"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "SupremeDOC.exe" ascii //weight: 2
+        $x_1_2 = "https://spr.hacolak.com" wide //weight: 1
+        $x_1_3 = "{0}/spr/merge/{1}" wide //weight: 1
+        $x_1_4 = "Supreme PDF" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_2_*) and 2 of ($x_1_*))) or
+            (all of ($x*))
+        )
+}
+
+rule BrowserModifier_Win32_MediaArena_362962_4
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "BrowserModifier:Win32/MediaArena"
+        threat_id = "362962"
+        type = "BrowserModifier"
+        platform = "Win32: Windows 32-bit platform"
+        family = "MediaArena"
+        severity = "High"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "5"
         strings_accuracy = "High"
     strings:
@@ -88,7 +114,7 @@ rule BrowserModifier_Win32_MediaArena_362962_3
         (all of ($x*))
 }
 
-rule BrowserModifier_Win32_MediaArena_362962_4
+rule BrowserModifier_Win32_MediaArena_362962_5
 {
     meta:
         author = "defender2yara"

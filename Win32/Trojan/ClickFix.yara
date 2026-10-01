@@ -16284,3 +16284,45 @@ rule Trojan_Win32_ClickFix_DKL_2147979526_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_ClickFix_OC_2147979644_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ClickFix.OC!MTB"
+        threat_id = "2147979644"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ClickFix"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_CMDHSTR_EXT"
+        threshold = "12"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {2e 00 76 00 67 00 27 00 3b 00 24 00 [0-5] 2e 00 63 00 6f 00 6e 00 74 00 65 00 6e 00 74 00 7c 00 69 00 65 00 78 00}  //weight: 10, accuracy: Low
+        $x_10_2 = {2e 00 76 00 67 00 27 00 3b 00 24 00 [0-5] 2e 00 63 00 6f 00 6e 00 74 00 65 00 6e 00 74 00 7c 00 69 00 6e 00 76 00 6f 00 6b 00 65 00 2d 00 65 00 78 00 70 00 72 00 65 00 73 00 73 00 69 00 6f 00 6e 00}  //weight: 10, accuracy: Low
+        $x_10_3 = {2e 00 76 00 67 00 27 00 20 00 2d 00 75 00 73 00 65 00 62 00 61 00 73 00 69 00 63 00 70 00 61 00 72 00 73 00 69 00 6e 00 67 00 3b 00 69 00 6e 00 76 00 6f 00 6b 00 65 00 2d 00 65 00 78 00 70 00 72 00 65 00 73 00 73 00 69 00 6f 00 6e 00 20 00 24 00 [0-5] 2e 00 63 00 6f 00 6e 00 74 00 65 00 6e 00 74 00}  //weight: 10, accuracy: Low
+        $x_10_4 = ".vg';Invoke-Expression" wide //weight: 10
+        $x_10_5 = {2e 00 63 00 63 00 27 00 3b 00 24 00 [0-5] 2e 00 63 00 6f 00 6e 00 74 00 65 00 6e 00 74 00 7c 00 69 00 65 00 78 00}  //weight: 10, accuracy: Low
+        $x_10_6 = {2e 00 63 00 63 00 27 00 3b 00 24 00 [0-5] 2e 00 63 00 6f 00 6e 00 74 00 65 00 6e 00 74 00 7c 00 69 00 6e 00 76 00 6f 00 6b 00 65 00 2d 00 65 00 78 00 70 00 72 00 65 00 73 00 73 00 69 00 6f 00 6e 00}  //weight: 10, accuracy: Low
+        $x_10_7 = {2e 00 63 00 63 00 27 00 20 00 2d 00 75 00 73 00 65 00 62 00 61 00 73 00 69 00 63 00 70 00 61 00 72 00 73 00 69 00 6e 00 67 00 3b 00 69 00 6e 00 76 00 6f 00 6b 00 65 00 2d 00 65 00 78 00 70 00 72 00 65 00 73 00 73 00 69 00 6f 00 6e 00 20 00 24 00 [0-5] 2e 00 63 00 6f 00 6e 00 74 00 65 00 6e 00 74 00}  //weight: 10, accuracy: Low
+        $x_10_8 = ".cc';Invoke-Expression" wide //weight: 10
+        $x_10_9 = {2e 00 67 00 6c 00 27 00 3b 00 24 00 [0-5] 2e 00 63 00 6f 00 6e 00 74 00 65 00 6e 00 74 00 7c 00 69 00 65 00 78 00}  //weight: 10, accuracy: Low
+        $x_10_10 = {2e 00 67 00 6c 00 27 00 3b 00 24 00 [0-5] 2e 00 63 00 6f 00 6e 00 74 00 65 00 6e 00 74 00 7c 00 69 00 6e 00 76 00 6f 00 6b 00 65 00 2d 00 65 00 78 00 70 00 72 00 65 00 73 00 73 00 69 00 6f 00 6e 00}  //weight: 10, accuracy: Low
+        $x_10_11 = {2e 00 67 00 6c 00 27 00 20 00 2d 00 75 00 73 00 65 00 62 00 61 00 73 00 69 00 63 00 70 00 61 00 72 00 73 00 69 00 6e 00 67 00 3b 00 69 00 6e 00 76 00 6f 00 6b 00 65 00 2d 00 65 00 78 00 70 00 72 00 65 00 73 00 73 00 69 00 6f 00 6e 00 20 00 24 00 [0-5] 2e 00 63 00 6f 00 6e 00 74 00 65 00 6e 00 74 00}  //weight: 10, accuracy: Low
+        $x_10_12 = ".gl';Invoke-Expression" wide //weight: 10
+        $x_1_13 = "http" wide //weight: 1
+        $x_1_14 = "invoke-webrequest" wide //weight: 1
+        $x_1_15 = "iwr " wide //weight: 1
+        $x_1_16 = "Invoke-RestMethod $" wide //weight: 1
+        $x_1_17 = "irm $" wide //weight: 1
+        $x_1_18 = ".DownloadData" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_10_*) and 2 of ($x_1_*))) or
+            ((2 of ($x_10_*))) or
+            (all of ($x*))
+        )
+}
+

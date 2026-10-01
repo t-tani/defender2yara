@@ -1114,3 +1114,34 @@ rule Trojan_MSIL_QuasarRAT_BA_2147976938_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_QuasarRAT_QN_2147979632_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/QuasarRAT.QN!MTB"
+        threat_id = "2147979632"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "QuasarRAT"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "12"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "SELECT Caption FROM Win32_OperatingSystem" ascii //weight: 1
+        $x_1_2 = "b(bc1[a-z0-9]{38,58}|[13][a-km-zA-HJ-NP-Z1-9]{25,34})" ascii //weight: 1
+        $x_1_3 = "b4[0-9AB][1-9A-HJ-NP-Za-km-z]{93}" ascii //weight: 1
+        $x_1_4 = "bX[1-9A-HJ-NP-Za-km-z]{25,33}" ascii //weight: 1
+        $x_2_5 = "Quasar.Common.Messages.ReverseProxy" ascii //weight: 2
+        $x_1_6 = "set_EncryptionKey" ascii //weight: 1
+        $x_1_7 = "get_RemoteAddress" ascii //weight: 1
+        $x_1_8 = "ChromiumPasswords" ascii //weight: 1
+        $x_1_9 = "AllBrowserPasswords" ascii //weight: 1
+        $x_1_10 = "DoDisableDefender" ascii //weight: 1
+        $x_1_11 = "DoDisableFirewall" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -46,3 +46,24 @@ rule TrojanDropper_Win64_Mikey_MKA_2147956983_0
         (all of ($x*))
 }
 
+rule TrojanDropper_Win64_Mikey_A_2147979656_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDropper:Win64/Mikey.A!MTB"
+        threat_id = "2147979656"
+        type = "TrojanDropper"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Mikey"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "35"
+        strings_accuracy = "High"
+    strings:
+        $x_35_1 = {48 63 c8 48 b8 11 42 08 21 84 10 42 08 48 f7 e1 48 8b c1 48 2b c2 48 d1 e8 48 03 c2 48 c1 e8 05 48 6b c0 3e 48 2b c8 44 0f b7 4c 4d 90 48 3b df}  //weight: 35, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

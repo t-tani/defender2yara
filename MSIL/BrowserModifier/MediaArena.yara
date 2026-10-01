@@ -33,6 +33,28 @@ rule BrowserModifier_MSIL_MediaArena_363871_1
         family = "MediaArena"
         severity = "High"
         signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "PDFSkills" wide //weight: 1
+        $x_1_2 = "skillsUserId.txt" wide //weight: 1
+        $x_1_3 = "https://cbn.skillcli.com/r" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule BrowserModifier_MSIL_MediaArena_363871_2
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "BrowserModifier:MSIL/MediaArena"
+        threat_id = "363871"
+        type = "BrowserModifier"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "MediaArena"
+        severity = "High"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
         threshold = "8"
         strings_accuracy = "High"
     strings:
@@ -47,7 +69,7 @@ rule BrowserModifier_MSIL_MediaArena_363871_1
         (all of ($x*))
 }
 
-rule BrowserModifier_MSIL_MediaArena_363871_2
+rule BrowserModifier_MSIL_MediaArena_363871_3
 {
     meta:
         author = "defender2yara"
@@ -75,7 +97,7 @@ rule BrowserModifier_MSIL_MediaArena_363871_2
         )
 }
 
-rule BrowserModifier_MSIL_MediaArena_363871_3
+rule BrowserModifier_MSIL_MediaArena_363871_4
 {
     meta:
         author = "defender2yara"
@@ -102,7 +124,7 @@ rule BrowserModifier_MSIL_MediaArena_363871_3
         (all of ($x*))
 }
 
-rule BrowserModifier_MSIL_MediaArena_363871_4
+rule BrowserModifier_MSIL_MediaArena_363871_5
 {
     meta:
         author = "defender2yara"
@@ -132,7 +154,7 @@ rule BrowserModifier_MSIL_MediaArena_363871_4
         )
 }
 
-rule BrowserModifier_MSIL_MediaArena_363871_5
+rule BrowserModifier_MSIL_MediaArena_363871_6
 {
     meta:
         author = "defender2yara"
@@ -160,7 +182,7 @@ rule BrowserModifier_MSIL_MediaArena_363871_5
         (all of ($x*))
 }
 
-rule BrowserModifier_MSIL_MediaArena_363871_6
+rule BrowserModifier_MSIL_MediaArena_363871_7
 {
     meta:
         author = "defender2yara"
@@ -189,7 +211,7 @@ rule BrowserModifier_MSIL_MediaArena_363871_6
         (all of ($x*))
 }
 
-rule BrowserModifier_MSIL_MediaArena_363871_7
+rule BrowserModifier_MSIL_MediaArena_363871_8
 {
     meta:
         author = "defender2yara"
@@ -218,7 +240,7 @@ rule BrowserModifier_MSIL_MediaArena_363871_7
         (all of ($x*))
 }
 
-rule BrowserModifier_MSIL_MediaArena_363871_8
+rule BrowserModifier_MSIL_MediaArena_363871_9
 {
     meta:
         author = "defender2yara"
@@ -245,7 +267,7 @@ rule BrowserModifier_MSIL_MediaArena_363871_8
         (all of ($x*))
 }
 
-rule BrowserModifier_MSIL_MediaArena_363871_9
+rule BrowserModifier_MSIL_MediaArena_363871_10
 {
     meta:
         author = "defender2yara"
@@ -276,7 +298,7 @@ rule BrowserModifier_MSIL_MediaArena_363871_9
         (all of ($x*))
 }
 
-rule BrowserModifier_MSIL_MediaArena_363871_10
+rule BrowserModifier_MSIL_MediaArena_363871_11
 {
     meta:
         author = "defender2yara"

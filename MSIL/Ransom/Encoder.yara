@@ -241,3 +241,49 @@ rule Ransom_MSIL_Encoder_PG_2147978105_0
         (all of ($x*))
 }
 
+rule Ransom_MSIL_Encoder_PH_2147979651_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:MSIL/Encoder.PH!MTB"
+        threat_id = "2147979651"
+        type = "Ransom"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Encoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "README_TO_DECRYPT.txt" wide //weight: 1
+        $x_1_2 = "Starting file encryption..." wide //weight: 1
+        $x_3_3 = "vssadmin.exe delete shadows /all /quiet" wide //weight: 3
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Ransom_MSIL_Encoder_PI_2147979652_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:MSIL/Encoder.PI!MTB"
+        threat_id = "2147979652"
+        type = "Ransom"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Encoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = ".encrypted" wide //weight: 1
+        $x_1_2 = "!!!_DECRYPT_INSTRUCTIONS_!!!.txt" wide //weight: 1
+        $x_3_3 = "YOUR SYSTEM HAS BEEN COMPLETELY LOCKED OUT." wide //weight: 3
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

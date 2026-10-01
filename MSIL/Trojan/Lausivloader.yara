@@ -386,3 +386,48 @@ rule Trojan_MSIL_Lausivloader_UR_2147979458_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Lausivloader_MZ_2147979654_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Lausivloader.MZ!MTB"
+        threat_id = "2147979654"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Lausivloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "36"
+        strings_accuracy = "High"
+    strings:
+        $x_4_1 = "ChaveSecretaGlobal" ascii //weight: 4
+        $x_4_2 = "Win32.RMP" ascii //weight: 4
+        $x_2_3 = "ModernInjection" ascii //weight: 2
+        $x_2_4 = "nuhf0Ha3GK" ascii //weight: 2
+        $x_2_5 = "ikOeAKscLmWyGnfhjmK" ascii //weight: 2
+        $x_2_6 = "CreateSuspendedProcess" ascii //weight: 2
+        $x_2_7 = "WriteHeaders" ascii //weight: 2
+        $x_1_8 = "System.Net.Http" ascii //weight: 1
+        $x_1_9 = "ZwUnmapViewOfSection" ascii //weight: 1
+        $x_1_10 = "SetThreadContext" ascii //weight: 1
+        $x_1_11 = "CreateProcess" ascii //weight: 1
+        $x_1_12 = "WriteProcessMemory" ascii //weight: 1
+        $x_1_13 = "FromBase64String" ascii //weight: 1
+        $x_1_14 = "CreateDecryptor" ascii //weight: 1
+        $x_1_15 = "RegisterTaskDefinition" ascii //weight: 1
+        $x_1_16 = "VirtualAllocEx" ascii //weight: 1
+        $x_1_17 = "GetThreadContext" ascii //weight: 1
+        $x_1_18 = "ResumeThread" ascii //weight: 1
+        $x_1_19 = "CloseHandle" ascii //weight: 1
+        $x_1_20 = "get_UserName" ascii //weight: 1
+        $x_1_21 = "Virtual" ascii //weight: 1
+        $x_1_22 = "Protect" ascii //weight: 1
+        $x_1_23 = "is tampered" ascii //weight: 1
+        $x_1_24 = "_TASK_LOGON_TYPE" ascii //weight: 1
+        $x_1_25 = "Microsoft.Win32.TaskScheduler.dll" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

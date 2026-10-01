@@ -375,3 +375,24 @@ rule Trojan_Win32_DLLHijack_DAK_2147979203_0
         (1 of ($x*))
 }
 
+rule Trojan_Win32_DLLHijack_MK_2147979657_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/DLLHijack.MK!MTB"
+        threat_id = "2147979657"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "DLLHijack"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "35"
+        strings_accuracy = "Low"
+    strings:
+        $x_35_1 = {8b c1 33 d2 f7 f6 8a 82 ?? ?? ?? ?? 30 04 0f 41 3b cb}  //weight: 35, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -104,6 +104,31 @@ rule Trojan_Win64_BroPass_MK_2147960488_0
         family = "BroPass"
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "35"
+        strings_accuracy = "High"
+    strings:
+        $x_15_1 = "$cryp_stub.log" wide //weight: 15
+        $x_10_2 = "[!] persist DLL copy failed" wide //weight: 10
+        $x_5_3 = "[*] persist Run key set" wide //weight: 5
+        $x_3_4 = "[!] persist copy failed: %s" wide //weight: 3
+        $x_2_5 = "[!] chunk %u decode failed" wide //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_BroPass_MK_2147960488_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/BroPass.MK!MTB"
+        threat_id = "2147960488"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "BroPass"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "35"
         strings_accuracy = "Low"
