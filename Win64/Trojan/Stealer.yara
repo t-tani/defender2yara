@@ -1387,3 +1387,26 @@ rule Trojan_Win64_Stealer_DN_2147979325_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Stealer_AL_2147979510_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Stealer.AL!MTB"
+        threat_id = "2147979510"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Stealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_4_1 = "Global\\HttpRAT_" ascii //weight: 4
+        $x_3_2 = "SetAutorunScheduler: start" ascii //weight: 3
+        $x_3_3 = "RunStealer: start" ascii //weight: 3
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

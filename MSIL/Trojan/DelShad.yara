@@ -19,3 +19,28 @@ rule Trojan_MSIL_DelShad_ABFA_2147927590_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_DelShad_AC_2147979511_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/DelShad.AC!MTB"
+        threat_id = "2147979511"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "DelShad"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "vssadmin delete shadows /all /quiet" wide //weight: 2
+        $x_2_2 = "bcdedit /set {default} recoveryenabled No" wide //weight: 2
+        $x_2_3 = "Disable-ComputerRestore -Drive 'C:\\'" wide //weight: 2
+        $x_2_4 = "reg delete \"HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\SystemRestore\" /f" wide //weight: 2
+        $x_2_5 = "SYSTEM\\CurrentControlSet\\Services\\kbdclass" wide //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (4 of ($x*))
+}
+

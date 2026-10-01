@@ -325,3 +325,26 @@ rule Trojan_MSIL_ShellCodeRunner_GPSD_2147964115_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_ShellCodeRunner_ML_2147979507_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/ShellCodeRunner.ML!MTB"
+        threat_id = "2147979507"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "ShellCodeRunner"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "PPIDSpoofAndBlockDLL.exe" ascii //weight: 1
+        $x_1_2 = "PAYLOADURL" ascii //weight: 1
+        $x_1_3 = "GetShellcode" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

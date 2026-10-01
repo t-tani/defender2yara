@@ -19,3 +19,26 @@ rule Trojan_MSIL_GhostStealer_MB_2147897692_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_GhostStealer_AMTB_2147979590_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/GhostStealer!AMTB"
+        threat_id = "2147979590"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "GhostStealer"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "GhostStealer.dll" ascii //weight: 2
+        $x_1_2 = "STEALER" ascii //weight: 1
+        $x_1_3 = "SELECT name_on_card, expiration_month, expiration_year, card_number_encrypted, billing_address_id FROM credit_cards" ascii //weight: 1
+        $x_1_4 = "SELECT host_key, name, encrypted_value, path, expires_utc, is_secure FROM cookies" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

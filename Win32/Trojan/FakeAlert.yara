@@ -21,3 +21,26 @@ rule Trojan_Win32_FakeAlert_NF_2147905267_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_FakeAlert_AMTB_2147979588_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/FakeAlert!AMTB"
+        threat_id = "2147979588"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "FakeAlert"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "C:\\TEMP\\hige_log.txt_" ascii //weight: 1
+        $x_1_2 = "hige_pic v2 started " ascii //weight: 1
+        $x_1_3 = "hige_pic done" ascii //weight: 1
+        $x_1_4 = "cdn/higeleveltask_" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

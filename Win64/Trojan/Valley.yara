@@ -19,3 +19,25 @@ rule Trojan_Win64_Valley_MK_2147979421_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Valley_AB_2147979514_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Valley.AB!MTB"
+        threat_id = "2147979514"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Valley"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "20"
+        strings_accuracy = "Low"
+    strings:
+        $x_12_1 = {41 0f b6 d5 c1 e2 ?? 09 c2 41 0f b6 c2 c1 e0 ?? 09 d0 41 0f b6 d4 c1 e2 ?? 09 c2 66 0f 6e e2 0f b6 44 24 70}  //weight: 12, accuracy: Low
+        $x_8_2 = {66 0f 6e e9 66 44 0f 6f c5 66 44 0f fc c5 66 0f ef c0 66 0f 64 c5 66 0f 6f d0 66 41 0f df d0 66 44 0f ef c1 66 44 0f db c0 66 44 0f eb c2 66 45 0f ef e4}  //weight: 8, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
