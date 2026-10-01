@@ -1410,3 +1410,29 @@ rule Trojan_Win64_Stealer_AL_2147979510_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Stealer_DMX_2147979598_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Stealer.DMX!MTB"
+        threat_id = "2147979598"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Stealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "15"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = "Strike" ascii //weight: 10
+        $x_1_2 = "--rkt" ascii //weight: 1
+        $x_1_3 = "desktop_key" ascii //weight: 1
+        $x_1_4 = "SELECT url, title, last_visit_time FROM urls" ascii //weight: 1
+        $x_1_5 = "User Data\\Default\\History" ascii //weight: 1
+        $x_1_6 = "netsh wlan show profile" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

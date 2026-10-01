@@ -1014,3 +1014,30 @@ rule Trojan_Win64_Dacic_A_2147979496_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Dacic_AA_2147979619_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Dacic.AA!MTB"
+        threat_id = "2147979619"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Dacic"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "50"
+        strings_accuracy = "Low"
+    strings:
+        $x_15_1 = {0f b6 c1 43 32 44 13 fe 41 88 42 fe 41 8d 14 3a 02 ca 80 e1 ?? 0f b6 c1 42 32 44 13 fe 41 88 42 ff fe c1 02 ca}  //weight: 15, accuracy: Low
+        $x_10_2 = {0f b6 c1 43 32 04 14 41 88 42 ?? 80 c1 ?? 02 ca 80 e1}  //weight: 10, accuracy: Low
+        $x_3_3 = "Binance" ascii //weight: 3
+        $x_2_4 = "Coin98" ascii //weight: 2
+        $x_7_5 = "Trust Wallet" ascii //weight: 7
+        $x_8_6 = "PaliWallet" ascii //weight: 8
+        $x_5_7 = "nkbihfbeogaeaoehlefnkodbefgpgknn" ascii //weight: 5
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -13,7 +13,7 @@ rule TrojanDropper_Win32_Dacic_DMX_2147978908_0
         threshold = "8"
         strings_accuracy = "Low"
     strings:
-        $x_5_1 = "madium-bootstrap/" ascii //weight: 5
+        $x_5_1 = "madium-bootstrap" ascii //weight: 5
         $x_1_2 = "YYKgAJTLajIDgmxfn77lrg==" ascii //weight: 1
         $x_1_3 = "M1lArs78ssHiaOfNhk8AXw==" ascii //weight: 1
         $x_1_4 = "IjT3SCbiRQuadi/wa6yN7w==" ascii //weight: 1

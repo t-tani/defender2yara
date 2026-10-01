@@ -1099,3 +1099,26 @@ rule Trojan_Win64_Injector_B_2147978326_1
         (all of ($x*))
 }
 
+rule Trojan_Win64_Injector_AB_2147979621_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Injector.AB!MTB"
+        threat_id = "2147979621"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Injector"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "20"
+        strings_accuracy = "Low"
+    strings:
+        $x_15_1 = {48 8b 55 18 48 8b 45 f8 48 01 d0 0f b6 08 48 8b 45 f8 ba ?? ?? ?? ?? 48 f7 75 30 48 8b 45 28 48 01 d0 0f b6 10 4c 8b 45 10 48 8b 45 f8 4c 01 c0 31 ca 88 10}  //weight: 15, accuracy: Low
+        $x_3_2 = "[+]Send Success !  %d Byte" ascii //weight: 3
+        $x_2_3 = "Write thread launched" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

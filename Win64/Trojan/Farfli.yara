@@ -309,6 +309,29 @@ rule Trojan_Win64_Farfli_KK_2147956148_2
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "35"
+        strings_accuracy = "High"
+    strings:
+        $x_20_1 = {8d 42 5c 48 ff c2 30 44 0a ff 48 81 fa 04 01 00 00}  //weight: 20, accuracy: High
+        $x_10_2 = {42 0f b6 0c 02 32 ca 48 ff c2 80 f1 5a 88 4c 14 1f 48 83 fa 0f}  //weight: 10, accuracy: High
+        $x_5_3 = {0f b6 84 11 cc 13 02 00 32 c1 48 ff c1 34 5a 88 84 11 ef 91 02 00 48 83 f9 03}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_Farfli_KK_2147956148_3
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Farfli.KK!MTB"
+        threat_id = "2147956148"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Farfli"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "30"
         strings_accuracy = "Low"
     strings:
@@ -319,7 +342,7 @@ rule Trojan_Win64_Farfli_KK_2147956148_2
         (all of ($x*))
 }
 
-rule Trojan_Win64_Farfli_KK_2147956148_3
+rule Trojan_Win64_Farfli_KK_2147956148_4
 {
     meta:
         author = "defender2yara"

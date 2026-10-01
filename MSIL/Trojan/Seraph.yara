@@ -5351,6 +5351,27 @@ rule Trojan_MSIL_Seraph_SPDH_2147907726_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Seraph_SPFV_2147908220_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Seraph.SPFV!MTB"
+        threat_id = "2147908220"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Seraph"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "1"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {06 02 07 6f 7e 00 00 0a 03 07 6f 7e 00 00 0a 61 60 0a 07 17 58 0b}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_Seraph_MSAA_2147910276_0
 {
     meta:

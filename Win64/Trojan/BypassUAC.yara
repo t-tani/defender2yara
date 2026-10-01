@@ -269,3 +269,30 @@ rule Trojan_Win64_BypassUAC_BA_2147978107_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_BypassUAC_UN_2147979615_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/BypassUAC.UN!MTB"
+        threat_id = "2147979615"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "BypassUAC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "\\QGBoxHyperVRepair\\Release\\QGBoxHyperVRepair.pdb" ascii //weight: 2
+        $x_1_2 = "%s\\curl.exe\" -L -s -o \"%s" ascii //weight: 1
+        $x_1_3 = "bitsadmin.exe\" /transfer myJob_%u /download /priority foreground" ascii //weight: 1
+        $x_1_4 = "AVIRA.SPOTLIGHT.SERVICE" ascii //weight: 1
+        $x_1_5 = "AVASTBROWSERUPDATE" ascii //weight: 1
+        $x_1_6 = "K7TSECURITY" ascii //weight: 1
+        $x_1_7 = "Outlook" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -7830,3 +7830,26 @@ rule Worm_Win32_Autorun_AQ_2147830406_0
         (all of ($x*))
 }
 
+rule Worm_Win32_Autorun_ARR_2147979618_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Worm:Win32/Autorun.ARR!MTB"
+        threat_id = "2147979618"
+        type = "Worm"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Autorun"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "45"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {0f be 02 33 45 ?? 8b 4d ?? 03 4d fc 88 01}  //weight: 10, accuracy: Low
+        $x_15_2 = "IEGX_^OXDKGO" ascii //weight: 15
+        $x_20_3 = "Q[QVGO^AwppglvAmlvpmnQgv^Qgptkagq^Qajgfwng" ascii //weight: 20
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

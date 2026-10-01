@@ -140,3 +140,28 @@ rule Ransom_Win64_FileCryptor_PAHY_2147974857_0
         (all of ($x*))
 }
 
+rule Ransom_Win64_FileCryptor_AYF_2147979597_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win64/FileCryptor.AYF!MTB"
+        threat_id = "2147979597"
+        type = "Ransom"
+        platform = "Win64: Windows 64-bit platform"
+        family = "FileCryptor"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = "RansomSim\\x64\\Release\\RansomSim.pdb" ascii //weight: 5
+        $x_2_2 = "YOUR FILES HAVE BEEN ENCRYPTED" wide //weight: 2
+        $x_2_3 = "ransom_note.bmp" wide //weight: 2
+        $x_1_4 = "To restore your files, enter the decryption password" wide //weight: 1
+        $x_1_5 = "DECRYPT_INSTRUCTIONS.txt" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

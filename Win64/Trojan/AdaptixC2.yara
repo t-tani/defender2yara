@@ -205,3 +205,26 @@ rule Trojan_Win64_AdaptixC2_C_2147978622_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_AdaptixC2_KK_2147979616_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/AdaptixC2.KK!MTB"
+        threat_id = "2147979616"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "AdaptixC2"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "35"
+        strings_accuracy = "High"
+    strings:
+        $x_20_1 = {41 8d 52 01 89 d0 c1 f8 1f c1 e8 18 01 c2 0f b6 d2 29 c2 41 89 d2 48 63 d2 4c 01 c2 0f b6 1a 0f b6 c3 44 01 d8 41 89 c3 41 c1 fb 1f 41 c1 eb 18 44 01 d8 0f b6 c0 44 29 d8 41 89 c3 48 98 4c 01 c0 0f b6 30 40 88 32 88 18 02 1a 0f b6 db 41 0f b6 04 18 41 30 01 49 83 c1 01 49 39 c9}  //weight: 20, accuracy: High
+        $x_10_2 = {c6 44 24 43 41 c6 44 24 44 64 c6 44 24 45 76 c6 44 24 46 61 c6 44 24 47 70 c6 44 24 48 69 c6 44 24 49 33 c6 44 24 4a 32 c6 44 24 4b 2e c6 44 24 4c 64 c6 44 24 4d 6c c6 44 24 4e 6c}  //weight: 10, accuracy: High
+        $x_5_3 = {8b 10 44 31 f2 89 10 48 83 c0 04 4c 39 e8}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
