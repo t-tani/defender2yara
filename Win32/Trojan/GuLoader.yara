@@ -7633,6 +7633,33 @@ rule Trojan_Win32_GuLoader_SH_2147959159_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_GuLoader_SH_2147959159_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/GuLoader.SH!MTB"
+        threat_id = "2147959159"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "GuLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_4_1 = "Emiratets.jpg" ascii //weight: 4
+        $x_1_2 = "fragtmandens.ini" ascii //weight: 1
+        $x_1_3 = "kapitalpensionens.tec" ascii //weight: 1
+        $x_1_4 = "\\eternelles\\Smaapakkers.bin" ascii //weight: 1
+        $x_1_5 = "\\elegy\\Efterplaprere195.ini" ascii //weight: 1
+        $x_1_6 = "\\detering\\inquilinous.bin" ascii //weight: 1
+        $x_1_7 = "spurveunge.skr" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win32_GuLoader_RDU_2147959182_0
 {
     meta:
