@@ -4603,6 +4603,33 @@ rule Trojan_MSIL_Bladabindi_GPPB_2147938485_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Bladabindi_AMTB_2147939789_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Bladabindi!AMTB"
+        threat_id = "2147939789"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Bladabindi"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "TripleDESCryptoServiceProvider" ascii //weight: 1
+        $x_1_2 = "System.Security.Cryptography" ascii //weight: 1
+        $x_1_3 = "ComputerInfo" ascii //weight: 1
+        $x_1_4 = "get_UserName" ascii //weight: 1
+        $x_1_5 = "get_MachineName" ascii //weight: 1
+        $x_1_6 = "DeleteSubKey" ascii //weight: 1
+        $x_1_7 = "cmd.exe /k ping 0 & del \"" ascii //weight: 1
+        $x_1_8 = "Shell_traywnd" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_Bladabindi_SLWA_2147941055_0
 {
     meta:

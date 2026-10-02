@@ -371,3 +371,33 @@ rule Backdoor_Win32_Simda_CCJE_2147922178_0
         (all of ($x*))
 }
 
+rule Backdoor_Win32_Simda_AMTB_2147979683_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Backdoor:Win32/Simda!AMTB"
+        threat_id = "2147979683"
+        type = "Backdoor"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Simda"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "11"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "Content-Disposition: form-data; name=\"pcname\"" ascii //weight: 1
+        $x_1_2 = "keylog.txt" ascii //weight: 1
+        $x_1_3 = "passwords.txt" ascii //weight: 1
+        $x_1_4 = "%s%u.zip" ascii //weight: 1
+        $x_1_5 = "TranslateMessage" ascii //weight: 1
+        $x_1_6 = "GetMessageA" ascii //weight: 1
+        $x_1_7 = "GetMessageW" ascii //weight: 1
+        $x_1_8 = "nonasthmatic.com" ascii //weight: 1
+        $x_1_9 = "as743vgk0odastr" ascii //weight: 1
+        $x_1_10 = "taskmgr" ascii //weight: 1
+        $x_1_11 = "GetClipboardData" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

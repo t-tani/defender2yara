@@ -1355,3 +1355,31 @@ rule Trojan_Win64_CoinMiner_AC_2147978970_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_CoinMiner_MN_2147979687_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CoinMiner.MN!MTB"
+        threat_id = "2147979687"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CoinMiner"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "9"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "EXC code=0x%08x addr=%p rip=%p rsp=%p" ascii //weight: 1
+        $x_1_2 = "hdr: fsz=0x%zx irva=0x%x rrva=0x%x rsz=0x%x first(ilt=0x%x name=0x%x) tail h1=0x%x h2=0x%x" ascii //weight: 1
+        $x_1_3 = "PEB: base=%p +0x10=%p +0x18=%p +0x20=%p BITMAP=%p flags=%x" ascii //weight: 1
+        $x_1_4 = "C:\\ProgramData\\Google\\Update" ascii //weight: 1
+        $x_1_5 = "%sgustep_%u_%02d%02d%02d_%02d%02d%02d.log" ascii //weight: 1
+        $x_1_6 = "NtMapViewOfSection" ascii //weight: 1
+        $x_2_7 = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run" ascii //weight: 2
+        $x_1_8 = "IsDBCSLeadByteEx" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
