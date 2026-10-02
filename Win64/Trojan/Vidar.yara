@@ -2477,6 +2477,38 @@ rule Trojan_Win64_Vidar_LR_2147965173_1
         (all of ($x*))
 }
 
+rule Trojan_Win64_Vidar_LR_2147965173_2
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Vidar.LR!MTB"
+        threat_id = "2147965173"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Vidar"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "78"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "Passwords/Chrome_Default.txt" ascii //weight: 1
+        $x_2_2 = "Cookies/Chrome_Default.txt" ascii //weight: 2
+        $x_3_3 = "_Default/Cookies-wal" ascii //weight: 3
+        $x_4_4 = "\"app_bound_encrypted_key\":\"" ascii //weight: 4
+        $x_5_5 = "[*] Shellcode candidates:" ascii //weight: 5
+        $x_6_6 = "[4] Shellcode inject v20 key..." ascii //weight: 6
+        $x_7_7 = "[4] Shellcode fallback..." ascii //weight: 7
+        $x_8_8 = "INJECT" ascii //weight: 8
+        $x_9_9 = "fingerprint.json" ascii //weight: 9
+        $x_10_10 = "Screenshot/screenshot.bmp" ascii //weight: 10
+        $x_11_11 = "diag_v20_flag.txt" ascii //weight: 11
+        $x_12_12 = "\\go-steal-v2\\collect_diag.txt" ascii //weight: 12
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win64_Vidar_SG_2147965387_0
 {
     meta:
