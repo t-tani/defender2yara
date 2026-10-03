@@ -423,3 +423,29 @@ rule Trojan_Win64_KillAV_AB_2147978463_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_KillAV_C_2147979693_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/KillAV.C!MTB"
+        threat_id = "2147979693"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "KillAV"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "30"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = "TempIFEO" wide //weight: 5
+        $x_5_2 = "Debugger" wide //weight: 5
+        $x_5_3 = "SecurityHealthService" wide //weight: 5
+        $x_5_4 = "[!] RegSetValueEx Debugger failed:" wide //weight: 5
+        $x_5_5 = "%s\\System32\\drivers" wide //weight: 5
+        $x_5_6 = "[+] kvckiller.sys extracted" wide //weight: 5
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

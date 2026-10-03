@@ -64,3 +64,30 @@ rule Trojan_MSIL_SnakeStealer_BL_2147933348_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_SnakeStealer_Z_2147979704_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/SnakeStealer.Z!MTB"
+        threat_id = "2147979704"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "SnakeStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "Wallet" ascii //weight: 1
+        $x_1_2 = "RunElevated" ascii //weight: 1
+        $x_1_3 = "DisableAv" ascii //weight: 1
+        $x_1_4 = "taskkill" ascii //weight: 1
+        $x_1_5 = "downloadfile" ascii //weight: 1
+        $x_1_6 = "<HarvestCookies>" ascii //weight: 1
+        $x_1_7 = "cryptoLogins" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

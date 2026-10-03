@@ -102,3 +102,30 @@ rule Trojan_Win64_UACBypassExp_NU_2147966730_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_UACBypassExp_NE_2147979691_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/UACBypassExp.NE!MTB"
+        threat_id = "2147979691"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "UACBypassExp"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "13"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "Stop code: CRITICAL_PROCESS_DIED" wide //weight: 2
+        $x_2_2 = "Bye Bye Windows" wide //weight: 2
+        $x_2_3 = "Windows\\System32 FUCKED" wide //weight: 2
+        $x_2_4 = "bcdedit /delete" wide //weight: 2
+        $x_2_5 = "YOU GOT FUCKED BY BULLET" wide //weight: 2
+        $x_1_6 = "Your PC ran into a problem and needs to restart" wide //weight: 1
+        $x_2_7 = "payload_json" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

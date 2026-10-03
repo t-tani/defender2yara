@@ -3400,6 +3400,31 @@ rule Trojan_MSIL_CryptInject_DAA_2147936284_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_CryptInject_DAA_2147936284_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/CryptInject.DAA!MTB"
+        threat_id = "2147936284"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "CryptInject"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = {10 08 12 81 2d 1c 0a 20 03 02 10 08 10 08 12 81 29 05 20 02 08 18 08 0b 20 04 12 81 29 18 08 12 81 2d 1c 11 20 0a 02 0e 0e 18 18 02 09 18 0e 10 11 74 10 11 70 17 20 0c 12 81 29 0e 0e 18 18 02 09 18 0e 10 11 74 10 11 70 12 81 2d 1c 0c 20 03 02 10 11 74 10 11 70 12 81 29 02 06 09 03 06 1d 05 02 1e 24 04 06 11 81 31 03 06 11 71 09 06 15 12 81 35 01 12 80}  //weight: 10, accuracy: High
+        $x_10_2 = {02 11 81 9d 12 80 b4 10 15 12 7d 02 15 12 81 59 02 11 71 12 80 cc 11 71 11 15 12 7d 02 15 12 81 59 02 11 71 12 80 cc 11 81 31 11 0a 03 15 12 81 59 02 11 71 12 80 cc 11 71 11 81 31 08 15 12 7d 02 12 80 cc 08 06 0a 02 12 80 cc 08 15 15 12 7d 02 15 12 81 59 02 08 12 80 cc 15 12 0c 02 08 11 81 31 13 0a 02}  //weight: 10, accuracy: High
+        $x_10_3 = {10 08 12 80 e5 05 20 02 08 18 08 0b 20 04 12 80 e5 18 08 12 80 e9 1c 11 20 0a 02 0e 0e 18 18 02 09 18 0e 10 11 40 10 11 3c 17 20 0c 12 80 e5 0e 0e 18 18 02 09 18 0e 10 11 40 10 11 3c 12 80 e9 1c 0c 20 03 02 10 11 40 10 11 3c 12 80 e5 02 06 09 03 06 1d 05 02 1e 24 04 06 11 80 ed 03 06 11 6d 09 06 15}  //weight: 10, accuracy: High
+        $x_10_4 = {62 72 61 72 79 00 7a 5a 4c 55 41 69 5a 79 6d 00 74 73 59 5a 37 34 38 57 31 00 7a 73 42 43 6a 71 33 75 56 00 65 38 49 71 77 43 44 39 77 00 43 58 53 31 4f 39 63 72 64 00 66 6e 58 75 6e 57 52 4a 6d 00 75 58 79 51 4e 34 74 33 4f 00 67 45 48 72 66 45 4a 61 4a 00 63 50 45 73 4d 49 70 70 31 00 46}  //weight: 10, accuracy: High
+        $x_10_5 = {07 00 27 00 06 00 56 00 5b 00 06 00 62 00 5b 00 06 00 68 00 5b 00 06 00 70 00 27 00 06 00 8e 00 a2 00 1b 00 b5 00 00 00 06 00 c4 00 db 00 06 00 ed 00 5b 00 06 00 f4 00 db 00 06 00 11 01 db 00 06 00 30 01 db 00 06 00 49 01 db 00 06 00 62 01 db 00 06 00 7d 01 db 00 06 00 98 01 ac 01 06 00 cb 01 db 00 06 00 e8 01 01 02}  //weight: 10, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (1 of ($x*))
+}
+
 rule Trojan_MSIL_CryptInject_DAB_2147940151_0
 {
     meta:

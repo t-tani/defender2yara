@@ -111419,3 +111419,71 @@ rule Trojan_MSIL_AgentTesla_RZ_2147978048_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AgentTesla_MZA_2147979695_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.MZA!MTB"
+        threat_id = "2147979695"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {4c 00 00 07 6f 00 61 00 64 00}  //weight: 1, accuracy: High
+        $x_1_2 = "41 42 43" wide //weight: 1
+        $x_1_3 = {4d 00 61 00 72 00 73 00 68 00 53 00 6c 00 75 00 69}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_AgentTesla_MZB_2147979696_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.MZB!MTB"
+        threat_id = "2147979696"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "41 42 43" wide //weight: 1
+        $x_1_2 = "KaraokeManager" wide //weight: 1
+        $x_1_3 = "8B1A7E6D5F4C" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_AgentTesla_MZC_2147979697_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.MZC!MTB"
+        threat_id = "2147979697"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "2"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "41 42 43" wide //weight: 1
+        $x_1_2 = {43 00 72 00 00 07 65 00 61 00 74 00 00 09 65 00 49 00 6e 00 73}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
