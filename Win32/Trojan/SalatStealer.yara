@@ -735,3 +735,29 @@ rule Trojan_Win32_SalatStealer_DV_2147978829_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_SalatStealer_HX_2147979734_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/SalatStealer.HX!MTB"
+        threat_id = "2147979734"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "SalatStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {8b 4d 0c 8a 95 63 ff ff ff 8d 75 98 32 14 01 88 54 05 98 40 39 45 10}  //weight: 2, accuracy: High
+        $x_2_2 = {89 d1 89 f8 83 e1 03 c1 e1 03 d3 e8 89 d9 32 45 8f 03 5d 90 83 f1 1b 01 c8 8b 4d 08 32 04 32 88 04 11 42 83 fa 10}  //weight: 2, accuracy: High
+        $x_1_3 = "host350e.exe" ascii //weight: 1
+        $x_1_4 = "register-scheduledtask" ascii //weight: 1
+        $x_1_5 = "get-wmiobject" ascii //weight: 1
+        $x_1_6 = "win32_videocontroller" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

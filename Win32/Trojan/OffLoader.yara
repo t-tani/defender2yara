@@ -7417,3 +7417,26 @@ rule Trojan_Win32_OffLoader_YI_2147978541_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_OffLoader_AC_2147979733_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/OffLoader.AC!MTB"
+        threat_id = "2147979733"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "OffLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = "://cushiongate.xyz/" ascii //weight: 3
+        $x_3_2 = "://marblebox.info/" ascii //weight: 3
+        $x_2_3 = "Do you want to reboot now?" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
