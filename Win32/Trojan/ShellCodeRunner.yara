@@ -222,3 +222,26 @@ rule Trojan_Win32_ShellCodeRunner_GKF_2147970560_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_ShellCodeRunner_GD_2147979747_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ShellCodeRunner.GD!MTB"
+        threat_id = "2147979747"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ShellCodeRunner"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = {3b c6 73 09 80 34 38 7a 40 3b c6 72 f7}  //weight: 1, accuracy: High
+        $x_1_2 = "desktop.ini" ascii //weight: 1
+        $x_1_3 = "\\shellcode_xor" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

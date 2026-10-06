@@ -27568,6 +27568,29 @@ rule Trojan_MSIL_AgentTesla_XB_2147786431_1
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AgentTesla_XB_2147786431_2
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AgentTesla.XB!MTB"
+        threat_id = "2147786431"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AgentTesla"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {57 9f a2 29 09 0f 00 00 00 fa 01 33 00 16 00 00 01 00 00 00 d0 00 00 00 40 00 00 00 26 01 00 00 a4 01 00 00 53 01 00 00 04 00 00 00 b1 01 00 00 02 00 00 00 ce 01 00 00 02 00 00 00 4a 00 00 00 15 00 00 00 54 00 00 00 84 00 00 00 43 00 00 00 05 00 00 00 01 00 00 00 0e 00 00 00 0d 00 00 00 15 00 00 00 16 00 00 00 5d}  //weight: 2, accuracy: High
+        $x_1_2 = "SalesWinApp.Properties" ascii //weight: 1
+        $x_1_3 = "GetPixel" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_AgentTesla_CAG_2147786440_0
 {
     meta:
