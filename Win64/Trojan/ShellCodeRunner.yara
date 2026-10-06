@@ -162,6 +162,28 @@ rule Trojan_Win64_ShellCodeRunner_AB_2147921615_2
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "16"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = {42 8a 4c 05 f7 42 8d 04 07 30 0c 06 41 ff c0 44 3b c3 72}  //weight: 10, accuracy: High
+        $x_6_2 = {c7 45 b7 65 78 70 61 c7 45 bb 6e 64 20 33 c7 45 bf 32 2d 62 79 c7 45 c3 74 65 20 6b 0f 29 45 c7 c7 45 e7 00 00 00 00 89 45 f3}  //weight: 6, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_ShellCodeRunner_AB_2147921615_3
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/ShellCodeRunner.AB!MTB"
+        threat_id = "2147921615"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "ShellCodeRunner"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "12"
         strings_accuracy = "High"
     strings:

@@ -1055,6 +1055,31 @@ rule Trojan_Win64_Injector_A_2147977412_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Injector_A_2147977412_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Injector.A!MTB"
+        threat_id = "2147977412"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Injector"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "150"
+        strings_accuracy = "High"
+    strings:
+        $x_50_1 = "[inject] desired base failed, retrying anywhere" ascii //weight: 50
+        $x_40_2 = "[inject] entry=0x[inject] remoteBase=0x" ascii //weight: 40
+        $x_30_3 = "[spawn] inject failed, killing child" ascii //weight: 30
+        $x_20_4 = "[boot] sandboxed, exiting" ascii //weight: 20
+        $x_10_5 = "C:\\Windows\\Temp\\loader.log" ascii //weight: 10
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win64_Injector_B_2147978326_0
 {
     meta:

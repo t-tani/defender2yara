@@ -271,3 +271,25 @@ rule Trojan_Win64_AgentB_AA_2147977613_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_AgentB_A_2147979779_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/AgentB.A!MTB"
+        threat_id = "2147979779"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "AgentB"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "50"
+        strings_accuracy = "Low"
+    strings:
+        $x_30_1 = {0f b6 3c 07 89 fa 40 88 7d d8 83 f2 ?? 88 14 01 48 83 c0 ?? 48 3b 85 90 05 00 00 75}  //weight: 30, accuracy: Low
+        $x_20_2 = "[+] shellcode written (%zu bytes)" ascii //weight: 20
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

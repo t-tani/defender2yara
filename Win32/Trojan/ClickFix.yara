@@ -16328,3 +16328,101 @@ rule Trojan_Win32_ClickFix_OC_2147979644_0
         )
 }
 
+rule Trojan_Win32_ClickFix_OD_2147979775_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ClickFix.OD!MTB"
+        threat_id = "2147979775"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ClickFix"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_CMDHSTR_EXT"
+        threshold = "12"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = ".gl'))" wide //weight: 10
+        $x_10_2 = ".cc'))" wide //weight: 10
+        $x_10_3 = ".vg'))" wide //weight: 10
+        $x_1_4 = "[scriptblock]::Create(" wide //weight: 1
+        $x_1_5 = "-bor " wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_10_*) and 2 of ($x_1_*))) or
+            ((2 of ($x_10_*))) or
+            (all of ($x*))
+        )
+}
+
+rule Trojan_Win32_ClickFix_OE_2147979776_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ClickFix.OE!MTB"
+        threat_id = "2147979776"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ClickFix"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_CMDHSTR_EXT"
+        threshold = "12"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = ".cc').Content|iex" wide //weight: 10
+        $x_10_2 = ".cc').Content|invoke-expression" wide //weight: 10
+        $x_10_3 = ".cc' | % { iex $_" wide //weight: 10
+        $x_10_4 = ".gl').Content|iex" wide //weight: 10
+        $x_10_5 = ".gl').Content|invoke-expression" wide //weight: 10
+        $x_10_6 = ".gl' | % { iex $_" wide //weight: 10
+        $x_10_7 = ".vg').Content|iex" wide //weight: 10
+        $x_10_8 = ".vg').Content|invoke-expression" wide //weight: 10
+        $x_10_9 = ".vg' | % { iex $_" wide //weight: 10
+        $x_1_10 = "iwr " wide //weight: 1
+        $x_1_11 = "invoke-webrequest " wide //weight: 1
+        $x_1_12 = "-bor " wide //weight: 1
+        $x_1_13 = "invoke-restmethod " wide //weight: 1
+        $x_1_14 = "irm " wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_10_*) and 2 of ($x_1_*))) or
+            ((2 of ($x_10_*))) or
+            (all of ($x*))
+        )
+}
+
+rule Trojan_Win32_ClickFix_OF_2147979777_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ClickFix.OF!MTB"
+        threat_id = "2147979777"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ClickFix"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_CMDHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "iwr" wide //weight: 1
+        $x_1_2 = "invoke-webrequest " wide //weight: 1
+        $x_1_3 = "-bor " wide //weight: 1
+        $x_1_4 = "invoke-restmethod " wide //weight: 1
+        $x_1_5 = "irm" wide //weight: 1
+        $x_1_6 = "iex" wide //weight: 1
+        $x_1_7 = "invoke-expression" wide //weight: 1
+        $x_1_8 = "Net.WebClient" wide //weight: 1
+        $x_1_9 = "download" wide //weight: 1
+        $x_1_10 = "IO.MemoryStream" wide //weight: 1
+        $x_1_11 = "scriptblock]::Create" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (3 of ($x*))
+}
+

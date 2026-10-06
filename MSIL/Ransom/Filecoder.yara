@@ -44,6 +44,31 @@ rule Ransom_MSIL_Filecoder_A_2147757635_0
         (4 of ($x*))
 }
 
+rule Ransom_MSIL_Filecoder_A_2147757635_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:MSIL/Filecoder.A!MTB"
+        threat_id = "2147757635"
+        type = "Ransom"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Filecoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "<ShowFullScreenRansomwareScreen>b__39_0" ascii //weight: 1
+        $x_1_2 = "<PlayKeyDestroyedSound>b__35_0" ascii //weight: 1
+        $x_1_3 = "RANSOMWARE - KEY DESTROYED" wide //weight: 1
+        $x_1_4 = "\\RANSOM_STATUS.txt" wide //weight: 1
+        $x_1_5 = "/c RUNDLL32.EXE user32.dll,UpdatePerUserSystemParameters" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Ransom_MSIL_Filecoder_DU_2147759304_0
 {
     meta:

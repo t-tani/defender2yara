@@ -2975,3 +2975,52 @@ rule Trojan_MSIL_Injector_ME_2147978097_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Injector_ZE_2147979765_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Injector.ZE!MTB"
+        threat_id = "2147979765"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Injector"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "9"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = "$02685f22-b4a7-47c4-a464-0b0cc6bbaa3a" ascii //weight: 3
+        $x_3_2 = {00 00 00 02 00 40 01 57 dd a2 fd 09 0e 00 00 00 fa 25 33 00 16 00 00 02 00 00 00 35 00 00 00 1c 00 00 00 5c 00 00 00 79 00 00 00 be 00 00 00 46 00 00 00 0a 00 00 00 10 00 00 00 01 00 00 00 02 00 00 00 14 00 00 00 01 00 00 00 01 00 00 00 01 00 00 00 01 00 00 00 01 00 00 00 02 00 00 00 02 00 00 00 0a 00 00 00 0e 00 00 00 02 00 00 00 02 00 00 00 19 00 00 00 06 00 00 00 0d 00 00 00 36 5c a2 b0}  //weight: 3, accuracy: High
+        $x_1_3 = "SWEETEST.dll" ascii //weight: 1
+        $x_1_4 = "WHORE" ascii //weight: 1
+        $x_1_5 = "LAUNCH" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Injector_D_2147979772_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Injector.D!MTB"
+        threat_id = "2147979772"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Injector"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "16"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = {28 1f 00 00 0a 72 7d 01 00 70 28 20 00 00 0a 28 21 00 00 0a 13 12 11 12 11 0e 28 22 00 00 0a 72 87 01 00 70 11 12 28 04 00 00 0a}  //weight: 10, accuracy: High
+        $x_2_2 = "JeisAlive.Loader" ascii //weight: 2
+        $x_2_3 = "[M4] HMAC verified, decrypting AES-CBC..." wide //weight: 2
+        $x_2_4 = "[M5] Writing client exe to temp (" wide //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

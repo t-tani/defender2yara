@@ -2182,6 +2182,31 @@ rule Trojan_Win64_Mikey_LR_2147964559_1
         (all of ($x*))
 }
 
+rule Trojan_Win64_Mikey_LR_2147964559_2
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Mikey.LR!MTB"
+        threat_id = "2147964559"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Mikey"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "20"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = {4c 8b 85 30 01 00 00 48 8b 8d 38 01 00 00 49 2b c8 48 8b c3 48 f7 e9 48 c1 fa 02 48 8b c2 48 c1 e8 3f 48 03 d0 48 8d 85 78 01 00 00 49 0f 45 c0 80 78 10 00}  //weight: 10, accuracy: High
+        $x_1_2 = "\" --restore-last-session --profile-directory=\"" ascii //weight: 1
+        $x_2_3 = "\" --no-first-run --no-default-browser-check --load-extension=\"" ascii //weight: 2
+        $x_3_4 = "cookies.txt" ascii //weight: 3
+        $x_4_5 = "passwords.txt" ascii //weight: 4
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win64_Mikey_WD_2147965129_0
 {
     meta:

@@ -158,3 +158,33 @@ rule Trojan_Win64_Coinminer_PAIB_2147975402_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Coinminer_SJ_2147979751_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Coinminer.SJ!MTB"
+        threat_id = "2147979751"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Coinminer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = "--algorithm pearlhash --pool prl.kryptex.network:7048" wide //weight: 2
+        $x_2_2 = {2d 00 2d 00 77 00 61 00 6c 00 6c 00 65 00 74 00 20 00 70 00 72 00 6c 00 31 00 70 00 34 00 7a 00 73 00 70 00 71 00 66 00 77 00 76 00 61 00 76 00 34 00 61 00 7a 00 79 00 78 00 67 00 71 00 33 00 73 00 33 00 67 00 7a 00 66 00 32 00 76 00 73 00 75 00 38 00 7a 00 36 00 74 00 63 00 68 00 38 00 66 00 35 00 72 00 32 00 36 00 38 00 6b 00 61 00 63 00 35 00 37 00 74 00 74 00 34 00 61 00 7a 00 63 00 71 00 36 00 6a 00 66 00 30 00 6a 00 78 00 2e 00 [0-47] 25 00 63 00 6f 00 6d 00 70 00 75 00 74 00 65 00 72 00 6e 00 61 00 6d 00 65 00 25 00}  //weight: 2, accuracy: Low
+        $x_2_3 = {2d 00 2d 00 77 00 61 00 6c 00 6c 00 65 00 74 00 20 00 70 00 72 00 6c 00 31 00 70 00 70 00 75 00 6d 00 76 00 76 00 77 00 77 00 73 00 6b 00 68 00 71 00 6d 00 73 00 30 00 34 00 71 00 33 00 68 00 33 00 6a 00 6c 00 71 00 64 00 37 00 72 00 70 00 72 00 72 00 32 00 71 00 75 00 38 00 71 00 6b 00 6c 00 6c 00 73 00 36 00 32 00 33 00 68 00 6e 00 33 00 6d 00 6b 00 6d 00 6c 00 72 00 63 00 33 00 38 00 73 00 61 00 67 00 73 00 73 00 77 00 6c 00 2e 00 [0-47] 25 00 63 00 6f 00 6d 00 70 00 75 00 74 00 65 00 72 00 6e 00 61 00 6d 00 65 00 25 00}  //weight: 2, accuracy: Low
+        $x_2_4 = "guanchor.dll" wide //weight: 2
+        $x_1_5 = "freeaddrinfo" ascii //weight: 1
+        $x_1_6 = "getaddrinfo" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (
+            ((3 of ($x_2_*) and 2 of ($x_1_*))) or
+            ((4 of ($x_2_*))) or
+            (all of ($x*))
+        )
+}
+
