@@ -1383,3 +1383,58 @@ rule Trojan_Win64_CoinMiner_MN_2147979687_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_CoinMiner_BA_2147979809_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CoinMiner.BA!MTB"
+        threat_id = "2147979809"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CoinMiner"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "12"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "taskmgr_hook.dll" ascii //weight: 1
+        $x_1_2 = "donate_wallet" ascii //weight: 1
+        $x_1_3 = "xmrig.exe" ascii //weight: 1
+        $x_1_4 = "miner.exe" ascii //weight: 1
+        $x_1_5 = "pool.hashvault.pro" ascii //weight: 1
+        $x_1_6 = "xmrig-miner-bot" ascii //weight: 1
+        $x_1_7 = "xmrig.bin" ascii //weight: 1
+        $x_1_8 = "netsh advfirewall firewall delete rule program" ascii //weight: 1
+        $x_1_9 = "Software\\Microsoft\\Windows\\CurrentVersion\\Run" ascii //weight: 1
+        $x_1_10 = "\\Microsoft\\Windows\\Start Menu\\Programs\\Startup" ascii //weight: 1
+        $x_1_11 = "WindowsUpdateBoot" ascii //weight: 1
+        $x_1_12 = "runtime_donate_phase.json" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_CoinMiner_AD_2147979810_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/CoinMiner.AD!MTB"
+        threat_id = "2147979810"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "CoinMiner"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "Low"
+    strings:
+        $x_6_1 = {48 89 fa eb 25 0f 1f 40 00 48 8d 8c 24 0c 07 00 00 45 31 ed ff d3 85 c0 41 0f 94 c5 49 8b 54 24 08 49 83 c4 08 48 85 d2 74 05 45 85 ed 74 da 48 8d 94 24 e0 06 00 00 4c 89 f1 e8 [0-2] 01 00 85 c0}  //weight: 6, accuracy: Low
+        $x_1_2 = "GoogleUpdateTask" wide //weight: 1
+        $x_1_3 = "taskmgr.exe" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -142,6 +142,28 @@ rule TrojanDownloader_Win64_Small_PAHK_2147977524_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {c1 e8 10 31 c2 69 d2 6b ca eb 85 89 d0 c1 e8 0d 31 d0 69 c0 35 ae b2 c2 89 c2 c1 ea 10 31 d0 39 c3 74 1c}  //weight: 5, accuracy: High
+        $x_3_2 = {31 d0 48 83 c1 01 c1 c0 0d 69 d0 93 35 87 1b 0f b6 01 44 31 c2 41 81 e8 95 35 14 7a 84 c0 75}  //weight: 3, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule TrojanDownloader_Win64_Small_PAHK_2147977524_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:Win64/Small.PAHK!MTB"
+        threat_id = "2147977524"
+        type = "TrojanDownloader"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Small"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "10"
         strings_accuracy = "High"
     strings:
@@ -174,6 +196,27 @@ rule TrojanDownloader_Win64_Small_KK_2147978649_0
         $x_20_1 = {8b 44 24 20 c1 e0 03 8b 4c 24 20 c1 e9 1d 0b c1 89 44 24 20 8b 44 24 20 35 55 55 55 55 89 44 24 20}  //weight: 20, accuracy: High
         $x_10_2 = {0f b6 44 24 50 48 8b 4c 24 20 48 8b 54 24 40 48 03 d1 48 8b ca 0f b6 09 33 c8 8b c1 48 8b 4c 24 20 48 8b 54 24 40 48 03 d1 48 8b ca 88 01}  //weight: 10, accuracy: High
         $x_5_3 = "/create /tn \"WinUpdateService\" /tr \"%s\" /sc onlogon /rl highest /f" ascii //weight: 5
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule TrojanDownloader_Win64_Small_PAHQ_2147979801_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:Win64/Small.PAHQ!MTB"
+        threat_id = "2147979801"
+        type = "TrojanDownloader"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Small"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {89 c2 83 e2 1f 8a 14 0a 41 32 14 07 88 14 03 48 ff c0 48 39 c6 75}  //weight: 5, accuracy: High
     condition:
         (filesize < 20MB) and
         (all of ($x*))

@@ -296,3 +296,29 @@ rule Trojan_Win64_BypassUAC_UN_2147979615_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_BypassUAC_PN_2147979800_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/BypassUAC.PN!MTB"
+        threat_id = "2147979800"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "BypassUAC"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = "\\vmware-vdiskmanager\\Release\\vmware-vdiskmanager.pdb" ascii //weight: 2
+        $x_1_2 = "%s\\curl.exe\" -L -s -o \"%s" ascii //weight: 1
+        $x_1_3 = "CIM_VirtualSystemSettingData" ascii //weight: 1
+        $x_1_4 = "370E819D5FDCBCBD3748F9EC1C097938" ascii //weight: 1
+        $x_1_5 = "certutil.exe\" -urlcache -split -f" ascii //weight: 1
+        $x_1_6 = "bitsadmin.exe\" /transfer myJob_%u /download /priority foreground" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

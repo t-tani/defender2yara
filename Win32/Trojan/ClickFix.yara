@@ -16053,6 +16053,37 @@ rule Trojan_Win32_ClickFix_RGB_2147978938_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_ClickFix_CI_2147979081_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ClickFix.CI!MTB"
+        threat_id = "2147979081"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ClickFix"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_CMDHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "powershell" wide //weight: 1
+        $x_1_2 = "wget" wide //weight: 1
+        $x_1_3 = "-usebasi" wide //weight: 1
+        $x_1_4 = ".replace('" wide //weight: 1
+        $n_10_5 = "iex" wide //weight: -10
+        $n_10_6 = "OpenAI" wide //weight: -10
+        $n_10_7 = "deepseek" wide //weight: -10
+        $n_10_8 = "claude" wide //weight: -10
+        $n_10_9 = "codex" wide //weight: -10
+        $n_10_10 = "copilot" wide //weight: -10
+    condition:
+        (filesize < 20MB) and
+        (not (any of ($n*))) and
+        (all of ($x*))
+}
+
 rule Trojan_Win32_ClickFix_OA_2147979200_0
 {
     meta:

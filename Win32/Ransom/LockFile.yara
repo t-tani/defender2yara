@@ -165,3 +165,28 @@ rule Ransom_Win32_LockFile_PPV_2147975376_0
         (all of ($x*))
 }
 
+rule Ransom_Win32_LockFile_B_2147979808_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win32/LockFile.B!AMTB"
+        threat_id = "2147979808"
+        type = "Ransom"
+        platform = "Win32: Windows 32-bit platform"
+        family = "LockFile"
+        severity = "Critical"
+        info = "AMTB: an internal category used to refer to some threats"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "\\source\\repos\\winlock\\winlock\\obj\\Debug\\winlock.pdb" ascii //weight: 1
+        $x_1_2 = "SYSTEM DESTRUCTION IN" ascii //weight: 1
+        $x_1_3 = ".locked" ascii //weight: 1
+        $x_1_4 = "ENTER UNLOCK CODE" ascii //weight: 1
+        $x_1_5 = "README_RESTORE.txt" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (4 of ($x*))
+}
+

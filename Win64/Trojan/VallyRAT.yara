@@ -1,0 +1,58 @@
+rule Trojan_Win64_VallyRAT_RN_2147979833_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/VallyRAT.RN!MTB"
+        threat_id = "2147979833"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "VallyRAT"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "DisableWindowsUpdateAccess" ascii //weight: 1
+        $x_1_2 = "netsh advfirewall firewall add rule name=\"Block Windows Update Service\" dir=out" ascii //weight: 1
+        $x_1_3 = "Avast Software\\Avast Software" ascii //weight: 1
+        $x_1_4 = "Kaspersky Lab" ascii //weight: 1
+        $x_1_5 = "PzUWRT4lJzU8GyAJPDUkQD81FkUjNDc1PBsgQzw0" ascii //weight: 1
+        $x_1_6 = "VulnerableDriverBlocklistEnable" ascii //weight: 1
+        $x_2_7 = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run" ascii //weight: 2
+        $x_1_8 = "VGtWUk1WRlVhM2ROUkVGM1RYcEJkMDFFUVhkTlJFRXdUVVJCZDAxRVFYZFNhMX" ascii //weight: 1
+        $x_1_9 = "V1ROTlJWRjNUVlJCZUUxRlNYZE9WRUYzVFhwQk5FMVZTa1ZOZWtWM1VX" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_VallyRAT_TN_2147979843_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/VallyRAT.TN!MTB"
+        threat_id = "2147979843"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "VallyRAT"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "Shell\\Manage\\command" ascii //weight: 1
+        $x_1_2 = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System" ascii //weight: 1
+        $x_1_3 = "Elevation:Administrator!new:" ascii //weight: 1
+        $x_1_4 = "cmd.exe /c" ascii //weight: 1
+        $x_1_5 = "Failed to write shellcode to file" ascii //weight: 1
+        $x_1_6 = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run" ascii //weight: 1
+        $x_1_7 = "VulnerableDriverBlocklistEnable" ascii //weight: 1
+        $x_2_8 = "Wlhod2JHOXlaWEl1WlhobElITm9aV3hzT2pvNg==" ascii //weight: 2
+        $x_1_9 = "atlTraceWindowing" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

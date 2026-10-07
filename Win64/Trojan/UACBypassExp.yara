@@ -129,3 +129,24 @@ rule Trojan_Win64_UACBypassExp_NE_2147979691_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_UACBypassExp_PAHU_2147979805_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/UACBypassExp.PAHU!MTB"
+        threat_id = "2147979805"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "UACBypassExp"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {44 0f b6 d0 42 0f b6 44 15 e0 42 88 44 0d e0 42 88 54 15 e0 42 0f b6 4c 0d e0 48 03 ca 0f b6 c1 0f b6 4c 05 e0 41 30 48 ff 49 83 eb 01 75}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

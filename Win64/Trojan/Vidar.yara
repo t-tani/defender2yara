@@ -4790,3 +4790,26 @@ rule Trojan_Win64_Vidar_PG_2147979686_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Vidar_YQA_2147979848_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Vidar.YQA!MTB"
+        threat_id = "2147979848"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Vidar"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "12"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "QuantumRidgeLabs/main.go" ascii //weight: 1
+        $x_1_2 = "o85sSFN3VN4NoGlEvGfh/okAYH5ewM4xJSzEPAYVt/Y-jigD2zlWvgkacMrgbb/P35oGh530Xj5Q3U-BbO_" ascii //weight: 1
+        $x_10_3 = {44 0f b6 04 0f 41 31 f0 44 88 04 08 48 ff c1 48 39 ca 7f ec 48 89 c3 48 89 d1 31 c0 e8 9a f8 bc ff 48 8b 6c 24 18 48 83 c4 20 c3}  //weight: 10, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -82,3 +82,24 @@ rule Trojan_Win64_GoCrypt_CK_2147978537_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_GoCrypt_CQ_2147979832_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/GoCrypt.CQ!MTB"
+        threat_id = "2147979832"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "GoCrypt"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "15"
+        strings_accuracy = "High"
+    strings:
+        $x_15_1 = {47 0f b6 5c 0b 02 41 83 c3 d0 45 0f b6 db 4d 01 e3 46 0f b6 24 00 45 31 e3 44 88 1c 02 48 ff c0 4c 39 d0}  //weight: 15, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

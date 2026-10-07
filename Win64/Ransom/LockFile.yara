@@ -538,3 +538,27 @@ rule Ransom_Win64_LockFile_PAHN_2147977725_0
         (all of ($x*))
 }
 
+rule Ransom_Win64_LockFile_AMTB_2147979807_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win64/LockFile!AMTB"
+        threat_id = "2147979807"
+        type = "Ransom"
+        platform = "Win64: Windows 64-bit platform"
+        family = "LockFile"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "SYSTEM CRASH" ascii //weight: 1
+        $x_1_2 = "MEMX_INFECTION" ascii //weight: 1
+        $x_1_3 = "YouPCHasBeenFucked" ascii //weight: 1
+        $x_1_4 = "ByeByeMyPC.sys" ascii //weight: 1
+        $x_1_5 = "MEMX RULES!" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

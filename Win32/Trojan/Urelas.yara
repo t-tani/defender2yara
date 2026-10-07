@@ -422,3 +422,29 @@ rule Trojan_Win32_Urelas_AB_2147951449_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Urelas_AU_2147979819_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Urelas.AU!MTB"
+        threat_id = "2147979819"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Urelas"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "9"
+        strings_accuracy = "Low"
+    strings:
+        $x_3_1 = {53 56 57 ff 75 08 b9 64 4d 41 00 e8 ?? ?? ?? ?? 59 89 85 e0 fb ff ff 85 c0 0f 85 e9 00 00 00 be 06 02 00 00 56 50 66 89 85 ec fd ff ff}  //weight: 3, accuracy: Low
+        $x_2_2 = {2b c2 6a 01 50 8d 54 24 28 52 e8 ?? ?? ?? ?? 56 6a 01 6a 0f 68 dc 50 41 00 e8 ?? ?? ?? ?? 56 6a 01 6a 07 68 ec 50 41 00}  //weight: 2, accuracy: Low
+        $x_1_3 = "TEMP\\sanfdr.bat" ascii //weight: 1
+        $x_1_4 = "Hangame\\KOREAN\\HanUninstall.exe" ascii //weight: 1
+        $x_1_5 = "NEOWIZ\\PMang\\common\\PMLauncher.exe" ascii //weight: 1
+        $x_1_6 = "AhnLab\\V3Lite30\\V3Lite.exe" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
