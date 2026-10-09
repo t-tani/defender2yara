@@ -4036,6 +4036,30 @@ rule Trojan_MSIL_Zusy_C_2147951262_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Zusy_C_2147951262_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Zusy.C!MTB"
+        threat_id = "2147951262"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "13"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {08 7e 0d 00 00 04 28 ?? 00 00 0a 08 20 80 00 00 00 28 ?? 00 00 0a 08 28 ?? 00 00 06 73 ?? 00 00 0a 0d 09 08 6f ?? 00 00 0a}  //weight: 10, accuracy: Low
+        $x_1_2 = "Office C2R Client" wide //weight: 1
+        $x_1_3 = "OpenDecoy" ascii //weight: 1
+        $x_1_4 = "OverlayDecoy" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_Zusy_CA_2147951275_0
 {
     meta:

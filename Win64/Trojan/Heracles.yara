@@ -26,3 +26,26 @@ rule Trojan_Win64_Heracles_TMX_2147948036_0
         )
 }
 
+rule Trojan_Win64_Heracles_PAHU_2147979910_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Heracles.PAHU!MTB"
+        threat_id = "2147979910"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Heracles"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "GetObject(\"winmgmts:\\\\.\\root\\cimv2" ascii //weight: 1
+        $x_2_2 = "wmi.ExecQuery(\"SELECT * FROM Win32_Process WHERE Name='yupdate.exe'" ascii //weight: 2
+        $x_2_3 = "schtasks /create /tn \"YandexChromeUpdateLogon\" /tr \"\\\"%s\\\"\" /sc onlogon /rl LIMITED /f" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

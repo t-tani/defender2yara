@@ -143,3 +143,28 @@ rule Trojan_MSIL_KillAV_SXA_2147975426_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_KillAV_A_2147979858_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/KillAV.A!MTB"
+        threat_id = "2147979858"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "KillAV"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "[+] Persistence Installed" wide //weight: 1
+        $x_1_2 = "[+] StealthScheduler Started" wide //weight: 1
+        $x_1_3 = "[+] Browser Extension Injected" wide //weight: 1
+        $x_1_4 = "[+] Telemetry & Clipboard Started" wide //weight: 1
+        $x_1_5 = "[+] C2 Thread Started" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -58,3 +58,32 @@ rule VirTool_Win64_Myrddin_H_2147979795_0
         (all of ($x*))
 }
 
+rule VirTool_Win64_Myrddin_I_2147979890_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "VirTool:Win64/Myrddin.I"
+        threat_id = "2147979890"
+        type = "VirTool"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Myrddin"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = ").RemoteAddr" ascii //weight: 1
+        $x_1_2 = ").Hostname" ascii //weight: 1
+        $x_1_3 = ").Password" ascii //weight: 1
+        $x_1_4 = ").GetSessionTicket" ascii //weight: 1
+        $x_1_5 = ").NewSession" ascii //weight: 1
+        $x_1_6 = ").Server" ascii //weight: 1
+        $x_1_7 = ").RemoteSock" ascii //weight: 1
+        $x_1_8 = "AgentInfo" ascii //weight: 1
+        $x_1_9 = "merlinclient" ascii //weight: 1
+        $x_1_10 = "merlinPipecommands" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

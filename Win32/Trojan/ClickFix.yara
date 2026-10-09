@@ -16457,3 +16457,99 @@ rule Trojan_Win32_ClickFix_OF_2147979777_0
         (3 of ($x*))
 }
 
+rule Trojan_Win32_ClickFix_GL_2147980018_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ClickFix.GL!MTB"
+        threat_id = "2147980018"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ClickFix"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_CMDHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = "echo IEX $env:OneNoteSystem | powershell.exe" wide //weight: 3
+        $x_2_2 = "CreateObject(\\x22WScript.Shell\\x22)" wide //weight: 2
+        $x_2_3 = "objShell.Run\\x20\\x22cmd.exe" wide //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_ClickFix_JL_2147980019_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ClickFix.JL!MTB"
+        threat_id = "2147980019"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ClickFix"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_CMDHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "msiexec.exe\" /i " wide //weight: 1
+        $x_1_2 = {14 27 0f fe}  //weight: 1, accuracy: High
+        $x_3_3 = "/passive ORG_NOTE=" wide //weight: 3
+        $x_3_4 = ".msi" wide //weight: 3
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_ClickFix_SS_2147980020_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ClickFix.SS!MTB"
+        threat_id = "2147980020"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ClickFix"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_CMDHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = "Invoke-WebRequest -Uri" wide //weight: 1
+        $x_2_2 = {61 00 73 00 74 00 72 00 6f 00 66 00 6c 00 6f 00 77 00 [0-31] 74 00 65 00 6d 00 73 00 2e 00 6c 00 6f 00 6c 00 2f 00}  //weight: 2, accuracy: Low
+        $x_1_3 = "-OutFile" wide //weight: 1
+        $x_1_4 = "$env:TEMP" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_ClickFix_AMX_2147980021_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ClickFix.AMX!MTB"
+        threat_id = "2147980021"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ClickFix"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_CMDHSTR_EXT"
+        threshold = "72"
+        strings_accuracy = "High"
+    strings:
+        $x_50_1 = "powershell" wide //weight: 50
+        $x_10_2 = "Write-Host" wide //weight: 10
+        $x_10_3 = "(iex(irm" wide //weight: 10
+        $x_1_4 = "))2>$null" wide //weight: 1
+        $x_1_5 = "'+'" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

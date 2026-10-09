@@ -711,6 +711,28 @@ rule Trojan_Win64_DllHijack_LR_2147964863_1
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "30"
+        strings_accuracy = "Low"
+    strings:
+        $x_20_1 = {48 89 5c 24 10 57 48 83 ec 20 c7 44 24 40 ?? ?? ?? ?? 8b fa c7 44 24 30 ?? ?? ?? ?? 44 8b 44 24 30 8b 44 24 40 49 33 c0 4c 8b 04 08 4d 85 c0}  //weight: 20, accuracy: Low
+        $x_10_2 = {8d 4a ff 89 8b 28 08 00 00 4c 8b 44 d3 20 85 c9 0f 8e ?? ?? ?? ?? ff c9 48 8d 14 d3 89 8b 28 08 00 00 81 f9 00 01 00 00}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_DllHijack_LR_2147964863_2
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/DllHijack.LR!MTB"
+        threat_id = "2147964863"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "DllHijack"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "20"
         strings_accuracy = "Low"
     strings:
@@ -724,7 +746,7 @@ rule Trojan_Win64_DllHijack_LR_2147964863_1
         (all of ($x*))
 }
 
-rule Trojan_Win64_DllHijack_LR_2147964863_2
+rule Trojan_Win64_DllHijack_LR_2147964863_3
 {
     meta:
         author = "defender2yara"
@@ -1270,6 +1292,73 @@ rule Trojan_Win64_DllHijack_FMX_2147976378_0
         $x_1_7 = "InitAPICalls" ascii //weight: 1
         $x_2_8 = "DecryptChunk" ascii //weight: 2
         $x_1_9 = "encrypted_MyCustomParam123" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_DllHijack_A_2147978154_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/DllHijack.A!MTB"
+        threat_id = "2147978154"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "DllHijack"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "35"
+        strings_accuracy = "High"
+    strings:
+        $x_35_1 = {c7 04 37 76 76 61 53 83 c4 0c c7 44 37 04 2e 62 69 6e c6 44 3e 08 00 83 7d e4 0f 8d 45 d0}  //weight: 35, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_DllHijack_A_2147978154_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/DllHijack.A!MTB"
+        threat_id = "2147978154"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "DllHijack"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "35"
+        strings_accuracy = "High"
+    strings:
+        $x_30_1 = {8b 4c 24 08 0f b6 14 01 89 d1 88 d5 80 c1 bf 80 cd 20 80 f9 1a 0f b6 cd 0f 43 ca 0f b6 14 07 40}  //weight: 30, accuracy: High
+        $x_3_2 = "HS_KILLAV_MODE" ascii //weight: 3
+        $x_2_3 = "[boot] start[boot] modpath_lenHS_HOST_DIR" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_DllHijack_A_2147978154_2
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/DllHijack.A!MTB"
+        threat_id = "2147978154"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "DllHijack"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "60"
+        strings_accuracy = "High"
+    strings:
+        $x_30_1 = "Change export function %1.%2!S! ordinal from %3!u! to %4!u!." ascii //weight: 30
+        $x_20_2 = "Export function %1!S!%!#%2!u! could not be found." ascii //weight: 20
+        $x_10_3 = "Unable to create hook for export function %1.#%2!u!. Status = %3!S!." ascii //weight: 10
     condition:
         (filesize < 20MB) and
         (all of ($x*))

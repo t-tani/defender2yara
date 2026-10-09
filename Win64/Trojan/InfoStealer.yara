@@ -333,6 +333,28 @@ rule Trojan_Win64_InfoStealer_AA_2147977627_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "20"
+        strings_accuracy = "Low"
+    strings:
+        $x_11_1 = {41 00 ca 41 80 c2 ?? 41 30 ca 41 28 ca 44 38 d0 75}  //weight: 11, accuracy: Low
+        $x_9_2 = {46 0f b6 04 16 44 01 de 40 80 e6 ?? 42 88 b4 04 ?? ?? ?? ?? 48 8b ac 24 ?? ?? ?? ?? 48 0f af e9 49 0f af e9 48 31 c5 48 89 d6 48 39 d5 75}  //weight: 9, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_InfoStealer_AA_2147977627_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/InfoStealer.AA!MTB"
+        threat_id = "2147977627"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "InfoStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "25"
         strings_accuracy = "High"
     strings:

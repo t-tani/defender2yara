@@ -136,3 +136,26 @@ rule Trojan_MSIL_ReverseShell_CAT_2147971068_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_ReverseShell_A_2147980031_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/ReverseShell.A!MTB"
+        threat_id = "2147980031"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "ReverseShell"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "12"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {08 06 07 6f ?? 00 00 0a 08 6f ?? 00 00 0a 25 73 ?? 00 00 0a 0d 73 ?? 00 00 0a 80 01 00 00 04}  //weight: 10, accuracy: Low
+        $x_1_2 = "Rshell" wide //weight: 1
+        $x_1_3 = "-ep bypass -nologo" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

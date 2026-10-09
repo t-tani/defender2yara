@@ -3048,3 +3048,53 @@ rule Trojan_MSIL_Injector_TE_2147979850_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Injector_YE_2147979912_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Injector.YE!MTB"
+        threat_id = "2147979912"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Injector"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "9"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = "$02685f22-b4a7-47c4-a464-0b0cc6bbaa3a" ascii //weight: 3
+        $x_3_2 = {00 00 00 00 02 00 00 01 57 9d a2 3d 09 0e 00 00 00 fa 25 33 00 16 00 00 01 00 00 00 35 00 00 00 1c 00 00 00 5c 00 00 00 79 00 00 00 be 00 00 00 46 00 00 00 0a 00 00 00 10 00 00 00 02 00 00 00 14 00 00 00 01 00 00 00 01 00 00 00 01 00 00 00 01 00 00 00 01 00 00 00 02 00 00 00 02 00 00 00 01 00 00 00 02 00 00 00 19 00 00 00 06 00 00 00 0d 00 00 00}  //weight: 3, accuracy: High
+        $x_1_3 = "SWEETEST.dll" ascii //weight: 1
+        $x_1_4 = "WHORE" ascii //weight: 1
+        $x_1_5 = "LAUNCH" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Injector_RE_2147979963_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Injector.RE!MTB"
+        threat_id = "2147979963"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Injector"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "9"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = "$a0e26ed3-92d1-44b0-a31e-55ccf748b3ca" ascii //weight: 3
+        $x_3_2 = {00 00 00 00 02 00 40 01 57 fd 02 fc 09 0e 00 00 00 fa 25 33 00 16 00 00 02 00 00 00 38 00 00 00 1b 00 00 00 64 00 00 00 80 00 00 00 da 00 00 00 48 00 00 00 15 00 00 00 1a 00 00 00 02 00 00 00 01 00 00 00 02 00 00 00 1b 00 00 00 01 00 00 00 01 00 00 00 02 00 00 00 02 00 00 00 0a 00 00 00 0c 00 00 00 02 00 00 00 02 00 00 00 18 00 00 00 06 00 00 00 0f 00 00 00 d9 ee 87 b6}  //weight: 3, accuracy: High
+        $x_1_3 = "GHOSTED" ascii //weight: 1
+        $x_1_4 = "EXECUTE" ascii //weight: 1
+        $x_1_5 = "LAUNCH" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

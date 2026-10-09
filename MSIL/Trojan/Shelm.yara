@@ -219,27 +219,6 @@ rule Trojan_MSIL_Shelm_SPVB_2147903575_0
         (all of ($x*))
 }
 
-rule Trojan_MSIL_Shelm_HXAA_2147905243_0
-{
-    meta:
-        author = "defender2yara"
-        detection_name = "Trojan:MSIL/Shelm.HXAA!MTB"
-        threat_id = "2147905243"
-        type = "Trojan"
-        platform = "MSIL: .NET intermediate language scripts"
-        family = "Shelm"
-        severity = "Critical"
-        info = "MTB: Microsoft Threat Behavior"
-        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
-        threshold = "5"
-        strings_accuracy = "Low"
-    strings:
-        $x_5_1 = {0a 00 06 04 6f ?? 00 00 0a 00 06 06 6f ?? 00 00 0a 06 6f ?? 00 00 0a 6f ?? 00 00 0a 0b 73 ?? 00 00 0a 0c 00 08 07 17 73 ?? 00 00 0a 0d 00 09 02 16 02 8e 69 6f ?? 00 00 0a 00 00 de 0b}  //weight: 5, accuracy: Low
-    condition:
-        (filesize < 20MB) and
-        (all of ($x*))
-}
-
 rule Trojan_MSIL_Shelm_SPPX_2147905416_0
 {
     meta:

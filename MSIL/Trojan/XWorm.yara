@@ -3478,6 +3478,27 @@ rule Trojan_MSIL_XWorm_AH_2147954441_1
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {11 0c 11 0d 6f ?? 00 00 0a 13 0e 11 06 11 0b 12 0e 28 ?? 00 00 0a 9c 11 0b 17 58 11 05 fe 04 13 10 11 10 2c 0e 11 06 11 0b 17 58 12 0e 28 ?? 00 00 0a 9c 11 0b 18 58 11 05 fe 04 13 11 11 11 2c 0e 11 06 11 0b 18 58 12 0e}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_XWorm_AH_2147954441_2
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/XWorm.AH!MTB"
+        threat_id = "2147954441"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "XWorm"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "12"
         strings_accuracy = "High"
     strings:
@@ -6744,6 +6765,31 @@ rule Trojan_MSIL_XWorm_CC_2147978879_0
         $x_2_2 = {16 0b 2b 13 06 07 02 07 91 03 07 03 8e 69 5d 91 61 d2 9c 07 17 58 0b 07 02 8e 69 32 e7}  //weight: 2, accuracy: High
         $x_1_3 = "FromBase64String" ascii //weight: 1
         $x_1_4 = "CreateDecryptor" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_XWorm_AL_2147979979_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/XWorm.AL!MTB"
+        threat_id = "2147979979"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "XWorm"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "Low"
+    strings:
+        $x_6_1 = {7e 0a 00 00 04 a2 09 74 0c 00 00 1b 1f 0e 28 ?? 00 00 06 a2 17 13 05 38 ?? fd ff ff 09}  //weight: 6, accuracy: Low
+        $x_1_2 = "set_UseShellExecute" ascii //weight: 1
+        $x_1_3 = "DownloadFile" ascii //weight: 1
+        $x_1_4 = "GZipStream" ascii //weight: 1
+        $x_1_5 = "GetTempPath" ascii //weight: 1
     condition:
         (filesize < 20MB) and
         (all of ($x*))

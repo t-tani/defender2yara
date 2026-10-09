@@ -507,12 +507,15 @@ rule TrojanDownloader_MSIL_AsyncRAT_BM_2147841129_0
         threshold = "5"
         strings_accuracy = "High"
     strings:
-        $x_2_1 = "powershell" wide //weight: 2
-        $x_2_2 = "(New-Object Net.WebClient).DownloadString(" wide //weight: 2
-        $x_1_3 = "-nop -exec bypass -c" wide //weight: 1
-        $x_1_4 = "-WindowStyle hidden" wide //weight: 1
+        $n_100_1 = "TacticalDetector" ascii //weight: -100
+        $n_100_2 = "Microsoft.Cyber.TacticalDetection" ascii //weight: -100
+        $x_2_3 = "powershell" wide //weight: 2
+        $x_2_4 = "(New-Object Net.WebClient).DownloadString(" wide //weight: 2
+        $x_1_5 = "-nop -exec bypass -c" wide //weight: 1
+        $x_1_6 = "-WindowStyle hidden" wide //weight: 1
     condition:
         (filesize < 20MB) and
+        (not (any of ($n*))) and
         (
             ((2 of ($x_2_*) and 1 of ($x_1_*))) or
             (all of ($x*))

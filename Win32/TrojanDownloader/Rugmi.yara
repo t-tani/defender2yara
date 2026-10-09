@@ -736,3 +736,73 @@ rule TrojanDownloader_Win32_Rugmi_KK_2147963648_0
         (all of ($x*))
 }
 
+rule TrojanDownloader_Win32_Rugmi_MK_2147979926_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:Win32/Rugmi.MK!MTB"
+        threat_id = "2147979926"
+        type = "TrojanDownloader"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Rugmi"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "35"
+        strings_accuracy = "High"
+    strings:
+        $x_20_1 = {8b 54 bc 1c 8b c2 6a 08 59 2b cf 83 e1 1f d3 e8 8b cf 83 e1 1f d3 e2 33 c2 33 d8 47 3b fd}  //weight: 20, accuracy: High
+        $x_15_2 = {31 54 24 10 8b 44 24 10 33 84 24 ac 01 00 00 33 84 24 38 03 00 00 33 44 24 1c 8b 54 24 14 42}  //weight: 15, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule TrojanDownloader_Win32_Rugmi_MKA_2147979927_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:Win32/Rugmi.MKA!MTB"
+        threat_id = "2147979927"
+        type = "TrojanDownloader"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Rugmi"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "35"
+        strings_accuracy = "High"
+    strings:
+        $x_20_1 = {8b c3 33 c9 c1 e0 0d 33 d8 8b c3 c1 e8 11 33 d8 8b c3 c1 e0 05 33 d8 33 d2}  //weight: 20, accuracy: High
+        $x_15_2 = {8b c3 c1 e0 09 33 d8 8d 04 1a 89 44 8c 28 8d 92 67 45 23 01 41 81 f9 00 01 00 00}  //weight: 15, accuracy: High
+        $x_15_3 = {8b c3 c1 e0 09 33 d8 8b c3 c1 e8 0b 33 d8 8d 04 1a 89 44 8c 24 8d 92 67 45 23 01 41 81 f9 00 01 00 00}  //weight: 15, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_20_*) and 1 of ($x_15_*))) or
+            (all of ($x*))
+        )
+}
+
+rule TrojanDownloader_Win32_Rugmi_MKB_2147979928_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "TrojanDownloader:Win32/Rugmi.MKB!MTB"
+        threat_id = "2147979928"
+        type = "TrojanDownloader"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Rugmi"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "35"
+        strings_accuracy = "High"
+    strings:
+        $x_20_1 = {8b c2 c1 e0 0d 33 d0 8b c2 c1 e8 11 33 d0 8b c2 c1 e0 05 33 d0 8b c2 c1 e8 04 83 e0 3f 89 03 8d 5b 04 83 e9 01}  //weight: 20, accuracy: High
+        $x_15_2 = {8b c2 c1 e0 0d 33 d0 8b c2 c1 e8 11 33 d0 8b c2 c1 e0 05 33 d0 8b ca 83 e1 07 83 c1 01}  //weight: 15, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

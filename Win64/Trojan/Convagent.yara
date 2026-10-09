@@ -1101,6 +1101,29 @@ rule Trojan_Win64_Convagent_KK_2147957569_3
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "35"
+        strings_accuracy = "High"
+    strings:
+        $x_20_1 = {8b 51 04 44 8b 51 38 48 83 c1 04 89 d3 41 89 d1 c1 ea 03 c1 cb 07 41 c1 c1 0e 41 31 d9 44 89 d3 44 31 ca 44 8b 49 20 44 03 49 fc c1 c3 0f 44 01 ca 45 89 d1 41 c1 ea 0a 41 c1 c1 0d 41 31 d9 45 31 d1 44 01 ca 89 51 3c 48 3b 4c 24 38}  //weight: 20, accuracy: High
+        $x_10_2 = "58efc16570945fde8369c72760bbfd74" wide //weight: 10
+        $x_5_3 = "/push_file/%d" ascii //weight: 5
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_Convagent_KK_2147957569_4
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Convagent.KK!MTB"
+        threat_id = "2147957569"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Convagent"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "10"
         strings_accuracy = "High"
     strings:
@@ -1113,7 +1136,7 @@ rule Trojan_Win64_Convagent_KK_2147957569_3
         (all of ($x*))
 }
 
-rule Trojan_Win64_Convagent_KK_2147957569_4
+rule Trojan_Win64_Convagent_KK_2147957569_5
 {
     meta:
         author = "defender2yara"

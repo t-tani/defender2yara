@@ -208,3 +208,50 @@ rule Trojan_Win64_Greedy_AB_2147977709_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Greedy_A_2147979855_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Greedy.A!MTB"
+        threat_id = "2147979855"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Greedy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "100"
+        strings_accuracy = "High"
+    strings:
+        $x_40_1 = "ShelbyProxy SERVICE started" ascii //weight: 40
+        $x_30_2 = "Global\\TestProxty" ascii //weight: 30
+        $x_20_3 = "] mitmdump not running, restarting..." ascii //weight: 20
+        $x_10_4 = "[+] mitmdump and all children stopped" ascii //weight: 10
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_Greedy_B_2147979957_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Greedy.B!MTB"
+        threat_id = "2147979957"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Greedy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "60"
+        strings_accuracy = "Low"
+    strings:
+        $x_30_1 = {33 c9 0f 11 45 d7 c7 45 b7 ?? 00 00 00 c7 45 c7 ?? 00 00 00 c7 45 d7 ?? 00 00 00 4c 89 65 97 48 89 45 a7 c7 45 af ?? 00 00 00 ff 15}  //weight: 30, accuracy: Low
+        $x_20_2 = "ShelbyProxy SERVICE started" ascii //weight: 20
+        $x_10_3 = "Global\\TestProxty" ascii //weight: 10
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -607,6 +607,28 @@ rule Trojan_Win64_Dacic_C_2147945427_0
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "50"
+        strings_accuracy = "Low"
+    strings:
+        $x_30_1 = {8b 4d 10 33 ca 89 4d 18 8b 4d 18 8b 45 10 c1 e9 ?? 03 c1 89 45 10 8b 4d 10 8b 45 18 3b c8 75}  //weight: 30, accuracy: Low
+        $x_20_2 = {8b 44 24 70 c1 e9 ?? 33 c1 89 44 24 70 8b ?? ?? ?? ?? 00 8b 44 24 70 3b c1 75}  //weight: 20, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_Dacic_C_2147945427_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Dacic.C!MTB"
+        threat_id = "2147945427"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Dacic"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "14"
         strings_accuracy = "High"
     strings:

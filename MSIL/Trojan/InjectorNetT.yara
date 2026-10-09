@@ -293,3 +293,25 @@ rule Trojan_MSIL_InjectorNetT_CG_2147978981_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_InjectorNetT_CO_2147979975_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/InjectorNetT.CO!MTB"
+        threat_id = "2147979975"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "InjectorNetT"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "Low"
+    strings:
+        $x_5_1 = {0a 0d 09 14 fe 03 13 06 11 06 2c 49 09 07 6f ?? ?? 00 0a 00 09 07 6f ?? ?? 00 0a 00 09 6f ?? ?? 00 0a 13 07 73 ?? ?? 00 0a 13 04 11 04 11 07 17 73 ?? ?? 00 0a 13 05 11 05 02 16 02 8e 69 6f ?? ?? 00 0a 00 11 05 6f ?? ?? 00 0a 00 11 04 6f ?? ?? 00 0a 0c 00 00 de 39}  //weight: 5, accuracy: Low
+        $x_1_2 = "CreateDecryptor" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

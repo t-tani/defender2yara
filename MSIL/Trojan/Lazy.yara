@@ -4679,3 +4679,28 @@ rule Trojan_MSIL_Lazy_SDQ_2147979613_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Lazy_MK_2147979925_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Lazy.MK!MTB"
+        threat_id = "2147979925"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Lazy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "35"
+        strings_accuracy = "High"
+    strings:
+        $x_15_1 = "[DEBUG C#] Impersonating LSASS. Attempting Unprotect (Machine)..." wide //weight: 15
+        $x_10_2 = "[DEBUG C#] Found lsass process." wide //weight: 10
+        $x_5_3 = "[DEBUG C#] DuplicateTokenEx failed." wide //weight: 5
+        $x_3_4 = "[DEBUG C#] OpenProcessToken failed." wide //weight: 3
+        $x_2_5 = "[DEBUG C#] Fallback: Attempting Unprotect (User)..." wide //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

@@ -393,3 +393,27 @@ rule Trojan_Win64_Disco_AH_2147977036_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Disco_B_2147980030_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Disco.B!MTB"
+        threat_id = "2147980030"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Disco"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "100"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = "ChickenStealer/1.0" ascii //weight: 10
+        $x_20_2 = "ChickenStealer Log File" ascii //weight: 20
+        $x_30_3 = "ChickenStealer launched on" ascii //weight: 30
+        $x_40_4 = "CHICKEN STEALER REPORT " ascii //weight: 40
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

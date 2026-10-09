@@ -1897,6 +1897,32 @@ rule Trojan_MSIL_AsyncRat_CMO_2147846985_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AsyncRat_C_2147847020_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AsyncRat.C!MTB"
+        threat_id = "2147847020"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AsyncRat"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "24"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {0a 00 02 06 28 ?? ?? ?? ?? 00 06 6f ?? 00 00 0a d4 8d ?? 00 00 01 0b 06 16 6a 6f ?? 00 00 0a 00 06 07 16 06 6f ?? 00 00 0a 69 6f ?? 00 00 0a 26 07 28 ?? ?? ?? ?? 0c de 0b 06 2c 07 06}  //weight: 10, accuracy: Low
+        $x_10_2 = {41 00 64 00 6d 00 69 00 6e 00 00 09 74 00 72 00 75 00 65 00 00 17 50 00 65 00 72 00 66 00 6f 00 72 00 6d 00 61 00 6e 00 63 00 65 00 00 13 41 00 6e 00 74 00 69 00 76 00 69 00 72 00 75 00 73 00 00 13 49 00 6e 00 73 00 74 00 61 00 6c 00 6c 00 65 00 64}  //weight: 10, accuracy: High
+        $x_1_3 = "get_ProcessorCount" ascii //weight: 1
+        $x_1_4 = "Select * from AntivirusProduct" ascii //weight: 1
+        $x_1_5 = "displayName" ascii //weight: 1
+        $x_1_6 = "send chunks" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_AsyncRat_RJ_2147847379_0
 {
     meta:

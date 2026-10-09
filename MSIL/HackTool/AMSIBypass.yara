@@ -20,3 +20,28 @@ rule HackTool_MSIL_AMSIBypass_SX_2147969229_0
         (all of ($x*))
 }
 
+rule HackTool_MSIL_AMSIBypass_V_2147979911_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "HackTool:MSIL/AMSIBypass.V!MTB"
+        threat_id = "2147979911"
+        type = "HackTool"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AMSIBypass"
+        severity = "High"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "AMSI Patch" wide //weight: 1
+        $x_1_2 = "ForgedcanBypassLoader.pdb" ascii //weight: 1
+        $x_1_3 = "download remote payload" wide //weight: 1
+        $x_1_4 = "antivirus bypass" ascii //weight: 1
+        $x_1_5 = "Executing JavaScript RAT Payload in Memory" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

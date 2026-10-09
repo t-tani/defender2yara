@@ -1189,6 +1189,31 @@ rule Trojan_MSIL_Keylogger_KK_2147965819_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Keylogger_KK_2147965819_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Keylogger.KK!MTB"
+        threat_id = "2147965819"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Keylogger"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "15"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = "3KKLLoogs.KKLLoogs+VB$StateMachine_82_SendToTelegram" ascii //weight: 5
+        $x_4_2 = "SendStatusToTelegram" wide //weight: 4
+        $x_3_3 = "Global\\WinSysSvc_Instance" wide //weight: 3
+        $x_2_4 = "ID,Dt,Hr,PC,Prc,Wnd,Key" wide //weight: 2
+        $x_1_5 = "chat_id" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_Keylogger_SX_2147966188_0
 {
     meta:

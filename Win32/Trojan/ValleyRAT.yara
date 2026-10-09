@@ -443,3 +443,47 @@ rule Trojan_Win32_ValleyRAT_G_2147979639_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_ValleyRAT_GA_2147979873_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ValleyRAT.GA!MTB"
+        threat_id = "2147979873"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ValleyRAT"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "High"
+    strings:
+        $x_4_1 = {7c 00 62 00 64 00 3a 00 30 00 00 00 00 00 00 00 7c 00 6b 00 6c 00 3a 00 30 00 00 00 00 00 00 00 7c 00 73 00 68 00 3a 00 30 00 00 00 00 00 00 00 7c 00 64 00 6c 00 3a 00 30 00 00 00 00 00 00 00 7c 00 6c 00 6c 00 3a}  //weight: 4, accuracy: High
+        $x_3_2 = {7c 00 6f 00 33 00 3a 00 00 00 00 00 00 00 00 00 7c 00 70 00 33 00 3a 00 00 00 00 00 00 00 00 00 7c 00 74 00 32 00 3a 00 00 00 00 00 00 00 00 00 7c 00 6f 00 32 00 3a 00 00 00 00 00 00 00 00 00 7c 00 70 00 32 00 3a}  //weight: 3, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win32_ValleyRAT_A_2147979950_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ValleyRAT.A!MTB"
+        threat_id = "2147979950"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ValleyRAT"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "30"
+        strings_accuracy = "Low"
+    strings:
+        $x_20_1 = {6a 01 6a 00 ff 15 ?? ?? ?? ?? 89 45 e0 c7 45 dc 00 00 00 00 c7 45 d4 ?? ?? ?? ?? c7 45 ec 00 00 00 00 89 75 e8 c7 45 fc 00 00 00 00 8d 4d f0 8b 03 6a 02 51 8b cb 66 c7 45 f0 04 00 ff 50 0c 8b 03 8b cb ff 50 18 6a ff ff 75 ec ff 15}  //weight: 20, accuracy: Low
+        $x_10_2 = {83 c4 18 a3 68 9e 01 10 80 3d 64 9e 01 10 00 0f 94 c0 a2 64 9e 01 10 a1 6c 9e 01 10 40 a3 6c 9e 01 10 3d c8 00 00 00 75 3c}  //weight: 10, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

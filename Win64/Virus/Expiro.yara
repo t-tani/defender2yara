@@ -637,3 +637,25 @@ rule Virus_Win64_Expiro_BAA_2147972428_0
         (all of ($x*))
 }
 
+rule Virus_Win64_Expiro_BA_2147979936_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Virus:Win64/Expiro.BA!MTB"
+        threat_id = "2147979936"
+        type = "Virus"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Expiro"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = {e8 d9 00 00 00 48 8d 58 fb 51 52 41 50 41 51 48 83 ec 28 48 c7 c0 60 00 00 00 65 48 8b 38 48 8b 7f 18 48 8b 7f 20 48 8b 7f 20 48 8b 83 13 01 00 00 48 01 f8 ff d0 48 89 83 13 01 00 00 48 8b 83 1b 01 00 00 48 01 f8 ff d0 48 89 83 1b 01 00 00 48 8b 8b eb 00 00 00 48}  //weight: 5, accuracy: High
+        $x_5_2 = {e0 d9 00 68 03 00 00 18 a1 20 a1 28 a1 30 a1 38 a1 48 a1 58 a1 60 a1 68 a1 70 a1 78 a1 80 a1 88 a1 90 a1 98 a1 a0 a1 a8 a1 b0 a1 b8 a1 c0 a1 c8 a1 d0 a1 d8 a1 e0 a1 e8 a1 f0 a1 f8 a1 00 a2 08 a2 10 a2 18 a2 20 a2 28 a2 30 a2}  //weight: 5, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (1 of ($x*))
+}
+

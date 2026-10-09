@@ -153,6 +153,28 @@ rule Ransom_Win64_Filecoder_SB_2147773478_0
         (5 of ($x*))
 }
 
+rule Ransom_Win64_Filecoder_A_2147795876_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Ransom:Win64/Filecoder.A!MTB"
+        threat_id = "2147795876"
+        type = "Ransom"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Filecoder"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "20"
+        strings_accuracy = "Low"
+    strings:
+        $x_10_1 = {48 b9 2e 00 65 00 6e 00 63 00 48 89 0c 78 66 c7 44 78 08 00 00 48 83 bd 18 40 00 00 08 0f 83 0d ff ff ff}  //weight: 10, accuracy: High
+        $x_10_2 = {45 31 c9 e8 ?? ?? ?? ?? 85 c0 78 50 c7 85 2c 40 00 00 00 00 00 00 44 8b 85 34 40 00 00 48 c7 44 24 20 00 00 00 00 4c 89 f1 4c 89 ea 4c 8d 8d 2c 40 00 00 ff 15}  //weight: 10, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Ransom_Win64_Filecoder_PDT_2147807965_0
 {
     meta:

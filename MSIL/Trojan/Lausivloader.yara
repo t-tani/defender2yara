@@ -472,3 +472,47 @@ rule Trojan_MSIL_Lausivloader_EZ_2147979762_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_Lausivloader_EZ_2147979762_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Lausivloader.EZ!MTB"
+        threat_id = "2147979762"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Lausivloader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "33"
+        strings_accuracy = "High"
+    strings:
+        $x_4_1 = "ChaveSecretaGlobal" ascii //weight: 4
+        $x_2_2 = "DescriptografarEntradas" ascii //weight: 2
+        $x_2_3 = "ConfiguracaoDescriptografia" ascii //weight: 2
+        $x_2_4 = "ModernInjection" ascii //weight: 2
+        $x_2_5 = "CreateSuspendedProcess" ascii //weight: 2
+        $x_2_6 = "ProcessLoaderModern" ascii //weight: 2
+        $x_2_7 = "Win32.RMP" ascii //weight: 2
+        $x_1_8 = "System.Net.Http" ascii //weight: 1
+        $x_1_9 = "FromBase64String" ascii //weight: 1
+        $x_1_10 = "CreateDecryptor" ascii //weight: 1
+        $x_1_11 = "RegisterTaskDefinition" ascii //weight: 1
+        $x_1_12 = "TASK_LOGON_INTERACTIVE_TOKEN_OR_PASSWORD" ascii //weight: 1
+        $x_1_13 = "get_UserName" ascii //weight: 1
+        $x_1_14 = "VirtualAllocEx" ascii //weight: 1
+        $x_1_15 = "Protect" ascii //weight: 1
+        $x_1_16 = "WriteProcessMemory" ascii //weight: 1
+        $x_1_17 = "ZwUnmapViewOfSection" ascii //weight: 1
+        $x_1_18 = "SetThreadContext" ascii //weight: 1
+        $x_1_19 = "CreateProcessW" ascii //weight: 1
+        $x_1_20 = "_TASK_LOGON_TYPE" ascii //weight: 1
+        $x_1_21 = "GetThreadContext" ascii //weight: 1
+        $x_1_22 = "ResumeThread" ascii //weight: 1
+        $x_1_23 = "CloseHandle" ascii //weight: 1
+        $x_1_24 = "Microsoft.Win32.TaskScheduler.dll" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

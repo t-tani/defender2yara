@@ -70,3 +70,33 @@ rule Trojan_Win64_DiscordRAT_KK_2147979199_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_DiscordRAT_C_2147980009_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/DiscordRAT.C!MTB"
+        threat_id = "2147980009"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "DiscordRAT"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "40"
+        strings_accuracy = "High"
+    strings:
+        $x_5_1 = "[rat-injected]" ascii //weight: 5
+        $x_5_2 = "**Screenshot**" ascii //weight: 5
+        $x_5_3 = "**Webcam**" ascii //weight: 5
+        $x_5_4 = "**Wi-Fi" ascii //weight: 5
+        $x_5_5 = "Login Data" ascii //weight: 5
+        $x_5_6 = "Total Credentials:" ascii //weight: 5
+        $x_5_7 = "SELECT host_key, name, path, encrypted_value FROM cookies" ascii //weight: 5
+        $x_5_8 = "HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0" ascii //weight: 5
+        $x_5_9 = "HARDWARE\\DESCRIPTION\\System\\BIOS" ascii //weight: 5
+        $x_5_10 = "RatBoundary" ascii //weight: 5
+    condition:
+        (filesize < 20MB) and
+        (8 of ($x*))
+}
+

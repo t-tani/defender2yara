@@ -2479,6 +2479,28 @@ rule Trojan_Win64_Zusy_KK_2147946085_6
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "30"
+        strings_accuracy = "High"
+    strings:
+        $x_20_1 = {48 89 c1 83 e1 0f 41 0f b6 0c 09 41 32 0c 02 41 88 0c 00 48 83 c0 01 4c 39 d8}  //weight: 20, accuracy: High
+        $x_10_2 = {41 8d 52 01 44 0f b6 d2 0f b6 d2 0f b6 04 14 42 8d 0c 08 44 0f b6 c9 0f b6 c9 44 0f b6 1c 0c 44 88 1c 14 88 04 0c 02 04 14 0f b6 c0 0f b6 04 04 41 30 00 49 83 c0 01 4c 39 c3}  //weight: 10, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_Zusy_KK_2147946085_7
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Zusy.KK!MTB"
+        threat_id = "2147946085"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Zusy"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "15"
         strings_accuracy = "High"
     strings:
@@ -2492,7 +2514,7 @@ rule Trojan_Win64_Zusy_KK_2147946085_6
         (all of ($x*))
 }
 
-rule Trojan_Win64_Zusy_KK_2147946085_7
+rule Trojan_Win64_Zusy_KK_2147946085_8
 {
     meta:
         author = "defender2yara"
@@ -2515,7 +2537,7 @@ rule Trojan_Win64_Zusy_KK_2147946085_7
         (all of ($x*))
 }
 
-rule Trojan_Win64_Zusy_KK_2147946085_8
+rule Trojan_Win64_Zusy_KK_2147946085_9
 {
     meta:
         author = "defender2yara"
@@ -2537,7 +2559,7 @@ rule Trojan_Win64_Zusy_KK_2147946085_8
         (all of ($x*))
 }
 
-rule Trojan_Win64_Zusy_KK_2147946085_9
+rule Trojan_Win64_Zusy_KK_2147946085_10
 {
     meta:
         author = "defender2yara"
@@ -2560,7 +2582,7 @@ rule Trojan_Win64_Zusy_KK_2147946085_9
         (all of ($x*))
 }
 
-rule Trojan_Win64_Zusy_KK_2147946085_10
+rule Trojan_Win64_Zusy_KK_2147946085_11
 {
     meta:
         author = "defender2yara"
@@ -2589,7 +2611,7 @@ rule Trojan_Win64_Zusy_KK_2147946085_10
         )
 }
 
-rule Trojan_Win64_Zusy_KK_2147946085_11
+rule Trojan_Win64_Zusy_KK_2147946085_12
 {
     meta:
         author = "defender2yara"

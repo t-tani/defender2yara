@@ -8716,6 +8716,30 @@ rule Trojan_MSIL_Heracles_KK_2147956149_1
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "26"
+        strings_accuracy = "High"
+    strings:
+        $x_20_1 = {11 0c 11 0d 11 0b 11 0d 91 11 09 11 0d 91 61 d2 9c 11 0d 17 58 13 0d 11 0d 11 0b 8e 69 2f 08 11 0d 11 09 8e 69 32 d9}  //weight: 20, accuracy: High
+        $x_3_2 = "GetChromeV20MasterKey" ascii //weight: 3
+        $x_2_3 = "ImpersonateLsass" ascii //weight: 2
+        $x_1_4 = "pa$$words.txt" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Heracles_KK_2147956149_2
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Heracles.KK!MTB"
+        threat_id = "2147956149"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Heracles"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "10"
         strings_accuracy = "High"
     strings:
@@ -11808,6 +11832,30 @@ rule Trojan_MSIL_Heracles_C_2147978925_0
         $x_20_1 = {25 18 02 28 16 00 00 06 8c 2a 00 00 01 a2 25 19 07 a2 28 2e 00 00 06 28 28 00 00 06 dd 0c 00 00 00}  //weight: 20, accuracy: High
         $x_5_2 = "ReverseProxyR" wide //weight: 5
         $x_5_3 = "ConnectResponse" wide //weight: 5
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_Heracles_AC_2147979857_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/Heracles.AC!MTB"
+        threat_id = "2147979857"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "Heracles"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "8"
+        strings_accuracy = "High"
+    strings:
+        $x_3_1 = {11 0d 91 61 d2 9c 11 0d 17 58 13 0d}  //weight: 3, accuracy: High
+        $x_3_2 = "words.txt" wide //weight: 3
+        $x_1_3 = "kies.txt" wide //weight: 1
+        $x_1_4 = "History.txt" wide //weight: 1
     condition:
         (filesize < 20MB) and
         (all of ($x*))

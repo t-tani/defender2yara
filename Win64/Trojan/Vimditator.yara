@@ -108,3 +108,25 @@ rule Trojan_Win64_Vimditator_LR_2147978726_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Vimditator_KK_2147979924_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Vimditator.KK!MTB"
+        threat_id = "2147979924"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Vimditator"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "30"
+        strings_accuracy = "High"
+    strings:
+        $x_20_1 = {44 0f b6 0c 02 41 83 f1 5c 44 88 0c 01 48 83 c0 01 49 39 c2}  //weight: 20, accuracy: High
+        $x_10_2 = {48 83 ea 01 49 89 d0 41 83 e0 1f 47 0f b6 04 02 44 32 04 11 41 31 c0 44 88 04 11 44 8d 0c 40 42 8d 44 88 07 41 31 c0 48 89 d0 48 c1 e8 03 83 e0 3f 44 31 c0 48 85 d2}  //weight: 10, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
