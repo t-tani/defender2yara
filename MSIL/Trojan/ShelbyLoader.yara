@@ -42,3 +42,25 @@ rule Trojan_MSIL_ShelbyLoader_AB_2147980025_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_ShelbyLoader_AC_2147980058_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/ShelbyLoader.AC!MTB"
+        threat_id = "2147980058"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "ShelbyLoader"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {25 20 00 00 00 00 28 ?? 00 00 06 a2 20 01 00 00 00 6f ?? 00 00 0a fe 0e 01 00 fe 0c 01 00 20 01 00 00 00 9a 28 ?? 00 00 0a fe 0e 02 00 fe 0c 01 00 20 01 00 00 00 9a 28 ?? 00 00 0a fe 0e 03 00 7e ?? 00 00 04 7e ?? 00 00 04 7e ?? 00 00 04 20 05 00 00 00 8d ?? 00 00 01 25 20 00 00 00 00 7e ?? 00 00 04 a2 25 20 01 00 00 00 28}  //weight: 2, accuracy: Low
+        $x_1_2 = {14 14 20 00 00 00 00 73 ?? 00 00 0a fe 0e 01 00 fe 0c 01 00 28 ?? 00 00 0a fe 0e 02 00 fe 0c 02 00 6f ?? 00 00 0a 28 ?? 00 00 0a 28 ?? 00 00 0a fe 0e 03 00 fe 0c 03 00 fe 0c 02 00 6f ?? 00 00 0a fe 0c 03 00 fe 09 00 00 6f}  //weight: 1, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

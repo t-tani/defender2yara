@@ -532,6 +532,30 @@ rule Trojan_Win32_ValleyRat_CQ_2147964038_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_ValleyRat_CQ_2147964038_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ValleyRat.CQ!MTB"
+        threat_id = "2147964038"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ValleyRat"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {0f 10 04 01 0f 28 ca 0f 57 c8 0f 11 0c 01 0f 10 80 ?? ?? ?? ?? 0f 28 ca 0f 57 c8 0f 11 88 ?? ?? ?? ?? 0f 10 04 02 0f 28 ca 0f 57 c8 0f 11 0c 02 0f 10 04 06 0f 28 ca 0f 57 c8 0f 11 0c 06 83 c0 40 3d 80 09 00 00 72 ?? 3d ?? 09 00 00 73 ?? 80 b0 40 49 42 00 be 40 3d ?? 09 00 00 72}  //weight: 4, accuracy: Low
+        $x_1_2 = "\\Launche" ascii //weight: 1
+        $x_1_3 = "/create /tn \"\\Microsoft\\Windows\\AppID\\SystemUpdate\" /sc onlogon" ascii //weight: 1
+        $x_1_4 = "/daemon" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win32_ValleyRat_ARP_2147964707_0
 {
     meta:
