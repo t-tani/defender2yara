@@ -51,3 +51,28 @@ rule HackTool_Win64_Injector_LRC_2147974596_0
         (all of ($x*))
 }
 
+rule HackTool_Win64_Injector_MK_2147980075_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "HackTool:Win64/Injector.MK!MTB"
+        threat_id = "2147980075"
+        type = "HackTool"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Injector"
+        severity = "High"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "35"
+        strings_accuracy = "High"
+    strings:
+        $x_10_1 = "[agent] after inject" ascii //weight: 10
+        $x_5_2 = "[self_inject] mutex created" ascii //weight: 5
+        $x_3_3 = "[self_inject] inject OK" ascii //weight: 3
+        $x_15_4 = "keylog started" ascii //weight: 15
+        $x_2_5 = "cliprep started" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

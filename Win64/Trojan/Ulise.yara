@@ -688,3 +688,28 @@ rule Trojan_Win64_Ulise_LR_2147978898_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Ulise_MK_2147980074_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Ulise.MK!MTB"
+        threat_id = "2147980074"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Ulise"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR"
+        threshold = "35"
+        strings_accuracy = "High"
+    strings:
+        $x_15_1 = "Drive.SetWindowsHookExW" wide //weight: 15
+        $x_10_2 = "RasDialW.PostPipeMessage" wide //weight: 10
+        $x_5_3 = "EndDoc.PostPipeMessage" wide //weight: 5
+        $x_3_4 = "EntryPointProc.ReadData" wide //weight: 3
+        $x_2_5 = "StartDllRec" wide //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
