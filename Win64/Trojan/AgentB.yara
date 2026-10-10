@@ -293,3 +293,28 @@ rule Trojan_Win64_AgentB_A_2147979779_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_AgentB_B_2147980109_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/AgentB.B!MTB"
+        threat_id = "2147980109"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "AgentB"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "150"
+        strings_accuracy = "High"
+    strings:
+        $x_50_1 = "[-] Map worker param into shadow fixed VA FAILED" ascii //weight: 50
+        $x_40_2 = "[+] Shared comm ring + m%d buffers mapped into worker" ascii //weight: 40
+        $x_30_3 = "[-] Shared regions for m%d not ready (spawn aborted, will retry)" ascii //weight: 30
+        $x_20_4 = "[+] Shadow PID=%u assigned to Job (KILL_ON_JOB_CLOSE)" ascii //weight: 20
+        $x_10_5 = "[+] Worker mode (fixed-addr param hit): loading m2 shell" ascii //weight: 10
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

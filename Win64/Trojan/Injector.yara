@@ -893,6 +893,32 @@ rule Trojan_Win64_Injector_LR_2147972219_2
         severity = "Critical"
         info = "MTB: Microsoft Threat Behavior"
         signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "21"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "[+] DLL injected successfully! Remote HMODULE=0x%p" ascii //weight: 1
+        $x_2_2 = "[+] DLL: %s injected into PID %lu" ascii //weight: 2
+        $x_3_3 = "  CRACKED BY MAGIC INJECTOR v1" ascii //weight: 3
+        $x_4_4 = "[+]   2. Spoof success responses if auth fails" ascii //weight: 4
+        $x_5_5 = "[+]   3. Patch auth conditional jumps in .text" ascii //weight: 5
+        $x_6_6 = "[+]   4. Log all crypto operations (check the log)" ascii //weight: 6
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_Win64_Injector_LR_2147972219_3
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Injector.LR!MTB"
+        threat_id = "2147972219"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Injector"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
         threshold = "28"
         strings_accuracy = "High"
     strings:
@@ -908,7 +934,7 @@ rule Trojan_Win64_Injector_LR_2147972219_2
         (all of ($x*))
 }
 
-rule Trojan_Win64_Injector_LR_2147972219_3
+rule Trojan_Win64_Injector_LR_2147972219_4
 {
     meta:
         author = "defender2yara"

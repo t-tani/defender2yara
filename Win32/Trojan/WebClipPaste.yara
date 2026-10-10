@@ -153,3 +153,25 @@ rule Trojan_Win32_WebClipPaste_B_2147977448_0
         )
 }
 
+rule Trojan_Win32_WebClipPaste_C_2147980105_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/WebClipPaste.C"
+        threat_id = "2147980105"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "WebClipPaste"
+        severity = "Critical"
+        signature_type = "SIGNATURE_TYPE_CMDHSTR_EXT"
+        threshold = "100"
+        strings_accuracy = "High"
+    strings:
+        $x_100_1 = {70 00 6f 00 77 00 65 00 72 00 73 00 68 00 65 00 6c 00 6c 00 2e 00 65 00 78 00 65 00 00 00}  //weight: 100, accuracy: High
+        $x_100_2 = {70 00 77 00 73 00 68 00 2e 00 65 00 78 00 65 00 00 00}  //weight: 100, accuracy: High
+        $x_100_3 = {63 00 6d 00 64 00 2e 00 65 00 78 00 65 00 00 00}  //weight: 100, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (1 of ($x*))
+}
+

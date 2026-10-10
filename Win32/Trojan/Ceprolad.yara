@@ -85,6 +85,7 @@ rule Trojan_Win32_Ceprolad_A_2147726914_1
         $n_50_33 = "https://bootstrap.pypa.io" wide //weight: -50
         $n_50_34 = {2f 00 61 00 72 00 74 00 69 00 [0-4] 63 00 74 00 6f 00 72 00 79 00 2f 00 70 00 ?? ?? 70 00 2f 00 67 00 69 00 74 00 63 00 65 00 72 00 74 00 73 00 2f 00}  //weight: -50, accuracy: Low
         $n_50_35 = "https://ca01b-cn-06a-nx2-mgt.jpnx/certs/certs.crl" wide //weight: -50
+        $n_50_36 = "https://download.windowsupdate.com" wide //weight: -50
     condition:
         (filesize < 20MB) and
         (not (any of ($n*))) and

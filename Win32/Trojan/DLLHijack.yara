@@ -418,3 +418,30 @@ rule Trojan_Win32_DLLHijack_MK_2147979657_1
         (all of ($x*))
 }
 
+rule Trojan_Win32_DLLHijack_DAN_2147980112_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/DLLHijack.DAN!MTB"
+        threat_id = "2147980112"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "DLLHijack"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "/cmd/backconnect_dll" ascii //weight: 1
+        $x_2_2 = "://telemetrystoreapi1.xyz/register" ascii //weight: 2
+        $x_2_3 = "://helper.labubusmarket.com/" ascii //weight: 2
+    condition:
+        (filesize < 20MB) and
+        (
+            ((1 of ($x_2_*) and 1 of ($x_1_*))) or
+            ((2 of ($x_2_*))) or
+            (all of ($x*))
+        )
+}
+

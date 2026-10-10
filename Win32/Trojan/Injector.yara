@@ -710,6 +710,28 @@ rule Trojan_Win32_Injector_A_2147740729_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Injector_A_2147740729_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Injector.A!MTB"
+        threat_id = "2147740729"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Injector"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "30"
+        strings_accuracy = "High"
+    strings:
+        $x_20_1 = {66 0f 6e cf 83 c1 10 0f 57 c8 66 0f 7e 48 e8 66 0f 6e 40 ec 66 0f 6e cf 0f 57 c8 66 0f 7e 48 ec 66 0f 6e 40 f0 66 0f 6e cf 0f 57 c8}  //weight: 20, accuracy: High
+        $x_10_2 = {8b fa 2b f8 66 0f 67 c0 66 0f 67 c0 8d 46 08 89 7d e8 0f 29 45 80 8b 7d 80}  //weight: 10, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win32_Injector_B_2147740948_0
 {
     meta:

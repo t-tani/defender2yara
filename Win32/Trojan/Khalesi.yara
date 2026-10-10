@@ -519,3 +519,29 @@ rule Trojan_Win32_Khalesi_SX_2147958667_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_Khalesi_A_2147980092_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/Khalesi.A!MTB"
+        threat_id = "2147980092"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "Khalesi"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "[-] Triage Is Present." ascii //weight: 1
+        $x_1_2 = "[-] Anyrun Is Present." ascii //weight: 1
+        $x_1_3 = "[-] Debugger Detected." ascii //weight: 1
+        $x_1_4 = "[-] WDAG Detected." ascii //weight: 1
+        $x_1_5 = "[-] Virtual Machine Detected." ascii //weight: 1
+        $x_1_6 = "[-] Falcon Sandbox Detected." ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
