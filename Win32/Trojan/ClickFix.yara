@@ -16553,3 +16553,28 @@ rule Trojan_Win32_ClickFix_AMX_2147980021_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_ClickFix_DNG_2147980100_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ClickFix.DNG!MTB"
+        threat_id = "2147980100"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ClickFix"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_CMDHSTR_EXT"
+        threshold = "5"
+        strings_accuracy = "Low"
+    strings:
+        $x_1_1 = "powershell" wide //weight: 1
+        $x_1_2 = "[array]::Reverse" wide //weight: 1
+        $x_1_3 = ".DownloadString" wide //weight: 1
+        $x_1_4 = {5b 00 63 00 68 00 61 00 72 00 5d 00 [0-10] 2b 00 5b 00 63 00 68 00 61 00 72 00 5d 00}  //weight: 1, accuracy: Low
+        $x_1_5 = "-join" wide //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
