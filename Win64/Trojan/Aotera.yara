@@ -584,3 +584,27 @@ rule Trojan_Win64_Aotera_GS_2147977929_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_Aotera_NM_2147980116_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/Aotera.NM!MTB"
+        threat_id = "2147980116"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "Aotera"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "6"
+        strings_accuracy = "Low"
+    strings:
+        $x_2_1 = {83 e1 0f 4a 0f be 84 19 d0 ?? 13 00 42 0f b6 8c 19 e0 ?? 13 00 48 2b d0 8b 42 fc d3 e8 49 89 51 08 8b c8 49 03 09 49 89 48 18 49 8b 51 08 0f b6 0a 83 e1 0f 4a 0f be 84 19 d0 ?? 13 00 42 0f b6 8c 19 e0 ?? 13 00 48 2b d0 8b 42 fc d3 e8 8b c8 b0 01 49 03 09 49 89 51 08 49 89 48 10}  //weight: 2, accuracy: Low
+        $x_2_2 = {41 8b 03 48 03 c8 b8 05 00 00 00 48 89 0b 84 d2 48 8b 5c 24 08 49 89 09 b9 01 00 00 00 0f 44 c1 4a 63 14 00 4c 8d 05 ?? ?? ?? ff 49 03 52 08 49 89 51 08 41 c7 41 10 00 00 00 00 0f b6 0a 83 e1 0f 4a 0f be 84 01 d0 ?? 13 00 42 0f b6 8c 01 e0}  //weight: 2, accuracy: Low
+        $x_1_3 = "hydrated" ascii //weight: 1
+        $x_1_4 = "hijack" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
