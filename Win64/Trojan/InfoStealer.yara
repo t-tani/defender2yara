@@ -367,3 +367,33 @@ rule Trojan_Win64_InfoStealer_AA_2147977627_1
         (all of ($x*))
 }
 
+rule Trojan_Win64_InfoStealer_PAJ_2147980084_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/InfoStealer.PAJ!MTB"
+        threat_id = "2147980084"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "InfoStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "10"
+        strings_accuracy = "High"
+    strings:
+        $x_1_1 = "/sendDocument" ascii //weight: 1
+        $x_1_2 = ".wallet" ascii //weight: 1
+        $x_1_3 = ".openai" ascii //weight: 1
+        $x_1_4 = "\"app_bound_encrypted_key\"" ascii //weight: 1
+        $x_1_5 = "SELECT origin_url, username_value, password_value FROM logins" ascii //weight: 1
+        $x_1_6 = "ChickenStealer/1.0" ascii //weight: 1
+        $x_1_7 = "Information.txt" ascii //weight: 1
+        $x_1_8 = "SELECT host_key, is_secure, path, expires_utc, name, encrypted_value FROM cookies" ascii //weight: 1
+        $x_1_9 = "SELECT url, title, visit_count FROM urls ORDER BY last_visit_time DESC LIMIT 2000" ascii //weight: 1
+        $x_1_10 = "SteamToken.txt" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

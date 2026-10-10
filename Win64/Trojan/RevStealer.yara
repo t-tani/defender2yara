@@ -85,3 +85,24 @@ rule Trojan_Win64_RevStealer_PA_2147979907_0
         (all of ($x*))
 }
 
+rule Trojan_Win64_RevStealer_AC_2147980091_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win64/RevStealer.AC!MTB"
+        threat_id = "2147980091"
+        type = "Trojan"
+        platform = "Win64: Windows 64-bit platform"
+        family = "RevStealer"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "20"
+        strings_accuracy = "Low"
+    strings:
+        $x_20_1 = {44 8d 50 bf 48 83 c2 ?? 44 0f b6 c8 83 c8 ?? 66 41 83 fa ?? 41 0f 43 c1 0f b7 c0 44 31 c0 c1 c0}  //weight: 20, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+

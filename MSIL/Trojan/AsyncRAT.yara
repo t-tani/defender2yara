@@ -4971,6 +4971,28 @@ rule Trojan_MSIL_AsyncRAT_BH_2147915711_0
         (all of ($x*))
 }
 
+rule Trojan_MSIL_AsyncRAT_BH_2147915711_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AsyncRAT.BH!MTB"
+        threat_id = "2147915711"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AsyncRAT"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "3"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {11 05 17 d6 20 ff 00 00 00 5f 13 05 11 06 07 11 05 94 d6 20 ff 00 00 00 5f 13 06 07 11 05 94 13 0d 07 11 05 07 11 06 94 9e 07 11 06 11 0d 9e 07 07 11 05 94 07 11 06 94 d6 20 ff 00 00 00 5f 94 13 0e 11 04 11 0c 02 11 0c 91 11 0e 61 b4 9c 11 0c 17 d6 13 0c 11 0c 11 0b 31 a5}  //weight: 2, accuracy: High
+        $x_1_2 = "GetPayload" ascii //weight: 1
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_MSIL_AsyncRAT_BJ_2147917665_0
 {
     meta:
@@ -4987,6 +5009,29 @@ rule Trojan_MSIL_AsyncRAT_BJ_2147917665_0
         strings_accuracy = "Low"
     strings:
         $x_2_1 = {07 02 17 59 6f ?? 00 00 0a 06 7b ?? 00 00 04 8e 69 58 0c 07 02 6f ?? 00 00 0a 08 59 0d 06 7b}  //weight: 2, accuracy: Low
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
+rule Trojan_MSIL_AsyncRAT_BI_2147917737_0
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:MSIL/AsyncRAT.BI!MTB"
+        threat_id = "2147917737"
+        type = "Trojan"
+        platform = "MSIL: .NET intermediate language scripts"
+        family = "AsyncRAT"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "4"
+        strings_accuracy = "High"
+    strings:
+        $x_2_1 = {06 20 0d 66 19 00 5a 20 5f f3 6e 3c 58 0a 06 02 07 19 5f 1f 1f 5f 62 61 0a 07 17 58 0b 07 1a 32 df}  //weight: 2, accuracy: High
+        $x_1_2 = "LoadImage" ascii //weight: 1
+        $x_1_3 = "DefenderLive" ascii //weight: 1
     condition:
         (filesize < 20MB) and
         (all of ($x*))

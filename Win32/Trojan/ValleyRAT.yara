@@ -400,6 +400,29 @@ rule Trojan_Win32_ValleyRAT_GB_2147978868_0
         (all of ($x*))
 }
 
+rule Trojan_Win32_ValleyRAT_GB_2147978868_1
+{
+    meta:
+        author = "defender2yara"
+        detection_name = "Trojan:Win32/ValleyRAT.GB!MTB"
+        threat_id = "2147978868"
+        type = "Trojan"
+        platform = "Win32: Windows 32-bit platform"
+        family = "ValleyRAT"
+        severity = "Critical"
+        info = "MTB: Microsoft Threat Behavior"
+        signature_type = "SIGNATURE_TYPE_PEHSTR_EXT"
+        threshold = "7"
+        strings_accuracy = "Low"
+    strings:
+        $x_4_1 = {34 b3 88 41 ff 0f b6 01 48 ff c1 84 c0 75 f1 48 8d 15 ?? ?? ?? ?? 48 89 f9 ff 15 91 4a 00 00 48 89 05 ?? ?? ?? ?? 48 b8 6b 65 72 6e 65 6c 33 32 48 89 44 24 ?? c7 44 24 ?? ?? ?? ?? ?? c6 44 24 3c}  //weight: 4, accuracy: Low
+        $x_2_2 = "drivers\\vmmom32\\drivers\\vmhgm32\\drivers\\VBoxvboxservice.exe" ascii //weight: 2
+        $x_1_3 = {4e 74 43 72 65 61 74 65 53 65 63 74 69 6f 6e 00 4e 74 4d 61 70 56 69 65 77 4f 66 53 65 63 74 69 4e 74 55 6e 6d 61 70 56 69 65 77 4f 66 53 65 63 57 61 69 74 46 6f 72 53 69 6e 67 6c 65 4f 62 6a}  //weight: 1, accuracy: High
+    condition:
+        (filesize < 20MB) and
+        (all of ($x*))
+}
+
 rule Trojan_Win32_ValleyRAT_AG_2147979614_0
 {
     meta:
